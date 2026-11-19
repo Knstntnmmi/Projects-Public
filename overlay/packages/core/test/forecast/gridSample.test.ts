@@ -66,8 +66,8 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
     for (const id of ['jiazi-1984', 'southern']) expect(decadeGrid(resultOf(id), TOPIC).rows.find((r) => r.level === 'western-solar-return')!.cells.every((c) => c.word === 'nothing-said')).toBe(true);
     // no luck pillar is cast without a sex convention, and the row says so; with one, a balanced chart says that it names no favourite
     const j = decadeGrid(resultOf('j2000'), TOPIC);
-    expect(j.rows[0]).toMatchObject({ level: 'bazi-luck', note: 'needs the luck-direction convention' });
-    expect(j.rows[0]!.cells.every((c) => c.word === 'nothing-said' && c.silentReason === 'needs the luck-direction convention')).toBe(true);
+    expect(j.rows[0]).toMatchObject({ level: 'bazi-luck', note: 'needs the sex the chart is read as, which fixes the direction of the luck pillars' });
+    expect(j.rows[0]!.cells.every((c) => c.word === 'nothing-said' && c.silentReason === 'needs the sex the chart is read as, which fixes the direction of the luck pillars')).toBe(true);
     expect(decadeGrid(resultOf('jiazi-1984'), TOPIC).rows[0]!.note).toBe('the chart is balanced, so the favourable-element method names no favourite');
     // a cell carries what the decision lists
     const c = cellOf(j, 'bazi-year', 2031);
@@ -281,5 +281,17 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
     expect(j.headlines.map((h) => h.year)).toEqual(j.grid.years);
     expect(j.headlines.map((h) => h.headline)).toEqual(j.grid.headlines);
     expect(JSON.parse(JSON.stringify(j))).toEqual(j);
+  });
+});
+
+describe('a first luck pillar that opens late', () => {
+  it('gives the luck row a reason for the years before it, instead of silence with none', () => {
+    const f = fixture('lichun-after-2024');
+    const input = makeInput(makeMoment(f.civil, f.zone, f.place), { fromYear: 2026, toYear: 2045, forecastConventions: { baziSexConvention: 'male-chart' } });
+    const g = decadeGrid(evaluate(input, { traditions: ['bazi'], runs: 20, seed: 1 }), 'wealth');
+    const luck = g.rows.find((r) => r.level === 'bazi-luck')!;
+    expect(luck.note).toBe('the first luck pillar begins in 2034; no pillar covers the years before');
+    expect(luck.cells[0]!.word).toBe('nothing-said');
+    expect(luck.cells[0]!.silentReason).toBe(luck.note);
   });
 });

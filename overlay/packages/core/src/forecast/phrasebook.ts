@@ -103,7 +103,8 @@ export const NOTE = {
   onePlanetsMotion: "two traditions read one planet's motion",
   sameFactAlso: 'same fact, also reported by',
   balancedChart: 'the chart is balanced, so the favourable-element method names no favourite',
-  needsLuckDirection: 'needs the luck-direction convention',
+  needsLuckDirection: 'needs the sex the chart is read as, which fixes the direction of the luck pillars',
+  noLuckPillarYet: (year: number): string => `the first luck pillar begins in ${year}; no pillar covers the years before`,
   needsSexConvention: 'needs a named sex convention',
   needsBirthTime: 'needs a birth time that is known well enough',
 } as const;
@@ -220,6 +221,12 @@ export function windowTooLongMessage(days: number, limit: number): string {
 export function sensitivityText(minutes: number): string {
   return `would change if the birth time were ${minutes} minutes off`;
 }
+
+/** What is said about the birth time under a forecast: which cells would turn, that none would, or that it was not checked. */
+export const SENSITIVITY_NOT_CHECKED = 'Birth-time sensitivity is not checked: give how many minutes the birth time may be off, and the cells that would change are listed.';
+export const sensitivityNone = (minutes: number): string => `No cell of this grid would change if the birth time were ${minutes} minutes off.`;
+export const sensitivityLine = (label: string, years: readonly number[], minutes: number): string => `${label}, ${joinYears(years)}: ${sensitivityText(minutes)}.`;
+const joinYears = (years: readonly number[]): string => (years.length <= 2 ? years.join(' and ') : `${years.slice(0, -1).join(', ')} and ${years[years.length - 1]}`);
 
 export function listIntro(topic: Topic): string {
   return `Each line is something a named rule says about ${TOPIC_PHRASE[topic]} in this period, with its source. ${TEXT.notTestedYet}`;

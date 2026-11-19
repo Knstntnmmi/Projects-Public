@@ -141,6 +141,7 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     if (!model) return;
     $('fc-natal').innerHTML = natalHtml(model);
     $('fc-grid').innerHTML = gridHtml(model, sel);
+    $('fc-birth').innerHTML = `<p class="note">${esc(model.sensitivity.join(' '))}</p>`;
     $('fc-rules-body').innerHTML = notEvaluatedHtml(model);
     if (sel.year !== null && !model.grid.years.includes(sel.year)) sel.year = null;
     renderYear();
@@ -155,9 +156,12 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     }
     const s = settings();
     try {
-      const result = forecast.evaluate(inputFor(moment, s.fromYear, s.toYear, s.sexConvention), { topics: [s.topic] });
+      const input = inputFor(moment, s.fromYear, s.toYear, s.sexConvention);
+      const result = forecast.evaluate(input, { topics: [s.topic] });
       if (mine !== seq) return;
-      model = buildModel(result, s.topic);
+      // With a stated uncertainty the evaluation is run twice more, with the birth moment moved earlier and later.
+      const sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, { topics: [s.topic], runs: 20 }), s.topic);
+      model = buildModel(result, s.topic, sensitivity);
       render();
       $('fc-body').classList.remove('stale');
       $('forecast').setAttribute('aria-busy', 'false');

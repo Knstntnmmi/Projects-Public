@@ -12,7 +12,7 @@ import { agreementBaseline, type Baseline } from './baseline.ts';
 import { agreementCells, groupSeries, type AgreementCell } from './agreement.ts';
 import { createContext, sliceSpan, type ForecastInput } from './context.ts';
 import { DEFAULT_FORECAST_CONVENTIONS, sexOf, type ForecastConventions } from './conventions.ts';
-import { notEvaluatedBranchLine, sensitivityText } from './phrasebook.ts';
+import { LEVEL_LABEL, notEvaluatedBranchLine, sensitivityLine, sensitivityNone, sensitivityText, SENSITIVITY_NOT_CHECKED, TRADITION_NAME } from './phrasebook.ts';
 import { attachModifiers, buildLevelReadings, buildReadings, type LevelReading, type Reading } from './readings.ts';
 import { DEFAULT_REGISTRY, isPeriodReadRule, levelCoverage, periodReadTraditions, report, type LevelCoverage, type Registry, type RegistryReport, type RunConfig } from './registry.ts';
 import { RULESET_VERSION, rulesetVersion } from './rules.ts';
@@ -202,12 +202,35 @@ export function reportJson(result: ForecastResult, topic: Topic): Record<string,
 
 export interface SensitivityNote {
   tradition: Tradition;
+  /** The level whose cell changes (the cell the grid shows); null for a change of a tradition's word as a whole. */
+  level: LevelId | null;
   topic: Topic;
   slice: number;
   from: ReadingWord;
   to: ReadingWord;
   minutes: number;
   text: string;
+}
+
+/**
+ * The lines to print under a forecast for one topic about the birth time: the cells that would change, one line
+ * for each level, or that none would, or that it was not checked. A change of a tradition's word whose levels
+ * show no change is listed under the tradition's name.
+ */
+export function sensitivityLines(input: ForecastInput, base: ForecastResult, notes: readonly SensitivityNote[], topic: Topic): string[] {
+  const u = input.birthTimeUncertaintyMinutes;
+  if (u === null || u <= 0) return [SENSITIVITY_NOT_CHECKED];
+  const yearOf = (slice: number): number => base.slices[slice]!.year;
+  const mine = notes.filter((n) => n.topic === topic);
+  const levels = new Set(mine.filter((n) => n.level !== null).map((n) => n.tradition));
+  const groups = new Map<string, number[]>();
+  for (const n of mine) {
+    if (n.level === null && levels.has(n.tradition)) continue;
+    const label = n.level === null ? TRADITION_NAME[n.tradition] : LEVEL_LABEL[n.level];
+    groups.set(label, [...(groups.get(label) ?? []), yearOf(n.slice)]);
+  }
+  if (groups.size === 0) return [sensitivityNone(u)];
+  return [...groups].map(([label, years]) => sensitivityLine(label, [...new Set(years)].sort((a, b) => a - b), u));
 }
 
 /**
@@ -230,7 +253,16 @@ export function birthTimeSensitivity(input: ForecastInput, base: ForecastResult,
       const key = `${r.tradition}|${r.topic}|${r.slice}`;
       if (other && other.word !== r.word && !seen.has(key)) {
         seen.add(key);
-        notes.push({ tradition: r.tradition, topic: r.topic, slice: r.slice, from: r.word, to: other.word, minutes: u, text: sensitivityText(u) });
+        notes.push({ tradition: r.tradition, level: null, topic: r.topic, slice: r.slice, from: r.word, to: other.word, minutes: u, text: sensitivityText(u) });
+      }
+    }
+    // The cells the grid shows are compared as well: a tradition's word can hold while one level of it turns (the Vedic Lagna moves a house boundary, not the tradition's word).
+    for (const r of base.levelReadings) {
+      const other = alt.levelReadings.find((x) => x.level === r.level && x.topic === r.topic && x.slice === r.slice);
+      const key = `${r.level}|${r.topic}|${r.slice}`;
+      if (other && other.word !== r.word && !seen.has(key)) {
+        seen.add(key);
+        notes.push({ tradition: levelTradition(r.level)!, level: r.level, topic: r.topic, slice: r.slice, from: r.word, to: other.word, minutes: u, text: sensitivityText(u) });
       }
     }
   }

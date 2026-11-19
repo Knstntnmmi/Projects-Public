@@ -94,6 +94,9 @@ export function chartNotes(ctx: ForecastContext): ChartNote[] {
   const notes: ChartNote[] = [];
   // The direction of the luck pillars needs a named sex convention; without one no luck pillar is cast and the level is silent for that reason.
   if (ctx.luck() === null) notes.push({ tradition: 'bazi', levels: ['bazi-luck'], text: NOTE.needsLuckDirection });
+  // A native whose first luck pillar opens late has years that no pillar covers; the cell would otherwise read as silent for no reason.
+  const first = ctx.luck()?.pillars[0];
+  if (first !== undefined && first.startUtcMs > ctx.input.span.startUtcMs) notes.push({ tradition: 'bazi', levels: ['bazi-luck'], text: NOTE.noLuckPillarYet(new Date(first.startUtcMs).getUTCFullYear()) });
   // The rules that need the birth time are withheld when it is unknown or too uncertain; a note on their silence would be about a chart no rule read.
   const u = ctx.input.birthTimeUncertaintyMinutes;
   if (u === null || u > ctx.input.forecastConventions.birthTimeLimitMinutes) return notes;

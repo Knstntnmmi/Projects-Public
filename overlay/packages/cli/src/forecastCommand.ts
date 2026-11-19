@@ -96,7 +96,9 @@ export function runForecast(flags: Flags, currentYear: number): string {
     const theme = flags.get('theme')?.[0] as 'light' | 'dark' | undefined;
     return renderDecadeGrid(forecast.decadeGrid(result, topic), { ...(width === undefined ? {} : { width }), theme });
   }
-  return forecastTextLines(result, topic, { full: flags.has('full') }).join('\n');
+  const opts = { topics: [topic], ...(traditions ? { traditions } : {}), runs: 20 };
+  const sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, opts), topic);
+  return forecastTextLines(result, topic, { full: flags.has('full'), sensitivity }).join('\n');
 }
 
 /** "overlay window": the character of at most 62 days, the I Ching and Lilly's day statements, each in its own part. */

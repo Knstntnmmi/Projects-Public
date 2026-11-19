@@ -5,7 +5,7 @@ import { buildTracks } from '../../src/overlay/tracks.ts';
 import { DEFAULT_CONVENTIONS } from '../../src/conventions.ts';
 import { bisectChange } from '../../src/substrate/sky.ts';
 import { signIngresses } from '../../src/systems/western/index.ts';
-import { birthTimeSensitivity, createContext, evaluate, ingressSpans, slicesOf, sliceSpan, sovereignSpans } from '../../src/forecast/index.ts';
+import { birthTimeSensitivity, sensitivityLines, SENSITIVITY_NOT_CHECKED, createContext, evaluate, ingressSpans, slicesOf, sliceSpan, sovereignSpans } from '../../src/forecast/index.ts';
 import { fixture } from '../../../../fixtures/moments.ts';
 import { makeMoment } from '../../src/substrate/time.ts';
 import { input, moment, registry, R, yearFiring } from './synthetic.ts';
@@ -115,6 +115,10 @@ describe('birth-time sensitivity', () => {
     expect(notes[0]).toMatchObject({ tradition: 'bazi', topic: 'wealth', slice: 2, from: 'supports', to: 'nothing-said', minutes: 20, text: 'would change if the birth time were 20 minutes off' });
     expect(birthTimeSensitivity(input({ birthTimeUncertaintyMinutes: 0 }), result, o)).toEqual([]);
     expect(birthTimeSensitivity(input({ birthTimeUncertaintyMinutes: null }), result, o)).toEqual([]);
+    // What is printed: the tradition whose word turns, the years, the minutes; nothing checked when no uncertainty was given.
+    expect(sensitivityLines(base, result, notes, 'wealth')).toEqual(['BaZi, 2033: would change if the birth time were 20 minutes off.']);
+    expect(sensitivityLines(base, result, [], 'wealth')).toEqual(['No cell of this grid would change if the birth time were 20 minutes off.']);
+    expect(sensitivityLines(input({ birthTimeUncertaintyMinutes: 0 }), result, [], 'wealth')).toEqual([SENSITIVITY_NOT_CHECKED]);
   });
 });
 

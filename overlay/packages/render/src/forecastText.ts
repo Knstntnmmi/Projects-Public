@@ -82,6 +82,8 @@ export interface TextReportOptions {
   full?: boolean;
   /** For the full part: only these years (the sample prints the first three). */
   fullYears?: readonly number[];
+  /** The lines about the birth time (which cells would change); printed under the headlines when given. */
+  sensitivity?: readonly string[];
 }
 
 /** A citation and its locator in one phrase; the citations end in a full stop of their own. */
@@ -175,6 +177,7 @@ export function forecastTextLines(result: forecast.ForecastResult, topic: foreca
     out.push('', `The rules not evaluated (${counts.notEvaluated.length})`, ...notEvaluatedLines(counts).map((l) => `  ${l}`), `  ${forecast.rulesLine(result.availableCount, result.withheldCount)}`);
     out.push('', 'The conventions used', ...conventionPairs(result).map(([k, v]) => `  ${k}: ${v}`));
   }
+  if (options.sensitivity !== undefined) out.push('', 'The birth time', ...options.sensitivity.map((l) => `  ${l}`));
   out.push('', closingLine(counts));
   return out;
 }

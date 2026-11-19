@@ -20,10 +20,23 @@ function assertWording(text: string, where: string): void {
   for (const line of lines) {
     expect(forecast.bannedIn(line), `${where}: ${line}`).toBeNull();
     // "Cancer" is a sign of the zodiac here, not a diagnosis.
-    // Two sentences of the rule files are let through, as their own tests let them through: a negation, and Valens's list of what a lot of Saturn signifies ("secret diseases"), which is the core's wording and is reported to its owner.
-    if (!line.includes('not a prediction of death') && !line.includes('secret diseases')) expect(forecast.MORTALITY_WORDS.test(line.replace(/\bCancer\b/g, 'the Crab')), `${where}: ${line}`).toBe(false);
+    // One sentence of the rule files is let through, as its own test lets it through: a negation.
+    if (!line.includes('not a prediction of death')) expect(forecast.MORTALITY_WORDS.test(line.replace(/\bCancer\b/g, 'the Crab')), `${where}: ${line}`).toBe(false);
   }
 }
+
+describe('overlay forecast: the birth time', () => {
+  it('says that sensitivity was not checked when no uncertainty is given', () => {
+    expect(forecastOf('--topic', 'wealth', '--traditions', 'vedic')).toContain(forecast.SENSITIVITY_NOT_CHECKED);
+  });
+  it('lists the cells that would change, or says that none would, when an uncertainty is given', () => {
+    const t = runForecast(flagsOf('--moment', 'j2000', '--from', '2026', '--to', '2027', '--topic', 'wealth', '--traditions', 'vedic', '--uncertainty', '5'), 2031);
+    const section = t.slice(t.indexOf('The birth time'));
+    expect(section).toMatch(/would change if the birth time were 5 minutes off|No cell of this grid would change if the birth time were 5 minutes off/);
+    // The Vedic rising sign sits 1.6 minutes from a sign boundary for this sample moment, so a Vedic cell turns.
+    expect(section).toContain('would change if the birth time were 5 minutes off');
+  });
+});
 
 describe('overlay forecast', () => {
   const text = forecastOf();

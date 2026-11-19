@@ -25,15 +25,15 @@ export const BADGE = {
   derivedDignified: 'derived threshold: dignified read as a positive essential score',
 } as const;
 
-const CONVENTIONS = ['westernHouses', 'westernTerms', 'westernOrbs'];
+export const CONVENTIONS = ['westernHouses', 'westernTerms', 'westernOrbs'];
 
 type SexRead = 'male' | 'female' | null;
 type NatalRule = (m: NatalModel, sex: SexRead) => Firing[];
 
-const fact = (key: string, label: string, value: string | number): Fact => ({ key, label, value });
+export const fact = (key: string, label: string, value: string | number): Fact => ({ key, label, value });
 
 /** One undated firing on the birth-arithmetic clock; the instance says which fact of the rule it is. */
-const natal = (facts: Fact[], badges: string[], instance = 'natal'): Firing => ({
+export const natal = (facts: Fact[], badges: string[], instance = 'natal'): Firing => ({
   clock: 'birthday',
   startUtcMs: null,
   endUtcMs: null,
@@ -43,7 +43,7 @@ const natal = (facts: Fact[], badges: string[], instance = 'natal'): Firing => (
   badges,
 });
 
-const ordinal = (h: number): string => `${h}${h === 1 ? 'st' : h === 2 ? 'nd' : h === 3 ? 'rd' : 'th'}`;
+export const ordinal = (h: number): string => `${h}${h === 1 ? 'st' : h === 2 ? 'nd' : h === 3 ? 'rd' : 'th'}`;
 const inHouses = (m: NatalModel, p: Planet, houses: readonly number[]): boolean => houses.includes(m.houseOf(p));
 const moreThanHalf = (count: number, of: number): boolean => count * 2 > of;
 const isInfortune = (p: Planet): boolean => p === 'Saturn' || p === 'Mars';

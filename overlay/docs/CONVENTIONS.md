@@ -238,6 +238,17 @@ Lilly prints two columns of orbs and says he uses now the one and now the other 
 | --- | --- | --- |
 | `first-column` | First column. Saturn 10, Jupiter 12, Mars 7 30', Sun 17, Venus 8, Mercury 7, Moon 12 30'. The only value today; the second column is in the module for a later choice. | yes |
 
+## Western year with the profected point in the tenth house
+
+Setting `westernTenthYear`. Affects: lilly.profection.house-money, house-travel and mc-career for the 10th house, and lilly.profection.angle-aspect-years for a square to the Ascendant.
+
+Lilly's house table calls the year in which the profected Ascendant, Midheaven or Sun reaches the tenth house very successful (Christian Astrology, p.730 and p.731), while his remark on p.720 calls the years in square or opposition to the Horoscope or Midheaven unhappy. The tenth house is in square to the Ascendant, so the two cannot both be read. The rule file lists the house table first, which is the default.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `house-table` | House table. The tenth house is read as the house table says; the square to the Ascendant is not read as unhappy for it. The default. | yes |
+| `angle-aspect` | Aspect to the angles. The tenth house is read as a square to the Ascendant, unhappy; the house table is not read for it. |  |
+
 ## Length of a dasha year
 
 Setting `vedicDashaYearDays`. Affects: Vimshottari period boundaries.

@@ -87,3 +87,14 @@ export function isApplying(lonA: number, speedA: number, lonB: number, speedB: n
   const dt = 0.001;
   return dist(lonA + speedA * dt, lonB + speedB * dt) < dist(lonA, lonB);
 }
+
+/**
+ * Partile as the orbs rule states it (p.106): the same degree and the same minute of signs
+ * that stand in the aspect. Table B reads the coarser same-degree test above.
+ */
+export function isPartileMinute(lonA: number, lonB: number, angle: number): boolean {
+  const apart = (((signIndex(lonB) - signIndex(lonA)) % 12) + 12) % 12;
+  if (apart !== angle / 30 && apart !== (12 - angle / 30) % 12) return false;
+  const minute = (l: number): number => Math.floor(((norm360(l) % 30) * 60) + 1e-9);
+  return minute(lonA) === minute(lonB);
+}

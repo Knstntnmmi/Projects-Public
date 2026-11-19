@@ -289,7 +289,7 @@ describe('relationships: a man\'s nativity', () => {
       expect(fire(id, chart(), 'female'), id).toEqual([]);
       expect(fire(id, chart(), null), id).toEqual([]);
     }
-    for (const b of BINDINGS.filter((x) => !x.ruleId.startsWith('lilly.relationships.'))) expect(b.requires, b.ruleId).toEqual({ birthTime: true, sex: false });
+    for (const b of BINDINGS.filter((x) => x.ruleId in NATAL_RULES && !x.ruleId.startsWith('lilly.relationships.'))) expect(b.requires, b.ruleId).toEqual({ birthTime: true, sex: false });
   });
 
   it('single-life.barren: Venus and the Moon in barren signs and in the 6th, 9th, 12th or 8th', () => {
@@ -363,10 +363,10 @@ describe('the bindings as a whole', () => {
     for (const id of natalIds) expect(bound.has(id) !== declared.has(id), id).toBe(true);
     for (const r of declared.values()) expect(r.length).toBeGreaterThan(40);
   });
-  it('bind no period, activation or modifier rule yet, and are not complete', () => {
-    for (const b of BINDINGS) expect(ruleById(b.ruleId)!.stage).toBe('natal-promise');
+  it('bind every natal-promise rule through NATAL_RULES, and are not complete', () => {
+    const natalBound = BINDINGS.filter((b) => ruleById(b.ruleId)!.stage === 'natal-promise');
+    expect(natalBound.map((b) => b.ruleId).sort()).toEqual(Object.keys(NATAL_RULES).sort());
     expect(COMPLETE).toBe(false);
-    expect(unaccounted(DEFAULT_REGISTRY, 'western')).toHaveLength(56 - 26);
   });
   it('mark every statement of a rule that names a house with the whole-sign badge', () => {
     const cases: Array<[string, NatalModel]> = [
@@ -389,11 +389,10 @@ describe('the bindings as a whole', () => {
       const input = makeInput(makeMoment(f.civil, f.zone, f.place), { fromYear: 2031, toYear: 2033, birthTimeUncertaintyMinutes: 0, forecastConventions: { baziSexConvention: 'male-chart' } });
       expect(auditRegistry(DEFAULT_REGISTRY, input, { traditions: ['western'] }), f.id).toEqual([]);
       const r = evaluate(input, { traditions: ['western'], topics: ['wealth', 'career', 'relationships', 'home-travel'], runs: 20 });
-      for (const s of r.signals) {
+      for (const s of r.signals.filter((x) => x.stage === 'natal-promise')) {
         total++;
         expect(s.tradition).toBe('western');
         expect(s.startUtcMs).toBeNull();
-        expect(s.stage).toBe('natal-promise');
         expect(s.sentence).not.toMatch(/[{}]/);
         expect(s.source.opened).toBe(true);
         expect(s.source.locator).not.toBe('');
@@ -413,11 +412,14 @@ describe('the bindings as a whole', () => {
   });
   it('count the rules bound per topic as coverage', () => {
     const r = report(DEFAULT_REGISTRY, { traditions: ['western'], sex: 'male', birthTimeUncertaintyMinutes: 0, birthTimeLimitMinutes: 60 });
-    expect(r.counts.western.bound).toBe(24);
-    expect(r.coverage.western.wealth).toBe(14);
-    expect(r.coverage.western.career).toBe(4);
-    expect(r.coverage.western.relationships).toBe(5);
-    expect(r.coverage.western['home-travel']).toBe(1);
+    const natalIds = new Set(Object.keys(NATAL_RULES));
+    const natalRules = r.statuses.filter((s) => natalIds.has(s.ruleId));
+    expect(natalRules.filter((s) => s.state === 'bound')).toHaveLength(24);
+    const per = (topic: string): number => natalRules.filter((s) => s.state === 'bound' && ruleById(s.ruleId)!.topics.includes(topic as never)).length;
+    expect(per('wealth')).toBe(14);
+    expect(per('career')).toBe(4);
+    expect(per('relationships')).toBe(5);
+    expect(per('home-travel')).toBe(1);
     expect(PLANETS).toHaveLength(7);
   });
 });

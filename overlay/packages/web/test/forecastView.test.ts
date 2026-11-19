@@ -11,6 +11,8 @@ import { forecast, makeMoment } from '@overlay/core';
 import { fixture } from '../../../fixtures/moments.ts';
 import {
   agreementHtml,
+  birthHtml,
+  BIRTH_PENDING,
   buildModel,
   cellLabel,
   characterHtml,
@@ -33,6 +35,8 @@ import {
   textOf,
   topicChoices,
   windowFrom,
+  wordsUsed,
+  wordsUsedHtml,
   yearHtml,
   MAX_YEARS,
 } from '../src/forecastView.ts';
@@ -324,5 +328,66 @@ describe('what the whole section says', () => {
 
   it('keeps the banned words out of every statement the rules state', () => {
     for (const e of model.entries.values()) expect(forecast.bannedIn(e.sentence), e.signalId).toBeNull();
+  });
+});
+
+describe('the lines about the birth time', () => {
+  it('stand in for one line until they are ready', () => {
+    expect(BIRTH_PENDING).toBe('Checking what a different birth time would change.');
+    const pending = birthHtml(null);
+    expect(textOf(pending)).toBe(BIRTH_PENDING);
+    expect(count(pending, '<p')).toBe(1);
+  });
+
+  it('replace that line when they arrive, and the line is gone', () => {
+    const lines = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, { topics: ['wealth'], runs: 20 }), 'wealth');
+    expect(lines.length).toBeGreaterThan(0);
+    const html = birthHtml(lines);
+    expect(html).not.toContain(BIRTH_PENDING);
+    expect(html).not.toContain('data-pending');
+    expect(textOf(html)).toBe(lines.join(' '));
+    expect(birthHtml([])).toBe('');
+  });
+});
+
+describe('the words used', () => {
+  const none = { year: null, level: null } as const;
+  const terms = (m: typeof model, sel: { year: number | null; level: forecast.LevelId | null } = none): string[] => wordsUsed(m, sel).map((e) => e.term);
+
+  it('lists the four words of the forecast, since the legend shows them, and only terms that occur', () => {
+    const t = terms(model);
+    for (const w of ['supports', 'cautions', 'mixed', 'nothing said']) expect(t).toContain(w);
+    const shown = textOf(natalHtml(model) + gridHtml(model, none) + agreementHtml(model, null)).toLowerCase();
+    expect(t.length).toBeLessThan(forecast.GLOSSARY.length / 2);
+    for (const e of wordsUsed(model, none)) expect(forecast.glossaryNames(e).some((n) => shown.includes(n.toLowerCase()) || FORECAST_SENTENCE.toLowerCase().includes(n.toLowerCase())), e.term).toBe(true);
+  });
+
+  it('leaves out a term that the forecast shown does not use', () => {
+    // The sample is read without a sex convention and for wealth; no firdaria and no gua qi appear in the grid.
+    expect(terms(model)).not.toContain('sixty-four-gate wheel');
+  });
+
+  it('matches without regard to case', () => {
+    const upper = { ...model, sensitivity: ['SOLAR RETURN and PROFECTION'] };
+    expect(terms(upper)).toEqual(expect.arrayContaining(['solar return, revolution', 'profection, annual profection']));
+  });
+
+  it('follows the year that is open', () => {
+    const year = model.grid.years[0]!;
+    const open = terms(model, { year, level: null });
+    expect(open.length).toBeGreaterThanOrEqual(terms(model).length);
+  });
+
+  it('gives each term its meaning and its source, and nothing when there is none', () => {
+    const html = wordsUsedHtml(wordsUsed(model, none));
+    expect(count(html, '<dt>')).toBe(wordsUsed(model, none).length);
+    expect(count(html, '<dd>')).toBe(count(html, '<dt>'));
+    expect(html).toContain('Source: the project&#39;s own wording.'.replace('&#39;', "'"));
+    expect(textOf(html)).toContain(forecast.GLOSSARY.find((e) => e.term === 'supports')!.definition);
+    expect(wordsUsedHtml([])).toBe('');
+  });
+
+  it('uses none of the words the phrasebook bans', () => {
+    expect(forecast.bannedIn(textOf(wordsUsedHtml(wordsUsed(model, none))))).toBeNull();
   });
 });

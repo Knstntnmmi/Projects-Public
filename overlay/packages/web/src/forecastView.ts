@@ -387,6 +387,40 @@ export function notEvaluatedHtml(m: Model): string {
   );
 }
 
+// --- the birth time, and the words used ------------------------------------------
+
+/** The one line that stands in place of the birth-time lines until they have been computed. */
+export const BIRTH_PENDING = 'Checking what a different birth time would change.';
+
+/** The birth-time lines, or, with null (they are not ready), the one line that says they are being computed. */
+export function birthHtml(lines: readonly string[] | null): string {
+  if (lines === null) return `<p class="note" data-pending="true">${esc(BIRTH_PENDING)}</p>`;
+  return lines.length === 0 ? '' : `<p class="note">${esc(lines.join(' '))}</p>`;
+}
+
+/** The words a reader sees in the forecast as it is now shown: the chart statements, the grid, the open year, the agreement and the birth-time lines. */
+export function shownText(m: Model, sel: Selection): string {
+  const html = natalHtml(m) + gridHtml(m, sel) + (sel.year === null ? '' : yearHtml(m, sel.year, sel.level)) + agreementHtml(m, sel.year);
+  // The hidden label of the grid's corner is read aloud but is not a word of the forecast.
+  return `${FORECAST_SENTENCE} ${textOf(html.replace(/<span class="sr">.*?<\/span>/g, ''))} ${m.sensitivity.join(' ')}`;
+}
+
+/** The glossary terms that occur in the forecast as shown, in the order of the glossary. */
+export const wordsUsed = (m: Model, sel: Selection): forecast.GlossaryEntry[] => forecast.glossaryTermsIn(shownText(m, sel));
+
+/** The terms with their meanings and sources, as a list of terms and meanings; empty when no term occurs. */
+export function wordsUsedHtml(entries: readonly forecast.GlossaryEntry[]): string {
+  if (entries.length === 0) return '';
+  const rows = entries
+    .map(
+      (e) =>
+        `<dt>${esc(e.term)}${e.original === '' ? '' : ` <span class="orig">${esc(e.original)}</span>`}</dt>` +
+        `<dd>${esc(e.definition)} <span class="src">Source: ${esc(e.source)}.</span></dd>`,
+    )
+    .join('');
+  return `<dl class="words">${rows}</dl>`;
+}
+
 // --- plain text, for tests and the sample ------------------------------------------
 
 /** The text a reader sees in a piece of HTML: tags removed, entities restored, runs of space joined. */

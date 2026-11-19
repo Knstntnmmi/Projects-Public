@@ -10,6 +10,7 @@
 import { forecast, type Conventions, type Moment } from '@overlay/core';
 import {
   agreementHtml,
+  birthHtml,
   buildModel,
   characterHtml,
   defaultSpan,
@@ -22,6 +23,8 @@ import {
   spanFrom,
   topicChoices,
   windowFrom,
+  wordsUsed,
+  wordsUsedHtml,
   yearHtml,
   DEFAULT_WINDOW_DAYS,
   MAX_FIRST_YEAR,
@@ -108,12 +111,20 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     }
   }
 
+  // The terms of the glossary that occur in what is shown now; the disclosure stays closed and is hidden when there are none.
+  function renderWords(): void {
+    const entries = model ? wordsUsed(model, sel) : [];
+    $('fc-words-body').innerHTML = wordsUsedHtml(entries);
+    $('fc-words').hidden = entries.length === 0;
+  }
+
   function renderYear(): void {
     const panel = $('fc-year');
     $('fc-hint').hidden = sel.year !== null;
     panel.hidden = sel.year === null;
     panel.innerHTML = model && sel.year !== null ? yearHtml(model, sel.year, sel.level) : '';
     if (model) $('fc-agree-body').innerHTML = agreementHtml(model, sel.year);
+    renderWords();
     applySelection();
   }
 
@@ -152,7 +163,7 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     $('fc-natal').innerHTML = natalHtml(model);
     $('fc-grid').innerHTML = gridHtml(model, sel);
     marks();
-    $('fc-birth').innerHTML = `<p class="note">Checking which cells would change if the birth time were off...</p>`;
+    $('fc-birth').innerHTML = birthHtml(null);
     $('fc-rules-body').innerHTML = notEvaluatedHtml(model);
     if (sel.year !== null && !model.grid.years.includes(sel.year)) sel.year = null;
     renderYear();
@@ -177,8 +188,14 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
       const shown = model;
       sensitivityTimer = setTimeout(() => {
         if (mine !== seq || model !== shown) return;
-        shown.sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, { topics: [s.topic], runs: 20 }), s.topic);
-        $('fc-birth').innerHTML = `<p class="note">${esc(shown.sensitivity.join(' '))}</p>`;
+        try {
+          shown.sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, { topics: [s.topic], runs: 20 }), s.topic);
+          $('fc-birth').innerHTML = birthHtml(shown.sensitivity);
+          renderWords();
+        } catch (err) {
+          $('fc-birth').innerHTML = '';
+          status(`The birth-time check could not be computed: ${err instanceof Error ? err.message : 'unknown error'}`);
+        }
       }, 0);
       render();
       $('fc-body').classList.remove('stale');

@@ -30,7 +30,7 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | source not opened | | The badge for a rule whose source was not opened by the project. | the project's own wording |
 | labelled variant | | The badge for a statement computed under a choice that departs from the source, for example whole-sign houses where Lilly used Regiomontanus cusps. | the project's own wording |
 | sex convention | | The sex the chart is read as, which fixes the direction of the BaZi luck pillars and which rules apply. The engine never guesses it. | the project's own wording |
-| scorecard | | A record of events a person enters, to be compared with forecasts frozen beforehand. It is the project's own addition and is not yet scored. | the project's own wording |
+| scorecard | | A record of events a person enters, to be compared with forecasts frozen beforehand. The project plans to score each technique against shuffled dates; that scoring is its own and is not built, so nothing is scored yet. | the project's own wording |
 | frozen forecast | | A forecast stored with a hash before the events are entered, so that only events entered after the freeze can be compared with it. | the project's own wording |
 | retrodiction | | Comparing a forecast with events that were known before it was made. | the project's own wording |
 | hit rate | | The share of statements that matched events, as a scorecard would count them. The forecast does not give one. | the project's own wording |
@@ -54,6 +54,7 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | hui, lin, wujiu | 悔, 吝, 无咎 | Words of the Changes that register small faults (hui and lin) and the repair of transgressions (wujiu). | Smith 2011, pp. 24-26 |
 | zhiming, liming | 知命, 立命 | Knowing fate and establishing fate. Smith glosses the *Changes* as letting humans know fate and also do something about it. | Smith 2011, pp. 1-2, 22 |
 | bazi suanming | 八字算命 | The art that Lackner renders as calculation of fate from the Eight Characters and classes as chronomancy. | Lackner 2011, p. 4 |
+| double-hour | | One of the twelve blocks of two hours into which the day is divided for the hour pillar. The Zi double-hour is the one from 23:00 to 01:00. | the project's own wording |
 | Four Pillars of Destiny | 四柱 sizhu | A name that a newsletter report gives for bazi suanming. | fate no. 6, p. 24 |
 | yingyan | 应验 | Verification, the coming true of a prognostication, which a fellow's project page on verification (yingyan) calls contrary but complementary to prognostication. | IKGF project page of Zhou Zhenhe |
 | cases of proof | 案証 an zheng | Anecdotes that a compiler of a Qing morality book offered as proof that a practice had worked. | Burton-Rose 2019, p. 50 |

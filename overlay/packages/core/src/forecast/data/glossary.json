@@ -157,7 +157,7 @@
     "group": "The words of the forecast",
     "term": "scorecard",
     "original": "",
-    "definition": "A record of events a person enters, to be compared with forecasts frozen beforehand. It is the project's own addition and is not yet scored.",
+    "definition": "A record of events a person enters, to be compared with forecasts frozen beforehand. The project plans to score each technique against shuffled dates; that scoring is its own and is not built, so nothing is scored yet.",
     "source": "the project's own wording"
   },
   {
@@ -278,6 +278,13 @@
     "original": "八字算命",
     "definition": "The art that Lackner renders as calculation of fate from the Eight Characters and classes as chronomancy.",
     "source": "Lackner 2011, p. 4"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "double-hour",
+    "original": "",
+    "definition": "One of the twelve blocks of two hours into which the day is divided for the hour pillar. The Zi double-hour is the one from 23:00 to 01:00.",
+    "source": "the project's own wording"
   },
   {
     "group": "Words about the arts",

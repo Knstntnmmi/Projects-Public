@@ -25,7 +25,15 @@ export interface DecadeGridOptions {
   theme?: 'light' | 'dark';
 }
 
-const GLYPH: Readonly<Record<forecast.ReadingWord, string>> = { supports: '+', cautions: '-', mixed: '~', 'nothing-said': '' };
+/**
+ * The sign in a cell, drawn as a plain shape and not as a letter, so that it stays readable when the figure is shown 390
+ * pixels wide: a plus for supports, a bar for cautions, a wave for mixed. Each is a heavy stroke with a darker outline under it.
+ */
+function signPath(word: forecast.ReadingWord, cx: number, cy: number, a: number): string {
+  if (word === 'supports') return `M${n(cx - a)} ${n(cy)}H${n(cx + a)}M${n(cx)} ${n(cy - a)}V${n(cy + a)}`;
+  if (word === 'cautions') return `M${n(cx - a)} ${n(cy)}H${n(cx + a)}`;
+  return `M${n(cx - a)} ${n(cy)}Q${n(cx - a / 2)} ${n(cy - a * 1.3)} ${n(cx)} ${n(cy)}T${n(cx + a)} ${n(cy)}`;
+}
 
 const FILL_CLASS: Readonly<Record<'supports' | 'cautions' | 'mixed', string>> = { supports: 't-supports', cautions: 't-cautions', mixed: 't-mixed' };
 
@@ -70,7 +78,7 @@ export const SHORT_LEVEL: Readonly<Record<string, string>> = {
 const SHORT_TRADITION: Readonly<Record<string, string>> = { bazi: 'BaZi', vedic: 'Vedic', western: 'Western', iching: 'I Ching' };
 
 /** The short form of a row note, where the drawing knows one; the full words go to the caption of the figure in the README. */
-const SHORT_NOTE: Readonly<Record<string, string>> = { [forecast.NOTE.needsLuckDirection]: 'needs the sex' };
+const SHORT_NOTE: Readonly<Record<string, string>> = { [forecast.NOTE.needsLuckDirection]: 'sex not given' };
 
 export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridOptions = {}): string {
   const width = Math.max(320, Math.round(options.width ?? 720));
@@ -155,7 +163,15 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
         } else parts.push(`<rect class="${FILL_CLASS[cell.word]}" x="${n(rx)}" y="${n(ry)}" width="${n(rw)}" height="${n(rh)}"/>`);
         parts.push(`<rect class="rule" x="${n(rx)}" y="${n(ry)}" width="${n(rw)}" height="${n(rh)}"/>`);
         // A sign beside the colour, so that the word does not rest on colour alone.
-        if (rw >= 16 * L.scale / 1.5) parts.push(`<text x="${n(rx + rw / 2)}" y="${n(ry + rh / 2)}" font-size="${L.fontLabel}" text-anchor="middle" dominant-baseline="central" pointer-events="none" class="halo">${GLYPH[cell.word]}</text>`);
+        if (rw >= 16 * L.scale / 1.5) {
+          const size = Math.min(rw, rh);
+          const d = signPath(cell.word, rx + rw / 2, ry + rh / 2, size * 0.22);
+          const sw = size * 0.15;
+          parts.push(
+            `<path d="${d}" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="${n(sw + 3)}" style="stroke:var(--ov-ink)" pointer-events="none"/>` +
+              `<path d="${d}" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="${n(sw)}" style="stroke:var(--ov-bg)" pointer-events="none"/>`,
+          );
+        }
         body.push(`<g ${attrs}>${parts.join('')}<title>${esc(tip)}</title></g>`);
       });
       if (noteInside.length > 0) {

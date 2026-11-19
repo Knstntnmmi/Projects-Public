@@ -13,6 +13,8 @@ interface RuleBinding {
   ruleId: string;                 // an id from your data file; exactly one binding per rule
   tradition: Tradition;           // must match the file the rule is in
   requires?: { sex?: boolean; birthTime?: boolean };
+  levels?: LevelId[];             // the levels this rule can speak at, declared (see "Levels"); 'natal' for undated statements
+  periodRead?: true;              // this one rule is read by period (see "Traditions and rules read by period")
   fire(ctx: ForecastContext, rule: Rule): Firing[];   // zero or more times the condition held
 }
 
@@ -47,9 +49,11 @@ A reader is shown techniques, not clocks: the BaZi luck pillar, the BaZi year pi
 
 `levelNeedsField(tradition, clock)` says which clocks need it, `levelFits` says which levels may be set on which clock (a mismatch is a `BadFiringError`), and the registry audit reports a dated firing that omits the field where it is needed. Undated firings are the chart itself and have the level `natal`; set nothing. Do not choose a level to change how a reading reads: the word of a level reading is the same word rule as for a tradition, with the plain counts printed beside it.
 
-## Traditions read by period
+**Every binding declares the levels its rule can speak at**, in the table at the top of the tradition's module (`LEVELS`, applied with `declareLevels`; a binding without a row, or a row without a binding, is an error at load). The decade grid has a row for every level that has a bound rule for the topic, so a level that never fires in a span is shown silent and not left out; that is why the declaration is static and not read from what fired. A rule that can speak both undated and dated declares `'natal'` as well. A test fires every binding on sample moments and fails if a statement stands on a level its rule did not declare. The topics of a row are the topics of the rules that declare it.
 
-A tradition may be flagged `PERIOD_READ = true` in its module (the I Ching is). Such a tradition is the character of a period, not a statement about a year: its rules are not run when a span is evaluated (so a long span costs nothing for them), its statements never enter a yearly reading, the statement list, the year view or a year summary, and it stays out of agreement. It is read through `periodCharacter(input, window)` in `period.ts`, for a window of at most 62 days. Its bindings are still audited, and still run when `includePeriodRead` is passed to `evaluate` (the tests do). A new period-read tradition needs a function of its own that reads a window; the flag alone only keeps it out of the yearly forms.
+## Traditions and rules read by period
+
+A tradition may be flagged `PERIOD_READ = true` in its module (the I Ching is). Such a tradition is the character of a period, not a statement about a year: its rules are not run when a span is evaluated (so a long span costs nothing for them), its statements never enter a yearly reading, the statement list, the year view, the decade grid or a headline, and it stays out of agreement. A single rule of a tradition that is otherwise read by year can be flagged the same way with `periodRead: true` on its binding (`lilly.transit.daily-cusps`, Lilly's passes of the planets over the angles and radical places, day by day, is). Both are read through `periodCharacter(input, window)` in `period.ts`, for a window of at most 62 days, each tradition in its own part: `iching` (badge "experimental") and `western` (the flagged Western rules, without that badge, with `unavailable` saying why it is empty where the birth time is unknown). Their bindings are still audited, and still run when `includePeriodRead` is passed to `evaluate` (the tests do). A new period-read tradition needs a function of its own that reads a window; the flag alone only keeps it out of the yearly forms.
 
 ## What the context gives you
 

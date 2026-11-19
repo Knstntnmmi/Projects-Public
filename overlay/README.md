@@ -4,13 +4,35 @@
 
 The forecast is the main output: read the [forecast guide](docs/FORECAST.md), the [scholarship page](docs/SCHOLARSHIP.md) and the [glossary](docs/GLOSSARY.md).
 
+## The forecast
+
+For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet, and each place that shows a forecast says so once.
+
+![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035.](docs/img/forecast-grid.svg)
+
+How to read it: each row is one technique, each column one year (the labels are the last two digits, 2026 to 2035), and a cell shows the word the rules of that technique give for that year. A blank cell says nothing. A cell split in colours shows how many of that technique's rules say each thing; mixed also appears where a rule itself states a mixed result. "Sex not given" in the luck pillar row means that row is silent until the sex the chart is read as is given, because the direction of the luck pillars depends on it. A plus, a bar and a wave in a cell stand for supports, cautions and mixed, beside the colour. "Saturn from Moon" and "Jupiter from Moon" count the transit of that planet through the signs from the natal Moon. The I Ching has no cells: it is read by period, not by year, and a window of at most 62 days shows its character, which includes the lines that name goods or an audience with a superior. A full sample is in [docs/SAMPLE-FORECAST.md](docs/SAMPLE-FORECAST.md), and [docs/FORECAST.md](docs/FORECAST.md) explains how a statement comes about and what the limits are.
+
+Each line is what a named rule of one tradition says about this period, with its source.
+
+**The command.**
+
+```
+npm run overlay -- forecast --moment j2000 --topic wealth --from 2026 --to 2035
+npm run overlay -- forecast --moment j2000 --topic career --full
+npm run overlay -- forecast --moment j2000 --json
+npm run overlay -- forecast --moment j2000 --svg > forecast-grid.svg
+npm run overlay -- window --moment j2000 --date 2031-03-01 --days 45
+```
+
+## Wheel and timeline
+
 Overlay takes a single moment (a date, a clock time, a place) and computes BaZi, the I Ching year-calendars, traditional Western astrology, the Vedic lunar mansions and a handful of day-count calendars from one astronomical substrate. Then, instead of printing them in adjacent boxes, it lays them over one another: as concentric rings on a single ecliptic, and as parallel tracks on a single date axis. The point is to be able to see where the systems' boundaries coincide, where they are offset, and where they have nothing to do with one another.
 
 ![Wheel](docs/img/wheel-j2000.svg)
 
 ![Timeline](docs/img/timeline-j2000.svg)
 
-It is a calculator, a drawing instrument and, for a span of years, a reader of what each tradition's published rules say about a topic. The forecast states those rules and their sources and adds no verdict of its own, and it marks every project-made reading as the project's own (the strength classes of a day master, the I Ching grades, the year edge); it casts nothing. It is described under [The forecast](#the-forecast) below.
+It is a calculator, a drawing instrument and, for a span of years, a reader of what each tradition's published rules say about a topic. The forecast states those rules and their sources and adds no verdict of its own, and it marks every project-made reading as the project's own (the strength classes of a day master, the I Ching grades, the year edge); it casts nothing. It is described under [The forecast](#the-forecast) above.
 
 Unfamiliar words, such as luck pillar, profection, firdaria, dasha and nakshatra, are explained in [docs/GLOSSARY.md](docs/GLOSSARY.md).
 
@@ -36,25 +58,7 @@ A survey of the open-source and commercial landscape in November 2026 found many
 
 **A facts document for language models.** `overlay facts` emits everything as one JSON document in which each section states the conventions and basis it rests on. Language models miscompute pillars and positions when asked to do the arithmetic themselves; this is meant to be handed to them instead.
 
-## The forecast
-
-For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet, and each place that shows a forecast says so once.
-
-Each line is what a named rule of one tradition says about this period, with its source.
-
-![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035.](docs/img/forecast-grid.svg)
-
-How to read it: each row is one technique, each column one year (the labels are the last two digits, 2026 to 2035), and a cell shows the word the rules of that technique give for that year. A blank cell says nothing. A cell split in colours shows how many of that technique's rules say each thing; mixed also appears where a rule itself states a mixed result. "Sex not given" in the luck pillar row means that row is silent until the sex the chart is read as is given, because the direction of the luck pillars depends on it. A plus, a bar and a wave in a cell stand for supports, cautions and mixed, beside the colour. "Saturn from Moon" and "Jupiter from Moon" count the transit of that planet through the signs from the natal Moon. The I Ching has no cells: it is read by period, not by year, and a window of at most 62 days shows its character, which includes the lines that name goods or an audience with a superior. A full sample is in [docs/SAMPLE-FORECAST.md](docs/SAMPLE-FORECAST.md), and [docs/FORECAST.md](docs/FORECAST.md) explains how a statement comes about and what the limits are.
-
-**The command.**
-
-```
-npm run overlay -- forecast --moment j2000 --topic wealth --from 2026 --to 2035
-npm run overlay -- forecast --moment j2000 --topic career --full
-npm run overlay -- forecast --moment j2000 --json
-npm run overlay -- forecast --moment j2000 --svg > forecast-grid.svg
-npm run overlay -- window --moment j2000 --date 2031-03-01 --days 45
-```
+## The forecast in detail
 
 `forecast` prints the natal statements, the decade grid as text, a headline for each year and the agreement display. `--full` adds every statement with its rule and source, and the rules the engine does not evaluate. `--glossary` adds, after the text, the words used in it, each with its meaning and source, as in [the glossary](docs/GLOSSARY.md). `--sex male|female` names the sex convention that the BaZi luck pillars and a few other rules need; it is never guessed, and without it those rules are listed as not evaluated. `window` shows the character of a period of at most 62 days: the I Ching, and Lilly's day statements for the Western part.
 

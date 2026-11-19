@@ -3,7 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import baziJson from '../../src/forecast/data/rules.bazi.json' with { type: 'json' };
 import { auditRegistry, DEFAULT_REGISTRY, evaluate, fillTemplate, makeInput, report, signalsFromFirings, type Firing } from '../../src/forecast/index.ts';
-import { dedupe } from '../../src/forecast/readings.ts';
+import { dedupe, tallyOf, wordFor } from '../../src/forecast/readings.ts';
 import { bannedIn, MORTALITY_WORDS } from '../../src/forecast/phrasebook.ts';
 import { remedyOf, coverCutOf, routeTopics, PALACE_TOPICS } from '../../src/forecast/predicates/bazi/periods.ts';
 import * as baziModule from '../../src/forecast/predicates/bazi.ts';
@@ -318,7 +318,7 @@ describe('bazi.fan-yin-fu-yin', () => {
     expect(same.dedupeKey).toBe(dayChong[0]!.dedupeKey);
     const { kept, alsoReportedBy } = dedupe([...dayChong, same]);
     expect(kept).toHaveLength(1);
-    expect(kept[0]!.ruleId).toBe('bazi.branch-chong'); // the larger rule weight
+    expect(kept[0]!.ruleId).toBe('bazi.branch-chong'); // the larger ordering key
     expect(Object.values(alsoReportedBy).flat()).toEqual([same.id]);
   });
 });
@@ -332,7 +332,7 @@ describe('the topic arrival rules', () => {
       const [f] = run('bazi.wealth-star-in-luck', S, '己丑');
       expect(f!.direction).toBe('favourable');
       expect(sentenceOf('bazi.wealth-star-in-luck', f!)).toBe('The year pillar 己丑 brings 正財 (stem), 正財 (main qi of the branch) (財) in a favoured element: a good period for wealth.');
-      expect(f!.badges).toContain('stem and branch both 財 (rule weight 3 in the source)');
+      expect(f!.badges!.join(' ')).not.toMatch(/weight/);
     });
 
     it('is unfavourable when the 財 element is unfavourable', () => {
@@ -341,9 +341,10 @@ describe('the topic arrival rules', () => {
       expect(factOf(f!, 'goodOrBad')).toBe('bad');
     });
 
-    it('marks a branch-only or a stem-only arrival, and 食傷 beside a favourable 財', () => {
-      expect(run('bazi.wealth-star-in-luck', S, '乙丑')[0]!.badges).toContain('branch only (rule weight 2 in the source)');
-      expect(run('bazi.wealth-star-in-luck', S, '己卯')[0]!.badges).toContain('stem only (rule weight 1 in the source)');
+    it('prints no weight on a badge, whichever half brings the 財, and marks 食傷 beside a favourable 財', () => {
+      for (const y of ['己丑', '乙丑', '己卯']) expect((run('bazi.wealth-star-in-luck', S, y)[0]!.badges ?? []).join(' '), y).not.toMatch(/weight|strength/);
+      expect(run('bazi.wealth-star-in-luck', S, '乙丑')[0]!.direction).toBe('favourable');
+      expect(run('bazi.wealth-star-in-luck', S, '己卯')[0]!.direction).toBe('favourable');
       expect(run('bazi.wealth-star-in-luck', S, '丁丑')[0]!.badges).toContain('食傷 beside it strengthens the source of wealth');
     });
 
@@ -377,6 +378,45 @@ describe('the topic arrival rules', () => {
       const [f] = run('bazi.officer-star-in-luck', S, '辛酉'); // 正官 arrives in a chart that holds 七殺
       expect(f!.direction).toBe('mixed');
       expect(f!.badges).toContain('官殺混雜: the arrival adds the other of 正官 and 七殺 to the chart');
+    });
+
+    it('reads mixed, and names both clauses in the sentence, when a favoured element and a 官殺混雜 hold together; it picks no winner', () => {
+      const [f] = run('bazi.officer-star-in-luck', S, '辛酉');
+      expect(sentenceOf('bazi.officer-star-in-luck', f!)).toBe(
+        'The year pillar 辛酉 brings 正官 (stem), 正官 (main qi of the branch) (官殺) in a favoured element: a mixed period for career (two clauses hold: the element is favoured, and the arrival mixes 正官 with 七殺 (官殺混雜); the source does not say which prevails).',
+      );
+      // a woman's reading says the same for the husband star
+      const [w] = run('bazi.officer-star-in-luck', S, '辛酉', 'female');
+      expect(w!.direction).toBe('mixed');
+      expect(sentenceOf('bazi.officer-star-in-luck', w!)).toMatch(/which prevails\), and for a woman it is also the husband star\.$/);
+    });
+
+    it('gives the same outcome for every class of chart: the word is mixed exactly where both clauses hold, whatever the chart', () => {
+      // every year pillar, for a strong, a weak and a balanced chart, and for either sex convention
+      const counts = { strong: 0, weak: 0, balanced: 0 };
+      for (const [name, c] of [['strong', S], ['weak', W], ['balanced', B]] as const) {
+        for (let i = 0; i < 60; i++) {
+          const y = sixtyCycle(i).hanzi;
+          for (const sex of [null, 'female'] as const) {
+            for (const f of run('bazi.officer-star-in-luck', c, y, sex)) {
+              const both = (f.badges ?? []).some((b) => b.startsWith('both clauses hold'));
+              expect(f.direction === 'mixed', `${name} ${y}`).toBe(both);
+              const said = sentenceOf('bazi.officer-star-in-luck', f);
+              expect(said.includes('the source does not say which prevails'), `${name} ${y}`).toBe(both);
+              if (both) {
+                expect(said).toContain('the element is favoured');
+                expect(said).toContain('官殺混雜');
+                counts[name]++;
+              }
+            }
+          }
+        }
+      }
+      // the strong chart likes 官殺, so it reaches both clauses; the others never do, and their mixing alone is unfavourable
+      expect(counts.strong).toBeGreaterThan(0);
+      expect(counts.balanced).toBe(0);
+      expect(assess(S).strengthClass).toBe('strong');
+      expect(run('bazi.officer-star-in-luck', W, '辛酉')[0]!.direction).toBe('unfavourable');
     });
 
     it('also reads relationships for a woman, deduped with the career reading by the shared key', () => {
@@ -434,6 +474,23 @@ describe('the topic arrival rules', () => {
 
     it('is silent in an unfavourable element when the chart holds no 財', () => {
       expect(run('bazi.peer-in-luck', PLAIN, '甲子')).toEqual([]);
+    });
+
+    it('does not merge a peer star with a wealth star of the same pillar: they are two facts and the plain count says so', () => {
+      // 己卯 for a strong 甲: 己 is 正財 (stem), and the main qi of 卯 is 乙, 劫財 (branch)
+      const wealth = run('bazi.wealth-star-in-luck', S, '己卯')[0]!;
+      const peer = run('bazi.peer-in-luck', S, '己卯').find((f) => f.topics![0] === 'wealth')!;
+      expect(wealth.direction).toBe('favourable');
+      expect(peer.direction).toBe('unfavourable');
+      expect(ruleOf('bazi.wealth-star-in-luck').dedupeKey).not.toBe(ruleOf('bazi.peer-in-luck').dedupeKey);
+      const o = { forecastConventions: periodContext(S, { years: [year('己卯')] }).input.forecastConventions, span: { startUtcMs: T0 - DAY_MS, endUtcMs: T0 + 400 * DAY_MS } };
+      const signals = [...signalsFromFirings(ruleOf('bazi.wealth-star-in-luck'), [wealth], o), ...signalsFromFirings(ruleOf('bazi.peer-in-luck'), [peer], o)].filter((s) => s.topic === 'wealth');
+      expect(signals).toHaveLength(2);
+      const { kept, alsoReportedBy } = dedupe(signals);
+      expect(kept).toHaveLength(2);
+      expect(alsoReportedBy).toEqual({});
+      expect(wordFor(kept)).toEqual({ word: 'mixed', note: 'rules conflict' });
+      expect(tallyOf(kept)).toEqual({ supports: 1, cautions: 1, mixed: 0, active: 0 });
     });
 
     it('reads 劫財 over a natal 正財 as a wealth loss, and says so when it is also supportive', () => {

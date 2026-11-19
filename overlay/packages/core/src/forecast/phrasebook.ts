@@ -115,7 +115,6 @@ export const BADGE = {
   conventionDependent: 'convention-dependent',
   health: 'a tendency only',
   unopened: 'source not opened',
-  capped: 'rule weight capped at 1',
 } as const;
 
 export const GATE_UNGATED = 'ungated: no promise rule applied';
@@ -124,7 +123,6 @@ export const TEXT = {
   notTestedYet: 'Not tested yet.',
   noQuotation: 'no quotation shown (translation)',
   sourceNotOpened: 'source not opened',
-  ruleWeight: 'rule weight 1 to 3 as recorded in the rule file',
   agreementA: 'Agreement means that techniques counted on different time scales gave the same sign for the same topic and year.',
   agreementB:
     'It does not say that the outcome follows: nobody has yet checked whether years where groups agree differ from other years, and all the traditions read one birth moment, so a wrong birth time moves them together.',

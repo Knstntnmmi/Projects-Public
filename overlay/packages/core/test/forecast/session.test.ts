@@ -185,7 +185,9 @@ describe('the session file', () => {
     expect(code(mutate((s) => (s.rulesetVersion = 'xyz')))).toBe('schema');
     expect(code(mutate((s) => (s.frozen[0].hash = 'abc')))).toBe('schema');
     expect(code(mutate((s) => (s.conventions.engine.timeBasis = 'sundial')))).toBe('schema');
-    expect(code(mutate((s) => (s.conventions.forecast.cap_ungated = 'maybe')))).toBe('schema');
+    expect(code(mutate((s) => (s.conventions.forecast.baziEarthSeasons = 'maybe')))).toBe('schema');
+    // the removed display convention is refused like any unknown key
+    expect(code(mutate((s) => (s.conventions.forecast.cap_ungated = false)))).toBe('unknown-key');
     expect(code(mutate((s) => (s.conventions.forecast.birthTimeLimitMinutes = 61)))).toBe('schema');
     expect(code(mutate((s) => (s.events[1].id = s.events[0].id)))).toBe('schema');
   });

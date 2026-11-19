@@ -396,12 +396,23 @@ describe('the stars over a span', () => {
     expect(sentenceOf('bazi.kongwang', first)).toMatch(/^[戌亥] is void \(空亡\) for the 己巳 day, so the incoming annual pillar palace is empty\.$/);
   });
 
-  it('give the blade its sign from the condition: held by 官殺 favourable, strong with nothing to hold it unfavourable', () => {
+  it('gives the blade no direction, and the sentence says which branch it is and where a 官殺 star stands', () => {
     const f = (p: ReturnType<typeof chart>) => fire('bazi.yangren', p);
-    // 甲 day master with the blade 卯 in the month
+    const say = (p: ReturnType<typeof chart>) => fillTemplate('bazi.yangren', ruleOf('bazi.yangren').template, f(p)[0]!.facts);
+    expect(ruleOf('bazi.yangren').direction).toBe('activates');
+    // 甲 day master with the blade 卯 in the month; strong, weak or held by a star, the firing gives no sign
     expect(assess(chart('甲寅', '乙卯', '甲寅', '乙亥')).strengthClass).toBe('strong');
-    expect(f(chart('甲寅', '乙卯', '甲寅', '乙亥'))[0]!.direction).toBe('unfavourable');
-    expect(f(chart('甲寅', '乙卯', '甲寅', '庚午'))[0]!.direction).toBe('favourable');
+    for (const p of [chart('甲寅', '乙卯', '甲寅', '乙亥'), chart('甲寅', '乙卯', '甲寅', '庚午'), chart('甲寅', '乙卯', '甲寅', '乙酉')]) {
+      expect(f(p)).toHaveLength(1);
+      expect(f(p)[0]!.direction).toBeUndefined();
+    }
+    // no 官殺 star at all; one revealed in a stem (庚); one only hidden in a branch (辛 in 酉)
+    expect(say(chart('甲寅', '乙卯', '甲寅', '乙亥'))).toBe('卯 is the blade (羊刃) of the 甲 day master; no 官殺 star is in the chart.');
+    expect(say(chart('甲寅', '乙卯', '甲寅', '庚午'))).toBe('卯 is the blade (羊刃) of the 甲 day master; a 官殺 star stands revealed in a stem of the chart.');
+    expect(say(chart('甲寅', '乙卯', '甲寅', '乙酉'))).toBe('卯 is the blade (羊刃) of the 甲 day master; a 官殺 star is in the chart but only hidden in a branch.');
+    // the sentence never speaks of excess or conflict, and the firing says that the source gives no sign
+    expect(say(chart('甲寅', '乙卯', '甲寅', '庚午'))).not.toMatch(/excess|conflict/);
+    expect(f(chart('甲寅', '乙卯', '甲寅', '庚午'))[0]!.badges).toContain('the source does not say when a 官殺 star holds the blade: no direction given');
     // a yin day master has no blade in this school
     expect(f(chart('丙寅', '乙卯', '乙酉', '丁卯'))).toEqual([]);
   });

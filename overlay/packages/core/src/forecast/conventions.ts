@@ -18,8 +18,6 @@ export interface ForecastConventions {
    * dates. A statement that lies wholly inside the year counts however short it is.
    */
   sliceEdgeDays: 0 | 15 | 30;
-  /** When on, a signal that no promise rule gated is shown at rule weight 1. */
-  cap_ungated: boolean;
   baziStrengthThresholds: '45/55';
   baziLuckWeights: '0.6/0.4';
   baziYinStageReverse: boolean;
@@ -52,7 +50,6 @@ export interface ForecastConventions {
 export const DEFAULT_FORECAST_CONVENTIONS: ForecastConventions = {
   sliceLength: 'year',
   sliceEdgeDays: 15,
-  cap_ungated: false,
   baziStrengthThresholds: '45/55',
   baziLuckWeights: '0.6/0.4',
   baziYinStageReverse: true,
@@ -91,16 +88,6 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
       { value: 0, label: 'No edge', description: 'Any overlap counts, however brief.' },
       { value: 15, label: '15 days', description: 'A statement that overlaps a year by fewer than 15 days, and extends beyond it, does not count for that year. The default.' },
       { value: 30, label: '30 days', description: 'The same with a month.' },
-    ],
-  },
-  {
-    key: 'cap_ungated',
-    title: 'Cap on signals no promise rule gated',
-    affects: 'The rule weight shown beside a signal',
-    why: 'No accepted rule carries a sourced gate, so every signal is ungated. The cap is a display choice, off by default, and never changes a direction.',
-    options: [
-      { value: 'false', label: 'Off', description: 'Each signal shows the rule weight the rule file records.' },
-      { value: 'true', label: 'On', description: 'Ungated signals show rule weight 1.' },
     ],
   },
   {

@@ -103,11 +103,6 @@ export function signalsFromFirings(rule: Rule, firings: readonly Firing[], optio
       if (rule.tradition === 'iching') badges.push(BADGE.experimental);
       if (topic === 'relationships') badges.push(BADGE.conventionDependent);
       if (!rule.sourceOpened) badges.push(BADGE.unopened);
-      let baseStrength = rule.strength;
-      if (options.forecastConventions.cap_ungated && baseStrength > 1) {
-        baseStrength = 1;
-        badges.push(BADGE.capped);
-      }
       for (const b of f.badges ?? []) if (!badges.includes(b)) badges.push(b);
       out.push({
         id: n === 1 ? base : `${base}#${n}`,
@@ -122,7 +117,7 @@ export function signalsFromFirings(rule: Rule, firings: readonly Firing[], optio
         direction: f.direction ?? rule.direction,
         startUtcMs: dated ? f.startUtcMs : null,
         endUtcMs: dated ? f.endUtcMs : null,
-        baseStrength,
+        orderKey: rule.strength,
         gate: { state: 'ungated', by: [] },
         facts: f.facts.map((x) => ({ ...x })),
         dedupeKey: `${keyBase}#${instance}`,

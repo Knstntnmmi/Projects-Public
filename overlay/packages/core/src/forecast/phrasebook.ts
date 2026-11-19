@@ -98,9 +98,9 @@ export const NOTE = {
   rulesConflict: 'rules conflict',
   topicActive: 'topic active',
   ruleStatesMixed: 'a rule here states a mixed result',
-  oneGroupTwoVerdicts: 'one group, two verdicts',
-  twoTraditionsOneGroup: 'two traditions, one group',
-  onePlanetsMotion: "two traditions read one planet's motion",
+  oneGroupTwoVerdicts: 'the techniques inside this one group give different signs',
+  twoTraditionsOneGroup: 'two traditions run on the same time scale, so they count as one group',
+  onePlanetsMotion: "two traditions read the same planet's movement, so they count once",
   sameFactAlso: 'same fact, also reported by',
   balancedChart: 'the chart is balanced, so the favourable-element method names no favourite',
   needsLuckDirection: 'needs the sex the chart is read as, which fixes the direction of the luck pillars',
@@ -125,9 +125,9 @@ export const TEXT = {
   noQuotation: 'no quotation shown (translation)',
   sourceNotOpened: 'source not opened',
   ruleWeight: 'rule weight 1 to 3 as recorded in the rule file',
-  agreementA: 'Agreement means rule sets keyed to different clocks gave the same sign for the same topic and period.',
+  agreementA: 'Agreement means that techniques counted on different time scales gave the same sign for the same topic and year.',
   agreementB:
-    'It does not yet say the outcome follows: that waits until the scorecard shows agreeing periods doing better than the baseline, and all traditions read one birth moment, so a wrong birth time moves them together.',
+    'It does not say that the outcome follows: nobody has yet checked whether years where groups agree differ from other years, and all the traditions read one birth moment, so a wrong birth time moves them together.',
   agreementC: 'Full text: how agreement is read.',
   agreementLink: '#how-agreement-is-read',
   withheldWestern: 'withheld pending verification',
@@ -255,7 +255,7 @@ export const VERDICT_TEXT = {
   contradiction: 'one group supports and another cautions',
   single: 'one group speaks',
   silent: 'nothing said',
-  'no-agreement': 'groups speak but do not agree',
+  'no-agreement': 'groups speak but no two give the same sign',
 } as const;
 
 /**
@@ -270,8 +270,8 @@ export function groupsSentence(names: readonly string[]): string {
 }
 
 export function baselineLine(found: number, expected: number, cellsLooked: number, slices: number): string {
-  const base = `found ${found} agreeing ${found === 1 ? 'slice' : 'slices'}; about ${expected.toFixed(1)} expected if the groups were unrelated; ${cellsLooked} ${cellsLooked === 1 ? 'cell' : 'cells'} looked at on this page`;
-  return slices <= 12 ? `${base}. With only ${slices} slices this shows nothing by itself.` : `${base}.`;
+  const base = `found ${found} agreeing ${found === 1 ? 'year' : 'years'}; about ${expected.toFixed(1)} would be expected if the groups were unrelated; ${cellsLooked} ${cellsLooked === 1 ? 'topic' : 'topics'} looked at on this page`;
+  return slices <= 12 ? `${base}. With only ${slices} years this shows nothing by itself.` : `${base}.`;
 }
 
 export function summarySentence(year: number, topic: Topic, word: 'supports' | 'cautions', agreeing: number, speaking: number, names: string[], silent: string[]): string {

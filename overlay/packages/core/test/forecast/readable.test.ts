@@ -484,7 +484,7 @@ describe('the agreement display', () => {
     if (!d.shown) throw new Error('expected a strip');
     expect(d.years).toHaveLength(10);
     expect(d.years[idx(2034)]!.verdict).toBe(r.agreement.find((c) => c.slice === idx(2034))!.verdict);
-    expect(d.baselineLine).toMatch(/^found \d+ agreeing slices?; about \d\.\d expected if the groups were unrelated; 1 cell looked at on this page/);
+    expect(d.baselineLine).toMatch(/^found \d+ agreeing years?; about \d\.\d would be expected if the groups were unrelated; 1 topic looked at on this page/);
     expect(d.sentences).toEqual([TEXT.agreementA, TEXT.agreementB, TEXT.agreementC]);
   });
 
@@ -504,7 +504,7 @@ describe('the agreement display', () => {
     );
     const d = agreementDisplay(r, TOPIC);
     if (!d.shown) throw new Error('expected a strip');
-    expect(d.years[idx(2033)]).toMatchObject({ verdict: 'no-agreement', text: 'groups speak but do not agree' });
+    expect(d.years[idx(2033)]).toMatchObject({ verdict: 'no-agreement', text: 'groups speak but no two give the same sign' });
   });
 
   it('on a sample moment decides by the number of speaking groups', () => {

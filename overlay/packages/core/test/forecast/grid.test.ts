@@ -574,14 +574,14 @@ describe('plain words in the agreement display', () => {
     const res = run(world3, { traditions: ['bazi', 'vedic'] });
     const d = agreementDisplay(res, TOPIC);
     expect(d.shown).toBe(true);
-    expect(d.groupsLine).toBe(groupsSentence(['clocks counted from the birth moment', 'Jupiter (sidereal signs)', 'Saturn (sidereal signs)']));
+    expect(d.groupsLine).toBe(groupsSentence(['counted from the birth moment', 'Jupiter (sidereal signs)', 'Saturn (sidereal signs)']));
     expect(d.groupsLine).toContain('Everything counted from the birth moment is one group, and each planet whose real motion is read is one more');
     expect(d.groupsLine).not.toMatch(INTERNAL);
     if (d.shown) expect(d.years[idx(2033)]!.text).toBe(VERDICT_TEXT.contradiction);
     // fewer than three groups: no strip, and the sentence names the two there are
     const two = agreementDisplay(run(world3.slice(0, 2), { traditions: ['bazi', 'vedic'] }), TOPIC);
     expect(two.shown).toBe(false);
-    expect(two.groupsLine).toContain('clocks counted from the birth moment; Jupiter (sidereal signs).');
+    expect(two.groupsLine).toContain('counted from the birth moment; Jupiter (sidereal signs).');
     expect(two.groupsLine).not.toContain('Saturn');
   });
 

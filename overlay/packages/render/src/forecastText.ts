@@ -148,7 +148,7 @@ export function agreementLines(result: forecast.ForecastResult, topic: forecast.
   const a = forecast.agreementDisplay(result, topic);
   const out = [a.groupsLine];
   if (!a.shown) return [...out, a.line];
-  for (const y of a.years) out.push(`${y.year}: ${[y.text, ...y.notes].join('; ')}`);
+  for (const r of forecast.agreementRuns(a.years)) out.push(`${forecast.runLabel(r)}: ${[r.text, ...r.notes].join('; ')}`);
   out.push(a.baselineLine, ...a.sentences);
   return out;
 }

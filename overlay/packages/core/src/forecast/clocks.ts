@@ -47,7 +47,7 @@ export function clockGroupOf(clock: ClockId): ClockGroupId {
 }
 
 export function groupLabel(group: ClockGroupId): string {
-  return group === 'birth-arithmetic' ? 'clocks counted from the birth moment' : CLOCKS[group].label;
+  return group === 'birth-arithmetic' ? 'counted from the birth moment' : CLOCKS[group].label;
 }
 
 /** The body behind a group, if it is a sky clock. */

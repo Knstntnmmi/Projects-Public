@@ -48,7 +48,7 @@ describe('Western in the default forecast', () => {
     const agreement = agreementDisplay(run('j2000'), 'wealth');
     if (!agreement.shown) throw new Error('expected a strip');
     const notes = agreement.years.flatMap((y) => y.notes).join(' | ');
-    expect(notes).toContain('clocks counted from the birth moment');
+    expect(notes).toContain('counted from the birth moment');
     expect(notes).not.toMatch(/birth-arithmetic|-sidereal|-tropical/);
   });
 });

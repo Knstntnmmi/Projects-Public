@@ -223,7 +223,7 @@ describe('clocks and independence groups', () => {
     expect(cell.entries.filter((e) => e.group === 'birth-arithmetic')).toHaveLength(1);
     expect(group.twoVerdicts).toBe(true);
     expect(group.word).toBe('mixed');
-    expect(cell.notes.join(' ')).toContain('one group, two verdicts');
+    expect(cell.notes.join(' ')).toContain('the techniques inside this one group give different signs');
   });
 
   it('the tropical and sidereal Jupiter clocks are different groups but print the one-planet note', () => {
@@ -231,9 +231,9 @@ describe('clocks and independence groups', () => {
     const cell = r.agreement.find((c) => c.slice === idx(2037))!;
     expect(cell.entries.map((e) => e.group).sort()).toEqual(['birth-arithmetic', 'jupiter-sidereal', 'jupiter-tropical']);
     expect(cell.verdict).toBe('agree-supports');
-    expect(cell.notes).toContain("two traditions read one planet's motion");
+    expect(cell.notes).toContain("two traditions read the same planet's movement, so they count once");
     const alone = r.agreement.find((c) => c.slice === idx(2033))!;
-    expect(alone.notes).not.toContain("two traditions read one planet's motion");
+    expect(alone.notes).not.toContain("two traditions read the same planet's movement, so they count once");
   });
 });
 
@@ -283,8 +283,8 @@ describe('agreement', () => {
     expect(() => renderAgreement(r.agreement.filter((c) => c.topic === 'wealth'), null, 10)).toThrow(/baseline/);
     const lines = renderAgreement(r.agreement, r.baselines.wealth!, 10);
     const text = lines.join('\n');
-    expect(text).toMatch(/found 1 agreeing slice; about [\d.]+ expected if the groups were unrelated; 1 cell looked at on this page/);
-    expect(text).toContain('Agreement means rule sets keyed to different clocks');
+    expect(text).toMatch(/found 1 agreeing year; about [\d.]+ would be expected if the groups were unrelated; 1 topic looked at on this page/);
+    expect(text).toContain('Agreement means that techniques counted on different time scales');
     expect(text).toContain('Full text');
     expect(renderAgreement([], null, 10).length).toBe(3);
   });
@@ -429,10 +429,10 @@ describe('narration', () => {
 
   it('summarises how the speaking groups stand, in the phrasebook words', () => {
     const s = sentences.find((x) => x.kind === 'summary' && x.slice === idx(2033))!;
-    expect(s.text).toBe('In 2033, 2 of 2 speaking groups support wealth (clocks counted from the birth moment, Jupiter (sidereal signs)).');
+    expect(s.text).toBe('In 2033, 2 of 2 speaking groups support wealth (counted from the birth moment, Jupiter (sidereal signs)).');
     expect(s.signalIds.length).toBeGreaterThanOrEqual(2);
     const one = sentences.find((x) => x.kind === 'summary' && x.slice === idx(2034))!;
-    expect(one.text).toBe('In 2034, 1 of 1 speaking group supports wealth (clocks counted from the birth moment); nothing was said by Vedic astrology.');
+    expect(one.text).toBe('In 2034, 1 of 1 speaking group supports wealth (counted from the birth moment); nothing was said by Vedic astrology.');
     const split = sentences.find((x) => x.kind === 'summary' && x.slice === idx(2038))!;
     // Where the groups do not stand together the summary names what each technique says.
     expect(split.text).toBe('Supports: Jupiter from the Moon, I Ching, read by period. Cautions: BaZi year pillar. Silent: BaZi luck pillar, Vedic mahadasha.');

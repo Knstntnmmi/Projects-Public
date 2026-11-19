@@ -255,7 +255,7 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
     if (!d.shown) throw new Error('expected a strip');
     expect(d.years.some((y) => y.text === VERDICT_TEXT.contradiction)).toBe(true);
     for (const y of d.years) expect(`${y.text} ${y.notes.join(' ')}`).not.toMatch(/nothing-said|no-agreement|agree-|birth-arithmetic|-sidereal|-tropical|contradiction - contradiction/);
-    expect(d.groupsLine).toContain('clocks counted from the birth moment');
+    expect(d.groupsLine).toContain('counted from the birth moment');
     expect(d.groupsLine).toContain('Jupiter (sidereal signs)');
     expect(d.groupsLine).toContain('Saturn (sidereal signs)');
     expect(agreementDisplay(resultOf('j2000'), TOPIC).groupsLine).toContain('each planet whose real motion is read is one more');

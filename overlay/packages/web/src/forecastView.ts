@@ -295,7 +295,10 @@ export function yearHtml(m: Model, year: number, focus: LevelId | null): string 
 export function agreementHtml(m: Model, year: number | null): string {
   const a = m.agreement;
   if (!a.shown) return `<p class="note">${esc(a.line)}</p><p class="note">${esc(a.groupsLine)}</p>`;
-  const strip = a.years.map((y) => `<li${y.year === year ? ' class="sel"' : ''}><b>${y.year}</b> ${esc(y.text)}${y.notes.length > 0 ? ` <span class="muted">(${esc(y.notes.join('; '))})</span>` : ''}</li>`).join('');
+  const strip = forecast
+    .agreementRuns(a.years)
+    .map((r) => `<li${year !== null && year >= r.fromYear && year <= r.toYear ? ' class="sel"' : ''}><b>${forecast.runLabel(r)}</b> ${esc(r.text)}${r.notes.length > 0 ? ` <span class="muted">(${esc(r.notes.join('; '))})</span>` : ''}</li>`)
+    .join('');
   return `<ol class="strip">${strip}</ol><p>${esc(a.baselineLine)}</p>${a.sentences.map((s) => `<p class="note">${esc(s)}</p>`).join('')}<p class="note">${esc(a.groupsLine)}</p>`;
 }
 

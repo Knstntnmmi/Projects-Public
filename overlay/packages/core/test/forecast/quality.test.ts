@@ -156,7 +156,7 @@ describe('a balanced chart: the levels that judge by the favourite carry a note 
         if (cell.word === 'nothing-said') expect(cell.silentReason).toBe(NOTE.balancedChart);
         expect(bannedIn(y.headline)).toBeNull();
       }
-      expect(statementList(bal, topic).chartNotes).toEqual(['Needs the luck-direction convention.', sentence]);
+      expect(statementList(bal, topic).chartNotes).toEqual(['Needs the sex the chart is read as, which fixes the direction of the luck pillars.', sentence]);
     }
   });
 

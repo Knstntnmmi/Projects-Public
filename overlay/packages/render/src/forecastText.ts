@@ -100,7 +100,7 @@ export function entryLines(result: forecast.ForecastResult, e: forecast.Statemen
   if (e.badges.length > 0) out.push(`${indent}  ${e.badges.join(', ')}`);
   if (e.alsoReportedBy > 0) out.push(`${indent}  ${forecast.NOTE.sameFactAlso} ${e.alsoReportedBy} other ${e.alsoReportedBy === 1 ? 'rule' : 'rules'}`);
   for (const q of e.qualifiers) {
-    const more = q.alsoQualifies > 0 ? `; it qualifies ${q.alsoQualifies} more ${q.alsoQualifies === 1 ? 'statement' : 'statements'} that do not repeat it` : '';
+    const more = q.alsoQualifies > 0 ? ` (it also qualifies ${q.alsoQualifies} more ${q.alsoQualifies === 1 ? 'statement' : 'statements'}, and is not repeated there)` : '';
     out.push(`${indent}  qualified by (${q.levelLabel}, rule ${q.ruleId}): ${q.sentence}${more}`);
   }
   return out;

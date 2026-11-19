@@ -16,7 +16,7 @@ import {
   utcMsFromFields,
   type Moment,
 } from '@overlay/core';
-import { timelineFor, wheelFor } from '@overlay/render';
+import { FORECAST_SENTENCE, timelineFor, wheelFor } from '@overlay/render';
 import { MOMENTS } from '../../../fixtures/moments.ts';
 import { CliError, fail, parseArgs, readConventions, readMoment, readSex, type Flags } from './args.ts';
 import { runForecast, runForecastTimeline, runWindow } from './forecastCommand.ts';
@@ -68,7 +68,7 @@ Forecast options
   timeline --forecast [topic]   draws the forecast tracks under the engine's own (ten years unless --years is given)
 Window options
   --date <YYYY-MM-DD> --days <n>   the first day and the length, at most 62 days
-Each forecast line is what a named rule of one tradition says, with its source. Nobody has tested these statements against outcomes yet.
+${FORECAST_SENTENCE}
 
 Privacy
   The moment you pass stays in this process. Nothing is sent anywhere or saved.

@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ov ov-forecast-grid" viewBox="0 0 360 626" width="360" height="626" role="img" aria-label="Wealth, 2026 to 2035: what each rule set says, year by year">
+<style>
+.ov{--ov-bg:#fbfaf6;--ov-panel:#f1efe8;--ov-ink:#22201b;--ov-muted:#6f6a5f;--ov-line:#cfcabb;--ov-accent:#a23b2a;--ov-fire:#e8a08a;--ov-earth:#d9c48f;--ov-air:#bcd3e6;--ov-water:#8fb4d9;--ov-wood:#a9cf9c;--ov-metal:#d5d7dc;--ov-sun:#f0c35a;--ov-moon:#cfd6e4;--ov-mercury:#b8dcc8;--ov-venus:#e9b9cf;--ov-mars:#e58f7c;--ov-jupiter:#b9b3e6;--ov-saturn:#a9a79d;--ov-node:#c9c2b0;--ov-rahu:#8f9bb3;--ov-ketu:#c7a98f;--ov-jie:#e7d9b8;--ov-qi:#f4eedd;--ov-supports:#bfe0c4;--ov-cautions:#efb9a8;--ov-mixed:#e9d9a6;--ov-quiet:#ece8dc;font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Noto Serif","Songti SC","Noto Serif CJK SC",serif;color:var(--ov-ink)}
+@media (prefers-color-scheme:dark){.ov:not([data-theme="light"]){--ov-bg:#16161a;--ov-panel:#1f2026;--ov-ink:#ece8dd;--ov-muted:#9a968a;--ov-line:#3a3b44;--ov-accent:#f08a6c;--ov-fire:#8a3f31;--ov-earth:#6f5f2c;--ov-air:#33506b;--ov-water:#234a75;--ov-wood:#2f5f39;--ov-metal:#4a4d57;--ov-sun:#8a6a17;--ov-moon:#4a5266;--ov-mercury:#2f5f4b;--ov-venus:#7a3f5c;--ov-mars:#8c3a2b;--ov-jupiter:#4a4390;--ov-saturn:#55534b;--ov-node:#514c40;--ov-rahu:#3d4963;--ov-ketu:#6a4f38;--ov-jie:#4d4530;--ov-qi:#2c2a22;--ov-supports:#2f6a3f;--ov-cautions:#8c3f2e;--ov-mixed:#6e5f2a;--ov-quiet:#34322a}}
+.ov[data-theme="dark"]{--ov-bg:#16161a;--ov-panel:#1f2026;--ov-ink:#ece8dd;--ov-muted:#9a968a;--ov-line:#3a3b44;--ov-accent:#f08a6c;--ov-fire:#8a3f31;--ov-earth:#6f5f2c;--ov-air:#33506b;--ov-water:#234a75;--ov-wood:#2f5f39;--ov-metal:#4a4d57;--ov-sun:#8a6a17;--ov-moon:#4a5266;--ov-mercury:#2f5f4b;--ov-venus:#7a3f5c;--ov-mars:#8c3a2b;--ov-jupiter:#4a4390;--ov-saturn:#55534b;--ov-node:#514c40;--ov-rahu:#3d4963;--ov-ketu:#6a4f38;--ov-jie:#4d4530;--ov-qi:#2c2a22;--ov-supports:#2f6a3f;--ov-cautions:#8c3f2e;--ov-mixed:#6e5f2a;--ov-quiet:#34322a}
+.ov .bg{fill:var(--ov-bg)}
+.ov text{fill:var(--ov-ink)}
+.ov .muted{fill:var(--ov-muted)}
+.ov .seg{stroke:var(--ov-line);stroke-width:.6}
+.ov .seg:hover{stroke:var(--ov-ink);stroke-width:1.4}
+.ov .rule{stroke:var(--ov-line);fill:none}
+.ov .mark{stroke:var(--ov-ink);fill:none}
+.ov .accent{stroke:var(--ov-accent);fill:none}
+.ov .accent-text{fill:var(--ov-accent)}
+.ov .halo{paint-order:stroke;stroke:var(--ov-bg);stroke-width:3px;stroke-linejoin:round}
+.ov .t-fire{fill:var(--ov-fire)}
+.ov .t-earth{fill:var(--ov-earth)}
+.ov .t-air{fill:var(--ov-air)}
+.ov .t-water{fill:var(--ov-water)}
+.ov .t-wood{fill:var(--ov-wood)}
+.ov .t-metal{fill:var(--ov-metal)}
+.ov .t-sun{fill:var(--ov-sun)}
+.ov .t-moon{fill:var(--ov-moon)}
+.ov .t-mercury{fill:var(--ov-mercury)}
+.ov .t-venus{fill:var(--ov-venus)}
+.ov .t-mars{fill:var(--ov-mars)}
+.ov .t-jupiter{fill:var(--ov-jupiter)}
+.ov .t-saturn{fill:var(--ov-saturn)}
+.ov .t-node{fill:var(--ov-node)}
+.ov .t-rahu{fill:var(--ov-rahu)}
+.ov .t-ketu{fill:var(--ov-ketu)}
+.ov .t-jie{fill:var(--ov-jie)}
+.ov .t-qi{fill:var(--ov-qi)}
+.ov .t-supports{fill:var(--ov-supports)}
+.ov .t-cautions{fill:var(--ov-cautions)}
+.ov .t-mixed{fill:var(--ov-mixed)}
+.ov .t-quiet{fill:var(--ov-quiet)}
+.ov .t-yang{fill:var(--ov-ink)}
+.ov .t-none{fill:var(--ov-panel)}
+</style>
+<rect class="bg" width="360" height="626"/>
+<text x="12" y="31" font-size="14">Wealth, 2026 to 2035: what each rule set</text>
+<text x="12" y="48" font-size="14">says, year by year</text>
+<text class="muted" transform="translate(143.9 90) rotate(-90)" font-size="10">2026</text>
+<text class="muted" transform="translate(165.7 90) rotate(-90)" font-size="10">2027</text>
+<text class="muted" transform="translate(187.5 90) rotate(-90)" font-size="10">2028</text>
+<text class="muted" transform="translate(209.3 90) rotate(-90)" font-size="10">2029</text>
+<text class="muted" transform="translate(231.1 90) rotate(-90)" font-size="10">2030</text>
+<text class="muted" transform="translate(252.9 90) rotate(-90)" font-size="10">2031</text>
+<text class="muted" transform="translate(274.7 90) rotate(-90)" font-size="10">2032</text>
+<text class="muted" transform="translate(296.5 90) rotate(-90)" font-size="10">2033</text>
+<text class="muted" transform="translate(318.3 90) rotate(-90)" font-size="10">2034</text>
+<text class="muted" transform="translate(340.1 90) rotate(-90)" font-size="10">2035</text>
+<line class="rule" x1="12" y1="94" x2="348" y2="94"/>
+<text x="12" y="113" font-size="11" font-weight="bold" data-tradition="bazi">BaZi</text>
+<g data-level="bazi-luck">
+<text x="22" y="133.5" font-size="11">BaZi luck pillar</text>
+<g data-year="2026" data-word="nothing-said"><rect class="rule" x="131" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2026, BaZi luck pillar: nothing said</title></g>
+<g data-year="2027" data-word="nothing-said"><rect class="rule" x="152.8" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2027, BaZi luck pillar: nothing said</title></g>
+<g data-year="2028" data-word="nothing-said"><rect class="rule" x="174.6" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2028, BaZi luck pillar: nothing said</title></g>
+<g data-year="2029" data-word="nothing-said"><rect class="rule" x="196.4" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2029, BaZi luck pillar: nothing said</title></g>
+<g data-year="2030" data-word="nothing-said"><rect class="rule" x="218.2" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2030, BaZi luck pillar: nothing said</title></g>
+<g data-year="2031" data-word="nothing-said"><rect class="rule" x="240" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2031, BaZi luck pillar: nothing said</title></g>
+<g data-year="2032" data-word="nothing-said"><rect class="rule" x="261.8" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2032, BaZi luck pillar: nothing said</title></g>
+<g data-year="2033" data-word="nothing-said"><rect class="rule" x="283.6" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2033, BaZi luck pillar: nothing said</title></g>
+<g data-year="2034" data-word="nothing-said"><rect class="rule" x="305.4" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2034, BaZi luck pillar: nothing said</title></g>
+<g data-year="2035" data-word="nothing-said"><rect class="rule" x="327.2" y="119" width="19.8" height="22" stroke-opacity=".6"/><title>2035, BaZi luck pillar: nothing said</title></g>
+<text class="muted halo" x="239" y="133.5" font-size="10" text-anchor="middle" font-style="italic">needs the luck-direction convention</text>
+</g>
+<g data-level="bazi-year">
+<text x="22" y="159.5" font-size="11">BaZi year pillar</text>
+<g data-year="2026" data-word="nothing-said"><rect class="rule" x="131" y="145" width="19.8" height="22" stroke-opacity=".6"/><title>2026, BaZi year pillar: nothing said (topic active)</title></g>
+<g data-year="2027" data-word="cautions"><rect class="t-cautions" x="152.8" y="145" width="19.8" height="22"/><rect class="rule" x="152.8" y="145" width="19.8" height="22"/><text x="162.7" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2027, BaZi year pillar: cautions</title></g>
+<g data-year="2028" data-word="mixed"><rect class="t-supports" x="174.6" y="145" width="6.6" height="22"/><rect class="t-cautions" x="181.2" y="145" width="13.2" height="22"/><rect class="rule" x="174.6" y="145" width="19.8" height="22"/><text x="184.5" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2028, BaZi year pillar: mixed (rules conflict)</title></g>
+<g data-year="2029" data-word="mixed"><rect class="t-supports" x="196.4" y="145" width="9.9" height="22"/><rect class="t-cautions" x="206.3" y="145" width="9.9" height="22"/><rect class="rule" x="196.4" y="145" width="19.8" height="22"/><text x="206.3" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2029, BaZi year pillar: mixed (rules conflict)</title></g>
+<g data-year="2030" data-word="mixed"><rect class="t-supports" x="218.2" y="145" width="9.9" height="22"/><rect class="t-cautions" x="228.1" y="145" width="9.9" height="22"/><rect class="rule" x="218.2" y="145" width="19.8" height="22"/><text x="228.1" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2030, BaZi year pillar: mixed (rules conflict)</title></g>
+<g data-year="2031" data-word="mixed"><rect class="t-supports" x="240" y="145" width="14.85" height="22"/><rect class="t-cautions" x="254.85" y="145" width="4.95" height="22"/><rect class="rule" x="240" y="145" width="19.8" height="22"/><text x="249.9" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2031, BaZi year pillar: mixed (rules conflict)</title></g>
+<g data-year="2032" data-word="mixed"><rect class="t-supports" x="261.8" y="145" width="14.85" height="22"/><rect class="t-cautions" x="276.65" y="145" width="4.95" height="22"/><rect class="rule" x="261.8" y="145" width="19.8" height="22"/><text x="271.7" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2032, BaZi year pillar: mixed (supports from the period lord, cautions from the trigger)</title></g>
+<g data-year="2033" data-word="mixed"><rect class="t-supports" x="283.6" y="145" width="13.2" height="22"/><rect class="t-cautions" x="296.8" y="145" width="6.6" height="22"/><rect class="rule" x="283.6" y="145" width="19.8" height="22"/><text x="293.5" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2033, BaZi year pillar: mixed (supports from the period lord, cautions from the trigger)</title></g>
+<g data-year="2034" data-word="supports"><rect class="t-supports" x="305.4" y="145" width="19.8" height="22"/><rect class="rule" x="305.4" y="145" width="19.8" height="22"/><text x="315.3" y="156" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2034, BaZi year pillar: supports</title></g>
+<g data-year="2035" data-word="nothing-said"><rect class="rule" x="327.2" y="145" width="19.8" height="22" stroke-opacity=".6"/><title>2035, BaZi year pillar: nothing said</title></g>
+</g>
+<text x="12" y="188" font-size="11" font-weight="bold" data-tradition="vedic">Vedic astrology</text>
+<g data-level="vedic-maha">
+<text x="22" y="208.5" font-size="11">Vedic mahadasha</text>
+<g data-year="2026" data-word="mixed"><rect class="t-mixed" x="131" y="194" width="19.8" height="22"/><rect class="rule" x="131" y="194" width="19.8" height="22"/><text x="140.9" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2026, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2027" data-word="mixed"><rect class="t-mixed" x="152.8" y="194" width="19.8" height="22"/><rect class="rule" x="152.8" y="194" width="19.8" height="22"/><text x="162.7" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2027, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2028" data-word="mixed"><rect class="t-mixed" x="174.6" y="194" width="19.8" height="22"/><rect class="rule" x="174.6" y="194" width="19.8" height="22"/><text x="184.5" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2028, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2029" data-word="mixed"><rect class="t-mixed" x="196.4" y="194" width="19.8" height="22"/><rect class="rule" x="196.4" y="194" width="19.8" height="22"/><text x="206.3" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2029, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2030" data-word="mixed"><rect class="t-mixed" x="218.2" y="194" width="19.8" height="22"/><rect class="rule" x="218.2" y="194" width="19.8" height="22"/><text x="228.1" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2030, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2031" data-word="mixed"><rect class="t-mixed" x="240" y="194" width="19.8" height="22"/><rect class="rule" x="240" y="194" width="19.8" height="22"/><text x="249.9" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2031, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2032" data-word="mixed"><rect class="t-mixed" x="261.8" y="194" width="19.8" height="22"/><rect class="rule" x="261.8" y="194" width="19.8" height="22"/><text x="271.7" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2032, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2033" data-word="mixed"><rect class="t-mixed" x="283.6" y="194" width="19.8" height="22"/><rect class="rule" x="283.6" y="194" width="19.8" height="22"/><text x="293.5" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2033, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2034" data-word="mixed"><rect class="t-mixed" x="305.4" y="194" width="19.8" height="22"/><rect class="rule" x="305.4" y="194" width="19.8" height="22"/><text x="315.3" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2034, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2035" data-word="mixed"><rect class="t-supports" x="327.2" y="194" width="6.6" height="22"/><rect class="t-mixed" x="333.8" y="194" width="13.2" height="22"/><rect class="rule" x="327.2" y="194" width="19.8" height="22"/><text x="337.1" y="205" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2035, Vedic mahadasha: mixed (a rule here states a mixed result)</title></g>
+</g>
+<g data-level="vedic-antar">
+<text x="22" y="234.5" font-size="11">Vedic antardasha</text>
+<g data-year="2026" data-word="mixed"><rect class="t-supports" x="131" y="220" width="14.85" height="22"/><rect class="t-mixed" x="145.85" y="220" width="4.95" height="22"/><rect class="rule" x="131" y="220" width="19.8" height="22"/><text x="140.9" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2026, Vedic antardasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2027" data-word="supports"><rect class="t-supports" x="152.8" y="220" width="19.8" height="22"/><rect class="rule" x="152.8" y="220" width="19.8" height="22"/><text x="162.7" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2027, Vedic antardasha: supports</title></g>
+<g data-year="2028" data-word="supports"><rect class="t-supports" x="174.6" y="220" width="19.8" height="22"/><rect class="rule" x="174.6" y="220" width="19.8" height="22"/><text x="184.5" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2028, Vedic antardasha: supports</title></g>
+<g data-year="2029" data-word="supports"><rect class="t-supports" x="196.4" y="220" width="19.8" height="22"/><rect class="rule" x="196.4" y="220" width="19.8" height="22"/><text x="206.3" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2029, Vedic antardasha: supports</title></g>
+<g data-year="2030" data-word="supports"><rect class="t-supports" x="218.2" y="220" width="19.8" height="22"/><rect class="rule" x="218.2" y="220" width="19.8" height="22"/><text x="228.1" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2030, Vedic antardasha: supports</title></g>
+<g data-year="2031" data-word="supports"><rect class="t-supports" x="240" y="220" width="19.8" height="22"/><rect class="rule" x="240" y="220" width="19.8" height="22"/><text x="249.9" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2031, Vedic antardasha: supports</title></g>
+<g data-year="2032" data-word="supports"><rect class="t-supports" x="261.8" y="220" width="19.8" height="22"/><rect class="rule" x="261.8" y="220" width="19.8" height="22"/><text x="271.7" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2032, Vedic antardasha: supports</title></g>
+<g data-year="2033" data-word="mixed"><rect class="t-supports" x="283.6" y="220" width="14.85" height="22"/><rect class="t-mixed" x="298.45" y="220" width="4.95" height="22"/><rect class="rule" x="283.6" y="220" width="19.8" height="22"/><text x="293.5" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2033, Vedic antardasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2034" data-word="mixed"><rect class="t-supports" x="305.4" y="220" width="13.2" height="22"/><rect class="t-mixed" x="318.6" y="220" width="6.6" height="22"/><rect class="rule" x="305.4" y="220" width="19.8" height="22"/><text x="315.3" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2034, Vedic antardasha: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2035" data-word="mixed"><rect class="t-supports" x="327.2" y="220" width="14.85" height="22"/><rect class="t-mixed" x="342.05" y="220" width="4.95" height="22"/><rect class="rule" x="327.2" y="220" width="19.8" height="22"/><text x="337.1" y="231" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2035, Vedic antardasha: mixed (a rule here states a mixed result)</title></g>
+</g>
+<g data-level="saturn-moon">
+<text x="22" y="258" font-size="11">Saturn from the</text>
+<text x="22" y="271" font-size="11">Moon</text>
+<g data-year="2026" data-word="nothing-said"><rect class="rule" x="131" y="246" width="19.8" height="30" stroke-opacity=".6"/><title>2026, Saturn from the Moon: nothing said</title></g>
+<g data-year="2027" data-word="nothing-said"><rect class="rule" x="152.8" y="246" width="19.8" height="30" stroke-opacity=".6"/><title>2027, Saturn from the Moon: nothing said</title></g>
+<g data-year="2028" data-word="nothing-said"><rect class="rule" x="174.6" y="246" width="19.8" height="30" stroke-opacity=".6"/><title>2028, Saturn from the Moon: nothing said</title></g>
+<g data-year="2029" data-word="cautions"><rect class="t-cautions" x="196.4" y="246" width="19.8" height="30"/><rect class="rule" x="196.4" y="246" width="19.8" height="30"/><text x="206.3" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2029, Saturn from the Moon: cautions</title></g>
+<g data-year="2030" data-word="cautions"><rect class="t-cautions" x="218.2" y="246" width="19.8" height="30"/><rect class="rule" x="218.2" y="246" width="19.8" height="30"/><text x="228.1" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2030, Saturn from the Moon: cautions</title></g>
+<g data-year="2031" data-word="cautions"><rect class="t-cautions" x="240" y="246" width="19.8" height="30"/><rect class="rule" x="240" y="246" width="19.8" height="30"/><text x="249.9" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2031, Saturn from the Moon: cautions</title></g>
+<g data-year="2032" data-word="cautions"><rect class="t-cautions" x="261.8" y="246" width="19.8" height="30"/><rect class="rule" x="261.8" y="246" width="19.8" height="30"/><text x="271.7" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2032, Saturn from the Moon: cautions</title></g>
+<g data-year="2033" data-word="cautions"><rect class="t-cautions" x="283.6" y="246" width="19.8" height="30"/><rect class="rule" x="283.6" y="246" width="19.8" height="30"/><text x="293.5" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2033, Saturn from the Moon: cautions</title></g>
+<g data-year="2034" data-word="cautions"><rect class="t-cautions" x="305.4" y="246" width="19.8" height="30"/><rect class="rule" x="305.4" y="246" width="19.8" height="30"/><text x="315.3" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2034, Saturn from the Moon: cautions</title></g>
+<g data-year="2035" data-word="cautions"><rect class="t-cautions" x="327.2" y="246" width="19.8" height="30"/><rect class="rule" x="327.2" y="246" width="19.8" height="30"/><text x="337.1" y="261" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2035, Saturn from the Moon: cautions</title></g>
+</g>
+<g data-level="jupiter-moon">
+<text x="22" y="292" font-size="11">Jupiter from the</text>
+<text x="22" y="305" font-size="11">Moon</text>
+<g data-year="2026" data-word="mixed"><rect class="t-supports" x="131" y="280" width="9.9" height="30"/><rect class="t-cautions" x="140.9" y="280" width="9.9" height="30"/><rect class="rule" x="131" y="280" width="19.8" height="30"/><text x="140.9" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2026, Jupiter from the Moon: mixed (rules conflict)</title></g>
+<g data-year="2027" data-word="cautions"><rect class="t-cautions" x="152.8" y="280" width="19.8" height="30"/><rect class="rule" x="152.8" y="280" width="19.8" height="30"/><text x="162.7" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2027, Jupiter from the Moon: cautions</title></g>
+<g data-year="2028" data-word="cautions"><rect class="t-cautions" x="174.6" y="280" width="19.8" height="30"/><rect class="rule" x="174.6" y="280" width="19.8" height="30"/><text x="184.5" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2028, Jupiter from the Moon: cautions</title></g>
+<g data-year="2029" data-word="cautions"><rect class="t-cautions" x="196.4" y="280" width="19.8" height="30"/><rect class="rule" x="196.4" y="280" width="19.8" height="30"/><text x="206.3" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2029, Jupiter from the Moon: cautions</title></g>
+<g data-year="2030" data-word="mixed"><rect class="t-supports" x="218.2" y="280" width="9.9" height="30"/><rect class="t-cautions" x="228.1" y="280" width="9.9" height="30"/><rect class="rule" x="218.2" y="280" width="19.8" height="30"/><text x="228.1" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2030, Jupiter from the Moon: mixed (rules conflict)</title></g>
+<g data-year="2031" data-word="mixed"><rect class="t-supports" x="240" y="280" width="9.9" height="30"/><rect class="t-cautions" x="249.9" y="280" width="9.9" height="30"/><rect class="rule" x="240" y="280" width="19.8" height="30"/><text x="249.9" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2031, Jupiter from the Moon: mixed (rules conflict)</title></g>
+<g data-year="2032" data-word="cautions"><rect class="t-cautions" x="261.8" y="280" width="19.8" height="30"/><rect class="rule" x="261.8" y="280" width="19.8" height="30"/><text x="271.7" y="295" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">-</text><title>2032, Jupiter from the Moon: cautions</title></g>
+<g data-year="2033" data-word="nothing-said"><rect class="rule" x="283.6" y="280" width="19.8" height="30" stroke-opacity=".6"/><title>2033, Jupiter from the Moon: nothing said</title></g>
+<g data-year="2034" data-word="nothing-said"><rect class="rule" x="305.4" y="280" width="19.8" height="30" stroke-opacity=".6"/><title>2034, Jupiter from the Moon: nothing said</title></g>
+<g data-year="2035" data-word="nothing-said"><rect class="rule" x="327.2" y="280" width="19.8" height="30" stroke-opacity=".6"/><title>2035, Jupiter from the Moon: nothing said</title></g>
+</g>
+<text x="12" y="331" font-size="11" font-weight="bold" data-tradition="western">Western astrology</text>
+<g data-level="western-profection">
+<text x="22" y="349" font-size="11">Western annual</text>
+<text x="22" y="362" font-size="11">profection</text>
+<g data-year="2026" data-word="supports"><rect class="t-supports" x="131" y="337" width="19.8" height="30"/><rect class="rule" x="131" y="337" width="19.8" height="30"/><text x="140.9" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2026, Western annual profection: supports</title></g>
+<g data-year="2027" data-word="mixed"><rect class="t-supports" x="152.8" y="337" width="13.2" height="30"/><rect class="t-mixed" x="166" y="337" width="6.6" height="30"/><rect class="rule" x="152.8" y="337" width="19.8" height="30"/><text x="162.7" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2027, Western annual profection: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2028" data-word="supports"><rect class="t-supports" x="174.6" y="337" width="19.8" height="30"/><rect class="rule" x="174.6" y="337" width="19.8" height="30"/><text x="184.5" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2028, Western annual profection: supports</title></g>
+<g data-year="2029" data-word="mixed"><rect class="t-supports" x="196.4" y="337" width="13.2" height="30"/><rect class="t-cautions" x="209.6" y="337" width="6.6" height="30"/><rect class="rule" x="196.4" y="337" width="19.8" height="30"/><text x="206.3" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2029, Western annual profection: mixed (rules conflict)</title></g>
+<g data-year="2030" data-word="mixed"><rect class="t-supports" x="218.2" y="337" width="9.9" height="30"/><rect class="t-mixed" x="228.1" y="337" width="9.9" height="30"/><rect class="rule" x="218.2" y="337" width="19.8" height="30"/><text x="228.1" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2030, Western annual profection: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2031" data-word="mixed"><rect class="t-supports" x="240" y="337" width="14.85" height="30"/><rect class="t-cautions" x="254.85" y="337" width="4.95" height="30"/><rect class="rule" x="240" y="337" width="19.8" height="30"/><text x="249.9" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2031, Western annual profection: mixed (rules conflict)</title></g>
+<g data-year="2032" data-word="supports"><rect class="t-supports" x="261.8" y="337" width="19.8" height="30"/><rect class="rule" x="261.8" y="337" width="19.8" height="30"/><text x="271.7" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2032, Western annual profection: supports</title></g>
+<g data-year="2033" data-word="mixed"><rect class="t-supports" x="283.6" y="337" width="13.2" height="30"/><rect class="t-mixed" x="296.8" y="337" width="6.6" height="30"/><rect class="rule" x="283.6" y="337" width="19.8" height="30"/><text x="293.5" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2033, Western annual profection: mixed (a rule here states a mixed result)</title></g>
+<g data-year="2034" data-word="mixed"><rect class="t-supports" x="305.4" y="337" width="14.85" height="30"/><rect class="t-cautions" x="320.25" y="337" width="4.95" height="30"/><rect class="rule" x="305.4" y="337" width="19.8" height="30"/><text x="315.3" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2034, Western annual profection: mixed (rules conflict)</title></g>
+<g data-year="2035" data-word="mixed"><rect class="t-supports" x="327.2" y="337" width="14.85" height="30"/><rect class="t-cautions" x="342.05" y="337" width="4.95" height="30"/><rect class="rule" x="327.2" y="337" width="19.8" height="30"/><text x="337.1" y="352" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">~</text><title>2035, Western annual profection: mixed (rules conflict)</title></g>
+</g>
+<g data-level="western-solar-return">
+<text x="22" y="383" font-size="11">Western solar</text>
+<text x="22" y="396" font-size="11">return</text>
+<g data-year="2026" data-word="nothing-said"><rect class="rule" x="131" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2026, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2027" data-word="nothing-said"><rect class="rule" x="152.8" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2027, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2028" data-word="nothing-said"><rect class="rule" x="174.6" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2028, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2029" data-word="nothing-said"><rect class="rule" x="196.4" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2029, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2030" data-word="nothing-said"><rect class="rule" x="218.2" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2030, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2031" data-word="nothing-said"><rect class="rule" x="240" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2031, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2032" data-word="nothing-said"><rect class="rule" x="261.8" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2032, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2033" data-word="supports"><rect class="t-supports" x="283.6" y="371" width="19.8" height="30"/><rect class="rule" x="283.6" y="371" width="19.8" height="30"/><text x="293.5" y="386" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">+</text><title>2033, Western solar return: supports</title></g>
+<g data-year="2034" data-word="nothing-said"><rect class="rule" x="305.4" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2034, Western solar return: nothing said (topic active)</title></g>
+<g data-year="2035" data-word="nothing-said"><rect class="rule" x="327.2" y="371" width="19.8" height="30" stroke-opacity=".6"/><title>2035, Western solar return: nothing said (topic active)</title></g>
+</g>
+<line class="rule" x1="12" y1="409" x2="348" y2="409"/>
+<text class="muted" x="12" y="429" font-size="11" data-period-read="iching">The I Ching is read by period, not by year: ask for a</text>
+<text class="muted" x="12" y="443" font-size="11" data-period-read="iching">window of at most 62 days to see its character.</text>
+<rect class="t-supports" x="12" y="457" width="14" height="14"/><rect class="rule" x="12" y="457" width="14" height="14"/>
+<text x="32" y="468" font-size="11" data-legend="supports">supports</text>
+<rect class="t-cautions" x="97.28" y="457" width="14" height="14"/><rect class="rule" x="97.28" y="457" width="14" height="14"/>
+<text x="117.28" y="468" font-size="11" data-legend="cautions">cautions</text>
+<rect class="t-supports" x="182.56" y="457" width="4.67" height="14"/><rect class="t-mixed" x="187.23" y="457" width="4.67" height="14"/><rect class="t-cautions" x="191.89" y="457" width="4.67" height="14"/><rect class="rule" x="182.56" y="457" width="14" height="14"/>
+<text x="202.56" y="468" font-size="11" data-legend="mixed">mixed</text>
+<rect class="rule" x="12" y="479" width="14" height="14"/>
+<text x="32" y="490" font-size="11" data-legend="nothing-said">nothing said</text>
+<text class="muted" x="12" y="512" font-size="10">A mixed cell is split by the share of its rules that</text>
+<text class="muted" x="12" y="525" font-size="10">support, caution or are stated as mixed.</text>
+<text x="12" y="550" font-size="12" data-caption="0">Each line is what a named rule of one tradition</text>
+<text x="12" y="565" font-size="12" data-caption="1">says about this period, with its source. Nobody</text>
+<text x="12" y="580" font-size="12" data-caption="2">has tested these statements against outcomes yet.</text>
+<metadata>overlay © 2026 Knstntnmmi · github.com/Knstntnmmi/Projects-Public · AGPL-3.0-or-later</metadata>
+<text class="muted" x="12" y="602" font-size="10.5">overlay © 2026 Knstntnmmi</text>
+<text class="muted" x="12" y="616" font-size="10.5">github.com/Knstntnmmi/Projects-Public · AGPL-3.0-or-later</text>
+</svg>

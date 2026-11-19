@@ -1,0 +1,476 @@
+{
+ "note": "Each topic defined once, then per tradition. ruleIds are joined from the rule files at build time; an empty list means 'No rule from this tradition' (the tradition is silent, never counted as disagreement). Cells hold only what the extractors found; no hypothesis was added.",
+ "topics": [
+  {
+   "id": "wealth",
+   "plain": "Money coming in, being kept, or being lost.",
+   "notThis": "Not general success, status, or what a person is worth.",
+   "byTradition": {
+    "bazi": {
+     "means": "In this tradition wealth is the 財 star (the element the day master overcomes), read for its root and for the day master's ability to carry it, with 食傷 as its source and 比劫 as its rival. A year or luck pillar that brings a supported 財 in a favourable element is a money period.",
+     "carriedBy": "正財 and 偏財 (stems and hidden stems); 食神 and 傷官 as the source of 財; 比肩 and 劫財 as what takes it; the luck pillar and year branch/stem as 財; 祿神 and 天乙貴人 as help.",
+     "differsFrom": "A relation to the day master (the 財 star), carried or not by the master's strength.",
+     "sources": "淵海子平 論日為主 (財 is the second of five categories), 論正財, 論偏財; 滴天髓輯要 六親論 (大率依財看妻, 財旺身弱喜比劫)",
+     "ruleIds": [
+      "bazi.topic-wealth-promise",
+      "bazi.ten-gods-by-topic",
+      "bazi.fan-yin-fu-yin",
+      "bazi.yangren",
+      "bazi.lushen",
+      "bazi.wealth-star-in-luck",
+      "bazi.output-in-luck",
+      "bazi.peer-in-luck"
+     ],
+     "label": "8 rules"
+    },
+    "western": {
+     "means": "Lilly's 'second house of Riches, or the goods of Fortune': estate, substance, money and how it is gained and kept, judged from the strength of the significators of substance.",
+     "carriedBy": "Cusp of the 2nd house (from 5 degrees before the cusp), the lord of that house, lord of any sign intercepted in it, the Part of Fortune and its lords, Jupiter as general significator of wealth, planets in the 2nd. Lilly p.552 (Chap. CXIII), p.553-563 (Chap. CXIIII-CXVII).",
+     "differsFrom": "A place and a lord (2nd house, Part of Fortune, Jupiter) judged by dignity.",
+     "sources": "Lilly 1647, Book III, p.552-563; Ptolemy cited by Lilly at p.552",
+     "ruleIds": [
+      "lilly.wealth.promise-strong",
+      "lilly.wealth.promise-weak.all",
+      "lilly.wealth.promise-weak.majority",
+      "lilly.wealth.promise-weak.moon-combust",
+      "lilly.profection.house-money",
+      "valens.profection.transmission-lord",
+      "firdaria.lord-condition",
+      "valens.transit.jupiter-year-sign"
+     ],
+     "label": "8 rules"
+    },
+    "vedic": {
+     "means": "Money held and money coming in, from the 2nd house (wealth, grain, family, metals, gems) and the 11th (income, gain, prosperity); fortune and its support from the 5th and 9th; expenditure and loss from the 12th and 8th.",
+     "carriedBy": "Houses 2 and 11 (and their lords), houses 5 and 9 and their lords (their lords give wealth in their dashas), house 12 for outflow, 6/8/12 lords as drains.",
+     "differsFrom": "Houses 2, 11, 5, 9 and their lords in the dasha; Jupiter and Saturn from the Moon.",
+     "sources": "BPHS Ch.11 sl.3, 12, 13; Ch.41 sl.16; Ch.34 sl.2-7 (archive.org copy numbering).",
+     "ruleIds": [
+      "parashari.yogakaraka-kendra-trikona",
+      "parashari.wealth-5-9-lord-dasha",
+      "parashari.dasha-lord-in-wealth-houses",
+      "parashari.dasha-lord-6-8-12-lord",
+      "parashari.dasha-lord-3-11-lord",
+      "parashari.dasha-lord-placement-natal",
+      "parashari.node-dasha",
+      "parashari.antardasha-from-dasha-lord-dusthana",
+      "parashari.antardasha-from-dasha-lord-kendra",
+      "parashari.antardasha-lord-strength",
+      "parashari.jupiter-transit-good",
+      "parashari.jupiter-transit-other",
+      "parashari.saturn-transit-good",
+      "parashari.saturn-12th-from-moon",
+      "parashari.saturn-1st-from-moon",
+      "parashari.saturn-2nd-from-moon",
+      "parashari.saturn-8th-from-moon",
+      "parashari.saturn-transit-other"
+     ],
+     "label": "18 rules"
+    },
+    "iching": {
+     "means": "Almost unattested. Nine statements name goods or retainers: 56.4 得其資斧, 57.6 喪其資斧, 56.6 喪牛, 34.5 喪羊, 51.2 億喪貝, 56.2 懷其資，得僮僕, 56.3 喪其童僕, and 9.5 富以其鄰 and 11.4 不富以其鄰 whose direction is contested. 利 alone is NOT wealth. The Yijing calendar has almost nothing on money and is not agreement-bearing for wealth.",
+     "carriedBy": "Statements containing 資斧, 資, 童僕, 貝 (loss), 喪牛, 喪羊, 富以.",
+     "differsFrom": "Nine statements only; no natal promise; not agreement-bearing.",
+     "sources": "Zhouyi text (opened)",
+     "ruleIds": [
+      "zhouyi.cue-goods"
+     ],
+     "label": "1 rules"
+    }
+   }
+  },
+  {
+   "id": "career",
+   "plain": "Work, office, standing and recognition in the world.",
+   "notThis": "Not money as such, and not the feeling of satisfaction at work.",
+   "byTradition": {
+    "bazi": {
+     "means": "Career is the 官殺 star (the element that overcomes the day master): rank, office and authority. It is judged for being single, clear and rooted, for being supported by 財, and for being controlled by 食傷 or converted by 印 when it is too strong. Mixed 官 and 殺 (官殺混雜) is the main flag; the sources do not give it a fixed sign.",
+     "carriedBy": "正官, 七殺 (stems and hidden stems); 財 as source; 印 as converter; 食傷 as suppressor; the month branch as the 'outline'; the luck pillar and year as 官殺 in a favourable or unfavourable element.",
+     "differsFrom": "A controlling relation to the day master (官殺), with mixing as a flag.",
+     "sources": "淵海子平 論正官, 論七殺, 論官殺混雜要制伏; 滴天髓闡微 官殺 (二十一)",
+     "ruleIds": [
+      "bazi.topic-career-promise",
+      "bazi.pillar-palaces",
+      "bazi.ten-gods-by-topic",
+      "bazi.branch-chong",
+      "bazi.tianyi-guiren",
+      "bazi.yima",
+      "bazi.lushen",
+      "bazi.officer-star-in-luck",
+      "bazi.output-in-luck"
+     ],
+     "label": "9 rules"
+    },
+    "western": {
+     "means": "Honour, dignity, preferment and the quality and durability of the Native's public standing and profession.",
+     "carriedBy": "Luminaries (the Sun most considerable) and planets that behold the Lights within the moiety of their orbs; the lord of the mid-heaven; planets in the mid-heaven. Lilly p.615 (Chap. CXLIIII), p.621-626.",
+     "differsFrom": "Standing in the world: luminaries, 10th house and its lord.",
+     "sources": "Lilly 1647, Book III, p.615-626",
+     "ruleIds": [
+      "lilly.profection.house-money",
+      "valens.profection.transmission-lord",
+      "firdaria.lord-condition",
+      "valens.transit.jupiter-year-sign"
+     ],
+     "label": "4 rules"
+    },
+    "vedic": {
+     "means": "Profession, standing, authority and honour from the 10th house, with recognition from authority.",
+     "carriedBy": "10th house and its lord, planets in the 10th, the 10th lord's dasha; Lagna lord when linked with the 10th lord.",
+     "differsFrom": "10th house and its lord, judged by dignity and placement.",
+     "sources": "BPHS Ch.11 sl.11; Ch.48 sl.5-8 and 14-17.",
+     "ruleIds": [
+      "parashari.yogakaraka-kendra-trikona",
+      "parashari.dasha-lord-career-10",
+      "parashari.dasha-lord-placement-natal",
+      "parashari.lagna-karma-lord-exchange",
+      "parashari.jupiter-transit-good",
+      "parashari.jupiter-transit-other",
+      "parashari.saturn-transit-good",
+      "parashari.saturn-transit-other"
+     ],
+     "label": "8 rules"
+    },
+    "iching": {
+     "means": "Office and standing, only where the text says so: audience with a superior (利見大人, 7 statements: 1.2, 1.5, 6.0, 39.0, 39.6, 45.0, 57.0), service of a king or appointment of lords (王用, 利建侯, 王事 and similar, about 12 statements), plus the Yi wei rule that a growing sovereign hexagram governs 'emolument' (祿), meaning stipend and standing at calendar level, not wealth.",
+     "carriedBy": "Statements containing 利見大人, 王用, 利建侯, 王事, 王命; sovereign hexagram in its growing half.",
+     "differsFrom": "Meeting a great man and the calendar 'emolument' valence; calendar level, weak.",
+     "sources": "Zhouyi text (opened); Yi wei Jilan tu (opened)",
+     "ruleIds": [
+      "yiwei.growing-waning-sovereign",
+      "zhouyi.cue-audience"
+     ],
+     "label": "2 rules"
+    }
+   }
+  },
+  {
+   "id": "relationships",
+   "plain": "Marriage and close partnership; in some traditions also siblings and peers.",
+   "notThis": "Not friendship in general, not family life as a whole. Convention-dependent: BaZi and the Vedic sources fix the spouse star by sex.",
+   "byTradition": {
+    "bazi": {
+     "means": "For a man the spouse star is 財 (正財 wife, 偏財 secondary partner). For a woman it is 官殺 (正官 or 七殺 as husband). The day branch is the spouse palace for both sexes. Peers and siblings are 比劫. Children are a woman's 傷官 (son) and 食神 (daughter) in 淵海子平; the man's half is not verified. Relationships is convention-dependent: the spouse star depends on the sex convention chosen.",
+     "carriedBy": "Man: 財 stars, day branch. Woman: 官殺 stars, day branch. 比劫 for siblings and rivals, 桃花/咸池 as modifier.",
+     "differsFrom": "Spouse star differs by sex convention; day branch is the spouse palace.",
+     "sources": "淵海子平 論妻妾, 論子息, 論婦人總訣, 論兄弟姊妹; 滴天髓輯要 六親論",
+     "ruleIds": [
+      "bazi.topic-spouse-man",
+      "bazi.topic-spouse-woman",
+      "bazi.topic-children",
+      "bazi.pillar-palaces",
+      "bazi.ten-gods-by-topic",
+      "bazi.peers-rivals",
+      "bazi.kongwang",
+      "bazi.fan-yin-fu-yin",
+      "bazi.branch-chong",
+      "bazi.branch-liuhe",
+      "bazi.taohua",
+      "bazi.officer-star-in-luck",
+      "bazi.output-in-luck",
+      "bazi.peer-in-luck",
+      "bazi.day-clash-spouse"
+     ],
+     "label": "15 rules"
+    },
+    "western": {
+     "means": "Marriage and the wife or husband: whether, when, how easily, what kind. Man's significators are Venus and the Moon, then the 7th house and lord; the woman's significators (Sun and Mars) are from damaged OCR and are not used.",
+     "carriedBy": "For a man: Venus and the Moon, the 7th house and its lord, planets in the 7th. Lilly p.587-600 (Chap. CXXX-CXXXVII).",
+     "differsFrom": "7th house, Venus and Moon (man's chart only read).",
+     "sources": "Lilly 1647, Book III, p.587-600",
+     "ruleIds": [
+      "lilly.profection.house-relationships",
+      "valens.profection.transmission-lord",
+      "firdaria.lord-condition"
+     ],
+     "label": "3 rules"
+    },
+    "vedic": {
+     "means": "Spouse and partnership from the 7th house; wife is the stated meaning of the 7th. Venus is the indicator (karaka) of marital happiness only as Ch.18 names it. Convention-dependent (the sources address a male native).",
+     "carriedBy": "7th house, 7th lord, Venus (as karaka strength), planets in the 7th; Jupiter transit over the 7th from the Moon is a favourable trigger.",
+     "differsFrom": "7th house and lord; Venus as karaka strength only.",
+     "sources": "BPHS Ch.11 sl.8; Ch.18 sl.14-18; Phaladeepika Adh.XXVI sl.19.",
+     "ruleIds": [
+      "parashari.dasha-lord-7th-partnership",
+      "parashari.antardasha-from-dasha-lord-kendra",
+      "parashari.jupiter-transit-good",
+      "parashari.saturn-8th-from-moon",
+      "parashari.saturn-transit-other"
+     ],
+     "label": "5 rules"
+    },
+    "iching": {
+     "means": "Marriage and union only: 取女吉 (31.0), 勿用取女 (4.3, 44.0), 女歸吉 (53.0), 婚媾 (3.2, 3.4, 22.4, 38.6, 51.6), 婦貞 (9.6), plus 納婦 4.2, 老夫得其女妻 28.2, 老婦得其士夫 28.5, 婦人吉夫子凶 32.5, 夫征不復婦孕不育 53.3, 婦三歲不孕 53.5, 婦喪其茀 63.2, each with its own sign. No friendship, family or partnership vocabulary beyond that. No statement is mapped by hexagram name (not 咸, not 歸妹).",
+     "carriedBy": "Statements containing 取女, 女歸, 婚媾, 婦貞, 女壯, 納婦 and the listed spouse phrases.",
+     "differsFrom": "Marriage statements only, each with its own sign.",
+     "sources": "Zhouyi text (opened)",
+     "ruleIds": [
+      "zhouyi.cue-marriage"
+     ],
+     "label": "1 rules"
+    }
+   }
+  },
+  {
+   "id": "health",
+   "plain": "The body: strain, illness and recovery, as a tendency.",
+   "notThis": "Not a diagnosis, not a length of life, and no mortality statement is ever printed.",
+   "byTradition": {
+    "bazi": {
+     "means": "The tradition's health reading is element balance. An element that is excessive or cut off (死絕) strains the organ of that element, and a disliked element that is neither checked nor transformed strikes the organ it overcomes. A tendency by organ system; no diagnostic claim.",
+     "carriedBy": "The five element counts, the unfavourable (忌神) element and the organ it attacks, 刑 striking the day and hour pillars, the stem-to-organ table.",
+     "differsFrom": "See means.",
+     "sources": "滴天髓輯要 疾病論 (attack chain verified in 滴天髓闡微); stem-organ verse in 淵海子平",
+     "ruleIds": [
+      "bazi.topic-health",
+      "bazi.yangren"
+     ],
+     "label": "2 rules"
+    },
+    "western": {
+     "means": "Health of body, sickness and its kind (the sixth house).",
+     "carriedBy": "The ascending sign and its lord; Sun and Moon; the 6th house and its lord; planets in the 6th; the 7th house and its lord. Lilly p.576-581.",
+     "differsFrom": "See means.",
+     "sources": "Lilly 1647, Book III, p.576-581",
+     "ruleIds": [
+      "valens.profection.transmission-lord",
+      "firdaria.lord-condition",
+      "lilly.revolution.asc-hostile",
+      "valens.critical-year-syzygy",
+      "valens.critical-year-node"
+     ],
+     "label": "5 rules"
+    },
+    "vedic": {
+     "means": "Body from the Lagna; illness and enemies from the 6th; vulnerability and longevity from the 8th; loss from the 12th; the 2nd and 7th lords as maraka lords (shown only as a health caution, never mortality).",
+     "carriedBy": "Lagna and Lagna lord, 6th/8th/12th houses and lords, lords of 2 and 7, Saturn transits over the Moon sign and its eighth.",
+     "differsFrom": "See means.",
+     "sources": "BPHS Ch.11 sl.2, 7, 9, 13; Ch.48 sl.2-8; Ch.52 sl.1-3.",
+     "ruleIds": [
+      "parashari.dasha-lord-2nd-7th-maraka",
+      "parashari.dasha-lord-6-8-12-lord",
+      "parashari.antardasha-from-dasha-lord-dusthana",
+      "parashari.antardasha-maraka",
+      "parashari.jupiter-transit-other",
+      "parashari.saturn-12th-from-moon",
+      "parashari.saturn-1st-from-moon",
+      "parashari.saturn-8th-from-moon",
+      "parashari.saturn-transit-other"
+     ],
+     "label": "9 rules"
+    },
+    "iching": {
+     "means": "Illness only where named with 疾 or 勿藥. Certain own-illness cues: 25.5, 41.4, 33.3, 16.5. Ambiguous: 24.0, 55.2, 58.4. Excluded unless the director accepts the caveat: 36.3 (不可疾貞 'do not be hasty') and 50.2 (the enemy's trouble). No body-wide or longevity forecast in the text.",
+     "carriedBy": "Statements containing 疾 or 勿藥.",
+     "differsFrom": "See means.",
+     "sources": "Zhouyi text (opened)",
+     "ruleIds": [
+      "zhouyi.cue-illness"
+     ],
+     "label": "1 rules"
+    }
+   }
+  },
+  {
+   "id": "learning",
+   "plain": "Study, schooling, knowledge and the mind.",
+   "notThis": "Not wisdom or career skill.",
+   "byTradition": {
+    "bazi": {
+     "means": "Learning is the 印 star (生我: resource, mother, teacher, certificates) with 食神 as expression. A 印 that is rooted and not broken by 財 gives study and support. 學堂 and 文昌 add to it; the 文昌 table is held back as unverified.",
+     "carriedBy": "正印 and 偏印; 食神; 學堂 (derived convention from the day master's 長生 branch, see rule).",
+     "differsFrom": "See means.",
+     "sources": "淵海子平 論印綬; 三命通會 卷三 論學堂詞館",
+     "ruleIds": [
+      "bazi.topic-learning",
+      "bazi.ten-gods-by-topic",
+      "bazi.resource-in-luck"
+     ],
+     "label": "3 rules"
+    },
+    "western": {
+     "means": "Study, wisdom, science, scholarship. Lilly has no dedicated learning chapter in the pages read; the house table assigns Religion, Wisdom, Science, Learning and Scholarship to the ninth house and Mercury to scholars. Profection houses 9 and 5 carry the only extracted rule.",
+     "carriedBy": "Ninth house and its lord, planets in the 9th, Mercury. Lilly p.557-558, 606-614.",
+     "differsFrom": "See means.",
+     "sources": "Lilly 1647, Book III, p.555-558, 606-614; no dedicated chapter found",
+     "ruleIds": [
+      "lilly.profection.house-learning"
+     ],
+     "label": "1 rules"
+    },
+    "vedic": {
+     "means": "Education, knowledge, mantra and intellect from the 5th house; religion, higher teaching and fortune from the 9th. The sources name education only under the dasha of the 5th and 9th lords; Phaladeepika's Jupiter-5th verse names children, friendship and royal favour, not learning.",
+     "carriedBy": "5th and 9th houses and lords.",
+     "differsFrom": "See means.",
+     "sources": "BPHS Ch.11 sl.6, 10; Ch.48 sl.2-8.",
+     "ruleIds": [
+      "parashari.dasha-lord-education-5-9"
+     ],
+     "label": "1 rules"
+    },
+    "iching": {
+     "means": "No statement names study or learning as a topic. Do not map any statement to learning.",
+     "carriedBy": "none",
+     "differsFrom": "No statement; silent by design.",
+     "sources": "Zhouyi text (opened; searched, none found)",
+     "ruleIds": [],
+     "label": "No rule from this tradition"
+    }
+   }
+  },
+  {
+   "id": "home-travel",
+   "plain": "Where one lives, moves to, and the journeys one makes.",
+   "notThis": "Not family relationships.",
+   "byTradition": {
+    "bazi": {
+     "means": "Movement and residence: 驛馬 (post-horse branch) and clash of the branches that stand for the home. A 驛馬 year signals relocation or travel, with no verdict until the favourable-element test is applied. The mapping of pillars to residence is a later convention.",
+     "carriedBy": "驛馬 by the year or day branch's three-harmony group, 六沖 to the month or day branch.",
+     "differsFrom": "See means.",
+     "sources": "三命通會 卷三 論驛馬, 卷二 論衝擊; residence mapping is a modern convention built on 淵海子平 論月令",
+     "ruleIds": [
+      "bazi.pillar-palaces",
+      "bazi.branch-chong",
+      "bazi.yima"
+     ],
+     "label": "3 rules"
+    },
+    "western": {
+     "means": "Journeys and residence abroad (ninth house), kindred and short movements (third house), home, lands, patrimony and buildings (fourth house).",
+     "carriedBy": "9th house and its lord, planets in the 9th, Moon and Mercury; 4th house for home. Lilly p.606-611, 558, 564.",
+     "differsFrom": "See means.",
+     "sources": "Lilly 1647, Book III, p.558, 564, 606-611",
+     "ruleIds": [
+      "lilly.profection.house-travel"
+     ],
+     "label": "1 rules"
+    },
+    "vedic": {
+     "means": "Home, land, conveyances and mother from the 4th; journeys from the 3rd, 7th and 9th (shrines); foreign residence from the 10th. The 12th is expenses in Ch.11; travel or abroad for the 12th is later usage.",
+     "carriedBy": "4th house and lord for home; 3rd, 7th, 9th, 10th houses and lords for travel.",
+     "differsFrom": "See means.",
+     "sources": "BPHS Ch.11 sl.4, 5, 8, 10, 11; Ch.48 sl.2-4.",
+     "ruleIds": [
+      "parashari.dasha-lord-4th-home",
+      "parashari.dasha-lord-travel"
+     ],
+     "label": "2 rules"
+    },
+    "iching": {
+     "means": "Journeys and crossings named in the text: 利涉大川 and 用涉大川 (positive, 10 statements: 5.0, 13.0, 15.1, 18.0, 26.0, 27.6, 42.0, 59.0, 61.0, 64.3), 不利涉大川 and 不可涉大川 (negative, 2: 6.0, 27.5), 利有攸往 (13 statements, a general go-ahead) versus 不利/勿用有攸往 (4: 3.0, 23.0, 25.0, 33.1), the traveller hexagram 56, 行人. Home is not a Zhouyi topic apart from 家人 (hexagram 37, not mapped).",
+     "carriedBy": "Statements containing 涉大川, 有攸往, 旅, 行人.",
+     "differsFrom": "See means.",
+     "sources": "Zhouyi text (opened)",
+     "ruleIds": [
+      "zhouyi.cue-travel"
+     ],
+     "label": "1 rules"
+    }
+   }
+  },
+  {
+   "id": "general",
+   "plain": "The overall quality of a period when no single area is named.",
+   "notThis": "Not a total or average of the other topics.",
+   "byTradition": {
+    "bazi": {
+     "means": "The overall quality of a period: the day master's balance after the luck pillar and the year are added, tested by whether the pillar's elements are favourable (喜) or unfavourable (忌) and whether the pillar clashes with the natal chart.",
+     "carriedBy": "Favourable-element membership of the pillar's stem and branch, 蓋頭/截腳, 天剋地沖, 歲運並臨, 伏吟/反吟.",
+     "differsFrom": "See means.",
+     "sources": "滴天髓闡微 歲運 (二十八); 三命通會 卷二 總論歲運; 淵海子平 論大運",
+     "ruleIds": [
+      "bazi.month-state",
+      "bazi.twelve-stages",
+      "bazi.hidden-stems",
+      "bazi.strength-score",
+      "bazi.favourable-fuyi",
+      "bazi.tongguan",
+      "bazi.pillar-palaces",
+      "bazi.ten-gods-by-topic",
+      "bazi.kongwang",
+      "bazi.luck-pillar-judgement",
+      "bazi.cover-cut",
+      "bazi.year-judgement",
+      "bazi.sui-yun-bing-lin",
+      "bazi.tian-ke-di-chong",
+      "bazi.year-vs-day-clash",
+      "bazi.hui-he-year",
+      "bazi.branch-chong",
+      "bazi.branch-liuhe",
+      "bazi.branch-sanhe",
+      "bazi.tianyi-guiren",
+      "bazi.yangren"
+     ],
+     "label": "21 rules"
+    },
+    "western": {
+     "means": "The overall fortune of the Native and of the year, from the strength of the Ascendant, its lord, the luminaries and the plurality of planets in essential dignity or debility.",
+     "carriedBy": "All seven planets by essential and accidental fortitude; the Ascendant and its lord; Sun and Moon. Lilly p.551 (Chap. CXIII).",
+     "differsFrom": "See means.",
+     "sources": "Lilly 1647, Book III, p.551-552",
+     "ruleIds": [
+      "lilly.score.strength-classes",
+      "lilly.profection.lord-of-year-by-degree",
+      "valens.profection.transmission-lord",
+      "firdaria.lord-condition",
+      "lilly.revolution.asc-hostile",
+      "lilly.transit.daily-cusps",
+      "valens.transit.jupiter-year-sign",
+      "lilly.aspects.orbs-table"
+     ],
+     "label": "8 rules"
+    },
+    "vedic": {
+     "means": "Overall fortune of the period, from the lord's functional nature for the Lagna, its dignity, placement and association, the dasha-antardasha relation and the transits.",
+     "carriedBy": "Dasha lord and antardasha lord condition; Jupiter and Saturn from the natal Moon.",
+     "differsFrom": "See means.",
+     "sources": "BPHS Ch.34, Ch.47, Ch.48, Ch.52; Phaladeepika Adh.XXVI.",
+     "ruleIds": [
+      "parashari.house-topic-map",
+      "parashari.lagna-functional-nature",
+      "parashari.yogakaraka-kendra-trikona",
+      "parashari.planet-dignity",
+      "parashari.dasha-lord-6-8-12-lord",
+      "parashari.dasha-lord-6-8-12-redeemed",
+      "parashari.dasha-lord-3-11-lord",
+      "parashari.dasha-lord-placement-natal",
+      "parashari.dasha-lord-placement-at-start",
+      "parashari.dasha-lord-association",
+      "parashari.lagna-karma-lord-exchange",
+      "parashari.node-dasha",
+      "parashari.dasha-timing-within-period",
+      "parashari.antardasha-from-dasha-lord-dusthana",
+      "parashari.antardasha-from-dasha-lord-kendra",
+      "parashari.antardasha-lord-strength",
+      "parashari.jupiter-transit-good",
+      "parashari.jupiter-transit-other",
+      "parashari.jupiter-vedha",
+      "parashari.saturn-transit-good",
+      "parashari.saturn-12th-from-moon",
+      "parashari.saturn-1st-from-moon",
+      "parashari.saturn-2nd-from-moon",
+      "parashari.saturn-vedha",
+      "parashari.transit-sign-portion"
+     ],
+     "label": "25 rules"
+    },
+    "iching": {
+     "means": "The Zhouyi's verdict terms (ji, xiong, hui, lin, jiu, li, bu li) are unspecific: they say whether the matter divined turns out well or badly, not which life domain. All 450 statements can carry a general grade; a share carry no verdict word (the share is to be recomputed after the token fixes).",
+     "carriedBy": "The period hexagram (gua qi, or the monthly sovereign hexagram), its judgment, and the assigned line. The Han calendar use (Jing Fang) is about weather and court omens, not persons.",
+     "differsFrom": "See means.",
+     "sources": "Zhouyi text via zh.wikisource.org 周易/* (opened, all 64 pages); Han shu 75 (opened)",
+     "ruleIds": [
+      "zhouyi.statement-grade",
+      "zhouyi.period-hexagram-judgment",
+      "zhouyi.line-of-day-reconstruction",
+      "dayan.cardinal-line-by-term",
+      "yiwei.growing-waning-sovereign",
+      "yiwei.cardinal-hexagram-arms"
+     ],
+     "label": "6 rules"
+    }
+   }
+  }
+ ]
+}

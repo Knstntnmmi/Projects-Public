@@ -25,6 +25,28 @@ export interface Interval {
   tone?: string;
 }
 
+/**
+ * The clocks tracks can run on. A clock is the set of instants that set its boundaries,
+ * and two tracks share one only when those instants are equal as dates. Jupiter and Saturn
+ * are split by zodiac because the tropical and sidereal ingresses fall on different dates.
+ * `calendar-year` is the slice clock of the forecast layer.
+ */
+export type ClockId =
+  | 'luck'
+  | 'birthday'
+  | 'dasha'
+  | 'solar-longitude'
+  | 'jupiter-tropical'
+  | 'jupiter-sidereal'
+  | 'saturn-tropical'
+  | 'saturn-sidereal'
+  | 'moon'
+  | 'mars'
+  | 'venus'
+  | 'mercury'
+  | 'node'
+  | 'calendar-year';
+
 export interface Track {
   id: string;
   title: string;
@@ -38,7 +60,7 @@ export interface Track {
    * annual pillar turns on one of the monthly pillar's boundaries), so a coincidence
    * between them is not a coincidence, and the seam finder counts each clock once.
    */
-  clock: 'luck' | 'birthday' | 'dasha' | 'solar-longitude' | 'jupiter' | 'saturn';
+  clock: ClockId;
   intervals: Interval[];
 }
 
@@ -114,7 +136,7 @@ export function buildTracks(moment: Moment, conventions: Conventions, options: T
     title: 'Saturn by sign',
     system: 'western',
     level: 'life',
-    clock: 'saturn',
+    clock: 'saturn-tropical',
       boundary: 'Saturn\'s geocentric sign changes, retrograde re-entries included',
     intervals: clip(signIngresses('Saturn', start, end, 6).map((s) => ({ startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs, label: s.label, tone: signTone(s.label) })), start, end),
   });
@@ -168,7 +190,7 @@ export function buildTracks(moment: Moment, conventions: Conventions, options: T
     title: 'Jupiter by sign',
     system: 'western',
     level: 'year',
-    clock: 'jupiter',
+    clock: 'jupiter-tropical',
       boundary: 'Jupiter\'s geocentric sign changes',
     intervals: clip(signIngresses('Jupiter', start, end, 4).map((s) => ({ startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs, label: s.label, tone: signTone(s.label) })), start, end),
   });

@@ -37,6 +37,10 @@ export const PALETTE_LIGHT: Record<string, string> = {
   ketu: '#c7a98f',
   jie: '#e7d9b8',
   qi: '#f4eedd',
+  supports: '#bfe0c4',
+  cautions: '#efb9a8',
+  mixed: '#e9d9a6',
+  quiet: '#ece8dc',
 };
 
 export const PALETTE_DARK: Record<string, string> = {
@@ -64,6 +68,10 @@ export const PALETTE_DARK: Record<string, string> = {
   ketu: '#6a4f38',
   jie: '#4d4530',
   qi: '#2c2a22',
+  supports: '#2f6a3f',
+  cautions: '#8c3f2e',
+  mixed: '#6e5f2a',
+  quiet: '#34322a',
 };
 
 const vars = (p: Record<string, string>): string =>

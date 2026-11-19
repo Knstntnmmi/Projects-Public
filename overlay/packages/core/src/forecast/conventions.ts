@@ -1,0 +1,176 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
+/**
+ * Forecast conventions: the choices the rule files leave open, as named settings. They sit
+ * beside the engine's Conventions and are recorded in every output. The engine's own
+ * sovereignBoundary and firdariaNodes are not repeated here; the output records the engine
+ * values, so there is one place to set each.
+ */
+import type { ConventionSpec } from '../conventions.ts';
+import type { SexConvention } from './types.ts';
+
+export interface ForecastConventions {
+  /** Calendar years in this phase. */
+  sliceLength: 'year';
+  /** When on, a signal that no promise rule gated is shown at rule weight 1. */
+  cap_ungated: boolean;
+  baziStrengthThresholds: '45/55';
+  baziLuckWeights: '0.6/0.4';
+  baziYinStageReverse: boolean;
+  baziEarthSeasons: 'four-jiyue';
+  /** Whose sign a year that clashes with the luck pillar takes: the source's ten-god sign or the favourable element's. */
+  suiYunSign: 'source-tengod' | 'favourable-element';
+  /** The sex a BaZi chart is read as; needed by the luck direction and by spouse and children rules. */
+  baziSexConvention: SexConvention;
+  westernHouses: 'whole-sign';
+  westernTerms: 'lilly-ptolemy';
+  vedicDashaYearDays: 365.25;
+  vedicNode: 'mean';
+  /** Minutes of birth-time uncertainty beyond which birth-time-dependent rules are not evaluated. */
+  birthTimeLimitMinutes: 60;
+  /** Whether rules whose source was not opened are shown. */
+  showUnopened: boolean;
+}
+
+export const DEFAULT_FORECAST_CONVENTIONS: ForecastConventions = {
+  sliceLength: 'year',
+  cap_ungated: false,
+  baziStrengthThresholds: '45/55',
+  baziLuckWeights: '0.6/0.4',
+  baziYinStageReverse: true,
+  baziEarthSeasons: 'four-jiyue',
+  suiYunSign: 'source-tengod',
+  baziSexConvention: 'none',
+  westernHouses: 'whole-sign',
+  westernTerms: 'lilly-ptolemy',
+  vedicDashaYearDays: 365.25,
+  vedicNode: 'mean',
+  birthTimeLimitMinutes: 60,
+  showUnopened: false,
+};
+
+export interface ForecastConventionSpec extends Omit<ConventionSpec, 'key'> {
+  key: keyof ForecastConventions;
+}
+
+export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
+  {
+    key: 'sliceLength',
+    title: 'Length of a slice',
+    affects: 'Every reading, agreement cell and track of the forecast',
+    why: 'Readings and agreement are stated per slice of time. This phase uses calendar years, cut at the first of January in UTC.',
+    options: [{ value: 'year', label: 'Calendar year', description: 'January to December, UTC.' }],
+  },
+  {
+    key: 'cap_ungated',
+    title: 'Cap on signals no promise rule gated',
+    affects: 'The rule weight shown beside a signal',
+    why: 'No accepted rule carries a sourced gate, so every signal is ungated. The cap is a display choice, off by default, and never changes a direction.',
+    options: [
+      { value: 'false', label: 'Off', description: 'Each signal shows the rule weight the extractor rated.' },
+      { value: 'true', label: 'On', description: 'Ungated signals show rule weight 1.' },
+    ],
+  },
+  {
+    key: 'baziStrengthThresholds',
+    title: 'BaZi day-master strength bands',
+    affects: 'bazi.strength-score and everything that reads the favourable elements',
+    why: 'The score bands are the extractor\'s operationalisation of the source; a score of exactly 45 or 55 is balanced.',
+    options: [{ value: '45/55', label: 'Weak below 45, strong above 55', description: 'Balanced from 45 to 55 inclusive.' }],
+  },
+  {
+    key: 'baziLuckWeights',
+    title: 'Weights of luck pillar and year pillar',
+    affects: 'Period rules that combine the luck pillar with the annual pillar',
+    why: 'The sources do not give the relative weight of a ten-year luck pillar and a single year; the rule file states 0.6 and 0.4.',
+    options: [{ value: '0.6/0.4', label: 'Luck 0.6, year 0.4', description: 'As the rule file states.' }],
+  },
+  {
+    key: 'baziYinStageReverse',
+    title: 'Direction of the twelve stages for yin stems',
+    affects: 'bazi.twelve-stages',
+    why: 'Schools differ on whether the twelve stages run backward for yin stems; the rule file lists the backward run as a convention not seen in the text.',
+    options: [
+      { value: 'true', label: 'Yin stems run backward', description: 'The common practice.' },
+      { value: 'false', label: 'All stems run forward', description: 'The alternative school.' },
+    ],
+  },
+  {
+    key: 'baziEarthSeasons',
+    title: 'Seasons of earth',
+    affects: 'bazi.month-state and the strength score',
+    why: 'The source makes earth strong in the sixth month only; common practice makes it strong in all four season-end months (the 季月).',
+    options: [{ value: 'four-jiyue', label: 'All four 季月', description: 'The month branches 辰 戌 丑 未.' }],
+  },
+  {
+    key: 'suiYunSign',
+    title: 'Sign of a year that clashes with the luck pillar',
+    affects: 'bazi.sui-yun-bing-lin',
+    why: 'The source judges the clash by the ten god of the incoming year; later practice judges it by whether the element is favourable.',
+    options: [
+      { value: 'source-tengod', label: 'Ten-god sign', description: 'As the source gives it. The default.' },
+      { value: 'favourable-element', label: 'Favourable element', description: 'The named alternative.' },
+    ],
+  },
+  {
+    key: 'baziSexConvention',
+    title: 'Sex the BaZi chart is read as',
+    affects: 'Direction of the luck pillars, and the spouse and children rules',
+    why: 'Luck direction and the spouse and children rules differ by sex in the sources. Without a named convention those rules are skipped and listed as not evaluated.',
+    options: [
+      { value: 'none', label: 'None given', description: 'Rules that need it are not evaluated.' },
+      { value: 'male-chart', label: 'Read as a male chart', description: 'The man\'s rules and the forward or backward luck count for a male chart.' },
+      { value: 'female-chart', label: 'Read as a female chart', description: 'The woman\'s rules and the luck count for a female chart.' },
+    ],
+  },
+  {
+    key: 'westernHouses',
+    title: 'Western house system',
+    affects: 'Western rules that name a house (withheld in this phase)',
+    why: 'Whole-sign houses are what the engine computes; rules that cite cusps run whole-sign as a labelled variant.',
+    options: [{ value: 'whole-sign', label: 'Whole sign', description: 'Houses are the signs counted from the ascendant sign.' }],
+  },
+  {
+    key: 'westernTerms',
+    title: 'Western term (bound) table',
+    affects: 'Western dignity scores (withheld in this phase)',
+    why: 'Lilly printed the Ptolemaic terms; the engine computes the Egyptian set, so the difference is named.',
+    options: [{ value: 'lilly-ptolemy', label: 'Lilly\'s terms', description: 'As printed in Christian Astrology.' }],
+  },
+  {
+    key: 'vedicDashaYearDays',
+    title: 'Length of a dasha year',
+    affects: 'Vimshottari period boundaries',
+    why: 'The engine\'s value, recorded so the output says which one it used.',
+    options: [{ value: 365.25, label: '365.25 days', description: 'The engine\'s value.' }],
+  },
+  {
+    key: 'vedicNode',
+    title: 'Lunar node',
+    affects: 'Rahu and Ketu in the Vedic rules',
+    why: 'The engine computes the mean node.',
+    options: [{ value: 'mean', label: 'Mean node', description: 'The engine\'s node.' }],
+  },
+  {
+    key: 'birthTimeLimitMinutes',
+    title: 'Birth-time uncertainty limit',
+    affects: 'Rules that depend on the ascendant, houses, hour pillar or firdaria sect',
+    why: 'Beyond this many minutes of uncertainty the rules that need the birth time are not evaluated and are listed with that reason.',
+    options: [{ value: 60, label: '60 minutes', description: 'The default limit.' }],
+  },
+  {
+    key: 'showUnopened',
+    title: 'Show rules whose source was not opened',
+    affects: 'The signal list',
+    why: 'Every rule in this release has an opened source; the switch exists so a later rule that has none is hidden unless asked for.',
+    options: [
+      { value: 'false', label: 'Hide', description: 'The default.' },
+      { value: 'true', label: 'Show', description: 'With the badge "source not opened".' },
+    ],
+  },
+];
+
+/** The sex a convention stands for, or null if none was named. */
+export function sexOf(c: ForecastConventions): 'male' | 'female' | null {
+  return c.baziSexConvention === 'male-chart' ? 'male' : c.baziSexConvention === 'female-chart' ? 'female' : null;
+}

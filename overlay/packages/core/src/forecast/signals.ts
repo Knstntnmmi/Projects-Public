@@ -37,9 +37,20 @@ export function slotsOf(template: string): string[] {
 
 export function fillTemplate(ruleId: string, template: string, facts: readonly Fact[]): string {
   const byKey = new Map(facts.map((f) => [f.key, f.value]));
-  return template.replace(SLOT, (_m, slot: string) => {
+  const filled = template.replace(SLOT, (_m, slot: string) => {
     if (!byKey.has(slot)) throw new UnboundSlotError(ruleId, slot);
     return String(byKey.get(slot));
+  });
+  return ordinals(filled);
+}
+
+/** Several templates write a house number as "{h}th"; a number takes its own English ending. */
+export function ordinals(text: string): string {
+  return text.replace(/\b(\d+)th\b/g, (_m, n: string) => {
+    const k = Number(n);
+    const tail = k % 100;
+    const end = tail >= 11 && tail <= 13 ? 'th' : k % 10 === 1 ? 'st' : k % 10 === 2 ? 'nd' : k % 10 === 3 ? 'rd' : 'th';
+    return `${n}${end}`;
   });
 }
 

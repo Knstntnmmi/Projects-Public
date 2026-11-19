@@ -27,7 +27,7 @@ import {
   type Placement,
   type VedicChartModel,
 } from '../../../systems/vedic/houses.ts';
-import type { Fact, Firing, RuleBinding, Topic } from '../../types.ts';
+import type { Direction, Fact, Firing, RuleBinding, Topic } from '../../types.ts';
 import { BADGES, DIGNITY_BAD, DIGNITY_GOOD, companions, dignityIn, dignityIs, evilSideHolds, goodSideHolds, join, model, signOf } from './common.ts';
 
 const CONVENTIONS = ['ayanamsa', 'vedicDashaYearDays'];
@@ -36,6 +36,7 @@ interface Item {
   facts: Fact[];
   topics?: Topic[];
   badges?: string[];
+  direction?: Direction;
 }
 
 const fact = (key: string, label: string, value: string | number): Fact => ({ key, label, value });
@@ -44,9 +45,18 @@ const overlapping = (ctx: ForecastContext, spans: readonly DashaSpan[]): DashaSp
 
 const antarLordOf = (s: DashaSpan): { maha: string; antar: string } => ({ maha: s.label.split(' / ')[0]!, antar: s.lord });
 
+const READING: Readonly<Record<string, Direction>> = { favourable: 'favourable', unfavourable: 'unfavourable', difficult: 'unfavourable', mixed: 'mixed', raises: 'favourable', lowers: 'unfavourable' };
+const readingOf = (facts: readonly Fact[]): Direction | undefined => {
+  const f = facts.find((x) => x.key === 'direction' || x.key === 'raises_or_lowers');
+  return f ? READING[String(f.value)] : undefined;
+};
+
 const dated = (s: DashaSpan, it: Item, extra: string[] = []): Firing => {
   const f: Firing = { clock: 'dasha', startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs, facts: it.facts, conventionsUsed: CONVENTIONS };
   if (it.topics) f.topics = it.topics;
+  // The rule's own direction is mixed where its sentence names the reading; the reading, not the default, signs the signal.
+  const direction = it.direction ?? readingOf(it.facts);
+  if (direction) f.direction = direction;
   const badges = [...(it.badges ?? []), ...extra];
   if (badges.length > 0) f.badges = badges;
   return f;
@@ -136,7 +146,7 @@ const partnership7 = lordRule('parashari.dasha-lord-7th-partnership', (m, p) => 
   const strong = m.dignity(p).kind === 'exalted' || ([...KENDRA, ...TRIKONA].includes(m.houseOf(p)) && withNature('benefic'));
   const weak = m.dignity(p).kind === 'debilitated' || weakPlace(m, p) || withNature('malefic');
   const word = strong && weak ? 'of mixed strength' : strong ? 'strong' : weak ? 'weak' : 'neither strong nor weak';
-  return [{ facts: [fact('planet', 'Planet', p), fact('strong_or_weak', 'Strength of the lord', word)] }];
+  return [{ facts: [fact('planet', 'Planet', p), fact('strong_or_weak', 'Strength of the lord', word)], direction: strong && weak ? 'mixed' : strong ? 'favourable' : weak ? 'unfavourable' : 'mixed' }];
 });
 
 /** Lord of the 2nd or 7th. The branch "joined to the 2nd or 7th lord" is not bound: the sentence says the planet is the lord. */
@@ -254,7 +264,7 @@ const placementAtStart: RuleBinding = {
       const fav = [1, 5, 9].includes(h) || d.kind === 'exalted' || own || d.kind === 'friend' || d.kind === 'great friend';
       const unfav = DUSTHANA.includes(h) || d.kind === 'debilitated' || d.kind === 'enemy' || d.kind === 'great enemy';
       if (!fav && !unfav) continue;
-      out.push(dated(s, { facts: [fact('planet', 'Planet', s.lord), fact('h', 'House from the Lagna', h), fact('dignity', 'Dignity', dignityIn(d.kind))] }));
+      out.push(dated(s, { facts: [fact('planet', 'Planet', s.lord), fact('h', 'House from the Lagna', h), fact('dignity', 'Dignity', dignityIn(d.kind))], direction: fav && unfav ? 'mixed' : fav ? 'favourable' : 'unfavourable' }));
     }
     return out;
   },

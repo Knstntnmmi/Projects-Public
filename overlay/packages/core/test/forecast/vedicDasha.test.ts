@@ -185,7 +185,7 @@ describe('the mahadasha house-lord rules', () => {
     const id = 'parashari.dasha-lord-3-11-lord';
     const mer = run(id, { maha: ['Mercury'] });
     expect(topics(mer)).toEqual(['general', 'wealth']);
-    expect(sentences(mer, 'wealth')).toEqual(['Mercury owns the 3th house, which gives evil results in its dasha; effect is reduced when the planet is strong.', 'Mercury owns the 6th house, which gives evil results in its dasha; effect is reduced when the planet is strong.']);
+    expect(sentences(mer, 'wealth')).toEqual(['Mercury owns the 3rd house, which gives evil results in its dasha; effect is reduced when the planet is strong.', 'Mercury owns the 6th house, which gives evil results in its dasha; effect is reduced when the planet is strong.']);
     // Saturn owns the 10th and the 11th; the Aries list calls it malefic, so the 11th counts, for the general topic only.
     expect(topics(run(id, { maha: ['Saturn'] }))).toEqual(['general']);
     // Cancer rising: Jupiter owns the 6th and the 9th and the list calls it auspicious.
@@ -199,7 +199,7 @@ describe('the mahadasha placement rules', () => {
     const id = 'parashari.dasha-lord-placement-natal';
     expect(sentences(run(id, { maha: ['Jupiter'] }), 'general')).toEqual(['Jupiter is in its moolatrikona in the 9th house; its period is read as favourable.']);
     // Saturn debilitated in Aries, which is the 1st house: a good house and a bad dignity.
-    expect(sentences(run(id, { maha: ['Saturn'], planets: { Saturn: [0, 20] } }), 'general')[0]).toBe('Saturn is debilitated in the 1th house; its period is read as mixed.');
+    expect(sentences(run(id, { maha: ['Saturn'], planets: { Saturn: [0, 20] } }), 'general')[0]).toBe('Saturn is debilitated in the 1st house; its period is read as mixed.');
     // The 6th house and the sign of an enemy or debilitation: unfavourable.
     expect(sentences(run(id, { maha: ['Jupiter'], planets: { Jupiter: [9, 5] } }), 'general')[0]).toMatch(/debilitated in the 10th house; its period is read as mixed/);
     // Debilitated in Scorpio, which is the 8th house: both bad.
@@ -231,7 +231,7 @@ describe('the mahadasha placement rules', () => {
     const s = signalsFromFirings(rule, b.fire(moved, rule), { forecastConventions: DEFAULT_FORECAST_CONVENTIONS, span: { startUtcMs: 946_728_000_000 - DAY, endUtcMs: 946_728_000_000 + 3000 * DAY } });
     expect(s).toHaveLength(1);
     // Jupiter in Aries is the Lagna for an Aries ascendant, in the sign of Mars, a friend of Jupiter.
-    expect(s[0]!.sentence).toBe('At the start of the Jupiter period, Jupiter stood in the 1th house from the Lagna, in the sign of a great friend.');
+    expect(s[0]!.sentence).toBe('At the start of the Jupiter period, Jupiter stood in the 1st house from the Lagna, in the sign of a great friend.');
     // The same sky counted from a Cancer Lagna: Aries is the 10th house.
     const lagna3 = signalsFromFirings(rule, b.fire({ ...moved, extension: () => ({ model: vedicChartModel(3, Object.entries(BASE).map(([planet, [signIndex, degree]]) => ({ planet, signIndex, degree }))) }) } as unknown as ForecastContext, rule), { forecastConventions: DEFAULT_FORECAST_CONVENTIONS, span: { startUtcMs: 946_728_000_000 - DAY, endUtcMs: 946_728_000_000 + 3000 * DAY } });
     expect(lagna3[0]!.sentence).toMatch(/stood in the 10th house from the Lagna/);
@@ -246,10 +246,10 @@ describe('the mahadasha placement rules', () => {
     // Joined to Saturn, a malefic: afflicted, so nothing.
     expect(run(id, { maha: ['Sun'], planets: { Sun: [10, 10] } })).toEqual([]);
     // Moon in the 2nd with a benefic seventh aspect: Venus in Scorpio looks at Taurus.
-    expect(sentences(run(id, { maha: ['Moon'], planets: { ...away, Moon: [1, 5], Venus: [7, 5] } }))[0]).toMatch(/^Moon, placed in the 2th house/);
+    expect(sentences(run(id, { maha: ['Moon'], planets: { ...away, Moon: [1, 5], Venus: [7, 5] } }))[0]).toMatch(/^Moon, placed in the 2nd house/);
     expect(run(id, { maha: ['Moon'], planets: { ...away, Moon: [1, 5] } })).toEqual([]);
     // Mars strong in a kendra.
-    expect(sentences(run(id, { maha: ['Mars'], planets: away }))[0]).toMatch(/^Mars, placed in the 1th house/);
+    expect(sentences(run(id, { maha: ['Mars'], planets: away }))[0]).toMatch(/^Mars, placed in the 1st house/);
     // Rahu in the 11th is good, with no conflict note.
     const rahu = run(id, { maha: ['Rahu'], planets: { Rahu: [10, 10] } });
     expect(rahu).toHaveLength(1);
@@ -291,7 +291,7 @@ describe('the exchange, node and timing rules', () => {
     expect(g({ maha: ['Rahu'], planets: { Rahu: [9, 10] } })).toEqual([]); // the 10th, alone: nothing stated
     expect(g({ maha: ['Rahu'], planets: { Rahu: [9, 10], Jupiter: [9, 12] } })).toEqual(['Rahu runs the period from the 10th house, joined by Jupiter; read as favourable.']);
     expect(g({ maha: ['Rahu'], planets: { Rahu: [10, 10], Saturn: [10, 12] } })[0]).toMatch(/joined by Saturn; read as mixed/); // the 11th is good, a malefic is bad
-    expect(g({ maha: ['Rahu'], planets: { Rahu: [2, 10], Venus: [2, 12], Mercury: [5, 15] } })[0]).toMatch(/the 3th house, joined by Venus; read as mixed/); // the 3rd is good for Rahu; Venus owns the 2nd and 7th, a maraka lord
+    expect(g({ maha: ['Rahu'], planets: { Rahu: [2, 10], Venus: [2, 12], Mercury: [5, 15] } })[0]).toMatch(/the 3rd house, joined by Venus; read as mixed/); // the 3rd is good for Rahu; Venus owns the 2nd and 7th, a maraka lord
     expect(g({ maha: ['Ketu'] })).toEqual([]);
   });
 

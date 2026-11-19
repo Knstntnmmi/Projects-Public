@@ -140,6 +140,8 @@ const moonSign = base.siderealChart().points.find((p) => p.name === 'Moon')!.sig
 const sidereal = (p: Planet, t: number): { index: number; degree: number } => signOf(norm360(siderealLongitude(longitudeOf(p, t), t)));
 const houseFromMoon = (sign: number): number => ((sign - moonSign + 12) % 12) + 1;
 
+const ord = (n: number): string => `${n}${[, 'st', 'nd', 'rd'][n % 10] && Math.floor(n / 10) !== 1 ? ['th', 'st', 'nd', 'rd'][n % 10] : 'th'}`;
+
 describe('the vedha and sign-portion windows against the sky', () => {
   const vedha = (id: string): Signal[] => result.signals.filter((s) => s.ruleId === id);
   const fact = (s: Signal, key: string): number | string => s.facts.find((x) => x.key === key)!.value;
@@ -155,7 +157,7 @@ describe('the vedha and sign-portion windows against the sky', () => {
       expect(houseFromMoon(sidereal('Jupiter', t).index)).toBe(h);
       expect(houseFromMoon(sidereal(String(fact(s, 'planet')) as Planet, t).index)).toBe(v);
       expect(s.clock).toBe('jupiter-sidereal');
-      expect(s.sentence).toBe(`Jupiter's good transit over the ${h}th is obstructed by ${fact(s, 'planet')} in the ${v}th.`);
+      expect(s.sentence).toBe(`Jupiter's good transit over the ${ord(h)} is obstructed by ${fact(s, 'planet')} in the ${ord(v)}.`);
     }
     for (let t = input.span.startUtcMs + DAY / 2; t < input.span.endUtcMs; t += 2 * DAY + 3600_000) {
       const h = houseFromMoon(sidereal('Jupiter', t).index);

@@ -56,7 +56,31 @@ function firingAt(hit: Hit, facts: Firing['facts'], tag: string, rest: Partial<F
   return { clock: i.clock, startUtcMs: i.startUtcMs, endUtcMs: i.endUtcMs, facts, ...rest, badges, dedupeInstance: `${i.startUtcMs}-${i.endUtcMs}${tag}` };
 }
 
-const star = (ruleId: string, fire: RuleBinding['fire']): RuleBinding => ({ ruleId, tradition: 'bazi', requires: { birthTime: true }, fire });
+/**
+ * Natal hits that read the same (one star branch standing in two pillars, say) are one fact
+ * said once, with the pillars named in a badge; the sentence template has no slot for them.
+ */
+function mergeNatal(firings: Firing[]): Firing[] {
+  const seen = new Map<string, Firing[]>();
+  const out: Firing[] = [];
+  for (const f of firings) {
+    const natal = f.startUtcMs === null && f.badges?.some((b) => b.startsWith('natal ') && b.endsWith(' branch'));
+    if (!natal) { out.push(f); continue; }
+    const key = JSON.stringify([f.facts, f.topics ?? null, f.direction ?? null]);
+    const group = seen.get(key);
+    if (group) group.push(f); else { seen.set(key, [f]); out.push(f); }
+  }
+  return out.map((f) => {
+    const group = [...seen.values()].find((g) => g[0] === f);
+    if (!group || group.length < 2) return f;
+    const pillarBadge = (g: Firing): string => g.badges!.find((b) => b.startsWith('natal ') && b.endsWith(' branch'))!;
+    const pillars = group.map((g) => pillarBadge(g).slice('natal '.length, -' branch'.length));
+    const badges = f.badges!.map((b) => (b === pillarBadge(f) ? `natal ${pillars.join(' and ')} branches` : b));
+    return { ...f, badges, dedupeInstance: group.map((g) => g.dedupeInstance).join('+') };
+  });
+}
+
+const star = (ruleId: string, fire: RuleBinding['fire']): RuleBinding => ({ ruleId, tradition: 'bazi', requires: { birthTime: true }, fire: (ctx, rule) => mergeNatal(fire(ctx, rule)) });
 
 const kongwang = star('bazi.kongwang', (ctx) => {
   const a = natalOf(ctx);

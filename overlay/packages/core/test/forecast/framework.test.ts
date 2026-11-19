@@ -35,6 +35,8 @@ import {
   type Signal,
   type Tradition,
 } from '../../src/forecast/index.ts';
+import { tallyOf } from '../../src/forecast/readings.ts';
+import { tallyText } from '../../src/forecast/phrasebook.ts';
 import { FROM, input, R, registry, TO, yearFiring } from './synthetic.ts';
 
 const idx = (year: number): number => year - FROM;
@@ -105,15 +107,10 @@ describe('sentences', () => {
     expect(s.map((x) => x.id)).toEqual([`synth.bazi-luck@${Date.UTC(2033, 0, 1)}@wealth`, `synth.bazi-luck@${Date.UTC(2033, 0, 1)}@wealth#2`]);
   });
 
-  it('cap_ungated lowers the displayed weight and says so, and changes no direction', () => {
-    const base = run();
-    const capped = evaluate(input({ forecastConventions: { cap_ungated: true } }), { registry: registry(), traditions: ['bazi'], topics: ['wealth'], runs: 50 });
-    const a = signalsOf(base, R.luck.id)[0]!;
-    const b = signalsOf(capped, R.luck.id)[0]!;
-    expect(a.baseStrength).toBe(3);
-    expect(b.baseStrength).toBe(1);
-    expect(b.badges).toContain('rule weight capped at 1');
-    expect(b.direction).toBe(a.direction);
+  it('keeps the rule\'s strength as an internal ordering key: it is on no badge and in no sentence', () => {
+    const a = signalsOf(run(), R.luck.id)[0]!;
+    expect(a.orderKey).toBe(3);
+    for (const x of [a.badges.join(' '), a.sentence]) expect(x).not.toMatch(/weight|strength/i);
   });
 
   it('marks experimental, convention-dependent and unopened signals', () => {
@@ -156,6 +153,11 @@ describe('readings', () => {
     const [s] = signalsFromFirings({ ...R.luck, direction, stage }, [yearFiring(2033, 'luck')], { forecastConventions: input().forecastConventions, span: input().span });
     return s!;
   };
+
+  it('a rule that itself states a mixed result makes its technique read mixed, even beside a rule that supports', () => {
+    expect(wordFor([sig('favourable'), sig('mixed')])).toEqual({ word: 'mixed', note: 'a rule here states a mixed result' });
+    expect(tallyText(tallyOf([sig('favourable'), sig('mixed')]))).toBe('1 rule supports, 1 is stated as mixed');
+  });
 
   it('words follow section 5.1 and carry no number', () => {
     expect(wordFor([])).toEqual({ word: 'nothing-said', note: null });
@@ -395,11 +397,11 @@ describe('evaluation as a whole', () => {
     expect((j.notEvaluated as Array<{ ruleId: string }>).map((x) => x.ruleId)).toContain(R.vedicUnbound.id);
   });
 
-  it('puts the rule weight, source and variants on every signal', () => {
+  it('puts the ordering key, source and variants on every signal', () => {
     const r = run();
     for (const s of r.signals) {
       expect(s.source.citation).toBe('synthetic');
-      expect([1, 2, 3]).toContain(s.baseStrength);
+      expect([1, 2, 3]).toContain(s.orderKey);
       expect(s.variants).toBe('none');
       expect(s.verification).toBe('confirmed');
     }

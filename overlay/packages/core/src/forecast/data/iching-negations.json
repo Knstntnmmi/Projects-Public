@@ -1,0 +1,66 @@
+{
+  "label": "The project's reading of the grammar of negated verdict words in the Zhouyi",
+  "status": "derived",
+  "follows": "no commentary",
+  "about": "A negator before a verdict word is read by its class, not word by word. This table is the project's own reading of the grammar. It is derived by the project from the text and follows no commentary, so no scholar is cited for it. The grader (systems/iching/grade.ts) reads this file.",
+  "negators": {
+    "无": "no",
+    "匪": "not",
+    "不": "not",
+    "弗": "not",
+    "勿": "do not",
+    "未": "not yet"
+  },
+  "words": {
+    "吉": { "kind": "other", "gloss": "good fortune" },
+    "凶": { "kind": "misfortune", "gloss": "misfortune" },
+    "悔": { "kind": "misfortune", "gloss": "regret" },
+    "吝": { "kind": "misfortune", "gloss": "stinting" },
+    "厲": { "kind": "misfortune", "gloss": "danger" },
+    "咎": { "kind": "misfortune", "gloss": "blame" },
+    "災": { "kind": "misfortune", "gloss": "disaster" },
+    "眚": { "kind": "misfortune", "gloss": "calamity" },
+    "利": { "kind": "advantage", "gloss": "advantage" },
+    "亨": { "kind": "other", "gloss": "success" },
+    "譽": { "kind": "other", "gloss": "praise" },
+    "福": { "kind": "other", "gloss": "blessing" },
+    "慶": { "kind": "other", "gloss": "cause for joy" },
+    "喜": { "kind": "other", "gloss": "gladness" }
+  },
+  "classes": {
+    "a": {
+      "reads": "a negated word of misfortune states that something bad is absent",
+      "direction": null,
+      "shown": "as a note without a direction, with the formula in characters and a literal gloss"
+    },
+    "b": {
+      "reads": "a negated word of advantage reads as unfavourable for the thing named",
+      "direction": "unfavourable",
+      "shown": "as an unfavourable reading for what the formula names"
+    },
+    "c": {
+      "reads": "the double negation 无不利 reads as favourable",
+      "direction": "favourable",
+      "shown": "as a favourable reading"
+    },
+    "d": {
+      "reads": "every other negator before a verdict word carries no direction",
+      "direction": null,
+      "shown": "as a note without a direction, with the formula in characters and a literal gloss"
+    }
+  },
+  "classRule": "A negator (see negators) directly before a word of misfortune is class a; before 利 is class b; before any other verdict word is class d. The listed formulas below are read as listed, and take precedence.",
+  "formulas": [
+    { "formula": "无咎", "class": "a", "gloss": "no blame" },
+    { "formula": "无大咎", "class": "a", "gloss": "no great blame" },
+    { "formula": "无悔", "class": "a", "gloss": "no regret" },
+    { "formula": "悔亡", "class": "a", "gloss": "regret is gone", "note": "亡 stands after the word and is read as the negation" },
+    { "formula": "何咎", "class": "a", "gloss": "what blame?", "note": "何 is a question that denies; it is read as the negation" },
+    { "formula": "无眚", "class": "a", "gloss": "no calamity" },
+    { "formula": "匪咎", "class": "a", "gloss": "not blame" },
+    { "formula": "不利", "class": "b", "gloss": "not advantageous" },
+    { "formula": "无攸利", "class": "b", "gloss": "nothing advantageous" },
+    { "formula": "无不利", "class": "c", "gloss": "nothing that is not advantageous" },
+    { "formula": "无譽", "class": "d", "gloss": "no praise" }
+  ]
+}

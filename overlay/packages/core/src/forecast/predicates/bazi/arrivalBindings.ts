@@ -74,8 +74,6 @@ const wealthStar = bind('bazi.wealth-star-in-luck', (ctx) => {
     if (!favourable && !unfavourable) continue; // a balanced chart, or a favourite with no natal wealth: no clause of the condition holds
     const direction: Direction = favourable && unfavourable ? 'mixed' : favourable ? 'favourable' : 'unfavourable';
     const badges: string[] = [];
-    const both = arr.halves.length === 2;
-    badges.push(both ? 'stem and branch both 財 (rule weight 3 in the source)' : arr.halves[0] === 'branch' ? 'branch only (rule weight 2 in the source)' : 'stem only (rule weight 1 in the source)');
     if (favourable && !unfavourable && arr.otherGods.some((g) => g === '食神' || g === '傷官')) badges.push('食傷 beside it strengthens the source of wealth');
     if (favourable && unfavourable) badges.push('both clauses hold: a favourable element, and natal wealth that is robbed or too heavy');
     out.push(periodFiring(p, arrivalFacts(a, p, arr, [fact('goodOrBad', 'Reading', direction === 'favourable' ? 'good' : direction === 'unfavourable' ? 'bad' : 'mixed')]), { direction, badges, conventionsUsed: ['baziStrengthThresholds'] }));
@@ -104,9 +102,11 @@ const officerStar = bind('bazi.officer-star-in-luck', (ctx) => {
     const badges: string[] = [];
     if (mixing) badges.push('官殺混雜: the arrival adds the other of 正官 and 七殺 to the chart');
     if (favourable && unfavourable) badges.push('both clauses hold: a favourable element, and a mixing of 官 and 殺');
+    // Both clauses hold and the source states no precedence: the reading is mixed and the sentence names both clauses.
+    const clauseNote = favourable && unfavourable ? ' (two clauses hold: the element is favoured, and the arrival mixes 正官 with 七殺 (官殺混雜); the source does not say which prevails)' : '';
     const topics: Topic[] = female ? ['career', 'relationships'] : ['career'];
     out.push(
-      periodFiring(p, arrivalFacts(a, p, arr, [fact('goodOrBad', 'Reading', direction === 'favourable' ? 'good' : direction === 'unfavourable' ? 'bad' : 'mixed'), fact('womanNote', 'Note', female ? ', and for a woman it is also the husband star' : '')]), {
+      periodFiring(p, arrivalFacts(a, p, arr, [fact('goodOrBad', 'Reading', direction === 'favourable' ? 'good' : direction === 'unfavourable' ? 'bad' : 'mixed'), fact('clauseNote', 'Both clauses', clauseNote), fact('womanNote', 'Note', female ? ', and for a woman it is also the husband star' : '')]), {
         direction,
         topics,
         badges,

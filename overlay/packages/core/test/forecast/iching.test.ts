@@ -21,7 +21,7 @@ import { longitudeOf } from '../../src/substrate/sky.ts';
 import { makeMoment } from '../../src/substrate/time.ts';
 import { hexagramByName } from '../../src/systems/iching/hexagrams.ts';
 import { CARDINAL_PARTS, HEXAGRAM_PARTS, PARTS_PER_DAY, SHORT_HEXAGRAM_PARTS, SOVEREIGN_SEQUENCE, YEAR_PARTS } from '../../src/systems/iching/wheels.ts';
-import { gradeStatement } from '../../src/systems/iching/grade.ts';
+import { formulaNotes, gradeStatement } from '../../src/systems/iching/grade.ts';
 import { statementText } from '../../src/systems/iching/zhouyiText.ts';
 import { fixture } from '../../../../fixtures/moments.ts';
 
@@ -43,6 +43,12 @@ const calendar = (id = 'j2000') => iching.buildContext(ctxFor(id));
 const gradeOfId = (id: string): number => {
   const [n, l] = id.split('.').map(Number);
   return gradeStatement(statementText(n!, l!)!).grade;
+};
+/** A statement is shown under 'general' when it has a grade or holds a negated formula that is a note without a direction. */
+const shownOfId = (id: string): boolean => {
+  const [n, l] = id.split('.').map(Number);
+  const g = gradeStatement(statementText(n!, l!)!);
+  return g.grade !== 0 || formulaNotes(g).length > 0;
 };
 
 const fact = (f: Firing, key: string): string | number => f.facts.find((x) => x.key === key)!.value;
@@ -149,10 +155,10 @@ describe('the sovereign hexagrams, golden against the engine table', () => {
 describe('the gua qi hexagram of the period and the line of the day', () => {
   it('names the period hexagram, its grade and the reading of the text', () => {
     const f = fire('zhouyi.period-hexagram-judgment');
-    // every period of the calendar, less the judgments of grade 0, which are attached to no topic
+    // every period of the calendar, less the judgments of grade 0 that hold no negated formula, which are attached to no topic
     const periods = calendar().periods;
     expect(periods.length).toBeGreaterThanOrEqual(3 * 60);
-    expect(f.length).toBe(periods.filter((p) => gradeOfId(`${p.hexagram.number}.0`) !== 0).length);
+    expect(f.length).toBe(periods.filter((p) => shownOfId(`${p.hexagram.number}.0`)).length);
     expect(f.length).toBeGreaterThanOrEqual(3 * 55);
     for (const x of f) {
       expect(x.direction).toBeDefined();
@@ -190,7 +196,7 @@ describe('the gua qi hexagram of the period and the line of the day', () => {
     const f = fire('zhouyi.line-of-day-reconstruction');
     const slices = calendar().slices;
     expect(slices.length).toBeGreaterThan(3 * 360);
-    expect(f.length).toBe(slices.filter((x) => gradeOfId(`${x.hexagram.number}.${x.line}`) !== 0).length);
+    expect(f.length).toBe(slices.filter((x) => shownOfId(`${x.hexagram.number}.${x.line}`)).length);
     expect(f.length).toBeGreaterThan(3 * 280);
     for (const x of f.slice(0, 50)) {
       expect(x.badges).toContain('reconstruction');
@@ -226,7 +232,7 @@ describe('the Dayan cardinal line by solar term', () => {
     expect(year[12]!.term).toContain('夏至');
     expect(year[18]!.term).toContain('秋分');
     const f = fire('dayan.cardinal-line-by-term');
-    expect(f.length).toBe(terms.filter((t) => gradeOfId(`${t.hexagram.number}.${t.line}`) !== 0).length);
+    expect(f.length).toBe(terms.filter((t) => shownOfId(`${t.hexagram.number}.${t.line}`)).length);
     for (const x of f) {
       expect(x.badges).toContain('inference from one sentence');
       expect(x.direction).toBeUndefined();
@@ -397,7 +403,7 @@ describe('the output is labelled experimental, kept out of agreement, and is san
       const count = (rule: string, topic = 'general') => res.signals.filter((s) => s.ruleId === rule && s.topic === topic).length;
       // One signal per statement window that has a grade; a grade 0 is attached to no topic and gives none.
       const cal = calendar(id);
-      const graded = (xs: Array<{ hexagram: { number: number }; line?: number }>) => xs.filter((x) => gradeOfId(`${x.hexagram.number}.${x.line ?? 0}`) !== 0).length;
+      const graded = (xs: Array<{ hexagram: { number: number }; line?: number }>) => xs.filter((x) => shownOfId(`${x.hexagram.number}.${x.line ?? 0}`)).length;
       expect(cal.periods.length, id).toBeGreaterThanOrEqual(3 * 60);
       expect(cal.periods.length, id).toBeLessThanOrEqual(3 * 61 + 2);
       expect(count('zhouyi.period-hexagram-judgment'), id).toBe(graded(cal.periods));

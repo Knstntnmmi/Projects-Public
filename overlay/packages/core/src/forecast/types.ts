@@ -133,7 +133,8 @@ export interface Signal {
   /** null = natal and undated. Such a signal is context and never enters a slice. */
   startUtcMs: number | null;
   endUtcMs: number | null;
-  baseStrength: 1 | 2 | 3;
+  /** Orders the statements that report one fact, so that the same one is kept whatever the input order (see readings.ts, dedupe). Internal: never shown, never counted, never a reading. */
+  orderKey: 1 | 2 | 3;
   gate: Gate;
   facts: Fact[];
   /** Physical fact key plus the instance it was read at; equal keys are one fact. */

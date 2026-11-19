@@ -276,9 +276,9 @@ describe('the character of a period', () => {
     expect(textOf(h)).toContain('career supports');
   });
 
-  it('shows the note for a negated verdict word on a line the grader leaves ungraded', () => {
+  it('shows the note for a negated word of misfortune on a line, with its characters, a gloss and no direction', () => {
     const w = forecast.periodCharacter(forecast.makeInput(moment, { fromYear: 2026, toYear: 2026 }), { startUtcMs: Date.UTC(2026, 3, 8), endUtcMs: Date.UTC(2026, 3, 9) });
-    expect(textOf(characterHtml(w))).toContain('negated, not graded');
+    expect(textOf(characterHtml(w))).toMatch(/\([a-z ?,]+\): (states that something bad is absent|a negated verdict word); a note without a direction/);
   });
 
   it('shows Lilly\'s day transits in their own part, without the badge experimental', () => {

@@ -44,7 +44,7 @@ import { model } from '../../src/forecast/predicates/vedic/common.ts';
 import { cueTopicsOf, topicsOfStatement } from '../../src/forecast/predicates/ichingCues.ts';
 import { OBSTRUCTORS, VEDHA } from '../../src/forecast/predicates/vedic/transit.ts';
 import { MS, makeMoment } from '../../src/substrate/time.ts';
-import { gradeStatement } from '../../src/systems/iching/grade.ts';
+import { formulaDetail, formulaNotes, gradeStatement } from '../../src/systems/iching/grade.ts';
 import { allStatements, statementText } from '../../src/systems/iching/zhouyiText.ts';
 import { fixture, MOMENTS } from '../../../../fixtures/moments.ts';
 import { input, rule } from './synthetic.ts';
@@ -319,28 +319,33 @@ describe('what is not evaluated is listed with a reason a reader can understand'
 // I Ching 4 to 8
 // ---------------------------------------------------------------------------
 
-describe('I Ching: negated words are not graded', () => {
-  it('the five statements, in the calendar and in the period view, say "negated, not graded"', () => {
-    const want = new Map([['2.4', '无譽'], ['28.5', '无譽'], ['6.2', '无眚'], ['51.3', '无眚'], ['14.1', '匪咎']]);
+describe('I Ching: negated verdict formulas are shown, and the notes carry no direction', () => {
+  it('in the calendar and in the period view every statement with a formula says it, with its characters and a gloss', () => {
     const found = new Map<string, string>();
     // a window of 62 days at a time over four years finds every line of every hexagram that holds a period
     const inp = realInput('j2000', 2031, 2031);
     for (let t = Y(2031); t < Y(2035); t += 60 * MS.DAY) {
       const c = periodCharacter(inp, { startUtcMs: t, endUtcMs: t + 60 * MS.DAY }).iching;
-      for (const d of [...c.days, ...c.periods]) if (d.negated !== null && want.has(d.id)) found.set(d.id, d.negated);
+      for (const d of [...c.days, ...c.periods]) {
+        const want = formulaDetail(gradeStatement(d.text));
+        expect(d.formulas, d.id).toBe(want);
+        if (d.formulas !== null) found.set(d.id, d.formulas);
+      }
     }
-    expect(found.size).toBeGreaterThanOrEqual(4);
-    for (const [id, detail] of found) expect(detail, id).toBe(`${want.get(id)}: negated, not graded`);
+    expect(found.size).toBeGreaterThan(20);
+    expect(found.get('2.4')).toBe('无咎 (no blame): states that something bad is absent; a note without a direction; 无譽 (no praise): a negated verdict word; a note without a direction');
+    for (const detail of found.values()) expect(detail).toMatch(/ \([^)]+\): /);
   });
 
-  it('in the evaluation the detail is a fact of the firing where the statement has a grade', () => {
+  it('in the evaluation the formulas are a fact of the firing, and the sentence names the notes', () => {
     const res = evaluate(realInput('j2000', 2031, 2060), { traditions: ['iching'], includePeriodRead: true, topics: ['general'], runs: 1, seed: 1 });
-    const withDetail = res.signals.filter((s) => s.facts.some((f) => f.key === 'negated'));
+    const withDetail = res.signals.filter((s) => s.facts.some((f) => f.key === 'formulas'));
     expect(withDetail.length).toBeGreaterThan(0);
     for (const s of withDetail) {
       const id = String(s.facts.find((f) => f.key === 'id')!.value);
-      expect(['2.4', '28.5', '14.1'], id).toContain(id); // 6.2 and 51.3 grade 0 and are attached to no topic
-      expect(String(s.facts.find((f) => f.key === 'negated')!.value)).toContain('negated, not graded');
+      const g = gradeStatement(statementText(...(id.split('.').map(Number) as [number, number]))!);
+      expect(String(s.facts.find((f) => f.key === 'formulas')!.value), id).toBe(formulaDetail(g));
+      for (const f of formulaNotes(g)) if (s.ruleId !== 'dayan.cardinal-line-by-term') expect(s.sentence, id).toContain(`${f.formula} (${f.gloss})`);
     }
   });
 });
@@ -364,7 +369,7 @@ describe('I Ching: 56.4 and 艮 line 5', () => {
   });
 });
 
-describe('I Ching: a statement of grade 0 with no topic cue is attached to no topic', () => {
+describe('I Ching: a statement of grade 0 with no negated formula and no topic cue is attached to no topic', () => {
   const all = allStatements().map((s) => ({ id: `${s.number}.${s.line}`, g: gradeStatement(s.text) }));
 
   it('attaches by the grade and by the cues alone', () => {
@@ -372,19 +377,24 @@ describe('I Ching: a statement of grade 0 with no topic cue is attached to no to
     expect(none.length).toBeGreaterThan(40);
     for (const x of none) {
       expect(x.g.grade, x.id).toBe(0);
+      expect(formulaNotes(x.g), x.id).toEqual([]);
       expect(cueTopicsOf(x.id), x.id).toEqual([]);
     }
-    for (const x of all.filter((y) => y.g.grade !== 0)) expect(topicsOfStatement(x.id, x.g)[0], x.id).toBe('general');
-    for (const x of all.filter((y) => y.g.grade === 0 && cueTopicsOf(y.id).length > 0)) expect(topicsOfStatement(x.id, x.g), x.id).toEqual(cueTopicsOf(x.id));
+    // a statement with a grade, or with a note such as 无咎, is attached to 'general': none of them drops out
+    for (const x of all.filter((y) => y.g.grade !== 0 || formulaNotes(y.g).length > 0)) expect(topicsOfStatement(x.id, x.g)[0], x.id).toBe('general');
+    for (const x of all.filter((y) => y.g.grade === 0 && formulaNotes(y.g).length === 0 && cueTopicsOf(y.id).length > 0)) expect(topicsOfStatement(x.id, x.g), x.id).toEqual(cueTopicsOf(x.id));
   });
 
-  it('no general signal of the I Ching carries a statement of grade 0', () => {
+  it('no general signal of the I Ching carries a statement of grade 0 unless it holds a note without a direction', () => {
     const res = evaluate(realInput('j2000', 2031, 2033), { traditions: ['iching'], includePeriodRead: true, runs: 1, seed: 1 });
     const general = res.signals.filter((s) => s.topic === 'general' && ['zhouyi.period-hexagram-judgment', 'zhouyi.line-of-day-reconstruction', 'dayan.cardinal-line-by-term'].includes(s.ruleId));
     expect(general.length).toBeGreaterThan(500);
     for (const s of general) {
       const id = String(s.facts.find((f) => f.key === 'id')!.value);
-      expect(all.find((x) => x.id === id)!.g.grade, id).not.toBe(0);
+      const g = all.find((x) => x.id === id)!.g;
+      expect(g.grade !== 0 || formulaNotes(g).length > 0, id).toBe(true);
+      // a statement that holds only notes is shown with no direction
+      if (g.grade === 0) expect(s.direction, id).toBe('activates');
     }
   });
 

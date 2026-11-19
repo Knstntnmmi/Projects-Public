@@ -40,7 +40,7 @@ export interface Deduped {
 }
 
 /**
- * Keeps one signal per (tradition, topic, dedupeKey): the one with the larger rule weight,
+ * Keeps one signal per (tradition, topic, dedupeKey): the one with the larger ordering key (the rule file's `strength`, used for nothing else),
  * and on a tie the one whose rule id sorts first, so the choice never depends on input order.
  */
 export function dedupe(signals: readonly Signal[]): Deduped {
@@ -53,7 +53,7 @@ export function dedupe(signals: readonly Signal[]): Deduped {
   const alsoReportedBy: Record<string, string[]> = {};
   const index = new Map(signals.map((s, i) => [s.id, i]));
   for (const g of groups.values()) {
-    const sorted = [...g].sort((a, b) => b.baseStrength - a.baseStrength || (a.ruleId < b.ruleId ? -1 : a.ruleId > b.ruleId ? 1 : 0) || index.get(a.id)! - index.get(b.id)!);
+    const sorted = [...g].sort((a, b) => b.orderKey - a.orderKey || (a.ruleId < b.ruleId ? -1 : a.ruleId > b.ruleId ? 1 : 0) || index.get(a.id)! - index.get(b.id)!);
     const [first, ...rest] = sorted;
     kept.push(first!);
     if (rest.length) alsoReportedBy[first!.id] = rest.map((s) => s.id);

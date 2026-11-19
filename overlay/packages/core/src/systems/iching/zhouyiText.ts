@@ -13,6 +13,11 @@
  * a text that is some three thousand years old. Pages used:
  * 周易/中孚, 周易/乾, 周易/井, 周易/兌, 周易/剝, 周易/升, 周易/同人, 周易/否, 周易/咸, 周易/噬嗑, 周易/困, 周易/坎, 周易/坤, 周易/大壯, 周易/大有, 周易/大畜, 周易/大過, 周易/夬, 周易/姤, 周易/家人, 周易/小畜, 周易/小過, 周易/履, 周易/屯, 周易/巽, 周易/師, 周易/復, 周易/恒, 周易/損, 周易/旅, 周易/无妄, 周易/既濟, 周易/明夷, 周易/晉, 周易/未濟, 周易/歸妹, 周易/比, 周易/泰, 周易/渙, 周易/漸, 周易/益, 周易/睽, 周易/節, 周易/臨, 周易/艮, 周易/萃, 周易/蒙, 周易/蠱, 周易/觀, 周易/解, 周易/訟, 周易/謙, 周易/豐, 周易/豫, 周易/賁, 周易/蹇, 周易/遯, 周易/隨, 周易/離, 周易/需, 周易/震, 周易/革, 周易/頤, 周易/鼎.
  *
+ * Credit. The classical text is in the public domain. The transcription was taken from Chinese Wikisource,
+ * the page 周易 (https://zh.wikisource.org/wiki/周易) and its sub-pages 周易/<hexagram name>. Wikisource offers its
+ * text under the Creative Commons Attribution-ShareAlike 4.0 licence (CC BY-SA 4.0). If any right subsists in the
+ * transcription, it is used under that licence, with this credit.
+ *
  * Handling of the transcription, all mechanical: editorial punctuation, spaces and wiki
  * markup are removed; where the page offers two readings as {{另|A|B}} the first is kept (the
  * one the page itself displays); 無 is written 无 throughout, as the rule files and the verdict
@@ -28,7 +33,7 @@
  * Variant, 艮 line 5 (六五, id 52.5): the wikisource page offers two readings, {{另|孚|序}}, and displays
  * the first: 艮其輔，言有孚，悔亡. That reading is kept, by the rule above. A second online edition (the
  * Chinese Wikipedia article on 艮卦, compared on 2026-11-19) and the Zhu Xi edition named above read 言有序.
- * The variant does not touch a verdict word, so the grade of the line (悔亡, +0.5) is the same either way.
+ * The variant does not touch a verdict word, so the reading of the line (悔亡, a note without a direction) is the same either way.
  */
 
 /** One hexagram: its name as the engine's table spells it, the judgment, the six lines bottom to top, and the extra line (用九 or 用六) of hexagrams 1 and 2. */

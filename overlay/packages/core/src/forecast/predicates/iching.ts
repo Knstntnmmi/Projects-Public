@@ -16,7 +16,7 @@
 import { nextSunLongitude, norm360 } from '../../substrate/sky.ts';
 import { SOLAR_TERMS } from '../../substrate/terms.ts';
 import { MS } from '../../substrate/time.ts';
-import { gradeStatement, gradeText, negatedDetail, type Grade } from '../../systems/iching/grade.ts';
+import { formulaDetail, formulaNotes, gradeStatement, gradeText, type Grade } from '../../systems/iching/grade.ts';
 import { hexagramByName, type Hexagram } from '../../systems/iching/hexagrams.ts';
 import type { HexagramSpan } from '../../systems/iching/index.ts';
 import { GUA_QI_CARDINAL_POSITION, SOVEREIGN_SEQUENCE } from '../../systems/iching/wheels.ts';
@@ -139,14 +139,16 @@ export function buildContext(base: ForecastContext): IchingContext {
 const ext = (ctx: ForecastContext): IchingContext => ctx.extension<IchingContext>('iching')!;
 
 function statementFacts(id: string, text: string, g: Grade): Fact[] {
-  const negated = negatedDetail(g);
+  const formulas = formulaDetail(g);
+  const notes = formulaNotes(g);
   return [
     { key: 'id', label: 'Statement', value: id },
     { key: 'text', label: 'Statement text', value: text },
     { key: 'grade', label: 'Grade of the verdict words (-3 to +3)', value: gradeText(g) },
     { key: 'flag', label: 'Grade flags', value: flagText(g) },
     { key: 'tokens', label: 'Verdict words counted', value: tokensText(g) },
-    ...(negated === null ? [] : [{ key: 'negated', label: 'Words not graded', value: negated }]),
+    { key: 'formulaNote', label: 'Formulas read as notes', value: notes.length === 0 ? '' : `; read as a note without a direction: ${notes.map((f) => `${f.formula} (${f.gloss})`).join(', ')}` },
+    ...(formulas === null ? [] : [{ key: 'formulas', label: 'Negated verdict formulas', value: formulas }]),
   ];
 }
 
@@ -154,7 +156,7 @@ function statementFacts(id: string, text: string, g: Grade): Fact[] {
  * A statement of grade 0 has no verdict to report under 'general'. Where a cue rule names it for
  * a topic that rule attaches it; where none does it is attached to no topic and these rules say nothing of it.
  */
-const attachedToGeneral = (g: Grade): boolean => g.grade !== 0;
+const attachedToGeneral = (g: Grade): boolean => g.grade !== 0 || formulaNotes(g).length > 0;
 
 const judgment: RuleBinding = {
   ruleId: 'zhouyi.period-hexagram-judgment',
@@ -338,7 +340,7 @@ function cueBinding(o: CueRuleOptions): RuleBinding {
             { key: 'clause', label: 'Clause the rule grades', value: cue.clause },
             { key: 'grade', label: o.gradeSaysStated && cue.stated && cue.stated !== 'neutral' ? 'How the sign is given' : 'Grade of the clause (-3 to +3)', value: o.gradeSaysStated && cue.stated && cue.stated !== 'neutral' ? `the rule itself names it a ${cue.stated === 'favourable' ? 'gain' : 'loss'}` : o.gradeSaysStated ? `graded ${gradeText(g)}` : gradeText(g) },
             { key: 'via', label: 'In play as', value: occ.how },
-            ...(negatedDetail(g) === null ? [] : [{ key: 'negated', label: 'Words not graded', value: negatedDetail(g)! }]),
+            ...(formulaDetail(g) === null ? [] : [{ key: 'formulas', label: 'Negated verdict formulas', value: formulaDetail(g)! }]),
             ...(more?.facts ?? []),
           ],
           direction,

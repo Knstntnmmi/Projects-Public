@@ -133,9 +133,11 @@ const yangren = star('bazi.yangren', (ctx) => {
   const a = natalOf(ctx);
   const blade = bladeOf(a.dayStem);
   if (blade === null) return []; // the yin stems have no blade in the 子平 school
-  // Held by a 官殺 star the blade is favourable; strong with nothing to hold it, unfavourable; otherwise the rule's own mixed.
-  const direction = kinChars(a, 'officer').length > 0 ? 'favourable' : a.strengthClass === 'strong' ? 'unfavourable' : undefined;
-  return hits(ctx, a, blade).map((h) => firingAt(h, [fact('branch', 'Branch', hanzi(blade)), fact('dayStem', 'Day master', a.pillars.day.stem.hanzi)], '', direction ? { direction, conventionsUsed: ['baziStrengthThresholds'] } : {}));
+  // The source does not say when a 官殺 star holds the blade, so the rule gives no direction. The sentence says
+  // which branch is the blade and whether a 官殺 star stands revealed in a stem or is only hidden in a branch.
+  const stars = kinChars(a, 'officer');
+  const starNote = stars.some((c) => c.place === 'stem') ? 'a 官殺 star stands revealed in a stem of the chart' : stars.length > 0 ? 'a 官殺 star is in the chart but only hidden in a branch' : 'no 官殺 star is in the chart';
+  return hits(ctx, a, blade).map((h) => firingAt(h, [fact('branch', 'Branch', hanzi(blade)), fact('dayStem', 'Day master', a.pillars.day.stem.hanzi), fact('starNote', '官殺 star', starNote)], '', { badges: ['the source does not say when a 官殺 star holds the blade: no direction given'] }));
 });
 
 const lushen = star('bazi.lushen', (ctx) => {

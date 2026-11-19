@@ -203,7 +203,7 @@ const tianKeDiChong = bind(
         direction = 'activates';
         favOrNot = 'not weighed, since the day master is strong';
         goodOrBad = 'no harm';
-        badges.push('strong day master: no harm, rule weight does not apply');
+        badges.push('strong day master: no harm');
       } else {
         const f = fav(a.favourites, struckEl);
         favOrNot = f === 1 ? 'favourable' : f === -1 ? 'unfavourable' : 'neutral (balanced chart: no favourite chosen)';

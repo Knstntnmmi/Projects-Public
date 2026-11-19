@@ -82,7 +82,7 @@ A system joins the overlay by expressing itself in two shapes: arcs of ecliptic 
 
 ## Accuracy and its limits
 
-Positions come from `astronomy-engine`, which documents itself as good to about one arcminute; for the Sun it does much better than that. Solar-term instants from this engine differ from 寿星天文历 by thirteen seconds on average and about a minute at worst over 1600 to 2100, and from observatory-published instants by a few seconds to a quarter of a minute in the years spot-checked. A boundary closer than two minutes is therefore reported as undecided rather than decided.
+Positions come from `astronomy-engine`, which documents itself as good to about one arcminute; for the Sun it does much better than that. Solar-term instants from this engine differ from 寿星天文历 by thirteen seconds on average and about a minute at worst over 1600 to 2100; that compares two models with each other, and only one instant (Lichun 2024, three seconds off the time reported that day) has been checked against a published figure. A boundary closer than two minutes is therefore reported as undecided rather than decided.
 
 Zone offsets and daylight-saving history come from the tz database built into the runtime, which is known to be weak before 1970 and for regions whose zones were later merged (China before 1949 among them). Solar terms are always the true-Sun terms, although the Chinese calendar used mean-time terms before 1645. The ayanamsa omits nutation. All of this is set out in [docs/SOURCES.md](docs/SOURCES.md).
 

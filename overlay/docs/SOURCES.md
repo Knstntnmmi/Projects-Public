@@ -13,12 +13,12 @@ Swiss Ephemeris is deliberately not used, although it is more accurate, so that 
 | Solar-term instants, every term 1900 to 2100 | 寿星天文历 as implemented in `tyme4ts` | mean difference 13 s, worst 62 s |
 | The same, 1600 to 1899 | the same | mean 13 s, worst 56 s |
 | The same, 2101 to 2400 | the same | mean 22 s, worst 91 s |
-| Lichun 2024 | 16:26:53 Beijing time as published | 3 s early |
+| Lichun 2024 | 16:26:53 Beijing time as reported in the press that day; the National Astronomical Observatory of Japan's almanac gives 17:27 Japan time, to the minute | 3 s early |
 | Four pillars, eight thousand generated moments 1900 to 2100 | `tyme4ts`, both day-boundary conventions | identical outside 90 s of a solar term |
 | Equation of time at its four yearly extremes | published values | within a tenth of a minute |
 | Planet positions at J2000 | standard ephemeris | same degree for all seven |
 
-The first three rows compare two models with each other, so they bound the disagreement and not the error of either. On that evidence the engine treats any solar-longitude boundary nearer than two minutes as undecided, and says so in the sensitivity report.
+The first three rows compare two models with each other, so they bound the disagreement and not the error of either, and the fourth is a single spot check, not a validation. On that evidence the engine treats any solar-longitude boundary nearer than two minutes as undecided, and says so in the sensitivity report.
 
 ### Known limits
 

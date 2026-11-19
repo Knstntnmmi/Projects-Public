@@ -4,11 +4,17 @@ A date, time and place of birth identify a person about as well as a name does, 
 
 ## What the software does with what you enter
 
-The engine is a set of pure functions. The command line reads its arguments, writes to standard output and exits. The web page computes in the browser tab and keeps its state in memory.
+The engine is a set of pure functions. The command line reads its arguments, writes to standard output and exits. The web page computes in the browser tab and keeps its state in memory. The forecast is part of the engine and follows the same rules.
 
 No part of it makes a network request. The built web page ships with a content security policy of `connect-src 'none'` and `form-action 'none'`, so the browser itself refuses any request a script might attempt; there are no analytics, no fonts or scripts from other hosts, and no geocoder (you type coordinates). Nothing is written to cookies, local storage, session storage or IndexedDB, and nothing is put in the address bar, so a link to the page never carries your data. Reloading the page forgets everything.
 
 The buttons that copy or download a result act on your own machine and only when you press them. What you then do with the file is up to you; a facts document contains the moment and place it was computed for.
+
+## What the forecast does with what you type
+
+The forecast section of the page takes the same moment and place as the rest of the page, plus a topic, a first year, a number of years, an optional sex convention for the BaZi chart and, for the character of a period, a start day and a number of days. All of it is computed in the browser tab, by the same pure functions as on the command line. None of it is sent anywhere: the content security policy that forbids network requests covers the forecast section as it covers the rest of the page. None of it is stored: the forecast writes nothing to cookies, local storage, session storage or IndexedDB, and puts nothing in the address bar, so a link to the page does not carry the forecast and reloading forgets it. After each change the page waits a moment and then works in short steps inside the tab; it uses no background thread.
+
+The forecast section has no button that copies, downloads or saves a forecast. The copy and download buttons of the page act on the facts document and the two drawings, and only when you press them. The command line prints the forecast to standard output and writes no file of its own; what you redirect it to is your choice. A file you save from a forecast or the facts document holds the birth moment you typed, so treat it as personal data.
 
 ## What is in the repository
 

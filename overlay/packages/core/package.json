@@ -1,0 +1,13 @@
+{
+  "name": "@overlay/core",
+  "version": "0.1.0",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "astronomy-engine": "2.1.19"
+  },
+  "author": "Knstntnmmi (https://github.com/Knstntnmmi)"
+}

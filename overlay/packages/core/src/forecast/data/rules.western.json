@@ -438,7 +438,7 @@
    "direction": "activates",
    "strength": 2,
    "template": "Year {N}: {start} transmits to {receiver} (in {receivingSign}).",
-   "sourceCitation": "Vettius Valens, Anthologies IV.11 'The operative year and the method of fractions', tr. Mark T. Riley (2019 PDF, archive.org vettius-valens-anthologies)",
+   "sourceCitation": "Vettius Valens, Anthologies IV.11 'The operative year and the method of fractions', tr. Mark T. Riley, ed. Ile Spasev (Skopje, 2019)",
    "sourceLocator": "Book IV ch. 11, Riley p.103 (paragraph beginning 'Let us start our exposition from this point' and its worked example; the empty-place sentence is in the next paragraph, also p.103)",
    "sourceQuote": "",
    "variants": "Valens also counts from the Lot of Fortune, Daimon, Love and Necessity and from the four angles (p.103).",
@@ -1755,7 +1755,7 @@
   "sources": [
    "Lilly 1647 Wellcome copy, archive.org b30338724: OCR text of all of Book III chapters cited, page images of pp.104, 107, 115, 554, 588",
    "Bonatti 1550, archive.org bub_gb_BgWuc5O-JzIC: OCR text of Pars V Caput III and VII, page image of pp.813-814",
-   "Valens, Riley 2019, archive.org vettius-valens-anthologies: OCR text and layout XML (page folios), page image of p.105"
+   "Valens, tr. Riley, ed. Spasev (Skopje, 2019): text layer and layout (page folios), page image of p.105; address not given, status of the free release not confirmed"
   ],
   "unconfirmed": [
    {

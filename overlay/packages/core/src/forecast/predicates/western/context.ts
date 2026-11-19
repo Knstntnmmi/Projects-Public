@@ -3,10 +3,12 @@
 /** What the Western bindings share: the natal model of the context's chart and the profected years of the span. */
 import type { ForecastContext } from '../../context.ts';
 import { longitudeOf, meanNodeLongitude } from '../../../substrate/sky.ts';
+import { chartAt } from '../../../systems/western/solarReturn.ts';
 import { firdaria, solarReturns, type LordSpan } from '../../../systems/western/index.ts';
 import { prenatalSyzygy } from '../../../systems/western/syzygy.ts';
 import { MS } from '../../../substrate/time.ts';
 import { natalFromChart, type NatalModel } from './model.ts';
+import type { ReturnYear } from './revolution.ts';
 import type { SkyAccess } from './transits.ts';
 
 /** One year from solar return to solar return, counted from the birthday: age k, year number k + 1. */
@@ -30,6 +32,8 @@ export interface WesternContext extends PeriodInput {
   sky(): SkyAccess;
   /** The firdaria major periods under the engine's firdariaNodes convention, built on first use. */
   majors(): LordSpan[];
+  /** The solar-return chart of each year of the span from the first birthday on, built on first use. */
+  returns(): ReturnYear[];
 }
 
 /** The years of the nativity that overlap the span, each from one solar return to the next. */
@@ -61,6 +65,14 @@ export function makeNatalContext(base: ForecastContext): WesternContext {
         node: meanNodeLongitude,
         syzygy: prenatalSyzygy(moment.utcMs),
       })),
+    returns: () =>
+      base.memo('western:return-charts', (): ReturnYear[] =>
+        returns.flatMap((utcMs, k) => {
+          if (k < 1 || utcMs >= span.endUtcMs || (returns[k + 1] ?? Infinity) <= span.startUtcMs) return [];
+          const c = chartAt(moment, utcMs);
+          return [{ k, utcMs, model: natalFromChart(c), mc: c.midheaven }];
+        }),
+      ),
     majors: () => base.memo('western:majors', () => firdaria(moment, base.input.conventions, Math.ceil((span.endUtcMs - moment.utcMs) / (365.25 * MS.DAY)) + 1).major),
   };
 }

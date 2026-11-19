@@ -43,21 +43,9 @@ const says = (id: string, firings: Firing[], topic?: string): string[] => [...ne
 const dirs = (id: string, firings: Firing[]): string[] => [...new Set(signals(id, firings).map((s) => s.direction))];
 
 describe('the bindings the second part adds', () => {
-  it('account for every rule except the nine that need the return chart', () => {
-    expect(unaccounted(DEFAULT_REGISTRY, 'western').sort()).toEqual(
-      [
-        'bonatti.profection.revolution-agreement',
-        'lilly.profection.lord-condition',
-        'lilly.revolution.asc-hostile',
-        'lilly.revolution.asc-same',
-        'lilly.revolution.contrary-disposition',
-        'lilly.revolution.lord2-fortune-house',
-        'lilly.revolution.returns-affliction',
-        'lilly.revolution.returns-wealth',
-        'lilly.revolution.seventh-asc',
-      ].sort(),
-    );
-    expect(BINDINGS).toHaveLength(56 - 9 - NOT_EVALUATED.length);
+  it('leave no rule of the tradition unaccounted for, now that the return rules are bound', () => {
+    expect(unaccounted(DEFAULT_REGISTRY, 'western')).toEqual([]);
+    expect(BINDINGS).toHaveLength(56 - NOT_EVALUATED.length);
   });
   it('cover every rule of the file that is neither natal nor needs the return chart, each exactly once', () => {
     const ids = BINDINGS.map((b) => b.ruleId);
@@ -606,8 +594,8 @@ describe('the Western tradition on the sample moments, 2031 to 2060', () => {
   });
   it('lists the rules that are bound, withheld and unbound by topic', () => {
     const r = report(DEFAULT_REGISTRY, { traditions: ['western'], sex: 'male', birthTimeUncertaintyMinutes: 0, birthTimeLimitMinutes: 60 });
-    expect(r.counts.western.unbound).toBe(9);
-    expect(r.counts.western.bound).toBe(56 - 9 - NOT_EVALUATED.length);
+    expect(r.counts.western.unbound).toBe(0);
+    expect(r.counts.western.bound).toBe(56 - NOT_EVALUATED.length);
     expect(r.coverage.western.wealth).toBeGreaterThan(14);
   });
   it('withholds a rule that needs the birth time when the time is not given, and runs the node rule without it', () => {

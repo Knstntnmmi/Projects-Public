@@ -9,14 +9,16 @@
  *
  * western/natal.ts holds the natal-promise rules, western/profection.ts the annual profection
  * rules, western/firdaria.ts the firdaria, western/transits.ts the transit and critical-year
- * rules and western/modifiers.ts the two modifier rules. What is not bound is the rules that
- * need the solar-return chart (the third part of the Western work).
+ * rules and western/modifiers.ts the two modifier rules. The solar-return rules (the
+ * return Ascendant, the houses of the money significators, planets at radical places) live in
+ * western/revolution.ts, on the return chart for the birth place.
  */
 import type { ForecastContext } from '../context.ts';
 import type { NotEvaluated, Rule, RuleBinding } from '../types.ts';
 import { makeNatalContext, type WesternContext } from './western/context.ts';
 import { firdariaLordCondition } from './western/firdaria.ts';
 import { aspectList, strengthClasses } from './western/modifiers.ts';
+import * as revolution from './western/revolution.ts';
 import { NATAL_BINDINGS, NATAL_NOT_BOUND } from './western/natal.ts';
 import * as profection from './western/profection.ts';
 import { beneficMaleficYearLord, criticalYearNode, criticalYearSyzygy, dailyCusps, jupiterYearSign, type TransitRule } from './western/transits.ts';
@@ -40,6 +42,28 @@ const transit = (ruleId: string, run: TransitRule, requires: RuleBinding['requir
     return run(w, w.sky());
   },
 });
+
+/** A rule of the solar return: it reads the return charts of the years of the span. */
+const returnRule = (ruleId: string, run: revolution.ReturnRule): RuleBinding => ({
+  ruleId,
+  tradition: 'western',
+  requires: { birthTime: true },
+  fire: (ctx) => {
+    const w = western(ctx);
+    return run(w, w.returns());
+  },
+});
+
+const REVOLUTION_BINDINGS: readonly RuleBinding[] = [
+  returnRule('lilly.revolution.asc-hostile', revolution.ascHostile),
+  returnRule('lilly.revolution.asc-same', revolution.ascSame),
+  returnRule('lilly.revolution.seventh-asc', revolution.seventhAsc),
+  returnRule('lilly.revolution.lord2-fortune-house', revolution.lord2FortuneHouse),
+  returnRule('lilly.revolution.returns-wealth', revolution.returnsWealth),
+  returnRule('lilly.revolution.returns-affliction', revolution.returnsAffliction),
+  returnRule('lilly.revolution.contrary-disposition', revolution.contraryDisposition),
+  returnRule('lilly.profection.lord-condition', revolution.lordCondition),
+];
 
 const PERIOD_BINDINGS: readonly RuleBinding[] = [
   period('lilly.profection.lord-of-year-by-degree', profection.lordOfYearByDegree),
@@ -80,10 +104,17 @@ const MODIFIER_BINDINGS: readonly RuleBinding[] = [
 ];
 
 /** One binding per rule the engine can evaluate. */
-export const BINDINGS: readonly RuleBinding[] = [...NATAL_BINDINGS, ...MODIFIER_BINDINGS, ...PERIOD_BINDINGS, ...TRANSIT_BINDINGS];
+export const BINDINGS: readonly RuleBinding[] = [...NATAL_BINDINGS, ...MODIFIER_BINDINGS, ...PERIOD_BINDINGS, ...REVOLUTION_BINDINGS, ...TRANSIT_BINDINGS];
 
 /** Rules deliberately not evaluated, each with the reason; the registry lists them. */
-export const NOT_EVALUATED: readonly NotEvaluated[] = [...NATAL_NOT_BOUND];
+export const NOT_EVALUATED: readonly NotEvaluated[] = [
+  ...NATAL_NOT_BOUND,
+  {
+    ruleId: 'bonatti.profection.revolution-agreement',
+    reason:
+      'Bonatti reads the profection and the revolution together, but he does not say how a profection comes to signify good or evil, and the framework has no verdict of a profection to give it. The rule stays unevaluated until another rule supplies that verdict.',
+  },
+];
 
 /** The natal model, the profected years and the sky every rule of the tradition reads, built once per evaluation. */
 export function buildContext(base: ForecastContext): WesternContext {
@@ -91,4 +122,4 @@ export function buildContext(base: ForecastContext): WesternContext {
 }
 
 /** Set to true when every rule of this tradition is bound or listed above; the registry test then enforces it. */
-export const COMPLETE = false;
+export const COMPLETE = true;

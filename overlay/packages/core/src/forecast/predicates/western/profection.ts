@@ -79,15 +79,21 @@ export const DAYS_PER_DEGREE = 365.2422 / 30;
  * the return. A year that begins at 0 degrees of a sign has one lord; the sentence then gives
  * the return date and the lord of the next year.
  */
+/** The lords of one profected year: the sign it starts in, its lord, the day the lord changes and the next sign's lord. */
+export function lordsOfYear(model: NatalModel, y: ProfectedYear): { sign: number; lord: Planet; changeMs: number; lord2: Planet; wholeSign: boolean } {
+  const sign = profected(model.ascSign, y);
+  const degree = model.ascendant % 30;
+  const wholeSign = degree < 1e-9;
+  const changeMs = wholeSign ? y.endUtcMs : y.startUtcMs + Math.trunc((30 - degree) * DAYS_PER_DEGREE) * MS.DAY;
+  return { sign, lord: houseLord(sign), changeMs, lord2: houseLord(sign + 1), wholeSign };
+}
+
 export const lordOfYearByDegree: PeriodRule = (w) =>
   w.years.map((y) => {
-    const sign = profected(w.model.ascSign, y);
-    const degree = w.model.ascendant % 30;
-    const wholeSign = degree < 1e-9;
-    const changeMs = wholeSign ? y.endUtcMs : y.startUtcMs + Math.trunc((30 - degree) * DAYS_PER_DEGREE) * MS.DAY;
+    const { sign, lord, changeMs, lord2, wholeSign } = lordsOfYear(w.model, y);
     return yearFiring(
       y,
-      [fact('sign', 'Profected Ascendant sign', signName(sign)), fact('lord', 'Lord of the year', houseLord(sign)), fact('date', 'First lord rules until', isoDate(changeMs)), fact('lord2', 'Lord of the next sign', houseLord(sign + 1))],
+      [fact('sign', 'Profected Ascendant sign', signName(sign)), fact('lord', 'Lord of the year', lord), fact('date', 'First lord rules until', isoDate(changeMs)), fact('lord2', 'Lord of the next sign', lord2)],
       wholeSign ? ['the year begins at 0 degrees of a sign: one lord, the date is the return'] : [],
       signInstance(y, sign),
       [],

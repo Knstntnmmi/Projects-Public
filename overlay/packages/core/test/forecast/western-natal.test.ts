@@ -359,14 +359,14 @@ describe('the bindings as a whole', () => {
     const bound = new Set(BINDINGS.map((b) => b.ruleId));
     const declared = new Map(NOT_EVALUATED.map((n) => [n.ruleId, n.reason]));
     expect(natalIds.filter((id) => bound.has(id))).toHaveLength(24);
-    expect([...declared.keys()].sort()).toEqual(['lilly.health.constitution', 'lilly.relationships.single-life.saturn']);
+    expect([...declared.keys()].sort()).toEqual(['bonatti.profection.revolution-agreement', 'lilly.health.constitution', 'lilly.relationships.single-life.saturn']);
     for (const id of natalIds) expect(bound.has(id) !== declared.has(id), id).toBe(true);
     for (const r of declared.values()) expect(r.length).toBeGreaterThan(40);
   });
-  it('bind every natal-promise rule through NATAL_RULES, and are not complete', () => {
+  it('bind every natal-promise rule through NATAL_RULES', () => {
     const natalBound = BINDINGS.filter((b) => ruleById(b.ruleId)!.stage === 'natal-promise');
     expect(natalBound.map((b) => b.ruleId).sort()).toEqual(Object.keys(NATAL_RULES).sort());
-    expect(COMPLETE).toBe(false);
+    expect(COMPLETE).toBe(true);
   });
   it('mark every statement of a rule that names a house with the whole-sign badge', () => {
     const cases: Array<[string, NatalModel]> = [

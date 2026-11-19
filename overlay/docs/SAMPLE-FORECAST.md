@@ -29,7 +29,7 @@ The same grid as text (+ supports, - cautions, ~ mixed, . nothing said):
                            2026 2027 2028 2029 2030 2031 2032 2033 2034 2035
 BaZi
 BaZi luck pillar              .    .    .    .    .    .    .    .    .    .  (needs the sex the chart is read as, which fixes the direction of the luck pillars)
-BaZi year pillar              .    -    ~    ~    ~    ~    ~    ~    +    .
+BaZi year pillar              .    -    ~    ~    ~    ~    ~    ~    ~    .
 Vedic astrology
 Vedic mahadasha               ~    ~    ~    ~    ~    ~    ~    ~    ~    ~
 Vedic antardasha              ~    +    +    +    +    +    +    ~    ~    ~
@@ -50,8 +50,8 @@ The I Ching is read by period, not by year: ask for a window of at most 62 days 
 - 2030: Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (2 rules support, 2 caution), Vedic mahadasha, Jupiter from the Moon (2 rules support, 2 caution), Western annual profection (1 rule supports, 1 is stated as mixed). Silent: BaZi luck pillar, Western solar return.
 - 2031: Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions), Vedic mahadasha, Jupiter from the Moon (2 rules support, 2 caution), Western annual profection (3 rules support, 1 cautions). Silent: BaZi luck pillar, Western solar return.
 - 2032: Supports: Vedic antardasha, Western annual profection. Cautions: Saturn from the Moon, Jupiter from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions), Vedic mahadasha. Silent: BaZi luck pillar, Western solar return.
-- 2033: Supports: Western solar return. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (2 rules support, 1 cautions), Vedic mahadasha, Vedic antardasha (3 rules support, 1 is stated as mixed), Western annual profection (2 rules support, 1 is stated as mixed). Silent: BaZi luck pillar, Jupiter from the Moon.
-- 2034: Supports: BaZi year pillar. Cautions: Saturn from the Moon. Mixed: Vedic mahadasha, Vedic antardasha (2 rules support, 1 is stated as mixed), Western annual profection (3 rules support, 1 cautions). Silent: BaZi luck pillar, Jupiter from the Moon, Western solar return.
+- 2033: Supports: Western solar return. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (2 rules support, 2 caution), Vedic mahadasha, Vedic antardasha (3 rules support, 1 is stated as mixed), Western annual profection (2 rules support, 1 is stated as mixed). Silent: BaZi luck pillar, Jupiter from the Moon.
+- 2034: Cautions: Saturn from the Moon. Mixed: BaZi year pillar (1 rule supports, 1 cautions), Vedic mahadasha, Vedic antardasha (2 rules support, 1 is stated as mixed), Western annual profection (3 rules support, 1 cautions). Silent: BaZi luck pillar, Jupiter from the Moon, Western solar return.
 - 2035: Cautions: Saturn from the Moon. Mixed: Vedic mahadasha (1 rule supports, 2 are stated as mixed), Vedic antardasha (3 rules support, 1 is stated as mixed), Western annual profection (3 rules support, 1 cautions). Silent: BaZi luck pillar, BaZi year pillar, Jupiter from the Moon, Western solar return.
 
 ## The statements of 2026, 2027, 2028
@@ -252,7 +252,6 @@ Settings are described in [CONVENTIONS.md](CONVENTIONS.md).
 - `mayaCorrelation`: 584283
 - `sliceLength`: year
 - `sliceEdgeDays`: 15
-- `cap_ungated`: false
 - `baziStrengthThresholds`: 45/55
 - `baziLuckWeights`: 0.6/0.4
 - `baziYinStageReverse`: true

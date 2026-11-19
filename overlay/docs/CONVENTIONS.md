@@ -134,17 +134,6 @@ A statement that begins a few hours before the end of a year, or ends a few hour
 | `15` | 15 days. A statement that overlaps a year by fewer than 15 days, and extends beyond it, does not count for that year. The default. | yes |
 | `30` | 30 days. The same with a month. |  |
 
-## Cap on signals no promise rule gated
-
-Setting `cap_ungated`. Affects: The rule weight shown beside a signal.
-
-No accepted rule carries a sourced gate, so every signal is ungated. The cap is a display choice, off by default, and never changes a direction.
-
-| Value | Meaning | Default |
-| --- | --- | --- |
-| `false` | Off. Each signal shows the rule weight the rule file records. | yes |
-| `true` | On. Ungated signals show rule weight 1. |  |
-
 ## BaZi day-master strength bands
 
 Setting `baziStrengthThresholds`. Affects: bazi.strength-score and everything that reads the favourable elements.

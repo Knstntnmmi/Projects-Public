@@ -21,8 +21,8 @@ import { statementList } from './statements.ts';
 import { yearView } from './yearView.ts';
 import { STAGES, TOPICS, TRADITIONS, type ChartNote, type ReadingWord, type Signal, type Slice, type Span, type Topic, type Tradition } from './types.ts';
 
-/** Traditions switched on in this phase. Western is carried but withheld pending verification. */
-export const DEFAULT_TRADITIONS: readonly Tradition[] = ['bazi', 'vedic', 'iching'];
+/** Traditions switched on: all four. A caller may still pass a shorter list. */
+export const DEFAULT_TRADITIONS: readonly Tradition[] = ['bazi', 'vedic', 'iching', 'western'];
 
 export interface ForecastOptions {
   registry?: Registry;

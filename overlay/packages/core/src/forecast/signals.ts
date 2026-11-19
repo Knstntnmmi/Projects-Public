@@ -42,7 +42,12 @@ export function fillTemplate(ruleId: string, template: string, facts: readonly F
     if (!byKey.has(slot)) throw new UnboundSlotError(ruleId, slot);
     return String(byKey.get(slot));
   });
-  return ordinals(filled);
+  return singularHouse(ordinals(filled));
+}
+
+/** A template that says "houses {houses}" for a list reads "house 7" when the list holds one house. */
+export function singularHouse(text: string): string {
+  return text.replace(/\bhouses (\d+)(?!\d|, | and )/g, 'house $1');
 }
 
 /** Several templates write a house number as "{h}th"; a number takes its own English ending. */

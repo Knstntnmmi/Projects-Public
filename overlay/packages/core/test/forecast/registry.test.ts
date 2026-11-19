@@ -67,13 +67,13 @@ describe('the registry over the real rule data', () => {
     expect(r.declared.bazi.wealth).toBeGreaterThan(0);
   });
 
-  it('evaluates without any binding and says how many rules are available and withheld', () => {
+  it('evaluates without any binding and says how many rules are available and withheld (Western is on by default now)', () => {
     const stubs = createRegistry(RULE_FILES, { bazi: STUB, vedic: STUB, iching: STUB, western: STUB }, HELD_BACK);
     const res = evaluate(input(), { registry: stubs, runs: 20 });
     expect(res.signals).toEqual([]);
     expect(res.availableCount).toBe(0);
-    expect(res.withheldCount).toBe(WESTERN_RULES + HELD_BACK.length);
-    expect(rulesLine(res.availableCount, res.withheldCount)).toBe(`0 rules available, ${WESTERN_RULES + HELD_BACK.length} withheld (source not opened or unverified)`);
+    expect(res.withheldCount).toBe(HELD_BACK.length);
+    expect(rulesLine(res.availableCount, res.withheldCount)).toBe(`0 rules available, ${HELD_BACK.length} withheld (source not opened or unverified)`);
     expect(res.agreement.every((c) => c.verdict === 'silent')).toBe(true);
   });
 

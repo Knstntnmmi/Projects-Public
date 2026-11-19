@@ -6,7 +6,7 @@
  * because they are all arithmetic from one birth moment. Direction only; no composite,
  * no sum over traditions.
  */
-import { groupBody } from './clocks.ts';
+import { groupBody, groupLabel } from './clocks.ts';
 import { baselineLine, NOTE, TEXT, VERDICT_TEXT } from './phrasebook.ts';
 import type { Baseline } from './baseline.ts';
 import type { Reading } from './readings.ts';
@@ -93,8 +93,8 @@ export function agreementCells(readings: readonly Reading[], slices: readonly Sl
       const words = entries.map((e) => e.word);
       const notes: string[] = [];
       for (const e of entries) {
-        if (e.twoVerdicts) notes.push(`${NOTE.oneGroupTwoVerdicts} (${e.group})`);
-        else if (e.word !== 'nothing-said' && e.traditions.length > 1) notes.push(`${NOTE.twoTraditionsOneGroup} (${e.group})`);
+        if (e.twoVerdicts) notes.push(`${NOTE.oneGroupTwoVerdicts} (${groupLabel(e.group)})`);
+        else if (e.word !== 'nothing-said' && e.traditions.length > 1) notes.push(`${NOTE.twoTraditionsOneGroup} (${groupLabel(e.group)})`);
       }
       const bodies = entries.filter((e) => e.word !== 'nothing-said').map((e) => groupBody(e.group)).filter((b): b is string => b !== null);
       if (new Set(bodies).size < bodies.length) notes.push(NOTE.onePlanetsMotion);

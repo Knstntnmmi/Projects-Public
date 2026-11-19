@@ -123,3 +123,18 @@ export function textWidth(s: string, fontSize: number): number {
 export function creditBlock(credit: string, x: number, y: number, anchor: 'start' | 'end' = 'end'): string {
   return `<metadata>${esc(credit)}</metadata><text class="muted" x="${n(x)}" y="${n(y)}" font-size="10.5" text-anchor="${anchor}">${esc(credit)}</text>`;
 }
+
+/** Breaks a text into lines no wider than a given width, at spaces; a single word wider than the width keeps its own line. */
+export function wrapText(s: string, maxWidth: number, fontSize: number): string[] {
+  const lines: string[] = [];
+  let line = '';
+  for (const word of s.split(/\s+/).filter((w) => w !== '')) {
+    const next = line === '' ? word : `${line} ${word}`;
+    if (line !== '' && textWidth(next, fontSize) > maxWidth) {
+      lines.push(line);
+      line = word;
+    } else line = next;
+  }
+  if (line !== '') lines.push(line);
+  return lines;
+}

@@ -13,6 +13,7 @@ import {
   type Conventions,
   type Moment,
   type Sex,
+  type Track,
 } from '@overlay/core';
 import { renderTimeline } from './timeline.ts';
 import { renderWheel, type WheelMarker, type WheelOptions } from './wheel.ts';
@@ -55,6 +56,9 @@ export interface TimelineForOptions {
   theme?: 'light' | 'dark';
   /** Track ids to leave out. */
   hidden?: string[];
+  /** Tracks drawn after the engine's own, for example the forecast tracks. They are not given to the seam finder: a seam describes calendar arithmetic. */
+  extraTracks?: readonly Track[];
+  footnote?: string;
 }
 
 export function timelineFor(moment: Moment, conventions: Conventions, options: TimelineForOptions): string {
@@ -66,12 +70,13 @@ export function timelineFor(moment: Moment, conventions: Conventions, options: T
   });
   const marks = [{ utcMs: moment.utcMs, label: 'moment' }];
   if (options.nowUtcMs) marks.push({ utcMs: options.nowUtcMs, label: 'today' });
-  return renderTimeline(tracks, {
+  return renderTimeline([...tracks, ...(options.extraTracks ?? [])], {
     startUtcMs: options.startUtcMs,
     endUtcMs: options.endUtcMs,
     marks,
     seams: seams.seams,
     title: options.title,
     theme: options.theme,
+    footnote: options.footnote,
   });
 }

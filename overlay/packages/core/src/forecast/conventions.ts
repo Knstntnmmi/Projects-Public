@@ -18,6 +18,8 @@ export interface ForecastConventions {
   baziLuckWeights: '0.6/0.4';
   baziYinStageReverse: boolean;
   baziEarthSeasons: 'four-jiyue';
+  /** Which element the earth stems 戊 and 己 follow in the twelve stages. */
+  baziEarthStages: 'fire-earth' | 'water-earth';
   /** Whose sign a year that clashes with the luck pillar takes: the source's ten-god sign or the favourable element's. */
   suiYunSign: 'source-tengod' | 'favourable-element';
   /** The sex a BaZi chart is read as; needed by the luck direction and by spouse and children rules. */
@@ -39,6 +41,7 @@ export const DEFAULT_FORECAST_CONVENTIONS: ForecastConventions = {
   baziLuckWeights: '0.6/0.4',
   baziYinStageReverse: true,
   baziEarthSeasons: 'four-jiyue',
+  baziEarthStages: 'fire-earth',
   suiYunSign: 'source-tengod',
   baziSexConvention: 'none',
   westernHouses: 'whole-sign',
@@ -101,6 +104,16 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
     affects: 'bazi.month-state and the strength score',
     why: 'The source makes earth strong in the sixth month only; common practice makes it strong in all four season-end months (the 季月).',
     options: [{ value: 'four-jiyue', label: 'All four 季月', description: 'The month branches 辰 戌 丑 未.' }],
+  },
+  {
+    key: 'baziEarthStages',
+    title: 'Twelve stages of the earth stems',
+    affects: 'bazi.twelve-stages and the academy flag of bazi.topic-learning',
+    why: 'The source gives two schools: earth follows fire (戊 長生 in 寅, 己 in 酉) or earth follows water (戊 in 申, 己 in 卯). The rule file does not choose between them.',
+    options: [
+      { value: 'fire-earth', label: 'Earth follows fire', description: '戊 寅, 己 酉. The default.' },
+      { value: 'water-earth', label: 'Earth follows water', description: '戊 申, 己 卯.' },
+    ],
   },
   {
     key: 'suiYunSign',

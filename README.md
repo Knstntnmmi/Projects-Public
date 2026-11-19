@@ -2,6 +2,8 @@
 
 For one moment and place, Overlay computes the BaZi chart (the Chinese Four Pillars), the I Ching calendars of the year, and Western and Vedic astrology, all from one astronomical calculation. For a span of years it also states what four traditions' own published rules say about a topic, with the rule and the source behind each statement.
 
+Read more: [forecast guide](overlay/docs/FORECAST.md), [scholarship](overlay/docs/SCHOLARSHIP.md), [glossary](overlay/docs/GLOSSARY.md).
+
 You give it a birth moment and place, a span of years and a topic, money first. It gives back, technique by technique and year by year, what the rules of BaZi, Vedic astrology (nakshatras and dashas), Western astrology after William Lilly (1647) and the I Ching, read by period, say about that topic. Each statement names its rule and its source.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035: one row per technique, one column per year, each cell marked supports, cautions, mixed or nothing said.](overlay/docs/img/forecast-grid.svg)

@@ -2,6 +2,8 @@
 
 **One moment, every system, one shared axis.**
 
+The forecast is the main output: read the [forecast guide](docs/FORECAST.md), the [scholarship page](docs/SCHOLARSHIP.md) and the [glossary](docs/GLOSSARY.md).
+
 Overlay takes a single moment (a date, a clock time, a place) and computes BaZi, the I Ching year-calendars, traditional Western astrology, the Vedic lunar mansions and a handful of day-count calendars from one astronomical substrate. Then, instead of printing them in adjacent boxes, it lays them over one another: as concentric rings on a single ecliptic, and as parallel tracks on a single date axis. The point is to be able to see where the systems' boundaries coincide, where they are offset, and where they have nothing to do with one another.
 
 ![Wheel](docs/img/wheel-j2000.svg)

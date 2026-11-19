@@ -146,7 +146,7 @@ export const TEXT = {
   scorecardNote6:
     'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',
   baziSharedChartNote:
-    "Under the default settings, births on the same date in the same double-hour of the civil clock, on the same side of the month's turn, have the same four pillars. The project's own count of possible sets of four pillars is 518 400 (60 year pillars x 12 months x 60 days x 12 double-hours).",
+    "Under the default settings, births in the same double-hour of the civil clock (the Zi double-hour, 23:00 to 01:00, counts as one, so 23:30 and 00:30 on the next date share it), on the same side of the month's turn, have the same four pillars. The project's own count of possible sets of four pillars is 518 400 (60 year pillars x 12 months x 60 days x 12 double-hours).",
 } as const;
 
 /**

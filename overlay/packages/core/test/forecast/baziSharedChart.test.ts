@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
- * The note under the last BaZi entry of the natal list: that births on the same date in the same
- * double-hour of the civil clock, on the same side of the month's turn, have the same four pillars.
+ * The note under the last BaZi entry of the natal list: that births in the same
+ * double-hour of the civil clock (the Zi double-hour counts as one), on the same side of the month's turn, have the same four pillars.
  * The note is printed only under the defaults it names, and it is no signal. The property it states
  * is proved on the engine with constructed moments only.
  */
@@ -27,13 +27,24 @@ describe('the engine property behind the note', () => {
   // 'jiazi-1984' is noon in Beijing, inside the Wu double-hour (11:00 to 13:00), weeks from a turn of the month.
   const noon = momentOf('jiazi-1984');
 
-  it('gives the same four pillars to two moments on one date in one double-hour of the civil clock', () => {
+  it('gives the same four pillars to two moments in one double-hour of the civil clock', () => {
     expect(pillarsOf(minutesFrom(noon, -50))).toBe(pillarsOf(noon));
     expect(pillarsOf(minutesFrom(noon, 50))).toBe(pillarsOf(noon));
     expect(pillarsOf(minutesFrom(noon, -50))).toBe(pillarsOf(minutesFrom(noon, 50)));
     // the same holds in the double-hour of the other constructed moment, 16:39 and 16:54, after the turn of the month at about 16:27
     const after = momentOf('lichun-after-2024');
     expect(pillarsOf(minutesFrom(after, 25))).toBe(pillarsOf(minutesFrom(after, 10)));
+  });
+
+  it('gives the same four pillars across midnight inside the Zi double-hour, and different ones on one date either side of it', () => {
+    // noon plus 11h30 is 23:30; plus 12h30 is 00:30 on the next date; both lie in the Zi double-hour (23:00 to 01:00)
+    const lateZi = minutesFrom(noon, 11 * 60 + 30);
+    const earlyZi = minutesFrom(noon, 12 * 60 + 30);
+    expect(pillarsOf(lateZi)).toBe(pillarsOf(earlyZi));
+    // 00:30 and 23:30 on the same date are two parts of the Zi double-hour and have different day pillars
+    const sameDateEarly = minutesFrom(noon, -(11 * 60 + 30));
+    expect(pillarsOf(sameDateEarly)).not.toBe(pillarsOf(lateZi));
+    expect(fourPillars(sameDateEarly, DEFAULT_CONVENTIONS).day).not.toEqual(fourPillars(lateZi, DEFAULT_CONVENTIONS).day);
   });
 
   it('gives different four pillars to a pair split by a double-hour boundary', () => {

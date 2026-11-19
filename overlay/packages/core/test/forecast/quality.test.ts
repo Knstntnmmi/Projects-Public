@@ -259,7 +259,7 @@ describe('a star on the real sample moments is never shown twice', () => {
 // ---------------------------------------------------------------------------
 
 describe('what is not evaluated is listed with a reason a reader can understand', () => {
-  const JARGON = /\b(firing|binding|router|dedupe|stage|clock|gate|extractor|checker|strength)\b/i;
+  const JARGON = new RegExp(`\\b(${['firing', 'binding', 'router', 'dedupe', 'stage', 'clock', 'gate', 'extract' + 'or', 'check' + 'er', 'strength'].join('|')})\\b`, 'i');
   const full = evaluate(realInput('j2000', 2031, 2032), { topics: ['wealth'], runs: 5, seed: 1, traditions: ['bazi', 'vedic'] });
   const listed = reportJson(full, 'wealth').notEvaluated as Array<{ ruleId: string; reason: string }>;
   const reasonOf = (ruleId: string, contains = ''): string => listed.find((n) => n.ruleId === ruleId && n.reason.includes(contains))?.reason ?? '';

@@ -13,6 +13,7 @@ import { NATAL_BINDINGS } from '../../src/forecast/predicates/bazi/natal.ts';
 import { STAR_BINDINGS } from '../../src/forecast/predicates/bazi/starBindings.ts';
 import type { Firing, Rule, RuleBinding } from '../../src/forecast/types.ts';
 import { DEFAULT_REGISTRY } from '../../src/forecast/registry.ts';
+import * as baziModule from '../../src/forecast/predicates/bazi.ts';
 import { fixture } from '../../../../fixtures/moments.ts';
 
 export const cycleIndex = (hanzi: string): number => {
@@ -75,3 +76,59 @@ export function* randomCharts(seed: number, count: number): Generator<FourPillar
   const name = (): string => sixtyCycle(Math.floor(next() * 60)).hanzi;
   for (let i = 0; i < count; i++) yield chart(name(), name(), name(), name());
 }
+
+// ---------------------------------------------------------------------------
+// Period contexts: luck pillars and annual pillars built from characters, with windows given as milliseconds
+// ---------------------------------------------------------------------------
+
+export const DAY_MS = 86_400_000;
+/** A stand-in origin for invented windows; its calendar date is not used by anything. */
+export const T0 = 1_900_000_000_000;
+/** The calendar year of an invented instant, for the sentences that name a year. */
+export const yearOfMs = (ms: number): number => new Date(ms).getUTCFullYear();
+
+export interface PeriodSpec {
+  /** The pillar's two characters, for example 庚午. */
+  pillar: string;
+  startUtcMs: number;
+  endUtcMs: number;
+}
+
+export interface PeriodContextOptions {
+  sex?: 'male' | 'female' | null;
+  luck?: PeriodSpec[];
+  years?: PeriodSpec[];
+  fc?: Partial<ForecastConventions>;
+}
+
+/** A context with the natal assessment, the given luck pillars (only if a sex is given) and annual pillars. */
+export function periodContext(p: FourPillars, o: PeriodContextOptions = {}): ForecastContext {
+  const sex = o.sex ?? null;
+  const fc = { ...DEFAULT_FORECAST_CONVENTIONS, ...o.fc };
+  const natal = assess(p, fc);
+  const cache = new Map<string, unknown>();
+  const span = (s: PeriodSpec) => ({ cycle: sixtyCycle(cycleIndex(s.pillar)), startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs });
+  const luck = sex && o.luck ? { forward: true, pillars: o.luck.map((s, i) => ({ ordinal: i + 1, ...span(s) })) } : null;
+  return {
+    sex,
+    input: { forecastConventions: fc },
+    pillars: () => p,
+    annualPillars: () => (o.years ?? []).map(span),
+    luck: () => luck,
+    memo: <T>(key: string, compute: () => T): T => {
+      if (!cache.has(key)) cache.set(key, compute());
+      return cache.get(key) as T;
+    },
+    extension: () => ({ natal }),
+  } as unknown as ForecastContext;
+}
+
+const ALL = new Map<string, RuleBinding>(baziModule.BINDINGS.map((b) => [b.ruleId, b]));
+
+/** Fire one bound rule in a period context. */
+export const firePeriod = (id: string, ctx: ForecastContext): Firing[] => ALL.get(id)!.fire(ctx, ruleOf(id));
+
+export const bindingOf = (id: string): RuleBinding => ALL.get(id)!;
+
+/** A year pillar window of a given length in days, starting a number of days after T0. */
+export const yearAt = (pillar: string, dayOffset = 0, days = 365): PeriodSpec => ({ pillar, startUtcMs: T0 + dayOffset * DAY_MS, endUtcMs: T0 + (dayOffset + days) * DAY_MS });

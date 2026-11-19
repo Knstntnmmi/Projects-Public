@@ -12,7 +12,7 @@ import { fav, kinOf, type Kin } from '../../../systems/bazi/relations.ts';
 import type { Direction, Firing, RuleBinding, Topic } from '../../types.ts';
 import { careerGradeOf, bind, fact, natalOf, wealthGradeOf } from './natal.ts';
 import { kinChars, starsOf, type NatalAssessment } from './assessment.ts';
-import { branchElement, branchGod, favWord, periodsOf, stemElement, stemGod, type Period } from './periods.ts';
+import { branchElement, branchGod, periodsOf, stemElement, stemGod, type Period } from './periods.ts';
 import { periodFiring } from './periodBindings.ts';
 
 /** What a period brings of one kin: the stem and the main qi of the branch, with their gods. */
@@ -49,9 +49,12 @@ const arrivalFacts = (a: NatalAssessment, p: Period, arr: Arrival, extra: Firing
   fact('periodName', 'Period', p.periodName),
   fact('pillar', 'Pillar', p.cycle.hanzi),
   fact('tenGod', 'Ten god', arr.gods.join(', ')),
-  fact('favOrNot', 'Element', favWord(fav(a.favourites, arr.element))),
+  fact('favOrNot', 'Element', likeWord(fav(a.favourites, arr.element))),
   ...extra,
 ];
+
+/** The sentences say "in a {favOrNot} element", so the word must take "a": favoured and disliked (喜 and 忌), not favourable and unfavourable. */
+const likeWord = (v: -1 | 0 | 1): string => (v === 1 ? 'favoured' : v === -1 ? 'disliked' : 'neutral');
 
 const periodsFor = (ctx: Parameters<RuleBinding['fire']>[0]): Period[] => periodsOf(ctx);
 

@@ -285,7 +285,8 @@ function unafflicted(m: VedicChartModel, p: Graha): boolean {
 /** Sun, Moon, Mars, Rahu and Ketu are the planets the rule file records; the others emit nothing. */
 const wealthHouses = lordRule('parashari.dasha-lord-in-wealth-houses', (m, p) => {
   const h = m.houseOf(p);
-  const item = (conflict: boolean): Item[] => [{ facts: [fact('planet', 'Planet', p), fact('h', 'House', h)], badges: conflict ? [BADGES.schoolConflict] : [] }];
+  // What held is said in the sentence: a house of gain, or for Mars one of the other clauses, so that no house is named as the cause of gain that is not one.
+  const item = (conflict: boolean, why = 'a strong planet there gives gain of wealth'): Item[] => [{ facts: [fact('planet', 'Planet', p), fact('h', 'House', h), fact('why', 'What held', why)], badges: conflict ? [BADGES.schoolConflict] : [] }];
   // Ch.48 sl.18-20 calls planets in the 11th unfavourable, except the nodes: the two statements are both shown.
   if (p === 'Rahu' || p === 'Ketu') return h === 11 ? item(false) : [];
   if (!isGraha(p)) return [];
@@ -301,7 +302,10 @@ const wealthHouses = lordRule('parashari.dasha-lord-in-wealth-houses', (m, p) =>
   if (p === 'Mars') {
     const k = m.dignity(p).kind;
     const ok = h === 2 || h === 11 || KENDRA.includes(h) || k === 'exalted' || k === 'own sign' || k === 'moolatrikona';
-    return ok && unafflicted(m, p) ? item(h === 11) : [];
+    if (!ok || !unafflicted(m, p)) return [];
+    if (h === 2 || h === 11) return item(h === 11);
+    const clause = k === 'exalted' ? 'is exalted' : k === 'own sign' ? 'is in its own sign' : k === 'moolatrikona' ? 'is in its moolatrikona sign' : 'stands in a kendra';
+    return item(false, `a strong Mars that ${clause} gives gain of wealth`);
   }
   return [];
 });
@@ -435,9 +439,11 @@ const antarStrength = antarRule('parashari.antardasha-lord-strength', (m, maha, 
     return r === 'friend' || r === 'great friend';
   });
   const fav = DIGNITY_GOOD.includes(d.kind) || ANTAR_GOOD_PLACES.includes(h) || friendly;
-  const unfav = d.kind === 'debilitated' || DUSTHANA.includes(h) || mates.some((c) => m.naturalNature(c) === 'malefic');
+  const malefics = mates.filter((c) => m.naturalNature(c) === 'malefic');
+  const unfav = d.kind === 'debilitated' || DUSTHANA.includes(h) || malefics.length > 0;
   const v = combine(fav, unfav);
-  return v === null ? [] : [{ facts: [fact('antar', 'Antardasha lord', antar), fact('dignity', 'Dignity', dignityIs(d.kind)), fact('h', 'House from the Lagna', h), fact('direction', 'Reading of the sub-period', v === 'unfavourable' ? 'difficult' : v)] }];
+  // The sentence names the dignity and the house; a malefic in the same sign is a reason it cannot show, so it is said as a note.
+  return v === null ? [] : [{ badges: malefics.length > 0 ? [`in the same sign as ${malefics.join(' and ')}, which ${malefics.length > 1 ? 'are natural malefics' : 'is a natural malefic'}`] : [], facts: [fact('antar', 'Antardasha lord', antar), fact('dignity', 'Dignity', dignityIs(d.kind)), fact('h', 'House from the Lagna', h), fact('direction', 'Reading of the sub-period', v === 'unfavourable' ? 'difficult' : v)] }];
 });
 
 /** The text states Surya, Candra and Mangala; the other planets are unread and say nothing. */

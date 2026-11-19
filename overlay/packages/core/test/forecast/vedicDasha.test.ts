@@ -250,6 +250,9 @@ describe('the mahadasha placement rules', () => {
     expect(run(id, { maha: ['Moon'], planets: { ...away, Moon: [1, 5] } })).toEqual([]);
     // Mars strong in a kendra.
     expect(sentences(run(id, { maha: ['Mars'], planets: away }))[0]).toMatch(/^Mars, placed in the 1st house/);
+    // Mars in its own sign in the 6th (Gemini rising, Mars in Scorpio): the sentence names the clause that held, not the house.
+    const own = sentences(run(id, { maha: ['Mars'], lagna: 2, planets: { ...away, Mars: [7, 14] } }));
+    expect(own).toEqual(['Mars, placed in the 6th house, runs the period; Parashara says a strong Mars that is in its own sign gives gain of wealth.']);
     // Rahu in the 11th is good, with no conflict note.
     const rahu = run(id, { maha: ['Rahu'], planets: { Rahu: [10, 10] } });
     expect(rahu).toHaveLength(1);

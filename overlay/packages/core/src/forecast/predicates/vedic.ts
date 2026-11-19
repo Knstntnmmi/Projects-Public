@@ -68,6 +68,11 @@ export const NOT_EVALUATED: readonly NotEvaluated[] = [];
 export const NOT_EVALUATED_BRANCHES: readonly NotEvaluatedBranch[] = [
   {
     ruleId: 'parashari.dasha-lord-3-11-lord',
+    branch: 'the 11th-house lord is read for the topic wealth',
+    reason: 'the rule file lists wealth for this rule, but reads the 11th lord as mixed for wealth and the direction cannot be changed here; the 11th lord is evaluated for life in general only, so a period of such a lord says nothing about wealth from this rule',
+  },
+  {
+    ruleId: 'parashari.dasha-lord-3-11-lord',
     branch: 'the mahadasha lord sits in, or is joined to, a planet that owns the 3rd, 6th or 11th house',
     reason: 'the sentence of the rule says that the planet owns the house, which would be false for a planet that only sits in or is joined to one; only the owner is evaluated',
   },

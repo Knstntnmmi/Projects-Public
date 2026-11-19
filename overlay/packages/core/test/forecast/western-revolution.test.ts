@@ -126,9 +126,9 @@ describe('lilly.revolution.lord2-fortune-house', () => {
       ['Jupiter', 6],
     ]);
     expect(says('lilly.revolution.lord2-fortune-house', f)).toEqual([
-      'In the return Sun, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the 2nd house: Lilly reads augmentation of estate through the things signified by that house.',
-      'In the return the Part of Fortune, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the 2nd house: Lilly reads augmentation of estate through the things signified by that house.',
-      'In the return Jupiter, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the 6th house: Lilly reads augmentation of estate through the things signified by that house.',
+      'In the return Sun, one of the significators of money (the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart), stands in the 2nd house: Lilly reads augmentation of estate through the things signified by that house.',
+      'In the return the Part of Fortune, one of the significators of money (the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart), stands in the 2nd house: Lilly reads augmentation of estate through the things signified by that house.',
+      'In the return Jupiter, one of the significators of money (the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart), stands in the 6th house: Lilly reads augmentation of estate through the things signified by that house.',
     ]);
     expect(f[0]!.badges).toContain(WHOLE);
   });
@@ -301,7 +301,7 @@ describe('the return rules on a sample moment, 2031 to 2060', () => {
     for (const s of own) {
       expect(s.topic).toBe('wealth');
       expect(s.direction).toBe('activates');
-      expect(s.sentence).toMatch(/^In the return (\w+|the Part of Fortune), the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the \d+(st|nd|rd|th) house: Lilly reads augmentation of estate/);
+      expect(s.sentence).toMatch(/^In the return (\w+|the Part of Fortune), one of the significators of money \(the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart\), stands in the \d+(st|nd|rd|th) house: Lilly reads augmentation of estate/);
       expect(s.badges).toContain(WHOLE);
       expect(s.endUtcMs! - s.startUtcMs!).toBeGreaterThan(364 * DAY);
       expect(s.endUtcMs! - s.startUtcMs!).toBeLessThan(367 * DAY);

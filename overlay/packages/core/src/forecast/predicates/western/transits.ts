@@ -113,7 +113,7 @@ export const jupiterYearSign: TransitRule = (w, sky) => {
         clock: SKY_CLOCK.Jupiter,
         startUtcMs: piece.startUtcMs,
         endUtcMs: piece.endUtcMs,
-        facts: [fact('sign', 'Jupiter\'s sign', SIGNS[piece.sign]!), fact('relation', 'Relation to the year sign', relation), fact('year_sign', 'Year sign', SIGNS[s]!), fact('chronocrator', 'Time-lord of the year', joinList(there))],
+        facts: [fact('sign', 'Jupiter\'s sign', SIGNS[piece.sign]!), fact('relation', 'Relation to the year sign', relation), fact('year_sign', 'Year sign', SIGNS[s]!), fact('chronocrator', 'Time-lord of the year', joinList(there)), fact('lords_word', 'Noun', there.length > 1 ? 'time-lords' : 'time-lord'), fact('verb', 'Verb', there.length > 1 ? 'stand' : 'stands')],
         conventionsUsed: CONVENTIONS,
         badges: [BADGE.wholeSign, IDENTIFICATION, 'the operative places of the Lots of Daimon, Love and Necessity are not evaluated: their formulas are not in the rule file'],
       });

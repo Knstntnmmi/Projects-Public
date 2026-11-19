@@ -194,6 +194,8 @@ describe('the vedha and sign-portion windows against the sky', () => {
     const obstructed = result.signals.filter((s) => s.badges.includes(OBSTRUCTED));
     expect(obstructed.length).toBeGreaterThan(0);
     for (const s of obstructed) expect(['parashari.jupiter-transit-good', 'parashari.saturn-transit-good']).toContain(s.ruleId);
+    // The badge names the obstructing planet and the days, so it tells a stay obstructed for a day from one obstructed for months.
+    for (const s of obstructed) expect(s.badges.some((b) => /^the obstructing planet in the vedha house: [A-Za-z, ]+, for [\d.]+ days in all$/.test(b))).toBe(true);
     const withVedha = (s: Signal): boolean => vedha(s.ruleId.includes('jupiter') ? 'parashari.jupiter-vedha' : 'parashari.saturn-vedha').some((x) => Number(fact(x, 'h')) === Number(fact(s, 'h')) && x.startUtcMs! < s.endUtcMs! && x.endUtcMs! > s.startUtcMs!);
     for (const s of result.signals.filter((x) => /transit-good$/.test(x.ruleId) && x.startUtcMs !== null)) {
       if (s.endUtcMs! <= input.span.startUtcMs || s.startUtcMs! >= input.span.endUtcMs) continue;

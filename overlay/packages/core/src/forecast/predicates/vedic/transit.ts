@@ -35,6 +35,17 @@ const stays = (ctx: ForecastContext, planet: Slow): Stay[] => {
   return ctx.ingresses(planet, 'sidereal').map((s) => ({ startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs, h: m.signHouseFromMoon(SIGNS.indexOf(s.label as (typeof SIGNS)[number])) }));
 };
 
+/**
+ * The badge says that the stay is obstructed in part and then by whom and for how long, because the
+ * Moon passes through every sign each month and a bare "obstructed" would sit on every good stay.
+ */
+function obstructionBadges(hits: readonly Obstruction[]): string[] {
+  if (hits.length === 0) return [];
+  const planets = [...new Set(hits.map((o) => o.planet))];
+  const days = hits.reduce((n, o) => n + (o.endUtcMs - o.startUtcMs) / 86_400_000, 0);
+  return [OBSTRUCTED, `the obstructing planet in the vedha house: ${planets.join(', ')}, for ${days < 10 ? Math.round(days * 10) / 10 : Math.round(days)} days in all`];
+}
+
 function transit(ruleId: string, planet: Slow, houses: readonly number[], topicsOf: (h: number) => Topic[]): RuleBinding {
   const vedhaOf = VEDHA[planet];
   return {
@@ -46,7 +57,7 @@ function transit(ruleId: string, planet: Slow, houses: readonly number[], topics
         .filter((s) => houses.includes(s.h))
         .map(
           (s): Firing => ({
-            badges: vedhaOf[s.h] !== undefined && obstructions(ctx, planet).some((o) => o.h === s.h && o.startUtcMs < s.endUtcMs && o.endUtcMs > s.startUtcMs) ? [OBSTRUCTED] : [],
+            badges: vedhaOf[s.h] === undefined ? [] : obstructionBadges(obstructions(ctx, planet).filter((o) => o.h === s.h && o.startUtcMs < s.endUtcMs && o.endUtcMs > s.startUtcMs)),
             clock: CLOCK[planet],
             startUtcMs: s.startUtcMs,
             endUtcMs: s.endUtcMs,

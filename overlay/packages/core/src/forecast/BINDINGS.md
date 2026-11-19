@@ -148,3 +148,15 @@ r.coverage.bazi;    // bound rules per topic: the coverage printed with every ou
 ```
 
 Write your own tests in `test/forecast/<tradition>.test.ts`: the specification's section 13 lists what is expected (every table you type in against the values the rule file states; the corrected-rule behaviours; sentences equal template plus facts). Use only the sample moments in `fixtures/moments.ts`; never the birth data of any real person, including the example charts in the sources. A quotation in a test or a file is at most 25 words and copies no modern translation. Every source file starts with the two-line licence header. Finish with `npm run generate` and `npm run check`.
+
+## Readings the engine makes where a rule file is silent
+
+These are the places where a binding had to read a condition, and the reading is stated here so that nobody has to find it in the code.
+
+- `lilly.wealth.promise-mixed` says that the number of strong significators equals the number of weak ones. Read literally that also holds when both are zero, but then `promise-moderate` speaks, so the binding requires at least one strong and one weak.
+- `parashari.dasha-lord-3-11-lord` lists wealth as a topic, but the 11th lord is evaluated for life in general only (the rule file reads the 11th lord as mixed for wealth). This is listed with the rules not evaluated.
+- `parashari.yogakaraka-kendra-trikona`: a kendra lord that the Lagna table calls malefic forms no link unless it also owns a trikona. The evil-house cancellation is applied on top.
+- `bazi.yangren`: the blade is read as "held by a 官殺 star" when any 官殺 character stands anywhere in the chart.
+- A calendar year takes in a BaZi year pillar that fills at least 15 days of it. The pillar of a year changes at Lichun, 3 to 5 February, so a calendar year's own pillar fills about 11 months and the previous pillar fills about a month; both count, and the headline can rest on the earlier pillar alone.
+- The grid's word for a cell: a rule that itself states "mixed" counts with the favourable and the cautioning ones, so a cell of favourable and rule-stated mixed statements reads "mixed". The grid legend and the guide say so.
+- The grader of the I Ching sets aside a verdict word that follows a negation (无, 匪, 不, 弗, 勿, 未) when the token table does not list the phrase; the note "negated, not graded" is printed wherever such a line is shown.

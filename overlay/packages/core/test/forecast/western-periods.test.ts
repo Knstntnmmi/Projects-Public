@@ -413,8 +413,8 @@ describe('valens.transit.jupiter-year-sign', () => {
     const f = T.jupiterYearSign(only(0), s);
     expect(f.map((x) => [x.startUtcMs, x.endUtcMs])).toEqual([[T0, T0 + 200 * DAY], [T0 + 200 * DAY, T0 + YEAR]]);
     expect(says('valens.transit.jupiter-year-sign', f)).toEqual([
-      'Transiting Jupiter stands in Cancer, conjunct to the year sign Cancer, and the year\'s time-lord Moon and Mars stands in an operative place: Valens reads public service and high rank.',
-      'Transiting Jupiter stands in Libra, square to the year sign Cancer, and the year\'s time-lord Moon and Mars stands in an operative place: Valens reads public service and high rank.',
+      'Transiting Jupiter stands in Cancer, conjunct to the year sign Cancer, and the year\'s time-lords Moon and Mars stand in an operative place: Valens reads public service and high rank.',
+      'Transiting Jupiter stands in Libra, square to the year sign Cancer, and the year\'s time-lords Moon and Mars stand in an operative place: Valens reads public service and high rank.',
     ]);
     expect(f[0]!.clock).toBe('jupiter-tropical');
     expect(dirs('valens.transit.jupiter-year-sign', f)).toEqual(['favourable']);

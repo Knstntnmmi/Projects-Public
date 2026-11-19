@@ -34,8 +34,8 @@ const withRule = (patch: Record<string, unknown>): unknown => {
 describe('the rule files', () => {
   it('load with the counts the specification states', () => {
     const n = Object.fromEntries(RULE_FILES.map((f) => [f.tradition, f.rules.length]));
-    expect(n).toEqual({ bazi: 39, vedic: 36, iching: 11, western: 18 });
-    expect(ALL_RULES).toHaveLength(104);
+    expect(n).toEqual({ bazi: 39, vedic: 36, iching: 11, western: 56 });
+    expect(ALL_RULES).toHaveLength(142);
   });
 
   it('every rule has its required fields, valid enums, a weight of 1 to 3 and a unique id', () => {
@@ -47,7 +47,7 @@ describe('the rule files', () => {
       expect(DIRECTIONS).toContain(r.direction);
       expect([1, 2, 3]).toContain(r.strength);
       expect(['confirmed', 'corrected']).toContain(r.verification);
-      expect(['now', 'small-addition']).toContain(r.computable);
+      expect(['now', 'small-addition', 'needs-return-chart']).toContain(r.computable);
       expect(r.topics.length).toBeGreaterThan(0);
       for (const t of r.topics) expect(TOPICS).toContain(t);
       expect(r.template.length).toBeGreaterThan(0);
@@ -67,7 +67,7 @@ describe('the rule files', () => {
 
   it('keep every held-back id out of the rule files', () => {
     const ids = new Set(ALL_RULES.map((r) => r.id));
-    expect(HELD_BACK.length).toBe(56);
+    expect(HELD_BACK.length).toBe(28);
     for (const h of HELD_BACK) {
       expect(ids.has(h.id), h.id).toBe(false);
       expect(TRADITIONS).toContain(h.tradition);
@@ -103,7 +103,7 @@ describe('validation', () => {
       [{ topics: ['money'] }, /topics must be a non-empty list of known topics/],
       [{ topics: ['wealth', 'wealth'] }, /repeated topic/],
       [{ verification: 'rumoured' }, /verification must be confirmed or corrected/],
-      [{ computable: 'not-computable' }, /computable must be now or small-addition/],
+      [{ computable: 'not-computable' }, /computable must be now, small-addition or needs-return-chart/],
       [{ id: 'NoDots' }, /must look like family.name/],
       [{ template: '' }, /template is empty/],
       [{ sourceOpened: true, sourceCitation: ' ' }, /sourceCitation is empty although the source is marked opened/],
@@ -146,7 +146,8 @@ describe('the ruleset version', () => {
     expect(RULESET_VERSION).toMatch(/^[0-9a-f]{16}$/);
     expect(rulesetVersion(ALL_RULES)).toBe(RULESET_VERSION);
     // Pinned so that an accidental edit of a rule file is noticed; change it when a rule is changed on purpose.
-    expect(RULESET_VERSION).toBe('78dc4afc4719e840');
+    // Changed once on purpose when the verified Western rule file replaced the extractor's (56 rules).
+    expect(RULESET_VERSION).toBe('b81032a0cf57726c');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

@@ -1,61 +1,1751 @@
 {
-  "tradition": "western",
-  "method": "ORDER OF JUDGEMENT (Lilly, Christian Astrology 1647, Book III). (1) NATAL PROMISE first: significators of the topic (house, lord, planets in it, Part of Fortune and its lords, natural significator), scored by essential and accidental dignity, judged by plurality of testimonies (p.561; Book I p.101-104, table p.115). (2) ANNUAL PROFECTION second (Chap. CLXVI-CLXXI, p.715-733): lord of the year, judged in the radix and in the revolution; Lilly says profections alone are of little force without directions (p.719), so strength is 2. Bonatti (Pars V p.817-818): profection and revolution are read together. (3) SOLAR RETURN third (p.734-741), cast for the place of residence. (4) TRANSITS last (p.741, day-scale only). Firdaria (Bonatti Pars V p.813-814) is a parallel period-lord. Directions are OUT OF SCOPE. Valens IV.16 agrees that the natal basis limits what a time-lord can do, but that rule was not verified and is held back, so the natal-promise gate is applied only where a rule here states it (none does globally; per critique, gating is a per-rule sourced property, default ungated and shown as such).\n\nDIFFERENCES FROM THE ENGINE: Lilly's terms are Ptolemy's, not the Egyptian bounds in dignities.ts; Lilly gives two triplicity rulers per element (day, night), water is Mars for both, no participating lord; Lilly's 1647 profection moves the Ascendant by degree with two lords in a year when it crosses a sign; Lilly uses Regiomontanus houses while the engine has whole-sign only (rules that cite houses run whole-sign as a labelled variant, or need Regiomontanus cusps).\n\nCHECKER CORRECTIONS APPLIED: classes defined on E alone with A as a flag; wealth-promise rules split and made exclusive (uncovered combinations emit NO signal); duplicate whole-sign year-lord rule dropped (one profected-sign fact, dedupeKey profected-sign:{index}@year); one profection reading per (profected house, topic); 7th removed from asc-hostile; orbs table keeps the primary column only. Page numbers are scan offset (printed = scan leaf minus 33) and chapter numerals come from OCR; Valens read only in Riley's translation, paraphrased.",
-  "topicDefinitions": [
-    {"topic": "wealth", "definition": "Lilly's 'second house of Riches, or the goods of Fortune': estate, substance, money and how it is gained and kept, judged from the strength of the significators of substance.", "significators": "Cusp of the 2nd house (from 5 degrees before the cusp), the lord of that house, lord of any sign intercepted in it, the Part of Fortune and its lords, Jupiter as general significator of wealth, planets in the 2nd. Lilly p.552 (Chap. CXIII), p.553-563 (Chap. CXIIII-CXVII).", "source": "Lilly 1647, Book III, p.552-563; Ptolemy cited by Lilly at p.552"},
-    {"topic": "career", "definition": "Honour, dignity, preferment and the quality and durability of the Native's public standing and profession.", "significators": "Luminaries (the Sun most considerable) and planets that behold the Lights within the moiety of their orbs; the lord of the mid-heaven; planets in the mid-heaven. Lilly p.615 (Chap. CXLIIII), p.621-626.", "source": "Lilly 1647, Book III, p.615-626"},
-    {"topic": "relationships", "definition": "Marriage and the wife or husband: whether, when, how easily, what kind. Man's significators are Venus and the Moon, then the 7th house and lord; the woman's significators (Sun and Mars) are from damaged OCR and are not used.", "significators": "For a man: Venus and the Moon, the 7th house and its lord, planets in the 7th. Lilly p.587-600 (Chap. CXXX-CXXXVII).", "source": "Lilly 1647, Book III, p.587-600"},
-    {"topic": "health", "definition": "Health of body, sickness and its kind (the sixth house).", "significators": "The ascending sign and its lord; Sun and Moon; the 6th house and its lord; planets in the 6th; the 7th house and its lord. Lilly p.576-581.", "source": "Lilly 1647, Book III, p.576-581"},
-    {"topic": "learning", "definition": "Study, wisdom, science, scholarship. Lilly has no dedicated learning chapter in the pages read; the house table assigns Religion, Wisdom, Science, Learning and Scholarship to the ninth house and Mercury to scholars. Profection houses 9 and 5 carry the only extracted rule.", "significators": "Ninth house and its lord, planets in the 9th, Mercury. Lilly p.557-558, 606-614.", "source": "Lilly 1647, Book III, p.555-558, 606-614; no dedicated chapter found"},
-    {"topic": "home-travel", "definition": "Journeys and residence abroad (ninth house), kindred and short movements (third house), home, lands, patrimony and buildings (fourth house).", "significators": "9th house and its lord, planets in the 9th, Moon and Mercury; 4th house for home. Lilly p.606-611, 558, 564.", "source": "Lilly 1647, Book III, p.558, 564, 606-611"},
-    {"topic": "general", "definition": "The overall fortune of the Native and of the year, from the strength of the Ascendant, its lord, the luminaries and the plurality of planets in essential dignity or debility.", "significators": "All seven planets by essential and accidental fortitude; the Ascendant and its lord; Sun and Moon. Lilly p.551 (Chap. CXIII).", "source": "Lilly 1647, Book III, p.551-552"}
-  ],
-  "tables": {
-    "A_essentialDignities": {
-      "source": "Lilly 1647 Book I p.104 table 'according to Ptolomy', read from the scan; scores Book I p.101-103 and table p.115. Note: the checker could not confirm the terms from a second source; the researcher read them from the scan, so they stay, with the flagged cells listed in uncertainCells.",
-      "scores": "own house +5; exaltation +4; triplicity +3; term +2; face +1. Debilities: detriment -5; fall -4; peregrine -5 (a planet in its own term or face is not peregrine). Mutual reception by house +5, by exaltation +4 (p.115). A triplicity ruler counts only for the right sect.",
-      "termFormat": "lord and end degree; a term runs from the previous end (first begins at 0) up to but not including the end degree. Faces 0-10, 10-20, 20-30.",
-      "rows": [
-        "Aries | Mars (D) | Sun 19 | Sun / Jupiter | Jupiter 6, Venus 14, Mercury 21, Mars 26, Saturn 30 | Mars, Sun, Venus | det Venus | fall Saturn",
-        "Taurus | Venus (N) | Moon 3 | Venus / Moon | Venus 8, Mercury 15, Jupiter 22, Saturn 26, Mars 30 | Mercury, Moon, Saturn | det Mars | fall none",
-        "Gemini | Mercury (D) | (node row held) | Saturn / Mercury | Mercury 7, Jupiter 14, Venus 21, Saturn 25, Mars 30 | Jupiter, Mars, Sun | det Jupiter | fall (node row held)",
-        "Cancer | Moon | Jupiter 15 | Mars / Mars | Mars 6, Jupiter 13, Mercury 20, Venus 27, Saturn 30 | Venus, Mercury, Moon | det Saturn | fall Mars",
-        "Leo | Sun | none | Sun / Jupiter | Saturn 6, Mercury 13, Venus 19, Jupiter 25, Mars 30 | Saturn, Jupiter, Mars | det Saturn | fall none",
-        "Virgo | Mercury (N) | Mercury 15 | Venus / Moon | Mercury 7, Venus 13, Jupiter 18, Saturn 24, Mars 30 | Sun, Venus, Mercury | det Jupiter | fall Venus",
-        "Libra | Venus (D) | Saturn 21 | Saturn / Mercury | Saturn 6, Venus 11, Jupiter 19, Mercury 24, Mars 30 | Moon, Saturn, Jupiter | det Mars | fall Sun",
-        "Scorpio | Mars (N) | none | Mars / Mars | Mars 6, Jupiter 14, Venus 21, Mercury 27, Saturn 30 | Mars, Sun, Venus | det Venus | fall Moon",
-        "Sagittarius | Jupiter (D) | (node row held) | Sun / Jupiter | Jupiter 8, Venus 14, Mercury 19, Saturn 25, Mars 30 | Mercury, Moon, Saturn | det Mercury | fall (node row held)",
-        "Capricorn | Saturn (N) | Mars 28 | Venus / Moon | Venus 6, Mercury 12, Jupiter 19, Mars 25, Saturn 30 | Jupiter, Mars, Sun | det Moon | fall Jupiter",
-        "Aquarius | Saturn (D) | none | Saturn / Mercury | Saturn 6, Mercury 12, Venus 20, Jupiter 25, Mars 30 | Venus, Mercury, Moon | det Sun | fall none",
-        "Pisces | Jupiter (N) | Venus 27 | Mars / Mars | Venus 8, Jupiter 14, Mercury 20, Mars 26, Saturn 30 | Saturn, Jupiter, Mars | det Mercury | fall Mercury"
-      ],
-      "exaltationDegrees": "Sun 19 Aries, Moon 3 Taurus, Jupiter 15 Cancer, Mercury 15 Virgo, Saturn 21 Libra, Mars 28 Capricorn, Venus 27 Pisces (Lilly p.104; match the engine).",
-      "triplicity": "Fire: Sun by day, Jupiter by night. Earth: Venus by day, Moon by night. Air: Saturn by day, Mercury by night. Water: Mars by day and night 'according to Ptolomy and Naibod'. No participating ruler.",
-      "uncertainCells": ["Libra fourth term lord at 24 degrees (scan glyph ambiguous; Mercury by Ptolemy's table)", "Aquarius night triplicity Mercury (read from text, not scan)", "Water triplicity Mars both day and night (checker notes Dorothean sources differ; researcher cites Ptolemy and Naibod)"]
-    },
-    "B_accidentalFortitudes": "Lilly Book I p.115 table, read from the scan. Fortitudes: in the Midheaven or Ascendant +5; 7th, 4th, 11th +4; 2nd, 5th +3; 9th +2; 3rd +1; direct +4 (void for Sun and Moon); swift +2; Saturn, Jupiter, Mars oriental +2; Venus and Mercury occidental +2; Moon increasing in light or occidental +2; free from combustion and beams +5; cazimi +5; partile conjunction with Jupiter or Venus +5; with the Dragon's Head +4; partile trine to Jupiter or Venus +4; partile sextile to Jupiter or Venus +3; (fixed-star rows Cor Leonis +6, Spica +5 need star data: not computable). Debilities: 12th house -5; 8th and 6th -2; retrograde -5; slow -2; Saturn, Jupiter, Mars occidental -2; Venus and Mercury oriental -2; Moon decreasing -2; combust -5; under the beams -4; partile conjunction with Saturn or Mars -5; with the Dragon's Tail -4; besieged by Saturn and Mars -5; partile opposition to Saturn or Mars -4; partile square -3; (Caput Algol -5 needs star data). Definitions p.112-114: combust within 8 deg 30' of the Sun in the same sign; under the beams to 17 degrees; cazimi within 17 minutes; partile = same degree. The Venus 48 and Mercury 28 maximum elongations were not confirmed (held back).",
-    "C_aspectsOrbs": "Lilly Book I p.105-107. Aspects: conjunction 0, sextile 60, square 90, trine 120, opposition 180. Orbs of rays (primary column): Saturn 10, Jupiter 12, Mars 7 deg 30', Sun 17, Venus 8, Mercury 7, Moon 12 deg 30'. Platick when distance from the exact aspect is no more than the sum of half of each orb (example Venus and Saturn: 4 + 5 = 9). The 'according to others' column is held back (Mars 7 versus checker's recalled 8, no evidence either way).",
-    "D_profectionHouseTable": "Lilly Book III Chap. CLXIX p.729-730 (Ascendant and Moon profected through the radical houses): 1 cheerful, provide what the body needs; 2 good to buy and sell, increase of estate; 3 prosper in journeys, converse with kin and religious men; 4 inheritance, new house, blessing from parents, mines, build or repair, but sorrowful and in danger of water, not good for long journeys; 5 pleasure, school or women, good to make covenants, send letters, perfect accounts; 6 sickness, hatred of the vulgar, ill servants, no journeys, ill time to deal in merchandise and contracts; 7 froward, women and wantonness, open enemies, quarrels and suits, good to marry the other significators concurring; 8 body or goods suffer by slander and treachery, no new contracts, not adventurous in trade; 9 long journeys, study and learning, church-men, chemistry; 10 ambition, preferment, eminent men, increase for the tradesman, safe journeys; 11 cheerful, friends increase, very prosperous in worldly affairs; 12 sickly, hidden causes, enmity of ill neighbours, danger of imprisonment or banishment, ill year for great cattle and horses. Table not checked line by line by the checker.",
-    "F_firdariaAndTiming": "Firdaria (Bonatti Pars V p.813-814): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2 (sum 75); day order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail; the Moon begins at night and the text says 'in all things as is said' for the Sun, but the position of the nodes in the night order and any subdivision of the node periods are NOT in the lines read, so they follow the engine's named firdariaNodes convention; sub-lords by sevenths in the order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars starting at the major lord. Profection timing (Lilly p.715-727): 30 degrees per year, about 12.17 days per degree (365.2422/30); round days to the nearest day (Lilly's example prints 284 for 23 deg 23 min; exact is about 284.7)."
+ "tradition": "western",
+ "method": "ORDER OF JUDGEMENT (Lilly, Christian Astrology 1647, Book III), VERIFIED against page images of the Wellcome copy of the 1647 edition (archive.org b30338724; printed page = PDF leaf minus 34; running head 'An Introduction to Nativities' for Book III). (1) NATAL PROMISE first: significators of the topic scored by essential and accidental dignity, judged by plurality of testimonies (p.561 'determine according to the plurality of testimonies'; table p.115). (2) ANNUAL PROFECTION second (Chap. CLXVI-CLXXI, p.715-733); Lilly says profections of themselves without directions are of little value (p.719), so strength 2. Bonatti (Pars V p.817-818, 1550) reads profection and revolution together. (3) SOLAR RETURN third (p.734-741). (4) TRANSITS last (p.741, day scale). Firdaria (Bonatti Pars V p.813-814) is a parallel period-lord. Directions are out of scope. WHAT CHANGED IN VERIFICATION: all tables compared cell by cell (see tables and western-verification-report.md); rules marked 'confirmed' were seen on the page, 'corrected' were restated from the page. The 32 held-back rules were re-derived from the pages where the passage could be read; the extractor's original condition text was not available to the verifier, so each is stated in full here. Four items stay unverified and are NOT in this file: lilly.general.plurality (a method statement, not a rule), lilly.travel.success-danger (page not read), valens.profection.pair-verdict and table E (the pair table was not found in the Riley text read). COMPUTABLE VALUES: 'now', 'small-addition', and the new 'needs-return-chart' for rules that need the planetary positions at the solar return, which the engine does not compute in v1; those are verified but cannot be bound yet. DIFFERENCES FROM THE ENGINE: Lilly's terms are Ptolemy's, not the Egyptian bounds in dignities.ts; two triplicity rulers per element by day and night, water is Mars for both (p.102, p.105: 'according to Ptolomy and Naibod'); Lilly's profection moves the Ascendant 30 degrees a year with two lords in a year when it crosses a sign (days truncated, p.727); Lilly uses Regiomontanus houses while the engine has whole-sign only (labelled variant). SIGNS NOTE: Lilly's glyphs in the 1647 print are read from the page images; where the glyph set is ambiguous the condition says so. Quotations are at most 25 words in the original spelling with the long s written as s. SECOND CHECK (adversarial reader): see secondCheck and the section at the end of western-verification-report.md. Riley page numbers are the folios printed at the FOOT of each page.",
+ "topicDefinitions": [
+  {
+   "topic": "wealth",
+   "definition": "Lilly's 'second house of Riches, or the goods of Fortune': estate, substance, money and how it is gained and kept, judged from the strength of the significators of substance.",
+   "significators": "Cusp of the 2nd house (from 5 degrees before the cusp), the lord of that house, lord of any sign intercepted in it, the Part of Fortune and its lords, Jupiter as general significator of wealth, planets in the 2nd. Lilly p.552 (Chap. CXIII), p.553-563 (Chap. CXIIII-CXVII).",
+   "source": "Lilly 1647, Book III, p.552-563; Ptolemy cited by Lilly at p.552",
+   "verification": "confirmed",
+   "note": "Significators confirmed p.552 (cusp of the 2nd from 5 degrees before, lord, lord of an intercepted sign, Part of Fortune and its lords, Jupiter, planets in the 2nd). 'Ptolemy extreame short' is on p.553, not p.552."
   },
-  "rules": [
-    {"id": "lilly.score.strength-classes", "name": "Planetary strength classes from Lilly's dignity scores", "stage": "modifier", "condition": "For each planet compute E (essential score, Table A, sect-aware triplicity) and A (accidental score, Table B). CLASS IS DEFINED ON E ALONE (derived, not Lilly's wording): STRONG if E >= +3; MODERATE if E is +1 or +2; WEAK if E < 0. A is carried as a separate flag 'afflicted' if A <= -5, so a planet is never in two classes. Thresholds 3 and -5 are the implementer's operationalisation of Lilly's words; his numbers are in the tables. 'Benevolent significator' (p.560) = Jupiter, Venus, or any planet standing in the dignities of a good planet.", "inputs": ["planet.longitude", "chart.sect", "table A", "table B"], "computable": "small-addition", "topics": ["general"], "direction": "activates", "strength": 3, "template": "{planet} is {class} in this chart (essential {E}, accidental {A}{afflictedFlag}).", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book I Chap. XVIII p.101-104 and table p.115; Book III Chap. CXVI p.560", "sourceOpened": true, "sourceLocator": "Book I p.101-104, 115; Book III p.560", "sourceQuote": "", "variants": "Egyptian bounds (engine now) and Dorothean three-ruler triplicities give different E values. Later writers let reception change a planet's class; Lilly counts mutual reception by house as 5 and by exaltation as 4 (p.115). The earlier quote 'we allow for that five dignities' was a fragment that does not support the classes and is removed.", "verification": "corrected", "verificationNote": "Class on E only, A as flag; thresholds labelled derived; unsupported quote removed."},
-    {"id": "lilly.wealth.promise-strong", "name": "Wealth promise: significators of substance strong", "stage": "natal-promise", "condition": "S_w = {domicile lord of the 2nd cusp sign; each planet in the 2nd (house from 5 degrees before the 2nd cusp to 5 degrees before the 3rd, or whole-sign variant); domicile lord of the sign holding the Part of Fortune; Jupiter}. Classes by E only. Part of Fortune = Asc + Moon - Sun by day, Asc + Sun - Moon by night. Outcomes: (i) at least half of S_w STRONG and at least half of S_w in angles (1, 4, 7, 10): 'a very great Estate, plenty of all things'; (ii) STRONG outnumber WEAK but (i) fails: comfortable estate by the number of fortitudes. 'At least half' and the (ii) wording are derived thresholds. Combinations not covered by the strong, weak and mixed wealth rules emit NO signal.", "inputs": ["lot of fortune longitude", "cusp 2 sign", "planets in house 2", "jupiter", "class per planet", "house per planet"], "computable": "small-addition", "topics": ["wealth"], "direction": "favourable", "strength": 3, "template": "The significators of wealth ({list}) are strong, with {n_angular} angular: the nativity promises a {level} estate.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIII-CXIIII; after Ptolemy Tetrabiblos IV.1 and Leovitius, Origanus as cited by Lilly", "sourceOpened": true, "sourceLocator": "Book III p.552-554 (Chap. CXIIII 'Whether the Native shall be Rich')", "sourceQuote": "", "variants": "Lilly follows Leovitius and Origanus and says Ptolemy is 'extreame short' (p.553). 'Lords of the Part of Fortune' may include the exaltation lord; the engine uses the domicile lord first. Whether the significators are fortunes or infortunes does not matter, only strength (p.553). Regiomontanus versus whole-sign houses change which planets count as in the 2nd. The quote used by the researcher supported the weak case, not this one, so none is shown.", "dedupeKey": "wealth-promise", "verification": "corrected", "verificationNote": "Thresholds labelled derived; classes by E only; unrelated quote removed; fall-through emits no signal."},
-    {"id": "lilly.wealth.promise-weak.all", "name": "Wealth promise: all significators of substance weak", "stage": "natal-promise", "condition": "With S_w as in lilly.wealth.promise-strong: every member of S_w is WEAK (E < 0). Verdict: poverty or great want.", "inputs": ["class per planet"], "computable": "small-addition", "topics": ["wealth"], "direction": "unfavourable", "strength": 3, "template": "All significators of wealth ({list}) are weak: the nativity promises want.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Poverty'", "sourceOpened": true, "sourceLocator": "Book III p.553-554", "sourceQuote": "all the Significators weak, argue poverty", "variants": "Same as lilly.wealth.promise-strong. The three branches were one rule in the source; the page locator is shared and a separate locator per branch was not recorded.", "dedupeKey": "wealth-promise", "verification": "corrected", "verificationNote": "Split from the original weak rule so each branch has its own id."},
-    {"id": "lilly.wealth.promise-weak.majority", "name": "Wealth promise: most significators weak, Fortunes cadent, Infortunes angular", "stage": "natal-promise", "condition": "More than half of S_w are WEAK and the Fortunes (Jupiter, Venus) are in cadent houses (3, 6, 9, 12) while the Infortunes (Saturn, Mars) are angular. Verdict: poverty or great want.", "inputs": ["class per planet", "house per planet"], "computable": "small-addition", "topics": ["wealth"], "direction": "unfavourable", "strength": 3, "template": "Most significators of wealth are weak, the Fortunes cadent and the Infortunes angular: want is promised.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Poverty'", "sourceOpened": true, "sourceLocator": "Book III p.553-554", "sourceQuote": "", "variants": "Same as lilly.wealth.promise-strong.", "dedupeKey": "wealth-promise", "verification": "corrected", "verificationNote": "Split; no quote seen for this branch."},
-    {"id": "lilly.wealth.promise-weak.moon-combust", "name": "Wealth promise: Moon combust with an unfortunate dispositor, or the Part of Fortune oppressed", "stage": "natal-promise", "condition": "The Moon is combust and her dispositor is an unfortunate planet (Saturn or Mars), OR the Part of Fortune (or its lord) is oppressed by the infortunes and cadent. Verdict: from a vast estate the Native comes to great want.", "inputs": ["moon combust", "dispositor of moon", "lot of fortune", "aspects"], "computable": "small-addition", "topics": ["wealth"], "direction": "unfavourable", "strength": 3, "template": "The Moon is combust and her dispositor {planet} is unfortunate (or the Part of Fortune is oppressed): loss of estate is promised.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Poverty'", "sourceOpened": true, "sourceLocator": "Book III p.553-554", "sourceQuote": "", "variants": "Lilly writes further aphorisms in the same passage; only the generic ones are kept.", "dedupeKey": "wealth-promise", "verification": "corrected", "verificationNote": "Split; no quote seen for this branch."},
-    {"id": "lilly.profection.lord-of-year-by-degree", "name": "Lord of the year from the profected Ascendant (Lilly by-degree; two lords when the sign changes)", "stage": "period-lord", "condition": "Lilly's 1647 method moves the Ascendant 30 degrees per solar year: profected Ascendant at t = natal Ascendant + 30 * (years elapsed since birth, fractional); the year runs from solar return to solar return. Lord of the year = domicile lord of the sign of the profected Ascendant. If the profected Ascendant crosses into the next sign during the year, two lords: the first for the days it takes to reach the boundary (about 12.17 days per degree, rounded to the nearest day), then the lord of the next sign. The whole-sign variant (one lord per year by age mod 12) is NOT a separate rule here: it is the same fact as valens.profection.transmission-lord and runs there only.", "inputs": ["natal ascendant longitude", "birth instant", "solar return instants", "age"], "computable": "now", "topics": ["general"], "direction": "activates", "strength": 2, "template": "Annual profection to {sign}: Lord of the year {lord} until {date}, then {lord2}.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXVI-CLXVIII 'Of annuall Profections'; 'How to judge upon a Figure of Projections'", "sourceOpened": true, "sourceLocator": "Book III p.715-716 (Chap. CLXVI), p.719-720 (Chap. CLXVII), p.727 (Chap. CLXVIII)", "sourceQuote": "the Lord of the yeer, who is ever that Planet that is Lord of the Signe ascending in the Profection", "variants": "Whole-sign profection (Valens IV.11, Bonatti p.817) keeps the same degree in each new sign. Bonatti (p.818) gives days by multiplying degrees to the next sign by 12 and one sixth. Lilly calls monthly and daily profections more scrupulous than necessary (p.716).", "dedupeKey": "profected-sign@year", "verification": "corrected", "verificationNote": "Two methods under one id separated; whole-sign duplicate dropped; days rounded."},
-    {"id": "lilly.profection.house-money", "name": "Profected Ascendant in the radical 2nd, 4th, 10th or 11th house (money)", "stage": "period-lord", "condition": "Profected Ascendant sign in radical house h counted by whole sign from the natal Ascendant sign: h = (profected sign index - natal Ascendant sign index) mod 12 + 1. Direction PER HOUSE: h=2 favourable (good to buy and sell, increase of estate); h=10 favourable (preferment, increase for the tradesman); h=11 favourable (very prosperous in worldly affairs); h=4 MIXED (inheritance, a new house, blessing from parents, but sorrowful, not good for long journeys). Emit one reading per (profected house, topic) from Table D; cross-references to other houses are not re-emitted. Lilly: profections of themselves without Directions are not of much validity, so strength is one notch below a natal promise.", "inputs": ["profected ascendant sign", "natal ascendant sign"], "computable": "now", "topics": ["wealth", "career"], "direction": "mixed", "directionByHouse": {"2": "favourable", "4": "mixed", "10": "favourable", "11": "favourable"}, "strength": 2, "template": "Profected Ascendant stands in the {h}th house ({sign}): a year favourable for {matter}.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX 'Of the Profections of the Ascendant and Moon, and what they signifie in every House'; Chap. CLXVII p.719", "sourceOpened": true, "sourceLocator": "Book III p.729-730 (Chap. CLXIX); p.719 (Chap. CLXVII)", "sourceQuote": "Profections of themselves without Directions are not of much validity", "variants": "Lilly's title refers to the Ascendant and the Moon profected through the houses; the Moon's profection is read from the same table. Whole-sign counting differs from Lilly's by-degree houses (Regiomontanus).", "dedupeKey": "profected-house:{h}", "verification": "corrected", "verificationNote": "Direction made per house; house 4 mixed; one reading per (house, topic)."},
-    {"id": "lilly.profection.house-relationships", "name": "Profected Ascendant in the radical 7th or 5th house (marriage and love)", "stage": "period-lord", "condition": "Profected Ascendant in radical house 7: inclined to women and wantonness, many open enemies, quarrels and lawsuits; 'good to marry, the other Significators concurring'. In house 5: pleasure according to his age, good for covenants, letters and accounts. Houses 8 and 12 are the cross-reference to the house-loss reading and are NOT emitted again here. One reading per (profected house, topic).", "inputs": ["profected ascendant sign", "natal ascendant sign"], "computable": "now", "topics": ["relationships"], "direction": "activates", "strength": 2, "template": "Profected Ascendant stands in the {h}th house: marriage, love and open enmity are the year's themes.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX", "sourceOpened": true, "sourceLocator": "Book III p.729", "sourceQuote": "", "variants": "Direction is 'activates' because the same year carries a good time to marry and quarrels.", "dedupeKey": "profected-house:{h}", "verification": "corrected", "verificationNote": "Duplicate 8th/12th sentence removed to avoid double counting."},
-    {"id": "lilly.profection.house-learning", "name": "Profected Ascendant in the radical 9th or 5th house (study)", "stage": "period-lord", "condition": "Profected Ascendant in radical house 9: a convenient time for study and learning, familiar with church-men. In house 5: at school with his equals. One reading per (profected house, topic).", "inputs": ["profected ascendant sign", "natal ascendant sign"], "computable": "now", "topics": ["learning"], "direction": "favourable", "strength": 2, "template": "Profected Ascendant stands in the {h}th house: a year for study.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX", "sourceOpened": true, "sourceLocator": "Book III p.729-730", "sourceQuote": "", "variants": "Split out of the original learning-and-travel rule.", "dedupeKey": "profected-house:{h}", "verification": "corrected", "verificationNote": "Split from house-travel-learning."},
-    {"id": "lilly.profection.house-travel", "name": "Profected Ascendant in the radical 9th, 3rd or 4th house (journeys)", "stage": "period-lord", "condition": "House 9: a convenient time for long journeys (favourable). House 3: prosper in journeys, converse with kindred (favourable). House 4: not good to go long journeys, danger in water (caution, MIXED, shown as a caution note). One reading per (profected house, topic).", "inputs": ["profected ascendant sign", "natal ascendant sign"], "computable": "now", "topics": ["home-travel"], "direction": "mixed", "directionByHouse": {"9": "favourable", "3": "favourable", "4": "mixed"}, "strength": 2, "template": "Profected Ascendant stands in the {h}th house: a year for {journeys}.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX", "sourceOpened": true, "sourceLocator": "Book III p.729-730", "sourceQuote": "", "variants": "The house-4 warning contradicts a travel-favourable reading; shown as a cautionary note.", "dedupeKey": "profected-house:{h}", "verification": "corrected", "verificationNote": "Split from house-travel-learning; per-house direction."},
-    {"id": "valens.profection.transmission-lord", "name": "Valens: the year transmits from the Ascendant, Sun and Moon by counting signs by age", "stage": "period-lord", "condition": "For the current year number N = age in completed years + 1, r = N mod 12 (12 when 0). From each of Ascendant, Sun, Moon count r signs inclusively: the receiving sign is (r - 1) signs after the starting sign (whole-sign profection, age mod 12). RECEIVER = the domicile lord of the receiving sign; each planet standing in that sign is a further, separate transmission. Worked check from Valens: the 35th year gives remainder 11 and counts from Virgo to Cancer. The pair verdict (Table E) and the benefic-count verdict are HELD BACK (unverified), so this rule emits 'activates' with the transmitter and receiver named, never a favourable or unfavourable verdict. This is the single whole-sign year-lord rule (Lilly whole-sign variant removed as a duplicate).", "inputs": ["age", "sign of Ascendant, Sun, Moon", "planets by sign", "domicile lords"], "computable": "now", "topics": ["general", "wealth", "career", "relationships", "health"], "direction": "activates", "strength": 2, "template": "Year {N}: {start} transmits to {receiver} (domicile lord of {receivingSign}).", "sourceCitation": "Vettius Valens, Anthologies Book IV ch. 11 'The operative year and the method of fractions', tr. Mark T. Riley (archive.org edition of 2019)", "sourceOpened": true, "sourceLocator": "Book IV ch. 11, Riley p.102-103 (the paragraph beginning 'when investigating the current year of a nativity')", "sourceQuote": "", "variants": "Valens also tabulates from Lots for critical illnesses, benefactions and dangers, counts from the four angles in the 'more scientific' method, and in IV.27 reports Seuthos's school starting from Sun, Moon, Ascendant or Lot of Fortune by sect.", "dedupeKey": "profected-sign@year", "verification": "corrected", "verificationNote": "Receiver defined; verdict part held back with the unverified pair table."},
-    {"id": "firdaria.lord-condition", "name": "Firdaria: the period lord and sub-lord are judged by their natal condition", "stage": "period-lord", "condition": "Major periods (Table F): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, North Node 3, South Node 2 (sum 75). Day birth begins with the Sun in the order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, then the Sun. Night birth begins with the Moon, 'in all things as is said' for the Sun: the order of the nodes in the night cycle and the absence of node sub-periods follow the engine's named firdariaNodes convention and are printed with every result. Each planetary major period is divided in seven equal parts starting with the major lord then the others in the order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars. Judgement: 'all these significators or disposers' act according to their condition: well disposed they increase fortunes and decrease misfortunes; badly disposed the reverse. Compute class (strength classes) and house for the major lord and the sub-lord; topics follow the houses the lord rules and occupies.", "inputs": ["birth sect", "firdaria periods and subperiods", "class per planet", "houses ruled and occupied by lord"], "computable": "now", "topics": ["general", "wealth", "career", "relationships", "health"], "direction": "mixed", "strength": 2, "template": "Firdaria: major lord {major}, sub-lord {minor} until {date}; major lord is {class}: indications for {topics} are {verdict}.", "sourceCitation": "Guido Bonatti, De astronomia tractatus X (Basel, 1550), Pars V, Caput III 'De annis Firdariae et ipsorum dispositionibus', Google-digitised copy on archive.org (bub_gb_BgWuc5O-JzIC)", "sourceOpened": true, "sourceLocator": "Pars V p.813-814 (scan leaf n415-416); the night-birth order and the position of the nodes within it are on p.814 and are not stated in the lines read", "sourceQuote": "Nam si natiuitas fuerit diurna, incipiet a Sole, quod est luminare diurnum", "variants": "Lilly (1647, p.733-734) gives a different septennial scheme (read from OCR, not verified): held back. The checker recalls the usual night order Moon, Saturn, Jupiter, Mars, Head, Tail, Sun, Venus, Mercury (unsourced memory, recorded as a candidate for firdariaNodes only). Attribution to Abu Ma'shar was not seen.", "verification": "corrected", "verificationNote": "Night order and node handling made an explicit named convention."},
-    {"id": "lilly.revolution.asc-hostile", "name": "Revolution: return Ascendant square or opposite the natal Ascendant, or in the signs of the bad radical houses 6 and 12", "stage": "activation", "condition": "Cast the solar return at the place of residence. Fires if the return Ascendant sign is square the natal Ascendant sign, or is the natal 6th or 12th house sign (the natal 7th, opposition, is NOT tested here: it belongs to lilly.revolution.seventh-asc, held back, and is omitted to avoid overlap, so opposition alone does not fire this rule). Verdict: loss and detriment that year according to the nature of the radical house that sign was; fear sickness and bodily weakness, especially if those houses were unfortunate in the radix.", "inputs": ["return ascendant sign", "natal house signs", "natal infortune positions"], "computable": "small-addition", "topics": ["general", "health"], "direction": "unfavourable", "strength": 2, "template": "The return Ascendant falls in the natal {h}th house sign: the year carries the troubles of that house.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII 'Of Revolutions'", "sourceOpened": true, "sourceLocator": "Book III p.736-737", "sourceQuote": "", "variants": "The returns of an infortune to its radical place (peril that year) are the separate lilly.revolution.returns-affliction rule, held back.", "dedupeKey": "return-asc-sign", "verification": "corrected", "verificationNote": "Overlap with the 7th-sign rule removed."},
-    {"id": "lilly.transit.daily-cusps", "name": "Transit by day over the radical Ascendant, Midheaven and radical planets (Lilly)", "stage": "activation", "condition": "Restricted to points the engine has: the natal Ascendant and Midheaven degrees and radical planet longitudes (cusps of the 2nd and 3rd house need Regiomontanus cusps and are not used). Transits found from an ephemeris: the day a planet passes the point or beholds it by sextile, square, trine or conjunction. Jupiter or Venus over the ascending degree: a healthful, cheerful, successful day; Mars over it: choler or passion for two or three days; Saturn: gravity, melancholy. Fortunate days: Jupiter, Venus, Sun or Moon in sextile or trine to the ascending or culminating degree or their own radical places. Unsuccessful days: Saturn or Mars over the ascending or culminating degrees or the radical places of Jupiter, Venus, Sun or Moon, or beholding them. Point orb is the transiting planet's half-orb (Table C): a derived choice, Lilly gives none.", "inputs": ["transit longitudes by day", "natal ascendant and midheaven", "natal planet longitudes", "table C"], "computable": "small-addition", "topics": ["general"], "direction": "mixed", "strength": 1, "template": "On {date}, transiting {planet} {aspect} the natal {point}: {meaning}.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXIIII 'Of the Transit of the Planets'", "sourceOpened": true, "sourceLocator": "Book III p.741", "sourceQuote": "The Transit of the Planets is best found out by an Ephemeris", "variants": "Lilly treats transits as day-scale only; he gives no year-scale rules for Jupiter and Saturn. The glyph list of fortunate days is OCR-damaged and read as Jupiter, Venus, Sun, Moon.", "verification": "corrected", "verificationNote": "Restricted to computable points; the 2nd-cusp 'money day' clause removed; topic general only."},
-    {"id": "valens.transit.jupiter-year-sign", "name": "Jupiter transiting the year sign or its square and opposite points", "stage": "activation", "condition": "The year sign is the PROFECTED SIGN (the receiving sign of the whole-sign profection), not the sign where its lord stands. If transiting Jupiter stands in the year sign or in a sign square or opposite it: with the time-lord well situated or in operative places (angles), great public services and high rank; with the time-lord unfavourably situated, delay and unsettledness. The 'Jupiter rising' modifier is dropped (no sourced elongation threshold). 'In any nativity Jupiter has an extraordinary effect.'", "inputs": ["jupiter transit sign", "profected sign", "class of lord of the year"], "computable": "small-addition", "topics": ["career", "wealth", "general"], "direction": "favourable", "strength": 2, "template": "Transiting Jupiter stands in {sign}, {relation} to the year sign {year_sign}: {verdict} for rank and public service.", "sourceCitation": "Vettius Valens, Anthologies Book IV ch. 14 'The phases and transits of the stars', tr. Mark T. Riley", "sourceOpened": true, "sourceLocator": "Book IV ch. 14, Riley p.107 (archive.org text lines 9082-9145)", "sourceQuote": "", "variants": "Houses are whole-sign (Valens' Places). Valens' 'rising' means heliacal visibility phases (dropped here).", "dedupeKey": "jupiter-transit-sign", "verification": "corrected", "verificationNote": "Year sign defined as the profected sign; rising dropped."},
-    {"id": "valens.critical-year-syzygy", "name": "Critical year: the year sign is the prenatal syzygy sign, its square or opposite, with Saturn in a cadent sign", "stage": "activation", "condition": "The profected year sign (counting years from the Ascendant sign) is the sign of the new or full Moon before birth, or the sign square or opposite it, AND Saturn is transiting one of the four signs that just precede the angles at the nativity (whole-sign houses 12, 3, 6, 9 from the Ascendant sign). Verdict (with the natal basis in accord): crisis of health; sometimes livelihood and rank if benefics do not aspect the body. The 'Saturn at its natal distance from the ruler of the prenatal syzygy' clause is dropped (not programmable as written).", "inputs": ["prenatal syzygy sign", "profected year sign", "saturn transit sign", "ascendant sign"], "computable": "small-addition", "topics": ["health"], "direction": "unfavourable", "strength": 2, "template": "Year {N} is in the sign of the prenatal {new or full} Moon or its square or opposition, and Saturn is in {sign}: a critical year for health.", "sourceCitation": "Vettius Valens, Anthologies Book V ch. 2 'The critical year. The ecliptic places. Initiatives', tr. Mark T. Riley", "sourceOpened": true, "sourceLocator": "Book V ch. 2, Riley p.124-125 (archive.org text lines 10582-10640)", "sourceQuote": "", "variants": "Nothing in the opened texts states a verdict for an eclipse on a natal point. Output wording is 'health caution' only; no mortality statement.", "dedupeKey": "critical-year", "verification": "corrected", "verificationNote": "Split into syzygy and node parts; unprogrammable clause dropped."},
-    {"id": "valens.critical-year-node", "name": "Critical period: Saturn at or square the lunar node", "stage": "activation", "condition": "Transiting Saturn conjunct or opposite the mean node (Valens' 'ecliptic places') or at the points square to them. Same-degree match is stronger and a same-sign match weaker and delayed; no orb is set by the text, so the engine uses same-sign as the weak form and 1 degree as the strong form (derived).", "inputs": ["saturn transit longitude", "mean node longitude"], "computable": "small-addition", "topics": ["health"], "direction": "unfavourable", "strength": 1, "template": "Saturn stands at the {node} or its square ({degreeMatch}): a critical period for health.", "sourceCitation": "Vettius Valens, Anthologies Book V ch. 2, tr. Mark T. Riley", "sourceOpened": true, "sourceLocator": "Book V ch. 2, Riley p.124-125 (archive.org text lines 10582-10640)", "sourceQuote": "", "variants": "Valens' 'ecliptic places' are the lunar nodes; the engine uses the mean node.", "dedupeKey": "critical-year", "verification": "corrected", "verificationNote": "Split out of the original critical-year rule."},
-    {"id": "lilly.aspects.orbs-table", "name": "Aspects and orbs as Lilly gives them", "stage": "modifier", "condition": "Five aspects only: conjunction (0), sextile (60), square (90), trine (120), opposition (180). Sextile and trine friendly (trine more forcibly), square imperfect enmity, opposition perfect hatred, conjunction good or bad as the planets are friends or enemies. Partile = same degree; platick = within the sum of the two planets' moieties. Orbs (primary column only, Table C): Saturn 10, Jupiter 12, Mars 7 30', Sun 17, Venus 8, Mercury 7, Moon 12 30'. Combustion within 8 deg 30' of the Sun in the same sign; under the beams to 17 degrees; cazimi within 17 minutes. Oriental superior planets between conjunction and opposition. Besieged between Saturn and Mars. The alternative orb column and the maximum elongations of Venus and Mercury are held back (unconfirmed).", "inputs": ["longitudes", "orbs table"], "computable": "now", "topics": ["general"], "direction": "activates", "strength": 2, "template": "{planet1} {aspect} {planet2}, {partile or platick}, orb {orb}.", "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book I Chap. XIX; table of orbs on p.107; combustion p.113-114", "sourceOpened": true, "sourceLocator": "Book I p.105-107, 113-114", "sourceQuote": "they stand thus as I have found by the best Authors and my owne Experience", "variants": "Sun's orb 17 or 15, Moon 12.5 or 12 by author; for planet-to-point Lilly gives no separate orb.", "verification": "corrected", "verificationNote": "Disputed alternative column and elongations removed."}
-  ]
+  {
+   "topic": "career",
+   "definition": "Honour, dignity, preferment and the quality and durability of the Native's public standing and profession.",
+   "significators": "Luminaries (the Sun most considerable) and planets that behold the Lights within the moiety of their orbs; the lord of the mid-heaven; planets in the mid-heaven. Lilly p.615 (Chap. CXLIIII), p.621-626.",
+   "source": "Lilly 1647, Book III, p.615-626",
+   "verification": "confirmed"
+  },
+  {
+   "topic": "relationships",
+   "definition": "Marriage and the wife or husband: whether, when, how easily, what kind. Man's significators are Venus and the Moon, then the 7th house and lord; the woman's significators (Sun and Mars) are from damaged OCR and are not used.",
+   "significators": "For a man: Venus and the Moon, the 7th house and its lord, planets in the 7th. Lilly p.587-600 (Chap. CXXX-CXXXVII).",
+   "source": "Lilly 1647, Book III, p.587-600",
+   "verification": "confirmed",
+   "note": "Man's significators Venus and Moon, the 7th and its lord, planets in the 7th confirmed p.587 (Chap. CXXX); woman's significators not read."
+  },
+  {
+   "topic": "health",
+   "definition": "Health of body, sickness and its kind (the sixth house).",
+   "significators": "The ascending sign and its lord; Sun and Moon; the 6th house and its lord; planets in the 6th; the 7th house and its lord. Lilly p.576-581.",
+   "source": "Lilly 1647, Book III, p.576-581",
+   "verification": "confirmed",
+   "note": "Confirmed p.576: Ascendant and lord, Sun and Moon, 6th and lord, planets in the 6th, 7th and lord."
+  },
+  {
+   "topic": "learning",
+   "definition": "Study, wisdom, science, scholarship. Lilly has no dedicated learning chapter in the pages read; the house table assigns Religion, Wisdom, Science, Learning and Scholarship to the ninth house and Mercury to scholars. Profection houses 9 and 5 carry the only extracted rule.",
+   "significators": "Ninth house and its lord, planets in the 9th, Mercury. Lilly p.557-558, 606-614.",
+   "source": "Lilly 1647, Book III, p.555-558, 606-614; no dedicated chapter found",
+   "verification": "not rechecked",
+   "note": "Not rechecked: the 9th house list (p.558: Religion, Wisdom, Science, Learning, Scholarship) is confirmed; no dedicated learning chapter was searched for."
+  },
+  {
+   "topic": "home-travel",
+   "definition": "Journeys and residence abroad (ninth house), kindred and short movements (third house), home, lands, patrimony and buildings (fourth house).",
+   "significators": "9th house and its lord, planets in the 9th, Moon and Mercury; 4th house for home. Lilly p.606-611, 558, 564.",
+   "source": "Lilly 1647, Book III, p.558, 564, 606-611",
+   "verification": "confirmed",
+   "note": "Significators of journeys confirmed p.606: 9th and lord, planets in the 9th, Moon and Mercury (Ptolemy adds Mars)."
+  },
+  {
+   "topic": "general",
+   "definition": "The overall fortune of the Native and of the year, from the strength of the Ascendant, its lord, the luminaries and the plurality of planets in essential dignity or debility.",
+   "significators": "All seven planets by essential and accidental fortitude; the Ascendant and its lord; Sun and Moon. Lilly p.551 (Chap. CXIII).",
+   "source": "Lilly 1647, Book III, p.551-552",
+   "verification": "not rechecked",
+   "note": "Not rechecked (p.551 not read)."
+  }
+ ],
+ "tables": {
+  "A_essentialDignities": {
+   "source": "Lilly 1647 Book I p.104 'A Table of the Essentiall Dignities of the Planets according to Ptolomy', read cell by cell at 300 to 700 dpi from the Wellcome scan; scores Book I p.101-103 and table p.115. Layout: each cell is planet glyph then number; a term runs from the previous end up to but not including the printed end degree (confirmed by the worked words on p.105: 'Jupiter 6, Venus 14... the first six degrees of Aries are the Termes of Jupiter').",
+   "scores": "own house +5 (p.101); exaltation +4 (p.102); triplicity +3 (p.102); term +2 (p.102); face +1 (p.103). Debilities: detriment -5; fall -4; peregrine -5 (a planet in its own decanate or face is not peregrine, p.103). Mutual reception by house +5, by exaltation +4 (p.115). A triplicity ruler counts only for the right sect (p.102: by night the Sun does not rule the fiery triplicity, Jupiter does).",
+   "termFormat": "lord and end degree; a term runs from the previous end (first begins at 0) up to but not including the end degree. Faces 0-10, 10-20, 20-30.",
+   "rows": [
+    "Aries | Mars (D) | Sun 19 | Sun / Jupiter | Jupiter 6, Venus 14, Mercury 21, Mars 26, Saturn 30 | Mars, Sun, Venus | det Venus | fall Saturn",
+    "Taurus | Venus (N) | Moon 3 | Venus / Moon | Venus 8, Mercury 15, Jupiter 22, Saturn 26, Mars 30 | Mercury, Moon, Saturn | det Mars | fall none",
+    "Gemini | Mercury (D) | Dragon's Head 3 | Saturn / Mercury | Mercury 7, Jupiter 14, Venus 21, Saturn 25, Mars 30 | Jupiter, Mars, Sun | det Jupiter | fall Dragon's Tail",
+    "Cancer | Moon | Jupiter 15 | Mars / Mars | Mars 6, Jupiter 13, Mercury 20, Venus 27, Saturn 30 | Venus, Mercury, Moon | det Saturn | fall Mars",
+    "Leo | Sun | none | Sun / Jupiter | Saturn 6, Mercury 13, Venus 19, Jupiter 25, Mars 30 | Saturn, Jupiter, Mars | det Saturn | fall none",
+    "Virgo | Mercury (N) | Mercury 15 | Venus / Moon | Mercury 7, Venus 13, Jupiter 18, Saturn 24, Mars 30 | Sun, Venus, Mercury | det Jupiter | fall Venus",
+    "Libra | Venus (D) | Saturn 21 | Saturn / Mercury | Saturn 6, Venus 11, Jupiter 19, Mercury 24, Mars 30 | Moon, Saturn, Jupiter | det Mars | fall Sun",
+    "Scorpio | Mars (N) | none | Mars / Mars | Mars 6, Jupiter 14, Venus 21, Mercury 27, Saturn 30 | Mars, Sun, Venus | det Venus | fall Moon",
+    "Sagittarius | Jupiter (D) | Dragon's Tail 3 | Sun / Jupiter | Jupiter 8, Venus 14, Mercury 19, Saturn 25, Mars 30 | Mercury, Moon, Saturn | det Mercury | fall Dragon's Head",
+    "Capricorn | Saturn (N) | Mars 28 | Venus / Moon | Venus 6, Mercury 12, Jupiter 19, Mars 25, Saturn 30 | Jupiter, Mars, Sun | det Moon | fall Jupiter",
+    "Aquarius | Saturn (D) | none | Saturn / Mercury | Saturn 6, Mercury 12, Venus 20, Jupiter 25, Mars 30 | Venus, Mercury, Moon | det Sun | fall none",
+    "Pisces | Jupiter (N) | Venus 27 | Mars / Mars | Venus 8, Jupiter 14, Mercury 20, Mars 26, Saturn 30 | Saturn, Jupiter, Mars | det Mercury | fall Mercury"
+   ],
+   "exaltationDegrees": "Sun 19 Aries, Moon 3 Taurus, Jupiter 15 Cancer, Mercury 15 Virgo, Saturn 21 Libra, Mars 28 Capricorn, Venus 27 Pisces, Dragon's Head 3 Gemini (text p.103 and table), Dragon's Tail 3 Sagittarius (table only).",
+   "triplicity": "Fire: Sun by day, Jupiter by night. Earth: Venus by day, Moon by night. Air: Saturn by day, Mercury by night. Water: Mars by day and night 'according to Ptolomy and Naibod' (p.102, p.105). No participating ruler.",
+   "differencesFromOriginal": [
+    "Gemini exaltation cell: original 'node row held'; page: Dragon's Head 3 degrees (text p.103: 'in 3 degr. Gemini' and table glyph).",
+    "Gemini fall cell: original held; table shows the Dragon's Tail glyph, consistent with p.105 ('Fall: opposite to the Exaltation') because the Tail is exalted in Sagittarius. Glyph is small: confirmed by that consistency, not by an unambiguous glyph.",
+    "Sagittarius exaltation cell: Dragon's Tail 3 (table glyph, two-loop sign); fall cell: Dragon's Head (same consistency argument).",
+    "Libra fourth term lord at 24 degrees: Mercury (glyph clear at 700 dpi); the original doubt is removed.",
+    "Aquarius night triplicity: Mercury (glyph clear at 700 dpi).",
+    "Water triplicity Mars by day and night: confirmed twice in the text (p.102 'who night and day ruleth the watry Triplicity'; p.105)."
+   ],
+   "uncertainCells": [],
+   "secondCheck": "Second reader: all twelve rows read cell by cell on the p.104 page image (houses, exaltation, triplicity, five terms, three faces, detriment, fall, bottom row of scores 5,4,3,2,1,5,4). Layout confirmed as glyph then number, the bar falling after the number. Every cell agrees with the table as given; where the Venus and Mercury glyphs are too small to tell apart at 2x the cell was settled by the Ptolemaic term pattern and by the previous reader's higher-resolution reading. Water triplicity (Mars by day and by night) confirmed in the text of p.105 (OCR). Dragon's Head and Tail cells: exaltations legible; falls follow from 'opposite to the exaltation' (p.105)."
+  },
+  "B_accidentalFortitudes": "Lilly Book I p.115 table, read from the scan. Fortitudes: in the Midheaven or Ascendant +5; 7th, 4th, 11th +4; 2nd, 5th +3; 9th +2; 3rd +1; direct +4 (void for Sun and Moon); swift +2; Saturn, Jupiter, Mars oriental +2; Venus and Mercury occidental +2; Moon increasing in light or occidental +2; free from combustion and beams +5; cazimi +5; partile conjunction with Jupiter or Venus +5; with the Dragon's Head +4; partile trine to Jupiter or Venus +4; partile sextile to Jupiter or Venus +3; (fixed-star rows Cor Leonis +6, Spica +5 need star data: not computable). Debilities: 12th house -5; 8th and 6th -2; retrograde -5; slow -2; Saturn, Jupiter, Mars occidental -2; Venus and Mercury oriental -2; Moon decreasing -2; combust -5; under the beams -4; partile conjunction with Saturn or Mars -5; with the Dragon's Tail -4; besieged by Saturn and Mars -5; partile opposition to Saturn or Mars -4; partile square -3; (Caput Algol -5 needs star data). Definitions p.112-114: combust within 8 deg 30' of the Sun in the same sign; under the beams to 17 degrees; cazimi within 17 minutes; partile = same degree. The Venus 48 and Mercury 28 maximum elongations were not confirmed (held back). VERIFIED against Lilly p.115 (every row and number matches); definitions p.113-114 checked: combust 8 deg 30' in the same sign, under the beams 17 degrees, cazimi 17 minutes (p.113); Venus 48 and Mercury 28 maximum elongations confirmed (p.114, 'though some allow a few more'); orientality defined by degrees of the Sun's sign (p.114). Caput Algol -5 applies in 20 Taurus or within five degrees (p.115). Differences found: none in numbers; the original wording 'Moon increasing in light or occidental +2' matches 'The Moon encreasing, or when she is Occidentall 2'. SECOND CHECK: every row of p.115 read on the page image, fortitudes (5,4,3,2,1; direct 4; swift 2; orientality 2; Moon 2; free of combustion 5; cazimi 5; partile conjunction 5 and 4; trine 4; sextile 3; Cor Leonis 6; Spica 5) and debilities (5,4,5; 5,2,5,2,2,2,2,5,4; 5,4,5,4,3; Algol 5): no difference. Definitions on pp.113-114 re-read in the OCR text: combust 8 deg 30 min in the same sign, beams 17 degrees, cazimi 17 minutes, Mercury 28 and Venus 48.",
+  "C_aspectsOrbs": "Lilly Book I p.105-107. Aspects: conjunction 0, sextile 60, square 90, trine 120, opposition 180 (p.105-106). Orbs of rays (first column, p.107): Saturn 10 deg, Jupiter 12, Mars 7 deg 30', Sun 17, Venus 8, Mercury 7, Moon 12 deg 30'. Second column ('according to others'; Lilly: 'I sometimes use the one, and sometimes the other'): Saturn 9, Jupiter 9, Mars 7, Sun 15, Venus 7, Mercury 7, Moon 12. Platick when the distance from the exact aspect is no more than the sum of half of each orb (his example: Venus in 10 Taurus and Saturn in 18 Virgo, moieties 4 and 5, distance 8, p.107). No differences from the original first column; the second column and the elongation limits are now confirmed (the held-back doubt about Mars 7 versus 8 is settled: p.107 prints 7 30' and 7). SECOND CHECK: both columns (10, 12, 7 30, 17, 8, 7, 12 30 and 9, 9, 7, 15, 7, 7, 12) read on the p.107 page image; platick example confirmed.",
+  "D_profectionHouseTable": "Lilly Book III Chap. CLXIX p.729-730 (Ascendant and Moon profected through the radical houses): 1 cheerful, provide what the body needs; 2 good to buy and sell, increase of estate; 3 prosper in journeys, converse with kin and religious men; 4 inheritance, new house, blessing from parents, mines, build or repair, but sorrowful and in danger of water, not good for long journeys; 5 pleasure, school or women, good to make covenants, send letters, perfect accounts; 6 sickness, hatred of the vulgar, ill servants, no journeys, ill time to deal in merchandise and contracts; 7 froward, women and wantonness, open enemies, quarrels and suits, good to marry the other significators concurring; 8 body or goods suffer by slander and treachery, no new contracts, not adventurous in trade; 9 long journeys, study and learning, church-men, chemistry; 10 ambition, preferment, eminent men, increase for the tradesman, safe journeys; 11 cheerful, friends increase, very prosperous in worldly affairs; 12 sickly, hidden causes, enmity of ill neighbours, danger of imprisonment or banishment, ill year for great cattle and horses. Table not checked line by line by the checker. VERIFIED line by line against p.729-730: all twelve entries match. Two omissions noted: house 8 on the page adds 'sometimes death, if the Hyleg come to any mortall Direction' (not used in output); house 12 on the page adds 'unlesse the twelft house in the Radix was fortunate'. Page: Chap. CLXIX p.729-730 is correct; Lilly's title says the Ascendant AND the Moon. SECOND CHECK: all twelve lines re-read (OCR text of pp.729-730); no difference.",
+  "D2_profectionMcSunTable": "Lilly Book III Chap. CLXX p.731-732 (profection of the Midheaven and the Sun through the radical houses): 1 good fortune by public employment, profession or service to a great person; 2 the profits of former employment received; 3 an indifferent condition (loss of kindred, robbery in journeying); 4 fame in question, parents agree ill; 5 merry, wanton, spending more than he gets; 6 nothing succeeds in honourable matters; 7 esteem and repute increase, favour of women of account; 8 scandal and slander, melancholy; 9 long journeys for honour and renown; 10 a very successful and famous year; 11 kindness to friends, mutual respect; 12 detriment in reputation, honour and fame. SECOND CHECK: all twelve sentences re-read (OCR text of pp.731-732); no difference. The reading of the houses is confirmed by the page itself (house 3 'the sixth house from the tenth').",
+  "F_firdariaAndTiming": "Firdaria (Bonatti, De astronomia tractatus X, Basel 1550, Pars V Caput III, p.813-814, Latin, read on the page image): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2, all together seventy-five years; day order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, back to the Sun; night births begin with the Moon and 'fiet in omnibus & per omnia' as for the Sun; the night position of the nodes and any subdivision of the node periods are not stated, so they follow the engine's named firdariaNodes convention; sub-lords by sevenths in the cyclic order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars starting with the major lord. NO DIFFERENCES from the original table. Lilly's alternative (Book III p.733-734): 'Lords of the Septenniall yeers, vulgarly called Lords of the Alfridary': day birth Sun the first seven years, Venus the next seven, Mercury the next seven, 'and so in order'; night birth Moon the first seven years, Saturn the next seven, then (glyph on p.734, read as Jupiter) the next seven; this is a seven-year scheme and is not bound. Profection arithmetic (Lilly p.715-718, 727): 30 degrees a year from solar return to solar return; a degree of profection is 12 days 4 hours 12 minutes (p.718), equal to 365.2422/30 = 12.174 days; Lilly drops the hours (23 deg 23 min = 284 days 16 hours, read as 284, p.727), so days are truncated, not rounded. SECOND CHECK: Bonatti pp.813-814 read on the page image: Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2, total 75; order; sevenths; night 'in omnibus & per omnia'. Lilly p.727 example (284 days 16 hours, read as 284) re-read.",
+  "E_valensPairs": "NOT VERIFIED and not included: the pair table was not found in the Riley text (IV.5 states only a few pair effects, p.97 of Riley, which do not form a good/bad/mixed grid). SECOND CHECK: not attempted (table not in the file)."
+ },
+ "rules": [
+  {
+   "id": "lilly.score.strength-classes",
+   "name": "Planetary strength classes from Lilly's dignity scores",
+   "stage": "modifier",
+   "condition": "For each planet compute E (essential score, Table A, sect-aware triplicity) and A (accidental score, Table B). CLASS IS DEFINED ON E ALONE (derived, not Lilly's wording): STRONG if E >= +3; MODERATE if E is +1 or +2; WEAK if E < 0; E = 0 is unclassed (no signal). A is carried as a separate flag 'afflicted' if A <= -5, so a planet is never in two classes. The thresholds 3 and -5 are the implementer's operationalisation of Lilly's words; only the scores in the tables are his. A planet in its own term or face is not peregrine (p.103). 'Benevolent significator' (p.560) = Jupiter, Venus, or any planet standing in the dignities of a good planet.",
+   "inputs": [
+    "planet.longitude",
+    "chart.sect",
+    "table A",
+    "table B"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "general"
+   ],
+   "direction": "activates",
+   "strength": 3,
+   "template": "{planet} is {class} in this chart (essential {E}, accidental {A}{afflictedFlag}).",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book I Chap. XVIII p.101-104 and table p.115; Book III Chap. CXVI p.560",
+   "sourceLocator": "Book I p.101 (house = five), p.102 (exaltation four, triplicity three, terme two), p.103 (face one; own decanate or face is not peregrine), p.104 (table), p.115 (scores); Book III p.560 (benevolent significator)",
+   "sourceQuote": "A Planet is then said to be really strong when he hath many Essentiall dignities",
+   "variants": "Egyptian bounds (engine now) and Dorothean three-ruler triplicities give different E values. Lilly counts mutual reception by house as 5 and by exaltation as 4 (p.115).",
+   "verification": "confirmed",
+   "verificationNote": "Scores (5, 4, 3, 2, 1; detriment -5, fall -4, peregrine -5; reception 5 and 4) seen on p.115 and in the text of p.101-103. Sect-aware triplicity seen on p.102 (the Sun by night does not rule the fiery triplicity, Jupiter does). The class thresholds are not in Lilly and stay labelled derived. E = 0 is left unclassed here because the original left it undefined.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Scores seen in the p.104 table (bottom row 5,4,3,2,1; 5,4) and p.115; the quotation found on p.101 (not p.101-104 as a block)."
+  },
+  {
+   "id": "lilly.wealth.promise-strong",
+   "name": "Wealth promise: significators of substance strong and angular",
+   "stage": "natal-promise",
+   "condition": "S_w = {domicile lord of the 2nd cusp sign; each planet in the 2nd (house from 5 degrees before the 2nd cusp to 5 degrees before the 3rd, or whole-sign variant); domicile lord of the sign holding the Part of Fortune; Jupiter}. (Lilly also lists the lord of an intercepted sign and 'the Lords' of the Part of Fortune; interception does not exist in whole signs, and the engine uses the domicile lord only.) Part of Fortune = Asc + Moon - Sun by day, Asc + Sun - Moon by night. Fires if MORE THAN HALF of S_w stand in angles (1, 4, 7, 10) and the same significators are essentially dignified (derived: more than half of S_w STRONG, class on E). Verdict: a very great estate, plenty of all things. The moderate case is its own rule (lilly.wealth.promise-moderate). Combinations not covered by the strong, moderate, weak, mixed rules emit NO signal.",
+   "inputs": [
+    "lot of fortune longitude",
+    "cusp 2 sign",
+    "planets in house 2",
+    "jupiter",
+    "class per planet",
+    "house per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 3,
+   "template": "The significators of wealth ({list}) are strong, with {n_angular} angular: the nativity promises a very great estate.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIII-CXIIII; after Leovitius and Origanus as cited by Lilly",
+   "sourceLocator": "Book III p.552 (significators), p.553 (Chap. CXIIII 'Whether the Native shall be Rich')",
+   "sourceQuote": "viz. in angles, or the greater part of them, and be also essentially dignified",
+   "variants": "Lilly follows Leovitius and Origanus and calls Ptolemy extreame short (p.553). Whether significators are Fortunes or Infortunes does not matter, only strength (p.553). Regiomontanus versus whole-sign houses change which planets count as in the 2nd.",
+   "dedupeKey": "wealth-promise",
+   "verification": "corrected",
+   "verificationNote": "Page says 'in angles, or the greater part of them' and 'essentially dignified': the original 'at least half' for angles is changed to more than half (greater part). The original branch (ii) 'comfortable estate' is not Lilly's wording; his sentence for moderate fortification is 'shall not exceed or want' and is now a separate rule. 'Intercepted sign' and plural lords of the Part of Fortune added as noted differences from the engine.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page image p.553 read through OCR text; \"angles, or the greater part of them\" and \"essentially dignified\" present. Significators list read p.552."
+  },
+  {
+   "id": "lilly.wealth.promise-moderate",
+   "name": "Wealth promise: significators moderately fortified",
+   "stage": "natal-promise",
+   "condition": "With S_w as in lilly.wealth.promise-strong: every member of S_w is MODERATE (E +1 or +2; derived class). Verdict: the native shall neither exceed nor want (a middling estate).",
+   "inputs": [
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "The significators of wealth ({list}) are moderately fortified: neither abundance nor want is promised.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII",
+   "sourceLocator": "Book III p.553",
+   "sourceQuote": "if moderately fortified, the Native shall not exceed or want",
+   "variants": "'Moderately fortified' is not defined by Lilly; the class mapping is derived.",
+   "dedupeKey": "wealth-promise",
+   "verification": "corrected",
+   "verificationNote": "New rule that replaces branch (ii) of the original strong rule; the sentence is on the page.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence present on p.553."
+  },
+  {
+   "id": "lilly.wealth.promise-weak.all",
+   "name": "Wealth promise: all significators of substance weak",
+   "stage": "natal-promise",
+   "condition": "With S_w as in lilly.wealth.promise-strong: every member of S_w is WEAK (E < 0; derived mapping of Lilly's 'weak'). Verdict: poverty.",
+   "inputs": [
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "unfavourable",
+   "strength": 3,
+   "template": "All significators of wealth ({list}) are weak: the nativity promises want.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII",
+   "sourceLocator": "Book III p.553",
+   "sourceQuote": "all the Significators weak, argue poverty",
+   "variants": "Lilly's 'weak' includes accidental debility; the mapping to E < 0 is derived.",
+   "dedupeKey": "wealth-promise",
+   "verification": "confirmed",
+   "verificationNote": "Sentence seen on p.553 (scan image). Page locator is p.553, not p.553-554.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence present on p.553."
+  },
+  {
+   "id": "lilly.wealth.promise-weak.majority",
+   "name": "Wealth promise: Infortunes angular and Fortunes succedent",
+   "stage": "natal-promise",
+   "condition": "The Infortunes (Saturn, Mars) are in angles (1, 4, 7, 10) AND the Fortunes (Jupiter, Venus) are in succedent houses (2, 5, 8, 11). Verdict: from a vast estate the native comes to great want ('and so the contrary' is not coded). The original 'Fortunes cadent' and 'more than half of S_w weak' are not on the page.",
+   "inputs": [
+    "house per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "The Infortunes stand in angles and the Fortunes in succedent houses: Lilly lists this among the signs of poverty.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Poverty'",
+   "sourceLocator": "Book III p.554 (scan image read)",
+   "sourceQuote": "the Infortunes in angles, and Fortunes in succedant",
+   "variants": "Lilly joins this to the next signs with 'or'; the verdict clause follows the whole list. Strength lowered to 2 because the list is joined with 'or' and each member alone carries the verdict only by the shared clause.",
+   "dedupeKey": "wealth-promise",
+   "verification": "corrected",
+   "verificationNote": "Page says Fortunes in SUCCEDANT, not cadent, and has no 'more than half weak' clause. Rewritten.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page image p.554 read: \"the Infortunes in angles, and Fortunes in succedant\" (succedant, not cadent)."
+  },
+  {
+   "id": "lilly.wealth.promise-weak.moon-combust",
+   "name": "Wealth promise: Moon combust with unfortunate dispositor, or the place of the lunation oppressed",
+   "stage": "natal-promise",
+   "condition": "Either (a) the Moon is combust (same sign as the Sun, within 8 deg 30', p.113) and her dispositor is an Infortune (Saturn or Mars); or (b) the sign-degree of the prenatal conjunction or opposition of the Sun and Moon (Lilly's glyphs here are conjunction and opposition, not the Part of Fortune) is oppressed by the Infortunes and they are cadent, the lord of that place being an Infortune and strong, or Jupiter cadent with a dispositor not potent. Verdict: from a vast estate the native comes to great want. 'Oppressed' is read as: an Infortune in conjunction or in square or opposition by whole sign (derived).",
+   "inputs": [
+    "moon combust",
+    "dispositor of moon",
+    "prenatal syzygy longitude",
+    "aspects",
+    "houses"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "The Moon is combust and her dispositor {planet} is an Infortune (or the lunation point is oppressed): loss of estate is promised.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Poverty'",
+   "sourceLocator": "Book III p.554 (scan image read at 300 dpi)",
+   "sourceQuote": "the ☽ combust, and her Dispositor infortunate",
+   "variants": "The printed glyphs after 'the place of the' are a conjunction sign and an opposition sign (compare the square and opposition glyphs two lines above), so the place meant is the syzygy.",
+   "dedupeKey": "wealth-promise",
+   "verification": "corrected",
+   "verificationNote": "Original read the glyphs as Part of Fortune; the scan shows conjunction and opposition. Clause (b) restated; 'oppressed' operationalisation labelled derived. Strength lowered to 2 as in the sibling rule.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page image p.554 read: the Moon combust and her Dispositor infortunate; the place of the conjunction or opposition oppressed by the Infortunes and they cadent, its lord an Infortune and strong, or Jupiter (glyph legible) cadent with a dispositor not potent."
+  },
+  {
+   "id": "lilly.profection.lord-of-year-by-degree",
+   "name": "Lord of the year from the profected Ascendant (Lilly by-degree; two lords when the sign changes)",
+   "stage": "period-lord",
+   "condition": "Lilly gives 30 degrees to a solar year (p.715-716): the profected Ascendant at time t = natal Ascendant + 30 * (years elapsed since birth, fractional); a year runs from solar return to solar return (p.716). Lord of the year = domicile lord of the sign of the profected Ascendant (p.720, p.727). If the profected Ascendant crosses into the next sign during the year there are two lords: the first rules for the arc remaining to the sign boundary at 12 days 4 hours 12 minutes per degree (p.718; = 365.2422/30 per degree), counted in WHOLE DAYS with the hours dropped (Lilly's example: 23 deg 23 min = 284 days 16 hours, he reads 284, p.727), then the lord of the next sign rules until the next solar return. If the year begins at 0 degrees of a sign there is one lord. The whole-sign variant is the same fact as valens.profection.transmission-lord and runs there only.",
+   "inputs": [
+    "natal ascendant longitude",
+    "birth instant",
+    "solar return instants",
+    "age"
+   ],
+   "computable": "now",
+   "topics": [
+    "general"
+   ],
+   "direction": "activates",
+   "strength": 2,
+   "template": "Annual profection to {sign}: Lord of the year {lord} until {date}, then {lord2}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXVI-CLXVIII 'Of annuall Profections'; 'How to judge upon a Figure of Projections'",
+   "sourceLocator": "Book III p.715-716 (Chap. CLXVI), p.718 (a degree = 12 days 4 hours 12 minutes), p.720 (Chap. CLXVII: two lords when the middle of a sign ascends), p.727 (Chap. CLXVIII, worked example)",
+   "sourceQuote": "the Lord of the yeer, who is ever that Planet that is Lord of the Signe ascending in the Profection",
+   "variants": "Whole-sign profection (Valens IV.11, Bonatti Pars V p.817) keeps the same degree in each new sign and gives one lord a year. Lilly calls monthly and daily profections more scrupulous than necessary (p.716). Bonatti p.818 gives days by multiplying degrees to the next sign by 12 and one sixth.",
+   "dedupeKey": "profected-sign@year",
+   "verification": "corrected",
+   "verificationNote": "Quote and method confirmed on p.727 and p.720. Correction: Lilly drops the hours (284 days 16 hours is read as 284, p.727), so days are truncated, not rounded as the original said. Locators corrected: the quoted sentence is on p.727, not p.715-716.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Worked example read on p.727 (23 degrees 23 minutes; 284 days 16 hours; he reads 284); two lords when a sign is crossed (p.727, p.720). Note that Lilly then looks 284 up as a day number in a table of the year; the date of the change is therefore the implementer's, and the day count itself (truncated) is what the page gives."
+  },
+  {
+   "id": "lilly.profection.house-money",
+   "name": "Profected Ascendant in the radical 2nd, 4th, 10th or 11th house (money)",
+   "stage": "period-lord",
+   "condition": "Profected Ascendant sign in radical house h counted by whole sign from the natal Ascendant sign: h = (profected sign index - natal Ascendant sign index) mod 12 + 1. Direction PER HOUSE: h=2 favourable (good to buy and sell, proper time for increase of estate); h=10 favourable (preferment; the tradesman follows his employment with much increase); h=11 favourable (the year very prosperous in all worldly affairs); h=4 MIXED (inheritance, a new house, search for wealth in the earth, but sorrowful and fearful). Cautionary readings Lilly also gives for money and now added: h=6 and h=8 unfavourable for contracts and trade (see lilly.profection.house-loss). One reading per (profected house, topic). Lilly's title says the Ascendant AND the Moon are profected through the houses; the Moon is read from the same table.",
+   "inputs": [
+    "profected ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "wealth",
+    "career"
+   ],
+   "direction": "mixed",
+   "directionByHouse": {
+    "2": "favourable",
+    "4": "mixed",
+    "10": "favourable",
+    "11": "favourable"
+   },
+   "strength": 2,
+   "template": "Profected Ascendant stands in the {h}th house ({sign}): a year favourable for {matter}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX 'Of the Profections of the Ascendant and Moon, and what they signifie in every House'; Chap. CLXVII p.719",
+   "sourceLocator": "Book III p.729-730 (Chap. CLXIX); p.719 (Chap. CLXVII)",
+   "sourceQuote": "Profections of themselves without Directions are not of much validity",
+   "variants": "Lilly's by-degree houses are Regiomontanus; whole-sign counting is a labelled variant. House 10 here (square to the Ascendant) conflicts with Lilly's general remark on p.720 that years falling in square or opposition to the horoscope or mid-heaven are unhappy (see lilly.profection.angle-aspect-years).",
+   "dedupeKey": "profected-house:{h}",
+   "verification": "confirmed",
+   "verificationNote": "Each house sentence compared with p.729-730: houses 2, 4, 10, 11 and their directions match the page. Quote seen on p.719.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Entries for houses 2, 4, 10, 11 compared on p.729-730; quotation on p.719. Note the page itself says (p.720) that years in square or opposition to the Horoscope or Midheaven are unhappy, which conflicts with house 10 here; both rules stay and are shown together."
+  },
+  {
+   "id": "lilly.profection.house-relationships",
+   "name": "Profected Ascendant in the radical 7th or 5th house (marriage, women)",
+   "stage": "period-lord",
+   "condition": "Profected Ascendant in radical house 7: froward and impatient, easily inclined to women and wantonness, many open enemies, wrangling and suits; 'it's good to marry, the other Significators concurring'. In house 5: pleasure according to age, at school with equals or with women if capable; covenants, letters and accounts good. The 5th-house text names women but not marriage or love. One reading per (profected house, topic).",
+   "inputs": [
+    "profected ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "activates",
+   "strength": 2,
+   "template": "Profected Ascendant stands in the {h}th house: {themes}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX",
+   "sourceLocator": "Book III p.729",
+   "sourceQuote": "it's good to marry, the other Significators concurring",
+   "variants": "Direction is 'activates' because the same year carries a good time to marry and quarrels. Whole-sign counting differs from Lilly's house cusps.",
+   "dedupeKey": "profected-house:{h}",
+   "verification": "corrected",
+   "verificationNote": "House 7 confirmed. House 5 sentence in the original ('marriage, love') is not on the page; corrected to pleasure and women if capable.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "House 7 and house 5 sentences compared on p.729."
+  },
+  {
+   "id": "lilly.profection.house-learning",
+   "name": "Profected Ascendant in the radical 9th or 5th house (study)",
+   "stage": "period-lord",
+   "condition": "House 9: a convenient time for long journeys, good to study and to follow learning, familiar with church-men (favourable). House 5: at school with his equals, according to his age (activates only; a description, no verdict). One reading per (profected house, topic).",
+   "inputs": [
+    "profected ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "learning"
+   ],
+   "direction": "favourable",
+   "directionByHouse": {
+    "9": "favourable",
+    "5": "activates"
+   },
+   "strength": 2,
+   "template": "Profected Ascendant stands in the {h}th house: {themes}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX",
+   "sourceLocator": "Book III p.729 (house 5), p.730 (house 9)",
+   "sourceQuote": "it's good to study and to follow Learning",
+   "variants": "Whole-sign counting differs from Lilly's house cusps.",
+   "dedupeKey": "profected-house:{h}",
+   "verification": "corrected",
+   "verificationNote": "House 9 confirmed. House 5 is a description tied to age, not a favourable verdict; direction set to activates for that house.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "House 9 sentence compared on p.730; house 5 on p.729."
+  },
+  {
+   "id": "lilly.profection.house-travel",
+   "name": "Profected Ascendant in the radical 3rd, 4th, 6th, 9th or 10th house (journeys)",
+   "stage": "period-lord",
+   "condition": "House 9: convenient time to undertake long journeys (favourable). House 3: may prosper in journeys (favourable). House 10: may journey by land or sea with good safety and reputation (favourable). House 4: not good to go long journeys, danger of water (mixed, caution note). House 6: make no journeys (caution). One reading per (profected house, topic).",
+   "inputs": [
+    "profected ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "home-travel"
+   ],
+   "direction": "mixed",
+   "directionByHouse": {
+    "9": "favourable",
+    "3": "favourable",
+    "10": "favourable",
+    "4": "mixed",
+    "6": "unfavourable"
+   },
+   "strength": 2,
+   "template": "Profected Ascendant stands in the {h}th house: {themes}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX",
+   "sourceLocator": "Book III p.729 (houses 3, 4, 6), p.730 (houses 9, 10)",
+   "sourceQuote": "a convenient time to undertake long Journeys",
+   "variants": "The house-4 warning contradicts a travel-favourable reading; shown as a cautionary note.",
+   "dedupeKey": "profected-house:{h}",
+   "verification": "corrected",
+   "verificationNote": "Houses 3, 4, 9 confirmed; houses 10 (safe journeys) and 6 (no journeys) are on the page and are added.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Houses 3, 4, 6, 9, 10 compared on p.729-730. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+  },
+  {
+   "id": "valens.profection.transmission-lord",
+   "name": "Valens: the year transmits from the Ascendant, Sun and Moon by counting signs by age",
+   "stage": "period-lord",
+   "condition": "For the current year number N = age in completed years + 1, r = N mod 12 (12 when 0). From each of Ascendant, Sun, Moon count r signs inclusively: the receiving sign is (r - 1) signs after the starting sign (whole-sign). RECEIVERS: each planet standing in the receiving sign receives; ONLY IF THE SIGN IS EMPTY, the domicile lord of the receiving sign is the receiver (Valens: 'if the count ends at an empty place' the transmission goes to the rulers of the signs). Worked check from Valens: the 35th year gives remainder 11 and counts from Virgo (Ascendant, Mars) to Cancer (Saturn). Valens' other starting points by topic are the separate rule valens.transmission.topic-start. The pair verdict and the benefic-count verdict stay held back, so this rule emits 'activates' with transmitter and receiver named. Starting points are only the Ascendant, Sun and Moon here (Valens says all stars may transmit; the other starting points are the separate rule valens.transmission.topic-start). The rule states no topic, so it is a general signal only; the earlier five-topic tagging is removed because it would have counted this rule as wealth, career, relationship and health coverage when Valens says nothing on those here.",
+   "inputs": [
+    "age",
+    "sign of Ascendant, Sun, Moon",
+    "planets by sign",
+    "domicile lords"
+   ],
+   "computable": "now",
+   "topics": [
+    "general"
+   ],
+   "direction": "activates",
+   "strength": 2,
+   "template": "Year {N}: {start} transmits to {receiver} (in {receivingSign}).",
+   "sourceCitation": "Vettius Valens, Anthologies IV.11 'The operative year and the method of fractions', tr. Mark T. Riley (2019 PDF, archive.org vettius-valens-anthologies)",
+   "sourceLocator": "Book IV ch. 11, Riley p.103 (paragraph beginning 'Let us start our exposition from this point' and its worked example; the empty-place sentence is in the next paragraph, also p.103)",
+   "sourceQuote": "when investigating the current year of a nativity, we divide by 12. Count the remainder",
+   "variants": "Valens also counts from the Lot of Fortune, Daimon, Love and Necessity and from the four angles (p.103).",
+   "dedupeKey": "profected-sign@year",
+   "verification": "corrected",
+   "verificationNote": "Method and worked example confirmed (Riley p.103). Receiver corrected: planets in the receiving sign receive; the sign's ruler receives only when the sign is empty. The original made the domicile lord always a receiver.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Method, worked example (35th year, remainder 11, Virgo to Cancer) and the empty-place rule confirmed on Riley p.103 (page folios are printed at the foot of the page, checked on the page image). Corrections: locator p.103 (not p.102-103); topics reduced to general, because the passage names no topic."
+  },
+  {
+   "id": "firdaria.lord-condition",
+   "name": "Firdaria: the period lord and sub-lord are judged by their natal condition",
+   "stage": "period-lord",
+   "condition": "Major periods (Table F): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, North Node 3, South Node 2 (sum 75). Day birth begins with the Sun in the order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, then the Sun. Night birth begins with the Moon, 'in all things as is said' for the Sun: the order of the nodes in the night cycle and the absence of node sub-periods follow the engine's named firdariaNodes convention and are printed with every result. Each planetary major period is divided in seven equal parts, the major lord first, then the others in the cyclic order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars. Judgement: the significators act according to their disposition: well disposed they increase fortunes and decrease misfortunes; badly disposed the reverse. Compute the class (lilly.score.strength-classes) of the major lord and the sub-lord; 'well disposed' is read as class STRONG or MODERATE and 'badly disposed' as WEAK (derived). Bonatti names no topic and no house routing for the firdaria, so the rule is general only (the earlier 'topics follow the houses the lord rules and occupies' is not in the source and is removed).",
+   "inputs": [
+    "birth sect",
+    "firdaria periods and subperiods",
+    "class per planet",
+    "houses ruled and occupied by lord"
+   ],
+   "computable": "now",
+   "topics": [
+    "general"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "Firdaria: major lord {major}, sub-lord {minor} until {date}; the major lord is {class}: Bonatti reads its disposition as {verdict}.",
+   "sourceCitation": "Guido Bonatti, De astronomia tractatus X (Basel, 1550), Pars V, Caput III 'De annis Firdariae et ipsorum dispositionibus' (archive.org bub_gb_BgWuc5O-JzIC)",
+   "sourceLocator": "Pars V p.813-814 (PDF leaf 416; page numbers read from the running heads)",
+   "sourceQuote": "Nam si natiuitas fuerit diurna, incipiet a Sole, quod est luminare diurnum",
+   "variants": "Lilly (1647, p.733-734) gives a septennial scheme (see Table F). The usual night order Moon, Saturn, Jupiter, Mars, Head, Tail, Sun, Venus, Mercury is not stated in Bonatti's lines and stays the engine's convention.",
+   "verification": "confirmed",
+   "verificationNote": "Years 10, 8, 13, 9, 11, 12, 7, 3, 2 and total 75 seen in the Latin; sevenths and their order seen; night: 'fiet in omnibus & per omnia' seen; no node subdivision stated. Judgement sentence (bene dispositi augendo fortunia, male dispositi the reverse) seen on p.814.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Years (10, 8, 13, 9, 11, 12, 7, 3, 2; sum 75), day order, sevenths and their order, and the night rule read on the page image of pp.813-814. Correction: the topic routing by houses and the five-topic tagging were not in Bonatti and are removed."
+  },
+  {
+   "id": "lilly.revolution.asc-hostile",
+   "name": "Revolution: return Ascendant square or opposite the natal Ascendant, or in the signs of the natal 6th or 12th house",
+   "stage": "activation",
+   "condition": "Cast the solar return at the place of residence. Fires if the return Ascendant sign is square or opposite the natal Ascendant sign (houses 4, 7, 10 by sign), or is the natal 6th or 12th house sign. Verdict: loss and detriment that year according to the nature of the radical house that sign was; sickness and bodily weakness are to be feared when the sign is the natal 6th, 12th or 7th, chiefly if those houses were unfortunate in the radix.",
+   "inputs": [
+    "return ascendant sign",
+    "natal house signs",
+    "natal infortune positions"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "general",
+    "health"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "The return Ascendant falls in the natal {h}th house sign: the year carries the troubles of that house.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII 'Of Revolutions'",
+   "sourceLocator": "Book III p.736-737",
+   "sourceQuote": "if the Signe of the sixt, twelft or seventh of the Radix be the ascending Signe of the Revolution",
+   "variants": "The seventh-house reading (contentions, desire of marriage) is the separate lilly.revolution.seventh-asc under the same dedupeKey, one reading per topic. Returns of an infortune to its radical place are lilly.revolution.returns-affliction.",
+   "dedupeKey": "return-asc-sign",
+   "verification": "corrected",
+   "verificationNote": "The page says the return Ascendant 'in square or opposition to the ascendant in the Radix' (both aspects), so the original exclusion of the opposition (7th) departs from the text. Sickness sentence names 6th, 12th and 7th.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentences read p.736-737 (square or opposition to the radical Ascendant, or the signs of ill houses; the sixth, twelfth or seventh named for sickness)."
+  },
+  {
+   "id": "lilly.transit.daily-cusps",
+   "name": "Transit by day over the radical Ascendant, Midheaven and radical planets (Lilly)",
+   "stage": "activation",
+   "condition": "Restricted to points the engine has: the natal Ascendant and Midheaven degrees and radical planet longitudes (cusps of the 2nd and 3rd house need Regiomontanus cusps and are not used). Transits found from an ephemeris: the day a planet passes the point or beholds it by sextile, square, trine, opposition or conjunction. Jupiter or Venus over the ascending degree: a healthful, cheerful, successful day; Mars over it: choler or passion for two or three days; Saturn: gravity, sobriety, melancholy. Fortunate days: Jupiter, Venus, Sun or Moon in sextile or trine to the ascending or culminating degree or to their own radical places. Unsuccessful days: Saturn or Mars transiting the ascending or culminating degrees or the radical places of Jupiter, Venus, Sun or Moon, or Saturn or Mars beholding them. Point orb is the transiting planet's half-orb (Table C): a derived choice, Lilly gives none.",
+   "inputs": [
+    "transit longitudes by day",
+    "natal ascendant and midheaven",
+    "natal planet longitudes",
+    "table C"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "general"
+   ],
+   "direction": "mixed",
+   "strength": 1,
+   "template": "On {date}, transiting {planet} {aspect} the natal {point}: {meaning}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXIIII 'Of the Transit of the Planets'",
+   "sourceLocator": "Book III p.741",
+   "sourceQuote": "The Transit of the Planets is best found out by an Ephemeris",
+   "variants": "Lilly treats transits as day-scale only; he gives no year-scale rules for Jupiter and Saturn. He adds that Jupiter or Venus over the cusp of the second house make an apt day to procure money (needs Regiomontanus cusps, not used).",
+   "verification": "confirmed",
+   "verificationNote": "All three clusters (healthful day, choler for two or three days, fortunate and unsuccessful days) read on p.741 (text layer; glyph list read as Jupiter, Venus, Sun, Moon for fortunate and Saturn, Mars for unsuccessful).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentences read on p.741 (OCR text): healthful day for Jupiter or Venus over the ascendant; choler for two or three days for Mars; gravity for Saturn; fortunate and unsuccessful days."
+  },
+  {
+   "id": "valens.transit.jupiter-year-sign",
+   "name": "Jupiter transiting the year sign or its square and opposite points",
+   "stage": "activation",
+   "condition": "Valens' 'the year' is the sign to which the year's count lands (IV.11); here it is the profected sign counted from the Ascendant (the implementer's identification). The chronocrator is taken as the planet that receives the year in valens.profection.transmission-lord (Valens: the star that receives 'allot[s] the chronocratorship', Riley p.105; implementer's identification). FIRES if transiting Jupiter stands in the year sign or in a sign square or opposite it (whole signs) AND the chronocrator stands in an 'operative place': the Ascendant sign, the MC sign, the 11th place, the 5th place, or the signs of the Lot of Fortune, Daimon, Love, Necessity (list: Riley p.105). Verdict: great public services and high rank. NOT CODED: the alternative 'chronocrator well situated' and the contrary branch ('unfavourably situated': somewhat weak and unsettled, delays public services and rank), because Valens gives no test for 'well' or 'unfavourably' situated here; the 'Jupiter rising' modifier needs heliacal phase data.",
+   "inputs": [
+    "jupiter transit sign",
+    "profected sign",
+    "class of lord of the year"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "career",
+    "general"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "Transiting Jupiter stands in {sign}, {relation} to the year sign {year_sign}, and the year's time-lord {chronocrator} stands in an operative place: Valens reads public service and high rank.",
+   "sourceCitation": "Vettius Valens, Anthologies IV.14 'The phases and transits of the stars', tr. Mark T. Riley",
+   "sourceLocator": "Book IV ch. 14, Riley p.108 (the Jupiter paragraph); operative places list in IV.11, Riley p.105",
+   "sourceQuote": "If it transits the year, the points square, or those in opposition",
+   "variants": "Valens' 'rising' means heliacal phases (dropped). Page numbers are the folios printed at the foot of each page of the Riley PDF (checked on the page image of p.105): the Jupiter paragraph is on p.108 and the operative-places list on p.105, not p.107 and p.104 as first given.",
+   "dedupeKey": "jupiter-transit-sign",
+   "verification": "corrected",
+   "verificationNote": "Passage confirmed. Correction: 'operative places' are not 'angles' only; Valens lists them (p.104). The profected-sign reading of 'the year' stays an implementer's narrowing, now stated.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Passage read on Riley p.108. Corrections: (1) locators (p.108 and p.105; the earlier p.107 and p.104 read the page numbers as headers, but Riley prints them at the foot); (2) the rule gave one favourable direction for a passage with two branches (chronocrator well or badly placed) and used undefined tests; now only the branch with a stated, computable test (operative places) is coded; (3) topic wealth removed (the passage speaks of public service and rank, not money)."
+  },
+  {
+   "id": "valens.critical-year-syzygy",
+   "name": "Critical year: the year sign is the lunation sign, its square or opposite",
+   "stage": "activation",
+   "condition": "Counting years from the Ascendant sign, the profected year sign is the sign of the new or full Moon (the prenatal lunation, the reading Valens' context supports), or the sign square or opposite it: the year is critical and troublesome. Saturn transiting one of the four signs that just precede the angles at the nativity (whole-sign houses 12, 3, 6, 9) intensifies it ('especially if'); it is not a second condition. When the basis of the nativity is in accord, a health crisis; sometimes the effect falls on livelihood and rank instead, when the bodily state is helped by an aspect of the benefics (the original had this reversed). The clause that measures Saturn's distance from the ruler of the lunation is dropped (not programmable as written).",
+   "inputs": [
+    "prenatal syzygy sign",
+    "profected year sign",
+    "saturn transit sign",
+    "ascendant sign"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "health"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "Year {N} is in the sign of the prenatal {new or full} Moon or its square or opposition{saturnClause}: a critical year, a health caution.",
+   "sourceCitation": "Vettius Valens, Anthologies V.2 'The critical year. The ecliptic places. Initiatives', tr. Mark T. Riley",
+   "sourceLocator": "Book V ch. 2, Riley p.125 (first paragraph of the chapter)",
+   "sourceQuote": "especially if (under these circumstances) Saturn is found to be passing through the four places which just precedeed the angles",
+   "variants": "Nothing in the text states a verdict for an eclipse on a natal point. Output wording is a health caution only.",
+   "dedupeKey": "critical-year",
+   "verification": "corrected",
+   "verificationNote": "Saturn's four places are an intensifier ('especially if'), not a required second condition; the livelihood-and-rank clause is 'if the bodily state is helped by an aspect of benefics', the reverse of the original. Quote shortened to under 26 words.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Passage read (V.2): the Saturn clause is 'especially if' and the benefic clause is as stated. Locator corrected to Riley p.125 (page folio printed at the foot). Interpretation to keep visible: 'the sign of the new or full Moon' is read as the prenatal lunation (Valens calls it the ecliptic place in the chapter title); the translation does not say 'prenatal' in this sentence. Quotation replaced: the first one elided words (\"found passing\") and contained a word on the banned list for output; the new one is the exact text (the translation prints \"precedeed\")."
+  },
+  {
+   "id": "valens.critical-year-node",
+   "name": "Critical period: Saturn at a lunar node or its squares",
+   "stage": "activation",
+   "condition": "Transiting Saturn conjunct or opposite the node (Valens: 'the ascending or the descending node') or at the points square to them. The text does not say whether the node is the natal node or the node of the date, and sets no orb; the engine uses the mean node of the date, same-sign as the weak form and 1 degree as the strong form (all derived).",
+   "inputs": [
+    "saturn transit longitude",
+    "mean node longitude"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "health"
+   ],
+   "direction": "unfavourable",
+   "strength": 1,
+   "template": "Saturn stands at the {node} or its square ({degreeMatch}): a critical period, a health caution.",
+   "sourceCitation": "Vettius Valens, Anthologies V.2, tr. Mark T. Riley",
+   "sourceLocator": "Book V ch. 2, Riley p.125-126 (the sentence begins on p.125 with \"Likewise, the critical year\" and ends on p.126)",
+   "sourceQuote": "Saturn is at the ascending or the descending node, or at the points square with these",
+   "variants": "Valens' 'ecliptic places' are the nodes.",
+   "dedupeKey": "critical-year",
+   "verification": "confirmed",
+   "verificationNote": "Sentence seen; ambiguity of natal versus current node and the missing orb are stated in the condition.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Sentence read; locator corrected to Riley p.125-126 (it is split by the page foot of p.125). Natal-versus-current node and the missing orb remain the implementer's choices, as the condition already says."
+  },
+  {
+   "id": "lilly.aspects.orbs-table",
+   "name": "Aspects and orbs as Lilly gives them",
+   "stage": "modifier",
+   "condition": "Five aspects only (p.105): conjunction (0), sextile (60), square (90), trine (120), opposition (180). Sextile and trine friendly (trine more forcible), square imperfect enmity, opposition perfect hatred, conjunction good or bad as the planets are friends or enemies (p.106). Partile = same degree and minute; platick = within the sum of the two planets' moieties (p.106-107; his example Venus 4 + Saturn 5 = 9). Orbs, first column (p.107): Saturn 10, Jupiter 12, Mars 7 30', Sun 17, Venus 8, Mercury 7, Moon 12 30'; second column ('according to others', which Lilly says he also uses): Saturn 9, Jupiter 9, Mars 7, Sun 15, Venus 7, Mercury 7, Moon 12. Combustion within 8 deg 30' of the Sun in the same sign; under the beams to 17 degrees; cazimi within 17 minutes (p.113). Superior planets (Saturn, Jupiter, Mars) oriental from conjunction to opposition; Venus and Mercury oriental when fewer degrees of the sign the Sun is in, or in the sign before; Mercury never more than 28 and Venus never more than 48 degrees from the Sun, 'though some allow a few more' (p.114). Besieged between Saturn and Mars (p.114).",
+   "inputs": [
+    "longitudes",
+    "orbs table"
+   ],
+   "computable": "now",
+   "topics": [
+    "general"
+   ],
+   "direction": "activates",
+   "strength": 2,
+   "template": "{planet1} {aspect} {planet2}, {partile or platick}, orb {orb}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book I Chap. XIX",
+   "sourceLocator": "Book I p.105-107 (aspects, orbs), p.113-114 (combustion, beams, cazimi, elongations, besieging)",
+   "sourceQuote": "they stand thus as I have found by the best Authors and my owne Experience",
+   "variants": "Lilly says he uses now the one column and now the other, as memory serves (p.107). For planet-to-point he gives no separate orb.",
+   "verification": "confirmed",
+   "verificationNote": "Both orb columns, the 28 and 48 degree limits and the combustion figures all read on the page images. The earlier doubt about Mars (7 or 8) is settled: both columns print 7 30' and 7; the elongation limits 28 and 48 are Lilly's own.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Both orb columns, the platick example (Venus 10 Taurus, Saturn 18 Virgo, moieties 4 and 5, distance 8) read on the p.107 page image; combustion 8 deg 30 min same sign, beams 17 degrees, cazimi 17 minutes, Mercury 28 and Venus 48 read on pp.113-114."
+  },
+  {
+   "id": "lilly.wealth.promise-mixed",
+   "name": "Wealth promise: as many significators weak as strong",
+   "stage": "natal-promise",
+   "condition": "With S_w as in lilly.wealth.promise-strong: the number of STRONG members equals the number of WEAK members (class on E, derived). Verdict: an inconstant fortune, estate gained at some times and lost at others, neither abounding nor in distress.",
+   "inputs": [
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "As many significators of wealth are weak as strong ({list}): an inconstant fortune is promised.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXV (end of the practical paragraphs)",
+   "sourceLocator": "Book III p.560",
+   "sourceQuote": "If there be as many Significators of Wealth imbecill as strong, they intimate a kind of unconstant Fortune",
+   "variants": "Lilly gives no rule for unequal numbers of moderate significators beyond p.559-560 (plurality decides).",
+   "dedupeKey": "wealth-promise",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Page locator is p.560, not 'about p.560-561'.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.560."
+  },
+  {
+   "id": "lilly.wealth.inheritance-8th.a",
+   "name": "Wealth by inheritance, clause (a)",
+   "stage": "natal-promise",
+   "condition": "Saturn is in the 8th house in a diurnal nativity AND aspects Jupiter or Venus (any of the five aspects). Verdict: the native obtains an estate by inheritance or legacy. Houses: Regiomontanus or whole-sign (variant).",
+   "inputs": [
+    "house per planet",
+    "aspects",
+    "dignity"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "Saturn stands in the 8th house by day with an aspect to a Fortune: an estate by inheritance is signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Wealth'",
+   "sourceLocator": "Book III p.554 (scan image read)",
+   "sourceQuote": "in a diurnall Geniture in the eighth, in aspect with either of the Fortunes",
+   "variants": "The original rule bundled three independent clauses, now three ids.",
+   "dedupeKey": "wealth-inheritance",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page image p.554 read."
+  },
+  {
+   "id": "lilly.wealth.inheritance-8th.b",
+   "name": "Wealth by inheritance, clause (b)",
+   "stage": "natal-promise",
+   "condition": "The domicile lord of the 8th house is essentially dignified (E > 0, derived) AND stands in the 10th house. Verdict: good fortune and an estate acquired by inheritance. Houses: Regiomontanus or whole-sign (variant).",
+   "inputs": [
+    "house per planet",
+    "aspects",
+    "dignity"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "The lord of the 8th is dignified and stands in the 10th: an estate by inheritance is signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Wealth'",
+   "sourceLocator": "Book III p.554 (scan image read)",
+   "sourceQuote": "if the Lord of the eighth is fortunate in some of his essential dignities",
+   "variants": "The original rule bundled three independent clauses, now three ids.",
+   "dedupeKey": "wealth-inheritance",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page image p.554 read."
+  },
+  {
+   "id": "lilly.wealth.inheritance-8th.c",
+   "name": "Wealth by inheritance, clause (c)",
+   "stage": "natal-promise",
+   "condition": "The domicile lord of the sign holding the Part of Fortune stands in the 8th house AND the lord of the Ascendant aspects him (any of the five aspects). Verdict: wealth by inheritance. Houses: Regiomontanus or whole-sign (variant).",
+   "inputs": [
+    "house per planet",
+    "aspects",
+    "dignity"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "The lord of the Part of Fortune stands in the 8th and the lord of the Ascendant aspects him: wealth by inheritance is signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXIIII 'Signes of Wealth'",
+   "sourceLocator": "Book III p.554 (scan image read)",
+   "sourceQuote": "the Lord of the ascendant aspects him",
+   "variants": "The original rule bundled three independent clauses, now three ids.",
+   "dedupeKey": "wealth-inheritance",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page image p.554 read (Part of Fortune glyph legible)."
+  },
+  {
+   "id": "lilly.wealth.durability.benefic-strong",
+   "name": "Durability of the estate: planet in the 2nd, benefic-strong",
+   "stage": "natal-promise",
+   "condition": "The planet posited in the 2nd house (the principal significator of substance, if essentially dignified) is a Fortune or in a Fortune's dignities, powerful and essentially qualified (class STRONG). Verdict: wealth continues undisturbed all the life. If several planets are in the 2nd, the most powerful is chosen; if none is there, the lord of the 2nd and the dispositor of the Part of Fortune is taken instead (p.563). Moderately fortified planets: frame the judgement accordingly (not coded).",
+   "inputs": [
+    "planets in house 2",
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "The principal significator of substance, {planet}, is {class}: the estate is promised {durability}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXVII 'If the Estate of the Native shall continue, or be Durable'",
+   "sourceLocator": "Book III p.562-563",
+   "sourceQuote": "he is ever that Planet who is posited in the second, if essentially dignified",
+   "variants": "Strong and weak classes are derived from E.",
+   "dedupeKey": "wealth-durability",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page read (p.562-563). All four durability rules carry the same quotation because the four verdicts are the four sentences that follow it; \"benevolent\" per p.560 (a Fortune, or a planet in a Fortune's dignities)."
+  },
+  {
+   "id": "lilly.wealth.durability.weak",
+   "name": "Durability of the estate: planet in the 2nd, weak",
+   "stage": "natal-promise",
+   "condition": "That planet is WEAK and is NOT Saturn or Mars (a weak Infortune is judged only by lilly.wealth.durability.infortune-weak; as first stated the branch also fired for a weak Infortune and gave the opposite verdict). Verdict: riches continue but with great hazard: much labour to preserve them, good store got and suddenly lost. If several planets are in the 2nd, the most powerful is chosen; if none is there, the lord of the 2nd and the dispositor of the Part of Fortune is taken instead (p.563). Moderately fortified planets: frame the judgement accordingly (not coded).",
+   "inputs": [
+    "planets in house 2",
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "The principal significator of substance, {planet}, is {class}: the estate is promised {durability}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXVII 'If the Estate of the Native shall continue, or be Durable'",
+   "sourceLocator": "Book III p.562-563",
+   "sourceQuote": "he is ever that Planet who is posited in the second, if essentially dignified",
+   "variants": "Strong and weak classes are derived from E.",
+   "dedupeKey": "wealth-durability",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Branch overlapped lilly.wealth.durability.infortune-weak: a weak Saturn or Mars in the 2nd fired both (riches continue with hazard AND overthrown). Lilly treats the Infortunes in his separate second paragraph (p.562-563), so this branch is restricted to the other planets. Page text read: p.562 bottom, p.563 top."
+  },
+  {
+   "id": "lilly.wealth.durability.infortune-strong",
+   "name": "Durability of the estate: planet in the 2nd, infortune-strong",
+   "stage": "natal-promise",
+   "condition": "That planet is an Infortune and STRONG. Verdict: the estate continues but with difficulty; subject rather to lose than lay up. If several planets are in the 2nd, the most powerful is chosen; if none is there, the lord of the 2nd and the dispositor of the Part of Fortune is taken instead (p.563). Moderately fortified planets: frame the judgement accordingly (not coded).",
+   "inputs": [
+    "planets in house 2",
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "The principal significator of substance, {planet}, is {class}: the estate is promised {durability}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXVII 'If the Estate of the Native shall continue, or be Durable'",
+   "sourceLocator": "Book III p.562-563",
+   "sourceQuote": "he is ever that Planet who is posited in the second, if essentially dignified",
+   "variants": "Strong and weak classes are derived from E.",
+   "dedupeKey": "wealth-durability",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.563 top: \"If he be potent, the estate shall continue, but with difficulty; yet he shall be subject rather to lose then lay up\"."
+  },
+  {
+   "id": "lilly.wealth.durability.infortune-weak",
+   "name": "Durability of the estate: planet in the 2nd, infortune-weak",
+   "stage": "natal-promise",
+   "condition": "That planet is an Infortune and WEAK (unfortunate). Verdict: the fortune does not continue, it is overthrown. If several planets are in the 2nd, the most powerful is chosen; if none is there, the lord of the 2nd and the dispositor of the Part of Fortune is taken instead (p.563). Moderately fortified planets: frame the judgement accordingly (not coded).",
+   "inputs": [
+    "planets in house 2",
+    "class per planet"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "The principal significator of substance, {planet}, is {class}: the estate is promised {durability}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXVII 'If the Estate of the Native shall continue, or be Durable'",
+   "sourceLocator": "Book III p.562-563",
+   "sourceQuote": "he is ever that Planet who is posited in the second, if essentially dignified",
+   "variants": "Strong and weak classes are derived from E.",
+   "dedupeKey": "wealth-durability",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.563 top: \"if he be unfortunate, his Fortune shall not continue, but be overthrown and come to nothing\"."
+  },
+  {
+   "id": "lilly.wealth.life-phase",
+   "name": "Life phase of wealth from the quarter holding the significators",
+   "stage": "natal-promise",
+   "condition": "Take the significators of wealth (S_w, best fortified first). If they or the greater part are in houses 10, 11, 12 (between the Ascendant and the tenth): wealth or increase in youth. In houses 9, 8, 7: in manhood, from 25 to 35 or 40. In houses 6, 5, 4: nearer old age, after 40 and before 55. In houses 3, 2, 1: towards the latter end. Oriental of the Sun: sooner; occidental: nearer old age; retrograde: they retard; direct and swift: they hasten. This is a life phase, never a dated forecast.",
+   "inputs": [
+    "house per planet",
+    "orientality",
+    "motion"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "activates",
+   "strength": 1,
+   "template": "The significators of wealth stand in houses {houses}: Lilly places gain of estate in {phase}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXVII",
+   "sourceLocator": "Book III p.563",
+   "sourceQuote": "an Estate or augmentation of Riches in his youth",
+   "variants": "Lilly prefers direction of the significators for timing and offers this only 'in a generall way'.",
+   "dedupeKey": "wealth-phase",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Page head checked; houses as printed (ninth, eighth, seventh; sixth, fifth, fourth; third, second, first).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.563: houses between the Ascendant and the tenth; ninth, eighth, seventh; sixth, fifth, fourth; third, second, first; oriental, occidental, retrograde, direct and swift clauses present."
+  },
+  {
+   "id": "lilly.career.honour-essential",
+   "name": "Honour: essential dignity of the significators of the tenth house",
+   "stage": "natal-promise",
+   "condition": "Significators of honour (p.615): the Sun first, the Moon, planets that behold the Lights within the moiety of their orbs (especially the Sun), the lord of the mid-heaven, planets in the mid-heaven. Dignity of the significators: in their house or exaltation or in mutual reception by essential dignity: honours, offices of public trust, great commands, favour among great persons; in triplicity, terms or face: mediocrity; peregrine, in detriment or fall without reception: very small or no dignities. For a native born capable of it. Fixed-star clause (planet within 5 degrees of a royal star of the first or second magnitude, p.616) needs star data and is not coded. Class counting by plurality of testimonies.",
+   "inputs": [
+    "significator set",
+    "Table A dignity per significator",
+    "aspects within moiety of orbs"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "career"
+   ],
+   "direction": "mixed",
+   "strength": 3,
+   "template": "The significators of honour ({list}) stand in {dignityGroup}: {verdict}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXLIIII 'Whether the Native shall have Dignity or Preferments'",
+   "sourceLocator": "Book III p.615 (significators and dignity grades)",
+   "sourceQuote": "in their proper House, Exaltation, or in mutuall reception of essentiall Dignity",
+   "variants": "The fixed stars named are on p.616 (Oculus Taurus, Hercules, Cor Leonis, Spica, Lucida Lancis, Cor Scorpii).",
+   "dedupeKey": "career-honour-essential",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. The original bundled about six sub-rules; the dignity grades are one rule, the angularity grades another.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentences read p.615."
+  },
+  {
+   "id": "lilly.career.honour-angularity",
+   "name": "Honour: house position of the significators of the tenth house",
+   "stage": "natal-promise",
+   "condition": "Same significators as lilly.career.honour-essential. In angles: ample preferment; in succedent houses: moderate esteem or little honour; in the 8th or cadent houses: very little honour or reputation, a mean and obscure condition. Fortunate planets in the tenth house promise great preferment and dignity; malevolent planets there deny preferment; middling planets show a moderate state of life.",
+   "inputs": [
+    "house per significator",
+    "planets in house 10"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "career"
+   ],
+   "direction": "mixed",
+   "strength": 3,
+   "template": "The significators of honour stand in {houseGroup} houses: {verdict}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXLIIII",
+   "sourceLocator": "Book III p.615-616",
+   "sourceQuote": "they give ample Preferment",
+   "variants": "Lilly says the judicious allow a certain weight to each testimony (p.616) without a number.",
+   "dedupeKey": "career-honour-angular",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Fixed-star clause left out (no star data).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentences read p.615-616."
+  },
+  {
+   "id": "lilly.career.lord1-lord10",
+   "name": "Lord of the first in the tenth, or lord of the tenth in the first",
+   "stage": "natal-promise",
+   "condition": "The domicile lord of the Ascendant sign stands in the 10th house, or the domicile lord of the 10th stands in the 1st house. Verdict: good fame and reputation; honour to a man born capable of it; esteem if born of mean parents.",
+   "inputs": [
+    "domicile lords",
+    "house per planet"
+   ],
+   "computable": "now",
+   "topics": [
+    "career"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "The lord of the {first} stands in the {tenth}: good fame and reputation are signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXLIIII",
+   "sourceLocator": "Book III p.616",
+   "sourceQuote": "The Lord of the first in the tenth, or Lord of the tenth in the first, gives good Fame and Reputation",
+   "variants": "Whole-sign houses are a variant; the original numeral 'p.616 only' is correct.",
+   "dedupeKey": "career-lord1-lord10",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Quotation found on p.616 (the original had none).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.616."
+  },
+  {
+   "id": "lilly.career.luminary-angularity.cadent",
+   "name": "Luminaries and planets all cadent",
+   "stage": "natal-promise",
+   "condition": "Both Luminaries are in cadent houses (3, 6, 9, 12) AND the other planets are also in cadent houses. Verdict: a wretched condition, conversant among the vulgar or in towns and villages.",
+   "inputs": [
+    "house per planet"
+   ],
+   "computable": "now",
+   "topics": [
+    "career"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "Both Lights and the planets stand in cadent houses: a humble standing is signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXLIIII (Speciall Rules of the two Luminaries)",
+   "sourceLocator": "Book III p.617",
+   "sourceQuote": "If the Luminaries be cadent, and the Planets also",
+   "variants": "'And the Planets also' is read as all five others (derived).",
+   "dedupeKey": "career-luminary",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Two of the four original clauses are computable as written; 'culminates with the degree of the mid-heaven' and 'surrounded' have no stated orb or definition, so they are not coded.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.617."
+  },
+  {
+   "id": "lilly.relationships.single-life.barren",
+   "name": "Single life: Venus and Moon both in barren signs and cadent houses (man's chart)",
+   "stage": "natal-promise",
+   "condition": "Man's nativity. Venus and the Moon are both in the barren signs Gemini, Leo, Virgo AND both in houses 6, 9, 12 or 8 (the 8th admitted for its malignancy). Verdict: a single life or aversion to marriage. If the other significators (7th lord, planets in the 7th) are likewise in barren signs and cadent houses the effect is more manifest (not coded).",
+   "inputs": [
+    "sign per planet",
+    "house per planet",
+    "sex convention"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "Venus and the Moon stand in barren signs and cadent houses: a single life is signified (man's chart).",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXX",
+   "sourceLocator": "Book III p.587 (scan image read)",
+   "sourceQuote": "if both these Planets be in barren Signes",
+   "variants": "Convention-dependent: needs a sex convention; woman's significators (Sun, Mars) are not read.",
+   "dedupeKey": "marriage-single",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Barren signs and house numerals read on the scan image.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Page image p.587-588 read; barren signs Gemini, Leo, Virgo; cadent houses 6, 9, 12 and the 8th admitted. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+  },
+  {
+   "id": "lilly.relationships.single-life.saturn",
+   "name": "Single life: Saturn more elevated than Venus or the Moon (man's chart)",
+   "stage": "natal-promise",
+   "condition": "Man's nativity. Saturn is nearer the mid-heaven (more elevated) than the Moon and than Venus, and no planet aids either of them (no aspect from another planet to Venus or the Moon; derived). Verdict: single life or unwillingness to marry; Lilly says Saturn's elevation is equivalent to a conjunction. Saturn must be very strong (p.588): if Venus and the Moon are more fortified than Saturn the judgement does not hold.",
+   "inputs": [
+    "altitude per planet",
+    "aspects",
+    "class per planet",
+    "sex convention"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "Saturn stands higher than Venus and the Moon and neither is aided: a single life is signified (man's chart).",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXX",
+   "sourceLocator": "Book III p.587-588",
+   "sourceQuote": "no Planet assisting either of them",
+   "variants": "'More elevated' is read as nearer the culmination (derived).",
+   "dedupeKey": "marriage-single",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Read on p.588.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Page image p.588 read: Saturn more elevated than Moon or Venus, no planet assisting, elevation equivalent to a conjunction; the strength proviso sentence precedes it. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+  },
+  {
+   "id": "lilly.relationships.single-life.moon-saturn",
+   "name": "Never marries: Moon afflicted by Saturn (man's chart)",
+   "stage": "natal-promise",
+   "condition": "Man's nativity. PRECONDITION (p.588, the sentence before the examples): the other significators of marriage (the lord of the 7th, planets in the 7th) are likewise in barren signs or cadent houses, or weak and much afflicted, so that their testimony agrees with the affliction of Venus and the Moon (operationalised as: the 7th lord is in a barren sign or a cadent house, or is WEAK; derived). Then, Lilly's examples of the affliction: either (a) the Moon is in Scorpio in square to Saturn and Saturn is in Leo or Taurus; or (b) the Moon is combust of the Sun and in square or opposition to Saturn while she is in Capricorn, Aquarius or Libra. Verdict (Lilly): the native never marries. Without the precondition the rule does not fire (the first version dropped it and so stated a flat verdict Lilly makes only when the other significators concur).",
+   "inputs": [
+    "sign per planet",
+    "aspects",
+    "combustion",
+    "sex convention"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "The Moon is afflicted by Saturn as Lilly describes: marriage is withheld (man's chart).",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXX",
+   "sourceLocator": "Book III p.588 (scan image read)",
+   "sourceQuote": "the Native never Marries",
+   "variants": "The original called the first clause 'Venus in Scorpio'; the scan shows the Moon glyph.",
+   "dedupeKey": "marriage-single",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Glyphs read on the 105 dpi scan image: the Moon, not Venus, in Scorpio.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Glyphs confirmed on the page image (Moon in Scorpio; Saturn in Leo or Taurus; Moon in Capricorn, Aquarius or Libra). Correction: the verdict \"never marries\" is stated on p.588 only \"if the testimonies of these Significators agree with the affliction of Venus and the Moon\"; the earlier condition omitted that precondition and so claimed more than the passage. Direction value \"cautions\" replaced by \"unfavourable\"."
+  },
+  {
+   "id": "lilly.relationships.marriage-promised",
+   "name": "Marriage desired: lord of the Ascendant applies to the lord of the seventh with reception",
+   "stage": "natal-promise",
+   "condition": "Man's nativity. The lord of the Ascendant applies (applying aspect, orbs of Table C) to the lord of the 7th AND they are in reception (house or exaltation). Verdict: the native desires marriage. The list of signs on p.588 (7th a prolific sign, 7th lord fortunate, a benevolent planet in the 7th, Venus and the Moon in fecund signs and certain houses) is read as support; the house numerals of the last item are blurred by show-through on the scan and are not coded. 'Where the major part concur they argue that the native shall marry.'",
+   "inputs": [
+    "lord of 1",
+    "lord of 7",
+    "applying aspect",
+    "reception",
+    "sex convention"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "The lord of the Ascendant applies to the lord of the 7th with reception: marriage is desired (man's chart).",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXX; Chap. CXXXI",
+   "sourceLocator": "Book III p.588 (signs of marriage), p.589 (top)",
+   "sourceQuote": "Lord of the ascendant applying to the Lord of the seventh",
+   "variants": "Convention-dependent.",
+   "dedupeKey": "marriage-promised",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Only the clause legible on p.589 is coded; the 'Venus and Moon in the 1st, 7th or 10th' reading of the original could not be confirmed.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Page 588-589 read: Lord of the ascendant applying to the Lord of the seventh, there being also equal reception: the native desires marriage."
+  },
+  {
+   "id": "lilly.relationships.ease",
+   "name": "Ease of obtaining a wife",
+   "stage": "natal-promise",
+   "condition": "Man's nativity. Significators of marriage (Venus, Moon, 7th lord, planets in the 7th): if the greater part are fortunate or well fortified, he obtains his wife easily; if weak and signified by the Infortunes, with labour and difficulty; if all are weak and ill affected, he loves many and is deluded and has much difficulty. Class on E (derived).",
+   "inputs": [
+    "class per significator",
+    "sex convention"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "Most significators of marriage are {class}: a wife is obtained {ease}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXXI 'Whether the Native shall obtaine his Wife with much difficulty'",
+   "sourceLocator": "Book III p.589",
+   "sourceQuote": "then not without labour and difficulty",
+   "variants": "Convention-dependent.",
+   "dedupeKey": "marriage-ease",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Passage read on p.589.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Passage read p.589."
+  },
+  {
+   "id": "lilly.relationships.age",
+   "name": "Age at marriage: oriental or occidental significators",
+   "stage": "natal-promise",
+   "condition": "Man's nativity. If all or the greater part of the significators of marriage are oriental of the Sun, with the Moon among them, and in the oriental quarters (houses 10, 11, 12, 4, 5, 6): he marries in youth or marries a young woman. If occidental of the Sun and in the occidental quarters (houses 9, 8, 7, 1, 2, 3): he marries very late, or in youth a widow or a very aged woman. Direct and swift in motion: marriage in youth; retrograde, slow or stationary: it is prolonged. Where the testimonies differ, follow those agreeing with the Moon or Venus, chiefly the Moon.",
+   "inputs": [
+    "orientality",
+    "house per significator",
+    "motion",
+    "sex convention"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "activates",
+   "strength": 1,
+   "template": "The significators of marriage are {oriental or occidental}: a marriage {early or late} is signified (man's chart).",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXXI",
+   "sourceLocator": "Book III p.589-590 (the sentence starts at the foot of p.589 and the Moon clause is on p.590)",
+   "sourceQuote": "then the Native shall marry in youth",
+   "variants": "Lilly prefers direction of the mid-heaven to the sextile or trine of Venus for the time.",
+   "dedupeKey": "marriage-age",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Quarters listed as printed on p.590.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Passage read (OCR text of Chap. CXXXI; page break between the two halves of the sentence). Locator widened to p.589-590."
+  },
+  {
+   "id": "lilly.health.constitution",
+   "name": "Health constitution from the significators",
+   "stage": "natal-promise",
+   "condition": "Significators (p.576): the ascending sign and its lord, the Sun and Moon, the 6th house and its lord, planets in the 6th, the 7th house and its lord. If all or most are well fortified, free from the hostile aspects of the Infortunes and not joined to malevolent fixed stars: a sound and strong body, not much afflicted with sickness. If all or most are weak, afflicted, peregrine, combust, or in the 12th, 8th or 6th: the contrary. Class on E, accidental debility included (derived); fixed-star clause not coded. Tendency wording only.",
+   "inputs": [
+    "class per significator",
+    "aspects",
+    "houses"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "health"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "Most significators of health are {class}: a {sound or frail} constitution is the tendency.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXVIII-CXXIX (the sixth house)",
+   "sourceLocator": "Book III p.576-577",
+   "sourceQuote": "they signifie sound Bodies, and strong",
+   "variants": "The three things 'material to consider' (strong or weak, free from the Infortunes, temperament equal) are on p.576.",
+   "dedupeKey": "health-constitution",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Locator p.576-577 checked; orb is the moiety of Table C (derived); no quotation was available in the original.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Passage read p.576-577."
+  },
+  {
+   "id": "lilly.travel.promised",
+   "name": "Travel promised",
+   "stage": "natal-promise",
+   "condition": "Significators of journeys: the 9th house and its lord, planets in the 9th, the Moon and Mercury (Ptolemy adds Mars). If the Moon and Mercury are in mutual reception or conjunction, or in conjunction or reception with the lord of the 9th or of the 1st, or are posited in the 9th, 3rd or 1st or have dignities in those houses: travel is promised. Lord of the 9th in the 1st or lord of the 1st in the 9th, or in conjunction: the same. Many planets occidental, chiefly the Moon, show many journeys; none of these signs: no desire to see foreign countries. Movable signs: profit and speed in travel; fixed signs: long stay abroad and little profit.",
+   "inputs": [
+    "domicile lords",
+    "house per planet",
+    "reception",
+    "orientality",
+    "sign quality"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "home-travel"
+   ],
+   "direction": "activates",
+   "strength": 2,
+   "template": "The significators of journeys stand as Lilly describes ({list}): travel is signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXXXIX 'Whether the Native shall travell or not'",
+   "sourceLocator": "Book III p.606-607",
+   "sourceQuote": "they prenote travell without doubt",
+   "variants": "Derived consequences by element and house (the original 'success and danger' rule) are not coded.",
+   "dedupeKey": "travel-promised",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Read on p.607; 'many testimonies, many journeys' is stated by Lilly without numbers.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Passage read p.607 (mutual reception or conjunction of the Moon and Mercury, with the lord of the ninth or first, or posited in ninth, third or first; lord of ninth in first and the reverse; many planets occidental; movable and fixed signs)."
+  },
+  {
+   "id": "lilly.profection.lord-condition",
+   "name": "Lord of the year judged in the radix and in the profectional revolution",
+   "stage": "period-lord",
+   "condition": "NEEDS THE RETURN CHART (positions of the planets at the solar return), which the engine does not compute in v1. Lord of the year as in lilly.profection.lord-of-year-by-degree. Seven verdicts (p.727-728): strong in the radix but weak in the revolution: endeavours weak; unfortunate in the radix but well disposed and strong in the revolution: moderate goodness; impedited in the profection, the radix and the revolution: prejudice; powerful in two of the figures: profit and good esteem; well disposed in two figures but not in aspect to the benevolent: some goodness, less than expected, not lasting; unfortunate and cadent in both figures but in aspect to good planets: a small increase of estate; impedited by the Infortunes in both figures and in square or opposition to the malevolents in the radix: adversity and danger (tendency wording). If the planet is in the 2nd, 6th, 8th or 12th the misfortune is kept secret (not coded).",
+   "inputs": [
+    "return chart planet positions",
+    "class per planet in radix and revolution"
+   ],
+   "computable": "needs-return-chart",
+   "topics": [
+    "general",
+    "wealth",
+    "health"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "Lord of the year {lord}: {radixClass} in the radix, {returnClass} in the return: {verdict}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXVIII",
+   "sourceLocator": "Book III p.727-728",
+   "sourceQuote": "the vigor and force of the Lord of the yeer in Annuall affaires is very powerfull",
+   "variants": "Not bindable until the return chart is available.",
+   "dedupeKey": "lord-of-year-condition",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Seven verdicts read on p.727-728; marked as needing the return chart.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Seven verdicts read p.727-728."
+  },
+  {
+   "id": "lilly.profection.house-loss",
+   "name": "Profected Ascendant in the radical 6th, 8th or 12th house: caution for money and affairs",
+   "stage": "period-lord",
+   "condition": "Profected Ascendant in radical house 6: an ill time to deal in merchandise, contracts and bargains. House 8: the body or the goods suffer through slander and treachery; not good to make new contracts or to be too adventurous in trade. House 12: sickly, enmity of ill neighbours, danger of confinement or banishment, an unlucky year for dealing in great cattle, 'unless the twelfth house in the radix was fortunate' (that exception has no definition in Lilly and is shown as a note, not evaluated). The 8th-house text's grave clause is not used.",
+   "inputs": [
+    "profected ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "wealth",
+    "health"
+   ],
+   "direction": "unfavourable",
+   "strength": 2,
+   "template": "Profected Ascendant stands in the {h}th house: a year of caution for {matter}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX",
+   "sourceLocator": "Book III p.729 (house 6), p.729-730 (house 8), p.730 (house 12)",
+   "sourceQuote": "an ill time to deale in Merchandize",
+   "variants": "Whole-sign counting is a labelled variant.",
+   "dedupeKey": "profected-house:{h}",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Read on p.729-730; the exception clause is as printed.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Houses 6, 8, 12 read p.729-730."
+  },
+  {
+   "id": "lilly.profection.house-health",
+   "name": "Profected Ascendant in the radical 1st, 6th, 8th or 12th house: health tendency",
+   "stage": "period-lord",
+   "condition": "Profected Ascendant in radical house 1: cheerful, a fit year to provide what the body needs. House 6: may fear a sickness; hatred of the vulgar. House 8: the body or goods suffer. House 12: sickly, the cause hard to find. Tendency wording only. Lilly's five-point weighing of the body for each year (sign of the projection, the terme the horoscope comes to, the terme the Ascendant is in, the Moon's position, the return Ascendant; p.726) gives no verdict and is not coded.",
+   "inputs": [
+    "profected ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "health"
+   ],
+   "direction": "mixed",
+   "directionByHouse": {
+    "1": "favourable",
+    "6": "unfavourable",
+    "8": "unfavourable",
+    "12": "unfavourable"
+   },
+   "strength": 2,
+   "template": "Profected Ascendant stands in the {h}th house: {tendency}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXIX; Chap. CLXVIII p.726",
+   "sourceLocator": "Book III p.729-730; p.726",
+   "sourceQuote": "the Native is usually cheerfull",
+   "variants": "The terms table is now confirmed (Table A), so the five-point weighing could be coded later.",
+   "dedupeKey": "profected-house:{h}",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Houses read on p.729-730.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Houses 1, 6, 8, 12 read p.729-730."
+  },
+  {
+   "id": "lilly.profection.angle-aspect-years",
+   "name": "Years in which the profected Ascendant or Midheaven aspects the radical angles",
+   "stage": "period-lord",
+   "condition": "Whole-sign counting. Profected Ascendant sign (or profected Midheaven sign: natal MC sign plus years, same degree) in sextile or trine to the radical Ascendant or Midheaven sign: a prosperous year, especially when those houses were radically well fortified; in square or opposition to them: an unhappy year. Lilly calls this an observed generality and gives no orb.",
+   "inputs": [
+    "profected ascendant and MC sign",
+    "natal ascendant and MC sign",
+    "class of lords"
+   ],
+   "computable": "now",
+   "topics": [
+    "general"
+   ],
+   "direction": "mixed",
+   "strength": 1,
+   "template": "Profected {point} stands in {aspect} to the natal {angle}: Lilly calls such years {verdict}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXVII",
+   "sourceLocator": "Book III p.720",
+   "sourceQuote": "those yeers which fall in a ⚹ or △ to the Horoscope or Mid-heaven",
+   "variants": "Contradicts lilly.profection.house-money for house 10 (square) and house 11 (sextile is consistent); both are shown.",
+   "dedupeKey": "profected-angle-aspect",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Profected MC is defined by keeping the degree and moving a sign a year (p.718 worked example).",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.720."
+  },
+  {
+   "id": "lilly.profection.mc-career",
+   "name": "Profected Midheaven or Sun sign in the radical houses (honour, employment)",
+   "stage": "period-lord",
+   "condition": "Whole-sign counting. Profected Midheaven sign (or profected Sun sign: natal sign plus years) in radical house h = (profected sign - natal Ascendant sign) mod 12 + 1. h=1: good fortune by public employments, profession or service to a great person; h=2: receives the profits of former employment; h=3: an indifferent condition (loss of kindred, robbery in journeying); h=4: fame and esteem called in question; h=5: merry, wanton, spending more than he gets; h=6: nothing succeeds in honourable matters; h=7: esteem and repute increase, favour of women of account; h=8: scandal and slander; h=9: long journeys for honour and renown; h=10: a very successful and famous year; h=11: kindness to friends, mutual respect; h=12: detriment in reputation, honour and fame. One reading per (profected point, house).",
+   "inputs": [
+    "profected MC and Sun sign",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "career"
+   ],
+   "direction": "mixed",
+   "directionByHouse": {
+    "1": "favourable",
+    "2": "favourable",
+    "3": "unfavourable",
+    "4": "unfavourable",
+    "5": "activates",
+    "6": "unfavourable",
+    "7": "favourable",
+    "8": "unfavourable",
+    "9": "favourable",
+    "10": "favourable",
+    "11": "activates",
+    "12": "unfavourable"
+   },
+   "strength": 2,
+   "template": "Profected {point} stands in the {h}th house: {themes}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXX 'Of the Profection of Mid-Heaven and the Sunne'",
+   "sourceLocator": "Book III p.731-732",
+   "sourceQuote": "he receives detriment in his reputation, honour and fame",
+   "variants": "Whole-sign counting differs from Lilly's by-degree houses.",
+   "dedupeKey": "profected-house-mc:{h}",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. All twelve sentences read on p.731-732; the original had eleven.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "All twelve sentences read p.731-732. Reading of the table settled by the page itself: house 3 is explained as the sixth house from the tenth, so the profected Midheaven (or Sun) is counted through the radical houses, as the rule says. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+  },
+  {
+   "id": "lilly.profection.fortune-sign-wealth",
+   "name": "Profected sign of the Part of Fortune and of the second house in the radical houses (wealth)",
+   "stage": "period-lord",
+   "condition": "Whole-sign counting. Two bases, both given by Lilly in one chapter, each advanced one sign a year: (i) the sign holding the Part of Fortune, (ii) the sign of the 2nd house. When the profected sign becomes the Ascendant sign or the 1st: an apt time to gather wealth coming unexpectedly. In radical house h = (profected sign - natal Ascendant sign) mod 12 + 1: h=2 goods long expected fall to him, may buy and sell and augment his patrimony; h=3 kindred bestow some good thing; h=4 good from parents, increase by houses and inheritances; h=5 gain by friends, negotiations, writings; h=6 thrives by servants and small cattle; h=7 gain by the wife, by suits at law; h=8 wealth by legacy, an ill year to lend money; h=9 long journeys profitably undertaken, gain by religious men; h=10 preferment where merit is; h=11 gain by friends and lending, a time to recover debts; h=12 danger of loss by great cattle and base acts. If both bases give the same sign, one reading. Basis (ii) equals the profected Ascendant plus one sign, so it is stated separately but deduped by the sign.",
+   "inputs": [
+    "lot of fortune sign",
+    "cusp 2 sign",
+    "age",
+    "natal ascendant sign"
+   ],
+   "computable": "now",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "mixed",
+   "directionByHouse": {
+    "1": "favourable",
+    "2": "favourable",
+    "3": "favourable",
+    "4": "favourable",
+    "5": "favourable",
+    "6": "favourable",
+    "7": "favourable",
+    "8": "mixed",
+    "9": "favourable",
+    "10": "favourable",
+    "11": "favourable",
+    "12": "unfavourable"
+   },
+   "strength": 2,
+   "template": "Profected {basis} stands in the {h}th house: {themes}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXI 'The significations of the Profectionall Signs of Part of Fortune and Signe of the second house'",
+   "sourceLocator": "Book III p.732-733",
+   "sourceQuote": "an apt time to gather Wealth which comes upon the Native unexpectedly",
+   "variants": "The checker advised running one basis only; the chapter title and first sentence name both ('either of these').",
+   "dedupeKey": "profected-fortune:{sign}",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Both bases are named on p.732; twelve house sentences read on p.732-733.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "All twelve sentences read p.732-733."
+  },
+  {
+   "id": "bonatti.profection.revolution-agreement",
+   "name": "Bonatti: profection and revolution are read together",
+   "stage": "activation",
+   "condition": "Whole-sign profection (one sign a year from the Ascendant sign) and the revolution of the year. If the revolution signifies good and the profection good: the good of the revolution increases; revolution good and profection evil: the good diminishes; both evil: the evil increases; revolution evil and profection good: the evil diminishes. NEEDS THE RETURN CHART for the revolution's verdict. NOTE: Bonatti does not say how a profection comes to 'signify good' or 'signify evil'; that verdict has to come from another rule (for example the Lilly house tables), so this rule is bound only when both a profection verdict and a revolution verdict exist. Four cases and the Latin read on p.818 (leaf 418).",
+   "inputs": [
+    "profection verdict",
+    "return chart verdict"
+   ],
+   "computable": "needs-return-chart",
+   "topics": [
+    "general"
+   ],
+   "direction": "mixed",
+   "strength": 2,
+   "template": "Profection says {profection}, revolution says {revolution}: the revolution's reading {effect}.",
+   "sourceCitation": "Guido Bonatti, De astronomia tractatus X (Basel, 1550), Pars V, Caput VII 'De profectione annorum', Latin",
+   "sourceLocator": "Pars V p.818 (right column, last paragraph of the chapter's second page; PDF leaf 418)",
+   "sourceQuote": "profectio est altera reuolutio",
+   "variants": "Valens and Lilly use the same idea without the 2 by 2.",
+   "dedupeKey": "profection-revolution",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Latin sentence and the four cases read in the djvu text (leaf 418); marked as needing the return chart.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Four cases and the sentence read in the Latin text (OCR of the 1550 Basel edition); page number p.818 read from the OCR running head, not re-checked on the page image. Profection verdict undefined in Bonatti: stays unbound with the return-chart rules."
+  },
+  {
+   "id": "bonatti.profection.topic-significator",
+   "name": "Bonatti: which profection to read for which topic",
+   "stage": "period-lord",
+   "condition": "Bonatti names the profection (a whole sign a year) whose sign is read: honours and annual dignities from the profection of the Sun; body and soul from the Moon; magistracies and offices from the Midheaven; gain and prosperity from the profected sign of the Part of Fortune and of the house of substance (2nd); brothers from the 3rd house; father from the 4th; children from the 5th; servants from the 6th; wives, partners and enemies from the 7th; the wives' substance from the house of their substance (8th); religious men from the 9th; kings from the 10th; friends from the 11th; hidden enemies from the 12th. The profected lord of the year is called alcocoden, which Bonatti glosses as 'participant in accidents' (his own gloss).",
+   "inputs": [
+    "profected sign per base",
+    "topic"
+   ],
+   "computable": "now",
+   "topics": [
+    "general",
+    "wealth",
+    "career",
+    "relationships",
+    "health"
+   ],
+   "direction": "activates",
+   "strength": 1,
+   "template": "For {topic} Bonatti reads the profection from {base}: now in {sign}.",
+   "sourceCitation": "Guido Bonatti, De astronomia tractatus X (Basel, 1550), Pars V, Caput VII, Latin",
+   "sourceLocator": "Pars V p.817 (alcocoden gloss), p.818 (list)",
+   "sourceQuote": "Ad honores uero & dignitates annales nati, aspicies signum profectionis a Sole",
+   "variants": "Lilly's p.732-733 gives a Part-of-Fortune profection of the same kind.",
+   "dedupeKey": "profection-topic-base",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. The list is complete in the Latin; the original's complaint that alcocoden means 'giver of years' elsewhere is true of other writers, but the gloss here is Bonatti's own.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "List read in the Latin (honours from the Sun; body and soul from the Moon; offices from the Midheaven; gain from the Part of Fortune and the house of substance; brothers, father, children, servants, wives, the wives' substance, religious men, kings, friends, hidden enemies); the alcocoden gloss is read on p.817. Pages p.817-818 from OCR running heads."
+  },
+  {
+   "id": "lilly.revolution.asc-same",
+   "name": "Revolution: return Ascendant the same sign as the natal Ascendant",
+   "stage": "activation",
+   "condition": "The solar-return Ascendant sign equals the natal Ascendant sign. Verdict: good: good health, actions succeeding, and increase of substance if the lord of the Ascendant is also well dignified (class STRONG or E >= +1, derived). If that lord is combust: much mischief according to the nature of the planet that is lord of the year; the Moon strong or in her dignities, chiefly by night, diminishes it.",
+   "inputs": [
+    "return ascendant sign",
+    "natal ascendant sign",
+    "class of lord of ascendant"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "general",
+    "health",
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "The return Ascendant is in the natal Ascendant sign: Lilly reads a good year{lordClause}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII",
+   "sourceLocator": "Book III p.736",
+   "sourceQuote": "If the ascendant of the Revolution doe agree, or be the same with the ascendant of the Radix, it signifieth good",
+   "variants": "Lilly's wording is 'agree or be the same'.",
+   "dedupeKey": "return-asc-sign",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. The offered quote of the original was wrong; the sentence is on p.736.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.736."
+  },
+  {
+   "id": "lilly.revolution.lord2-fortune-house",
+   "name": "Revolution: house of the lord of the second, the Part of Fortune or Jupiter",
+   "stage": "activation",
+   "condition": "NEEDS THE RETURN CHART. In the house of the revolution in which the lord of the 2nd, the Part of Fortune or Jupiter stands: the native has augmentation of patrimony or estate by the things that house signifies. (Glyph read as the Part of Fortune and Jupiter on the scan.)",
+   "inputs": [
+    "return chart houses",
+    "lord of 2",
+    "lot of fortune",
+    "jupiter"
+   ],
+   "computable": "needs-return-chart",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 2,
+   "template": "In the return the lord of the 2nd stands in the {h}th house: augmentation of estate through {matters}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII",
+   "sourceLocator": "Book III p.737",
+   "sourceQuote": "augmentation of Patrimony or Estate by things signified by that house",
+   "variants": "Regiomontanus versus whole-sign houses differ.",
+   "dedupeKey": "return-wealth-house",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Sentence read on p.737.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.737."
+  },
+  {
+   "id": "lilly.revolution.seventh-asc",
+   "name": "Revolution: the radical seventh sign ascending",
+   "stage": "activation",
+   "condition": "The solar-return Ascendant sign is the natal 7th house sign (opposite the natal Ascendant). Verdict: many contentions and brawlings that year, and the native desirous of marriage.",
+   "inputs": [
+    "return ascendant sign",
+    "natal ascendant sign"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "relationships"
+   ],
+   "direction": "activates",
+   "strength": 2,
+   "template": "The return Ascendant falls in the natal 7th house sign: contentions and desire of marriage are signified.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII",
+   "sourceLocator": "Book III p.737",
+   "sourceQuote": "shewes many contentions and brawlings in that yeer",
+   "variants": "Same dedupeKey as lilly.revolution.asc-hostile; one reading per topic.",
+   "dedupeKey": "return-asc-sign",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Sentence read on p.737.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.737."
+  },
+  {
+   "id": "lilly.revolution.contrary-disposition",
+   "name": "Revolution: planets disposed contrary to the radix",
+   "stage": "activation",
+   "condition": "NEEDS THE RETURN CHART. In a revolution in which the planets are all disposed contrary to the radix (all subterranean in the radix and all above the earth in the revolution, or all cadent in the radix and all in their own houses in the revolution), the year signifies ill, even if they are well disposed. Two extreme examples only.",
+   "inputs": [
+    "return chart planet positions",
+    "natal planet positions"
+   ],
+   "computable": "needs-return-chart",
+   "topics": [
+    "general"
+   ],
+   "direction": "unfavourable",
+   "strength": 1,
+   "template": "The planets of the return stand opposite to their radical dispositions: Lilly reads an ill year.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII",
+   "sourceLocator": "Book III p.737",
+   "sourceQuote": "yet they signifie ill",
+   "variants": "Nearly never fires.",
+   "dedupeKey": "return-contrary",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Sentence read on p.737.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Sentence read p.737."
+  },
+  {
+   "id": "lilly.revolution.returns-wealth",
+   "name": "Revolution: a planet returns to its own radical place or to another's (money readings)",
+   "stage": "activation",
+   "condition": "NEEDS THE RETURN CHART. In the revolution a planet is at the same degree (partile; Lilly gives no orb, derived) as a radical planet place. Money readings only: Saturn at its own radical place and well affected: dignity and store of substance, perhaps an inheritance; Saturn at Jupiter's place: fortunate in body and goods; Jupiter at its own place: a child and much wealth, health and esteem; Mercury at Saturn's place: profit by husbandry and wealth from old men; Mercury at Jupiter's place: acquires an office, gains by trade. Identification of the glyphs follows Lilly's fixed order of the list for each planet (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon).",
+   "inputs": [
+    "return chart planet positions",
+    "natal planet positions"
+   ],
+   "computable": "needs-return-chart",
+   "topics": [
+    "wealth"
+   ],
+   "direction": "favourable",
+   "strength": 1,
+   "template": "In the return {planet} stands at {place}: {reading}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXIII 'Of the Returns of the Planets to their owne Places, and to the places of other Planets in the Radix'",
+   "sourceLocator": "Book III p.738-740",
+   "sourceQuote": "promiseth a Child and much Wealth, Health and Estimation",
+   "variants": "Only entries whose glyphs are fixed by list order are kept.",
+   "dedupeKey": "return-planet-place",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Five unambiguous entries read on p.738-740; the original orb of 1 degree is the implementer's and stays derived.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Entries read p.738-740 (Saturn at own place; Saturn at Jupiter; Jupiter at own place; Mercury at Saturn; Mercury at Jupiter)."
+  },
+  {
+   "id": "lilly.revolution.returns-affliction",
+   "name": "Revolution: a planet returns to a place that afflicts (non-money readings)",
+   "stage": "activation",
+   "condition": "NEEDS THE RETURN CHART. Same mechanism as lilly.revolution.returns-wealth. Readings kept: the Moon at the Sun's radical place: many hazards and dangers, sore eyes; the Moon at her own radical place ONLY WHEN she was weak at birth (class WEAK): much ill according to her signification at that time (her other branch, 'promises good if radically fortunate', is favourable and is not part of this rule). Mars at his own radical place is NOT coded: Lilly's sentence there is 'in danger by Fire, profit by Souldiers, or very much love and friendship', three alternatives of which the first version kept only the first. Descriptive items without a topic are not coded.",
+   "inputs": [
+    "return chart planet positions",
+    "natal planet positions"
+   ],
+   "computable": "needs-return-chart",
+   "topics": [
+    "general",
+    "health"
+   ],
+   "direction": "unfavourable",
+   "strength": 1,
+   "template": "In the return {planet} stands at {place}: {reading}.",
+   "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXIII",
+   "sourceLocator": "Book III p.739-741",
+   "sourceQuote": "in danger by Fire",
+   "variants": "Same as returns-wealth.",
+   "dedupeKey": "return-planet-place",
+   "verification": "corrected",
+   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Entries read on p.739-741; those whose glyphs are not fixed by list order are left out.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Entries read on p.739-741 (list order Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon). Corrections: Mars at his own place gives danger by fire, profit by soldiers OR love and friendship; keeping one third of a mixed sentence under an unfavourable direction misstated it, so it is removed; the Moon-at-own-place item is restricted to its unfavourable branch."
+  },
+  {
+   "id": "valens.transmission.topic-start",
+   "name": "Valens: which point to count the year from, by topic",
+   "stage": "period-lord",
+   "condition": "Counting as in valens.profection.transmission-lord, Valens (IV.11) starts the count from: the Ascendant for length of life and body and mind; the Sun for rank, preeminence, the father, great personages; the Moon for dangers to health, diseases, bleeding, the mother; the MC for occupation, livelihood, work; the Lot of Fortune for good fortune and success in life; the Descendant for mortality, change, trouble (the first version softened the first word; the rule is a mapping of start to matter, and no output template uses the word); the IC for estates, possessions, secret matters, legacies; Venus for women, love affairs, associations; Mars for military or public matters; Saturn for bankruptcy, money or property, secret diseases, family inheritance; Jupiter for rank, friendship, alliances, possessions; Mercury for associations, servile matters, giving and receiving, written matters. This is a mapping of topic to start, with no numeric scale.",
+   "inputs": [
+    "age",
+    "sign per starting point",
+    "topic"
+   ],
+   "computable": "now",
+   "topics": [
+    "general",
+    "wealth",
+    "career",
+    "relationships",
+    "health"
+   ],
+   "direction": "activates",
+   "strength": 1,
+   "template": "For {topic}, Valens counts the year from {start}: year {N} reaches {receivingSign}.",
+   "sourceCitation": "Vettius Valens, Anthologies IV.11, tr. Mark T. Riley",
+   "sourceLocator": "Book IV ch. 11, Riley p.104 (passage beginning 'In addition, when we investigate the length of life')",
+   "sourceQuote": "For forecasts of good fortune and success in life",
+   "variants": "Replaces the 'basis-precedence' rule held back for lack of a numeric scale: the mapping itself is sourced, the scale is not and is not used.",
+   "dedupeKey": "profected-sign@year",
+   "verification": "corrected",
+   "verificationNote": "Mapping read on Riley p.104. The held-back note wanted a numeric scale; none is in Valens.",
+   "sourceOpened": true,
+   "secondCheck": "passed",
+   "secondCheckNote": "Mapping read on Riley p.104 entry by entry (Ascendant, Sun, Moon, MC, Fortune, Descendant, IC, Venus, Mars, Saturn, Jupiter, Mercury): all match. Wording of the Descendant entry restored to the source sense. Quotation shortened to the opening fragment of the sentence, because the rest of the source sentence contains a word on the banned list for output; the sentence ends by naming the Lot of Fortune as the starting point."
+  },
+  {
+   "id": "valens.transit.benefic-malefic-year-lord",
+   "name": "Valens: a malefic holding the year, and a benefic or malefic transiting it",
+   "stage": "activation",
+   "condition": "A malefic holds the year (is the chronocrator: the planet that receives the year per valens.profection.transmission-lord; implementer's identification). If another malefic transits the year (the profected sign), it intensifies the evil; if a benefic transits it, it brings relief and help (Riley p.108). NOT CODED: Valens's next sentence 'Assume the same is true for benefics' (it can mean a benefic year-lord with a benefic or a malefic transit; ambiguous), the retrograde clause ('delay expectations, actions, profits, and enterprises') which Valens states for all stars generally and not for the year-lord, and the phase clauses (rising, last visibility, stationary points), which need heliacal phase data.",
+   "inputs": [
+    "time-lord",
+    "transit sign of benefic and malefic",
+    "retrograde flag"
+   ],
+   "computable": "small-addition",
+   "topics": [
+    "general"
+   ],
+   "direction": "mixed",
+   "strength": 1,
+   "template": "{planet} transits the year sign {sign} while the malefic {lord} holds the year: {effect}.",
+   "sourceCitation": "Vettius Valens, Anthologies IV.14, tr. Mark T. Riley",
+   "sourceLocator": "Book IV ch. 14, Riley p.108",
+   "sourceQuote": "if [another] malefic transits the year, it intensifies the evil; if a benefic transit, it brings relief and help",
+   "variants": "Valens' 'has the year' is read as being the chronocrator.",
+   "dedupeKey": "valens-transit-year",
+   "verification": "corrected",
+   "verificationNote": "Passage read on Riley p.107; clause subset that needs no phase data kept.",
+   "sourceOpened": true,
+   "secondCheck": "corrected",
+   "secondCheckNote": "Passage read on Riley p.108. Corrections: the quotation given (retrograde stars delay expectations) belongs to a different sentence and was not about the year-lord, so the quotation is replaced by the sentence the rule rests on; the retrograde clause and the ambiguous benefic sentence are moved out; topic wealth removed (the sentence is general); locator p.108."
+  }
+ ],
+ "secondCheck": {
+  "reader": "adversarial second reader",
+  "sources": [
+   "Lilly 1647 Wellcome copy, archive.org b30338724: OCR text of all of Book III chapters cited, page images of pp.104, 107, 115, 554, 588",
+   "Bonatti 1550, archive.org bub_gb_BgWuc5O-JzIC: OCR text of Pars V Caput III and VII, page image of pp.813-814",
+   "Valens, Riley 2019, archive.org vettius-valens-anthologies: OCR text and layout XML (page folios), page image of p.105"
+  ],
+  "unconfirmed": [
+   {
+    "id": "lilly.career.luminary-angularity.none-angular",
+    "reason": "Logical structure of the sentence is ambiguous. Lilly p.617: 'They who in their Nativities have neither of the Lights in an angle or in a masculine Signe, or have not the benevolent Planets with them' gives 'abject people and of no quality'. Read as written, the two clauses are joined by 'or', and 'neither ... in an angle or in a masculine Signe' can mean not (angle or masculine) or (not angle) or (not masculine). The colleague's AND-reading is a narrowing that the text does not state. Left unbound until the director settles the reading; the cadent rule from the same passage is kept.",
+    "page": "Book III p.617"
+   }
+  ],
+  "directionEnumFix": [
+   "lilly.profection.house-travel@6",
+   "lilly.relationships.single-life.barren",
+   "lilly.relationships.single-life.saturn",
+   "lilly.relationships.single-life.moon-saturn",
+   "lilly.profection.mc-career@3",
+   "lilly.profection.mc-career@4",
+   "lilly.profection.mc-career@6",
+   "lilly.profection.mc-career@8",
+   "lilly.profection.mc-career@12"
+  ],
+  "counts": {
+   "rulesInColleagueFile": 57,
+   "rulesInThisFile": 56
+  }
+ }
 }

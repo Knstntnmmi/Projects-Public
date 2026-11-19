@@ -210,23 +210,44 @@ Luck direction and the spouse and children rules differ by sex in the sources. W
 
 ## Western house system
 
-Setting `westernHouses`. Affects: Western rules that name a house (withheld in this phase).
+Setting `westernHouses`. Affects: Every Western rule that names a house, angle or the 2nd, 7th or 10th place.
 
-Whole-sign houses are what the engine computes; rules that cite cusps run whole-sign as a labelled variant.
+Lilly worked with Regiomontanus cusps, which the engine does not compute. Rules that cite a house run on whole-sign houses, and every statement from such a rule carries the badge "labelled variant: whole-sign houses". Regiomontanus is not offered yet.
 
 | Value | Meaning | Default |
 | --- | --- | --- |
-| `whole-sign` | Whole sign. Houses are the signs counted from the ascendant sign. | yes |
+| `whole-sign` | Whole sign. Houses are the signs counted from the ascendant sign. The only value today. | yes |
 
 ## Western term (bound) table
 
-Setting `westernTerms`. Affects: Western dignity scores (withheld in this phase).
+Setting `westernTerms`. Affects: Western dignity scores of the Lilly rules (essential strength classes).
 
-Lilly printed the Ptolemaic terms; the engine computes the Egyptian set, so the difference is named.
+Lilly printed the Ptolemaic terms and his own triplicities and faces (Christian Astrology, Book I p.104). The Lilly rules run on that table and not on the Egyptian bounds, Dorothean triplicities and Chaldean faces of the engine's other Western code, so the difference is named.
 
 | Value | Meaning | Default |
 | --- | --- | --- |
-| `lilly-ptolemy` | Lilly's terms. As printed in Christian Astrology. | yes |
+| `lilly-ptolemy` | Lilly's table. Terms, triplicities and faces as printed in Christian Astrology. The only value today. | yes |
+
+## Western orbs of aspect
+
+Setting `westernOrbs`. Affects: Whether two planets aspect, in every Western rule that reads an aspect.
+
+Lilly prints two columns of orbs and says he uses now the one and now the other (p.107). Two planets aspect when they lie within the sum of their moieties, half the orb of each, of the exact aspect.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `first-column` | First column. Saturn 10, Jupiter 12, Mars 7 30', Sun 17, Venus 8, Mercury 7, Moon 12 30'. The only value today; the second column is in the module for a later choice. | yes |
+
+## Western year with the profected point in the tenth house
+
+Setting `westernTenthYear`. Affects: lilly.profection.house-money, house-travel and mc-career for the 10th house, and lilly.profection.angle-aspect-years for a square to the Ascendant.
+
+Lilly's house table calls the year in which the profected Ascendant, Midheaven or Sun reaches the tenth house very successful (Christian Astrology, p.730 and p.731), while his remark on p.720 calls the years in square or opposition to the Horoscope or Midheaven unhappy. The tenth house is in square to the Ascendant, so the two cannot both be read. The rule file lists the house table first, which is the default.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `house-table` | House table. The tenth house is read as the house table says; the square to the Ascendant is not read as unhappy for it. The default. | yes |
+| `angle-aspect` | Aspect to the angles. The tenth house is read as a square to the Ascendant, unhappy; the house table is not read for it. |  |
 
 ## Length of a dasha year
 

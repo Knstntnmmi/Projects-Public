@@ -74,7 +74,8 @@ export interface Rule {
   stage: Stage;
   condition: string;
   inputs: string[];
-  computable: 'now' | 'small-addition';
+  /** 'needs-return-chart': verified, but needs the planetary positions at the solar return. */
+  computable: 'now' | 'small-addition' | 'needs-return-chart';
   topics: Topic[];
   direction: Direction;
   /** The extractor's rating, 1 to 3. Display only; never combined. */

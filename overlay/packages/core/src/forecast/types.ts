@@ -183,6 +183,27 @@ export interface NotEvaluated {
   reason: string;
 }
 
+/**
+ * Part of a bound rule that is deliberately not evaluated: the rest of the rule runs, and this
+ * branch of its condition says nothing, with the reason. A rule that is not evaluated at all is a NotEvaluated.
+ */
+export interface NotEvaluatedBranch {
+  ruleId: string;
+  /** The branch of the condition that is left out, in the condition's own words. */
+  branch: string;
+  reason: string;
+}
+
+/**
+ * A note a tradition adds to the readings of some levels because of the chart itself (a
+ * balanced BaZi chart names no favourite, so the levels that judge by the favourite are silent).
+ */
+export interface ChartNote {
+  tradition: Tradition;
+  levels: LevelId[];
+  text: string;
+}
+
 export interface Span {
   startUtcMs: number;
   endUtcMs: number;

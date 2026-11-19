@@ -5,9 +5,9 @@
  * rule: bound (it runs), withheld (and why), unbound (no code yet) or held back (the
  * checkers could not confirm it, so it is not in the rule files at all).
  */
-import type { ContextBuilder } from './context.ts';
+import type { ContextBuilder, ForecastContext } from './context.ts';
 import { RULE_FILES, HELD_BACK } from './rules.ts';
-import { TOPICS, TRADITIONS, type HeldBack, type NotEvaluated, type Rule, type RuleBinding, type RuleFile, type Topic, type Tradition } from './types.ts';
+import { TOPICS, TRADITIONS, type ChartNote, type HeldBack, type NotEvaluated, type NotEvaluatedBranch, type Rule, type RuleBinding, type RuleFile, type Topic, type Tradition } from './types.ts';
 import * as bazi from './predicates/bazi.ts';
 import * as iching from './predicates/iching.ts';
 import * as vedic from './predicates/vedic.ts';
@@ -27,6 +27,10 @@ export interface TraditionModule {
    * and the evaluation of a span does not run its rules at all.
    */
   PERIOD_READ?: boolean;
+  /** Branches of bound rules that are deliberately not evaluated, each with the reason; the registry lists them beside the rules not evaluated. */
+  NOT_EVALUATED_BRANCHES?: readonly NotEvaluatedBranch[];
+  /** Notes the chart itself puts on some levels (for example a balanced BaZi chart). Pure; reads the context only. */
+  chartNotes?: (ctx: ForecastContext) => ChartNote[];
 }
 
 export interface Registry {
@@ -37,6 +41,9 @@ export interface Registry {
   builders: Partial<Record<Tradition, ContextBuilder>>;
   complete: Readonly<Record<Tradition, boolean>>;
   periodRead: Readonly<Record<Tradition, boolean>>;
+  /** Branches of bound rules that are left out, with reasons. */
+  branches: readonly NotEvaluatedBranch[];
+  chartNotes: Partial<Record<Tradition, (ctx: ForecastContext) => ChartNote[]>>;
 }
 
 export class RegistryError extends Error {
@@ -55,11 +62,20 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
   const builders: Partial<Record<Tradition, ContextBuilder>> = {};
   const complete = {} as Record<Tradition, boolean>;
   const periodRead = {} as Record<Tradition, boolean>;
+  const branches: NotEvaluatedBranch[] = [];
+  const chartNotes: Registry['chartNotes'] = {};
   for (const t of TRADITIONS) {
     const m = modules[t];
     builders[t] = m.buildContext;
     complete[t] = m.COMPLETE;
     periodRead[t] = m.PERIOD_READ === true;
+    if (m.chartNotes) chartNotes[t] = m.chartNotes;
+    for (const b of m.NOT_EVALUATED_BRANCHES ?? []) {
+      const rule = byId.get(b.ruleId);
+      if (!rule || rule.tradition !== t) problems.push(`not-evaluated branch of ${b.ruleId}: no such rule of ${t}`);
+      if (b.branch.trim() === '' || b.reason.trim() === '') problems.push(`not-evaluated branch of ${b.ruleId}: branch and reason must both be given`);
+      branches.push(b);
+    }
     for (const b of m.BINDINGS) {
       const rule = byId.get(b.ruleId);
       if (!rule) problems.push(`binding for ${b.ruleId}: no such rule`);
@@ -76,8 +92,15 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
     }
   }
   for (const id of notEvaluated.keys()) if (bindings.has(id)) problems.push(`${id}: both bound and declared not evaluated`);
+  for (const b of branches) if (!bindings.has(b.ruleId)) problems.push(`not-evaluated branch of ${b.ruleId}: the rule is not bound, so say it is not evaluated as a whole`);
+  const seenBranch = new Set<string>();
+  for (const b of branches) {
+    const k = `${b.ruleId}|${b.branch}`;
+    if (seenBranch.has(k)) problems.push(`not-evaluated branch of ${b.ruleId}: "${b.branch}" declared twice`);
+    seenBranch.add(k);
+  }
   if (problems.length) throw new RegistryError(problems);
-  return { rules, heldBack, bindings, notEvaluated, builders, complete, periodRead };
+  return { rules, heldBack, bindings, notEvaluated, builders, complete, periodRead, branches, chartNotes };
 }
 
 /** The traditions of a registry that are read by period and not by year. */
@@ -140,6 +163,8 @@ export interface RegistryReport {
   coverage: Record<Tradition, Record<Topic, number>>;
   /** Rules the data declares per tradition and topic, for comparison with coverage. */
   declared: Record<Tradition, Record<Topic, number>>;
+  /** Branches of bound rules that are not evaluated, for the traditions switched on. */
+  branches: NotEvaluatedBranch[];
   /** Traditions switched off, with how many rules wait. */
   switchedOff: Array<{ tradition: Tradition; count: number; reason: string }>;
 }
@@ -178,7 +203,9 @@ export function report(registry: Registry, config: RunConfig): RegistryReport {
   const switchedOff = TRADITIONS.filter((t) => !config.traditions.includes(t))
     .map((t) => ({ tradition: t, count: counts[t].total, reason: 'withheld pending verification' }))
     .filter((x) => x.count > 0);
-  return { statuses, counts, coverage, declared, switchedOff };
+  const boundIds = new Set(statuses.filter((s) => s.state === 'bound').map((s) => s.ruleId));
+  const branches = registry.branches.filter((b) => boundIds.has(b.ruleId));
+  return { statuses, counts, coverage, declared, branches, switchedOff };
 }
 
 /** Rules of a tradition that are neither bound nor declared not evaluated. */

@@ -12,14 +12,14 @@ import { agreementBaseline, type Baseline } from './baseline.ts';
 import { agreementCells, groupSeries, type AgreementCell } from './agreement.ts';
 import { createContext, sliceSpan, type ForecastInput } from './context.ts';
 import { DEFAULT_FORECAST_CONVENTIONS, sexOf, type ForecastConventions } from './conventions.ts';
-import { sensitivityText } from './phrasebook.ts';
+import { notEvaluatedBranchLine, sensitivityText } from './phrasebook.ts';
 import { attachModifiers, buildLevelReadings, buildReadings, type LevelReading, type Reading } from './readings.ts';
 import { DEFAULT_REGISTRY, periodReadTraditions, report, type Registry, type RegistryReport, type RunConfig } from './registry.ts';
 import { RULESET_VERSION, rulesetVersion } from './rules.ts';
 import { signalsFromFirings } from './signals.ts';
 import { statementList } from './statements.ts';
 import { yearView } from './yearView.ts';
-import { STAGES, TOPICS, TRADITIONS, type ReadingWord, type Signal, type Slice, type Span, type Topic, type Tradition } from './types.ts';
+import { STAGES, TOPICS, TRADITIONS, type ChartNote, type ReadingWord, type Signal, type Slice, type Span, type Topic, type Tradition } from './types.ts';
 
 /** Traditions switched on in this phase. Western is carried but withheld pending verification. */
 export const DEFAULT_TRADITIONS: readonly Tradition[] = ['bazi', 'vedic', 'iching'];
@@ -75,6 +75,8 @@ export interface ForecastResult {
   readings: Reading[];
   /** One reading per level, topic and slice, for the levels that have a dated statement for the topic. */
   levelReadings: LevelReading[];
+  /** What the chart itself says about some levels, for the traditions switched on. */
+  chartNotes: ChartNote[];
   agreement: AgreementCell[];
   baselines: Record<string, Baseline>;
 }
@@ -122,7 +124,8 @@ export function evaluate(input: ForecastInput, options: ForecastOptions = {}): F
   const slices = [...ctx.slices];
   const yearly = signals.filter((s) => !periodRead.includes(s.tradition));
   const readings = buildReadings(yearly, slices, { coverage: accounting.coverage, traditions: traditions.filter((t) => !periodRead.includes(t)), topics });
-  const levelReadings = buildLevelReadings(yearly, slices, topics);
+  const chartNotes = traditions.filter((t) => !periodRead.includes(t)).flatMap((t) => registry.chartNotes[t]?.(ctx) ?? []);
+  const levelReadings = buildLevelReadings(yearly, slices, topics, chartNotes);
   const agreement = agreementCells(readings, slices, topics);
   const baselines: Record<string, Baseline> = {};
   for (const topic of topics) {
@@ -145,6 +148,7 @@ export function evaluate(input: ForecastInput, options: ForecastOptions = {}): F
     signals,
     readings,
     levelReadings,
+    chartNotes,
     agreement,
     baselines,
   };
@@ -165,7 +169,9 @@ export function reportJson(result: ForecastResult, topic: Topic): Record<string,
     notEvaluated: result.registry.statuses
       .filter((s) => s.state === 'withheld' || s.state === 'unbound')
       .filter((s) => !(s.state === 'withheld' && s.reason === 'tradition-off'))
-      .map((s) => ({ ruleId: s.ruleId, reason: s.state === 'withheld' ? `${s.reason}: ${s.detail}` : s.detail })),
+      .map((s) => ({ ruleId: s.ruleId, reason: s.state === 'withheld' ? `${s.reason}: ${s.detail}` : s.detail }))
+      // a bound rule of which one branch is left out is listed too, with the branch named
+      .concat(result.registry.branches.map((b) => ({ ruleId: b.ruleId, reason: notEvaluatedBranchLine(b.branch, b.reason) }))),
     withheldCount: result.withheldCount,
     signals: result.signals.filter((s) => s.topic === topic),
     readings: result.readings.filter((r) => r.topic === topic).map((r) => ({ tradition: r.tradition, group: r.group, slice: r.slice, word: r.word, tally: r.tally, signalIds: r.signalIds })),

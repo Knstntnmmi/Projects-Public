@@ -7,7 +7,7 @@
  */
 import { NOTE, supportsFromCautionsFrom } from './phrasebook.ts';
 import { overlapFraction, overlaps } from './signals.ts';
-import type { ClockGroupId, LevelId, ReadingWord, Signal, Slice, Stage, Tally, Topic, Tradition } from './types.ts';
+import type { ChartNote, ClockGroupId, LevelId, ReadingWord, Signal, Slice, Stage, Tally, Topic, Tradition } from './types.ts';
 import { TRADITIONS } from './types.ts';
 
 export interface Reading {
@@ -172,8 +172,16 @@ export interface LevelReading {
   word: ReadingWord;
   note: string | null;
   tally: Tally;
+  /** What the chart itself says about this level (a balanced chart names no favourite), or null. Distinct texts joined by "; ". */
+  chartNote: string | null;
   signalIds: string[];
   modifierIds: string[];
+}
+
+/** The note the chart puts on a level, or null. */
+export function chartNoteOf(notes: readonly ChartNote[], level: LevelId): string | null {
+  const texts = [...new Set(notes.filter((n) => n.levels.includes(level)).map((n) => n.text))];
+  return texts.length === 0 ? null : texts.join('; ');
 }
 
 /**
@@ -181,12 +189,13 @@ export interface LevelReading {
  * statements are de-duplicated first, exactly as for the tradition readings, so a fact two
  * rules report counts once.
  */
-export function buildLevelReadings(signals: readonly Signal[], slices: readonly Slice[], topics: readonly Topic[]): LevelReading[] {
+export function buildLevelReadings(signals: readonly Signal[], slices: readonly Slice[], topics: readonly Topic[], chartNotes: readonly ChartNote[] = []): LevelReading[] {
   const { kept } = dedupe(signals);
   const out: LevelReading[] = [];
   for (const topic of topics) {
     const mine = kept.filter((s) => s.topic === topic && s.startUtcMs !== null);
-    const levels = unique(mine.map((s) => s.level));
+    // A level the chart puts a note on is read even where no rule of it fired, so that its silence is seen with the reason.
+    const levels = unique([...mine.map((s) => s.level), ...chartNotes.flatMap((n) => n.levels)]);
     for (const level of levels) {
       const pool = mine.filter((s) => s.level === level);
       for (const slice of slices) {
@@ -199,6 +208,7 @@ export function buildLevelReadings(signals: readonly Signal[], slices: readonly 
           word,
           note,
           tally: tallyOf(inSlice),
+          chartNote: chartNoteOf(chartNotes, level),
           signalIds: inSlice.filter((s) => s.stage !== 'modifier').map((s) => s.id),
           modifierIds: inSlice.filter((s) => s.stage === 'modifier').map((s) => s.id),
         });

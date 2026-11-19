@@ -102,6 +102,7 @@ export const NOTE = {
   twoTraditionsOneGroup: 'two traditions, one group',
   onePlanetsMotion: "two traditions read one planet's motion",
   sameFactAlso: 'same fact, also reported by',
+  balancedChart: 'the chart is balanced, so the favourable-element method names no favourite',
 } as const;
 
 export const BADGE = {
@@ -163,10 +164,19 @@ export function levelPhrase(label: string, word: ReadingWord, tally: Tally): str
   return `${label} marks the topic as active`;
 }
 
-/** The year summary: level words in a fixed order, then the levels that said nothing. */
-export function yearSummaryLine(phrases: readonly string[], silent: readonly string[]): string {
+/** The year summary: level words in a fixed order, then the levels that said nothing, then the notes the chart puts on its levels. */
+export function yearSummaryLine(phrases: readonly string[], silent: readonly string[], notes: readonly string[] = []): string {
   const head = phrases.length > 0 ? `${phrases.join('; ')}.` : TEXT.nothingAtAnyLevel;
-  return silent.length > 0 ? `${head} ${TEXT.silentHeading}: ${silent.join(', ')}.` : head;
+  const body = silent.length > 0 ? `${head} ${TEXT.silentHeading}: ${silent.join(', ')}.` : head;
+  return notes.length > 0 ? `${body} ${notes.map(sentenceOf).join(' ')}` : body;
+}
+
+/** A note as a sentence: capital first letter, full stop last. */
+export const sentenceOf = (note: string): string => `${note.charAt(0).toUpperCase()}${note.slice(1)}.`;
+
+/** The line that lists a branch of a bound rule that is left out, in the not-evaluated list. */
+export function notEvaluatedBranchLine(branch: string, reason: string): string {
+  return `only part of this rule is evaluated; not evaluated: ${branch}. ${reason}`;
 }
 
 /** The fixed line that stands in for a period-read tradition in the year view. */
@@ -269,6 +279,8 @@ export function allPhrases(): string[] {
     levelPhrase('x', 'nothing-said', { supports: 0, cautions: 0, mixed: 0, active: 1 }),
     yearSummaryLine(['x supports'], ['y']),
     yearSummaryLine([], ['y']),
+    yearSummaryLine(['x supports'], ['y'], [NOTE.balancedChart]),
+    notEvaluatedBranchLine('a branch', 'a reason'),
     periodReadLine('iching'),
     periodReadLine('bazi'),
     foldedModifiersLine('vedic', 1),

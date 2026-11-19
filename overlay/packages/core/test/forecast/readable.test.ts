@@ -284,7 +284,21 @@ describe('the statement list', () => {
   it('shows a modifier only as a qualifier of the statement it attaches to, with its sentence', () => {
     expect(list.dated.some((e) => e.ruleId === 'b.luck-mod')).toBe(false);
     const luck = list.dated.find((e) => e.ruleId === 'b.luck')!;
-    expect(luck.qualifiers).toEqual([{ signalId: expect.stringMatching(/^b\.luck-mod@/), ruleId: 'b.luck-mod', sentence: 'b.luck-mod says something.' }]);
+    // a qualifier now also carries its own span and level; the sentence and ids are as before
+    expect(luck.qualifiers).toEqual([
+      {
+        signalId: expect.stringMatching(/^b\.luck-mod@/),
+        ruleId: 'b.luck-mod',
+        sentence: 'b.luck-mod says something.',
+        level: 'bazi-luck',
+        levelLabel: 'BaZi luck pillar',
+        startUtcMs: expect.any(Number),
+        endUtcMs: expect.any(Number),
+        beganBefore: false,
+        endsAfter: false,
+        alsoQualifies: 0,
+      },
+    ]);
   });
 
   it('folds modifiers that attach to nothing into one group per tradition with a count', () => {

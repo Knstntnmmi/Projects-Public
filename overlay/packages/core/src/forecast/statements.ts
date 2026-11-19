@@ -8,17 +8,30 @@
  * attach to nothing are folded into one count per tradition. Statements of period-read
  * traditions are not part of it.
  */
-import { directionWord, foldedModifiersLine, LEVEL_LABEL, TEXT, type DisplayWord } from './phrasebook.ts';
+import { directionWord, foldedModifiersLine, LEVEL_LABEL, sentenceOf, TEXT, type DisplayWord } from './phrasebook.ts';
 import { levelRank } from './levels.ts';
 import { dedupe } from './readings.ts';
 import type { ForecastResult } from './evaluate.ts';
 import { TRADITIONS, type LevelId, type Signal, type Topic, type Tradition } from './types.ts';
 
-/** A modifier statement attached to an entry, with its own sentence. */
+/**
+ * A modifier statement attached to an entry, with its own span. A modifier that lasts over many
+ * statements (a star a luck pillar brings, over ten year pillars) is shown once, on the first
+ * statement it qualifies, and says how many further statements it qualifies.
+ */
 export interface Qualifier {
   signalId: string;
   ruleId: string;
   sentence: string;
+  level: LevelId;
+  levelLabel: string;
+  /** Clipped to the requested span. */
+  startUtcMs: number;
+  endUtcMs: number;
+  beganBefore: boolean;
+  endsAfter: boolean;
+  /** How many further statements of the list it qualifies, which do not repeat it. */
+  alsoQualifies: number;
 }
 
 export interface StatementEntry {
@@ -55,6 +68,8 @@ export interface StatementList {
   dated: StatementEntry[];
   /** Modifiers that attach to no statement shown, one group per tradition. */
   unattached: FoldedModifiers[];
+  /** What the chart itself says about its levels (for example that a balanced chart names no favourite), each text once, as the reader meets it. */
+  chartNotes: string[];
 }
 
 const byText = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
@@ -72,34 +87,30 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
   const { kept, alsoReportedBy, keptOf } = shownSignals(result, topic);
   const byId = new Map(kept.map((s) => [s.id, s]));
   const { startUtcMs: spanStart, endUtcMs: spanEnd } = result.span;
-  const used = new Set<string>();
 
-  const entryOf = (s: Signal): StatementEntry => {
-    const qualifiers: Qualifier[] = [];
-    for (const id of s.modifiedBy) {
-      const rep = byId.get(keptOf.get(id) ?? id);
-      if (!rep || rep.stage !== 'modifier' || used.has(`${s.id}|${rep.id}`)) continue;
-      used.add(`${s.id}|${rep.id}`);
-      qualifiers.push({ signalId: rep.id, ruleId: rep.ruleId, sentence: rep.sentence });
-    }
+  const clip = (s: Signal): Pick<StatementEntry, 'startUtcMs' | 'endUtcMs' | 'beganBefore' | 'endsAfter'> => {
     const dated = s.startUtcMs !== null && s.endUtcMs !== null;
     return {
-      signalId: s.id,
-      ruleId: s.ruleId,
-      tradition: s.tradition,
-      level: s.level,
-      levelLabel: LEVEL_LABEL[s.level],
-      word: directionWord(s.direction),
-      sentence: s.sentence,
-      badges: [...s.badges],
       startUtcMs: dated ? Math.max(s.startUtcMs!, spanStart) : null,
       endUtcMs: dated ? Math.min(s.endUtcMs!, spanEnd) : null,
       beganBefore: dated && s.startUtcMs! < spanStart,
       endsAfter: dated && s.endUtcMs! > spanEnd,
-      alsoReportedBy: alsoReportedBy[s.id]?.length ?? 0,
-      qualifiers,
     };
   };
+
+  const entryOf = (s: Signal): StatementEntry => ({
+    signalId: s.id,
+    ruleId: s.ruleId,
+    tradition: s.tradition,
+    level: s.level,
+    levelLabel: LEVEL_LABEL[s.level],
+    word: directionWord(s.direction),
+    sentence: s.sentence,
+    badges: [...s.badges],
+    ...clip(s),
+    alsoReportedBy: alsoReportedBy[s.id]?.length ?? 0,
+    qualifiers: [],
+  });
 
   const tradIndex = (t: Tradition): number => TRADITIONS.indexOf(t);
   const natal = kept
@@ -114,11 +125,27 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
         a.startUtcMs! - b.startUtcMs! || tradIndex(a.tradition) - tradIndex(b.tradition) || levelRank(a.level) - levelRank(b.level) || byText(a.ruleId, b.ruleId) || byText(a.signalId, b.signalId),
     );
 
-  const attached = new Set([...natal, ...dated].flatMap((e) => e.qualifiers.map((q) => q.signalId)));
+  // A modifier is shown once, on the first statement of the list it qualifies, however many it overlaps.
+  const placed = new Map<string, Qualifier>();
+  for (const e of [...natal, ...dated]) {
+    for (const id of kept.find((x) => x.id === e.signalId)!.modifiedBy) {
+      const rep = byId.get(keptOf.get(id) ?? id);
+      if (!rep || rep.stage !== 'modifier') continue;
+      const first = placed.get(rep.id);
+      if (first) {
+        first.alsoQualifies++;
+        continue;
+      }
+      const q: Qualifier = { signalId: rep.id, ruleId: rep.ruleId, sentence: rep.sentence, level: rep.level, levelLabel: LEVEL_LABEL[rep.level], ...(clip(rep) as Pick<Qualifier, 'startUtcMs' | 'endUtcMs' | 'beganBefore' | 'endsAfter'>), alsoQualifies: 0 };
+      placed.set(rep.id, q);
+      e.qualifiers.push(q);
+    }
+  }
+  const attached = new Set(placed.keys());
   const unattached: FoldedModifiers[] = [];
   for (const tradition of TRADITIONS) {
     const orphans = kept.filter((s) => s.stage === 'modifier' && s.tradition === tradition && !attached.has(s.id));
     if (orphans.length > 0) unattached.push({ tradition, count: orphans.length, line: foldedModifiersLine(tradition, orphans.length), signalIds: orphans.map((s) => s.id) });
   }
-  return { topic, natalHeading: TEXT.natalPromiseHeading, natal, dated, unattached };
+  return { topic, natalHeading: TEXT.natalPromiseHeading, natal, dated, unattached, chartNotes: [...new Set(result.chartNotes.map((n) => sentenceOf(n.text)))] };
 }

@@ -24,6 +24,8 @@ export interface YearLevelCell {
   label: string;
   word: ReadingWord;
   note: string | null;
+  /** What the chart itself says about this level (a balanced chart names no favourite), or null. */
+  chartNote: string | null;
   tally: Tally;
   tallyText: string;
   entries: YearEntryRef[];
@@ -60,6 +62,7 @@ export function yearView(result: ForecastResult, topic: Topic): YearView {
         label: LEVEL_LABEL[level],
         word: r.word,
         note: r.note,
+        chartNote: r.chartNote,
         tally: r.tally,
         tallyText: tallyText(r.tally),
         entries: r.signalIds.map((id) => {
@@ -79,6 +82,7 @@ export function yearView(result: ForecastResult, topic: Topic): YearView {
       summary: yearSummaryLine(
         speaking.map((c) => levelPhrase(c.label, c.word, c.tally)),
         silent.map((l) => LEVEL_LABEL[l]),
+        [...new Set(cells.flatMap((c) => (c.chartNote === null ? [] : [c.chartNote])))],
       ),
     };
   });

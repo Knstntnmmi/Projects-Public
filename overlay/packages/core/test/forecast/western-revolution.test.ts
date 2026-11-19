@@ -7,13 +7,14 @@
  * chart is the same kind of chart with its own Ascendant and planets.
  */
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_FORECAST_CONVENTIONS, DEFAULT_REGISTRY, ruleById, signalsFromFirings, unaccounted, type Firing } from '../../src/forecast/index.ts';
+import { DEFAULT_FORECAST_CONVENTIONS, DEFAULT_REGISTRY, evaluate, makeInput, ruleById, signalsFromFirings, unaccounted, type Firing } from '../../src/forecast/index.ts';
 import { BINDINGS, NOT_EVALUATED, COMPLETE } from '../../src/forecast/predicates/western.ts';
 import type { PeriodInput, ProfectedYear } from '../../src/forecast/predicates/western/context.ts';
 import { makeNatal, type NatalModel } from '../../src/forecast/predicates/western/model.ts';
 import * as R from '../../src/forecast/predicates/western/revolution.ts';
 import type { Planet } from '../../src/substrate/sky.ts';
-import { MS } from '../../src/substrate/time.ts';
+import { makeMoment, MS } from '../../src/substrate/time.ts';
+import { fixture } from '../../../../fixtures/moments.ts';
 
 const T0 = Date.UTC(2031, 0, 1);
 const DAY = MS.DAY;
@@ -254,5 +255,25 @@ describe('lilly.profection.lord-condition', () => {
     expect(f).toHaveLength(1);
     expect(f[0]!.startUtcMs).toBe(T0 + 6 * YEAR);
     expect(f[0]!.endUtcMs).toBe(T0 + 7 * YEAR);
+  });
+});
+
+describe('the return rules on a sample moment, 2031 to 2060', () => {
+  it('speak for wealth in every year through the return chart, each statement placed from one return to the next', { timeout: 60_000 }, () => {
+    const f = fixture('jiazi-1984');
+    const i = makeInput(makeMoment(f.civil, f.zone, f.place), { fromYear: 2031, toYear: 2060, birthTimeUncertaintyMinutes: 0 });
+    const r = evaluate(i, { traditions: ['western'], runs: 20 });
+    const own = r.signals.filter((s) => s.ruleId === 'lilly.revolution.lord2-fortune-house');
+    expect(own.length).toBeGreaterThanOrEqual(29);
+    for (const s of own) {
+      expect(s.topic).toBe('wealth');
+      expect(s.sentence).toMatch(/^In the return the lord of the 2nd stands in the \d+th house|^In the return the lord of the 2nd stands in the (1st|2nd|3rd) house/);
+      expect(s.badges).toContain(WHOLE);
+      expect(s.endUtcMs! - s.startUtcMs!).toBeGreaterThan(364 * DAY);
+      expect(s.endUtcMs! - s.startUtcMs!).toBeLessThan(367 * DAY);
+    }
+    // One return Ascendant sign is one fact, whatever the rule reading it: no two kept signals share a key and a topic.
+    const ret = r.signals.filter((s) => s.ruleId.startsWith('lilly.revolution.'));
+    expect(new Set(ret.map((s) => s.id)).size).toBe(ret.length);
   });
 });

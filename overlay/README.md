@@ -129,7 +129,7 @@ Zone offsets and daylight-saving history come from the tz database built into th
 
 ## What it does not do
 
-It adds no interpretation of its own: the forecast states only what a named rule of a tradition says, and gives no score, no composite and no verdict for a year. It does not rank a day as lucky, or say that a seam means anything. It does not cast hexagrams, which is a chance procedure and not a calculation. It does not yet include the Chinese lunisolar calendar (and so not Plum Blossom numerology or Zi Wei Dou Shu), Qi Men Dun Jia, Da Liu Ren, the true unequal twenty-eight mansions on the sky, Ptolemaic bounds, zodiacal releasing or primary directions.
+It adds no interpretation of its own: the forecast states only what a named rule of a tradition says, and gives no score, no composite and no verdict for a year. It does not rank a day as lucky, or say that a seam means anything. It does not cast hexagrams, which is a chance procedure and not a calculation. It does not yet include the Chinese lunisolar calendar (and so not Plum Blossom numerology or Zi Wei Dou Shu), Qi Men Dun Jia, Da Liu Ren, the true unequal twenty-eight mansions on the sky, Ptolemy's own bounds (the forecast rules use the table Lilly printed), zodiacal releasing or primary directions.
 
 ## Next
 

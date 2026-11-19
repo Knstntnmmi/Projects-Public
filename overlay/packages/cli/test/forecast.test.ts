@@ -54,9 +54,13 @@ describe('overlay forecast', () => {
     expect(text).toContain(forecast.TEXT.ichingByPeriod);
   });
 
-  it('is short: no statement list, no sources and no ids', () => {
-    expect(lines.length).toBeLessThan(60);
-    expect(text).not.toMatch(/source:|rule [a-z]+\./);
+  it('is short: no list of dated statements; only the natal lines carry their rule and source', () => {
+    expect(lines.length).toBeLessThan(75);
+    // Every natal statement names its rule and its source, as the dated ones do under --full.
+    const natal = text.slice(0, text.indexOf('Grid ('));
+    expect(count(natal, '    rule ')).toBe(count(natal, '  Natal chart, '));
+    expect(count(natal, '; source: ')).toBe(count(natal, '    rule '));
+    expect(text.slice(text.indexOf('Grid ('))).not.toMatch(/source:|rule [a-z]+\./);
     expect(text).not.toMatch(/\b(supports|cautions|mixed|nothing-said)\b[^:]*@/);
   });
 

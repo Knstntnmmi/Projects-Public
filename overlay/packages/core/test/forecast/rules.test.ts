@@ -150,7 +150,9 @@ describe('the ruleset version', () => {
     // Changed again on purpose when the page was re-read for three Western rules: the direction of
     // lilly.revolution.lord2-fortune-house became a pointer, valens.critical-year-node lost its same-sign branch, and
     // the aspects of lilly.transit.daily-cusps were restricted by cluster.
-    expect(RULESET_VERSION).toBe('3d0df6d34c94ced6');
+    // Changed a third time on purpose when the review was answered: six Valens quotations and a builder's path left the data,
+    // the goods, wealth-houses, jupiter-year-sign, return and day-transit templates were reworded.
+    expect(RULESET_VERSION).toBe('8c372c995283ec30');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

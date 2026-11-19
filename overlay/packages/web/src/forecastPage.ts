@@ -51,6 +51,7 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
   let model: Model | null = null;
   let timer: ReturnType<typeof setTimeout> | undefined;
   let charTimer: ReturnType<typeof setTimeout> | undefined;
+  let sensitivityTimer: ReturnType<typeof setTimeout> | undefined;
   let seq = 0;
 
   // --- controls, filled once ---
@@ -151,13 +152,14 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     $('fc-natal').innerHTML = natalHtml(model);
     $('fc-grid').innerHTML = gridHtml(model, sel);
     marks();
-    $('fc-birth').innerHTML = `<p class="note">${esc(model.sensitivity.join(' '))}</p>`;
+    $('fc-birth').innerHTML = `<p class="note">Checking which cells would change if the birth time were off...</p>`;
     $('fc-rules-body').innerHTML = notEvaluatedHtml(model);
     if (sel.year !== null && !model.grid.years.includes(sel.year)) sel.year = null;
     renderYear();
   }
 
   function run(): void {
+    clearTimeout(sensitivityTimer);
     const mine = ++seq;
     const moment = deps.readMoment();
     if (typeof moment === 'string') {
@@ -169,9 +171,15 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
       const input = inputFor(moment, s.fromYear, s.toYear, s.sexConvention);
       const result = forecast.evaluate(input, { topics: [s.topic] });
       if (mine !== seq) return;
+      model = buildModel(result, s.topic, []);
       // With a stated uncertainty the evaluation is run twice more, with the birth moment moved earlier and later.
-      const sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, { topics: [s.topic], runs: 20 }), s.topic);
-      model = buildModel(result, s.topic, sensitivity);
+      // That takes as long again, so the grid is drawn first and the lines about the birth time follow.
+      const shown = model;
+      sensitivityTimer = setTimeout(() => {
+        if (mine !== seq || model !== shown) return;
+        shown.sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, { topics: [s.topic], runs: 20 }), s.topic);
+        $('fc-birth').innerHTML = `<p class="note">${esc(shown.sensitivity.join(' '))}</p>`;
+      }, 0);
       render();
       $('fc-body').classList.remove('stale');
       $('forecast').setAttribute('aria-busy', 'false');

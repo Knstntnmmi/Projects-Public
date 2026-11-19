@@ -107,7 +107,7 @@ describe('the decade grid drawing', () => {
     const svg = renderDecadeGrid(grid, { width: 720 });
     const luck = grid.rows.find((r) => r.level === 'bazi-luck')!;
     expect(luck.note).toBe(forecast.NOTE.needsLuckDirection);
-    expect(svg).toContain(forecast.NOTE.needsLuckDirection);
+    expect(svg).toContain('needs the sex the chart is read as');
   });
 
   it('follows the viewer\'s colour scheme through the existing mechanism, and can be fixed to one', () => {

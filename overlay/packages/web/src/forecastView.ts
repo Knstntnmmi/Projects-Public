@@ -89,13 +89,13 @@ export interface Model {
   agreement: forecast.AgreementDisplay;
   entries: Map<string, Entry>;
   /** What is said about the birth time: the cells that would change, that none would, or that it was not checked. */
-  sensitivity: readonly string[];
+  sensitivity: string[];
   signals: Map<string, forecast.Signal>;
   rules: Map<string, forecast.Rule>;
 }
 
 /** Every readable form of one evaluation, made once, so that the grid and the year panel cannot disagree. */
-export function buildModel(result: Result, topic: Topic, sensitivity: readonly string[] = []): Model {
+export function buildModel(result: Result, topic: Topic, sensitivity: string[] = []): Model {
   const list = forecast.statementList(result, topic);
   const entries = new Map<string, Entry>();
   for (const e of [...list.natal, ...list.natalPointers, ...list.dated, ...list.pointers]) entries.set(e.signalId, e);

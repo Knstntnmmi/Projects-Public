@@ -188,7 +188,7 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
       expect(s.badges).not.toContain('experimental');
       expect(s.dayUtcMs).toBeGreaterThan(window.startUtcMs - MS.DAY);
       expect(s.dayUtcMs).toBeLessThan(window.endUtcMs);
-      expect(s.sentence).toMatch(/^On \d{4}-\d{2}-\d{2}, transiting \w+ (conjoins|sextiles|squares|trines|opposes) the natal /);
+      expect(s.sentence).toMatch(/^Transiting \w+ (conjoins|sextiles|squares|trines|opposes) the natal /);
     }
     const days = c.western.statements.map((s) => s.dayUtcMs);
     expect(days).toEqual([...days].sort((a, b) => a - b));
@@ -231,7 +231,7 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
     for (let k = 0; k < 6; k++) {
       const start = Date.UTC(2031, k * 2, 1);
       for (const s of periodCharacter(f, { startUtcMs: start, endUtcMs: start + 60 * MS.DAY }).western.statements) {
-        const m = /transiting (\w+) (\w+) the natal ([\w ]+): (.*)\.$/.exec(s.sentence)!;
+        const m = /[Tt]ransiting (\w+) (\w+) the natal ([\w ]+): (.*)\.$/.exec(s.sentence)!;
         const [, planet, aspect, point, meaning] = m as unknown as [string, string, string, string, string];
         seen.add(meaning);
         if (meaning === 'a fortunate day') expect(['sextiles', 'trines'], s.sentence).toContain(aspect);

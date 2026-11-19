@@ -6,8 +6,9 @@
  * checkers could not confirm it, so it is not in the rule files at all).
  */
 import type { ContextBuilder, ForecastContext } from './context.ts';
+import { levelTradition } from './levels.ts';
 import { RULE_FILES, HELD_BACK } from './rules.ts';
-import { TOPICS, TRADITIONS, type ChartNote, type HeldBack, type NotEvaluated, type NotEvaluatedBranch, type Rule, type RuleBinding, type RuleFile, type Topic, type Tradition } from './types.ts';
+import { TOPICS, TRADITIONS, type ChartNote, type HeldBack, type LevelId, type NotEvaluated, type NotEvaluatedBranch, type Rule, type RuleBinding, type RuleFile, type Topic, type Tradition } from './types.ts';
 import * as bazi from './predicates/bazi.ts';
 import * as iching from './predicates/iching.ts';
 import * as vedic from './predicates/vedic.ts';
@@ -43,6 +44,8 @@ export interface Registry {
   periodRead: Readonly<Record<Tradition, boolean>>;
   /** Branches of bound rules that are left out, with reasons. */
   branches: readonly NotEvaluatedBranch[];
+  /** Rules of a tradition read by year that are flagged, one by one, as read by period. */
+  periodReadRules: ReadonlySet<string>;
   chartNotes: Partial<Record<Tradition, (ctx: ForecastContext) => ChartNote[]>>;
 }
 
@@ -64,6 +67,7 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
   const periodRead = {} as Record<Tradition, boolean>;
   const branches: NotEvaluatedBranch[] = [];
   const chartNotes: Registry['chartNotes'] = {};
+  const periodReadRules = new Set<string>();
   for (const t of TRADITIONS) {
     const m = modules[t];
     builders[t] = m.buildContext;
@@ -82,6 +86,12 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
       else if (rule.tradition !== t || b.tradition !== t) problems.push(`binding for ${b.ruleId}: rule is ${rule.tradition}, binding says ${b.tradition}, file is ${t}`);
       if (bindings.has(b.ruleId)) problems.push(`binding for ${b.ruleId}: bound twice`);
       bindings.set(b.ruleId, b);
+      if (b.periodRead === true) periodReadRules.add(b.ruleId);
+      for (const l of b.levels ?? []) {
+        const lt = levelTradition(l);
+        if (lt !== null && lt !== t) problems.push(`binding for ${b.ruleId}: level ${l} belongs to ${lt}, not to ${t}`);
+      }
+      if (b.levels !== undefined && b.levels.length === 0) problems.push(`binding for ${b.ruleId}: levels is empty`);
     }
     for (const n of m.NOT_EVALUATED) {
       const rule = byId.get(n.ruleId);
@@ -100,11 +110,14 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
     seenBranch.add(k);
   }
   if (problems.length) throw new RegistryError(problems);
-  return { rules, heldBack, bindings, notEvaluated, builders, complete, periodRead, branches, chartNotes };
+  return { rules, heldBack, bindings, notEvaluated, builders, complete, periodRead, branches, periodReadRules, chartNotes };
 }
 
 /** The traditions of a registry that are read by period and not by year. */
 export const periodReadTraditions = (registry: Registry): Tradition[] => TRADITIONS.filter((t) => registry.periodRead[t]);
+
+/** True when a rule is read by period, because its tradition is or because its binding is flagged. */
+export const isPeriodReadRule = (registry: Registry, rule: Pick<Rule, 'id' | 'tradition'>): boolean => registry.periodRead[rule.tradition] || registry.periodReadRules.has(rule.id);
 
 export const DEFAULT_REGISTRY: Registry = createRegistry(RULE_FILES, { bazi, vedic, iching, western }, HELD_BACK);
 
@@ -211,4 +224,39 @@ export function report(registry: Registry, config: RunConfig): RegistryReport {
 /** Rules of a tradition that are neither bound nor declared not evaluated. */
 export function unaccounted(registry: Registry, tradition: Tradition): string[] {
   return registry.rules.filter((r) => r.tradition === tradition && !registry.bindings.has(r.id) && !registry.notEvaluated.has(r.id)).map((r) => r.id);
+}
+
+/**
+ * What each level could say for a topic, declared and not read from what fired: how many rules
+ * that speak at the level for the topic are bound for this run, and the reasons the others are
+ * withheld. A level with no bound or withheld rule for the topic has no entry. The rules of
+ * traditions or single rules read by period are left out, as are traditions switched off.
+ */
+export interface LevelCoverage {
+  level: LevelId;
+  topic: Topic;
+  bound: number;
+  withheld: WithheldReason[];
+}
+
+export function levelCoverage(registry: Registry, config: RunConfig, topics: readonly Topic[]): LevelCoverage[] {
+  const out = new Map<string, LevelCoverage>();
+  for (const rule of registry.rules) {
+    const binding = registry.bindings.get(rule.id);
+    if (!binding?.levels || isPeriodReadRule(registry, rule)) continue;
+    const status = statusOf(registry, rule, config);
+    if (status.state !== 'bound' && !(status.state === 'withheld' && status.reason !== 'tradition-off' && status.reason !== 'not-computable')) continue;
+    for (const level of binding.levels) {
+      if (level === 'natal') continue;
+      for (const topic of rule.topics) {
+        if (!topics.includes(topic)) continue;
+        const key = `${level}|${topic}`;
+        const c = out.get(key) ?? { level, topic, bound: 0, withheld: [] };
+        if (status.state === 'bound') c.bound++;
+        else if (!c.withheld.includes(status.reason)) c.withheld.push(status.reason);
+        out.set(key, c);
+      }
+    }
+  }
+  return [...out.values()];
 }

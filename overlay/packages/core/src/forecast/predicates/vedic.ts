@@ -9,13 +9,54 @@
  * vedic/dasha.ts, the Jupiter and Saturn transits from the Moon in vedic/transit.ts.
  */
 import type { ForecastContext } from '../context.ts';
-import type { NotEvaluated, NotEvaluatedBranch, RuleBinding } from '../types.ts';
+import { declareLevels } from '../levels.ts';
+import type { LevelId, NotEvaluated, NotEvaluatedBranch, RuleBinding } from '../types.ts';
 import { DASHA_BINDINGS } from './vedic/dasha.ts';
 import { buildVedicContext, NATAL_BINDINGS } from './vedic/natal.ts';
 import { TRANSIT_BINDINGS } from './vedic/transit.ts';
 
 /** One binding per rule the engine can evaluate. */
-export const BINDINGS: readonly RuleBinding[] = [...NATAL_BINDINGS, ...DASHA_BINDINGS, ...TRANSIT_BINDINGS];
+/** The levels each rule speaks at, so that the decade grid shows a row for a level that never fires in a span. */
+const LEVELS: Readonly<Record<string, readonly LevelId[]>> = {
+  'parashari.house-topic-map': ['natal'],
+  'parashari.lagna-functional-nature': ['natal'],
+  'parashari.yogakaraka-kendra-trikona': ['natal'],
+  'parashari.planet-dignity': ['natal'],
+  'parashari.wealth-5-9-lord-dasha': ['vedic-maha', 'vedic-antar'],
+  'parashari.dasha-lord-in-wealth-houses': ['vedic-maha'],
+  'parashari.dasha-lord-career-10': ['vedic-maha', 'vedic-antar'],
+  'parashari.dasha-lord-education-5-9': ['vedic-maha', 'vedic-antar'],
+  'parashari.dasha-lord-4th-home': ['vedic-maha'],
+  'parashari.dasha-lord-travel': ['vedic-maha', 'vedic-antar'],
+  'parashari.dasha-lord-7th-partnership': ['vedic-maha'],
+  'parashari.dasha-lord-2nd-7th-maraka': ['vedic-maha'],
+  'parashari.dasha-lord-6-8-12-lord': ['vedic-maha'],
+  'parashari.dasha-lord-6-8-12-redeemed': ['vedic-maha'],
+  'parashari.dasha-lord-3-11-lord': ['vedic-maha'],
+  'parashari.dasha-lord-placement-natal': ['vedic-maha'],
+  'parashari.dasha-lord-placement-at-start': ['vedic-maha'],
+  'parashari.dasha-lord-association': ['vedic-maha'],
+  'parashari.lagna-karma-lord-exchange': ['natal'],
+  'parashari.node-dasha': ['vedic-maha'],
+  'parashari.dasha-timing-within-period': ['vedic-maha'],
+  'parashari.antardasha-from-dasha-lord-dusthana': ['vedic-antar'],
+  'parashari.antardasha-from-dasha-lord-kendra': ['vedic-antar'],
+  'parashari.antardasha-lord-strength': ['vedic-antar'],
+  'parashari.antardasha-maraka': ['vedic-antar'],
+  'parashari.jupiter-transit-good': ['jupiter-moon'],
+  'parashari.jupiter-transit-other': ['jupiter-moon'],
+  'parashari.jupiter-vedha': ['jupiter-moon'],
+  'parashari.saturn-transit-good': ['saturn-moon'],
+  'parashari.saturn-12th-from-moon': ['saturn-moon'],
+  'parashari.saturn-1st-from-moon': ['saturn-moon'],
+  'parashari.saturn-2nd-from-moon': ['saturn-moon'],
+  'parashari.saturn-8th-from-moon': ['saturn-moon'],
+  'parashari.saturn-transit-other': ['saturn-moon'],
+  'parashari.saturn-vedha': ['saturn-moon'],
+  'parashari.transit-sign-portion': ['saturn-moon', 'jupiter-moon'],
+};
+
+export const BINDINGS: readonly RuleBinding[] = declareLevels([...NATAL_BINDINGS, ...DASHA_BINDINGS, ...TRANSIT_BINDINGS], LEVELS);
 
 /** Rules deliberately not evaluated, each with the reason; the registry lists them. */
 export const NOT_EVALUATED: readonly NotEvaluated[] = [];

@@ -12,6 +12,12 @@ import type { SexConvention } from './types.ts';
 export interface ForecastConventions {
   /** Calendar years in this phase. */
   sliceLength: 'year';
+  /**
+   * A statement that extends beyond a year and overlaps that year by fewer than this many days does
+   * not count toward the year's word, tally or headline; the statement list still shows its true
+   * dates. A statement that lies wholly inside the year counts however short it is.
+   */
+  sliceEdgeDays: 0 | 15 | 30;
   /** When on, a signal that no promise rule gated is shown at rule weight 1. */
   cap_ungated: boolean;
   baziStrengthThresholds: '45/55';
@@ -45,6 +51,7 @@ export interface ForecastConventions {
 
 export const DEFAULT_FORECAST_CONVENTIONS: ForecastConventions = {
   sliceLength: 'year',
+  sliceEdgeDays: 15,
   cap_ungated: false,
   baziStrengthThresholds: '45/55',
   baziLuckWeights: '0.6/0.4',
@@ -74,6 +81,17 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
     affects: 'Every reading, agreement cell and track of the forecast',
     why: 'Readings and agreement are stated per slice of time. This phase uses calendar years, cut at the first of January in UTC.',
     options: [{ value: 'year', label: 'Calendar year', description: 'January to December, UTC.' }],
+  },
+  {
+    key: 'sliceEdgeDays',
+    title: 'Edge of a year',
+    affects: 'The word, the counts and the headline of a level in a year, and the agreement cells that rest on them',
+    why: 'A statement that begins a few hours before the end of a year, or ends a few hours after its start, touches that year without filling it: the birthday clock is the usual case, because a profection or a return runs from one birthday to the next. A statement that extends beyond a year and overlaps it by fewer days than this does not count toward the word, the counts or the headline of that year. The statement list always shows the true dates, and a statement that lies wholly inside a year counts however short it is.',
+    options: [
+      { value: 0, label: 'No edge', description: 'Any overlap counts, however brief.' },
+      { value: 15, label: '15 days', description: 'A statement that overlaps a year by fewer than 15 days, and extends beyond it, does not count for that year. The default.' },
+      { value: 30, label: '30 days', description: 'The same with a month.' },
+    ],
   },
   {
     key: 'cap_ungated',

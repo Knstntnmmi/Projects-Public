@@ -14,12 +14,14 @@ import { createContext, sliceSpan, type ForecastInput } from './context.ts';
 import { DEFAULT_FORECAST_CONVENTIONS, sexOf, type ForecastConventions } from './conventions.ts';
 import { notEvaluatedBranchLine, sensitivityText } from './phrasebook.ts';
 import { attachModifiers, buildLevelReadings, buildReadings, type LevelReading, type Reading } from './readings.ts';
-import { DEFAULT_REGISTRY, periodReadTraditions, report, type Registry, type RegistryReport, type RunConfig } from './registry.ts';
+import { DEFAULT_REGISTRY, isPeriodReadRule, levelCoverage, periodReadTraditions, report, type LevelCoverage, type Registry, type RegistryReport, type RunConfig } from './registry.ts';
 import { RULESET_VERSION, rulesetVersion } from './rules.ts';
 import { signalsFromFirings } from './signals.ts';
 import { statementList } from './statements.ts';
+import { decadeGrid } from './grid.ts';
 import { yearView } from './yearView.ts';
-import { STAGES, TOPICS, TRADITIONS, type ChartNote, type ReadingWord, type Signal, type Slice, type Span, type Topic, type Tradition } from './types.ts';
+import { levelTradition } from './levels.ts';
+import { STAGES, TOPICS, TRADITIONS, type ChartNote, type LevelId, type ReadingWord, type Signal, type Slice, type Span, type Topic, type Tradition } from './types.ts';
 
 /** Traditions switched on: all four. A caller may still pass a shorter list. */
 export const DEFAULT_TRADITIONS: readonly Tradition[] = ['bazi', 'vedic', 'iching', 'western'];
@@ -32,9 +34,10 @@ export interface ForecastOptions {
   seed?: number;
   runs?: number;
   /**
-   * Run the rules of period-read traditions (the I Ching) too, and keep their statements in
-   * `signals`. They still never enter a reading, agreement or the readable forms. Off by
-   * default: a span is then evaluated without touching them.
+   * Run the rules that are read by period (the I Ching, and single rules flagged as such, like
+   * the Western day transits) too, and keep their statements in `signals`. They still never
+   * enter a reading, agreement or the readable forms. Off by default: a span is then evaluated
+   * without touching them.
    */
   includePeriodRead?: boolean;
 }
@@ -64,6 +67,8 @@ export interface ForecastResult {
   traditions: Tradition[];
   /** Switched-on traditions that are read by period and so stay out of every yearly form. */
   periodRead: Tradition[];
+  /** Single rules, of traditions read by year, that are read by period too (their statements are in `signals` only when asked for). */
+  periodReadRules: string[];
   topics: Topic[];
   span: Span;
   slices: Slice[];
@@ -73,8 +78,10 @@ export interface ForecastResult {
   withheldCount: number;
   signals: Signal[];
   readings: Reading[];
-  /** One reading per level, topic and slice, for the levels that have a dated statement for the topic. */
+  /** One reading per level, topic and slice, for the levels that have a bound rule or a dated statement for the topic. */
   levelReadings: LevelReading[];
+  /** Per level and topic: how many rules that speak at the level are bound, and why the others are withheld. Declared by the bindings, not read from what fired. */
+  levelCoverage: LevelCoverage[];
   /** What the chart itself says about some levels, for the traditions switched on. */
   chartNotes: ChartNote[];
   agreement: AgreementCell[];
@@ -104,7 +111,7 @@ export function evaluate(input: ForecastInput, options: ForecastOptions = {}): F
   const periodRead = periodReadTraditions(registry).filter((t) => traditions.includes(t));
   const bound = new Set(accounting.statuses.filter((s) => s.state === 'bound').map((s) => s.ruleId));
   const rules = registry.rules
-    .filter((r) => bound.has(r.id) && (r.sourceOpened || input.forecastConventions.showUnopened) && (options.includePeriodRead || !periodRead.includes(r.tradition)))
+    .filter((r) => bound.has(r.id) && (r.sourceOpened || input.forecastConventions.showUnopened) && (options.includePeriodRead || !isPeriodReadRule(registry, r)))
     .sort((a, b) => {
       const x = order(a);
       const y = order(b);
@@ -122,10 +129,14 @@ export function evaluate(input: ForecastInput, options: ForecastOptions = {}): F
   attachModifiers(signals);
 
   const slices = [...ctx.slices];
-  const yearly = signals.filter((s) => !periodRead.includes(s.tradition));
-  const readings = buildReadings(yearly, slices, { coverage: accounting.coverage, traditions: traditions.filter((t) => !periodRead.includes(t)), topics });
+  const periodReadRules = registry.rules.filter((r) => registry.periodReadRules.has(r.id) && bound.has(r.id) && traditions.includes(r.tradition) && !periodRead.includes(r.tradition)).map((r) => r.id);
+  const yearly = signals.filter((s) => !periodRead.includes(s.tradition) && !periodReadRules.includes(s.ruleId));
+  const readings = buildReadings(yearly, slices, { coverage: accounting.coverage, traditions: traditions.filter((t) => !periodRead.includes(t)), topics, edgeDays: input.forecastConventions.sliceEdgeDays });
   const chartNotes = traditions.filter((t) => !periodRead.includes(t)).flatMap((t) => registry.chartNotes[t]?.(ctx) ?? []);
-  const levelReadings = buildLevelReadings(yearly, slices, topics, chartNotes);
+  const coverageRows = levelCoverage(registry, config, topics).filter((c) => traditions.some((t) => levelTradition(c.level) === t));
+  const declared: Partial<Record<Topic, LevelId[]>> = {};
+  for (const c of coverageRows) (declared[c.topic] ??= []).push(c.level);
+  const levelReadings = buildLevelReadings(yearly, slices, topics, chartNotes, declared, input.forecastConventions.sliceEdgeDays);
   const agreement = agreementCells(readings, slices, topics);
   const baselines: Record<string, Baseline> = {};
   for (const topic of topics) {
@@ -139,6 +150,7 @@ export function evaluate(input: ForecastInput, options: ForecastOptions = {}): F
     conventions: { engine: input.conventions, forecast: input.forecastConventions },
     traditions,
     periodRead,
+    periodReadRules,
     topics,
     span: input.span,
     slices,
@@ -148,6 +160,7 @@ export function evaluate(input: ForecastInput, options: ForecastOptions = {}): F
     signals,
     readings,
     levelReadings,
+    levelCoverage: coverageRows,
     chartNotes,
     agreement,
     baselines,
@@ -179,6 +192,9 @@ export function reportJson(result: ForecastResult, topic: Topic): Record<string,
     baseline: baseline && { found: baseline.found, expected: baseline.expected, runs: baseline.runs, seed: baseline.seed, cellsLooked: baseline.cellsLooked },
     // The readable forms: the same functions the command line and the page print from.
     statements: statementList(result, topic),
+    // The decade grid and the year headlines: the first thing a reader sees.
+    grid: decadeGrid(result, topic),
+    headlines: yearView(result, topic).years.map((y) => ({ year: y.year, headline: y.headline })),
     yearView: yearView(result, topic),
     agreementDisplay: agreementDisplay(result, topic),
   };

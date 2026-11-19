@@ -10,10 +10,12 @@ import { describe, expect, it } from 'vitest';
 import {
   agreementDisplay,
   bannedIn,
+  decadeGrid,
   evaluate,
   makeInput,
   narrate,
   statementList,
+  HEADLINE_HEADING,
   TEXT,
   TOPICS,
   yearView,
@@ -44,6 +46,9 @@ function run(id: string): { result: ForecastResult; seconds: number } {
   return c;
 }
 
+/** Machine tokens a reader never meets: reading words, verdicts, clock groups, level and stage ids. */
+const INTERNAL_TOKEN = /\b(nothing-said|no-agreement|agree-supports|agree-cautions|birth-arithmetic|natal-promise|period-lord|bazi-luck|bazi-year|vedic-maha|vedic-antar|saturn-moon|jupiter-moon|western-[a-z-]+|iching-period|jupiter-(tropical|sidereal)|saturn-(tropical|sidereal)|solar-longitude|calendar-year)\b/;
+
 /** Every string a reader meets for a topic. */
 function readerStrings(result: ForecastResult, topic: (typeof TOPICS)[number]): string[] {
   const list = statementList(result, topic);
@@ -51,9 +56,13 @@ function readerStrings(result: ForecastResult, topic: (typeof TOPICS)[number]): 
   const display = agreementDisplay(result, topic);
   const out: string[] = [list.natalHeading, ...list.chartNotes, ...list.unattached.map((u) => u.line)];
   for (const e of [...list.natal, ...list.dated]) out.push(e.sentence, e.levelLabel, ...e.badges, ...e.qualifiers.map((q) => q.sentence));
-  for (const y of view.years) out.push(y.summary, ...y.levels.flatMap((l) => [l.label, l.tallyText, l.note ?? '', l.chartNote ?? '']));
+  for (const y of view.years) out.push(y.headline, ...y.levels.flatMap((l) => [l.label, l.wordText, l.tallyText, l.note ?? '', l.chartNote ?? '', l.silentReason ?? '', l.pointers?.label ?? '', ...(l.pointers?.entries.map((e) => e.sentence) ?? [])]));
+  const grid = decadeGrid(result, topic);
+  out.push(...grid.headlines, ...grid.groups.map((g) => g.name), ...grid.rows.flatMap((r) => [r.label, r.note ?? '', ...r.cells.flatMap((c) => [c.wordText, c.tallyText, c.note ?? '', c.silentReason ?? '', c.pointers?.label ?? ''])]));
+  out.push(...list.pointers.map((e) => e.sentence), ...list.natalPointers.map((e) => e.sentence));
   out.push(...view.periodRead.map((p) => p.line));
   if (!display.shown) out.push(display.line);
+  out.push(display.groupsLine);
   if (display.shown) out.push(display.baselineLine, ...display.sentences, ...display.years.map((y) => y.text), ...display.years.flatMap((y) => y.notes));
   out.push(...narrate(result, topic).map((s) => s.text));
   return out.filter((x) => x !== '');
@@ -78,6 +87,7 @@ describe.each(MOMENTS.map((m) => m.id))('every bound tradition, 2031 to 2060, on
       for (const text of readerStrings(result, topic)) {
         expect(text, topic).not.toMatch(/[{}]/);
         expect(bannedIn(text), `${topic}: ${text}`).toBeNull();
+        expect(text, `${topic}: an internal token in a text a reader meets`).not.toMatch(INTERNAL_TOKEN);
       }
     }
     for (const n of result.chartNotes) expect(bannedIn(n.text)).toBeNull();
@@ -110,24 +120,24 @@ describe.each(MOMENTS.map((m) => m.id))('every bound tradition, 2031 to 2060, on
       const view = yearView(result, topic);
       expect(view.years).toHaveLength(30);
       const list = statementList(result, topic);
-      const known = new Set(list.dated.map((e) => e.signalId));
+      const known = new Set(list.dated.flatMap((e) => e.signalIds));
       for (const y of view.years) {
-        expect(y.summary.length, `${topic} ${y.year}`).toBeGreaterThan(0);
+        expect(y.headline.length, `${topic} ${y.year}`).toBeGreaterThan(0);
         const speaking = y.levels.filter((l) => !y.silent.includes(l.level));
         if (speaking.length === 0) {
-          // explicit silence: the sentence says so, and every level it names is listed as silent
-          expect(y.summary.startsWith(TEXT.nothingAtAnyLevel), `${topic} ${y.year}`).toBe(true);
+          // explicit silence: the headline says so, and every level it names is listed as silent
+          expect(y.headline.startsWith(TEXT.nothingAtAnyLevel) || y.levels.length === 0, `${topic} ${y.year}`).toBe(true);
           expect(y.levels.every((l) => y.silent.includes(l.level)), `${topic} ${y.year}`).toBe(true);
         } else {
           for (const l of speaking) {
-            expect(y.summary, `${topic} ${y.year} ${l.label}`).toContain(l.label);
+            expect(y.headline, `${topic} ${y.year} ${l.label}`).toContain(l.label);
             expect(l.entries.length, `${topic} ${y.year} ${l.label}`).toBeGreaterThan(0);
             for (const e of l.entries) expect(known.has(e.signalId), e.signalId).toBe(true);
           }
         }
-        for (const lv of y.silent) expect(y.summary, `${topic} ${y.year}`).toContain(`${TEXT.silentHeading}:`);
-        // a level is silent exactly when it has no deciding statement and no active one
-        for (const l of y.levels) expect(y.silent.includes(l.level), `${topic} ${y.year} ${l.label}`).toBe(l.word === 'nothing-said' && l.tally.active === 0);
+        // a level is silent exactly when its word is nothing said: pointers alone do not make it speak
+        for (const l of y.levels) expect(y.silent.includes(l.level), `${topic} ${y.year} ${l.label}`).toBe(l.word === 'nothing-said');
+        for (const l of y.silent.map((lv) => y.levels.find((x) => x.level === lv)!)) expect(y.headline, `${topic} ${y.year}`).toContain(`${HEADLINE_HEADING.silent}: `);
       }
     }
   }, 120_000);

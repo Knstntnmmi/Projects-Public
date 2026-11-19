@@ -12,6 +12,7 @@ import { describe, expect, it } from 'vitest';
 import baziJson from '../../src/forecast/data/rules.bazi.json' with { type: 'json' };
 import vedicJson from '../../src/forecast/data/rules.vedic.json' with { type: 'json' };
 import {
+  HEADLINE_HEADING,
   allPhrases,
   bannedIn,
   createContext,
@@ -29,6 +30,7 @@ import {
   type ChartNote,
   type Firing,
   type ForecastResult,
+  type LevelId,
   type Rule,
   type RuleBinding,
   type Tradition,
@@ -65,6 +67,8 @@ interface Spec {
   direction?: Rule['direction'];
   stage?: Rule['stage'];
   fires: Array<[Firing['clock'], number, number, Firing['level']?]>;
+  /** The levels the binding declares; where the rule never fires the declaration is what gives its level a row. */
+  levels?: LevelId[];
 }
 
 function world(specs: Spec[], extra: Partial<Record<Tradition, Partial<TraditionModule>>> = {}) {
@@ -72,7 +76,7 @@ function world(specs: Spec[], extra: Partial<Record<Tradition, Partial<Tradition
   const bindings = (t: Tradition): RuleBinding[] =>
     specs
       .filter((s) => s.tradition === t)
-      .map((s) => ({ ruleId: s.id, tradition: t, fire: () => s.fires.map(([clock, a, b, level]) => ({ clock, startUtcMs: a, endUtcMs: b, level, facts, dedupeInstance: `${a}-${b}` }) as Firing) }));
+      .map((s) => ({ ruleId: s.id, tradition: t, ...(s.levels ? { levels: s.levels } : {}), fire: () => s.fires.map(([clock, a, b, level]) => ({ clock, startUtcMs: a, endUtcMs: b, level, facts, dedupeInstance: `${a}-${b}` }) as Firing) }));
   const files = (['bazi', 'vedic', 'iching', 'western'] as const).map((t) => ({ tradition: t, method: 'synthetic', topicDefinitions: [], tables: {}, rules: rules.filter((r) => r.tradition === t) }));
   const mod = (t: Tradition): TraditionModule => ({ BINDINGS: bindings(t), NOT_EVALUATED: [], buildContext: () => undefined, COMPLETE: false, ...extra[t] });
   return createRegistry(files, { bazi: mod('bazi'), vedic: mod('vedic'), iching: mod('iching'), western: mod('western') });
@@ -134,20 +138,25 @@ describe('a balanced chart: the levels that judge by the favourite carry a note 
 
   const bal = evaluate(realInput('jiazi-1984'), { topics: ['wealth', 'general'], runs: 20, seed: 1 });
   it('jiazi-1984: the year pillar level has the note in every year, on its reading, in the year view and in the statement list', () => {
-    expect(bal.chartNotes).toEqual([{ tradition: 'bazi', levels: ['bazi-year'], text: NOTE.balancedChart }]);
+    // no luck pillar is cast without a sex convention: the luck level says so, and the year level carries the balanced note
+    expect(bal.chartNotes).toEqual([
+      { tradition: 'bazi', levels: ['bazi-luck'], text: NOTE.needsLuckDirection },
+      { tradition: 'bazi', levels: ['bazi-year'], text: NOTE.balancedChart },
+    ]);
     for (const topic of ['wealth', 'general'] as const) {
       const readings = bal.levelReadings.filter((r) => r.topic === topic && r.level === 'bazi-year');
       expect(readings).toHaveLength(bal.slices.length);
       for (const r of readings) expect(r.chartNote).toBe(NOTE.balancedChart);
-      for (const r of bal.levelReadings.filter((x) => x.level !== 'bazi-year')) expect(r.chartNote).toBeNull();
+      for (const r of bal.levelReadings.filter((x) => x.level !== 'bazi-year' && x.level !== 'bazi-luck')) expect(r.chartNote).toBeNull();
       const view = yearView(bal, topic);
       for (const y of view.years) {
         const cell = y.levels.find((l) => l.level === 'bazi-year')!;
         expect(cell.chartNote).toBe(NOTE.balancedChart);
-        expect(y.summary).toContain(sentence);
-        expect(bannedIn(y.summary)).toBeNull();
+        // the reason is in the cell where the level is silent, and the headline names only the levels
+        if (cell.word === 'nothing-said') expect(cell.silentReason).toBe(NOTE.balancedChart);
+        expect(bannedIn(y.headline)).toBeNull();
       }
-      expect(statementList(bal, topic).chartNotes).toEqual([sentence]);
+      expect(statementList(bal, topic).chartNotes).toEqual(['Needs the luck-direction convention.', sentence]);
     }
   });
 
@@ -155,17 +164,18 @@ describe('a balanced chart: the levels that judge by the favourite carry a note 
     const view = yearView(bal, 'wealth');
     const silentYears = view.years.filter((y) => y.silent.includes('bazi-year'));
     expect(silentYears.length).toBeGreaterThanOrEqual(20);
-    for (const y of silentYears) expect(y.summary).toContain(`${TEXT.silentHeading}: BaZi year pillar`);
+    for (const y of silentYears) expect(y.headline).toMatch(new RegExp(`${HEADLINE_HEADING.silent}: .*BaZi year pillar`));
   });
 
   it('a chart that is not balanced has no note; neither has a run without a birth time', () => {
     const strong = evaluate(realInput('j2000'), { topics: ['wealth'], runs: 5, seed: 1 });
-    expect(strong.chartNotes).toEqual([]);
-    expect(strong.levelReadings.every((r) => r.chartNote === null)).toBe(true);
+    const balancedOnly = (r: ForecastResult) => r.chartNotes.filter((n) => n.text === NOTE.balancedChart);
+    expect(balancedOnly(strong)).toEqual([]);
+    expect(strong.levelReadings.filter((r) => r.level !== 'bazi-luck').every((r) => r.chartNote === null)).toBe(true);
     const noTime = evaluate(realInput('jiazi-1984', 2031, 2035, { birthTimeUncertaintyMinutes: null }), { topics: ['wealth'], runs: 5, seed: 1 });
-    expect(noTime.chartNotes).toEqual([]);
+    expect(balancedOnly(noTime)).toEqual([]);
     const loose = evaluate(realInput('jiazi-1984', 2031, 2035, { birthTimeUncertaintyMinutes: DEFAULT_FORECAST_CONVENTIONS.birthTimeLimitMinutes + 1 }), { topics: ['wealth'], runs: 5, seed: 1 });
-    expect(loose.chartNotes).toEqual([]);
+    expect(balancedOnly(loose)).toEqual([]);
   });
 
   it('with a sex convention the luck pillar level carries the note too', () => {
@@ -175,16 +185,29 @@ describe('a balanced chart: the levels that judge by the favourite carry a note 
     for (const y of view.years) expect(y.levels.find((l) => l.level === 'bazi-luck')!.chartNote).toBe(NOTE.balancedChart);
   });
 
-  it('in an invented world a note puts its level in the readings even where no rule of it fired, and reaches no other level', () => {
+  it('in an invented world a declared level is read even where no rule of it fired, with the note of the chart, and a note reaches no other level', () => {
     const note: ChartNote = { tradition: 'bazi', levels: ['bazi-luck', 'bazi-year'], text: 'the chart says so' };
-    const reg = world([{ id: 'v.maha', tradition: 'vedic', fires: [['dasha', Y(2031), Y(2033), 'vedic-maha']] }], { bazi: { chartNotes: () => [note] } });
+    const reg = world(
+      [
+        { id: 'v.maha', tradition: 'vedic', fires: [['dasha', Y(2031), Y(2033), 'vedic-maha']] },
+        { id: 'b.quiet', tradition: 'bazi', fires: [], levels: ['bazi-luck', 'bazi-year'] },
+      ],
+      { bazi: { chartNotes: () => [note] } },
+    );
     const res = runWorld(reg);
     const readings = res.levelReadings.filter((r) => r.topic === 'wealth');
     expect(new Set(readings.map((r) => r.level))).toEqual(new Set(['bazi-luck', 'bazi-year', 'vedic-maha']));
     for (const r of readings.filter((x) => x.level.startsWith('bazi'))) expect([r.chartNote, r.word]).toEqual(['the chart says so', 'nothing-said']);
     for (const r of readings.filter((x) => x.level === 'vedic-maha')) expect(r.chartNote).toBeNull();
     const view = yearView(res, 'wealth');
-    expect(view.years[0]!.summary).toBe('Vedic mahadasha supports. Silent: BaZi luck pillar, BaZi year pillar. The chart says so.');
+    expect(view.years[0]!.headline).toBe('Supports: Vedic mahadasha. Silent: BaZi luck pillar, BaZi year pillar.');
+    expect(view.years[0]!.levels.find((l) => l.level === 'bazi-luck')!.silentReason).toBe('the chart says so');
+  });
+
+  it('a note on a level that no bound rule declares for the topic gives it no row', () => {
+    const note: ChartNote = { tradition: 'bazi', levels: ['bazi-luck'], text: 'the chart says so' };
+    const reg = world([{ id: 'v.maha', tradition: 'vedic', fires: [['dasha', Y(2031), Y(2033), 'vedic-maha']] }], { bazi: { chartNotes: () => [note] } });
+    expect(new Set(runWorld(reg).levelReadings.map((r) => r.level))).toEqual(new Set(['vedic-maha']));
   });
 });
 
@@ -303,7 +326,7 @@ describe('I Ching: negated words are not graded', () => {
     // a window of 62 days at a time over four years finds every line of every hexagram that holds a period
     const inp = realInput('j2000', 2031, 2031);
     for (let t = Y(2031); t < Y(2035); t += 60 * MS.DAY) {
-      const c = periodCharacter(inp, { startUtcMs: t, endUtcMs: t + 60 * MS.DAY });
+      const c = periodCharacter(inp, { startUtcMs: t, endUtcMs: t + 60 * MS.DAY }).iching;
       for (const d of [...c.days, ...c.periods]) if (d.negated !== null && want.has(d.id)) found.set(d.id, d.negated);
     }
     expect(found.size).toBeGreaterThanOrEqual(4);
@@ -366,7 +389,7 @@ describe('I Ching: a statement of grade 0 with no topic cue is attached to no to
   });
 
   it('the period view lists the topics of each statement, and none for a grade 0 no cue names', () => {
-    const c = periodCharacter(realInput('j2000'), { startUtcMs: Y(2040), endUtcMs: Y(2040, 1, 20) });
+    const c = periodCharacter(realInput('j2000'), { startUtcMs: Y(2040), endUtcMs: Y(2040, 1, 20) }).iching;
     for (const d of [...c.days, ...c.periods, ...c.sovereign]) {
       const g = gradeStatement(d.text);
       expect(d.topics, d.id).toEqual(topicsOfStatement(d.id, g));
@@ -393,7 +416,7 @@ describe('I Ching: read by period, checked on three sample moments', () => {
   });
 
   it('gives a window the character of its periods: the same for every birth moment, experimental, and a line a day', () => {
-    const views = ids.map((id) => periodCharacter(realInput(id), window));
+    const views = ids.map((id) => periodCharacter(realInput(id), window).iching);
     expect(JSON.stringify(views[1])).toBe(JSON.stringify(views[0]));
     expect(JSON.stringify(views[2])).toBe(JSON.stringify(views[0]));
     const v = views[0]!;

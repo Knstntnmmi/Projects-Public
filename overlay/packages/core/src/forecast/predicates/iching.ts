@@ -22,7 +22,8 @@ import type { HexagramSpan } from '../../systems/iching/index.ts';
 import { GUA_QI_CARDINAL_POSITION, SOVEREIGN_SEQUENCE } from '../../systems/iching/wheels.ts';
 import { statementText } from '../../systems/iching/zhouyiText.ts';
 import type { ForecastContext } from '../context.ts';
-import type { Direction, Fact, Firing, NotEvaluated, RuleBinding } from '../types.ts';
+import { declareLevels } from '../levels.ts';
+import type { Direction, Fact, Firing, LevelId, NotEvaluated, RuleBinding } from '../types.ts';
 import { AUDIENCE_CUES, cueDirection, directionOfGrade, GOODS_CUES, gradeClause, ILLNESS_CUES, MARRIAGE_CUES, TRAVEL_CUES, type Cue } from './ichingCues.ts';
 
 const CLOCK = 'solar-longitude' as const;
@@ -338,7 +339,21 @@ const illness = cueBinding({ ruleId: 'zhouyi.cue-illness', cues: ILLNESS_CUES })
 const goods = cueBinding({ ruleId: 'zhouyi.cue-goods', cues: GOODS_CUES });
 
 /** One binding per rule the engine can evaluate. */
-export const BINDINGS: readonly RuleBinding[] = [judgment, lineOfDay, dayan, sovereign, cardinalMarker, travel, audience, marriage, illness, goods];
+/** The levels each rule speaks at: the I Ching has one, read by period. */
+const LEVELS: Readonly<Record<string, readonly LevelId[]>> = {
+  'zhouyi.period-hexagram-judgment': ['iching-period'],
+  'zhouyi.line-of-day-reconstruction': ['iching-period'],
+  'dayan.cardinal-line-by-term': ['iching-period'],
+  'yiwei.growing-waning-sovereign': ['iching-period'],
+  'yiwei.cardinal-hexagram-arms': ['iching-period'],
+  'zhouyi.cue-travel': ['iching-period'],
+  'zhouyi.cue-audience': ['iching-period'],
+  'zhouyi.cue-marriage': ['iching-period'],
+  'zhouyi.cue-illness': ['iching-period'],
+  'zhouyi.cue-goods': ['iching-period'],
+};
+
+export const BINDINGS: readonly RuleBinding[] = declareLevels([judgment, lineOfDay, dayan, sovereign, cardinalMarker, travel, audience, marriage, illness, goods], LEVELS);
 
 /** Rules deliberately not evaluated, each with the reason; the registry lists them. */
 export const NOT_EVALUATED: readonly NotEvaluated[] = [

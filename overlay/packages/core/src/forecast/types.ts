@@ -176,6 +176,18 @@ export interface RuleBinding {
   tradition: Tradition;
   /** What the binding cannot run without. Declared here so the registry can say why it did not run. */
   requires?: { sex?: boolean; birthTime?: boolean };
+  /**
+   * The levels this rule can speak at, declared here so that the decade grid shows a row for a
+   * level the rule never fires at in a span, and shows it silent instead of leaving it out. A rule
+   * of undated statements declares 'natal'. A binding that declares none is read from what fired.
+   */
+  levels?: readonly LevelId[];
+  /**
+   * The rule is read by period and not by year: its statements never enter a yearly form and a
+   * long span does not compute them. The whole tradition may be flagged in its module
+   * (PERIOD_READ); this flag is for one rule of a tradition that is otherwise read by year.
+   */
+  periodRead?: boolean;
   fire(ctx: import('./context.ts').ForecastContext, rule: Rule): Firing[];
 }
 

@@ -18,6 +18,7 @@ export * from './registry.ts';
 export * from './levels.ts';
 export * from './readings.ts';
 export * from './statements.ts';
+export * from './grid.ts';
 export * from './yearView.ts';
 export * from './agreementDisplay.ts';
 export * from './period.ts';

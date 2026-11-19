@@ -3,10 +3,14 @@
 /**
  * The statement list: one entry per statement, never one per year. The undated statements of
  * the chart come first, under the heading the phrasebook gives; then every dated statement
- * once, with its own date span clipped to the requested span. A modifier is never an entry of
- * its own: it appears as a qualifier of the statement it attaches to, and modifiers that
- * attach to nothing are folded into one count per tradition. Statements of period-read
- * traditions are not part of it.
+ * once, with its own date span clipped to the requested span (the true dates are kept beside
+ * it). A modifier is never an entry of its own: it appears as a qualifier of the statement it
+ * attaches to, and modifiers that attach to nothing are folded into one count per tradition.
+ * A pointer (a statement that only marks the topic or names the sign a count reaches, without
+ * a direction) is no entry of the list either: the pointers are kept apart, each listed once,
+ * and the year view folds them into one group per level and year. When one rule says the same
+ * sentence for periods that touch, the list shows one entry with the joined span and keeps the
+ * ids of all the firings. Statements of period-read rules and traditions are not part of it.
  */
 import { directionWord, foldedModifiersLine, LEVEL_LABEL, sentenceOf, TEXT, type DisplayWord } from './phrasebook.ts';
 import { levelRank } from './levels.ts';
@@ -35,7 +39,10 @@ export interface Qualifier {
 }
 
 export interface StatementEntry {
+  /** The id of the first firing; the ids of every firing the entry stands for are in `signalIds`. */
   signalId: string;
+  /** One id for a statement, several for a joined span of periods that touch and say the same. */
+  signalIds: string[];
   ruleId: string;
   tradition: Tradition;
   level: LevelId;
@@ -46,6 +53,9 @@ export interface StatementEntry {
   /** Null on both for an undated statement of the chart. Otherwise clipped to the requested span. */
   startUtcMs: number | null;
   endUtcMs: number | null;
+  /** The true dates of the statement, not clipped; null for an undated statement. */
+  fullStartUtcMs: number | null;
+  fullEndUtcMs: number | null;
   /** The statement began before the requested span, or ends after it. */
   beganBefore: boolean;
   endsAfter: boolean;
@@ -66,6 +76,12 @@ export interface StatementList {
   natalHeading: string;
   natal: StatementEntry[];
   dated: StatementEntry[];
+  /** The natal statements that are pointers, kept out of `natal`. */
+  natalPointers: StatementEntry[];
+  /** The dated statements that are pointers, kept out of `dated`, each listed once with its true dates. */
+  pointers: StatementEntry[];
+  /** Every firing id the list holds (also the ids joined into one entry) mapped to the `signalId` of the entry that stands for it. */
+  entryOf: Record<string, string>;
   /** Modifiers that attach to no statement shown, one group per tradition. */
   unattached: FoldedModifiers[];
   /** What the chart itself says about its levels (for example that a balanced chart names no favourite), each text once, as the reader meets it. */
@@ -74,13 +90,50 @@ export interface StatementList {
 
 const byText = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
 
+/** A pointer: a deciding statement whose rule gives no direction (it marks the topic or names where a count reaches). */
+export const isPointer = (s: Pick<Signal, 'direction' | 'stage'>): boolean => s.stage !== 'modifier' && directionWord(s.direction) === 'active';
+
 /** What the readable forms are made of: the de-duplicated statements of a topic, without period-read traditions. */
 export function shownSignals(result: ForecastResult, topic: Topic): { kept: Signal[]; alsoReportedBy: Record<string, string[]>; keptOf: Map<string, string> } {
-  const pool = result.signals.filter((s) => s.topic === topic && !result.periodRead.includes(s.tradition));
+  const pool = result.signals.filter((s) => s.topic === topic && !result.periodRead.includes(s.tradition) && !result.periodReadRules.includes(s.ruleId));
   const { kept, alsoReportedBy } = dedupe(pool);
   const keptOf = new Map<string, string>();
   for (const [id, others] of Object.entries(alsoReportedBy)) for (const o of others) keptOf.set(o, id);
   return { kept, alsoReportedBy, keptOf };
+}
+
+/**
+ * One entry for periods of one rule that touch and give the identical sentence at the same level
+ * with the same word: the span is the joined span, and the entry keeps the ids of every firing.
+ * Readings and tallies are made from the firings, not from the entries, and are not changed.
+ */
+export function joinSpans(sorted: readonly StatementEntry[]): StatementEntry[] {
+  const TOUCH_MS = 1000;
+  const groups = new Map<string, Array<{ e: StatementEntry; at: number }>>();
+  sorted.forEach((e, at) => {
+    const key = `${e.ruleId}|${e.level}|${e.word}|${e.sentence}`;
+    groups.set(key, [...(groups.get(key) ?? []), { e, at }]);
+  });
+  const joined: Array<{ e: StatementEntry; at: number }> = [];
+  for (const g of groups.values()) {
+    // by true start, so that a span clipped to the request cannot reorder the firings
+    g.sort((x, y) => (x.e.fullStartUtcMs ?? 0) - (y.e.fullStartUtcMs ?? 0) || x.at - y.at);
+    let cur: { e: StatementEntry; at: number } | null = null;
+    for (const item of g) {
+      const e = item.e;
+      if (cur && cur.e.fullEndUtcMs !== null && e.fullStartUtcMs !== null && e.fullStartUtcMs <= cur.e.fullEndUtcMs + TOUCH_MS) {
+        cur.e.signalIds.push(...e.signalIds);
+        cur.e.fullEndUtcMs = Math.max(cur.e.fullEndUtcMs, e.fullEndUtcMs!);
+        cur.e.endUtcMs = Math.max(cur.e.endUtcMs!, e.endUtcMs!);
+        cur.e.endsAfter = cur.e.endsAfter || e.endsAfter;
+        cur.e.alsoReportedBy += e.alsoReportedBy;
+        continue;
+      }
+      cur = { e: { ...e, signalIds: [...e.signalIds] }, at: item.at };
+      joined.push(cur);
+    }
+  }
+  return joined.sort((x, y) => x.at - y.at).map((x) => x.e);
 }
 
 export function statementList(result: ForecastResult, topic: Topic): StatementList {
@@ -100,6 +153,7 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
 
   const entryOf = (s: Signal): StatementEntry => ({
     signalId: s.id,
+    signalIds: [s.id],
     ruleId: s.ruleId,
     tradition: s.tradition,
     level: s.level,
@@ -108,27 +162,26 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
     sentence: s.sentence,
     badges: [...s.badges],
     ...clip(s),
+    fullStartUtcMs: s.startUtcMs,
+    fullEndUtcMs: s.endUtcMs,
     alsoReportedBy: alsoReportedBy[s.id]?.length ?? 0,
     qualifiers: [],
   });
 
   const tradIndex = (t: Tradition): number => TRADITIONS.indexOf(t);
-  const natal = kept
-    .filter((s) => s.startUtcMs === null && s.stage !== 'modifier')
-    .map(entryOf)
-    .sort((a, b) => tradIndex(a.tradition) - tradIndex(b.tradition) || byText(a.ruleId, b.ruleId) || byText(a.signalId, b.signalId));
-  const dated = kept
-    .filter((s) => s.startUtcMs !== null && s.stage !== 'modifier')
-    .map(entryOf)
-    .sort(
-      (a, b) =>
-        a.startUtcMs! - b.startUtcMs! || tradIndex(a.tradition) - tradIndex(b.tradition) || levelRank(a.level) - levelRank(b.level) || byText(a.ruleId, b.ruleId) || byText(a.signalId, b.signalId),
-    );
+  const entriesOf = (pick: (s: Signal) => boolean): StatementEntry[] => kept.filter((s) => s.stage !== 'modifier' && pick(s)).map(entryOf);
+  const order = (a: StatementEntry, b: StatementEntry): number =>
+    (a.startUtcMs ?? -Infinity) - (b.startUtcMs ?? -Infinity) || tradIndex(a.tradition) - tradIndex(b.tradition) || levelRank(a.level) - levelRank(b.level) || byText(a.ruleId, b.ruleId) || byText(a.signalId, b.signalId);
+  const natalOrder = (a: StatementEntry, b: StatementEntry): number => tradIndex(a.tradition) - tradIndex(b.tradition) || byText(a.ruleId, b.ruleId) || byText(a.signalId, b.signalId);
+  const natal = entriesOf((s) => s.startUtcMs === null && !isPointer(s)).sort(natalOrder);
+  const natalPointers = entriesOf((s) => s.startUtcMs === null && isPointer(s)).sort(natalOrder);
+  const dated = joinSpans(entriesOf((s) => s.startUtcMs !== null && !isPointer(s)).sort(order));
+  const pointers = entriesOf((s) => s.startUtcMs !== null && isPointer(s)).sort(order);
 
   // A modifier is shown once, on the first statement of the list it qualifies, however many it overlaps.
   const placed = new Map<string, Qualifier>();
   for (const e of [...natal, ...dated]) {
-    for (const id of kept.find((x) => x.id === e.signalId)!.modifiedBy) {
+    for (const id of e.signalIds.flatMap((sid) => kept.find((x) => x.id === sid)!.modifiedBy)) {
       const rep = byId.get(keptOf.get(id) ?? id);
       if (!rep || rep.stage !== 'modifier') continue;
       const first = placed.get(rep.id);
@@ -147,5 +200,7 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
     const orphans = kept.filter((s) => s.stage === 'modifier' && s.tradition === tradition && !attached.has(s.id));
     if (orphans.length > 0) unattached.push({ tradition, count: orphans.length, line: foldedModifiersLine(tradition, orphans.length), signalIds: orphans.map((s) => s.id) });
   }
-  return { topic, natalHeading: TEXT.natalPromiseHeading, natal, dated, unattached, chartNotes: [...new Set(result.chartNotes.map((n) => sentenceOf(n.text)))] };
+  const entryOfSignal: Record<string, string> = {};
+  for (const e of [...natal, ...natalPointers, ...dated, ...pointers]) for (const id of e.signalIds) entryOfSignal[id] = e.signalId;
+  return { topic, natalHeading: TEXT.natalPromiseHeading, natal, dated, natalPointers, pointers, entryOf: entryOfSignal, unattached, chartNotes: [...new Set(result.chartNotes.map((n) => sentenceOf(n.text)))] };
 }

@@ -23,6 +23,7 @@ import {
   makeInput,
   narrate,
   periodCharacter,
+  pointerLabel,
   reportJson,
   signalsFromFirings,
   statementList,
@@ -133,8 +134,10 @@ describe('the tally', () => {
     expect(tallyText({ supports: 3, cautions: 1, mixed: 0, active: 0 })).toBe('3 rules support, 1 cautions');
     expect(tallyText({ supports: 1, cautions: 1, mixed: 0, active: 0 })).toBe('1 rule supports, 1 cautions');
     expect(tallyText({ supports: 0, cautions: 2, mixed: 0, active: 0 })).toBe('2 rules caution');
-    expect(tallyText({ supports: 1, cautions: 2, mixed: 1, active: 3 })).toBe('1 rule supports, 2 caution, 1 is stated as mixed, 3 only mark the topic as active');
-    expect(tallyText({ supports: 0, cautions: 0, mixed: 2, active: 1 })).toBe('2 rules are stated as mixed, 1 only marks the topic as active');
+    // pointers (the statements that only mark the topic) are no part of a tally text: they are counted apart, with their own label
+    expect(tallyText({ supports: 1, cautions: 2, mixed: 1, active: 3 })).toBe('1 rule supports, 2 caution, 1 is stated as mixed');
+    expect(tallyText({ supports: 0, cautions: 0, mixed: 2, active: 1 })).toBe('2 rules are stated as mixed');
+    expect(tallyText({ supports: 0, cautions: 0, mixed: 0, active: 3 })).toBe('no rule speaks');
     expect(tallyText({ supports: 0, cautions: 0, mixed: 0, active: 0 })).toBe('no rule speaks');
   });
 
@@ -344,13 +347,29 @@ describe('the year view', () => {
     expect(year(2034).agreement).toBe(r.agreement.find((c) => c.topic === TOPIC && c.slice === idx(2034)));
   });
 
-  it('writes one summary from the level words in a fixed order, then lists the silent levels', () => {
-    expect(year(2034).summary).toBe(
-      'BaZi luck pillar supports; BaZi year pillar mixed (1 rule supports, 1 cautions); Jupiter from the Moon supports; Western transits supports. Silent: Vedic mahadasha, Vedic antardasha, Saturn from the Moon.',
+  it('writes one headline that groups the level labels by word, in a fixed order, and lists the silent levels last', () => {
+    expect(year(2034).headline).toBe(
+      'Supports: BaZi luck pillar, Jupiter from the Moon, Western transits. Mixed: BaZi year pillar (1 rule supports, 1 cautions). Silent: Vedic mahadasha, Vedic antardasha, Saturn from the Moon.',
     );
-    expect(year(2034).summary).not.toMatch(/groups differ/);
-    expect(year(2036).summary).toContain('Vedic mahadasha marks the topic as active');
+    expect(year(2034).headline).not.toMatch(/groups differ/);
     expect(year(2031).silent).toEqual(['bazi-luck', 'bazi-year', 'saturn-moon', 'jupiter-moon', 'western-transits']);
+  });
+
+  it('keeps a level that has pointers only silent, with the pointers folded into one group that lists them', () => {
+    // v.active marks the topic in 2036 on the mahadasha level and says nothing more; v.maha (cautions) ends in 2032
+    const maha = year(2036).levels.find((l) => l.level === 'vedic-maha')!;
+    expect(maha.word).toBe('nothing-said');
+    expect(maha.note).toBe('topic active');
+    expect(maha.tallyText).toBe('no rule speaks');
+    expect(maha.pointers).toMatchObject({ count: 1, label: pointerLabel(1) });
+    expect(maha.pointers!.entries.map((e) => e.sentence)).toEqual(['v.active says something.']);
+    expect(maha.entries).toEqual([]);
+    expect(year(2036).silent).toContain('vedic-maha');
+    expect(year(2036).headline).toMatch(/Silent: .*Vedic mahadasha/);
+    expect(year(2036).headline).not.toMatch(/active|pointer/);
+    // the pointer is no entry of the list
+    expect(statementList(r, TOPIC).dated.some((e) => e.ruleId === 'v.active')).toBe(false);
+    expect(statementList(r, TOPIC).pointers.map((e) => e.ruleId)).toEqual(['v.active']);
   });
 
   it('gives period-read traditions one fixed line and no cell', () => {
@@ -362,7 +381,7 @@ describe('the year view', () => {
     const text = narrate(r, TOPIC);
     expect(text.some((s) => /groups differ/.test(s.text))).toBe(false);
     const s = text.find((x) => x.kind === 'summary' && x.slice === idx(2034))!;
-    expect(s.text).toBe(year(2034).summary);
+    expect(s.text).toBe(year(2034).headline);
     expect(s.signalIds.length).toBeGreaterThan(0);
     // said once: the three-year luck statement is one sentence, not three
     expect(text.filter((x) => x.kind === 'signal' && x.text.startsWith('b.luck says')).length).toBe(1);
@@ -407,7 +426,7 @@ describe('traditions read by period', () => {
   const inp = makeInput(moment, { fromYear: 2031, toYear: 2033 });
 
   it('returns the character of a short window: periods, sovereign, cardinal markers and a line for each day', () => {
-    const c = periodCharacter(inp, { startUtcMs: base, endUtcMs: base + 30 * MS.DAY });
+    const c = periodCharacter(inp, { startUtcMs: base, endUtcMs: base + 30 * MS.DAY }).iching;
     expect(c.periods.length).toBeGreaterThanOrEqual(5);
     expect(c.sovereign.length).toBeGreaterThanOrEqual(1);
     expect(c.days.length).toBeGreaterThanOrEqual(29);
@@ -426,8 +445,8 @@ describe('traditions read by period', () => {
   it('shows the cardinal hexagrams only where the convention gives them a period of their own', () => {
     const jf = makeInput(moment, { fromYear: 2031, toYear: 2033, conventions: { ...inp.conventions, guaQi: 'jing-fang' } });
     const a = periodCharacter(jf, { startUtcMs: Y(2032, 1, 20), endUtcMs: Y(2032, 3, 10) });
-    expect(a.cardinal.length).toBeGreaterThan(0);
-    expect(periodCharacter(inp, { startUtcMs: Y(2032, 1, 20), endUtcMs: Y(2032, 3, 10) }).cardinal).toEqual([]);
+    expect(a.iching.cardinal.length).toBeGreaterThan(0);
+    expect(periodCharacter(inp, { startUtcMs: Y(2032, 1, 20), endUtcMs: Y(2032, 3, 10) }).iching.cardinal).toEqual([]);
   });
 
   it('accepts 62 days and refuses more with a clear error', () => {
@@ -440,7 +459,7 @@ describe('traditions read by period', () => {
     const other = fixture('jiazi-1984');
     const b = makeInput(makeMoment(other.civil, other.zone, other.place), { fromYear: 2031, toYear: 2033 });
     const w = { startUtcMs: base, endUtcMs: base + 20 * MS.DAY };
-    expect(periodCharacter(b, w)).toEqual(periodCharacter(inp, w));
+    expect(periodCharacter(b, w).iching).toEqual(periodCharacter(inp, w).iching);
   });
 });
 
@@ -455,7 +474,7 @@ describe('the agreement display', () => {
     expect(d.speakingGroups).toBeGreaterThanOrEqual(3);
     const two = evaluate(input(), { registry: world(SPECS.filter((s) => s.tradition === 'bazi' || s.id === 'v.jupiter')), traditions: ['bazi', 'vedic'], topics: [TOPIC], runs: 20 });
     const few = agreementDisplay(two, TOPIC);
-    expect(few).toEqual({ topic: TOPIC, shown: false, speakingGroups: 2, line: TEXT.needsThreeGroups });
+    expect(few).toEqual({ topic: TOPIC, shown: false, speakingGroups: 2, line: TEXT.needsThreeGroups, groupsLine: expect.stringContaining('Everything counted from the birth moment is one group') });
     expect('years' in few).toBe(false);
   });
 
@@ -520,7 +539,7 @@ describe('the JSON report', () => {
     const j = reportJson(res, 'wealth') as { yearView: ReturnType<typeof yearView>; statements: ReturnType<typeof statementList> };
     expect(j.yearView.years).toHaveLength(10);
     expect(j.statements.dated.length).toBeGreaterThan(5);
-    expect(j.yearView.years.every((y) => y.summary.length > 0)).toBe(true);
+    expect(j.yearView.years.every((y) => y.headline.length > 0)).toBe(true);
   });
 });
 
@@ -555,14 +574,14 @@ describe('on the sample moment j2000, wealth, 2031 to 2040', () => {
     expect(list.dated.every((e) => e.tradition !== 'iching')).toBe(true);
   });
 
-  it('year view: ten rows, a summary built from level words, no "groups differ"', () => {
+  it('year view: ten rows, a headline grouped by word, no "groups differ"', () => {
     expect(view.years).toHaveLength(10);
     for (const y of view.years) {
-      expect(y.summary).not.toMatch(/groups differ/);
-      expect(bannedIn(y.summary)).toBeNull();
-      for (const l of y.levels) for (const e of l.entries) expect(list.dated.some((d) => d.signalId === e.signalId)).toBe(true);
+      expect(y.headline).not.toMatch(/groups differ/);
+      expect(bannedIn(y.headline)).toBeNull();
+      for (const l of y.levels) for (const e of l.entries) expect(list.dated.some((d) => d.signalIds.includes(e.signalId))).toBe(true);
     }
-    expect(view.years.some((y) => /Saturn from the Moon (supports|cautions|mixed)/.test(y.summary))).toBe(true);
+    expect(view.years.some((y) => /(Supports|Cautions|Mixed): [^.]*Saturn from the Moon/.test(y.headline))).toBe(true);
   });
 
   it('period read: the I Ching appears once, as a fixed line', () => {

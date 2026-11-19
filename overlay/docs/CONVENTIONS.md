@@ -122,6 +122,18 @@ Readings and agreement are stated per slice of time. This phase uses calendar ye
 | --- | --- | --- |
 | `year` | Calendar year. January to December, UTC. | yes |
 
+## Edge of a year
+
+Setting `sliceEdgeDays`. Affects: The word, the counts and the headline of a level in a year, and the agreement cells that rest on them.
+
+A statement that begins a few hours before the end of a year, or ends a few hours after its start, touches that year without filling it: the birthday clock is the usual case, because a profection or a return runs from one birthday to the next. A statement that extends beyond a year and overlaps it by fewer days than this does not count toward the word, the counts or the headline of that year. The statement list always shows the true dates, and a statement that lies wholly inside a year counts however short it is.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `0` | No edge. Any overlap counts, however brief. |  |
+| `15` | 15 days. A statement that overlaps a year by fewer than 15 days, and extends beyond it, does not count for that year. The default. | yes |
+| `30` | 30 days. The same with a month. |  |
+
 ## Cap on signals no promise rule gated
 
 Setting `cap_ungated`. Affects: The rule weight shown beside a signal.

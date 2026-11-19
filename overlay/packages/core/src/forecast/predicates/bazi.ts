@@ -12,7 +12,8 @@
  */
 import type { ForecastContext } from '../context.ts';
 import { NOTE } from '../phrasebook.ts';
-import type { ChartNote, NotEvaluated, NotEvaluatedBranch, RuleBinding } from '../types.ts';
+import { declareLevels } from '../levels.ts';
+import type { ChartNote, LevelId, NotEvaluated, NotEvaluatedBranch, RuleBinding } from '../types.ts';
 import { buildNatalContext, natalOf, NATAL_BINDINGS, NATAL_NOT_EVALUATED } from './bazi/natal.ts';
 import { ARRIVAL_BINDINGS } from './bazi/arrivalBindings.ts';
 import { PERIOD_BINDINGS } from './bazi/periodBindings.ts';
@@ -20,7 +21,48 @@ import { RELATION_BINDINGS } from './bazi/relationBindings.ts';
 import { STAR_BINDINGS } from './bazi/starBindings.ts';
 
 /** One binding per rule the engine can evaluate. */
-export const BINDINGS: readonly RuleBinding[] = [...NATAL_BINDINGS, ...STAR_BINDINGS, ...PERIOD_BINDINGS, ...ARRIVAL_BINDINGS, ...RELATION_BINDINGS];
+/** The levels each rule speaks at, so that the decade grid shows a row for a level that never fires in a span. */
+const LEVELS: Readonly<Record<string, readonly LevelId[]>> = {
+  'bazi.month-state': ['natal'],
+  'bazi.twelve-stages': ['natal'],
+  'bazi.hidden-stems': ['natal'],
+  'bazi.strength-score': ['natal'],
+  'bazi.favourable-fuyi': ['natal'],
+  'bazi.tongguan': ['natal'],
+  'bazi.topic-wealth-promise': ['natal'],
+  'bazi.topic-career-promise': ['natal'],
+  'bazi.topic-spouse-man': ['natal'],
+  'bazi.topic-children': ['natal'],
+  'bazi.topic-learning': ['natal'],
+  'bazi.topic-health': ['natal'],
+  'bazi.ten-gods-by-topic': ['natal'],
+  'bazi.peers-rivals': ['natal'],
+  'bazi.kongwang': ['natal', 'bazi-luck', 'bazi-year'],
+  'bazi.luck-pillar-judgement': ['bazi-luck'],
+  'bazi.cover-cut': ['bazi-luck'],
+  'bazi.year-judgement': ['bazi-year'],
+  'bazi.fan-yin-fu-yin': ['bazi-luck', 'bazi-year'],
+  'bazi.sui-yun-bing-lin': ['bazi-year'],
+  'bazi.tian-ke-di-chong': ['bazi-year'],
+  'bazi.year-vs-day-clash': ['bazi-year'],
+  'bazi.hui-he-year': ['bazi-year'],
+  'bazi.branch-chong': ['bazi-luck', 'bazi-year'],
+  'bazi.branch-liuhe': ['bazi-luck', 'bazi-year'],
+  'bazi.branch-sanhe': ['bazi-year'],
+  'bazi.tianyi-guiren': ['natal', 'bazi-luck', 'bazi-year'],
+  'bazi.yima': ['natal', 'bazi-luck', 'bazi-year'],
+  'bazi.taohua': ['natal', 'bazi-luck', 'bazi-year'],
+  'bazi.yangren': ['natal', 'bazi-luck', 'bazi-year'],
+  'bazi.lushen': ['natal', 'bazi-luck', 'bazi-year'],
+  'bazi.wealth-star-in-luck': ['bazi-luck', 'bazi-year'],
+  'bazi.officer-star-in-luck': ['bazi-luck', 'bazi-year'],
+  'bazi.resource-in-luck': ['bazi-luck', 'bazi-year'],
+  'bazi.output-in-luck': ['bazi-luck', 'bazi-year'],
+  'bazi.peer-in-luck': ['bazi-luck', 'bazi-year'],
+  'bazi.day-clash-spouse': ['bazi-luck', 'bazi-year'],
+};
+
+export const BINDINGS: readonly RuleBinding[] = declareLevels([...NATAL_BINDINGS, ...STAR_BINDINGS, ...PERIOD_BINDINGS, ...ARRIVAL_BINDINGS, ...RELATION_BINDINGS], LEVELS);
 
 /** Rules deliberately not evaluated, each with the reason; the registry lists them. */
 export const NOT_EVALUATED: readonly NotEvaluated[] = [
@@ -49,17 +91,17 @@ export const NOT_EVALUATED_BRANCHES: readonly NotEvaluatedBranch[] = [
  * named only where luck pillars are computed at all (a sex convention is given).
  */
 export function chartNotes(ctx: ForecastContext): ChartNote[] {
+  const notes: ChartNote[] = [];
+  // The direction of the luck pillars needs a named sex convention; without one no luck pillar is cast and the level is silent for that reason.
+  if (ctx.luck() === null) notes.push({ tradition: 'bazi', levels: ['bazi-luck'], text: NOTE.needsLuckDirection });
   // The rules that need the birth time are withheld when it is unknown or too uncertain; a note on their silence would be about a chart no rule read.
   const u = ctx.input.birthTimeUncertaintyMinutes;
-  if (u === null || u > ctx.input.forecastConventions.birthTimeLimitMinutes) return [];
-  if (natalOf(ctx).strengthClass !== 'balanced') return [];
-  return [{ tradition: 'bazi', levels: ctx.luck() === null ? ['bazi-year'] : ['bazi-luck', 'bazi-year'], text: NOTE.balancedChart }];
+  if (u === null || u > ctx.input.forecastConventions.birthTimeLimitMinutes) return notes;
+  if (natalOf(ctx).strengthClass !== 'balanced') return notes;
+  notes.push({ tradition: 'bazi', levels: ctx.luck() === null ? ['bazi-year'] : ['bazi-luck', 'bazi-year'], text: NOTE.balancedChart });
+  return notes;
 }
 
-/**
- * Extends the base context with what this tradition's rules share: the natal assessment
- * (see bazi/assessment.ts). The period binder adds its own fields beside `natal`.
- */
 export function buildContext(base: ForecastContext): unknown {
   return buildNatalContext(base);
 }

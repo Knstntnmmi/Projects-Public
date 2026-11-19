@@ -23,7 +23,8 @@ describe('Western in the default forecast', () => {
   it.each(['j2000', 'southern'])('puts its statements on named Western levels in the statement list, the year view and the agreement display (%s)', (id) => {
     const res = run(id);
     const list = statementList(res, 'wealth');
-    const western = list.dated.filter((e) => e.tradition === 'western');
+    // the pointers are no entry of the list, so the levels are read from the entries and the pointers together
+    const western = [...list.dated, ...list.pointers].filter((e) => e.tradition === 'western');
     expect(western.length).toBeGreaterThan(0);
     const levels = new Set(western.map((e) => e.level));
     expect(levels.has('western-profection')).toBe(true);
@@ -36,8 +37,8 @@ describe('Western in the default forecast', () => {
     for (const y of view.years) {
       const cell = y.levels.find((c) => c.level === 'western-profection');
       expect(cell).toBeDefined();
-      expect(y.summary).toContain(LEVEL_LABEL['western-profection']);
-      for (const c of y.levels) for (const r of c.entries) expect(list.dated.some((e) => e.signalId === r.signalId && e.level === c.level)).toBe(true);
+      expect(y.headline).toContain(LEVEL_LABEL['western-profection']);
+      for (const c of y.levels) for (const r of c.entries) expect(list.dated.some((e) => e.signalIds.includes(r.signalId) && e.level === c.level)).toBe(true);
     }
     const agreement = agreementDisplay(res, 'wealth');
     expect(agreement.shown).toBe(true);
@@ -68,8 +69,9 @@ describe('plain wording', () => {
 
   it('prints "house 7" for the real southern chart', () => {
     const list = statementList(run('southern'), 'wealth');
-    const line = list.natal.find((e) => e.ruleId === 'lilly.wealth.life-phase');
+    // the sentence names where the significators stand and gives no direction, so it is a pointer
+    const line = list.natalPointers.find((e) => e.ruleId === 'lilly.wealth.life-phase');
     expect(line?.sentence).toContain('stand in house 7:');
-    for (const e of [...list.natal, ...list.dated]) expect(e.sentence).not.toMatch(/\bhouses \d+(?![\d,]| and)/);
+    for (const e of [...list.natal, ...list.natalPointers, ...list.dated, ...list.pointers]) expect(e.sentence).not.toMatch(/\bhouses \d+(?![\d,]| and)/);
   });
 });

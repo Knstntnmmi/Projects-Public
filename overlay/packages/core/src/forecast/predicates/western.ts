@@ -15,7 +15,7 @@
  */
 import type { ForecastContext } from '../context.ts';
 import type { Firing, LevelId, NotEvaluated, Rule, RuleBinding } from '../types.ts';
-import { levelFits } from '../levels.ts';
+import { declareLevels, levelFits } from '../levels.ts';
 import { makeNatalContext, type WesternContext } from './western/context.ts';
 import { firdariaLordCondition } from './western/firdaria.ts';
 import { aspectList, strengthClasses } from './western/modifiers.ts';
@@ -104,7 +104,8 @@ const TRANSIT_BINDINGS: readonly RuleBinding[] = [
   transit('valens.transit.benefic-malefic-year-lord', beneficMaleficYearLord),
   transit('valens.critical-year-syzygy', criticalYearSyzygy),
   transit('valens.critical-year-node', criticalYearNode, {}),
-  transit('lilly.transit.daily-cusps', dailyCusps),
+  // Lilly's day statements are read by period: a long span does not compute them (periodCharacter does).
+  { ...transit('lilly.transit.daily-cusps', dailyCusps), periodRead: true },
 ];
 
 const MODIFIER_BINDINGS: readonly RuleBinding[] = [
@@ -113,7 +114,64 @@ const MODIFIER_BINDINGS: readonly RuleBinding[] = [
 ];
 
 /** One binding per rule the engine can evaluate. */
-export const BINDINGS: readonly RuleBinding[] = [...NATAL_BINDINGS, ...MODIFIER_BINDINGS, ...PERIOD_BINDINGS, ...REVOLUTION_BINDINGS, ...TRANSIT_BINDINGS];
+/** The levels each rule speaks at, so that the decade grid shows a row for a level that never fires in a span. */
+const LEVELS: Readonly<Record<string, readonly LevelId[]>> = {
+  'lilly.score.strength-classes': ['natal'],
+  'lilly.wealth.promise-strong': ['natal'],
+  'lilly.wealth.promise-moderate': ['natal'],
+  'lilly.wealth.promise-weak.all': ['natal'],
+  'lilly.wealth.promise-weak.majority': ['natal'],
+  'lilly.wealth.promise-weak.moon-combust': ['natal'],
+  'lilly.profection.lord-of-year-by-degree': ['western-profection'],
+  'lilly.profection.house-money': ['western-profection'],
+  'lilly.profection.house-relationships': ['western-profection'],
+  'lilly.profection.house-learning': ['western-profection'],
+  'lilly.profection.house-travel': ['western-profection'],
+  'valens.profection.transmission-lord': ['western-profection'],
+  'firdaria.lord-condition': ['western-firdaria'],
+  'lilly.revolution.asc-hostile': ['western-solar-return'],
+  'lilly.transit.daily-cusps': ['western-transits'],
+  'valens.transit.jupiter-year-sign': ['western-transits'],
+  'valens.critical-year-syzygy': ['western-transits'],
+  'valens.critical-year-node': ['western-transits'],
+  'lilly.aspects.orbs-table': ['natal'],
+  'lilly.wealth.promise-mixed': ['natal'],
+  'lilly.wealth.inheritance-8th.a': ['natal'],
+  'lilly.wealth.inheritance-8th.b': ['natal'],
+  'lilly.wealth.inheritance-8th.c': ['natal'],
+  'lilly.wealth.durability.benefic-strong': ['natal'],
+  'lilly.wealth.durability.weak': ['natal'],
+  'lilly.wealth.durability.infortune-strong': ['natal'],
+  'lilly.wealth.durability.infortune-weak': ['natal'],
+  'lilly.wealth.life-phase': ['natal'],
+  'lilly.career.honour-essential': ['natal'],
+  'lilly.career.honour-angularity': ['natal'],
+  'lilly.career.lord1-lord10': ['natal'],
+  'lilly.career.luminary-angularity.cadent': ['natal'],
+  'lilly.relationships.single-life.barren': ['natal'],
+  'lilly.relationships.single-life.moon-saturn': ['natal'],
+  'lilly.relationships.marriage-promised': ['natal'],
+  'lilly.relationships.ease': ['natal'],
+  'lilly.relationships.age': ['natal'],
+  'lilly.travel.promised': ['natal'],
+  'lilly.profection.lord-condition': ['western-profection'],
+  'lilly.profection.house-loss': ['western-profection'],
+  'lilly.profection.house-health': ['western-profection'],
+  'lilly.profection.angle-aspect-years': ['western-profection'],
+  'lilly.profection.mc-career': ['western-profection'],
+  'lilly.profection.fortune-sign-wealth': ['western-profection'],
+  'bonatti.profection.topic-significator': ['western-profection'],
+  'lilly.revolution.asc-same': ['western-solar-return'],
+  'lilly.revolution.lord2-fortune-house': ['western-solar-return'],
+  'lilly.revolution.seventh-asc': ['western-solar-return'],
+  'lilly.revolution.contrary-disposition': ['western-solar-return'],
+  'lilly.revolution.returns-wealth': ['western-solar-return'],
+  'lilly.revolution.returns-affliction': ['western-solar-return'],
+  'valens.transmission.topic-start': ['western-profection'],
+  'valens.transit.benefic-malefic-year-lord': ['western-transits'],
+};
+
+export const BINDINGS: readonly RuleBinding[] = declareLevels([...NATAL_BINDINGS, ...MODIFIER_BINDINGS, ...PERIOD_BINDINGS, ...REVOLUTION_BINDINGS, ...TRANSIT_BINDINGS], LEVELS);
 
 /** Rules deliberately not evaluated, each with the reason; the registry lists them. */
 export const NOT_EVALUATED: readonly NotEvaluated[] = [

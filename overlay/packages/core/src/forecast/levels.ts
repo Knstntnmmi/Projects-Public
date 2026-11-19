@@ -6,7 +6,7 @@
  * follows from the tradition and the clock a firing runs on; where one clock carries two
  * nested periods the binding that knows which one it judged sets `Firing.level`.
  */
-import type { ClockId, Firing, LevelId, Tradition } from './types.ts';
+import type { ClockId, Firing, LevelId, RuleBinding, Tradition } from './types.ts';
 import { LEVEL_IDS } from './types.ts';
 
 interface LevelSpec {
@@ -70,4 +70,20 @@ export function levelOfFiring(tradition: Tradition, f: Pick<Firing, 'clock' | 'l
   if (f.startUtcMs === null) return 'natal';
   if (f.level !== undefined) return f.level;
   return candidates(tradition, f.clock)[0] ?? FALLBACK[tradition];
+}
+
+/**
+ * Attaches to each binding the levels its rule can speak at, from a table of the tradition's
+ * module. A binding without a row, or a row without a binding, is an error, so that a new rule
+ * cannot be added without saying where it is read.
+ */
+export function declareLevels(bindings: readonly RuleBinding[], table: Readonly<Record<string, readonly LevelId[]>>): RuleBinding[] {
+  const ids = new Set(bindings.map((b) => b.ruleId));
+  const stale = Object.keys(table).filter((id) => !ids.has(id));
+  if (stale.length) throw new Error(`levels declared for rules that are not bound: ${stale.join(', ')}`);
+  return bindings.map((b) => {
+    const levels = table[b.ruleId];
+    if (levels === undefined) throw new Error(`${b.ruleId}: the binding declares no levels (add it to the table of its module)`);
+    return { ...b, levels };
+  });
 }

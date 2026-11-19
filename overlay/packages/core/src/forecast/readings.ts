@@ -6,7 +6,7 @@
  * once; modifiers are listed but never decide a word.
  */
 import { NOTE, supportsFromCautionsFrom } from './phrasebook.ts';
-import { overlapFraction, overlaps } from './signals.ts';
+import { countsIn, overlapFraction, overlaps } from './signals.ts';
 import type { ChartNote, ClockGroupId, LevelId, ReadingWord, Signal, Slice, Stage, Tally, Topic, Tradition } from './types.ts';
 import { TRADITIONS } from './types.ts';
 
@@ -101,6 +101,8 @@ export interface ReadingContext {
   coverage: Record<Tradition, Record<Topic, number>>;
   traditions: readonly Tradition[];
   topics: readonly Topic[];
+  /** The edge of a year, in days (`sliceEdgeDays`); a statement that overlaps a slice by less and extends beyond it does not count. Default 0: any overlap counts. */
+  edgeDays?: number;
 }
 
 const unique = <T>(xs: T[]): T[] => [...new Set(xs)];
@@ -122,7 +124,7 @@ export function buildReadings(signals: readonly Signal[], slices: readonly Slice
       for (const group of views) {
         const pool = group === null ? mine : mine.filter((s) => s.clockGroup === group);
         for (const slice of slices) {
-          const inSlice = pool.filter((s) => overlaps(s, slice.startUtcMs, slice.endUtcMs));
+          const inSlice = pool.filter((s) => countsIn(s, slice, rc.edgeDays ?? 0));
           const { word, note } = wordFor(inSlice);
           const tally = tallyOf(inSlice);
           const deciding = inSlice.filter((s) => s.stage !== 'modifier');
@@ -185,21 +187,29 @@ export function chartNoteOf(notes: readonly ChartNote[], level: LevelId): string
 }
 
 /**
- * A reading for every level that has a dated statement for the topic, in every slice. The
+ * A reading for every level that has a dated statement for the topic or a bound rule for it, in every slice. The
  * statements are de-duplicated first, exactly as for the tradition readings, so a fact two
  * rules report counts once.
  */
-export function buildLevelReadings(signals: readonly Signal[], slices: readonly Slice[], topics: readonly Topic[], chartNotes: readonly ChartNote[] = []): LevelReading[] {
+export function buildLevelReadings(
+  signals: readonly Signal[],
+  slices: readonly Slice[],
+  topics: readonly Topic[],
+  chartNotes: readonly ChartNote[] = [],
+  /** Levels that have a bound rule for a topic, whether or not one fired: they are read too, and come out silent. */
+  declared: Readonly<Partial<Record<Topic, readonly LevelId[]>>> = {},
+  edgeDays = 0,
+): LevelReading[] {
   const { kept } = dedupe(signals);
   const out: LevelReading[] = [];
   for (const topic of topics) {
     const mine = kept.filter((s) => s.topic === topic && s.startUtcMs !== null);
-    // A level the chart puts a note on is read even where no rule of it fired, so that its silence is seen with the reason.
-    const levels = unique([...mine.map((s) => s.level), ...chartNotes.flatMap((n) => n.levels)]);
+    // A level with a bound rule for the topic is read even where no rule of it fired, so that its silence is seen, with the chart's reason where it has one.
+    const levels = unique([...mine.map((s) => s.level), ...(declared[topic] ?? [])]);
     for (const level of levels) {
       const pool = mine.filter((s) => s.level === level);
       for (const slice of slices) {
-        const inSlice = pool.filter((s) => overlaps(s, slice.startUtcMs, slice.endUtcMs));
+        const inSlice = pool.filter((s) => countsIn(s, slice, edgeDays));
         const { word, note } = wordFor(inSlice);
         out.push({
           level,

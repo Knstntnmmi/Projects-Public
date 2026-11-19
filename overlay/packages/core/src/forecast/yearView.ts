@@ -3,15 +3,14 @@
 /**
  * The year view: for a topic and each year of the span, what every level says, with the plain
  * counts behind its word, the statements active in the year (by id, into the statement list),
- * the cross-group agreement cell, and one summary sentence built from the level words in a
- * fixed order. Period-read traditions appear once, as a fixed line.
+ * the pointers of each level folded into one group, the cross-group agreement cell, and one
+ * headline that groups the level labels by word. It is the decade grid read by column, so the
+ * two cannot disagree. Period-read traditions appear once, as a fixed line.
  */
 import type { AgreementCell } from './agreement.ts';
 import type { ForecastResult } from './evaluate.ts';
-import { levelRank } from './levels.ts';
-import { LEVEL_LABEL, levelPhrase, periodReadLine, tallyText, yearSummaryLine } from './phrasebook.ts';
-import { shownSignals } from './statements.ts';
-import type { LevelId, ReadingWord, Tally, Topic, Tradition } from './types.ts';
+import { decadeGrid, headlineOf, type GridCell, type PointerGroup } from './grid.ts';
+import type { LevelId, Topic, Tradition } from './types.ts';
 
 export interface YearEntryRef {
   signalId: string;
@@ -19,26 +18,25 @@ export interface YearEntryRef {
   begins: boolean;
 }
 
-export interface YearLevelCell {
+export interface YearLevelCell extends GridCell {
   level: LevelId;
   label: string;
-  word: ReadingWord;
-  note: string | null;
   /** What the chart itself says about this level (a balanced chart names no favourite), or null. */
   chartNote: string | null;
-  tally: Tally;
-  tallyText: string;
+  /** The deciding statements of the level in the year, not the pointers. */
   entries: YearEntryRef[];
+  pointers: PointerGroup | null;
 }
 
 export interface YearViewYear {
   year: number;
   slice: number;
   levels: YearLevelCell[];
-  /** Levels that have statements for the topic in the span but said nothing this year. */
+  /** Levels that said nothing this year (also those that only have pointers), with the stated reason in their cell. */
   silent: LevelId[];
   agreement: AgreementCell | null;
-  summary: string;
+  /** The levels grouped by word: "Supports: A, B. Cautions: C. Mixed: D (3 rules support, 1 cautions). Silent: E." */
+  headline: string;
 }
 
 export interface YearView {
@@ -48,43 +46,31 @@ export interface YearView {
   periodRead: Array<{ tradition: Tradition; line: string }>;
 }
 
-const isSilent = (c: YearLevelCell): boolean => c.word === 'nothing-said' && c.tally.active === 0;
-
 export function yearView(result: ForecastResult, topic: Topic): YearView {
-  const { kept } = shownSignals(result, topic);
-  const startOf = new Map(kept.map((s) => [s.id, s.startUtcMs]));
-  const levels = [...new Set(result.levelReadings.filter((r) => r.topic === topic).map((r) => r.level))].sort((a, b) => levelRank(a) - levelRank(b));
-  const years: YearViewYear[] = result.slices.map((slice) => {
-    const cells: YearLevelCell[] = levels.map((level) => {
-      const r = result.levelReadings.find((x) => x.topic === topic && x.level === level && x.slice === slice.index)!;
+  const grid = decadeGrid(result, topic);
+  const startOf = new Map(result.signals.map((s) => [s.id, s.startUtcMs]));
+  const years: YearViewYear[] = result.slices.map((slice, i) => {
+    const cells: YearLevelCell[] = grid.rows.map((row) => {
+      const c = row.cells[i]!;
       return {
-        level,
-        label: LEVEL_LABEL[level],
-        word: r.word,
-        note: r.note,
-        chartNote: r.chartNote,
-        tally: r.tally,
-        tallyText: tallyText(r.tally),
-        entries: r.signalIds.map((id) => {
+        ...c,
+        level: row.level,
+        label: row.label,
+        chartNote: row.note,
+        entries: c.signalIds.map((id) => {
           const start = startOf.get(id) ?? null;
           return { signalId: id, begins: start !== null && start >= slice.startUtcMs && start < slice.endUtcMs };
         }),
       };
     });
-    const speaking = cells.filter((c) => !isSilent(c));
-    const silent = cells.filter(isSilent).map((c) => c.level);
     return {
       year: slice.year,
       slice: slice.index,
       levels: cells,
-      silent,
+      silent: cells.filter((c) => c.word === 'nothing-said').map((c) => c.level),
       agreement: result.agreement.find((c) => c.topic === topic && c.slice === slice.index) ?? null,
-      summary: yearSummaryLine(
-        speaking.map((c) => levelPhrase(c.label, c.word, c.tally)),
-        silent.map((l) => LEVEL_LABEL[l]),
-        [...new Set(cells.flatMap((c) => (c.chartNote === null ? [] : [c.chartNote])))],
-      ),
+      headline: headlineOf(cells),
     };
   });
-  return { topic, years, periodRead: result.periodRead.map((tradition) => ({ tradition, line: periodReadLine(tradition) })) };
+  return { topic, years, periodRead: grid.periodRead };
 }

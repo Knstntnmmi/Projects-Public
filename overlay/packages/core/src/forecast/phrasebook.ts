@@ -103,6 +103,9 @@ export const NOTE = {
   onePlanetsMotion: "two traditions read one planet's motion",
   sameFactAlso: 'same fact, also reported by',
   balancedChart: 'the chart is balanced, so the favourable-element method names no favourite',
+  needsLuckDirection: 'needs the luck-direction convention',
+  needsSexConvention: 'needs a named sex convention',
+  needsBirthTime: 'needs a birth time that is known well enough',
 } as const;
 
 export const BADGE = {
@@ -133,6 +136,7 @@ export const TEXT = {
   silentHeading: 'Silent',
   nothingAtAnyLevel: 'No level says anything.',
   experimentalWindow: 'The I Ching is experimental: its grades are a modern construction on the text.',
+  westernWindow: 'These are the days on which a planet passes over a point of the birth chart or beholds it, as Lilly describes it from an ephemeris; he calls them only reputed. Not tested yet.',
   scorecardNote1: 'Events people record are not a random sample.',
   scorecardNote2:
     'The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why only events entered after the freeze count.',
@@ -140,13 +144,16 @@ export const TEXT = {
   scorecardNote4: 'A hit rate does not tell you how the next call turns out.',
 } as const;
 
-/** "3 rules support, 1 cautions": the verb agrees with the count, and only the first clause names the rules. */
+/**
+ * "3 rules support, 1 cautions": the verb agrees with the count, and only the first clause names
+ * the rules. A pointer (a statement that only marks the topic, without a direction) is not part
+ * of it: pointers are counted apart, with their own label.
+ */
 export function tallyText(t: Tally): string {
   const clauses: Array<[number, string, string]> = [
     [t.supports, 'support', 'supports'],
     [t.cautions, 'caution', 'cautions'],
     [t.mixed, 'are stated as mixed', 'is stated as mixed'],
-    [t.active, 'only mark the topic as active', 'only marks the topic as active'],
   ];
   const parts: string[] = [];
   for (const [n, many, one] of clauses) {
@@ -157,18 +164,36 @@ export function tallyText(t: Tally): string {
   return parts.length === 0 ? 'no rule speaks' : parts.join(', ');
 }
 
-/** One level's part of a year summary; the counts are spelled out only where the word alone would hide them. */
-export function levelPhrase(label: string, word: ReadingWord, tally: Tally): string {
-  if (word === 'supports' || word === 'cautions') return `${label} ${word}`;
-  if (word === 'mixed') return `${label} mixed (${tallyText(tally)})`;
-  return `${label} marks the topic as active`;
+/** The label of the group of pointers of one level in one year: how many, and what a pointer is. */
+export function pointerLabel(count: number): string {
+  return count === 1
+    ? '1 pointer: a statement that marks the topic or names where a count reaches, without a direction'
+    : `${count} pointers: statements that mark the topic or name where a count reaches, without a direction`;
 }
 
-/** The year summary: level words in a fixed order, then the levels that said nothing, then the notes the chart puts on its levels. */
-export function yearSummaryLine(phrases: readonly string[], silent: readonly string[], notes: readonly string[] = []): string {
-  const head = phrases.length > 0 ? `${phrases.join('; ')}.` : TEXT.nothingAtAnyLevel;
-  const body = silent.length > 0 ? `${head} ${TEXT.silentHeading}: ${silent.join(', ')}.` : head;
-  return notes.length > 0 ? `${body} ${notes.map(sentenceOf).join(' ')}` : body;
+/** The words of the four groups of a year headline, in the order they are said. */
+export const HEADLINE_HEADING = { supports: 'Supports', cautions: 'Cautions', mixed: 'Mixed', silent: 'Silent' } as const;
+
+/**
+ * What a mixed level shows beside its name: the tally, except where it would only repeat the
+ * heading (one rule that is stated as mixed itself).
+ */
+export function mixedLevelPhrase(label: string, tally: Tally): string {
+  const text = tallyText(tally);
+  return tally.supports === 0 && tally.cautions === 0 && tally.mixed === 1 ? label : `${label} (${text})`;
+}
+
+/**
+ * The year headline: the level labels grouped by word, in this order and form: "Supports: A, B.
+ * Cautions: C. Mixed: D (3 rules support, 1 cautions), E. Silent: F." A group with no level is left
+ * out. Where no level says anything the headline says so, then names the silent ones.
+ */
+export function yearHeadline(groups: { supports: readonly string[]; cautions: readonly string[]; mixed: readonly string[]; silent: readonly string[] }): string {
+  const parts: string[] = [];
+  for (const k of ['supports', 'cautions', 'mixed'] as const) if (groups[k].length > 0) parts.push(`${HEADLINE_HEADING[k]}: ${groups[k].join(', ')}.`);
+  if (parts.length === 0) parts.push(TEXT.nothingAtAnyLevel);
+  if (groups.silent.length > 0) parts.push(`${HEADLINE_HEADING.silent}: ${groups.silent.join(', ')}.`);
+  return parts.join(' ');
 }
 
 /** A note as a sentence: capital first letter, full stop last. */
@@ -220,11 +245,22 @@ export function supportsFromCautionsFrom(fav: Stage[], unf: Stage[]): string {
 export const VERDICT_TEXT = {
   'agree-supports': 'agree: supports',
   'agree-cautions': 'agree: cautions',
-  contradiction: 'contradiction',
+  contradiction: 'one group supports and another cautions',
   single: 'one group speaks',
   silent: 'nothing said',
   'no-agreement': 'groups speak but do not agree',
 } as const;
+
+/**
+ * Why agreement is rare, in plain words, naming the independent groups actually present for
+ * this nativity: everything counted from the birth moment is one group, and each planet whose
+ * real motion is read is one more.
+ */
+export function groupsSentence(names: readonly string[]): string {
+  const base = 'Everything counted from the birth moment is one group, and each planet whose real motion is read is one more, so agreement needs different groups to say the same thing';
+  if (names.length === 0) return `${base}; no group has anything to say for this nativity.`;
+  return `${base}. For this nativity the independent groups are: ${names.join('; ')}.`;
+}
 
 export function baselineLine(found: number, expected: number, cellsLooked: number, slices: number): string {
   const base = `found ${found} agreeing ${found === 1 ? 'slice' : 'slices'}; about ${expected.toFixed(1)} expected if the groups were unrelated; ${cellsLooked} ${cellsLooked === 1 ? 'cell' : 'cells'} looked at on this page`;
@@ -274,12 +310,14 @@ export function allPhrases(): string[] {
     tallyText({ supports: 1, cautions: 1, mixed: 2, active: 1 }),
     tallyText({ supports: 0, cautions: 2, mixed: 1, active: 3 }),
     tallyText({ supports: 0, cautions: 0, mixed: 0, active: 0 }),
-    levelPhrase('x', 'supports', { supports: 1, cautions: 0, mixed: 0, active: 0 }),
-    levelPhrase('x', 'mixed', { supports: 1, cautions: 1, mixed: 0, active: 0 }),
-    levelPhrase('x', 'nothing-said', { supports: 0, cautions: 0, mixed: 0, active: 1 }),
-    yearSummaryLine(['x supports'], ['y']),
-    yearSummaryLine([], ['y']),
-    yearSummaryLine(['x supports'], ['y'], [NOTE.balancedChart]),
+    pointerLabel(1),
+    pointerLabel(12),
+    mixedLevelPhrase('x', { supports: 3, cautions: 1, mixed: 0, active: 0 }),
+    mixedLevelPhrase('x', { supports: 0, cautions: 0, mixed: 1, active: 0 }),
+    yearHeadline({ supports: ['x', 'y'], cautions: ['z'], mixed: ['w (1 rule supports)'], silent: ['v'] }),
+    yearHeadline({ supports: [], cautions: [], mixed: [], silent: ['v'] }),
+    groupsSentence([]),
+    groupsSentence(['clocks counted from the birth moment', 'Jupiter (sidereal signs)']),
     notEvaluatedBranchLine('a branch', 'a reason'),
     periodReadLine('iching'),
     periodReadLine('bazi'),

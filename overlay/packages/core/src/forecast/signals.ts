@@ -156,3 +156,16 @@ export function overlapFraction(s: { startUtcMs: number | null; endUtcMs: number
   const hi = Math.min(s.endUtcMs!, end);
   return Math.min(1, Math.max(hi - lo, 86_400_000) / (end - start));
 }
+
+/**
+ * True when a dated signal counts toward a slice (the edge of a year, `sliceEdgeDays`): it overlaps
+ * the slice, and where it extends beyond the slice it overlaps it by at least `edgeDays` days. A
+ * statement wholly inside the slice counts however short it is, a point in time included.
+ */
+export function countsIn(s: { startUtcMs: number | null; endUtcMs: number | null }, slice: { startUtcMs: number; endUtcMs: number }, edgeDays: number): boolean {
+  if (!overlaps(s, slice.startUtcMs, slice.endUtcMs)) return false;
+  if (edgeDays <= 0) return true;
+  const extendsBeyond = s.startUtcMs! < slice.startUtcMs || s.endUtcMs! > slice.endUtcMs;
+  if (!extendsBeyond) return true;
+  return Math.min(s.endUtcMs!, slice.endUtcMs) - Math.max(s.startUtcMs!, slice.startUtcMs) >= edgeDays * 86_400_000;
+}

@@ -11,11 +11,15 @@ import { gradeStatement, gradeText, negatedDetail, type Grade } from '../systems
 import { GUA_QI_CARDINAL_POSITION, SOVEREIGN_SEQUENCE } from '../systems/iching/wheels.ts';
 import { hexagramByName, type Hexagram } from '../systems/iching/hexagrams.ts';
 import { statementText } from '../systems/iching/zhouyiText.ts';
-import { createContext, type ForecastInput } from './context.ts';
-import { BADGE, TEXT, windowTooLongMessage } from './phrasebook.ts';
+import { createContext, type ForecastContext, type ForecastInput } from './context.ts';
+import { dedupe } from './readings.ts';
+import { DEFAULT_REGISTRY, statusOf, type Registry } from './registry.ts';
+import { runConfig } from './evaluate.ts';
+import { signalsFromFirings } from './signals.ts';
+import { BADGE, directionWord, LEVEL_LABEL, TEXT, windowTooLongMessage, type DisplayWord } from './phrasebook.ts';
 import { buildContext as buildIchingContext } from './predicates/iching.ts';
 import { topicsOfStatement } from './predicates/ichingCues.ts';
-import type { Span, Topic } from './types.ts';
+import type { LevelId, Signal, Span, Topic } from './types.ts';
 
 export const MAX_WINDOW_DAYS = 62;
 
@@ -39,8 +43,8 @@ export interface IchingStatement {
   endUtcMs: number;
 }
 
-export interface PeriodCharacter {
-  window: Span;
+/** The I Ching's part of a window: what the calendar says, which does not depend on the nativity. */
+export interface IchingPart {
   /** The hexagram periods (gua qi) that overlap the window. */
   periods: IchingStatement[];
   /** The sovereign hexagram of each month that overlaps the window, with whether the month is growing or waning. */
@@ -51,6 +55,44 @@ export interface PeriodCharacter {
   days: IchingStatement[];
   badges: string[];
   note: string;
+}
+
+/** One day statement of a rule that is read by period, with the rule behind it. */
+export interface WindowStatement {
+  signalId: string;
+  ruleId: string;
+  level: LevelId;
+  levelLabel: string;
+  /** The rule's own direction in a word; the Western day transits are stated as mixed by their rule. */
+  word: Exclude<DisplayWord, 'nothing-said'>;
+  sentence: string;
+  /** The day the statement is about: the day of the closest pass. */
+  dayUtcMs: number;
+  /** The span of the statement as its rule dates it, not clipped to the window. */
+  startUtcMs: number;
+  endUtcMs: number;
+  badges: string[];
+  source: { citation: string; locator: string };
+}
+
+/**
+ * The Western part of a window: the day statements of the rules of Lilly that are read by
+ * period (the passes of the planets over the angles and the radical places). They depend on
+ * the nativity and on the birth time, and carry no badge "experimental": they are rules of the
+ * tradition as printed, with derived thresholds named in the badges of each statement.
+ */
+export interface WesternPart {
+  statements: WindowStatement[];
+  badges: string[];
+  note: string;
+  /** Why the part is empty although it was asked for (no birth time, or too uncertain), or null. */
+  unavailable: string | null;
+}
+
+export interface PeriodCharacter {
+  window: Span;
+  iching: IchingPart;
+  western: WesternPart;
 }
 
 const FOUR_CARDINAL = ['坎', '震', '離', '兌'].map((n) => hexagramByName(n).number);
@@ -74,22 +116,70 @@ function statementOf(h: Hexagram, line: number, startUtcMs: number, endUtcMs: nu
 }
 
 /**
- * The hexagram period or periods that overlap a window of at most 62 days, the sovereign
- * hexagram, the cardinal markers and the line of each day. A longer window is refused.
+ * The character of a window of at most 62 days, each tradition in its own part: the I Ching's
+ * hexagram periods, sovereign hexagram, cardinal markers and line of each day, and the Western
+ * day statements of the rules that are read by period (the passes over the angles and radical
+ * places, from the nativity). A longer window is refused. A rule of the Western part is run
+ * only here and never when a long span is evaluated.
  */
-export function periodCharacter(input: ForecastInput, range: Span): PeriodCharacter {
+export function periodCharacter(input: ForecastInput, range: Span, options: { registry?: Registry } = {}): PeriodCharacter {
   const days = (range.endUtcMs - range.startUtcMs) / MS.DAY;
   if (!Number.isFinite(days) || days <= 0) throw new RangeError('The window must end after it starts.');
   if (days > MAX_WINDOW_DAYS) throw new RangeError(windowTooLongMessage(days, MAX_WINDOW_DAYS));
-  const ctx = createContext({ ...input, span: range });
+  const registry = options.registry ?? DEFAULT_REGISTRY;
+  const ctx = createContext({ ...input, span: range }, registry.builders);
   const ich = buildIchingContext(ctx);
   return {
     window: range,
-    periods: ich.periods.map((p) => statementOf(p.hexagram, 0, p.startUtcMs, p.endUtcMs)),
-    sovereign: ctx.sovereign().map((s) => ({ ...statementOf(s.hexagram, 0, s.startUtcMs, s.endUtcMs), growing: SOVEREIGN_SEQUENCE.findIndex((h) => h.number === s.hexagram.number) < 6 })),
-    cardinal: ich.periods.filter((p) => p.position >= GUA_QI_CARDINAL_POSITION && FOUR_CARDINAL.includes(p.hexagram.number)).map((p) => statementOf(p.hexagram, 0, p.startUtcMs, p.endUtcMs)),
-    days: ich.slices.map((s) => statementOf(s.hexagram, s.line, s.startUtcMs, s.endUtcMs)),
-    badges: [BADGE.experimental],
-    note: TEXT.experimentalWindow,
+    iching: {
+      periods: ich.periods.map((p) => statementOf(p.hexagram, 0, p.startUtcMs, p.endUtcMs)),
+      sovereign: ctx.sovereign().map((s) => ({ ...statementOf(s.hexagram, 0, s.startUtcMs, s.endUtcMs), growing: SOVEREIGN_SEQUENCE.findIndex((h) => h.number === s.hexagram.number) < 6 })),
+      cardinal: ich.periods.filter((p) => p.position >= GUA_QI_CARDINAL_POSITION && FOUR_CARDINAL.includes(p.hexagram.number)).map((p) => statementOf(p.hexagram, 0, p.startUtcMs, p.endUtcMs)),
+      days: ich.slices.map((s) => statementOf(s.hexagram, s.line, s.startUtcMs, s.endUtcMs)),
+      badges: [BADGE.experimental],
+      note: TEXT.experimentalWindow,
+    },
+    western: westernPart(input, range, ctx, registry),
   };
+}
+
+const dayOf = (s: Signal): number => {
+  const d = s.facts.find((f) => f.key === 'date');
+  const t = d === undefined ? Number.NaN : Date.parse(String(d.value));
+  return Number.isFinite(t) ? t : s.startUtcMs!;
+};
+
+/** The day statements of every rule of a tradition read by year that is flagged as read by period, for the days of the window. */
+function westernPart(input: ForecastInput, range: Span, ctx: ForecastContext, registry: Registry): WesternPart {
+  const base = { badges: [] as string[], note: TEXT.westernWindow };
+  const config = runConfig(input, ['western']);
+  const rules = registry.rules.filter((r) => r.tradition === 'western' && registry.periodReadRules.has(r.id) && (r.sourceOpened || input.forecastConventions.showUnopened));
+  const statuses = rules.map((r) => statusOf(registry, r, config));
+  const blocked = statuses.find((s) => s.state === 'withheld');
+  const signals: Signal[] = [];
+  for (const rule of rules.filter((r, i) => statuses[i]!.state === 'bound')) {
+    const firings = registry.bindings.get(rule.id)!.fire(ctx, rule);
+    signals.push(...signalsFromFirings(rule, firings, { forecastConventions: input.forecastConventions, span: range }));
+  }
+  const { kept } = dedupe(signals);
+  const statements: WindowStatement[] = kept
+    .filter((s) => s.startUtcMs !== null)
+    // The sentence is about a day, the day of the closest pass; the span of the rule is the orb the pass lasts, which can begin before the window.
+    .filter((s) => dayOf(s) + MS.DAY > range.startUtcMs && dayOf(s) < range.endUtcMs)
+    .map((s) => ({
+      signalId: s.id,
+      ruleId: s.ruleId,
+      level: s.level,
+      levelLabel: LEVEL_LABEL[s.level],
+      word: directionWord(s.direction),
+      sentence: s.sentence,
+      dayUtcMs: dayOf(s),
+      startUtcMs: s.startUtcMs!,
+      endUtcMs: s.endUtcMs!,
+      badges: [...s.badges],
+      source: { citation: s.source.citation, locator: s.source.locator },
+    }))
+    .sort((a, b) => a.dayUtcMs - b.dayUtcMs || (a.ruleId < b.ruleId ? -1 : a.ruleId > b.ruleId ? 1 : 0) || (a.signalId < b.signalId ? -1 : 1));
+  const unavailable = blocked && blocked.state === 'withheld' && statements.length === 0 ? blocked.detail : null;
+  return { ...base, statements, unavailable };
 }

@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * The written forecast (specification, section 7), by calendar year. Every statement is said
- * once, in the year it begins; the year summary is built from the level words. Only three kinds of
+ * once, in the year it begins; the year headline groups the level labels by word. Only three kinds of
  * sentence exist, all built from fixed templates: a signal's own sentence with its word,
  * a summary of how the speaking groups stand, and a statement that a tradition said
  * nothing. Every sentence that says something carries the ids of the signals behind it.
@@ -75,7 +75,7 @@ export function narrate(result: ForecastResult, topic: Topic): Sentence[] {
         // The groups do not stand together: say what each technique says instead.
         const year = view.years[slice.index]!;
         const ids = [...new Set(year.levels.flatMap((l) => l.entries.map((x) => x.signalId)))];
-        out.push({ kind: 'summary', text: year.summary, signalIds: ids, slice: slice.index, children: children.filter((c) => ids.includes(c.signalIds[0]!)) });
+        out.push({ kind: 'summary', text: year.headline, signalIds: ids, slice: slice.index, children: children.filter((c) => ids.includes(c.signalIds[0]!)) });
       }
     }
 

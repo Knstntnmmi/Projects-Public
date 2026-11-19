@@ -2,7 +2,9 @@
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 import { describe, expect, it } from 'vitest';
 import ichingRules from '../src/forecast/data/rules.iching.json' with { type: 'json' };
-import { ADVICE_TOKENS, gradeStatement, gradeText, negatedDetail, scanTokens, VERDICT_TOKENS } from '../src/systems/iching/grade.ts';
+import fixture from './fixtures/iching-negated-formulas.json' with { type: 'json' };
+import negations from '../src/forecast/data/iching-negations.json' with { type: 'json' };
+import { ADVICE_TOKENS, formulaDetail, formulaNotes, gradeStatement, gradeText, scanTokens, VERDICT_TOKENS } from '../src/systems/iching/grade.ts';
 import { allStatements, statementText } from '../src/systems/iching/zhouyiText.ts';
 
 const grade = (id: string) => {
@@ -29,13 +31,11 @@ function tokensOfCell(cell: string): string[] {
 
 describe('the verdict-token table', () => {
   const table = (ichingRules.tables as { tokens: Record<string, string> }).tokens;
-  const keys = ['+3', '+2', '+1.5', '+1', '+0.5', '+0.25', '-0.5', '-1', '-1.5', '-2', '-3'];
+  const keys = ['+3', '+2', '+1.5', '+1', '-0.5', '-1', '-1.5', '-2', '-3'];
 
   it('gives every token the value the rule file states', () => {
     const fromFile: Record<string, number> = {};
     for (const k of keys) for (const t of tokensOfCell(table[k]!)) fromFile[t] = Number(k);
-    // 厲无咎 is a pair, not a token: its two halves are handled by the grader, not the table.
-    delete fromFile['厲无咎'];
     // The cell for -2 reads "災 or 眚": two tokens of one value.
     fromFile['眚'] = fromFile['災']!;
     expect(VERDICT_TOKENS).toEqual(fromFile);
@@ -124,26 +124,26 @@ describe('the corrections the checker recorded', () => {
   it('matches longest first and never inside a longer word', () => {
     expect(scanTokens('元吉').map((t) => t.token)).toEqual(['元吉']);
     expect(scanTokens('貞吉').map((t) => t.token)).toEqual(['貞吉']);
-    expect(scanTokens('无咎').map((t) => t.token)).toEqual(['无咎']);
-    expect(scanTokens('无大咎').map((t) => t.token)).toEqual(['无大咎']);
+    expect(scanTokens('无咎')).toEqual([]);
+    expect(scanTokens('无大咎')).toEqual([]);
     expect(scanTokens('无不利').map((t) => t.token)).toEqual(['无不利']);
     expect(scanTokens('无攸利').map((t) => t.token)).toEqual(['无攸利']);
     expect(scanTokens('小亨').map((t) => t.token)).toEqual(['小亨']);
   });
 
-  it('counts 厲 straight before 无咎 as -0.5 and the 无咎 as 0', () => {
-    expect(gradeStatement('厲无咎').grade).toBe(-0.5);
-    expect(gradeStatement('貞厲无咎').grade).toBe(-0.5);
-    expect(grade('1.3').grade).toBe(-0.5);
-    // A 厲 that is not followed by 无咎 keeps its own value.
+  it('reads 无咎 beside 厲 as a note: the 厲 keeps its own value', () => {
+    expect(gradeStatement('厲无咎').grade).toBe(-1.5);
+    expect(gradeStatement('貞厲无咎').grade).toBe(-1.5);
+    expect(grade('1.3').grade).toBe(-1.5);
+    expect(grade('1.3').formulas.map((f) => f.formula)).toEqual(['无咎']);
     expect(gradeStatement('厲').grade).toBe(-1.5);
     expect(gradeStatement('厲吉').grade).toBe(1.25);
   });
 
-  it('counts a bare 咎 only where it is not part of 无咎, 何咎 or 无大咎', () => {
+  it('counts a bare 咎 only where it is not part of a negated formula', () => {
     expect(gradeStatement('有咎').grade).toBe(-1.5);
-    expect(gradeStatement('无咎').grade).toBe(0.5);
-    expect(gradeStatement('何咎').grade).toBe(0.5);
+    expect(gradeStatement('无咎').grade).toBe(0);
+    expect(gradeStatement('何咎').grade).toBe(0);
   });
 
   it('grades a statement with no verdict word as 0 with the flag none', () => {
@@ -173,7 +173,7 @@ describe('the corrections the checker recorded', () => {
   });
 
   it('ignores punctuation, spaces and the other spelling of 无', () => {
-    expect(gradeStatement('厲，無咎。').grade).toBe(-0.5);
+    expect(gradeStatement('厲，無咎。').grade).toBe(-1.5);
     expect(gradeStatement('吉 ，').grade).toBe(2);
   });
 });
@@ -191,9 +191,12 @@ describe('the grader over the whole corpus', () => {
   });
 
   // The extractor's figure ("76 of 450 have no verdict word") was made before the missing tokens were added; recomputed here.
-  // 67 before negation was honoured; 6.2 and 51.3 had only 无眚, which is now not graded, so they join the statements with none.
-  it('leaves 69 of the 450 statements without a graded verdict word', () => {
-    expect(all.filter((x) => x.g.flags.includes('none'))).toHaveLength(69);
+  // A negated word of misfortune (无咎 and the like) is a note without a direction, so the statements that hold only such notes now join them.
+  it('leaves 130 of the 450 statements without a graded verdict word, and shows every one of them that holds a note', () => {
+    const none = all.filter((x) => x.g.flags.includes('none'));
+    expect(none).toHaveLength(130);
+    // 69 had no verdict word before the notes; 61 more hold only a negated word of misfortune
+    expect(none.filter((x) => formulaNotes(x.g).length > 0)).toHaveLength(63);
   });
 
   it('has judgments and lines of every sign', () => {
@@ -202,48 +205,81 @@ describe('the grader over the whole corpus', () => {
     expect(all.filter((x) => x.g.flags.includes('mixed')).length).toBeGreaterThan(10);
   });
 
-  // A negation straight before a verdict word that the table does not list with it takes the word out of the grading.
-  // The table's own phrases (无咎 among them) are graded as the table says.
-  it('does not grade a negated word: 无眚, 无譽 and 匪咎 are reported as negated, not graded', () => {
-    const expected: Record<string, { grade: number; negated: string[] }> = {
-      '2.4': { grade: 0.5, negated: ['无譽'] },
-      '28.5': { grade: 0.5, negated: ['无譽'] },
-      '6.2': { grade: 0, negated: ['无眚'] },
-      '51.3': { grade: 0, negated: ['无眚'] },
-      '14.1': { grade: 0.5, negated: ['匪咎'] },
-    };
-    for (const [id, e] of Object.entries(expected)) {
-      const g = all.find((x) => x.id === id)!.g;
-      expect(g.grade, id).toBe(e.grade);
-      expect(g.negated.map((n) => n.phrase), id).toEqual(e.negated);
-      expect(negatedDetail(g), id).toBe(e.negated.map((n) => `${n}: negated, not graded`).join('; '));
+  it('reads every negated formula as its class says: a and d are notes, b is unfavourable, c is favourable', () => {
+    const dir = { a: null, b: 'unfavourable', c: 'favourable', d: null } as const;
+    for (const f of negations.formulas) {
+      const g = gradeStatement(f.formula);
+      expect(g.formulas.map((x) => [x.formula, x.cls, x.gloss]), f.formula).toEqual([[f.formula, f.class, f.gloss]]);
+      expect(g.formulas[0]!.direction, f.formula).toBe(dir[f.class as 'a' | 'b' | 'c' | 'd']);
+      // a note carries no value; b and c count as the token table says
+      expect(g.grade, f.formula).toBe(f.class === 'a' || f.class === 'd' ? 0 : VERDICT_TOKENS[f.formula]);
     }
-    // these five are the only statements of the corpus that carry a negated word
-    expect(all.filter((x) => x.g.negated.length > 0).map((x) => x.id).sort()).toEqual(Object.keys(expected).sort());
-  });
-
-  it('grades the phrases the table lists as the table says, 无咎 first', () => {
-    expect(gradeStatement('无咎').grade).toBe(0.5);
-    expect(gradeStatement('无咎').negated).toEqual([]);
-    for (const phrase of ['无悔', '无大咎', '无不利', '无攸利', '何咎', '不利', '勿用', '不可涉大川']) {
-      const g = gradeStatement(phrase);
-      expect(g.grade, phrase).toBe(VERDICT_TOKENS[phrase]);
-      expect(g.negated, phrase).toEqual([]);
-    }
-    // the same negation before a word the table does not pair with it is not graded
-    for (const [text, word] of [['无眚', '眚'], ['无譽', '譽'], ['匪咎', '咎'], ['不吉', '吉'], ['弗凶', '凶'], ['未亨', '亨'], ['勿利', '利']] as const) {
+    // the same negators before a word the table does not pair with them are read by the class rule
+    for (const [text, cls] of [['无眚', 'a'], ['匪咎', 'a'], ['弗凶', 'a'], ['未吝', 'a'], ['無譽', 'd'], ['不吉', 'd'], ['未亨', 'd'], ['勿利', 'b'], ['弗利', 'b']] as const) {
       const g = gradeStatement(text);
-      expect(g.grade, text).toBe(0);
-      expect(g.flags, text).toEqual(['none']);
-      expect(g.negated.map((n) => [n.phrase, n.word]), text).toEqual([[text, word]]);
+      expect(g.formulas.map((x) => x.cls), text).toEqual([cls]);
+      expect(formulaNotes(g).length > 0, text).toBe(cls === 'a' || cls === 'd');
     }
-    // 無 is read as 无, so the traditional character negates as well
-    expect(gradeStatement('無眚').negated.map((n) => n.phrase)).toEqual(['无眚']);
+    // a verdict word is not negated by a word that is not a negator, and 勿用 and 不可涉大川 are tokens, not formulas
+    expect(gradeStatement('勿用').formulas).toEqual([]);
+    expect(gradeStatement('不可涉大川').formulas).toEqual([]);
+    expect(gradeStatement('不終日').formulas).toEqual([]);
   });
 
-  it('keeps the grade of the rest of a statement when one word in it is negated', () => {
-    expect(gradeStatement('无咎无譽').grade).toBe(0.5);
+  it('gives each note its characters and a literal gloss, and class b the thing it names', () => {
+    expect(formulaDetail(gradeStatement('无咎'))).toBe('无咎 (no blame): states that something bad is absent; a note without a direction');
+    expect(formulaDetail(gradeStatement('无譽'))).toBe('无譽 (no praise): a negated verdict word; a note without a direction');
+    expect(formulaDetail(gradeStatement('不利涉大川'))).toBe('不利涉大川 (not advantageous): unfavourable for what it names');
+    expect(formulaDetail(gradeStatement('无不利'))).toBe('无不利 (nothing that is not advantageous): favourable');
+    expect(formulaDetail(gradeStatement('履霜堅冰至'))).toBeNull();
+  });
+
+  it('keeps the grade of the rest of a statement when a word in it is negated', () => {
+    expect(gradeStatement('无咎无譽').grade).toBe(0);
     expect(gradeStatement('吉无眚').grade).toBe(2);
-    expect(gradeStatement('无咎无譽').tokens.map((t) => t.token)).toEqual(['无咎']);
+    expect(gradeStatement('吉无咎').grade).toBe(2);
+    expect(gradeStatement('无咎无譽').formulas.map((f) => f.formula)).toEqual(['无咎', '无譽']);
+  });
+
+  it('keeps 悔亡 as a note and not as 悔', () => {
+    expect(gradeStatement('悔亡').grade).toBe(0);
+    expect(gradeStatement('有悔').grade).toBe(-0.5);
+    expect(gradeStatement('悔').grade).toBe(-0.5);
+  });
+});
+
+describe('the whole list of negated formulas of the Zhouyi text', () => {
+  const all = allStatements().map((s) => ({ id: s.id, text: s.text, g: gradeStatement(s.text) }));
+
+  it('has the counts the fixture states, over 450 statements', () => {
+    expect(fixture.statements).toBe(450);
+    expect(all).toHaveLength(450);
+    expect(fixture.entries).toHaveLength(159);
+    expect(fixture.counts).toEqual({ a: 126, b: 18, c: 13, d: 2 });
+    expect(fixture.statementsWithAFormula).toBe(148);
+    expect(new Set(fixture.entries.map((e) => e.id)).size).toBe(148);
+  });
+
+  it('is read by the grader exactly as the fixture lists it: same formulas, same classes, in the same statements', () => {
+    const got = all.flatMap((x) => x.g.formulas.map((f) => ({ id: x.id, formula: f.formula, class: f.cls })));
+    expect(got).toEqual(fixture.entries);
+  });
+
+  it('shows no statement without its note: every statement with a class a or d formula carries it, and none is left unread', () => {
+    for (const x of all) {
+      const listed = fixture.entries.filter((e) => e.id === x.id);
+      expect(x.g.formulas.length, x.id).toBe(listed.length);
+      const notes = listed.filter((e) => e.class === 'a' || e.class === 'd').length;
+      expect(formulaNotes(x.g).length, x.id).toBe(notes);
+    }
+  });
+
+  it('gives a direction only through classes b and c', () => {
+    for (const x of all) {
+      const fromFormulas = x.g.formulas.filter((f) => f.direction !== null);
+      const tokenNames = x.g.tokens.map((t) => t.token);
+      for (const f of fromFormulas) expect(tokenNames, `${x.id} ${f.formula}`).toContain(f.formula);
+      for (const f of x.g.formulas.filter((f) => f.direction === null)) expect(tokenNames, `${x.id} ${f.formula}`).not.toContain(f.formula);
+    }
   });
 });

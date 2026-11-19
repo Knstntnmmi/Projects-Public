@@ -7,7 +7,7 @@
  * are one a day, and a longer window would only be the wall the yearly forms were built to avoid.
  */
 import { MS } from '../substrate/time.ts';
-import { gradeStatement, gradeText, negatedDetail, type Grade } from '../systems/iching/grade.ts';
+import { gradeStatement, gradeText, formulaDetail, type Grade } from '../systems/iching/grade.ts';
 import { GUA_QI_CARDINAL_POSITION, SOVEREIGN_SEQUENCE } from '../systems/iching/wheels.ts';
 import { hexagramByName, type Hexagram } from '../systems/iching/hexagrams.ts';
 import { statementText } from '../systems/iching/zhouyiText.ts';
@@ -40,8 +40,8 @@ export interface IchingStatement {
   reading: string;
   /** What the cue rules say of this statement, topic by topic, each with the sign of its own clause (a statement can be named for wealth and yet read as a whole in the other direction). */
   cues: CueRead[];
-  /** Verdict words a negation stood before and that were not graded, with the detail "negated, not graded"; null when none. */
-  negated: string | null;
+  /** The negated verdict formulas of the statement, each with its gloss and what it says (a note without a direction, or unfavourable, or favourable); null when none. */
+  formulas: string | null;
   badges: string[];
   startUtcMs: number;
   endUtcMs: number;
@@ -103,12 +103,12 @@ const FOUR_CARDINAL = ['坎', '震', '離', '兌'].map((n) => hexagramByName(n).
 
 /**
  * What to print beside a statement, in plain words and without a number: how its verdict words read
- * as a whole, then each topic the text names it for with the sign of that clause, then any negated word.
+ * as a whole, then each topic the text names it for with the sign of that clause, then any negated verdict formula.
  */
 export function ichingNotes(s: IchingStatement): string[] {
   const out = [`as a whole it reads: ${s.reading}`];
   for (const c of s.cues) out.push(`named for ${TOPIC_LABEL[c.topic]} by the words ${c.clause}: ${directionWord(c.direction) === 'active' ? 'no direction given' : directionWord(c.direction)}${c.note ? ` (${c.note})` : ''}`);
-  if (s.negated) out.push(s.negated);
+  if (s.formulas) out.push(s.formulas);
   return out;
 }
 
@@ -130,7 +130,7 @@ function statementOf(h: Hexagram, line: number, startUtcMs: number, endUtcMs: nu
     topics: topicsOfStatement(`${h.number}.${line}`, g),
     reading: readingOf(g),
     cues: cuesOfStatement(`${h.number}.${line}`),
-    negated: negatedDetail(g),
+    formulas: formulaDetail(g),
     badges: [BADGE.experimental],
     startUtcMs,
     endUtcMs,

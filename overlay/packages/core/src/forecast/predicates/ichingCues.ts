@@ -8,7 +8,7 @@
  * A clause with no verdict word has no sign: it is reported as a topic touched, not as good or bad.
  */
 import { statementText } from '../../systems/iching/zhouyiText.ts';
-import { gradeStatement, type Grade } from '../../systems/iching/grade.ts';
+import { formulaNotes, gradeStatement, type Grade } from '../../systems/iching/grade.ts';
 import type { Direction, Topic } from '../types.ts';
 
 export interface Cue {
@@ -181,5 +181,5 @@ export function cuesOfStatement(id: string): CueRead[] {
  * attached to no topic at all; it says nothing about anything.
  */
 export function topicsOfStatement(id: string, g: Grade): Topic[] {
-  return g.grade === 0 ? cueTopicsOf(id) : ['general', ...cueTopicsOf(id)];
+  return g.grade === 0 && formulaNotes(g).length === 0 ? cueTopicsOf(id) : ['general', ...cueTopicsOf(id)];
 }

@@ -120,6 +120,19 @@ code { font: 0.82em ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: 
 .chip.w-active, .chip.w-nothing-said { color: var(--muted); border-style: dashed; }
 
 /* the decade grid */
+.grid-wrap { position: relative; }
+/* a fade at the right edge says that more years lie beyond; the page switches it off at the end of the scroll */
+.grid-wrap::after { content: ""; position: absolute; top: 9px; bottom: 9px; right: 1px; width: 34px; pointer-events: none; border-radius: 0 8px 8px 0; background: linear-gradient(90deg, transparent, var(--bg)); opacity: 0; transition: opacity 0.15s; }
+.grid-wrap[data-more="true"]::after { opacity: 0.95; }
+.swipe { display: none; margin: 4px 0 0; }
+@media (max-width: 700px) {
+  .swipe { display: block; }
+  .dgrid th.lv { min-width: 5.6rem; max-width: 5.6rem; padding: 4px 6px; font-size: 0.76rem; }
+  .dgrid th.lv small { font-size: 0.66rem; }
+  .dgrid td { min-width: 2.3rem; }
+  button.cell { min-width: 2.2rem; }
+  button.yr { min-width: 2.3rem; padding: 2px 2px; }
+}
 .grid-box { overflow-x: auto; max-width: 100%; border: 1px solid var(--line); border-radius: 8px; margin: 8px 0; }
 .grid-box:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
 table.dgrid { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 0.86rem; }

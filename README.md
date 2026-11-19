@@ -1,14 +1,14 @@
 # overlay
 
-Overlay computes BaZi (the Chinese Four Pillars), I Ching year-calendars, Western and Vedic astrology and calendar day counts for one moment and place. For a span of years it also states what four traditions' own published rules say about a topic, with the rule and the source behind each statement.
+For one moment and place, Overlay computes the BaZi chart (the Chinese Four Pillars), the I Ching calendars of the year, and Western and Vedic astrology, all from one astronomical calculation. For a span of years it also states what four traditions' own published rules say about a topic, with the rule and the source behind each statement.
 
 You give it a birth moment and place, a span of years and a topic, money first. It gives back, technique by technique and year by year, what the rules of BaZi, Vedic astrology (nakshatras and dashas), Western astrology after William Lilly (1647) and the I Ching, read by period, say about that topic. Each statement names its rule and its source.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035: one row per technique, one column per year, each cell marked supports, cautions, mixed or nothing said.](overlay/docs/img/forecast-grid.svg)
 
-Each row is one technique and each column one year. A cell shows the word that technique's rules give for that year: supports, cautions, mixed or nothing said. The full sample is in [overlay/docs/SAMPLE-FORECAST.md](overlay/docs/SAMPLE-FORECAST.md).
+Each row is one technique and each column one year. A cell shows the word that technique's rules give for that year: supports, cautions, mixed or nothing said. A cell split in colours (blue, purple, orange) means the rules of that technique disagree that year: how much of each colour shows how many of its rules support, caution or state a mixed result. A cell can also read mixed because a single rule itself states a mixed result. The full sample is in [overlay/docs/SAMPLE-FORECAST.md](overlay/docs/SAMPLE-FORECAST.md).
 
-Other calculators rarely say where a statement comes from. Here every statement names its rule and its source, and the conventions that change an answer, such as which clock is read, are shown with what each would change. All the systems read one astronomical base, so their boundaries can be compared, and nothing you type leaves the browser.
+Every statement names its rule and its source, and the settings that change an answer, such as which time scale (civil or solar) is used for the birth hour, are shown with what each would change. All the systems read one astronomical base, so their boundaries can be compared, and nothing you type leaves the browser.
 
 Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
 

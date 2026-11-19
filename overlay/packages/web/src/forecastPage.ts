@@ -124,6 +124,15 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     target?.scrollIntoView({ block: 'nearest' });
   }
 
+  // The fade at the right edge of the grid shows while there is more to scroll to.
+  const marks = (): void => {
+    const box = $('fc-grid').querySelector<HTMLElement>('.grid-box');
+    if (!box) return;
+    box.parentElement?.setAttribute('data-more', String(box.scrollWidth - box.clientWidth - box.scrollLeft > 4));
+  };
+  $('fc-grid').addEventListener('scroll', marks, true);
+  window.addEventListener('resize', marks);
+
   $('fc-grid').addEventListener('click', (e) => {
     const el = (e.target as HTMLElement).closest<HTMLElement>('button[data-year]');
     if (!el) return;
@@ -141,6 +150,7 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
     if (!model) return;
     $('fc-natal').innerHTML = natalHtml(model);
     $('fc-grid').innerHTML = gridHtml(model, sel);
+    marks();
     $('fc-birth').innerHTML = `<p class="note">${esc(model.sensitivity.join(' '))}</p>`;
     $('fc-rules-body').innerHTML = notEvaluatedHtml(model);
     if (sel.year !== null && !model.grid.years.includes(sel.year)) sel.year = null;

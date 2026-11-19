@@ -312,6 +312,18 @@ function wire(): void {
     state.probe = ((((theta - 180) * dir) % 360) + 360) % 360;
     update();
   });
+  // The two sex controls are one choice: the moment's (luck-pillar direction for the drawings) and the forecast's (the chart BaZi is read as).
+  const toForecast: Record<string, string> = { male: 'male-chart', female: 'female-chart', '': 'none' };
+  const fromForecast: Record<string, string> = { 'male-chart': 'male', 'female-chart': 'female', none: '' };
+  $('sex').addEventListener('change', () => {
+    const el = $<HTMLSelectElement>('fc-sex');
+    el.value = toForecast[$<HTMLSelectElement>('sex').value] ?? 'none';
+    el.dispatchEvent(new Event('input'));
+  });
+  $('fc-sex').addEventListener('input', () => {
+    $<HTMLSelectElement>('sex').value = fromForecast[$<HTMLSelectElement>('fc-sex').value] ?? '';
+    update();
+  });
   $('theme').addEventListener('click', () => {
     state.theme = state.theme === 'auto' ? 'dark' : state.theme === 'dark' ? 'light' : 'auto';
     if (state.theme === 'auto') delete document.documentElement.dataset.theme;

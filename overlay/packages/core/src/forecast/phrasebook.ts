@@ -105,7 +105,7 @@ export const NOTE = {
   balancedChart: 'the chart is balanced, so the favourable-element method names no favourite',
   needsLuckDirection: 'needs the sex the chart is read as, which fixes the direction of the luck pillars',
   noLuckPillarYet: (year: number): string => `the first luck pillar begins in ${year}; no pillar covers the years before`,
-  needsSexConvention: 'needs a named sex convention',
+  needsSexConvention: 'needs the sex the chart is read as',
   needsBirthTime: 'needs a birth time that is known well enough',
 } as const;
 
@@ -234,7 +234,7 @@ export function listIntro(topic: Topic): string {
 }
 
 export function rulesLine(available: number, withheld: number): string {
-  return `${available} rules available, ${withheld} withheld (source not opened or unverified)`;
+  return `${available} rules available, ${withheld} withheld because their source could not be checked`;
 }
 
 export function coverageNote(tradition: Tradition, topic: Topic, bound: number): string {

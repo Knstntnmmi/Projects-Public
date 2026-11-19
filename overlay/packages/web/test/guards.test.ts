@@ -48,6 +48,20 @@ describe('privacy', () => {
     }
   });
 
+  it('no source file builds a global name from pieces to get round the patterns above', () => {
+    for (const p of sources) {
+      const text = readFileSync(p, 'utf8');
+      expect(/\b(globalThis|window|self)\s*\[/.test(text), `${rel(p)} looks a global up by a computed name`).toBe(false);
+      expect(/\beval\s*\(|new\s+Function\s*\(/.test(text), `${rel(p)} runs code from a string`).toBe(false);
+    }
+  });
+
+  it('no test is skipped, narrowed to one case or left as a to-do', () => {
+    const tests = files.filter((p) => /packages\/[^/]+\/test\/.*\.test\.ts$/.test(rel(p)) && !rel(p).endsWith('guards.test.ts'));
+    expect(tests.length).toBeGreaterThan(20);
+    for (const p of tests) expect(/\b(it|test|describe)\.(skip|only|todo)\b/.test(readFileSync(p, 'utf8')), `${rel(p)} skips or narrows a test`).toBe(false);
+  });
+
   it('the built page forbids network requests through its content security policy', () => {
     const config = readFileSync(join(root, 'packages/web/vite.config.ts'), 'utf8');
     expect(config).toContain("connect-src 'none'");

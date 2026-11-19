@@ -155,7 +155,7 @@ export function statusOf(registry: Registry, rule: Rule, config: RunConfig): Rul
   const declared = registry.notEvaluated.get(rule.id);
   if (declared !== undefined) return { ...base, state: 'withheld', reason: 'not-computable', detail: declared };
   if (needsSex(rule, binding) && config.sex === null) {
-    return { ...base, state: 'withheld', reason: 'needs-sex-convention', detail: 'needs a named sex convention (baziSexConvention)' };
+    return { ...base, state: 'withheld', reason: 'needs-sex-convention', detail: 'needs the sex the chart is read as (--sex male or --sex female, or the sex choice on the page)' };
   }
   if (binding?.requires?.birthTime) {
     const u = config.birthTimeUncertaintyMinutes;

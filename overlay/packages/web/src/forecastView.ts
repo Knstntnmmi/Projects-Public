@@ -256,8 +256,9 @@ export function gridHtml(m: Model, sel: Selection): string {
     .join('');
   const periodRead = grid.periodRead.map((p) => `<p class="note">${esc(p.line)}</p>`).join('');
   return (
-    `<div class="grid-box" role="region" aria-label="Decade grid, scrolls sideways" tabindex="0">` +
-    `<table class="dgrid"><thead><tr><th scope="col" class="lv"><span class="sr">Level</span></th>${head}</tr></thead><tbody>${body}</tbody></table></div>` +
+    `<p class="note swipe">Swipe sideways to see the later years.</p>` +
+    `<div class="grid-wrap" data-more="false"><div class="grid-box" role="region" aria-label="Decade grid, scrolls sideways" tabindex="0">` +
+    `<table class="dgrid"><thead><tr><th scope="col" class="lv"><span class="sr">Level</span></th>${head}</tr></thead><tbody>${body}</tbody></table></div></div>` +
     legendHtml() +
     periodRead
   );

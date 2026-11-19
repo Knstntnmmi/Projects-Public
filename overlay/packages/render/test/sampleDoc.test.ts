@@ -50,7 +50,7 @@ describe('the generated sample forecast', () => {
   });
 
   it('lists the rules not evaluated with their reasons, and the conventions used', () => {
-    expect(doc).toMatch(/- bazi\.topic-spouse-man .*needs a named sex convention/);
+    expect(doc).toMatch(/- bazi\.topic-spouse-man .*needs the sex the chart is read as/);
     expect(doc).toContain('- `sliceEdgeDays`: 15');
     expect(doc).toContain('- `baziSexConvention`: none');
   });

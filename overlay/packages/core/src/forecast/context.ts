@@ -194,7 +194,7 @@ export function createContext(input: ForecastInput, builders: Partial<Record<Tra
     ingresses: (planet, frame) =>
       memo(`ingresses:${planet}:${frame}`, () => ingressSpans(planet, frame, span.startUtcMs, span.endUtcMs, planet === 'Saturn' ? 6 : planet === 'Jupiter' ? 4 : 2)),
     guaQi: () => memo('guaQi', () => guaQiSpans(span.startUtcMs, span.endUtcMs, conventions.guaQi)),
-    sovereign: () => memo('sovereign', () => sovereignSpans(span.startUtcMs, span.endUtcMs, conventions.sovereignBoundary)),
+    sovereign: () => memo('sovereign', () => sovereignSpans(span.startUtcMs, span.endUtcMs, conventions.sovereignBoundary).filter((s) => s.endUtcMs > span.startUtcMs && s.startUtcMs < span.endUtcMs)),
     extension: <T>(tradition: Tradition): T | undefined => {
       const build = builders[tradition];
       return build ? memo<T | undefined>(`extension:${tradition}`, () => build(ctx) as T | undefined) : undefined;

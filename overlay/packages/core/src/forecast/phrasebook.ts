@@ -38,10 +38,10 @@ export function directionWord(d: Direction): Exclude<DisplayWord, 'nothing-said'
   return d === 'favourable' ? 'supports' : d === 'unfavourable' ? 'cautions' : d === 'mixed' ? 'mixed' : 'active';
 }
 
-/** The verb used in a summary sentence: "support wealth", "caution wealth" read badly, so cautions get a phrase. */
-export const SUMMARY_VERB: Readonly<Record<'supports' | 'cautions', string>> = {
-  supports: 'support',
-  cautions: 'advise caution for',
+/** The verb of a summary sentence, for one speaking group and for several; "caution wealth" reads badly, so cautions get a phrase. */
+export const SUMMARY_VERB: Readonly<Record<'supports' | 'cautions', { one: string; many: string }>> = {
+  supports: { one: 'supports', many: 'support' },
+  cautions: { one: 'advises caution for', many: 'advise caution for' },
 };
 
 export const TRADITION_NAME: Readonly<Record<Tradition, string>> = {
@@ -92,7 +92,7 @@ export const BADGE = {
   ungated: 'no promise rule applied',
   experimental: 'experimental',
   conventionDependent: 'convention-dependent',
-  health: 'a tendency, not a diagnosis',
+  health: 'a tendency only',
   unopened: 'source not opened',
   capped: 'rule weight capped at 1',
 } as const;
@@ -158,7 +158,7 @@ export function baselineLine(found: number, expected: number, cellsLooked: numbe
 }
 
 export function summarySentence(year: number, topic: Topic, word: 'supports' | 'cautions', agreeing: number, speaking: number, names: string[], silent: string[]): string {
-  const head = `In ${year}, ${agreeing} of ${speaking} speaking ${speaking === 1 ? 'group' : 'groups'} ${SUMMARY_VERB[word]} ${TOPIC_LABEL[topic]} (${names.join(', ')})`;
+  const head = `In ${year}, ${agreeing} of ${speaking} speaking ${speaking === 1 ? 'group' : 'groups'} ${speaking === 1 ? SUMMARY_VERB[word].one : SUMMARY_VERB[word].many} ${TOPIC_LABEL[topic]} (${names.join(', ')})`;
   return silent.length ? `${head}; nothing was said by ${silent.join(' and ')}.` : `${head}.`;
 }
 

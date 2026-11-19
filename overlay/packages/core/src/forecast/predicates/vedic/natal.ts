@@ -24,7 +24,7 @@ export function buildVedicContext(base: ForecastContext): VedicContext {
 const model = (ctx: ForecastContext): VedicChartModel => ctx.extension<VedicContext>('vedic')!.model;
 
 /** All natal firings share one clock and no dates; the dedupe instance says which fact each one is. */
-const natal = (facts: Firing['facts'], instance: string, conventionsUsed: string[] = ['vedicAyanamsa']): Firing => ({
+const natal = (facts: Firing['facts'], instance: string, conventionsUsed: string[] = ['ayanamsa']): Firing => ({
   clock: 'dasha',
   startUtcMs: null,
   endUtcMs: null,
@@ -58,7 +58,7 @@ const houseTopicMap: RuleBinding = {
               { key: 'relation', label: 'Owns or occupies', value: relation(m, planet, h) },
             ],
             `${planet}-${h}`,
-            ['vedicAyanamsa', 'vedicNode'],
+            ['ayanamsa', 'vedicNode'],
           ),
         );
       }

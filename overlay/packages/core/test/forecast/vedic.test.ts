@@ -17,12 +17,13 @@ const run = (id: string): Signal[] => {
 };
 
 describe('the vedic natal bindings', () => {
-  it('bind exactly the four natal-promise rules of the rule file, and nothing else yet', () => {
-    const natal = RULE_FILES.find((f) => f.tradition === 'vedic')!.rules.filter((r) => r.stage === 'natal-promise').map((r) => r.id);
+  it('bind the four natal-promise rules, each needing the birth time, and every other rule of the file is bound as well', () => {
+    const all = RULE_FILES.find((f) => f.tradition === 'vedic')!.rules;
+    const natal = all.filter((r) => r.stage === 'natal-promise').map((r) => r.id);
     expect(natal.sort()).toEqual([...NATAL_IDS].sort());
-    expect(BINDINGS.map((b) => b.ruleId).sort()).toEqual([...NATAL_IDS].sort());
-    expect(BINDINGS.every((b) => b.requires?.birthTime === true)).toBe(true);
-    expect(COMPLETE).toBe(false);
+    for (const id of NATAL_IDS) expect(BINDINGS.find((b) => b.ruleId === id)?.requires?.birthTime).toBe(true);
+    expect(BINDINGS.map((b) => b.ruleId).sort()).toEqual(all.map((r) => r.id).sort());
+    expect(COMPLETE).toBe(true);
   });
 
   it('pass the registry audit over the sample moments', () => {
@@ -30,12 +31,14 @@ describe('the vedic natal bindings', () => {
     expect(problems.filter((p) => JSON.stringify(p).includes('parashari'))).toEqual([]);
   });
 
-  it('count in the coverage of the general topic', () => {
+  it('count every rule as bound, and report coverage per topic', () => {
     const r = report(DEFAULT_REGISTRY, { traditions: ['vedic'], sex: null, birthTimeUncertaintyMinutes: 0, birthTimeLimitMinutes: 60 });
-    expect(r.counts.vedic.bound).toBe(4);
-    expect(r.coverage.vedic.general).toBe(4);
-    expect(r.coverage.vedic.wealth).toBe(1);
-    expect(r.coverage.vedic.career).toBe(1);
+    const all = RULE_FILES.find((f) => f.tradition === 'vedic')!.rules;
+    expect(r.counts.vedic.bound).toBe(all.length);
+    expect(r.counts.vedic.unbound).toBe(0);
+    for (const topic of ['general', 'wealth', 'career', 'health', 'learning', 'relationships', 'home-travel'] as const) {
+      expect(r.coverage.vedic[topic]).toBe(all.filter((x) => x.topics.includes(topic)).length);
+    }
   });
 
   it('give undated signals only, with the citation and no quotation', () => {

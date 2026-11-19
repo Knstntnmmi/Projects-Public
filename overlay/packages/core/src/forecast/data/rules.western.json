@@ -905,7 +905,23 @@
    "topics": [
     "career"
    ],
-   "direction": "mixed",
+   "direction": "activates",
+   "directionByBranch": {
+    "home": {
+     "direction": "favourable",
+     "page": "615",
+     "quote": "Honours, Offices of publick trust, great Commands, exceeding favour, and good esteem amongst great Persons."
+    },
+    "minor": {
+     "page": "615",
+     "quote": "they produce but a mediocrity or indifferency in all things which concerne Preferment."
+    },
+    "poor": {
+     "direction": "unfavourable",
+     "page": "615",
+     "quote": "very small or no Dignities at all."
+    }
+   },
    "strength": 3,
    "template": "The significators of honour ({list}) stand in {dignityGroup}: {verdict}.",
    "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXLIIII 'Whether the Native shall have Dignity or Preferments'",
@@ -932,7 +948,23 @@
    "topics": [
     "career"
    ],
-   "direction": "mixed",
+   "direction": "activates",
+   "directionByBranch": {
+    "angular": {
+     "direction": "favourable",
+     "page": "615",
+     "quote": "they give ample Preferment"
+    },
+    "succedent": {
+     "page": "615",
+     "quote": "in succedent, moderate Esteem, or little Honour or Dignity."
+    },
+    "cadent": {
+     "direction": "unfavourable",
+     "page": "615-616",
+     "quote": "In the eighth, or cadent houses, very little Honour or Reputation, but doe rather argue a meane and obscure condition of life"
+    }
+   },
    "strength": 3,
    "template": "The significators of honour stand in {houseGroup} houses: {verdict}.",
    "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CXLIIII",

@@ -9,7 +9,7 @@ import { describe, expect, it } from 'vitest';
 import { auditRegistry, DEFAULT_FORECAST_CONVENTIONS, DEFAULT_REGISTRY, evaluate, makeInput, report, RULE_FILES, ruleById, signalsFromFirings, unaccounted, type Firing } from '../../src/forecast/index.ts';
 import { BINDINGS, COMPLETE, NOT_EVALUATED } from '../../src/forecast/predicates/western.ts';
 import { makeNatal, type NatalModel, type NatalSpec } from '../../src/forecast/predicates/western/model.ts';
-import { BADGE, NATAL_RULES, dignityGroup, honourSignificators, marriageSignificators, wealthSignificators } from '../../src/forecast/predicates/western/natal.ts';
+import { BADGE, NATAL_RULES, branchDirection, dignityGroup, honourSignificators, marriageSignificators, wealthSignificators } from '../../src/forecast/predicates/western/natal.ts';
 import { PLANETS, type Planet } from '../../src/substrate/sky.ts';
 import { makeMoment } from '../../src/substrate/time.ts';
 import { MOMENTS } from '../../../../fixtures/moments.ts';
@@ -19,7 +19,7 @@ const BASE: Record<Planet, number> = { Sun: 130, Moon: 100, Mercury: 150, Venus:
 const chart = (lon: Partial<Record<Planet, number>> = {}, o: Partial<NatalSpec> = {}): NatalModel => makeNatal({ ascendant: 0, longitudes: { ...BASE, ...lon }, ...o });
 
 const SPAN = { startUtcMs: Date.UTC(2031, 0, 1), endUtcMs: Date.UTC(2032, 0, 1) };
-const fire = (id: string, m: NatalModel, sex: 'male' | 'female' | null = 'male'): Firing[] => NATAL_RULES[id]!(m, sex);
+const fire = (id: string, m: NatalModel, sex: 'male' | 'female' | null = 'male'): Firing[] => NATAL_RULES[id]!(m, sex, ruleById(id)!);
 const sentences = (id: string, firings: Firing[]): string[] =>
   signalsFromFirings(ruleById(id)!, firings, { forecastConventions: DEFAULT_FORECAST_CONVENTIONS, span: SPAN }).map((s) => s.sentence);
 const says = (id: string, m: NatalModel, sex: 'male' | 'female' | null = 'male'): string[] => sentences(id, fire(id, m, sex));
@@ -264,6 +264,36 @@ describe('career: honour', () => {
     expect(fire('lilly.career.honour-angularity', chart({ Sun: 70, Moon: 130, Saturn: 280, Mercury: 24, Venus: 24, Mars: 24, Jupiter: 87 }))).toEqual([]);
   });
 
+  // Directions come only from the printed page (p.615-616), branch by branch; see directionByBranch in the rule data.
+  it('honour-essential: the direction of each group is the page\'s, and the middle group is a note', () => {
+    const dir = (m: NatalModel): string[] => fire('lilly.career.honour-essential', m).map((f) => f.direction ?? 'none');
+    expect(dir(chart())).toEqual(['favourable']); // house, exaltation or reception: honours, offices, great commands
+    expect(dir(POOR)).toEqual(['unfavourable']); // peregrine, detriment or fall: very small or no dignities
+    // The middle group ("mediocrity") has no verdict in words, so it is a note without a direction.
+    expect(branchDirection(ruleById('lilly.career.honour-essential')!, 'minor')).toBe('activates');
+    expect(branchDirection(ruleById('lilly.career.honour-essential')!, 'home')).toBe('favourable');
+  });
+  it('honour-essential: the rule data names the page and a short quotation for every branch', () => {
+    const t = ruleById('lilly.career.honour-essential')!.directionByBranch!;
+    expect(Object.keys(t).sort()).toEqual(['home', 'minor', 'poor']);
+    expect(t.home!.direction).toBe('favourable');
+    expect(t.poor!.direction).toBe('unfavourable');
+    expect(t.minor!.direction).toBeUndefined();
+    for (const b of Object.values(t)) {
+      expect(b.page).toBe('615');
+      expect(b.quote.split(/\s+/).length).toBeLessThanOrEqual(25);
+    }
+  });
+  it('honour-angularity: angles support, the 8th and cadent houses caution, succedent houses are a note', () => {
+    const dir = (m: NatalModel): string[] => fire('lilly.career.honour-angularity', m).map((f) => f.direction ?? 'none');
+    expect(dir(chart())).toEqual(['favourable']);
+    expect(dir(chart({ Sun: 70, Moon: 160, Saturn: 250, Mercury: 24, Venus: 24, Mars: 24, Jupiter: 87 }))).toEqual(['unfavourable']);
+    expect(dir(chart({ Sun: 40, Moon: 130, Saturn: 40, Mercury: 24, Venus: 24, Mars: 24, Jupiter: 24 }))).toEqual(['activates']);
+    const t = ruleById('lilly.career.honour-angularity')!.directionByBranch!;
+    expect(Object.keys(t).sort()).toEqual(['angular', 'cadent', 'succedent']);
+    expect(t.succedent!.direction).toBeUndefined();
+    expect(t.cadent!.page).toBe('615-616');
+  });
   it('lord1-lord10: the lord of the 1st in the 10th, or of the 10th in the 1st', () => {
     const one = chart({ Mars: 285, Saturn: 100 });
     expect(says('lilly.career.lord1-lord10', one)).toEqual(['The lord of the 1st stands in the 10th: good fame and reputation are signified.']);

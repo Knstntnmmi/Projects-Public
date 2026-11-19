@@ -30,15 +30,30 @@
      "sources": "Lilly 1647, Book III, p.552-563; Ptolemy cited by Lilly at p.552",
      "ruleIds": [
       "lilly.wealth.promise-strong",
+      "lilly.wealth.promise-moderate",
       "lilly.wealth.promise-weak.all",
       "lilly.wealth.promise-weak.majority",
       "lilly.wealth.promise-weak.moon-combust",
       "lilly.profection.house-money",
-      "valens.profection.transmission-lord",
-      "firdaria.lord-condition",
-      "valens.transit.jupiter-year-sign"
+      "lilly.wealth.promise-mixed",
+      "lilly.wealth.inheritance-8th.a",
+      "lilly.wealth.inheritance-8th.b",
+      "lilly.wealth.inheritance-8th.c",
+      "lilly.wealth.durability.benefic-strong",
+      "lilly.wealth.durability.weak",
+      "lilly.wealth.durability.infortune-strong",
+      "lilly.wealth.durability.infortune-weak",
+      "lilly.wealth.life-phase",
+      "lilly.profection.lord-condition",
+      "lilly.profection.house-loss",
+      "lilly.profection.fortune-sign-wealth",
+      "bonatti.profection.topic-significator",
+      "lilly.revolution.asc-same",
+      "lilly.revolution.lord2-fortune-house",
+      "lilly.revolution.returns-wealth",
+      "valens.transmission.topic-start"
      ],
-     "label": "8 rules"
+     "label": "23 rules"
     },
     "vedic": {
      "means": "Money held and money coming in, from the 2nd house (wealth, grain, family, metals, gems) and the 11th (income, gain, prosperity); fortune and its support from the 5th and 9th; expenditure and loss from the 12th and 8th.",
@@ -109,11 +124,16 @@
      "sources": "Lilly 1647, Book III, p.615-626",
      "ruleIds": [
       "lilly.profection.house-money",
-      "valens.profection.transmission-lord",
-      "firdaria.lord-condition",
-      "valens.transit.jupiter-year-sign"
+      "valens.transit.jupiter-year-sign",
+      "lilly.career.honour-essential",
+      "lilly.career.honour-angularity",
+      "lilly.career.lord1-lord10",
+      "lilly.career.luminary-angularity.cadent",
+      "lilly.profection.mc-career",
+      "bonatti.profection.topic-significator",
+      "valens.transmission.topic-start"
      ],
-     "label": "4 rules"
+     "label": "9 rules"
     },
     "vedic": {
      "means": "Profession, standing, authority and honour from the 10th house, with recognition from authority.",
@@ -181,10 +201,17 @@
      "sources": "Lilly 1647, Book III, p.587-600",
      "ruleIds": [
       "lilly.profection.house-relationships",
-      "valens.profection.transmission-lord",
-      "firdaria.lord-condition"
+      "lilly.relationships.single-life.barren",
+      "lilly.relationships.single-life.saturn",
+      "lilly.relationships.single-life.moon-saturn",
+      "lilly.relationships.marriage-promised",
+      "lilly.relationships.ease",
+      "lilly.relationships.age",
+      "bonatti.profection.topic-significator",
+      "lilly.revolution.seventh-asc",
+      "valens.transmission.topic-start"
      ],
-     "label": "3 rules"
+     "label": "10 rules"
     },
     "vedic": {
      "means": "Spouse and partnership from the 7th house; wife is the stated meaning of the 7th. Venus is the indicator (karaka) of marital happiness only as Ch.18 names it. Convention-dependent (the sources address a male native).",
@@ -234,13 +261,19 @@
      "differsFrom": "See means.",
      "sources": "Lilly 1647, Book III, p.576-581",
      "ruleIds": [
-      "valens.profection.transmission-lord",
-      "firdaria.lord-condition",
       "lilly.revolution.asc-hostile",
       "valens.critical-year-syzygy",
-      "valens.critical-year-node"
+      "valens.critical-year-node",
+      "lilly.health.constitution",
+      "lilly.profection.lord-condition",
+      "lilly.profection.house-loss",
+      "lilly.profection.house-health",
+      "bonatti.profection.topic-significator",
+      "lilly.revolution.asc-same",
+      "lilly.revolution.returns-affliction",
+      "valens.transmission.topic-start"
      ],
-     "label": "5 rules"
+     "label": "11 rules"
     },
     "vedic": {
      "means": "Body from the Lagna; illness and enemies from the 6th; vulnerability and longevity from the 8th; loss from the 12th; the 2nd and 7th lords as maraka lords (shown only as a health caution, never mortality).",
@@ -297,7 +330,7 @@
      "ruleIds": [
       "lilly.profection.house-learning"
      ],
-     "label": "1 rules"
+     "label": "1 rule"
     },
     "vedic": {
      "means": "Education, knowledge, mantra and intellect from the 5th house; religion, higher teaching and fortune from the 9th. The sources name education only under the dasha of the 5th and 9th lords; Phaladeepika's Jupiter-5th verse names children, friendship and royal favour, not learning.",
@@ -342,9 +375,10 @@
      "differsFrom": "See means.",
      "sources": "Lilly 1647, Book III, p.558, 564, 606-611",
      "ruleIds": [
-      "lilly.profection.house-travel"
+      "lilly.profection.house-travel",
+      "lilly.travel.promised"
      ],
-     "label": "1 rules"
+     "label": "2 rules"
     },
     "vedic": {
      "means": "Home, land, conveyances and mother from the 4th; journeys from the 3rd, 7th and 9th (shrines); foreign residence from the 10th. The 12th is expenses in Ch.11; travel or abroad for the 12th is later usage.",
@@ -417,9 +451,18 @@
       "lilly.revolution.asc-hostile",
       "lilly.transit.daily-cusps",
       "valens.transit.jupiter-year-sign",
-      "lilly.aspects.orbs-table"
+      "lilly.aspects.orbs-table",
+      "lilly.profection.lord-condition",
+      "lilly.profection.angle-aspect-years",
+      "bonatti.profection.revolution-agreement",
+      "bonatti.profection.topic-significator",
+      "lilly.revolution.asc-same",
+      "lilly.revolution.contrary-disposition",
+      "lilly.revolution.returns-affliction",
+      "valens.transmission.topic-start",
+      "valens.transit.benefic-malefic-year-lord"
      ],
-     "label": "8 rules"
+     "label": "17 rules"
     },
     "vedic": {
      "means": "Overall fortune of the period, from the lord's functional nature for the Lagna, its dignity, placement and association, the dasha-antardasha relation and the transits.",

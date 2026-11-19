@@ -95,147 +95,21 @@
   "id": "lilly.general.plurality",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Counts loose ('three or four', 'most'), no quote, overlaps wealth rules (double count)."
- },
- {
-  "tradition": "western",
-  "id": "lilly.wealth.promise-mixed",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "No quote; locator uncertain ('about p.560-561'); does not complete the partition."
- },
- {
-  "tradition": "western",
-  "id": "lilly.wealth.inheritance-8th",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Clause (c) read from damaged OCR; four independent clauses under one id."
- },
- {
-  "tradition": "western",
-  "id": "lilly.wealth.durability",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Many sub-clauses under one id; needs the application test; not seen by the checker."
- },
- {
-  "tradition": "western",
-  "id": "lilly.wealth.life-phase",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Page head of p.563 unchecked; gives a life phase, not a dated forecast."
- },
- {
-  "tradition": "western",
-  "id": "lilly.career.honour-promise",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Bundles about six sub-rules; fixed-star clause needs star data the engine lacks."
- },
- {
-  "tradition": "western",
-  "id": "lilly.career.lord1-lord10",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "No quote seen; locator p.616 only."
- },
- {
-  "tradition": "western",
-  "id": "lilly.career.luminary-angularity",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Four clauses without quotes or separate locators; 'surrounded by planets' undefined."
- },
- {
-  "tradition": "western",
-  "id": "lilly.relationships.single-life",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Venus-in-Scorpio and combust clauses are doubtful OCR; no quote; man's chart only."
- },
- {
-  "tradition": "western",
-  "id": "lilly.relationships.marriage-promised",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "'Venus and Moon in the 1st, 7th or 10th' flagged OCR; no quote."
- },
- {
-  "tradition": "western",
-  "id": "lilly.relationships.ease-and-age",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Bundle of ease and age rules; dates only by life phase; no quote."
- },
- {
-  "tradition": "western",
-  "id": "lilly.health.constitution",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Locator p.576-578 unchecked; needs orb definition; no quote."
- },
- {
-  "tradition": "western",
-  "id": "lilly.travel.promised",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "No quote; many derived consequences."
+  "reason": "Lilly states the principle of judging by plurality of testimonies (Book III p.553, p.559-561) but gives no countable thresholds ('three or four', 'most'); it overlaps the wealth rules and is a method, not a rule. Left out on purpose by the verifiers."
  },
  {
   "tradition": "western",
   "id": "lilly.travel.success-danger",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Mixed rule with derived consequences by sign element and house; no dated verdict."
- },
- {
-  "tradition": "western",
-  "id": "lilly.profection.lord-condition",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Seven paraphrased verdicts, no quotation seen; needs the return chart."
- },
- {
-  "tradition": "western",
-  "id": "lilly.profection.house-loss",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Unverified; the 12th-house exception needs a definition of a fortunate radical 12th; overlaps other house rules."
- },
- {
-  "tradition": "western",
-  "id": "lilly.profection.house-health",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Needs Lilly's terms table (not in the engine) for the five-point weighing; not seen."
- },
- {
-  "tradition": "western",
-  "id": "lilly.profection.angle-aspect-years",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Lilly states an observed generality, no orbs; profected MC undefined for whole-sign."
- },
- {
-  "tradition": "western",
-  "id": "lilly.profection.mc-career",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Eleven-house list, no quote; profected MC arrival needs MC by whole sign."
- },
- {
-  "tradition": "western",
-  "id": "lilly.profection.fortune-sign-wealth",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Checker: correction is to run ONE basis only (Part of Fortune sign or 2nd sign) but the scan does not show which; applying both double counts. Held until the page is read."
+  "reason": "Book III p.609-611: the page was located but not read in full by the verifiers, so no rule is stated."
  },
  {
   "tradition": "western",
   "id": "valens.profection.pair-verdict",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Table E not checked against Riley; asymmetric entries, a conditional entry (Mars to Mars, day births) and an uncertain entry (Venus to Mars) cannot be coded as plain G/B/M."
+  "reason": "The pair table (table E) was not found in Riley's Valens IV.5 or IV.11: IV.5 gives a few pair effects, not a grid of good, bad and mixed. Left unverified."
  },
  {
   "tradition": "western",
@@ -246,87 +120,10 @@
  },
  {
   "tradition": "western",
-  "id": "bonatti.profection.revolution-agreement",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Quote profectio est altera revolutio and the 2x2 rule not seen by the checker."
- },
- {
-  "tradition": "western",
-  "id": "bonatti.profection.topic-significator",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "List not reproduced; the gloss of alcocoden as 'participant in accidents' conflicts with its usual sense (giver of years)."
- },
- {
-  "tradition": "western",
-  "id": "lilly.revolution.asc-same",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Quote offered does not say what the rule says; p.736 not seen."
- },
- {
-  "tradition": "western",
-  "id": "lilly.revolution.lord2-fortune-house",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "OCR glyph damage; Regiomontanus versus whole-sign houses differ."
- },
- {
-  "tradition": "western",
-  "id": "lilly.revolution.seventh-asc",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Overlaps asc-hostile; unverified."
- },
- {
-  "tradition": "western",
-  "id": "lilly.revolution.contrary-disposition",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Two extreme examples only; nearly never fires."
- },
- {
-  "tradition": "western",
-  "id": "lilly.revolution.returns-wealth",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Planet-pair glyph readings depend on OCR; 1 degree orb is the implementer's; check on scan first."
- },
- {
-  "tradition": "western",
-  "id": "lilly.revolution.returns-affliction",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Same as returns-wealth; descriptive items without a topic."
- },
- {
-  "tradition": "western",
-  "id": "valens.transit.benefic-malefic-year-lord",
-  "kind": "rule",
-  "verdict": "unverifiable",
-  "reason": "Bundles five clauses, needs phase calculation not in the engine; no quotes."
- },
- {
-  "tradition": "western",
   "id": "table: E Valens pair table",
   "kind": "table",
   "verdict": "unverifiable",
-  "reason": "Not checked against Riley (see valens.profection.pair-verdict)."
- },
- {
-  "tradition": "western",
-  "id": "table: A node rows (Dragon Head and Tail exaltation and fall)",
-  "kind": "table-cell",
-  "verdict": "unverifiable",
-  "reason": "Scan glyphs partly illegible; pairing inferred."
- },
- {
-  "tradition": "western",
-  "id": "table: C alternative orb column and Venus 48 / Mercury 28 maximum elongation",
-  "kind": "table-cell",
-  "verdict": "unverifiable",
-  "reason": "Checker recalls Mars 8 not 7 and doubts 48; neither side gave text evidence."
+  "reason": "Not found in the Riley text of Valens IV.5 or IV.11, so no cell was checked; the pair verdict rule depends on it."
  },
  {
   "tradition": "western",
@@ -390,5 +187,12 @@
   "kind": "claim",
   "verdict": "unverifiable",
   "reason": "Brill chapter not opened; checker's regex finds 57."
+ },
+ {
+  "tradition": "western",
+  "id": "lilly.career.luminary-angularity.none-angular",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Lilly p.617: 'neither of the Lights in an angle or in a masculine Signe, or have not the benevolent Planets with them'. The clauses are joined by 'or', and 'neither ... in an angle or in a masculine Signe' can be read three ways (not both, not either, or each alone). The first reader's AND-reading is a narrowing the text does not state, so the rule is left unbound until the director settles the reading. The cadent rule from the same passage stays."
  }
 ]

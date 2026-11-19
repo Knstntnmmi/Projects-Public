@@ -55,7 +55,7 @@ export function validateRuleFile(raw: unknown, tradition: Tradition): RuleFile {
     need('stage', (STAGES as readonly unknown[]).includes(r.stage), 'is not a known stage');
     need('direction', (DIRECTIONS as readonly unknown[]).includes(r.direction), 'is not a known direction');
     need('strength', r.strength === 1 || r.strength === 2 || r.strength === 3, 'must be 1, 2 or 3');
-    need('computable', r.computable === 'now' || r.computable === 'small-addition', 'must be now or small-addition');
+    need('computable', r.computable === 'now' || r.computable === 'small-addition' || r.computable === 'needs-return-chart', 'must be now, small-addition or needs-return-chart');
     need('verification', r.verification === 'confirmed' || r.verification === 'corrected', 'must be confirmed or corrected');
     need('sourceOpened', typeof r.sourceOpened === 'boolean', 'must be a boolean');
     need('inputs', Array.isArray(r.inputs) && r.inputs.every(isString), 'must be a list of strings');

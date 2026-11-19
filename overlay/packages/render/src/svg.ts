@@ -37,9 +37,10 @@ export const PALETTE_LIGHT: Record<string, string> = {
   ketu: '#c7a98f',
   jie: '#e7d9b8',
   qi: '#f4eedd',
-  supports: '#bfe0c4',
-  cautions: '#efb9a8',
-  mixed: '#e9d9a6',
+  // The three words use the colours of the page's grid, so that a reader who learns the figure reads the page.
+  supports: '#2f74b5',
+  cautions: '#c4551d',
+  mixed: '#8c80b4',
   quiet: '#ece8dc',
 };
 
@@ -68,9 +69,9 @@ export const PALETTE_DARK: Record<string, string> = {
   ketu: '#6a4f38',
   jie: '#4d4530',
   qi: '#2c2a22',
-  supports: '#2f6a3f',
-  cautions: '#8c3f2e',
-  mixed: '#6e5f2a',
+  supports: '#4f98d8',
+  cautions: '#e0834f',
+  mixed: '#9a90c4',
   quiet: '#34322a',
 };
 

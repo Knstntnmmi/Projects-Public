@@ -532,7 +532,10 @@ describe('lilly.transit.daily-cusps', () => {
   it('dates the pass of Jupiter over the Ascendant by the day of the closest sample and reads Lilly\'s sentence', () => {
     const over = jupiterFirings().filter((f) => f.facts.some((x) => x.key === 'point' && x.value === 'Ascendant') && f.facts.some((x) => x.key === 'aspect' && x.value === 'conjoins'));
     expect(over).toHaveLength(1);
-    expect(says('lilly.transit.daily-cusps', over)).toEqual([`On ${new Date(T0 + 50 * DAY).toISOString().slice(0, 10)}, transiting Jupiter conjoins the natal Ascendant: a healthful, cheerful, successful day.`]);
+    expect(says('lilly.transit.daily-cusps', over)).toEqual(['Transiting Jupiter conjoins the natal Ascendant: a healthful, cheerful, successful day.']
+    );
+    expect(over[0]!.facts.find((x) => x.key === 'date')!.value).toBe(new Date(T0 + 50 * DAY).toISOString().slice(0, 10));
+    expect(over[0]!.direction).toBe('favourable');
     // Within the moiety of 6 degrees either side: days -10 to 110.
     expect((over[0]!.startUtcMs! - T0) / DAY).toBeCloseTo(-10, 0);
     expect((over[0]!.endUtcMs! - T0) / DAY).toBeCloseTo(110, 0);
@@ -546,8 +549,13 @@ describe('lilly.transit.daily-cusps', () => {
   });
   it('gives Mars over the Ascendant both of Lilly\'s sentences, as two separate statements of one pass', () => {
     const mars = T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 200 * DAY }, lon: (p, ms) => (p === 'Mars' ? 128 + ((ms - T0) / DAY) * 0.05 : 1000) })).filter((f) => f.clock === 'mars' && f.facts.some((x) => x.key === 'aspect' && x.value === 'conjoins') && f.facts.some((x) => x.key === 'point' && x.value === 'Ascendant'));
-    expect(says('lilly.transit.daily-cusps', mars).map((x) => x.replace(/^On [\d-]+, /, '')).sort()).toEqual(['transiting Mars conjoins the natal Ascendant: an unsuccessful day.', 'transiting Mars conjoins the natal Ascendant: choler or passion for two or three days.']);
+    expect(says('lilly.transit.daily-cusps', mars).map((x) => x).sort()).toEqual(['Transiting Mars conjoins the natal Ascendant: an unsuccessful day.', 'Transiting Mars conjoins the natal Ascendant: choler or passion for two or three days.']);
     expect(new Set(mars.map((x) => x.dedupeInstance)).size).toBe(2);
+    // The sign is the one Lilly's own word gives: unsuccessful is a caution, choler names a temper and has no sign, so no day reading is labelled mixed.
+    const dirOf = (word: string) => mars.filter((f) => f.facts.some((x) => x.key === 'meaning' && String(x.value).startsWith(word))).map((f) => f.direction);
+    expect(new Set(dirOf('an unsuccessful'))).toEqual(new Set(['unfavourable']));
+    expect(new Set(dirOf('choler'))).toEqual(new Set(['activates']));
+    expect(T.dailyCusps(rising(), jupiterSky()).every((f) => f.direction !== 'mixed')).toBe(true);
   });
   it('gives the healthful, choler and gravity readings to the passage over the Ascendant only, in Lilly\'s words', () => {
     const wide = (lon: (p: Planet, ms: number) => number): Firing[] => T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 400 * DAY }, lon }));

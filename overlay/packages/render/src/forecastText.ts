@@ -65,12 +65,17 @@ export function conventionPairs(result: forecast.ForecastResult): Array<[string,
 }
 
 /** The natal promise: what the chart itself says, without dates. */
-export function natalLines(list: forecast.StatementList): string[] {
+export function natalLines(list: forecast.StatementList, result?: forecast.ForecastResult): string[] {
   const out = [list.natalHeading];
   if (list.natal.length === 0) out.push('  nothing said');
-  for (const e of list.natal) out.push(`  ${e.levelLabel.replace(/^./, (c) => c.toUpperCase())}, ${forecast.WORD[e.word]}: ${e.sentence}`);
-  if (list.natalPointers.length > 0) out.push(`  ${forecast.pointerLabel(list.natalPointers.length)} (listed with --full)`);
-  for (const note of list.chartNotes) out.push(`  ${note}`);
+  for (const e of list.natal) {
+    out.push(`  ${e.levelLabel.replace(/^./, (c) => c.toUpperCase())}, ${forecast.WORD[e.word]}: ${e.sentence}`);
+    // Every statement names its rule and its source, the natal ones as much as the dated ones.
+    const s = result?.signals.find((x) => x.id === e.signalId);
+    out.push(`    rule ${e.ruleId}${s ? ` (${s.ruleName}); source: ${citeOf(s.source)}` : ''}`);
+  }
+  if (list.natalPointers.length > 0) out.push(`  Also ${forecast.pointerLabel(list.natalPointers.length)} (listed with --full)`);
+  for (const note of list.chartNotes) out.push(`  Note: ${note}`);
   return out;
 }
 
@@ -169,7 +174,7 @@ export function forecastTextLines(result: forecast.ForecastResult, topic: foreca
   const counts = ruleCounts(result);
   const first = grid.years[0];
   const last = grid.years[grid.years.length - 1];
-  const out = [`Forecast for ${topicLabel(topic)}, ${first} to ${last}`, FORECAST_SENTENCE, '', ...natalLines(list), '', `Grid (${GRID_LEGEND})`, ...forecast.gridText(grid), '', 'Each year', ...headlineLines(view)];
+  const out = [`Forecast for ${topicLabel(topic)}, ${first} to ${last}`, FORECAST_SENTENCE, '', ...natalLines(list, result), '', `Grid (${GRID_LEGEND})`, ...forecast.gridText(grid), '', 'Each year', ...headlineLines(view)];
   if (options.full) {
     out.push('', 'The statements, year by year', ...yearStatementLines(result, topic, options.fullYears ?? grid.years).slice(1));
     if (list.natalPointers.length > 0) out.push('', `The natal pointers (${forecast.pointerLabel(list.natalPointers.length)})`, ...list.natalPointers.map((p) => `  - ${p.sentence} (rule ${p.ruleId})`));

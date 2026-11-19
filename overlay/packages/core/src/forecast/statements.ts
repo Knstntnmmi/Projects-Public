@@ -12,7 +12,7 @@
  * sentence for periods that touch, the list shows one entry with the joined span and keeps the
  * ids of all the firings. Statements of period-read rules and traditions are not part of it.
  */
-import { directionWord, foldedModifiersLine, LEVEL_LABEL, sentenceOf, TEXT, type DisplayWord } from './phrasebook.ts';
+import { BADGE, directionWord, foldedModifiersLine, LEVEL_LABEL, sentenceOf, TEXT, type DisplayWord } from './phrasebook.ts';
 import { levelRank } from './levels.ts';
 import { dedupe } from './readings.ts';
 import type { ForecastResult } from './evaluate.ts';
@@ -160,7 +160,8 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
     levelLabel: LEVEL_LABEL[s.level],
     word: directionWord(s.direction),
     sentence: s.sentence,
-    badges: [...s.badges],
+    // "no promise rule applied" says nothing about a natal statement, which is itself the promise.
+    badges: s.startUtcMs === null ? s.badges.filter((b) => b !== BADGE.ungated) : [...s.badges],
     ...clip(s),
     fullStartUtcMs: s.startUtcMs,
     fullEndUtcMs: s.endUtcMs,

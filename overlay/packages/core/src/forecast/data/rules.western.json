@@ -523,7 +523,7 @@
    ],
    "direction": "mixed",
    "strength": 1,
-   "template": "On {date}, transiting {planet} {aspect} the natal {point}: {meaning}.",
+   "template": "Transiting {planet} {aspect} the natal {point}: {meaning}.",
    "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXIIII 'Of the Transit of the Planets'",
    "sourceLocator": "Book III p.741",
    "sourceQuote": "The Transit of the Planets is best found out by an Ephemeris",

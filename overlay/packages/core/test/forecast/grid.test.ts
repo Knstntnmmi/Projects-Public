@@ -319,7 +319,7 @@ describe('pointers', () => {
     expect(c.pointers).toMatchObject({ count: 2, label: pointerLabel(2) });
     expect(c.pointers!.entries.map((e) => e.ruleId).sort()).toEqual(['v.point-a', 'v.point-b']);
     expect(c.pointers!.signalIds).toHaveLength(2);
-    expect(pointerLabel(1)).toBe('1 pointer: a statement that marks the topic or names where a count reaches, without a direction');
+    expect(pointerLabel(1)).toBe('1 note without a direction: a statement that marks the topic or says where a count reaches');
     // the other years of the level have no group
     expect(grid.rows.find((r) => r.level === 'vedic-maha')!.cells.filter((x) => x.pointers !== null)).toHaveLength(1);
   });

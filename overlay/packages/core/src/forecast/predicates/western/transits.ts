@@ -17,7 +17,7 @@ import { moiety } from '../../../systems/western/aspects.ts';
 import { SIGNS } from '../../../systems/western/dignities.ts';
 import type { LordSpan } from '../../../systems/western/index.ts';
 import type { Syzygy } from '../../../systems/western/syzygy.ts';
-import type { ClockId, Fact, Firing } from '../../types.ts';
+import type { ClockId, Direction, Fact, Firing } from '../../types.ts';
 import type { PeriodInput, ProfectedYear } from './context.ts';
 import { isoDate, receivers } from './profection.ts';
 import { BADGE, CONVENTIONS, fact } from './natal.ts';
@@ -279,6 +279,8 @@ interface Pass {
   /** The points read: the angles and the radical places of the planets named. */
   points: (self: Planet) => ReadonlyArray<{ name: string; lon: (w: PeriodInput) => number }>;
   meaning: string;
+  /** The sign Lilly's own word gives the reading (fortunate, unsuccessful, healthful and successful); the others name a temper and have none. */
+  direction: Direction;
   /** Lilly's own length of the day-reading, counted from the day of the pass; the passes of the other readings last while the planet is within its orb. */
   days?: number;
 }
@@ -296,11 +298,11 @@ const LIGHTS_AND_FORTUNES: readonly Planet[] = ['Jupiter', 'Venus', 'Sun', 'Moon
  * days ends in a fifth glyph that could not be read with certainty, which is left out.
  */
 const PASSES: readonly Pass[] = [
-  { planets: ['Jupiter', 'Venus'], angles: [0], points: () => [ASC], meaning: 'a healthful, cheerful, successful day' },
-  { planets: ['Mars'], angles: [0], points: () => [ASC], meaning: 'choler or passion for two or three days', days: 3 },
-  { planets: ['Saturn'], angles: [0], points: () => [ASC], meaning: 'gravity, soberness, melancholy' },
-  { planets: LIGHTS_AND_FORTUNES, angles: [60, 120], points: (self) => [ASC, MC, place(self)], meaning: 'a fortunate day' },
-  { planets: ['Saturn', 'Mars'], angles: [0, 90, 180], points: () => [ASC, MC, ...LIGHTS_AND_FORTUNES.map(place)], meaning: 'an unsuccessful day' },
+  { planets: ['Jupiter', 'Venus'], angles: [0], points: () => [ASC], meaning: 'a healthful, cheerful, successful day', direction: 'favourable' },
+  { planets: ['Mars'], angles: [0], points: () => [ASC], meaning: 'choler or passion for two or three days', days: 3, direction: 'activates' },
+  { planets: ['Saturn'], angles: [0], points: () => [ASC], meaning: 'gravity, soberness, melancholy', direction: 'activates' },
+  { planets: LIGHTS_AND_FORTUNES, angles: [60, 120], points: (self) => [ASC, MC, place(self)], meaning: 'a fortunate day', direction: 'favourable' },
+  { planets: ['Saturn', 'Mars'], angles: [0, 90, 180], points: () => [ASC, MC, ...LIGHTS_AND_FORTUNES.map(place)], meaning: 'an unsuccessful day', direction: 'unfavourable' },
 ];
 
 /** The longitudes at which a planet makes an aspect to a point: the point itself, or either side of it. */
@@ -399,6 +401,7 @@ export const dailyCusps: TransitRule = (w, sky) => {
                 startUtcMs,
                 endUtcMs,
                 facts,
+                direction: pass.direction,
                 dedupeInstance: `${planet}|${point.name}|${angle}|${Math.round(x)}|${pass.meaning}|${Math.round(win.startUtcMs)}`,
                 conventionsUsed: ['westernOrbs'],
                 badges: [

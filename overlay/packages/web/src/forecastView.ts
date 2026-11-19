@@ -115,6 +115,9 @@ export function buildModel(result: Result, topic: Topic, sensitivity: readonly s
 
 // --- statements --------------------------------------------------------------
 
+/** Where a statement comes from, naming the tradition once: its level label often starts with it already ("BaZi year pillar"). */
+const whereOf = (tradition: forecast.Tradition, label: string): string => (label.startsWith(forecast.TRADITION_NAME[tradition].split(' ')[0]!) ? label : `${forecast.TRADITION_NAME[tradition]}, ${label}`);
+
 /** A quotation of at most 25 words, whatever the data holds. */
 export function limitWords(quote: string, max = 25): string {
   const words = quote.trim().split(/\s+/);
@@ -167,7 +170,7 @@ export function statementHtml(m: Model, e: Entry): string {
   return (
     `<article class="stmt w-${esc(e.word)}" data-signal="${esc(e.signalId)}">` +
     `<p class="when">${esc(datesOf(e))}</p>` +
-    `<p class="sent">${chip(e.word, forecast.WORD[e.word])} <span class="tr">${esc(forecast.TRADITION_NAME[e.tradition])}, ${esc(e.levelLabel)}.</span> ${esc(e.sentence)}</p>` +
+    `<p class="sent">${chip(e.word, forecast.WORD[e.word])} <span class="tr">${esc(whereOf(e.tradition, e.levelLabel))}.</span> ${esc(e.sentence)}</p>` +
     badges +
     `<details class="why"><summary>Rule, source and facts</summary>${detailHtml(m, e)}</details>` +
     quals +
@@ -218,7 +221,7 @@ export function legendHtml(): string {
     `<ul class="legend" aria-label="Legend">` +
     `<li><span class="sw w-supports"><span class="g">${esc(g.supports)}</span></span> ${esc(forecast.WORD.supports)}</li>` +
     `<li><span class="sw w-cautions"><span class="g">${esc(g.cautions)}</span></span> ${esc(forecast.WORD.cautions)}</li>` +
-    `<li><span class="sw w-mixed split" style="--a:50%;--b:50%"><span class="g">${esc(g.mixed)}</span></span> ${esc(forecast.WORD.mixed)}: split by the shares of supporting and cautioning statements, and of those a rule states as mixed</li>` +
+    `<li><span class="sw w-mixed split" style="--a:50%;--b:50%"><span class="g">${esc(g.mixed)}</span></span> ${esc(forecast.WORD.mixed)}: ${esc(forecast.TEXT.splitNote)}</li>` +
     `<li><span class="sw w-nothing-said"><span class="g">${esc(g['nothing-said'])}</span></span> ${esc(forecast.WORD['nothing-said'])}</li>` +
     `</ul>`
   );

@@ -128,6 +128,7 @@ export const TEXT = {
   agreementA: 'Agreement means that techniques counted on different time scales gave the same sign for the same topic and year.',
   agreementB:
     'It does not say that the outcome follows: nobody has yet checked whether years where groups agree differ from other years, and all the traditions read one birth moment, so a wrong birth time moves them together.',
+  splitNote: "A cell split in colours shows how many of that technique's rules say each thing. Mixed also appears where a rule itself states a mixed result.",
   agreementC: 'Full text: how agreement is read.',
   agreementLink: '#how-agreement-is-read',
   withheldWestern: 'withheld pending verification',
@@ -168,8 +169,8 @@ export function tallyText(t: Tally): string {
 /** The label of the group of pointers of one level in one year: how many, and what a pointer is. */
 export function pointerLabel(count: number): string {
   return count === 1
-    ? '1 pointer: a statement that marks the topic or names where a count reaches, without a direction'
-    : `${count} pointers: statements that mark the topic or name where a count reaches, without a direction`;
+    ? '1 note without a direction: a statement that marks the topic or says where a count reaches'
+    : `${count} notes without a direction: statements that mark the topic or say where a count reaches`;
 }
 
 /** The words of the four groups of a year headline, in the order they are said. */

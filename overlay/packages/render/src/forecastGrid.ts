@@ -14,7 +14,7 @@ export const FORECAST_SENTENCE =
   'Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.';
 
 /** What a split cell means, for the legend. */
-export const SPLIT_NOTE = 'A mixed cell is split by the share of its rules that support, caution or are stated as mixed.';
+export const SPLIT_NOTE = forecast.TEXT.splitNote;
 
 export interface DecadeGridOptions {
   /** Drawing width in pixels; 360 gives the compact layout, 1200 a wide one. Default 720. */
@@ -133,7 +133,7 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
         } else parts.push(`<rect class="${FILL_CLASS[cell.word]}" x="${n(rx)}" y="${n(ry)}" width="${n(rw)}" height="${n(rh)}"/>`);
         parts.push(`<rect class="rule" x="${n(rx)}" y="${n(ry)}" width="${n(rw)}" height="${n(rh)}"/>`);
         // A sign beside the colour, so that the word does not rest on colour alone.
-        if (rw >= 16) parts.push(`<text x="${n(rx + rw / 2)}" y="${n(ry + rh / 2)}" font-size="${L.fontSmall + 2}" text-anchor="middle" dominant-baseline="central" pointer-events="none">${GLYPH[cell.word]}</text>`);
+        if (rw >= 16) parts.push(`<text x="${n(rx + rw / 2)}" y="${n(ry + rh / 2)}" font-size="${L.fontSmall + 2}" text-anchor="middle" dominant-baseline="central" pointer-events="none" class="halo">${GLYPH[cell.word]}</text>`);
         body.push(`<g ${attrs}>${parts.join('')}<title>${esc(tip)}</title></g>`);
       });
       if (noteInside.length > 0) {

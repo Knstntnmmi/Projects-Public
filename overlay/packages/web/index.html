@@ -35,17 +35,41 @@
         <div id="summary" class="summary"></div>
       </section>
 
-      <section class="card" aria-labelledby="h-conv">
-        <h2 id="h-conv">Conventions</h2>
-        <p class="note">These are the choices that make two honest calculators disagree. Each shows what it would change for this moment.</p>
-        <div id="conventions" class="conventions"></div>
+      <section class="card" id="forecast" aria-labelledby="h-forecast" aria-busy="false">
+        <h2 id="h-forecast">Forecast</h2>
+        <form id="fc-controls" class="controls fc-controls" autocomplete="off">
+          <label>Topic <select id="fc-topic"></select></label>
+          <label>First year <input id="fc-from" type="number" step="1" inputmode="numeric" /></label>
+          <label>Years <input id="fc-years" type="number" step="1" inputmode="numeric" /></label>
+          <label><span id="fc-sex-title"></span><select id="fc-sex"></select></label>
+        </form>
+        <p class="sentence" id="fc-sentence"></p>
+        <p class="note" id="fc-status" role="status" aria-live="polite"></p>
+        <div id="fc-body">
+          <div id="fc-natal"></div>
+          <h3>Year by year</h3>
+          <div id="fc-grid"></div>
+          <p class="note" id="fc-hint">Tap a year or a cell to open that year.</p>
+          <div id="fc-year" class="year-panel" hidden></div>
+          <h3>Do the groups agree?</h3>
+          <div id="fc-agree-body"></div>
+        </div>
+        <div class="subcard" id="fc-character" aria-labelledby="h-char">
+          <h3 id="h-char">Character of the period</h3>
+          <div class="controls">
+            <label>From <input id="fc-win-start" type="date" /></label>
+            <label>Days (1 to 62) <input id="fc-win-days" type="number" min="1" max="62" step="1" inputmode="numeric" /></label>
+          </div>
+          <div id="fc-char-body"></div>
+        </div>
+        <details class="subcard" id="fc-rules">
+          <summary>Rules not evaluated</summary>
+          <div id="fc-rules-body"></div>
+        </details>
       </section>
 
-      <section class="card" aria-labelledby="h-sens">
-        <h2 id="h-sens">How close to a boundary</h2>
-        <p class="note">For each fact, the nearest earlier and later clock time at which it would come out differently. Rows inside the stated uncertainty are marked.</p>
-        <div class="scroll"><table id="sensitivity"></table></div>
-      </section>
+      <h2 class="part" id="h-calc">The calculation behind the forecast</h2>
+      <p class="note">The forecast above is read from these: the sky and the calendars drawn on one axis, how close each fact is to changing, and the choices that could change it.</p>
 
       <section class="card" aria-labelledby="h-wheel">
         <h2 id="h-wheel">Wheel: one ecliptic, every ring</h2>
@@ -77,6 +101,18 @@
         <ol id="seams" class="seams"></ol>
       </section>
 
+      <section class="card" aria-labelledby="h-sens">
+        <h2 id="h-sens">How close to a boundary</h2>
+        <p class="note">For each fact, the nearest earlier and later clock time at which it would come out differently. Rows inside the stated uncertainty are marked.</p>
+        <div class="scroll"><table id="sensitivity"></table></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-conv">
+        <h2 id="h-conv">Conventions</h2>
+        <p class="note">These are the choices that make two honest calculators disagree. Each shows what it would change for this moment.</p>
+        <div id="conventions" class="conventions"></div>
+      </section>
+
       <section class="card" aria-labelledby="h-corr">
         <h2 id="h-corr">Which correspondences are real</h2>
         <p class="note">Links between systems are asserted everywhere and graded almost nowhere. Each is marked exact, structural, historical, loose or coincidence.</p>
@@ -93,7 +129,7 @@
 
     <footer>
       <p id="credit"></p>
-      <p>Astrology and divination systems are presented as cultural and calendrical systems. Nothing here is a forecast or advice.</p>
+      <p>Astrology and divination systems are presented as cultural and calendrical systems. What the forecast shows is what the published rules of each tradition say, not advice.</p>
     </footer>
     <script type="module" src="./src/main.ts"></script>
   </body>

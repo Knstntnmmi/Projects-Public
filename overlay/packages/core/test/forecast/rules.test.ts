@@ -153,7 +153,8 @@ describe('the ruleset version', () => {
     // Changed a third time on purpose when the review was answered: six Valens quotations and a builder's path left the data,
     // the goods, wealth-houses, jupiter-year-sign, return and day-transit templates were reworded.
     // Changed a fourth time on purpose: bazi.peer-in-luck got its own dedupeKey and bazi.yangren became a note without a direction.
-    expect(RULESET_VERSION).toBe('1d84b0c91ec98655');
+    // Changed a fourth time on purpose: the two honour rules took their directions branch by branch from the printed page.
+    expect(RULESET_VERSION).toBe('PINME');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {
@@ -168,6 +169,12 @@ describe('the ruleset version', () => {
     expect(edit({ dedupeKey: 'something-else' })).not.toBe(RULESET_VERSION);
     expect(edit({ topics: ['general', 'home-travel'] })).not.toBe(RULESET_VERSION);
     expect(rulesetVersion([...r].reverse())).toBe(RULESET_VERSION);
+    // A page, a quotation or a note without a direction in directionByBranch may be corrected; a direction may not.
+    const honour = ALL_RULES.find((x) => x.id === 'lilly.career.honour-angularity')!;
+    const withBranch = (patch: Record<string, unknown>): string =>
+      rulesetVersion(r.map((x) => (x.id === honour.id ? { ...x, directionByBranch: { ...x.directionByBranch, angular: { ...x.directionByBranch!.angular!, ...patch } } } : x)));
+    expect(withBranch({ quote: 'a corrected quotation', page: '99' })).toBe(RULESET_VERSION);
+    expect(withBranch({ direction: 'unfavourable' })).not.toBe(RULESET_VERSION);
   });
 });
 

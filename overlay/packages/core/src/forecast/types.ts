@@ -67,6 +67,13 @@ export interface Fact {
 }
 
 /** One rule, as the JSON files state it. */
+export interface BranchReading {
+  direction?: Direction;
+  /** The printed page of the source. */
+  page: string;
+  quote: string;
+}
+
 export interface Rule {
   id: string;
   tradition: Tradition;
@@ -91,6 +98,12 @@ export interface Rule {
   /** Rules that report one physical fact share a key; see the specification, section 5.3. */
   dedupeKey?: string;
   directionByHouse?: Record<string, Direction>;
+  /**
+   * Branch by branch, what the printed page says. A branch with a direction states its verdict in
+   * Lilly's own words (the quotation, at most 25 words, on the printed page); a branch without one
+   * is shown as a note without a direction, because the page states no verdict for it.
+   */
+  directionByBranch?: Record<string, BranchReading>;
   /** Rules that must have fired before this one counts. No accepted rule carries one yet. */
   gatedBy?: string[];
 }

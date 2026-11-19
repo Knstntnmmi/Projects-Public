@@ -14,7 +14,7 @@
  */
 import { PLANETS, type Planet } from '../../../substrate/sky.ts';
 import { houseLord, type StrengthClass } from '../../../systems/western/lillyDignity.ts';
-import type { Fact, Firing, NotEvaluated, RuleBinding } from '../../types.ts';
+import type { Direction, Fact, Firing, NotEvaluated, Rule, RuleBinding } from '../../types.ts';
 import { ANGULAR, CADENT, joinList, SUCCEDENT, type NatalModel } from './model.ts';
 
 export const BADGE = {
@@ -28,12 +28,22 @@ export const BADGE = {
 export const CONVENTIONS = ['westernHouses', 'westernTerms', 'westernOrbs'];
 
 type SexRead = 'male' | 'female' | null;
-type NatalRule = (m: NatalModel, sex: SexRead) => Firing[];
+type NatalRule = (m: NatalModel, sex: SexRead, rule: Rule) => Firing[];
+
+/**
+ * The direction the printed page gives one branch of a rule (the rule's directionByBranch). A branch
+ * whose page states no verdict, or that the table does not list, is a note without a direction
+ * ('activates'); nothing is chosen here.
+ */
+export function branchDirection(rule: Rule, branch: string): Direction {
+  return rule.directionByBranch?.[branch]?.direction ?? 'activates';
+}
 
 export const fact = (key: string, label: string, value: string | number): Fact => ({ key, label, value });
 
 /** One undated firing on the birth-arithmetic clock; the instance says which fact of the rule it is. */
-export const natal = (facts: Fact[], badges: string[], instance = 'natal'): Firing => ({
+export const natal = (facts: Fact[], badges: string[], instance = 'natal', direction?: Direction): Firing => ({
+  ...(direction ? { direction } : {}),
   clock: 'birthday',
   startUtcMs: null,
   endUtcMs: null,
@@ -220,7 +230,7 @@ function plurality<K extends string>(counts: Partial<Record<K, number>>): K | nu
   return entries[0]![0];
 }
 
-const honourEssential: NatalRule = (m) => {
+const honourEssential: NatalRule = (m, _sex, rule) => {
   const s = honourSignificators(m);
   const counts: Partial<Record<Dignity3, number>> = {};
   for (const p of s) {
@@ -235,11 +245,11 @@ const honourEssential: NatalRule = (m) => {
     poor: ['peregrine, detriment or fall', 'very small or no dignities'],
   };
   const text = texts[g as Exclude<Dignity3, 'unclassed'>];
-  return [natal([fact('list', 'Significators of honour', joinList(s)), fact('dignityGroup', 'Dignity group', text[0]), fact('verdict', 'Verdict', text[1])], ['derived reading: the group of most significators decides, a tie says nothing', 'a planet in detriment or fall with a minor dignity is not counted'], 'natal')];
+  return [natal([fact('list', 'Significators of honour', joinList(s)), fact('dignityGroup', 'Dignity group', text[0]), fact('verdict', 'Verdict', text[1])], ['derived reading: the group of most significators decides, a tie says nothing', 'a planet in detriment or fall with a minor dignity is not counted'], 'natal', branchDirection(rule, g))];
 };
 
 /** House groups of the passage on angularity: angles; succedent houses; the 8th and the cadent houses. */
-const honourAngularity: NatalRule = (m) => {
+const honourAngularity: NatalRule = (m, _sex, rule) => {
   const s = honourSignificators(m);
   const group = (p: Planet): 'angular' | 'succedent' | 'cadent' => {
     const h = m.houseOf(p);
@@ -255,7 +265,7 @@ const honourAngularity: NatalRule = (m) => {
     cadent: ['8th or cadent', 'very little honour or reputation, a mean and obscure condition'],
   };
   const text = texts[g];
-  return [natal([fact('list', 'Significators of honour', joinList(s)), fact('houseGroup', 'House group', text[0]), fact('verdict', 'Verdict', text[1])], [BADGE.wholeSign, 'derived reading: the group of most significators decides, a tie says nothing', 'the clauses on planets in the 10th are not coded'])];
+  return [natal([fact('list', 'Significators of honour', joinList(s)), fact('houseGroup', 'House group', text[0]), fact('verdict', 'Verdict', text[1])], [BADGE.wholeSign, 'derived reading: the group of most significators decides, a tie says nothing', 'the clauses on planets in the 10th are not coded'], 'natal', branchDirection(rule, g))];
 };
 
 const lord1Lord10: NatalRule = (m) => {
@@ -410,7 +420,7 @@ export const NATAL_BINDINGS: readonly RuleBinding[] = Object.entries(NATAL_RULES
   ruleId,
   tradition: 'western',
   requires: { birthTime: true, sex: NEEDS_SEX.has(ruleId) },
-  fire: (ctx) => run(ctx.extension<{ model: NatalModel }>('western')!.model, ctx.sex),
+  fire: (ctx, rule) => run(ctx.extension<{ model: NatalModel }>('western')!.model, ctx.sex, rule),
 }));
 
 /** The two natal-promise rules that are not bound, each with the reason a reader is shown. */

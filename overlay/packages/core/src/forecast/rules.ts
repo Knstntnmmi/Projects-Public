@@ -64,6 +64,10 @@ export function validateRuleFile(raw: unknown, tradition: Tradition): RuleFile {
     need('dedupeKey', r.dedupeKey === undefined || isString(r.dedupeKey), 'must be a string');
     need('gatedBy', r.gatedBy === undefined || (Array.isArray(r.gatedBy) && r.gatedBy.every(isString)), 'must be a list of rule ids');
     need('directionByHouse', r.directionByHouse === undefined || (isObject(r.directionByHouse) && Object.values(r.directionByHouse).every((d) => (DIRECTIONS as readonly unknown[]).includes(d))), 'must map houses to directions');
+    if (r.directionByBranch !== undefined) {
+      const ok = isObject(r.directionByBranch) && Object.values(r.directionByBranch).every((b) => isObject(b) && isString(b.page) && isString(b.quote) && b.quote.trim() !== '' && quoteWords(b.quote) <= MAX_QUOTE_WORDS && (b.direction === undefined || (DIRECTIONS as readonly unknown[]).includes(b.direction)));
+      need('directionByBranch', ok, `must map branches to a page, a quotation of at most ${MAX_QUOTE_WORDS} words and an optional direction`);
+    }
     if (isString(r.template)) need('template', r.template.length > 0, 'is empty');
     if (r.sourceOpened === true) {
       need('sourceCitation', isString(r.sourceCitation) && r.sourceCitation.trim() !== '', 'is empty although the source is marked opened');
@@ -138,6 +142,8 @@ export function rulesetVersion(rules: readonly Rule[]): string {
       stage: r.stage,
       gatedBy: [...(r.gatedBy ?? [])].sort(),
       dedupeKey: r.dedupeKey ?? null,
+      // Only the directions count; pages and quotations may be corrected without a new version.
+      ...(r.directionByBranch ? { directionByBranch: Object.fromEntries(Object.entries(r.directionByBranch).map(([k, b]) => [k, b.direction ?? null])) } : {}),
     }))
     .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   return hashOf(behaviour).slice(0, 16);

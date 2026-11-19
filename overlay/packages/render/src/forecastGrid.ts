@@ -244,7 +244,7 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
   const height = Math.ceil(y + 10);
 
   return [
-    `<svg xmlns="http://www.w3.org/2000/svg" class="ov ov-forecast-grid" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${esc(title)}"${options.theme ? ` data-theme="${options.theme}"` : ''}>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" class="ov ov-forecast-grid" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="max-width:100%;height:auto" role="img" aria-label="${esc(title)}"${options.theme ? ` data-theme="${options.theme}"` : ''}>`,
     styleBlock(),
     `<rect class="bg" width="${width}" height="${height}"/>`,
     ...body,

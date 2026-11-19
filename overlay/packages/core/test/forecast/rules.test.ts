@@ -155,7 +155,8 @@ describe('the ruleset version', () => {
     // Changed a fourth time on purpose: the peer rule got its own dedupeKey, the blade rule became a note, the two honour rules took their directions branch by branch from the printed page, and the Vedic wording was changed.
     // Changed a fifth time on purpose: the strength-score and peer templates no longer print a number, and two condition texts say the project's own reading.
     // Changed a sixth time: the wording of notes in the rule data changed and no rule changed.
-    expect(RULESET_VERSION).toBe('9bb09272e71cac73');
+    // Changed a seventh time: one condition text now says 'no source read' instead of 'no source'.
+    expect(RULESET_VERSION).toBe('ad087fc394c58c6f');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

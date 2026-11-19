@@ -161,9 +161,9 @@ const maraka = lordRule('parashari.dasha-lord-2nd-7th-maraka', (m, p) =>
 );
 
 export const EFFECT: Readonly<Record<number, string>> = {
-  6: 'danger from enemies and ill health',
+  6: 'harm from opponents and sickness',
   8: 'a risk of financial loss',
-  12: 'distress and danger from illness',
+  12: 'suffering, with sickness a threat',
 };
 
 /** The 6th, 8th or 12th houses an unredeemed or redeemed dasha lord owns, after the Sun and Moon exemption for the 8th and the sl.2-7 precedence. */

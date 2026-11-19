@@ -102,12 +102,13 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | heavenly noble | 天乙貴人 | The two branches that the tables give for the day stem. When a luck or year branch equals one of them, the rule flags a noble helper period. | the project's own wording |
 | post-horse | 驛馬 yima | A branch given by the three-harmony group of the year or day branch. When a luck or year branch equals it, the rule flags a moving period: travel, relocation or a change of post. | the project's own wording |
 | peach blossom, bathing | 桃花, 咸池 | A branch given by the three-harmony group, the second of the twelve stages. When a luck or year branch equals it, the rule marks relationships as active. | the project's own wording |
-| blade | 羊刃 yangren | The branch that follows the lu branch of a yang day stem. The rule reads a period of the blade as a time of excess or conflict. | the project's own wording |
+| blade | 羊刃 yangren | The branch that follows the lu branch of a yang day stem. The rule names the blade and says whether a 官殺 star is revealed, hidden or absent in the chart; it gives no direction. | the project's own wording |
 | Lu-spirit | 祿神 lushen | The lu branch of a day stem. When a luck or year branch equals it, the rule reads a period of income and standing. | the project's own wording |
 | nayin | 納音 | A name and element given to each of the sixty pairs. The engine's thirty English names are the project's popular glosses. | the project's own wording |
 | Day officers, lodges, nine stars | 建除, 宿, 九星 | The twelve day officers (jianchu), the twenty-eight lodges (xiu) of the almanac day cycle, and the nine-star year count (zibai), all counted by the engine. | the project's own wording |
 | Tai Sui | 太歲 | The year branch of the twelve-year count, which the project's registry of correspondences relates to the circuit of Jupiter. | the project's own wording |
 | Tai Sui as year ghost | 太歲 | In a lecture abstract, the dangerous year ghost of the Chinese calendar, among the "superstitions" that the Jesuit Magalhaes attacked. | fate no. 6, p. 10 |
+| mixed officer and Seven Killings, mixing | 官殺混雜 | A year pillar that brings both 正官 and 七殺 into the chart. The source says the mixing harms the self; it does not say whether it outweighs a favoured element, so a firing where both clauses hold reads mixed. | the project's own wording |
 
 ## Vedic astrology
 
@@ -166,6 +167,7 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | transit | | A planet passing over a point of the birth chart. | the project's own wording |
 | transmission, chronocrator | | Valens's count from a starting point by the year's number. The planets standing in the sign the count reaches receive the year; if the sign is empty, its domicile lord does. | the project's own wording |
 | critical year | | A year that Valens marks as troublesome, when the year's sign is the sign of the new or full Moon before birth, or its square or opposite. | the project's own wording |
+| mutual reception | | Two planets each standing in a dignity of the other. A rule counts it as a dignity for honour. | the project's own wording |
 
 ## I Ching
 
@@ -185,3 +187,4 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | period hexagram | | The gua qi hexagram that rules an instant. The forecast shows it by period only. | the project's own wording |
 | cue clause | | The part of a statement that names a journey, an audience, a marriage, an illness or goods, which the engine grades on its own. | the project's own wording |
 | grade | | A mechanical mark given to a statement by its verdict words. It is a construction of the project and is marked experimental. | the project's own wording |
+| negated formula | 无咎, 无大咎, 无悔, 悔亡, 何咎, 无眚, 匪咎, 无譽, 无攸利, 无不利, 不利 | A verdict word under a negator in a line statement. The engine reads it from a table of the project: some give a note without a direction, 不利 and 无攸利 read unfavourable, 无不利 reads favourable. | the project's own wording |

@@ -591,7 +591,7 @@
     "group": "BaZi",
     "term": "blade",
     "original": "羊刃 yangren",
-    "definition": "The branch that follows the lu branch of a yang day stem. The rule reads a period of the blade as a time of excess or conflict.",
+    "definition": "The branch that follows the lu branch of a yang day stem. The rule names the blade and says whether a 官殺 star is revealed, hidden or absent in the chart; it gives no direction.",
     "source": "the project's own wording"
   },
   {
@@ -628,6 +628,13 @@
     "original": "太歲",
     "definition": "In a lecture abstract, the dangerous year ghost of the Chinese calendar, among the \"superstitions\" that the Jesuit Magalhaes attacked.",
     "source": "fate no. 6, p. 10"
+  },
+  {
+    "group": "BaZi",
+    "term": "mixed officer and Seven Killings, mixing",
+    "original": "官殺混雜",
+    "definition": "A year pillar that brings both 正官 and 七殺 into the chart. The source says the mixing harms the self; it does not say whether it outweighs a favoured element, so a firing where both clauses hold reads mixed.",
+    "source": "the project's own wording"
   },
   {
     "group": "Vedic astrology",
@@ -966,6 +973,13 @@
     "source": "the project's own wording"
   },
   {
+    "group": "Western astrology",
+    "term": "mutual reception",
+    "original": "",
+    "definition": "Two planets each standing in a dignity of the other. A rule counts it as a dignity for honour.",
+    "source": "the project's own wording"
+  },
+  {
     "group": "I Ching",
     "term": "I Ching, Yijing, Zhouyi",
     "original": "易經, 周易",
@@ -1061,6 +1075,13 @@
     "term": "grade",
     "original": "",
     "definition": "A mechanical mark given to a statement by its verdict words. It is a construction of the project and is marked experimental.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "negated formula",
+    "original": "无咎, 无大咎, 无悔, 悔亡, 何咎, 无眚, 匪咎, 无譽, 无攸利, 无不利, 不利",
+    "definition": "A verdict word under a negator in a line statement. The engine reads it from a table of the project: some give a note without a direction, 不利 and 无攸利 read unfavourable, 无不利 reads favourable.",
     "source": "the project's own wording"
   }
 ]

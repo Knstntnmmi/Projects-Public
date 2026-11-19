@@ -152,9 +152,8 @@ describe('the ruleset version', () => {
     // the aspects of lilly.transit.daily-cusps were restricted by cluster.
     // Changed a third time on purpose when the review was answered: six Valens quotations and a builder's path left the data,
     // the goods, wealth-houses, jupiter-year-sign, return and day-transit templates were reworded.
-    // Changed a fourth time on purpose: bazi.peer-in-luck got its own dedupeKey and bazi.yangren became a note without a direction.
-    // Changed a fourth time on purpose: the two honour rules took their directions branch by branch from the printed page.
-    expect(RULESET_VERSION).toBe('PINME');
+    // Changed a fourth time on purpose: the peer rule got its own dedupeKey, the blade rule became a note, the two honour rules took their directions branch by branch from the printed page, and the Vedic wording was changed.
+    expect(RULESET_VERSION).toBe('21b8ff1444c21fef');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

@@ -98,7 +98,7 @@ describe('the mahadasha house-lord rules', () => {
 
   it('career-10: the 10th lord, not debilitated, not in 6, 8, 12', () => {
     const id = 'parashari.dasha-lord-career-10';
-    expect(sentences(run(id, { maha: ['Saturn'] }))).toEqual(['Saturn, lord of the 10th house, runs the period; recognition and position from authority are indicated.']);
+    expect(sentences(run(id, { maha: ['Saturn'] }))).toEqual(['Saturn, lord of the 10th house, runs the period; the source names credit and awards from the ruling power, read here as any person of authority.']);
     expect(run(id, { maha: ['Saturn'], planets: { Saturn: [0, 20] } })).toEqual([]); // debilitated in Aries
     expect(run(id, { maha: ['Saturn'], planets: { Saturn: [5, 5] } })).toEqual([]); // in the 6th
     expect(run(id, { maha: ['Jupiter'] })).toEqual([]);
@@ -107,7 +107,7 @@ describe('the mahadasha house-lord rules', () => {
 
   it('education-5-9: the 5th and 9th lords, with the house in the sentence', () => {
     const id = 'parashari.dasha-lord-education-5-9';
-    expect(sentences(run(id, { maha: ['Sun'] }))).toEqual(['Sun, lord of the 5th house, runs the period; progress in study is indicated.']);
+    expect(sentences(run(id, { maha: ['Sun'] }))).toEqual(['Sun, lord of the 5th house, runs the period; the source says study moves forward in it.']);
     expect(sentences(run(id, { maha: ['Jupiter'] }))[0]).toMatch(/lord of the 9th house/);
     expect(run(id, { maha: ['Moon'] })).toEqual([]);
     expect(topics(run(id, { maha: ['Sun'] }))).toEqual(['learning']);
@@ -115,7 +115,7 @@ describe('the mahadasha house-lord rules', () => {
 
   it('4th-home: the 4th lord when it is neither debilitated nor in 6, 8, 12', () => {
     const id = 'parashari.dasha-lord-4th-home';
-    expect(sentences(run(id, { maha: ['Moon'] }))).toEqual(['Moon, lord of the 4th house, runs the period; acquisition of house, land or conveyance is indicated.']);
+    expect(sentences(run(id, { maha: ['Moon'] }))).toEqual(['Moon, lord of the 4th house, runs the period; the source points to gaining a home, land or a vehicle.']);
     expect(run(id, { maha: ['Moon'], planets: { Moon: [7, 10] } })).toEqual([]); // debilitated in Scorpio
     expect(run(id, { maha: ['Sun'] })).toEqual([]);
   });

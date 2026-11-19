@@ -7,7 +7,7 @@
  */
 import { NOTE, supportsFromCautionsFrom } from './phrasebook.ts';
 import { overlapFraction, overlaps } from './signals.ts';
-import type { ClockGroupId, ReadingWord, Signal, Slice, Stage, Topic, Tradition } from './types.ts';
+import type { ClockGroupId, LevelId, ReadingWord, Signal, Slice, Stage, Tally, Topic, Tradition } from './types.ts';
 import { TRADITIONS } from './types.ts';
 
 export interface Reading {
@@ -19,6 +19,8 @@ export interface Reading {
   word: ReadingWord;
   /** Words that qualify the reading: "rules conflict", "topic active", "supports from X, cautions from Y". */
   note: string | null;
+  /** The plain counts behind the word, after de-duplication. Display only. */
+  tally: Tally;
   signalIds: string[];
   /** Modifier signals that overlap the slice; listed, never counted. */
   modifierIds: string[];
@@ -81,6 +83,19 @@ export function wordFor(signals: readonly Signal[]): { word: ReadingWord; note: 
   return { word: fav.length > 0 ? 'supports' : 'cautions', note: null };
 }
 
+/** The counts behind a word: the deciding statements (modifiers excluded) by what their own rule says. */
+export function tallyOf(signals: readonly Signal[]): Tally {
+  const t: Tally = { supports: 0, cautions: 0, mixed: 0, active: 0 };
+  for (const s of signals) {
+    if (s.stage === 'modifier') continue;
+    if (s.direction === 'favourable') t.supports++;
+    else if (s.direction === 'unfavourable') t.cautions++;
+    else if (s.direction === 'mixed') t.mixed++;
+    else t.active++;
+  }
+  return t;
+}
+
 export interface ReadingContext {
   /** bound-rule count per tradition and topic */
   coverage: Record<Tradition, Record<Topic, number>>;
@@ -109,6 +124,7 @@ export function buildReadings(signals: readonly Signal[], slices: readonly Slice
         for (const slice of slices) {
           const inSlice = pool.filter((s) => overlaps(s, slice.startUtcMs, slice.endUtcMs));
           const { word, note } = wordFor(inSlice);
+          const tally = tallyOf(inSlice);
           const deciding = inSlice.filter((s) => s.stage !== 'modifier');
           const signalIds = deciding.map((s) => s.id);
           const ov: Record<string, number> = {};
@@ -122,6 +138,7 @@ export function buildReadings(signals: readonly Signal[], slices: readonly Slice
             slice: slice.index,
             word,
             note,
+            tally,
             signalIds,
             modifierIds: inSlice.filter((s) => s.stage === 'modifier').map((s) => s.id),
             alsoReportedBy: also,
@@ -145,4 +162,48 @@ export function attachModifiers(signals: Signal[]): void {
       .filter((m) => m.tradition === s.tradition && m.topic === s.topic && overlaps(m, s.startUtcMs!, Math.max(s.endUtcMs!, s.startUtcMs! + 1)))
       .map((m) => m.id);
   }
+}
+
+/** What one technique says about one topic in one slice: the same word rule and the same counts as a tradition reading. */
+export interface LevelReading {
+  level: LevelId;
+  topic: Topic;
+  slice: number;
+  word: ReadingWord;
+  note: string | null;
+  tally: Tally;
+  signalIds: string[];
+  modifierIds: string[];
+}
+
+/**
+ * A reading for every level that has a dated statement for the topic, in every slice. The
+ * statements are de-duplicated first, exactly as for the tradition readings, so a fact two
+ * rules report counts once.
+ */
+export function buildLevelReadings(signals: readonly Signal[], slices: readonly Slice[], topics: readonly Topic[]): LevelReading[] {
+  const { kept } = dedupe(signals);
+  const out: LevelReading[] = [];
+  for (const topic of topics) {
+    const mine = kept.filter((s) => s.topic === topic && s.startUtcMs !== null);
+    const levels = unique(mine.map((s) => s.level));
+    for (const level of levels) {
+      const pool = mine.filter((s) => s.level === level);
+      for (const slice of slices) {
+        const inSlice = pool.filter((s) => overlaps(s, slice.startUtcMs, slice.endUtcMs));
+        const { word, note } = wordFor(inSlice);
+        out.push({
+          level,
+          topic,
+          slice: slice.index,
+          word,
+          note,
+          tally: tallyOf(inSlice),
+          signalIds: inSlice.filter((s) => s.stage !== 'modifier').map((s) => s.id),
+          modifierIds: inSlice.filter((s) => s.stage === 'modifier').map((s) => s.id),
+        });
+      }
+    }
+  }
+  return out;
 }

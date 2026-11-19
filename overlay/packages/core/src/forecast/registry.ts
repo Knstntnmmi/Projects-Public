@@ -21,6 +21,12 @@ export interface TraditionModule {
   buildContext: ContextBuilder;
   /** Set true when every rule of the tradition is bound or declared not evaluated; the registry then enforces it. */
   COMPLETE: boolean;
+  /**
+   * Set true for a tradition that is read by period and not by year (the I Ching): its
+   * statements never enter a yearly reading, the statement list, the year view or agreement,
+   * and the evaluation of a span does not run its rules at all.
+   */
+  PERIOD_READ?: boolean;
 }
 
 export interface Registry {
@@ -30,6 +36,7 @@ export interface Registry {
   notEvaluated: ReadonlyMap<string, string>;
   builders: Partial<Record<Tradition, ContextBuilder>>;
   complete: Readonly<Record<Tradition, boolean>>;
+  periodRead: Readonly<Record<Tradition, boolean>>;
 }
 
 export class RegistryError extends Error {
@@ -47,10 +54,12 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
   const notEvaluated = new Map<string, string>();
   const builders: Partial<Record<Tradition, ContextBuilder>> = {};
   const complete = {} as Record<Tradition, boolean>;
+  const periodRead = {} as Record<Tradition, boolean>;
   for (const t of TRADITIONS) {
     const m = modules[t];
     builders[t] = m.buildContext;
     complete[t] = m.COMPLETE;
+    periodRead[t] = m.PERIOD_READ === true;
     for (const b of m.BINDINGS) {
       const rule = byId.get(b.ruleId);
       if (!rule) problems.push(`binding for ${b.ruleId}: no such rule`);
@@ -68,8 +77,11 @@ export function createRegistry(files: readonly RuleFile[], modules: Readonly<Rec
   }
   for (const id of notEvaluated.keys()) if (bindings.has(id)) problems.push(`${id}: both bound and declared not evaluated`);
   if (problems.length) throw new RegistryError(problems);
-  return { rules, heldBack, bindings, notEvaluated, builders, complete };
+  return { rules, heldBack, bindings, notEvaluated, builders, complete, periodRead };
 }
+
+/** The traditions of a registry that are read by period and not by year. */
+export const periodReadTraditions = (registry: Registry): Tradition[] => TRADITIONS.filter((t) => registry.periodRead[t]);
 
 export const DEFAULT_REGISTRY: Registry = createRegistry(RULE_FILES, { bazi, vedic, iching, western }, HELD_BACK);
 

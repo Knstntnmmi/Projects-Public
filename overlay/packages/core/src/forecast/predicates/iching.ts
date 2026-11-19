@@ -338,3 +338,6 @@ export const NOT_EVALUATED: readonly NotEvaluated[] = [
 
 /** Set to true when every rule of this tradition is bound or listed above; the registry test then enforces it. */
 export const COMPLETE = true;
+
+/** The I Ching is the character of a period, not a yearly forecast: see periodCharacter in ../period.ts. */
+export const PERIOD_READ = true;

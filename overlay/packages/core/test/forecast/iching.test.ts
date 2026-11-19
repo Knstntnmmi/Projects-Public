@@ -38,7 +38,7 @@ function fire(ruleId: string, id = 'j2000', extra: Partial<Parameters<typeof mak
 }
 
 const fact = (f: Firing, key: string): string | number => f.facts.find((x) => x.key === key)!.value;
-const run = (id = 'j2000', extra: Partial<Parameters<typeof makeInput>[1]> = {}) => evaluate(inputFor(id, extra), { traditions: ['iching'], runs: 20, seed: 1 });
+const run = (id = 'j2000', extra: Partial<Parameters<typeof makeInput>[1]> = {}) => evaluate(inputFor(id, extra), { traditions: ['iching'], runs: 20, seed: 1, includePeriodRead: true });
 
 describe('the I Ching bindings: what is bound and what is not', () => {
   it('binds ten rules and lists the grading method as not evaluated, with a reason', () => {

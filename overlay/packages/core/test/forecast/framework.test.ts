@@ -387,7 +387,7 @@ describe('evaluation as a whole', () => {
   it('puts topic coverage in every result and the JSON follows the specification', () => {
     const r = run();
     const j = reportJson(r, 'wealth') as Record<string, unknown>;
-    expect(Object.keys(j)).toEqual(['schema', 'rulesetVersion', 'conventions', 'topic', 'span', 'coverage', 'notEvaluated', 'withheldCount', 'signals', 'readings', 'agreement', 'baseline']);
+    expect(Object.keys(j)).toEqual(['schema', 'rulesetVersion', 'conventions', 'topic', 'span', 'coverage', 'notEvaluated', 'withheldCount', 'signals', 'readings', 'agreement', 'baseline', 'statements', 'yearView', 'agreementDisplay']);
     expect(j.schema).toBe('overlay-forecast/1');
     expect(j.coverage).toEqual({ bazi: 5, vedic: 4, iching: 1, western: 0 });
     const text = JSON.stringify(j);
@@ -434,7 +434,8 @@ describe('narration', () => {
     const one = sentences.find((x) => x.kind === 'summary' && x.slice === idx(2034))!;
     expect(one.text).toBe('In 2034, 1 of 1 speaking group supports wealth (clocks counted from the birth moment); nothing was said by Vedic astrology.');
     const split = sentences.find((x) => x.kind === 'summary' && x.slice === idx(2038))!;
-    expect(split.text).toMatch(/^In 2038, the groups differ on wealth: /);
+    // Where the groups do not stand together the summary names what each technique says.
+    expect(split.text).toBe('BaZi year pillar cautions; Jupiter from the Moon supports; I Ching, read by period supports. Silent: BaZi luck pillar, Vedic mahadasha.');
   });
 
   it('says natal signals once, undated, and marks the I Ching experimental', () => {

@@ -7,6 +7,7 @@
  */
 import { BADGE, GATE_UNGATED } from './phrasebook.ts';
 import { clockGroupOf, isClockId } from './clocks.ts';
+import { levelFits, levelOfFiring } from './levels.ts';
 import type { ForecastConventions } from './conventions.ts';
 import type { Fact, Firing, Rule, Signal, Span } from './types.ts';
 
@@ -59,6 +60,7 @@ function checkFiring(rule: Rule, f: Firing): void {
   const dated = f.startUtcMs !== null && f.endUtcMs !== null;
   if (!dated && (f.startUtcMs !== null || f.endUtcMs !== null)) throw new BadFiringError(rule.id, 'start and end must both be given or both be null');
   if (dated && (!Number.isFinite(f.startUtcMs!) || !Number.isFinite(f.endUtcMs!) || f.endUtcMs! < f.startUtcMs!)) throw new BadFiringError(rule.id, 'end is before start');
+  if (f.level !== undefined && dated && !levelFits(f.level, rule.tradition, f.clock)) throw new BadFiringError(rule.id, `level ${f.level} does not run on clock ${f.clock} in ${rule.tradition}`);
   const keys = f.facts.map((x) => x.key);
   if (new Set(keys).size !== keys.length) throw new BadFiringError(rule.id, 'a fact key is repeated');
   if (f.topics) {
@@ -109,6 +111,7 @@ export function signalsFromFirings(rule: Rule, firings: readonly Firing[], optio
         tradition: rule.tradition,
         clock: f.clock,
         clockGroup: clockGroupOf(f.clock),
+        level: levelOfFiring(rule.tradition, f),
         topic,
         stage: rule.stage,
         direction: f.direction ?? rule.direction,

@@ -182,7 +182,7 @@ export function statementHtml(m: Model, e: Entry): string {
 
 export function natalHtml(m: Model): string {
   const { list } = m;
-  const items = list.natal.map((e) => `<li>${statementHtml(m, e)}</li>`).join('');
+  const items = list.natal.map((e) => `<li>${statementHtml(m, e)}${list.sharedChartNote?.afterSignalId === e.signalId ? `<p class="note">${esc(list.sharedChartNote.text)}</p>` : ''}</li>`).join('');
   const pointers =
     list.natalPointers.length === 0
       ? ''

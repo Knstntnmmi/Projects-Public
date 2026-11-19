@@ -73,6 +73,7 @@ export function natalLines(list: forecast.StatementList, result?: forecast.Forec
     // Every statement names its rule and its source, the natal ones as much as the dated ones.
     const s = result?.signals.find((x) => x.id === e.signalId);
     out.push(`    rule ${e.ruleId}${s ? ` (${s.ruleName}); source: ${citeOf(s.source)}` : ''}`);
+    if (list.sharedChartNote?.afterSignalId === e.signalId) out.push(`    Note: ${list.sharedChartNote.text}`);
   }
   if (list.natalPointers.length > 0) out.push(`  Also ${forecast.pointerLabel(list.natalPointers.length)} (listed with --full)`);
   for (const note of list.chartNotes) out.push(`  Note: ${note}`);

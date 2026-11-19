@@ -13,6 +13,7 @@
  * ids of all the firings. Statements of period-read rules and traditions are not part of it.
  */
 import { BADGE, directionWord, foldedModifiersLine, LEVEL_LABEL, sentenceOf, TEXT, type DisplayWord } from './phrasebook.ts';
+import { DEFAULT_CONVENTIONS } from '../conventions.ts';
 import { levelRank } from './levels.ts';
 import { dedupe } from './readings.ts';
 import type { ForecastResult } from './evaluate.ts';
@@ -86,6 +87,11 @@ export interface StatementList {
   unattached: FoldedModifiers[];
   /** What the chart itself says about its levels (for example that a balanced chart names no favourite), each text once, as the reader meets it. */
   chartNotes: string[];
+  /**
+   * A note without a direction, printed once under the last BaZi entry of `natal`, and only under the default
+   * clock and day boundary that its text names. It is no signal and takes no part in any word, tally or cell.
+   */
+  sharedChartNote: { afterSignalId: string; text: string } | null;
 }
 
 const byText = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
@@ -203,5 +209,8 @@ export function statementList(result: ForecastResult, topic: Topic): StatementLi
   }
   const entryOfSignal: Record<string, string> = {};
   for (const e of [...natal, ...natalPointers, ...dated, ...pointers]) for (const id of e.signalIds) entryOfSignal[id] = e.signalId;
-  return { topic, natalHeading: TEXT.natalPromiseHeading, natal, dated, natalPointers, pointers, entryOf: entryOfSignal, unattached, chartNotes: [...new Set(result.chartNotes.map((n) => sentenceOf(n.text)))] };
+  const { timeBasis, dayBoundary } = result.conventions.engine;
+  const lastBazi = [...natal].reverse().find((e) => e.tradition === 'bazi');
+  const sharedChartNote = lastBazi && timeBasis === DEFAULT_CONVENTIONS.timeBasis && dayBoundary === DEFAULT_CONVENTIONS.dayBoundary ? { afterSignalId: lastBazi.signalId, text: TEXT.baziSharedChartNote } : null;
+  return { topic, natalHeading: TEXT.natalPromiseHeading, natal, dated, natalPointers, pointers, entryOf: entryOfSignal, unattached, chartNotes: [...new Set(result.chartNotes.map((n) => sentenceOf(n.text)))], sharedChartNote };
 }

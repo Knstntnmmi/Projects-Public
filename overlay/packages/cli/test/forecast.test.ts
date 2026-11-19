@@ -25,6 +25,24 @@ function assertWording(text: string, where: string): void {
   }
 }
 
+describe('overlay forecast: the note on shared charts', () => {
+  const note = forecast.TEXT.baziSharedChartNote;
+  it('is printed once, under the last BaZi entry of the natal list, under the defaults', () => {
+    const t = forecastOf('--topic', 'wealth');
+    expect(count(t, note)).toBe(1);
+    const natal = t.slice(0, t.indexOf('Grid ('));
+    expect(natal).toContain(note);
+    // it comes directly after the rule line of a BaZi entry
+    const at = natal.indexOf(`    Note: ${note}`);
+    expect(natal.slice(0, at).trimEnd().split('\n').pop()).toMatch(/^ {4}rule bazi\./);
+  });
+  it('is not printed with the day turning at midnight or under another clock', () => {
+    for (const set of ['dayBoundary=midnight', 'timeBasis=standard', 'timeBasis=lmt', 'timeBasis=apparent']) {
+      expect(forecastOf('--topic', 'wealth', '--set', set), set).not.toContain(note);
+    }
+  });
+});
+
 describe('overlay forecast: the birth time', () => {
   it('says that sensitivity was not checked when no uncertainty is given', () => {
     expect(forecastOf('--topic', 'wealth', '--traditions', 'vedic')).toContain(forecast.SENSITIVITY_NOT_CHECKED);

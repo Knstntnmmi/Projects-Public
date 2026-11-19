@@ -10,6 +10,7 @@ The chart is the constructed moment `j2000` of `fixtures/moments.ts` (the J2000.
 
 - Natal chart, supports: Wealth promise is present and carried: 財 stars 正財 癸 (hidden in the month branch 子), day master strong.
 - rule bazi.topic-wealth-promise
+- Note: Under the default settings, births on the same date in the same double-hour of the civil clock, on the same side of the month's turn, have the same four pillars. The project's own count of possible sets of four pillars is 518 400 (60 year pillars x 12 months x 60 days x 12 double-hours).
 - Natal chart, supports: Moon and Jupiter, lords of houses 4 and 9, form a kendra-trikona link; no single planet is the yogakaraka of this chart.
 - rule parashari.yogakaraka-kendra-trikona
 - Natal chart, cautions: The principal significator of substance, Saturn, is weak: the estate is promised not to continue but to be overthrown.

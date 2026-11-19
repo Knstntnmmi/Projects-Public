@@ -228,6 +228,16 @@ describe('the natal promise and the agreement', () => {
     }
   });
 
+  it('prints the note on shared charts once, in the item of the last BaZi entry, when the list carries it', () => {
+    const note = model.list.sharedChartNote;
+    expect(note).not.toBeNull();
+    const html = natalHtml(model);
+    expect(html.split(esc(note!.text)).length - 1).toBe(1);
+    const last = model.list.natal.filter((e) => e.tradition === 'bazi').pop()!;
+    expect(last.signalId).toBe(note!.afterSignalId);
+    expect(natalHtml({ ...model, list: { ...model.list, sharedChartNote: null } })).not.toContain(esc(note!.text));
+  });
+
   it('prints the agreement display as the core returns it, with the sentence naming the groups', () => {
     const html = agreementHtml(model, 2031);
     const a = model.agreement;

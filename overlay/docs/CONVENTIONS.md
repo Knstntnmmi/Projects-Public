@@ -174,6 +174,17 @@ The source makes earth strong in the sixth month only; common practice makes it 
 | --- | --- | --- |
 | `four-jiyue` | All four 季月. The month branches 辰 戌 丑 未. | yes |
 
+## Twelve stages of the earth stems
+
+Setting `baziEarthStages`. Affects: bazi.twelve-stages and the academy flag of bazi.topic-learning.
+
+The source gives two schools: earth follows fire (戊 長生 in 寅, 己 in 酉) or earth follows water (戊 in 申, 己 in 卯). The rule file does not choose between them.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `fire-earth` | Earth follows fire. 戊 寅, 己 酉. The default. | yes |
+| `water-earth` | Earth follows water. 戊 申, 己 卯. |  |
+
 ## Sign of a year that clashes with the luck pillar
 
 Setting `suiYunSign`. Affects: bazi.sui-yun-bing-lin.

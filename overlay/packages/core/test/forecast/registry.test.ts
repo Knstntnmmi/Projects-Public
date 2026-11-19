@@ -33,7 +33,10 @@ import { binding, FILES, input, modules, R, registry, yearFiring } from './synth
 
 const config = (o: Partial<RunConfig> = {}): RunConfig => ({ traditions: ['bazi', 'vedic', 'iching'], sex: null, birthTimeUncertaintyMinutes: 0, birthTimeLimitMinutes: 60, ...o });
 
-describe('the registry over the real rule data (no binding is written yet)', () => {
+const MODULES = { bazi, vedic, iching, western };
+const STUB = { BINDINGS: [], NOT_EVALUATED: [], buildContext: () => undefined, COMPLETE: false };
+
+describe('the registry over the real rule data', () => {
   it('accounts for every rule exactly once, and for every held-back entry', () => {
     const r = report(DEFAULT_REGISTRY, config());
     const ruleStates = r.statuses.filter((s) => s.state !== 'held-back');
@@ -50,7 +53,6 @@ describe('the registry over the real rule data (no binding is written yet)', () 
     const r = report(DEFAULT_REGISTRY, config());
     expect(r.switchedOff).toEqual([{ tradition: 'western', count: 18, reason: 'withheld pending verification' }]);
     expect(r.counts.western.withheld).toBe(18);
-    expect(r.counts.bazi.bound).toBe(0);
     const bazi = r.statuses.find((s) => s.ruleId === 'bazi.topic-spouse-man')!;
     expect(bazi).toMatchObject({ state: 'withheld', reason: 'needs-sex-convention' });
     expect(r.statuses.find((s) => s.ruleId === 'bazi.day-clash-spouse')).toMatchObject({ state: 'withheld', reason: 'needs-sex-convention' });
@@ -58,13 +60,15 @@ describe('the registry over the real rule data (no binding is written yet)', () 
 
   it('prints coverage per tradition and topic, taken from the bound rules', () => {
     const r = report(DEFAULT_REGISTRY, config());
-    for (const t of TRADITIONS) for (const topic of TOPICS) expect(r.coverage[t][topic]).toBe(0);
+    // A tradition nobody has bound yet covers nothing; one that has covers what it bound.
+    for (const t of TRADITIONS) if (MODULES[t].BINDINGS.length === 0) for (const topic of TOPICS) expect(r.coverage[t][topic]).toBe(0);
     expect(r.declared.vedic.wealth).toBeGreaterThan(0);
     expect(r.declared.bazi.wealth).toBeGreaterThan(0);
   });
 
   it('evaluates without any binding and says how many rules are available and withheld', () => {
-    const res = evaluate(input(), { runs: 20 });
+    const stubs = createRegistry(RULE_FILES, { bazi: STUB, vedic: STUB, iching: STUB, western: STUB }, HELD_BACK);
+    const res = evaluate(input(), { registry: stubs, runs: 20 });
     expect(res.signals).toEqual([]);
     expect(res.availableCount).toBe(0);
     expect(res.withheldCount).toBe(18 + HELD_BACK.length);
@@ -72,9 +76,10 @@ describe('the registry over the real rule data (no binding is written yet)', () 
     expect(res.agreement.every((c) => c.verdict === 'silent')).toBe(true);
   });
 
-  it('has a stub module per tradition with the shape colleagues fill in', () => {
+  it('has a stub module for each tradition nobody has bound yet, with the shape colleagues fill in', () => {
+    expect(western.BINDINGS).toEqual([]);
     for (const m of [bazi, vedic, iching, western]) {
-      expect(m.BINDINGS).toEqual([]);
+      if (m.BINDINGS.length > 0) continue;
       expect(m.NOT_EVALUATED).toEqual([]);
       expect(m.COMPLETE).toBe(false);
       expect(m.buildContext(undefined as never)).toBeUndefined();

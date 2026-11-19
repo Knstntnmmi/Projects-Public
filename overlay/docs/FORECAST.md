@@ -87,6 +87,8 @@ A rule is not evaluated when saying more than the source says would be needed to
 
 `overlay forecast --full` prints the list of the rules and branches not evaluated, each with its reason. The sample document carries the same list.
 
+`overlay forecast --glossary` prints, after the forecast, the terms of art that occur in it with their meaning and source. The page does the same in a closed part called "Words used" under the forecast, for the forecast it shows at that moment. Both read the one list in [GLOSSARY.md](GLOSSARY.md).
+
 ## The limits
 
 - The rules are transcribed from the named sources and checked against them. They are not validated against outcomes. A statement says what a rule says, and says nothing about whether it holds.

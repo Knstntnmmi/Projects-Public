@@ -58,22 +58,26 @@ describe('the registry over the real rule data (no binding is written yet)', () 
 
   it('prints coverage per tradition and topic, taken from the bound rules', () => {
     const r = report(DEFAULT_REGISTRY, config());
-    for (const t of TRADITIONS) for (const topic of TOPICS) expect(r.coverage[t][topic]).toBe(0);
+    // The I Ching bindings are written (test/forecast/iching.test.ts holds their coverage); the others are still stubs.
+    for (const t of TRADITIONS.filter((x) => x !== 'iching')) for (const topic of TOPICS) expect(r.coverage[t][topic]).toBe(0);
     expect(r.declared.vedic.wealth).toBeGreaterThan(0);
     expect(r.declared.bazi.wealth).toBeGreaterThan(0);
   });
 
   it('evaluates without any binding and says how many rules are available and withheld', () => {
     const res = evaluate(input(), { runs: 20 });
-    expect(res.signals).toEqual([]);
-    expect(res.availableCount).toBe(0);
+    // Only the I Ching is bound so far (ten rules); the others are still stubs and say nothing.
+    expect(res.signals.filter((s) => s.tradition !== 'iching')).toEqual([]);
+    const bound = report(DEFAULT_REGISTRY, config()).counts.iching.bound;
+    expect(res.availableCount).toBe(bound);
     expect(res.withheldCount).toBe(18 + HELD_BACK.length);
-    expect(rulesLine(res.availableCount, res.withheldCount)).toBe(`0 rules available, ${18 + HELD_BACK.length} withheld (source not opened or unverified)`);
+    expect(rulesLine(res.availableCount, res.withheldCount)).toBe(`${bound} rules available, ${18 + HELD_BACK.length} withheld (source not opened or unverified)`);
+    // The I Ching never counts toward agreement, so nothing speaks.
     expect(res.agreement.every((c) => c.verdict === 'silent')).toBe(true);
   });
 
   it('has a stub module per tradition with the shape colleagues fill in', () => {
-    for (const m of [bazi, vedic, iching, western]) {
+    for (const m of [bazi, vedic, western]) {
       expect(m.BINDINGS).toEqual([]);
       expect(m.NOT_EVALUATED).toEqual([]);
       expect(m.COMPLETE).toBe(false);

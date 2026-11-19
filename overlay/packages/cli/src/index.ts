@@ -157,7 +157,7 @@ function main(argv: string[], currentYear: number): void {
       const report = findSeams(tracks, s.startUtcMs, s.endUtcMs, { limit: 20 });
       out(`Windows of ${report.windowDays} days in which tracks on two or more independent clocks change: ${report.found} found, about ${report.expectedByChance.toFixed(1)} expected if boundaries fell at random.`);
       out('Tracks that share a clock (the firdaria and the profections both turn on the birthday) are counted once.');
-      out('A seam is a description of the calendar arithmetic, not a forecast.\n');
+      out('A seam is a description of the calendar arithmetic and says nothing about what happens.\n');
       for (const seam of report.seams) {
         out(`${new Date(seam.utcMs).toISOString().slice(0, 10)}  ${seam.clocks} clocks`);
         for (const c of seam.changes) out(`    ${pad(c.title, 26)} ${c.from} -> ${c.to}   (${new Date(c.utcMs).toISOString().slice(0, 10)})`);

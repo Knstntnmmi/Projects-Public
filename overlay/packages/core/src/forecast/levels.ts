@@ -25,7 +25,7 @@ const SPECS: Readonly<Record<Exclude<LevelId, 'natal'>, LevelSpec>> = {
   'western-profection': { tradition: 'western', clocks: ['birthday'] },
   'western-firdaria': { tradition: 'western', clocks: ['birthday'] },
   'western-solar-return': { tradition: 'western', clocks: ['birthday'] },
-  'western-transits': { tradition: 'western', clocks: ['jupiter-tropical', 'saturn-tropical', 'moon', 'mars', 'venus', 'mercury', 'node'] },
+  'western-transits': { tradition: 'western', clocks: ['birthday', 'jupiter-tropical', 'saturn-tropical', 'moon', 'mars', 'venus', 'mercury', 'node'] },
   'iching-period': { tradition: 'iching', clocks: ['solar-longitude', 'calendar-year'] },
 };
 

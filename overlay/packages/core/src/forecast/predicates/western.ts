@@ -14,7 +14,8 @@
  * western/revolution.ts, on the return chart for the birth place.
  */
 import type { ForecastContext } from '../context.ts';
-import type { NotEvaluated, Rule, RuleBinding } from '../types.ts';
+import type { Firing, LevelId, NotEvaluated, Rule, RuleBinding } from '../types.ts';
+import { levelFits } from '../levels.ts';
 import { makeNatalContext, type WesternContext } from './western/context.ts';
 import { firdariaLordCondition } from './western/firdaria.ts';
 import { aspectList, strengthClasses } from './western/modifiers.ts';
@@ -25,12 +26,20 @@ import { beneficMaleficYearLord, criticalYearNode, criticalYearSyzygy, dailyCusp
 
 const western = (ctx: ForecastContext): WesternContext => ctx.extension<WesternContext>('western')!;
 
+/**
+ * Says which technique a dated firing judged. The birthday clock carries the profection, the
+ * firdaria and the solar return side by side, so each binding names its own; a firing on a
+ * sky clock already has its level from the clock and is left alone.
+ */
+const at = (level: LevelId, firings: Firing[]): Firing[] =>
+  firings.map((f) => (f.startUtcMs !== null && f.level === undefined && levelFits(level, 'western', f.clock) ? { ...f, level } : f));
+
 /** A rule of the profection family: its firings, with the direction the rule gives each house. */
 const period = (ruleId: string, run: profection.PeriodRule, requires: RuleBinding['requires'] = { birthTime: true }): RuleBinding => ({
   ruleId,
   tradition: 'western',
   requires,
-  fire: (ctx: ForecastContext, rule: Rule) => profection.withHouseDirection(rule.directionByHouse, run(western(ctx))),
+  fire: (ctx: ForecastContext, rule: Rule) => at('western-profection', profection.withHouseDirection(rule.directionByHouse, run(western(ctx)))),
 });
 
 const transit = (ruleId: string, run: TransitRule, requires: RuleBinding['requires'] = { birthTime: true }): RuleBinding => ({
@@ -39,18 +48,18 @@ const transit = (ruleId: string, run: TransitRule, requires: RuleBinding['requir
   requires,
   fire: (ctx) => {
     const w = western(ctx);
-    return run(w, w.sky());
+    return at('western-transits', run(w, w.sky()));
   },
 });
 
 /** A rule of the solar return: it reads the return charts of the years of the span. */
-const returnRule = (ruleId: string, run: revolution.ReturnRule): RuleBinding => ({
+const returnRule = (ruleId: string, run: revolution.ReturnRule, level: LevelId = 'western-solar-return'): RuleBinding => ({
   ruleId,
   tradition: 'western',
   requires: { birthTime: true },
   fire: (ctx) => {
     const w = western(ctx);
-    return run(w, w.returns());
+    return at(level, run(w, w.returns()));
   },
 });
 
@@ -62,7 +71,7 @@ const REVOLUTION_BINDINGS: readonly RuleBinding[] = [
   returnRule('lilly.revolution.returns-wealth', revolution.returnsWealth),
   returnRule('lilly.revolution.returns-affliction', revolution.returnsAffliction),
   returnRule('lilly.revolution.contrary-disposition', revolution.contraryDisposition),
-  returnRule('lilly.profection.lord-condition', revolution.lordCondition),
+  returnRule('lilly.profection.lord-condition', revolution.lordCondition, 'western-profection'),
 ];
 
 const PERIOD_BINDINGS: readonly RuleBinding[] = [
@@ -85,7 +94,7 @@ const PERIOD_BINDINGS: readonly RuleBinding[] = [
     requires: { birthTime: true },
     fire: (ctx) => {
       const w = western(ctx);
-      return firdariaLordCondition(w.model, w.majors(), ctx.input.span);
+      return at('western-firdaria', firdariaLordCondition(w.model, w.majors(), ctx.input.span));
     },
   },
 ];

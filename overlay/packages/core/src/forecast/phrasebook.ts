@@ -144,6 +144,9 @@ export const TEXT = {
     'The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why only events entered after the freeze count.',
   scorecardNote3: 'This is retrodiction unless the forecasts were frozen first.',
   scorecardNote4: 'A hit rate does not tell you how the next call turns out.',
+  scorecardNote5: 'The scorecard is an addition made by this project. It is not taken from any of the four traditions.',
+  scorecardNote6:
+    'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',
 } as const;
 
 /**

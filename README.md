@@ -27,6 +27,8 @@ This needs Node 22.18 or later. The page is started with `npm run dev`. For the 
 | [overlay/README.md](overlay/README.md) | The full technical readme |
 | [overlay/docs/FORECAST.md](overlay/docs/FORECAST.md) | How a statement comes about, and the limits |
 | [overlay/docs/SOURCES.md](overlay/docs/SOURCES.md) | The sources and how each was checked |
+| [overlay/docs/SCHOLARSHIP.md](overlay/docs/SCHOLARSHIP.md) | What the published scholarship says, and what the project takes from it |
+| [overlay/docs/GLOSSARY.md](overlay/docs/GLOSSARY.md) | The terms of art that the forecast prints |
 | [overlay/docs/CONVENTIONS.md](overlay/docs/CONVENTIONS.md) | The conventions on which calculators differ |
 | [overlay/PRIVACY.md](overlay/PRIVACY.md) | What happens to what you type |
 

@@ -1,6 +1,6 @@
 # The forecast
 
-This page explains how the forecast is made and where it stops. The sample for every figure and document is the constructed moment `j2000` of `fixtures/moments.ts`, topic wealth, years 2026 to 2035. The generated sample is [SAMPLE-FORECAST.md](SAMPLE-FORECAST.md).
+This page explains how the forecast is made and where it stops. The sample for every figure and document is the constructed moment `j2000` of `fixtures/moments.ts`, topic wealth, years 2026 to 2035. The generated sample is [SAMPLE-FORECAST.md](SAMPLE-FORECAST.md). The terms of art that the forecast prints are defined in [GLOSSARY.md](GLOSSARY.md), and what the published scholarship says on the points it touches is in [SCHOLARSHIP.md](SCHOLARSHIP.md).
 
 Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
 
@@ -27,6 +27,12 @@ A technique is shown for each year with one of four words.
 
 The words come from the rules and from nothing else. There is no weight in them.
 
+## Tendencies and named uncertainty
+
+The forecast states each result as what a named rule says about a period. It does not state that an event follows. Health statements carry the badge "a tendency only" and say nothing about diagnosis, and each list of statements opens with the words "Not tested yet."
+
+The choice to speak in tendencies is the project's own. It is consistent with how some scholars characterise the arts. Lackner writes, in a report on a conference at the Leopoldina, that predictions indicate tendencies and so give the questioner room to negotiate with the future, and he reports that the closing discussion held that only a communication that addresses the uncertainties of any prediction can start a rational reception of it (the newsletter "fate" no. 15, 06|19, pp. 3-4). Kalinowski writes that for Wang Chong destiny is a general tendency, named by the categories of the auspicious and the inauspicious, whose realisation depends on circumstances and encounters (IKGF Occasional Paper, 2009, pp. 6, 8-9 and 22). These are the scholars' characterisations. The project infers its wording from them, and no tradition's rule asks for it. See [SCHOLARSHIP.md](SCHOLARSHIP.md).
+
 ## The techniques, one row each
 
 The grid shows techniques that a practitioner would name. A row appears for every technique that has a rule available for the topic, whether or not it speaks in the span, so a chart may show fewer rows than this list.
@@ -43,9 +49,15 @@ The grid shows techniques that a practitioner would name. A row appears for ever
 
 ## Why a year has no single verdict
 
-The sources do not say how to add one tradition's reading to another's, or one technique's to another's. They give rules, each for its own period. Any total would need weights, and the weights in the rule files are the first reading's reading of emphasis, not the sources'. So the forecast gives no score, no total and no figure for a year. It gives the words by technique and a headline that lists the techniques by word, such as "Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions). Silent: Western solar return." If two techniques disagree, the page shows both.
+The sources do not say how to add one tradition's reading to another's, or one technique's to another's. They give rules, each for its own period. Any total would need weights, and the weights in the rule files are the project's own reading of emphasis, not the sources'. So the forecast gives no score, no total and no figure for a year. It gives the words by technique and a headline that lists the techniques by word, such as "Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions). Silent: Western solar return." If two techniques disagree, the page shows both.
 
 A statement that extends beyond a year counts for that year only if it overlaps it by enough days; see the conventions below. The statement list always shows the true dates. The BaZi year pillar changes at Lichun, 3 to 5 February, so about a month of each calendar year still belongs to the previous pillar. That month passes the 15-day edge and counts like the rest, so a year's word can rest on the previous year's pillar alone.
+
+## Testing the statements, and whose test it would be
+
+Nobody has tested the statements against outcomes yet. The project keeps the data model of a scorecard, in which a person records events and forecasts are frozen before the events are entered, but nothing yet compares an event with a reading. The scorecard is an addition made by this project. It is not taken from any of the four traditions.
+
+The scholarship read for the project describes how forecasts were, and were not, checked. These are the scholars' descriptions and are not rules of this project. Lackner writes in an editorial that a forecaster whose forecast fails usually faces no consequence, and that forecasters may admit formal errors but rarely question the core of their statement (the newsletter "fate" no. 18, 07|21, p. 3); he writes about forecasting in general and does not say that any tradition lacked a way of checking. Esposito describes a divinatory logic in which a failed oracle is blamed on the interpretation and not on the omen (IKGF Occasional Paper, 2011, p. 5). Burton-Rose describes mid- and late-Qing morality books that offered anecdotes as proof that an advocated practice had worked, 195 anecdotes in an 1880 edition and 163 in an 1899 edition; the compiler of the first called them cases of proof, and Burton-Rose says they served an evidential function; the text does not say whether stories of failure appear (MPIWG Preprint 496, 2019, p. 50). None of this is a test of the kind a scorecard makes. See [SCHOLARSHIP.md](SCHOLARSHIP.md).
 
 ## What agreement means here, and why it is rare
 
@@ -54,6 +66,10 @@ Agreement is shown only for techniques that count time in independent ways. Most
 The display therefore says which independent groups exist for this chart, and it speaks only when at least three of them have something to say in the span. Where they do, it says for each year whether the groups agree on supports, agree on cautions, or whether one group supports and another cautions, and it prints how many agreeing years were found beside how many a random arrangement of the same groups would give. With ten years this shows nothing by itself, and it says so. The I Ching is read by period and takes no part.
 
 Agreement says that techniques counted on different time scales gave the same sign for the same period. It does not say that the outcome follows. All four traditions read one birth moment, so a wrong birth time moves them together.
+
+## Setting the traditions side by side
+
+Lackner proposes that comparison should begin with practices and only then turn to the worldviews behind them, since the study of practices is to shed more light on those worldviews and not the reverse (the editorial of the newsletter issue 05|14, p. 2). The project's use of this for grading correspondences between systems is its own inference and is not Lackner's. In the note on a planned exhibition (fate no. 17, 08|20, p. 4) he calls the parallels between Chinese and European prognostication overwhelming in systematic elaboration and interpretation, and writes that not all the methods can be matched: feng shui is unknown in Europe, and there are few traces of Ptolemaic astrology in China. The forecast sets the traditions side by side by the time scale each counts on and does not claim that they are one system. See [SCHOLARSHIP.md](SCHOLARSHIP.md).
 
 ## The conventions that change a forecast
 

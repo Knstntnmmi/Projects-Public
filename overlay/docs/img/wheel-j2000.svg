@@ -1,0 +1,502 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ov ov-wheel" viewBox="0 0 1000 1274" role="img" aria-label="The J2000 epoch read across seven rings">
+<style>
+.ov{--ov-bg:#fbfaf6;--ov-panel:#f1efe8;--ov-ink:#22201b;--ov-muted:#6f6a5f;--ov-line:#cfcabb;--ov-accent:#a23b2a;--ov-fire:#e8a08a;--ov-earth:#d9c48f;--ov-air:#bcd3e6;--ov-water:#8fb4d9;--ov-wood:#a9cf9c;--ov-metal:#d5d7dc;--ov-sun:#f0c35a;--ov-moon:#cfd6e4;--ov-mercury:#b8dcc8;--ov-venus:#e9b9cf;--ov-mars:#e58f7c;--ov-jupiter:#b9b3e6;--ov-saturn:#a9a79d;--ov-node:#c9c2b0;--ov-rahu:#8f9bb3;--ov-ketu:#c7a98f;--ov-jie:#e7d9b8;--ov-qi:#f4eedd;font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Noto Serif","Songti SC","Noto Serif CJK SC",serif;color:var(--ov-ink)}
+@media (prefers-color-scheme:dark){.ov:not([data-theme="light"]){--ov-bg:#16161a;--ov-panel:#1f2026;--ov-ink:#ece8dd;--ov-muted:#9a968a;--ov-line:#3a3b44;--ov-accent:#f08a6c;--ov-fire:#8a3f31;--ov-earth:#6f5f2c;--ov-air:#33506b;--ov-water:#234a75;--ov-wood:#2f5f39;--ov-metal:#4a4d57;--ov-sun:#8a6a17;--ov-moon:#4a5266;--ov-mercury:#2f5f4b;--ov-venus:#7a3f5c;--ov-mars:#8c3a2b;--ov-jupiter:#4a4390;--ov-saturn:#55534b;--ov-node:#514c40;--ov-rahu:#3d4963;--ov-ketu:#6a4f38;--ov-jie:#4d4530;--ov-qi:#2c2a22}}
+.ov[data-theme="dark"]{--ov-bg:#16161a;--ov-panel:#1f2026;--ov-ink:#ece8dd;--ov-muted:#9a968a;--ov-line:#3a3b44;--ov-accent:#f08a6c;--ov-fire:#8a3f31;--ov-earth:#6f5f2c;--ov-air:#33506b;--ov-water:#234a75;--ov-wood:#2f5f39;--ov-metal:#4a4d57;--ov-sun:#8a6a17;--ov-moon:#4a5266;--ov-mercury:#2f5f4b;--ov-venus:#7a3f5c;--ov-mars:#8c3a2b;--ov-jupiter:#4a4390;--ov-saturn:#55534b;--ov-node:#514c40;--ov-rahu:#3d4963;--ov-ketu:#6a4f38;--ov-jie:#4d4530;--ov-qi:#2c2a22}
+.ov .bg{fill:var(--ov-bg)}
+.ov text{fill:var(--ov-ink)}
+.ov .muted{fill:var(--ov-muted)}
+.ov .seg{stroke:var(--ov-line);stroke-width:.6}
+.ov .seg:hover{stroke:var(--ov-ink);stroke-width:1.4}
+.ov .rule{stroke:var(--ov-line);fill:none}
+.ov .mark{stroke:var(--ov-ink);fill:none}
+.ov .accent{stroke:var(--ov-accent);fill:none}
+.ov .accent-text{fill:var(--ov-accent)}
+.ov .halo{paint-order:stroke;stroke:var(--ov-bg);stroke-width:3px;stroke-linejoin:round}
+.ov .t-fire{fill:var(--ov-fire)}
+.ov .t-earth{fill:var(--ov-earth)}
+.ov .t-air{fill:var(--ov-air)}
+.ov .t-water{fill:var(--ov-water)}
+.ov .t-wood{fill:var(--ov-wood)}
+.ov .t-metal{fill:var(--ov-metal)}
+.ov .t-sun{fill:var(--ov-sun)}
+.ov .t-moon{fill:var(--ov-moon)}
+.ov .t-mercury{fill:var(--ov-mercury)}
+.ov .t-venus{fill:var(--ov-venus)}
+.ov .t-mars{fill:var(--ov-mars)}
+.ov .t-jupiter{fill:var(--ov-jupiter)}
+.ov .t-saturn{fill:var(--ov-saturn)}
+.ov .t-node{fill:var(--ov-node)}
+.ov .t-rahu{fill:var(--ov-rahu)}
+.ov .t-ketu{fill:var(--ov-ketu)}
+.ov .t-jie{fill:var(--ov-jie)}
+.ov .t-qi{fill:var(--ov-qi)}
+.ov .t-yang{fill:var(--ov-ink)}
+.ov .t-none{fill:var(--ov-panel)}
+</style>
+<rect class="bg" width="1000" height="1274"/>
+<text x="500" y="32" text-anchor="middle" font-size="20">The J2000 epoch read across seven rings</text>
+<g data-ring="zodiac">
+<path class="seg t-fire" d="M82 546A418 418 0 0 0 138 755L175.12 733.57A375.14 375.14 0 0 1 124.86 546Z" data-label="Aries, domicile of Mars" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Aries, domicile of Mars</title></path>
+<text x="116.94" y="648.64" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♈︎</text>
+<path class="seg t-earth" d="M138 755A418 418 0 0 0 291 908L312.43 870.88A375.14 375.14 0 0 1 175.12 733.57Z" data-label="Taurus, domicile of Venus" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Taurus, domicile of Venus</title></path>
+<text x="219.58" y="826.42" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♉︎</text>
+<path class="seg t-air" d="M291 908A418 418 0 0 0 500 964L500 921.14A375.14 375.14 0 0 1 312.43 870.88Z" data-label="Gemini, domicile of Mercury" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Gemini, domicile of Mercury</title></path>
+<text x="397.36" y="929.06" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♊︎</text>
+<path class="seg t-water" d="M500 964A418 418 0 0 0 709 908L687.57 870.88A375.14 375.14 0 0 1 500 921.14Z" data-label="Cancer, domicile of Moon" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Cancer, domicile of Moon</title></path>
+<text x="602.64" y="929.06" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♋︎</text>
+<path class="seg t-fire" d="M709 908A418 418 0 0 0 862 755L824.88 733.57A375.14 375.14 0 0 1 687.57 870.88Z" data-label="Leo, domicile of Sun" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Leo, domicile of Sun</title></path>
+<text x="780.42" y="826.42" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♌︎</text>
+<path class="seg t-earth" d="M862 755A418 418 0 0 0 918 546L875.14 546A375.14 375.14 0 0 1 824.88 733.57Z" data-label="Virgo, domicile of Mercury" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Virgo, domicile of Mercury</title></path>
+<text x="883.06" y="648.64" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♍︎</text>
+<path class="seg t-air" d="M918 546A418 418 0 0 0 862 337L824.88 358.43A375.14 375.14 0 0 1 875.14 546Z" data-label="Libra, domicile of Venus" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Libra, domicile of Venus</title></path>
+<text x="883.06" y="443.36" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♎︎</text>
+<path class="seg t-water" d="M862 337A418 418 0 0 0 709 184L687.57 221.12A375.14 375.14 0 0 1 824.88 358.43Z" data-label="Scorpio, domicile of Mars" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Scorpio, domicile of Mars</title></path>
+<text x="780.42" y="265.58" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♏︎</text>
+<path class="seg t-fire" d="M709 184A418 418 0 0 0 500 128L500 170.86A375.14 375.14 0 0 1 687.57 221.12Z" data-label="Sagittarius, domicile of Jupiter" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Sagittarius, domicile of Jupiter</title></path>
+<text x="602.64" y="162.94" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♐︎</text>
+<path class="seg t-earth" d="M500 128A418 418 0 0 0 291 184L312.43 221.12A375.14 375.14 0 0 1 500 170.86Z" data-label="Capricorn, domicile of Saturn" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Capricorn, domicile of Saturn</title></path>
+<text x="397.36" y="162.94" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♑︎</text>
+<path class="seg t-air" d="M291 184A418 418 0 0 0 138 337L175.12 358.43A375.14 375.14 0 0 1 312.43 221.12Z" data-label="Aquarius, domicile of Saturn" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Aquarius, domicile of Saturn</title></path>
+<text x="219.58" y="265.58" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♒︎</text>
+<path class="seg t-water" d="M138 337A418 418 0 0 0 82 546L124.86 546A375.14 375.14 0 0 1 175.12 358.43Z" data-label="Pisces, domicile of Jupiter" data-ring-title="Tropical zodiac"><title>Tropical zodiac: Pisces, domicile of Jupiter</title></path>
+<text x="116.94" y="443.36" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">♓︎</text>
+</g>
+<g data-ring="terms">
+<path class="seg t-jie" d="M234.73 280.73A375.14 375.14 0 0 0 175.12 358.43L212.23 379.86A332.29 332.29 0 0 1 265.04 311.04Z" data-label="立春 Lichun (Start of Spring), from 315 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 立春 Lichun (Start of Spring), from 315 degrees; opens a BaZi month</title></path>
+<text x="219.38" y="330.67" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">立春</text>
+<path class="seg t-qi" d="M175.12 358.43A375.14 375.14 0 0 0 137.64 448.91L179.04 460A332.29 332.29 0 0 1 212.23 379.86Z" data-label="雨水 Yushui (Rain Water), from 330 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 雨水 Yushui (Rain Water), from 330 degrees; a sign ingress</title></path>
+<text x="173.21" y="410.64" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">雨水</text>
+<path class="seg t-jie" d="M137.64 448.91A375.14 375.14 0 0 0 124.86 546L167.71 546A332.29 332.29 0 0 1 179.04 460Z" data-label="驚蟄 Jingzhe (Awakening of Insects), from 345 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 驚蟄 Jingzhe (Awakening of Insects), from 345 degrees; opens a BaZi month</title></path>
+<text x="149.31" y="499.83" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">驚蟄</text>
+<path class="seg t-qi" d="M124.86 546A375.14 375.14 0 0 0 137.64 643.09L179.04 632A332.29 332.29 0 0 1 167.71 546Z" data-label="春分 Chunfen (Spring Equinox), from 0 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 春分 Chunfen (Spring Equinox), from 0 degrees; a sign ingress</title></path>
+<text x="149.31" y="592.17" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">春分</text>
+<path class="seg t-jie" d="M137.64 643.09A375.14 375.14 0 0 0 175.12 733.57L212.23 712.14A332.29 332.29 0 0 1 179.04 632Z" data-label="清明 Qingming (Clear and Bright), from 15 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 清明 Qingming (Clear and Bright), from 15 degrees; opens a BaZi month</title></path>
+<text x="173.21" y="681.36" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">清明</text>
+<path class="seg t-qi" d="M175.12 733.57A375.14 375.14 0 0 0 234.73 811.27L265.04 780.96A332.29 332.29 0 0 1 212.23 712.14Z" data-label="穀雨 Guyu (Grain Rain), from 30 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 穀雨 Guyu (Grain Rain), from 30 degrees; a sign ingress</title></path>
+<text x="219.38" y="761.33" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">穀雨</text>
+<path class="seg t-jie" d="M234.73 811.27A375.14 375.14 0 0 0 312.43 870.88L333.86 833.77A332.29 332.29 0 0 1 265.04 780.96Z" data-label="立夏 Lixia (Start of Summer), from 45 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 立夏 Lixia (Start of Summer), from 45 degrees; opens a BaZi month</title></path>
+<text x="284.67" y="826.62" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">立夏</text>
+<path class="seg t-qi" d="M312.43 870.88A375.14 375.14 0 0 0 402.91 908.36L414 866.96A332.29 332.29 0 0 1 333.86 833.77Z" data-label="小滿 Xiaoman (Grain Buds), from 60 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 小滿 Xiaoman (Grain Buds), from 60 degrees; a sign ingress</title></path>
+<text x="364.64" y="872.79" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">小滿</text>
+<path class="seg t-jie" d="M402.91 908.36A375.14 375.14 0 0 0 500 921.14L500 878.29A332.29 332.29 0 0 1 414 866.96Z" data-label="芒種 Mangzhong (Grain in Ear), from 75 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 芒種 Mangzhong (Grain in Ear), from 75 degrees; opens a BaZi month</title></path>
+<text x="453.83" y="896.69" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">芒種</text>
+<path class="seg t-qi" d="M500 921.14A375.14 375.14 0 0 0 597.09 908.36L586 866.96A332.29 332.29 0 0 1 500 878.29Z" data-label="夏至 Xiazhi (Summer Solstice), from 90 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 夏至 Xiazhi (Summer Solstice), from 90 degrees; a sign ingress</title></path>
+<text x="546.17" y="896.69" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">夏至</text>
+<path class="seg t-jie" d="M597.09 908.36A375.14 375.14 0 0 0 687.57 870.88L666.14 833.77A332.29 332.29 0 0 1 586 866.96Z" data-label="小暑 Xiaoshu (Minor Heat), from 105 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 小暑 Xiaoshu (Minor Heat), from 105 degrees; opens a BaZi month</title></path>
+<text x="635.36" y="872.79" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">小暑</text>
+<path class="seg t-qi" d="M687.57 870.88A375.14 375.14 0 0 0 765.27 811.27L734.96 780.96A332.29 332.29 0 0 1 666.14 833.77Z" data-label="大暑 Dashu (Major Heat), from 120 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 大暑 Dashu (Major Heat), from 120 degrees; a sign ingress</title></path>
+<text x="715.33" y="826.62" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">大暑</text>
+<path class="seg t-jie" d="M765.27 811.27A375.14 375.14 0 0 0 824.88 733.57L787.77 712.14A332.29 332.29 0 0 1 734.96 780.96Z" data-label="立秋 Liqiu (Start of Autumn), from 135 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 立秋 Liqiu (Start of Autumn), from 135 degrees; opens a BaZi month</title></path>
+<text x="780.62" y="761.33" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">立秋</text>
+<path class="seg t-qi" d="M824.88 733.57A375.14 375.14 0 0 0 862.36 643.09L820.96 632A332.29 332.29 0 0 1 787.77 712.14Z" data-label="處暑 Chushu (End of Heat), from 150 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 處暑 Chushu (End of Heat), from 150 degrees; a sign ingress</title></path>
+<text x="826.79" y="681.36" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">處暑</text>
+<path class="seg t-jie" d="M862.36 643.09A375.14 375.14 0 0 0 875.14 546L832.29 546A332.29 332.29 0 0 1 820.96 632Z" data-label="白露 Bailu (White Dew), from 165 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 白露 Bailu (White Dew), from 165 degrees; opens a BaZi month</title></path>
+<text x="850.69" y="592.17" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">白露</text>
+<path class="seg t-qi" d="M875.14 546A375.14 375.14 0 0 0 862.36 448.91L820.96 460A332.29 332.29 0 0 1 832.29 546Z" data-label="秋分 Qiufen (Autumn Equinox), from 180 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 秋分 Qiufen (Autumn Equinox), from 180 degrees; a sign ingress</title></path>
+<text x="850.69" y="499.83" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">秋分</text>
+<path class="seg t-jie" d="M862.36 448.91A375.14 375.14 0 0 0 824.88 358.43L787.77 379.86A332.29 332.29 0 0 1 820.96 460Z" data-label="寒露 Hanlu (Cold Dew), from 195 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 寒露 Hanlu (Cold Dew), from 195 degrees; opens a BaZi month</title></path>
+<text x="826.79" y="410.64" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">寒露</text>
+<path class="seg t-qi" d="M824.88 358.43A375.14 375.14 0 0 0 765.27 280.73L734.96 311.04A332.29 332.29 0 0 1 787.77 379.86Z" data-label="霜降 Shuangjiang (Frost Descent), from 210 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 霜降 Shuangjiang (Frost Descent), from 210 degrees; a sign ingress</title></path>
+<text x="780.62" y="330.67" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">霜降</text>
+<path class="seg t-jie" d="M765.27 280.73A375.14 375.14 0 0 0 687.57 221.12L666.14 258.23A332.29 332.29 0 0 1 734.96 311.04Z" data-label="立冬 Lidong (Start of Winter), from 225 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 立冬 Lidong (Start of Winter), from 225 degrees; opens a BaZi month</title></path>
+<text x="715.33" y="265.38" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">立冬</text>
+<path class="seg t-qi" d="M687.57 221.12A375.14 375.14 0 0 0 597.09 183.64L586 225.04A332.29 332.29 0 0 1 666.14 258.23Z" data-label="小雪 Xiaoxue (Minor Snow), from 240 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 小雪 Xiaoxue (Minor Snow), from 240 degrees; a sign ingress</title></path>
+<text x="635.36" y="219.21" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">小雪</text>
+<path class="seg t-jie" d="M597.09 183.64A375.14 375.14 0 0 0 500 170.86L500 213.71A332.29 332.29 0 0 1 586 225.04Z" data-label="大雪 Daxue (Major Snow), from 255 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 大雪 Daxue (Major Snow), from 255 degrees; opens a BaZi month</title></path>
+<text x="546.17" y="195.31" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">大雪</text>
+<path class="seg t-qi" d="M500 170.86A375.14 375.14 0 0 0 402.91 183.64L414 225.04A332.29 332.29 0 0 1 500 213.71Z" data-label="冬至 Dongzhi (Winter Solstice), from 270 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 冬至 Dongzhi (Winter Solstice), from 270 degrees; a sign ingress</title></path>
+<text x="453.83" y="195.31" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">冬至</text>
+<path class="seg t-jie" d="M402.91 183.64A375.14 375.14 0 0 0 312.43 221.12L333.86 258.23A332.29 332.29 0 0 1 414 225.04Z" data-label="小寒 Xiaohan (Minor Cold), from 285 degrees; opens a BaZi month" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 小寒 Xiaohan (Minor Cold), from 285 degrees; opens a BaZi month</title></path>
+<text x="364.64" y="219.21" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">小寒</text>
+<path class="seg t-qi" d="M312.43 221.12A375.14 375.14 0 0 0 234.73 280.73L265.04 311.04A332.29 332.29 0 0 1 333.86 258.23Z" data-label="大寒 Dahan (Major Cold), from 300 degrees; a sign ingress" data-ring-title="Twenty-four solar terms"><title>Twenty-four solar terms: 大寒 Dahan (Major Cold), from 300 degrees; a sign ingress</title></path>
+<text x="284.67" y="265.38" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">大寒</text>
+</g>
+<g data-ring="branch-months">
+<path class="seg t-wood" d="M265.04 311.04A332.29 332.29 0 0 0 179.04 460L220.43 471.09A289.43 289.43 0 0 1 295.34 341.34Z" data-label="寅 Yin month (Tiger), Wood" data-ring-title="Branch months"><title>Branch months: 寅 Yin month (Tiger), Wood</title></path>
+<text x="230.79" y="390.57" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">寅</text>
+<path class="seg t-wood" d="M179.04 460A332.29 332.29 0 0 0 179.04 632L220.43 620.91A289.43 289.43 0 0 1 220.43 471.09Z" data-label="卯 Mao month (Rabbit), Wood" data-ring-title="Branch months"><title>Branch months: 卯 Mao month (Rabbit), Wood</title></path>
+<text x="189.14" y="546" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">卯</text>
+<path class="seg t-earth" d="M179.04 632A332.29 332.29 0 0 0 265.04 780.96L295.34 750.66A289.43 289.43 0 0 1 220.43 620.91Z" data-label="辰 Chen month (Dragon), Earth" data-ring-title="Branch months"><title>Branch months: 辰 Chen month (Dragon), Earth</title></path>
+<text x="230.79" y="701.43" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">辰</text>
+<path class="seg t-fire" d="M265.04 780.96A332.29 332.29 0 0 0 414 866.96L425.09 825.57A289.43 289.43 0 0 1 295.34 750.66Z" data-label="巳 Si month (Snake), Fire" data-ring-title="Branch months"><title>Branch months: 巳 Si month (Snake), Fire</title></path>
+<text x="344.57" y="815.21" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">巳</text>
+<path class="seg t-fire" d="M414 866.96A332.29 332.29 0 0 0 586 866.96L574.91 825.57A289.43 289.43 0 0 1 425.09 825.57Z" data-label="午 Wu month (Horse), Fire" data-ring-title="Branch months"><title>Branch months: 午 Wu month (Horse), Fire</title></path>
+<text x="500" y="856.86" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">午</text>
+<path class="seg t-earth" d="M586 866.96A332.29 332.29 0 0 0 734.96 780.96L704.66 750.66A289.43 289.43 0 0 1 574.91 825.57Z" data-label="未 Wei month (Goat), Earth" data-ring-title="Branch months"><title>Branch months: 未 Wei month (Goat), Earth</title></path>
+<text x="655.43" y="815.21" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">未</text>
+<path class="seg t-metal" d="M734.96 780.96A332.29 332.29 0 0 0 820.96 632L779.57 620.91A289.43 289.43 0 0 1 704.66 750.66Z" data-label="申 Shen month (Monkey), Metal" data-ring-title="Branch months"><title>Branch months: 申 Shen month (Monkey), Metal</title></path>
+<text x="769.21" y="701.43" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">申</text>
+<path class="seg t-metal" d="M820.96 632A332.29 332.29 0 0 0 820.96 460L779.57 471.09A289.43 289.43 0 0 1 779.57 620.91Z" data-label="酉 You month (Rooster), Metal" data-ring-title="Branch months"><title>Branch months: 酉 You month (Rooster), Metal</title></path>
+<text x="810.86" y="546" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">酉</text>
+<path class="seg t-earth" d="M820.96 460A332.29 332.29 0 0 0 734.96 311.04L704.66 341.34A289.43 289.43 0 0 1 779.57 471.09Z" data-label="戌 Xu month (Dog), Earth" data-ring-title="Branch months"><title>Branch months: 戌 Xu month (Dog), Earth</title></path>
+<text x="769.21" y="390.57" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">戌</text>
+<path class="seg t-water" d="M734.96 311.04A332.29 332.29 0 0 0 586 225.04L574.91 266.43A289.43 289.43 0 0 1 704.66 341.34Z" data-label="亥 Hai month (Pig), Water" data-ring-title="Branch months"><title>Branch months: 亥 Hai month (Pig), Water</title></path>
+<text x="655.43" y="276.79" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">亥</text>
+<path class="seg t-water" d="M586 225.04A332.29 332.29 0 0 0 414 225.04L425.09 266.43A289.43 289.43 0 0 1 574.91 266.43Z" data-label="子 Zi month (Rat), Water" data-ring-title="Branch months"><title>Branch months: 子 Zi month (Rat), Water</title></path>
+<text x="500" y="235.14" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">子</text>
+<path class="seg t-earth" d="M414 225.04A332.29 332.29 0 0 0 265.04 311.04L295.34 341.34A289.43 289.43 0 0 1 425.09 266.43Z" data-label="丑 Chou month (Ox), Earth" data-ring-title="Branch months"><title>Branch months: 丑 Chou month (Ox), Earth</title></path>
+<text x="344.57" y="276.79" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">丑</text>
+</g>
+<g data-ring="sovereign">
+<path class="seg t-yang" fill-opacity="0.47" d="M574.91 266.43A289.43 289.43 0 0 0 425.09 266.43L436.18 307.83A246.57 246.57 0 0 1 563.82 307.83Z" data-label="復 Fu (Return), sovereign of the 子 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 復 Fu (Return), sovereign of the 子 month</title></path>
+<text x="500" y="278" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷗</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M425.09 266.43A289.43 289.43 0 0 0 295.34 341.34L325.65 371.65A246.57 246.57 0 0 1 436.18 307.83Z" data-label="臨 Lin (Approach), sovereign of the 丑 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 臨 Lin (Approach), sovereign of the 丑 month</title></path>
+<text x="366" y="313.91" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷒</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M295.34 341.34A289.43 289.43 0 0 0 220.43 471.09L261.83 482.18A246.57 246.57 0 0 1 325.65 371.65Z" data-label="泰 Tai (Flowing), sovereign of the 寅 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 泰 Tai (Flowing), sovereign of the 寅 month</title></path>
+<text x="267.91" y="412" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷊</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M220.43 471.09A289.43 289.43 0 0 0 220.43 620.91L261.83 609.82A246.57 246.57 0 0 1 261.83 482.18Z" data-label="大壯 Da Zhuang (Great Strength), sovereign of the 卯 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 大壯 Da Zhuang (Great Strength), sovereign of the 卯 month</title></path>
+<text x="232" y="546" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷡</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M220.43 620.91A289.43 289.43 0 0 0 295.34 750.66L325.65 720.35A246.57 246.57 0 0 1 261.83 609.82Z" data-label="夬 Guai (Resolution), sovereign of the 辰 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 夬 Guai (Resolution), sovereign of the 辰 month</title></path>
+<text x="267.91" y="680" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷪</text>
+<path class="seg t-yang" fill-opacity="0.04" d="M295.34 750.66A289.43 289.43 0 0 0 425.09 825.57L436.18 784.17A246.57 246.57 0 0 1 325.65 720.35Z" data-label="乾 Qian (Heaven), sovereign of the 巳 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 乾 Qian (Heaven), sovereign of the 巳 month</title></path>
+<text x="366" y="778.09" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷀</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M425.09 825.57A289.43 289.43 0 0 0 574.91 825.57L563.82 784.17A246.57 246.57 0 0 1 436.18 784.17Z" data-label="姤 Gou (Encounter), sovereign of the 午 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 姤 Gou (Encounter), sovereign of the 午 month</title></path>
+<text x="500" y="814" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷫</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M574.91 825.57A289.43 289.43 0 0 0 704.66 750.66L674.35 720.35A246.57 246.57 0 0 1 563.82 784.17Z" data-label="遯 Dun (Withdrawal), sovereign of the 未 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 遯 Dun (Withdrawal), sovereign of the 未 month</title></path>
+<text x="634" y="778.09" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷠</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M704.66 750.66A289.43 289.43 0 0 0 779.57 620.91L738.17 609.82A246.57 246.57 0 0 1 674.35 720.35Z" data-label="否 Pi (Blocked), sovereign of the 申 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 否 Pi (Blocked), sovereign of the 申 month</title></path>
+<text x="732.09" y="680" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷋</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M779.57 620.91A289.43 289.43 0 0 0 779.57 471.09L738.17 482.18A246.57 246.57 0 0 1 738.17 609.82Z" data-label="觀 Guan (Viewing), sovereign of the 酉 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 觀 Guan (Viewing), sovereign of the 酉 month</title></path>
+<text x="768" y="546" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷓</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M779.57 471.09A289.43 289.43 0 0 0 704.66 341.34L674.35 371.65A246.57 246.57 0 0 1 738.17 482.18Z" data-label="剝 Bo (Stripping), sovereign of the 戌 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 剝 Bo (Stripping), sovereign of the 戌 month</title></path>
+<text x="732.09" y="412" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷖</text>
+<path class="seg t-yang" fill-opacity="0.55" d="M704.66 341.34A289.43 289.43 0 0 0 574.91 266.43L563.82 307.83A246.57 246.57 0 0 1 674.35 371.65Z" data-label="坤 Kun (Earth), sovereign of the 亥 month" data-ring-title="Twelve sovereign hexagrams"><title>Twelve sovereign hexagrams: 坤 Kun (Earth), sovereign of the 亥 month</title></path>
+<text x="634" y="313.91" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷁</text>
+</g>
+<g data-ring="gua-qi">
+<path class="seg t-yang" fill-opacity="0.21" d="M500 299.43A246.57 246.57 0 0 0 474.23 300.78L478.71 343.4A203.71 203.71 0 0 1 500 342.29Z" data-label="中孚 Zhong Fu (Inner Truth), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 中孚 Zhong Fu (Inner Truth), 公 Duke</title></path>
+<text x="488.22" y="321.17" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷼</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M474.23 300.78A246.57 246.57 0 0 0 448.73 304.82L457.65 346.74A203.71 203.71 0 0 1 478.71 343.4Z" data-label="復 Fu (Return), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 復 Fu (Return), 辟 Sovereign</title></path>
+<text x="464.78" y="323.63" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷗</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M448.73 304.82A246.57 246.57 0 0 0 423.81 311.5L437.05 352.26A203.71 203.71 0 0 1 457.65 346.74Z" data-label="屯 Zhun (Sprouting), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 屯 Zhun (Sprouting), 侯 Marquis</title></path>
+<text x="441.73" y="328.53" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷂</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M423.81 311.5A246.57 246.57 0 0 0 399.71 320.75L417.14 359.9A203.71 203.71 0 0 1 437.05 352.26Z" data-label="謙 Qian (Modesty), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 謙 Qian (Modesty), 大夫 Great Officer</title></path>
+<text x="419.32" y="335.81" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷎</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M399.71 320.75A246.57 246.57 0 0 0 376.71 332.46L398.14 369.58A203.71 203.71 0 0 1 417.14 359.9Z" data-label="睽 Kui (Divergence), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 睽 Kui (Divergence), 卿 Minister</title></path>
+<text x="397.79" y="345.4" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷥</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M376.71 332.46A246.57 246.57 0 0 0 355.07 346.52L380.26 381.19A203.71 203.71 0 0 1 398.14 369.58Z" data-label="升 Sheng (Ascent), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 升 Sheng (Ascent), 公 Duke</title></path>
+<text x="377.38" y="357.18" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷭</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M355.07 346.52A246.57 246.57 0 0 0 335.01 362.76L363.69 394.61A203.71 203.71 0 0 1 380.26 381.19Z" data-label="臨 Lin (Approach), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 臨 Lin (Approach), 辟 Sovereign</title></path>
+<text x="358.31" y="371.03" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷒</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M335.01 362.76A246.57 246.57 0 0 0 316.76 381.01L348.61 409.69A203.71 203.71 0 0 1 363.69 394.61Z" data-label="小過 Xiao Guo (Small Excess), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 小過 Xiao Guo (Small Excess), 侯 Marquis</title></path>
+<text x="340.8" y="386.8" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷽</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M316.76 381.01A246.57 246.57 0 0 0 300.52 401.07L335.19 426.26A203.71 203.71 0 0 1 348.61 409.69Z" data-label="蒙 Meng (Unformed), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 蒙 Meng (Unformed), 大夫 Great Officer</title></path>
+<text x="325.03" y="404.31" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷃</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M300.52 401.07A246.57 246.57 0 0 0 286.46 422.71L323.58 444.14A203.71 203.71 0 0 1 335.19 426.26Z" data-label="益 Yi (Increase), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 益 Yi (Increase), 卿 Minister</title></path>
+<text x="311.18" y="423.38" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷩</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M286.46 422.71A246.57 246.57 0 0 0 274.75 445.71L313.9 463.14A203.71 203.71 0 0 1 323.58 444.14Z" data-label="漸 Jian (Gradual Progress), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 漸 Jian (Gradual Progress), 公 Duke</title></path>
+<text x="299.4" y="443.79" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷴</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M274.75 445.71A246.57 246.57 0 0 0 265.5 469.81L306.26 483.05A203.71 203.71 0 0 1 313.9 463.14Z" data-label="泰 Tai (Flowing), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 泰 Tai (Flowing), 辟 Sovereign</title></path>
+<text x="289.81" y="465.32" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷊</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M265.5 469.81A246.57 246.57 0 0 0 258.82 494.73L300.74 503.65A203.71 203.71 0 0 1 306.26 483.05Z" data-label="需 Xu (Waiting), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 需 Xu (Waiting), 侯 Marquis</title></path>
+<text x="282.53" y="487.73" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷄</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M258.82 494.73A246.57 246.57 0 0 0 254.78 520.23L297.4 524.71A203.71 203.71 0 0 1 300.74 503.65Z" data-label="隨 Sui (Following), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 隨 Sui (Following), 大夫 Great Officer</title></path>
+<text x="277.63" y="510.78" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷐</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M254.78 520.23A246.57 246.57 0 0 0 253.43 546L296.29 546A203.71 203.71 0 0 1 297.4 524.71Z" data-label="晉 Jin (Advance), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 晉 Jin (Advance), 卿 Minister</title></path>
+<text x="275.17" y="534.22" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷢</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M253.43 546A246.57 246.57 0 0 0 254.78 571.77L297.4 567.29A203.71 203.71 0 0 1 296.29 546Z" data-label="解 Xie (Release), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 解 Xie (Release), 公 Duke</title></path>
+<text x="275.17" y="557.78" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷧</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M254.78 571.77A246.57 246.57 0 0 0 258.82 597.27L300.74 588.35A203.71 203.71 0 0 1 297.4 567.29Z" data-label="大壯 Da Zhuang (Great Strength), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 大壯 Da Zhuang (Great Strength), 辟 Sovereign</title></path>
+<text x="277.63" y="581.22" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷡</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M258.82 597.27A246.57 246.57 0 0 0 265.5 622.19L306.26 608.95A203.71 203.71 0 0 1 300.74 588.35Z" data-label="豫 Yu (Readiness), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 豫 Yu (Readiness), 侯 Marquis</title></path>
+<text x="282.53" y="604.27" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷏</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M265.5 622.19A246.57 246.57 0 0 0 274.75 646.29L313.9 628.86A203.71 203.71 0 0 1 306.26 608.95Z" data-label="訟 Song (Dispute), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 訟 Song (Dispute), 大夫 Great Officer</title></path>
+<text x="289.81" y="626.68" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷅</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M274.75 646.29A246.57 246.57 0 0 0 286.46 669.29L323.58 647.86A203.71 203.71 0 0 1 313.9 628.86Z" data-label="蠱 Gu (Decay), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 蠱 Gu (Decay), 卿 Minister</title></path>
+<text x="299.4" y="648.21" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷑</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M286.46 669.29A246.57 246.57 0 0 0 300.52 690.93L335.19 665.74A203.71 203.71 0 0 1 323.58 647.86Z" data-label="革 Ge (Change), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 革 Ge (Change), 公 Duke</title></path>
+<text x="311.18" y="668.62" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷰</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M300.52 690.93A246.57 246.57 0 0 0 316.76 710.99L348.61 682.31A203.71 203.71 0 0 1 335.19 665.74Z" data-label="夬 Guai (Resolution), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 夬 Guai (Resolution), 辟 Sovereign</title></path>
+<text x="325.03" y="687.69" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷪</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M316.76 710.99A246.57 246.57 0 0 0 335.01 729.24L363.69 697.39A203.71 203.71 0 0 1 348.61 682.31Z" data-label="旅 Lu (The Traveller), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 旅 Lu (The Traveller), 侯 Marquis</title></path>
+<text x="340.8" y="705.2" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷷</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M335.01 729.24A246.57 246.57 0 0 0 355.07 745.48L380.26 710.81A203.71 203.71 0 0 1 363.69 697.39Z" data-label="師 Shi (The Host), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 師 Shi (The Host), 大夫 Great Officer</title></path>
+<text x="358.31" y="720.97" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷆</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M355.07 745.48A246.57 246.57 0 0 0 376.71 759.54L398.14 722.42A203.71 203.71 0 0 1 380.26 710.81Z" data-label="比 Bi (Alliance), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 比 Bi (Alliance), 卿 Minister</title></path>
+<text x="377.38" y="734.82" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷇</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M376.71 759.54A246.57 246.57 0 0 0 399.71 771.25L417.14 732.1A203.71 203.71 0 0 1 398.14 722.42Z" data-label="小畜 Xiao Xu (Small Gathering), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 小畜 Xiao Xu (Small Gathering), 公 Duke</title></path>
+<text x="397.79" y="746.6" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷈</text>
+<path class="seg t-yang" fill-opacity="0.04" d="M399.71 771.25A246.57 246.57 0 0 0 423.81 780.5L437.05 739.74A203.71 203.71 0 0 1 417.14 732.1Z" data-label="乾 Qian (Heaven), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 乾 Qian (Heaven), 辟 Sovereign</title></path>
+<text x="419.32" y="756.19" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷀</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M423.81 780.5A246.57 246.57 0 0 0 448.73 787.18L457.65 745.26A203.71 203.71 0 0 1 437.05 739.74Z" data-label="大有 Da You (Great Holding), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 大有 Da You (Great Holding), 侯 Marquis</title></path>
+<text x="441.73" y="763.47" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷍</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M448.73 787.18A246.57 246.57 0 0 0 474.23 791.22L478.71 748.6A203.71 203.71 0 0 1 457.65 745.26Z" data-label="家人 Jia Ren (Household), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 家人 Jia Ren (Household), 大夫 Great Officer</title></path>
+<text x="464.78" y="768.37" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷤</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M474.23 791.22A246.57 246.57 0 0 0 500 792.57L500 749.71A203.71 203.71 0 0 1 478.71 748.6Z" data-label="井 Jing (The Well), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 井 Jing (The Well), 卿 Minister</title></path>
+<text x="488.22" y="770.83" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷯</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M500 792.57A246.57 246.57 0 0 0 525.77 791.22L521.29 748.6A203.71 203.71 0 0 1 500 749.71Z" data-label="咸 Xian (Mutual Feeling), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 咸 Xian (Mutual Feeling), 公 Duke</title></path>
+<text x="511.78" y="770.83" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷞</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M525.77 791.22A246.57 246.57 0 0 0 551.27 787.18L542.35 745.26A203.71 203.71 0 0 1 521.29 748.6Z" data-label="姤 Gou (Encounter), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 姤 Gou (Encounter), 辟 Sovereign</title></path>
+<text x="535.22" y="768.37" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷫</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M551.27 787.18A246.57 246.57 0 0 0 576.19 780.5L562.95 739.74A203.71 203.71 0 0 1 542.35 745.26Z" data-label="鼎 Ding (The Cauldron), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 鼎 Ding (The Cauldron), 侯 Marquis</title></path>
+<text x="558.27" y="763.47" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷱</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M576.19 780.5A246.57 246.57 0 0 0 600.29 771.25L582.86 732.1A203.71 203.71 0 0 1 562.95 739.74Z" data-label="豐 Feng (Abundance), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 豐 Feng (Abundance), 大夫 Great Officer</title></path>
+<text x="580.68" y="756.19" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷶</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M600.29 771.25A246.57 246.57 0 0 0 623.29 759.54L601.86 722.42A203.71 203.71 0 0 1 582.86 732.1Z" data-label="渙 Huan (Dispersal), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 渙 Huan (Dispersal), 卿 Minister</title></path>
+<text x="602.21" y="746.6" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷺</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M623.29 759.54A246.57 246.57 0 0 0 644.93 745.48L619.74 710.81A203.71 203.71 0 0 1 601.86 722.42Z" data-label="履 Lu (Treading), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 履 Lu (Treading), 公 Duke</title></path>
+<text x="622.62" y="734.82" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷉</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M644.93 745.48A246.57 246.57 0 0 0 664.99 729.24L636.31 697.39A203.71 203.71 0 0 1 619.74 710.81Z" data-label="遯 Dun (Withdrawal), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 遯 Dun (Withdrawal), 辟 Sovereign</title></path>
+<text x="641.69" y="720.97" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷠</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M664.99 729.24A246.57 246.57 0 0 0 683.24 710.99L651.39 682.31A203.71 203.71 0 0 1 636.31 697.39Z" data-label="恆 Heng (Constancy), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 恆 Heng (Constancy), 侯 Marquis</title></path>
+<text x="659.2" y="705.2" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷟</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M683.24 710.99A246.57 246.57 0 0 0 699.48 690.93L664.81 665.74A203.71 203.71 0 0 1 651.39 682.31Z" data-label="節 Jie (Limits), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 節 Jie (Limits), 大夫 Great Officer</title></path>
+<text x="674.97" y="687.69" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷻</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M699.48 690.93A246.57 246.57 0 0 0 713.54 669.29L676.42 647.86A203.71 203.71 0 0 1 664.81 665.74Z" data-label="同人 Tong Ren (Fellowship), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 同人 Tong Ren (Fellowship), 卿 Minister</title></path>
+<text x="688.82" y="668.62" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷌</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M713.54 669.29A246.57 246.57 0 0 0 725.25 646.29L686.1 628.86A203.71 203.71 0 0 1 676.42 647.86Z" data-label="損 Sun (Decrease), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 損 Sun (Decrease), 公 Duke</title></path>
+<text x="700.6" y="648.21" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷨</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M725.25 646.29A246.57 246.57 0 0 0 734.5 622.19L693.74 608.95A203.71 203.71 0 0 1 686.1 628.86Z" data-label="否 Pi (Blocked), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 否 Pi (Blocked), 辟 Sovereign</title></path>
+<text x="710.19" y="626.68" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷋</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M734.5 622.19A246.57 246.57 0 0 0 741.18 597.27L699.26 588.35A203.71 203.71 0 0 1 693.74 608.95Z" data-label="巽 Xun (Wind), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 巽 Xun (Wind), 侯 Marquis</title></path>
+<text x="717.47" y="604.27" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷸</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M741.18 597.27A246.57 246.57 0 0 0 745.22 571.77L702.6 567.29A203.71 203.71 0 0 1 699.26 588.35Z" data-label="萃 Cui (Assembly), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 萃 Cui (Assembly), 大夫 Great Officer</title></path>
+<text x="722.37" y="581.22" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷬</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M745.22 571.77A246.57 246.57 0 0 0 746.57 546L703.71 546A203.71 203.71 0 0 1 702.6 567.29Z" data-label="大畜 Da Xu (Great Gathering), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 大畜 Da Xu (Great Gathering), 卿 Minister</title></path>
+<text x="724.83" y="557.78" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷙</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M746.57 546A246.57 246.57 0 0 0 745.22 520.23L702.6 524.71A203.71 203.71 0 0 1 703.71 546Z" data-label="賁 Bi (Adornment), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 賁 Bi (Adornment), 公 Duke</title></path>
+<text x="724.83" y="534.22" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷕</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M745.22 520.23A246.57 246.57 0 0 0 741.18 494.73L699.26 503.65A203.71 203.71 0 0 1 702.6 524.71Z" data-label="觀 Guan (Viewing), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 觀 Guan (Viewing), 辟 Sovereign</title></path>
+<text x="722.37" y="510.78" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷓</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M741.18 494.73A246.57 246.57 0 0 0 734.5 469.81L693.74 483.05A203.71 203.71 0 0 1 699.26 503.65Z" data-label="歸妹 Gui Mei (Marrying Maiden), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 歸妹 Gui Mei (Marrying Maiden), 侯 Marquis</title></path>
+<text x="717.47" y="487.73" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷵</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M734.5 469.81A246.57 246.57 0 0 0 725.25 445.71L686.1 463.14A203.71 203.71 0 0 1 693.74 483.05Z" data-label="無妄 Wu Wang (Without Error), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 無妄 Wu Wang (Without Error), 大夫 Great Officer</title></path>
+<text x="710.19" y="465.32" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷘</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M725.25 445.71A246.57 246.57 0 0 0 713.54 422.71L676.42 444.14A203.71 203.71 0 0 1 686.1 463.14Z" data-label="明夷 Ming Yi (Light Wounded), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 明夷 Ming Yi (Light Wounded), 卿 Minister</title></path>
+<text x="700.6" y="443.79" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷣</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M713.54 422.71A246.57 246.57 0 0 0 699.48 401.07L664.81 426.26A203.71 203.71 0 0 1 676.42 444.14Z" data-label="困 Kun (Confinement), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 困 Kun (Confinement), 公 Duke</title></path>
+<text x="688.82" y="423.38" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷮</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M699.48 401.07A246.57 246.57 0 0 0 683.24 381.01L651.39 409.69A203.71 203.71 0 0 1 664.81 426.26Z" data-label="剝 Bo (Stripping), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 剝 Bo (Stripping), 辟 Sovereign</title></path>
+<text x="674.97" y="404.31" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷖</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M683.24 381.01A246.57 246.57 0 0 0 664.99 362.76L636.31 394.61A203.71 203.71 0 0 1 651.39 409.69Z" data-label="艮 Gen (Stillness), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 艮 Gen (Stillness), 侯 Marquis</title></path>
+<text x="659.2" y="386.8" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷳</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M664.99 362.76A246.57 246.57 0 0 0 644.93 346.52L619.74 381.19A203.71 203.71 0 0 1 636.31 394.61Z" data-label="既濟 Ji Ji (Already Across), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 既濟 Ji Ji (Already Across), 大夫 Great Officer</title></path>
+<text x="641.69" y="371.03" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷾</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M644.93 346.52A246.57 246.57 0 0 0 623.29 332.46L601.86 369.58A203.71 203.71 0 0 1 619.74 381.19Z" data-label="噬嗑 Shi He (Biting Through), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 噬嗑 Shi He (Biting Through), 卿 Minister</title></path>
+<text x="622.62" y="357.18" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷔</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M623.29 332.46A246.57 246.57 0 0 0 600.29 320.75L582.86 359.9A203.71 203.71 0 0 1 601.86 369.58Z" data-label="大過 Da Guo (Great Excess), 公 Duke" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 大過 Da Guo (Great Excess), 公 Duke</title></path>
+<text x="602.21" y="345.4" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷛</text>
+<path class="seg t-yang" fill-opacity="0.55" d="M600.29 320.75A246.57 246.57 0 0 0 576.19 311.5L562.95 352.26A203.71 203.71 0 0 1 582.86 359.9Z" data-label="坤 Kun (Earth), 辟 Sovereign" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 坤 Kun (Earth), 辟 Sovereign</title></path>
+<text x="580.68" y="335.81" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷁</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M576.19 311.5A246.57 246.57 0 0 0 551.27 304.82L542.35 346.74A203.71 203.71 0 0 1 562.95 352.26Z" data-label="未濟 Wei Ji (Not Yet Across), 侯 Marquis" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 未濟 Wei Ji (Not Yet Across), 侯 Marquis</title></path>
+<text x="558.27" y="328.53" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷿</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M551.27 304.82A246.57 246.57 0 0 0 525.77 300.78L521.29 343.4A203.71 203.71 0 0 1 542.35 346.74Z" data-label="蹇 Jian (Hardship), 大夫 Great Officer" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 蹇 Jian (Hardship), 大夫 Great Officer</title></path>
+<text x="535.22" y="323.63" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷦</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M525.77 300.78A246.57 246.57 0 0 0 500 299.43L500 342.29A203.71 203.71 0 0 1 521.29 343.4Z" data-label="頤 Yi (Nourishment), 卿 Minister" data-ring-title="Gua qi: sixty hexagrams"><title>Gua qi: sixty hexagrams: 頤 Yi (Nourishment), 卿 Minister</title></path>
+<text x="511.78" y="321.17" font-size="20.28" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷚</text>
+</g>
+<g data-ring="gates">
+<path class="seg t-yang" fill-opacity="0.3" d="M392.05 373.24A203.71 203.71 0 0 0 375.63 384.65L401.8 418.6A160.86 160.86 0 0 1 414.76 409.59Z" data-label="41 損 Sun (Decrease)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 41 損 Sun (Decrease)</title></path>
+<text x="395.93" y="396.34" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷨</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M375.63 384.65A203.71 203.71 0 0 0 360.42 397.62L389.78 428.84A160.86 160.86 0 0 1 401.8 418.6Z" data-label="19 臨 Lin (Approach)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 19 臨 Lin (Approach)</title></path>
+<text x="381.77" y="407.26" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷒</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M360.42 397.62A203.71 203.71 0 0 0 346.55 412.02L378.83 440.2A160.86 160.86 0 0 1 389.78 428.84Z" data-label="13 同人 Tong Ren (Fellowship)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 13 同人 Tong Ren (Fellowship)</title></path>
+<text x="368.74" y="419.52" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷌</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M346.55 412.02A203.71 203.71 0 0 0 334.15 427.7L369.04 452.59A160.86 160.86 0 0 1 378.83 440.2Z" data-label="49 革 Ge (Change)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 49 革 Ge (Change)</title></path>
+<text x="356.97" y="432.99" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷰</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M334.15 427.7A203.71 203.71 0 0 0 323.36 444.53L360.52 465.88A160.86 160.86 0 0 1 369.04 452.59Z" data-label="30 離 Li (Clinging Fire)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 30 離 Li (Clinging Fire)</title></path>
+<text x="346.58" y="447.56" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷝</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M323.36 444.53A203.71 203.71 0 0 0 314.26 462.33L353.34 479.93A160.86 160.86 0 0 1 360.52 465.88Z" data-label="55 豐 Feng (Abundance)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 55 豐 Feng (Abundance)</title></path>
+<text x="337.67" y="463.07" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷶</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M314.26 462.33A203.71 203.71 0 0 0 306.95 480.94L347.57 494.63A160.86 160.86 0 0 1 353.34 479.93Z" data-label="37 家人 Jia Ren (Household)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 37 家人 Jia Ren (Household)</title></path>
+<text x="330.33" y="479.38" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷤</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M306.95 480.94A203.71 203.71 0 0 0 301.51 500.17L343.27 509.82A160.86 160.86 0 0 1 347.57 494.63Z" data-label="63 既濟 Ji Ji (Already Across)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 63 既濟 Ji Ji (Already Across)</title></path>
+<text x="324.61" y="496.33" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷾</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M301.51 500.17A203.71 203.71 0 0 0 297.97 519.85L340.47 525.35A160.86 160.86 0 0 1 343.27 509.82Z" data-label="22 賁 Bi (Adornment)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 22 賁 Bi (Adornment)</title></path>
+<text x="320.59" y="513.76" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷕</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M297.97 519.85A203.71 203.71 0 0 0 296.38 539.78L339.22 541.09A160.86 160.86 0 0 1 340.47 525.35Z" data-label="36 明夷 Ming Yi (Light Wounded)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 36 明夷 Ming Yi (Light Wounded)</title></path>
+<text x="318.29" y="531.5" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷣</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M296.38 539.78A203.71 203.71 0 0 0 296.75 559.77L339.51 556.87A160.86 160.86 0 0 1 339.22 541.09Z" data-label="25 無妄 Wu Wang (Without Error)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 25 無妄 Wu Wang (Without Error)</title></path>
+<text x="317.75" y="549.38" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷘</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M296.75 559.77A203.71 203.71 0 0 0 299.08 579.62L341.35 572.55A160.86 160.86 0 0 1 339.51 556.87Z" data-label="17 隨 Sui (Following)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 17 隨 Sui (Following)</title></path>
+<text x="318.95" y="567.23" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷐</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M299.08 579.62A203.71 203.71 0 0 0 303.34 599.15L344.72 587.97A160.86 160.86 0 0 1 341.35 572.55Z" data-label="21 噬嗑 Shi He (Biting Through)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 21 噬嗑 Shi He (Biting Through)</title></path>
+<text x="321.91" y="584.87" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷔</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M303.34 599.15A203.71 203.71 0 0 0 309.5 618.17L349.58 602.99A160.86 160.86 0 0 1 344.72 587.97Z" data-label="51 震 Zhen (Thunder)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 51 震 Zhen (Thunder)</title></path>
+<text x="326.57" y="602.14" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷲</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M309.5 618.17A203.71 203.71 0 0 0 317.49 636.5L355.89 617.46A160.86 160.86 0 0 1 349.58 602.99Z" data-label="42 益 Yi (Increase)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 42 益 Yi (Increase)</title></path>
+<text x="332.91" y="618.87" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷩</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M317.49 636.5A203.71 203.71 0 0 0 327.24 653.95L363.59 631.24A160.86 160.86 0 0 1 355.89 617.46Z" data-label="3 屯 Zhun (Sprouting)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 3 屯 Zhun (Sprouting)</title></path>
+<text x="340.86" y="634.9" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷂</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M327.24 653.95A203.71 203.71 0 0 0 338.65 670.37L372.6 644.2A160.86 160.86 0 0 1 363.59 631.24Z" data-label="27 頤 Yi (Nourishment)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 27 頤 Yi (Nourishment)</title></path>
+<text x="350.34" y="650.07" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷚</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M338.65 670.37A203.71 203.71 0 0 0 351.62 685.58L382.84 656.22A160.86 160.86 0 0 1 372.6 644.2Z" data-label="24 復 Fu (Return)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 24 復 Fu (Return)</title></path>
+<text x="361.26" y="664.23" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷗</text>
+<path class="seg t-yang" fill-opacity="0.55" d="M351.62 685.58A203.71 203.71 0 0 0 366.02 699.45L394.2 667.17A160.86 160.86 0 0 1 382.84 656.22Z" data-label="2 坤 Kun (Earth)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 2 坤 Kun (Earth)</title></path>
+<text x="373.52" y="677.26" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷁</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M366.02 699.45A203.71 203.71 0 0 0 381.7 711.85L406.59 676.96A160.86 160.86 0 0 1 394.2 667.17Z" data-label="23 剝 Bo (Stripping)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 23 剝 Bo (Stripping)</title></path>
+<text x="386.99" y="689.03" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷖</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M381.7 711.85A203.71 203.71 0 0 0 398.53 722.64L419.88 685.48A160.86 160.86 0 0 1 406.59 676.96Z" data-label="8 比 Bi (Alliance)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 8 比 Bi (Alliance)</title></path>
+<text x="401.56" y="699.42" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷇</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M398.53 722.64A203.71 203.71 0 0 0 416.33 731.74L433.93 692.66A160.86 160.86 0 0 1 419.88 685.48Z" data-label="20 觀 Guan (Viewing)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 20 觀 Guan (Viewing)</title></path>
+<text x="417.07" y="708.33" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷓</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M416.33 731.74A203.71 203.71 0 0 0 434.94 739.05L448.63 698.43A160.86 160.86 0 0 1 433.93 692.66Z" data-label="16 豫 Yu (Readiness)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 16 豫 Yu (Readiness)</title></path>
+<text x="433.38" y="715.67" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷏</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M434.94 739.05A203.71 203.71 0 0 0 454.17 744.49L463.82 702.73A160.86 160.86 0 0 1 448.63 698.43Z" data-label="35 晉 Jin (Advance)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 35 晉 Jin (Advance)</title></path>
+<text x="450.33" y="721.39" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷢</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M454.17 744.49A203.71 203.71 0 0 0 473.85 748.03L479.35 705.53A160.86 160.86 0 0 1 463.82 702.73Z" data-label="45 萃 Cui (Assembly)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 45 萃 Cui (Assembly)</title></path>
+<text x="467.76" y="725.41" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷬</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M473.85 748.03A203.71 203.71 0 0 0 493.78 749.62L495.09 706.78A160.86 160.86 0 0 1 479.35 705.53Z" data-label="12 否 Pi (Blocked)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 12 否 Pi (Blocked)</title></path>
+<text x="485.5" y="727.71" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷋</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M493.78 749.62A203.71 203.71 0 0 0 513.77 749.25L510.87 706.49A160.86 160.86 0 0 1 495.09 706.78Z" data-label="15 謙 Qian (Modesty)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 15 謙 Qian (Modesty)</title></path>
+<text x="503.38" y="728.25" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷎</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M513.77 749.25A203.71 203.71 0 0 0 533.62 746.92L526.55 704.65A160.86 160.86 0 0 1 510.87 706.49Z" data-label="52 艮 Gen (Stillness)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 52 艮 Gen (Stillness)</title></path>
+<text x="521.23" y="727.05" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷳</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M533.62 746.92A203.71 203.71 0 0 0 553.15 742.66L541.97 701.28A160.86 160.86 0 0 1 526.55 704.65Z" data-label="39 蹇 Jian (Hardship)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 39 蹇 Jian (Hardship)</title></path>
+<text x="538.87" y="724.09" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷦</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M553.15 742.66A203.71 203.71 0 0 0 572.17 736.5L556.99 696.42A160.86 160.86 0 0 1 541.97 701.28Z" data-label="53 漸 Jian (Gradual Progress)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 53 漸 Jian (Gradual Progress)</title></path>
+<text x="556.14" y="719.43" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷴</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M572.17 736.5A203.71 203.71 0 0 0 590.5 728.51L571.46 690.11A160.86 160.86 0 0 1 556.99 696.42Z" data-label="62 小過 Xiao Guo (Small Excess)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 62 小過 Xiao Guo (Small Excess)</title></path>
+<text x="572.87" y="713.09" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷽</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M590.5 728.51A203.71 203.71 0 0 0 607.95 718.76L585.24 682.41A160.86 160.86 0 0 1 571.46 690.11Z" data-label="56 旅 Lu (The Traveller)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 56 旅 Lu (The Traveller)</title></path>
+<text x="588.9" y="705.14" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷷</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M607.95 718.76A203.71 203.71 0 0 0 624.37 707.35L598.2 673.4A160.86 160.86 0 0 1 585.24 682.41Z" data-label="31 咸 Xian (Mutual Feeling)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 31 咸 Xian (Mutual Feeling)</title></path>
+<text x="604.07" y="695.66" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷞</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M624.37 707.35A203.71 203.71 0 0 0 639.58 694.38L610.22 663.16A160.86 160.86 0 0 1 598.2 673.4Z" data-label="33 遯 Dun (Withdrawal)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 33 遯 Dun (Withdrawal)</title></path>
+<text x="618.23" y="684.74" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷠</text>
+<path class="seg t-yang" fill-opacity="0.47" d="M639.58 694.38A203.71 203.71 0 0 0 653.45 679.98L621.17 651.8A160.86 160.86 0 0 1 610.22 663.16Z" data-label="7 師 Shi (The Host)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 7 師 Shi (The Host)</title></path>
+<text x="631.26" y="672.48" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷆</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M653.45 679.98A203.71 203.71 0 0 0 665.85 664.3L630.96 639.41A160.86 160.86 0 0 1 621.17 651.8Z" data-label="4 蒙 Meng (Unformed)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 4 蒙 Meng (Unformed)</title></path>
+<text x="643.03" y="659.01" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷃</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M665.85 664.3A203.71 203.71 0 0 0 676.64 647.47L639.48 626.12A160.86 160.86 0 0 1 630.96 639.41Z" data-label="29 坎 Kan (The Pit)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 29 坎 Kan (The Pit)</title></path>
+<text x="653.42" y="644.44" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷜</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M676.64 647.47A203.71 203.71 0 0 0 685.74 629.67L646.66 612.07A160.86 160.86 0 0 1 639.48 626.12Z" data-label="59 渙 Huan (Dispersal)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 59 渙 Huan (Dispersal)</title></path>
+<text x="662.33" y="628.93" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷺</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M685.74 629.67A203.71 203.71 0 0 0 693.05 611.06L652.43 597.37A160.86 160.86 0 0 1 646.66 612.07Z" data-label="40 解 Xie (Release)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 40 解 Xie (Release)</title></path>
+<text x="669.67" y="612.62" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷧</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M693.05 611.06A203.71 203.71 0 0 0 698.49 591.83L656.73 582.18A160.86 160.86 0 0 1 652.43 597.37Z" data-label="64 未濟 Wei Ji (Not Yet Across)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 64 未濟 Wei Ji (Not Yet Across)</title></path>
+<text x="675.39" y="595.67" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷿</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M698.49 591.83A203.71 203.71 0 0 0 702.03 572.15L659.53 566.65A160.86 160.86 0 0 1 656.73 582.18Z" data-label="47 困 Kun (Confinement)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 47 困 Kun (Confinement)</title></path>
+<text x="679.41" y="578.24" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷮</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M702.03 572.15A203.71 203.71 0 0 0 703.62 552.22L660.78 550.91A160.86 160.86 0 0 1 659.53 566.65Z" data-label="6 訟 Song (Dispute)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 6 訟 Song (Dispute)</title></path>
+<text x="681.71" y="560.5" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷅</text>
+<path class="seg t-yang" fill-opacity="0.38" d="M703.62 552.22A203.71 203.71 0 0 0 703.25 532.23L660.49 535.13A160.86 160.86 0 0 1 660.78 550.91Z" data-label="46 升 Sheng (Ascent)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 46 升 Sheng (Ascent)</title></path>
+<text x="682.25" y="542.62" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷭</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M703.25 532.23A203.71 203.71 0 0 0 700.92 512.38L658.65 519.45A160.86 160.86 0 0 1 660.49 535.13Z" data-label="18 蠱 Gu (Decay)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 18 蠱 Gu (Decay)</title></path>
+<text x="681.05" y="524.77" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷑</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M700.92 512.38A203.71 203.71 0 0 0 696.66 492.85L655.28 504.03A160.86 160.86 0 0 1 658.65 519.45Z" data-label="48 井 Jing (The Well)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 48 井 Jing (The Well)</title></path>
+<text x="678.09" y="507.13" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷯</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M696.66 492.85A203.71 203.71 0 0 0 690.5 473.83L650.42 489.01A160.86 160.86 0 0 1 655.28 504.03Z" data-label="57 巽 Xun (Wind)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 57 巽 Xun (Wind)</title></path>
+<text x="673.43" y="489.86" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷸</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M690.5 473.83A203.71 203.71 0 0 0 682.51 455.5L644.11 474.54A160.86 160.86 0 0 1 650.42 489.01Z" data-label="32 恆 Heng (Constancy)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 32 恆 Heng (Constancy)</title></path>
+<text x="667.09" y="473.13" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷟</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M682.51 455.5A203.71 203.71 0 0 0 672.76 438.05L636.41 460.76A160.86 160.86 0 0 1 644.11 474.54Z" data-label="50 鼎 Ding (The Cauldron)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 50 鼎 Ding (The Cauldron)</title></path>
+<text x="659.14" y="457.1" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷱</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M672.76 438.05A203.71 203.71 0 0 0 661.35 421.63L627.4 447.8A160.86 160.86 0 0 1 636.41 460.76Z" data-label="28 大過 Da Guo (Great Excess)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 28 大過 Da Guo (Great Excess)</title></path>
+<text x="649.66" y="441.93" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷛</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M661.35 421.63A203.71 203.71 0 0 0 648.38 406.42L617.16 435.78A160.86 160.86 0 0 1 627.4 447.8Z" data-label="44 姤 Gou (Encounter)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 44 姤 Gou (Encounter)</title></path>
+<text x="638.74" y="427.77" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷫</text>
+<path class="seg t-yang" fill-opacity="0.04" d="M648.38 406.42A203.71 203.71 0 0 0 633.98 392.55L605.8 424.83A160.86 160.86 0 0 1 617.16 435.78Z" data-label="1 乾 Qian (Heaven)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 1 乾 Qian (Heaven)</title></path>
+<text x="626.48" y="414.74" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷀</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M633.98 392.55A203.71 203.71 0 0 0 618.3 380.15L593.41 415.04A160.86 160.86 0 0 1 605.8 424.83Z" data-label="43 夬 Guai (Resolution)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 43 夬 Guai (Resolution)</title></path>
+<text x="613.01" y="402.97" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷪</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M618.3 380.15A203.71 203.71 0 0 0 601.47 369.36L580.12 406.52A160.86 160.86 0 0 1 593.41 415.04Z" data-label="14 大有 Da You (Great Holding)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 14 大有 Da You (Great Holding)</title></path>
+<text x="598.44" y="392.58" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷍</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M601.47 369.36A203.71 203.71 0 0 0 583.67 360.26L566.07 399.34A160.86 160.86 0 0 1 580.12 406.52Z" data-label="34 大壯 Da Zhuang (Great Strength)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 34 大壯 Da Zhuang (Great Strength)</title></path>
+<text x="582.93" y="383.67" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷡</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M583.67 360.26A203.71 203.71 0 0 0 565.06 352.95L551.37 393.57A160.86 160.86 0 0 1 566.07 399.34Z" data-label="9 小畜 Xiao Xu (Small Gathering)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 9 小畜 Xiao Xu (Small Gathering)</title></path>
+<text x="566.62" y="376.33" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷈</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M565.06 352.95A203.71 203.71 0 0 0 545.83 347.51L536.18 389.27A160.86 160.86 0 0 1 551.37 393.57Z" data-label="5 需 Xu (Waiting)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 5 需 Xu (Waiting)</title></path>
+<text x="549.67" y="370.61" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷄</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M545.83 347.51A203.71 203.71 0 0 0 526.15 343.97L520.65 386.47A160.86 160.86 0 0 1 536.18 389.27Z" data-label="26 大畜 Da Xu (Great Gathering)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 26 大畜 Da Xu (Great Gathering)</title></path>
+<text x="532.24" y="366.59" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷙</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M526.15 343.97A203.71 203.71 0 0 0 506.22 342.38L504.91 385.22A160.86 160.86 0 0 1 520.65 386.47Z" data-label="11 泰 Tai (Flowing)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 11 泰 Tai (Flowing)</title></path>
+<text x="514.5" y="364.29" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷊</text>
+<path class="seg t-yang" fill-opacity="0.13" d="M506.22 342.38A203.71 203.71 0 0 0 486.23 342.75L489.13 385.51A160.86 160.86 0 0 1 504.91 385.22Z" data-label="10 履 Lu (Treading)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 10 履 Lu (Treading)</title></path>
+<text x="496.62" y="363.75" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷉</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M486.23 342.75A203.71 203.71 0 0 0 466.38 345.08L473.45 387.35A160.86 160.86 0 0 1 489.13 385.51Z" data-label="58 兌 Dui (Lake)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 58 兌 Dui (Lake)</title></path>
+<text x="478.77" y="364.95" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷹</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M466.38 345.08A203.71 203.71 0 0 0 446.85 349.34L458.03 390.72A160.86 160.86 0 0 1 473.45 387.35Z" data-label="38 睽 Kui (Divergence)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 38 睽 Kui (Divergence)</title></path>
+<text x="461.13" y="367.91" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷥</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M446.85 349.34A203.71 203.71 0 0 0 427.83 355.5L443.01 395.58A160.86 160.86 0 0 1 458.03 390.72Z" data-label="54 歸妹 Gui Mei (Marrying Maiden)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 54 歸妹 Gui Mei (Marrying Maiden)</title></path>
+<text x="443.86" y="372.57" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷵</text>
+<path class="seg t-yang" fill-opacity="0.21" d="M427.83 355.5A203.71 203.71 0 0 0 409.5 363.49L428.54 401.89A160.86 160.86 0 0 1 443.01 395.58Z" data-label="61 中孚 Zhong Fu (Inner Truth)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 61 中孚 Zhong Fu (Inner Truth)</title></path>
+<text x="427.13" y="378.91" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷼</text>
+<path class="seg t-yang" fill-opacity="0.3" d="M409.5 363.49A203.71 203.71 0 0 0 392.05 373.24L414.76 409.59A160.86 160.86 0 0 1 428.54 401.89Z" data-label="60 節 Jie (Limits)" data-ring-title="Sixty-four-gate wheel"><title>Sixty-four-gate wheel: 60 節 Jie (Limits)</title></path>
+<text x="411.1" y="386.86" font-size="15.39" text-anchor="middle" dominant-baseline="central" pointer-events="none">䷻</text>
+</g>
+<g data-ring="nakshatras">
+<path class="seg t-ketu" d="M352.88 611.05A160.86 160.86 0 0 0 371.85 643.22L405.99 617.32A118 118 0 0 1 392.08 593.72Z" data-label="1 Ashwini, lord Ketu" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 1 Ashwini, lord Ketu</title></path>
+<text x="379.89" y="616.81" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">1</text>
+<path class="seg t-venus" d="M371.85 643.22A160.86 160.86 0 0 0 397.73 670.16L424.97 637.08A118 118 0 0 1 405.99 617.32Z" data-label="2 Bharani, lord Venus" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 2 Bharani, lord Venus</title></path>
+<text x="399.46" y="642.6" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">2</text>
+<path class="seg t-sun" d="M397.73 670.16A160.86 160.86 0 0 0 429.11 690.4L448 651.92A118 118 0 0 1 424.97 637.08Z" data-label="3 Krittika, lord Sun" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 3 Krittika, lord Sun</title></path>
+<text x="424.44" y="663.18" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">3</text>
+<path class="seg t-moon" d="M429.11 690.4A160.86 160.86 0 0 0 464.33 702.85L473.83 661.06A118 118 0 0 1 448 651.92Z" data-label="4 Rohini, lord Moon" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 4 Rohini, lord Moon</title></path>
+<text x="453.5" y="677.45" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">4</text>
+<path class="seg t-mars" d="M464.33 702.85A160.86 160.86 0 0 0 501.46 706.85L501.07 664A118 118 0 0 1 473.83 661.06Z" data-label="5 Mrigashira, lord Mars" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 5 Mrigashira, lord Mars</title></path>
+<text x="485.07" y="684.63" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">5</text>
+<path class="seg t-rahu" d="M501.46 706.85A160.86 160.86 0 0 0 538.51 702.18L528.25 660.57A118 118 0 0 1 501.07 664Z" data-label="6 Ardra, lord Rahu" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 6 Ardra, lord Rahu</title></path>
+<text x="517.44" y="684.33" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">6</text>
+<path class="seg t-jupiter" d="M538.51 702.18A160.86 160.86 0 0 0 573.49 689.09L553.91 650.96A118 118 0 0 1 528.25 660.57Z" data-label="7 Punarvasu, lord Jupiter" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 7 Punarvasu, lord Jupiter</title></path>
+<text x="548.87" y="676.58" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">7</text>
+<path class="seg t-saturn" d="M573.49 689.09A160.86 160.86 0 0 0 604.51 668.28L576.67 635.7A118 118 0 0 1 553.91 650.96Z" data-label="8 Pushya, lord Saturn" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 8 Pushya, lord Saturn</title></path>
+<text x="577.67" y="661.79" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">8</text>
+<path class="seg t-mercury" d="M604.51 668.28A160.86 160.86 0 0 0 629.89 640.88L595.29 615.6A118 118 0 0 1 576.67 635.7Z" data-label="9 Ashlesha, lord Mercury" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 9 Ashlesha, lord Mercury</title></path>
+<text x="602.28" y="640.76" font-size="21" text-anchor="middle" dominant-baseline="central" pointer-events="none">9</text>
+<path class="seg t-ketu" d="M629.89 640.88A160.86 160.86 0 0 0 648.27 608.37L608.77 591.75A118 118 0 0 1 595.29 615.6Z" data-label="10 Magha, lord Ketu" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 10 Magha, lord Ketu</title></path>
+<text x="621.38" y="614.62" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">10</text>
+<path class="seg t-venus" d="M648.27 608.37A160.86 160.86 0 0 0 658.66 572.49L616.39 565.44A118 118 0 0 1 608.77 591.75Z" data-label="11 Purva Phalguni, lord Venus" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 11 Purva Phalguni, lord Venus</title></path>
+<text x="633.93" y="584.78" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">11</text>
+<path class="seg t-sun" d="M658.66 572.49A160.86 160.86 0 0 0 660.49 535.19L617.73 538.07A118 118 0 0 1 616.39 565.44Z" data-label="12 Uttara Phalguni, lord Sun" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 12 Uttara Phalguni, lord Sun</title></path>
+<text x="639.26" y="552.84" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">12</text>
+<path class="seg t-moon" d="M660.49 535.19A160.86 160.86 0 0 0 653.67 498.47L612.73 511.13A118 118 0 0 1 617.73 538.07Z" data-label="13 Hasta, lord Moon" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 13 Hasta, lord Moon</title></path>
+<text x="637.09" y="520.54" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">13</text>
+<path class="seg t-mars" d="M653.67 498.47A160.86 160.86 0 0 0 638.57 464.31L601.65 486.08A118 118 0 0 1 612.73 511.13Z" data-label="14 Chitra, lord Mars" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 14 Chitra, lord Mars</title></path>
+<text x="627.52" y="489.62" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">14</text>
+<path class="seg t-rahu" d="M638.57 464.31A160.86 160.86 0 0 0 616 434.56L585.09 464.25A118 118 0 0 1 601.65 486.08Z" data-label="15 Swati, lord Rahu" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 15 Swati, lord Rahu</title></path>
+<text x="611.08" y="461.73" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">15</text>
+<path class="seg t-jupiter" d="M616 434.56A160.86 160.86 0 0 0 587.17 410.81L563.95 446.83A118 118 0 0 1 585.09 464.25Z" data-label="16 Vishakha, lord Jupiter" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 16 Vishakha, lord Jupiter</title></path>
+<text x="588.65" y="438.38" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">16</text>
+<path class="seg t-saturn" d="M587.17 410.81A160.86 160.86 0 0 0 553.64 394.35L539.35 434.75A118 118 0 0 1 563.95 446.83Z" data-label="17 Anuradha, lord Saturn" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 17 Anuradha, lord Saturn</title></path>
+<text x="561.44" y="420.84" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">17</text>
+<path class="seg t-mercury" d="M553.64 394.35A160.86 160.86 0 0 0 517.22 386.07L512.64 428.68A118 118 0 0 1 539.35 434.75Z" data-label="18 Jyeshtha, lord Mercury" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 18 Jyeshtha, lord Mercury</title></path>
+<text x="530.92" y="410.04" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">18</text>
+<path class="seg t-ketu" d="M517.22 386.07A160.86 160.86 0 0 0 479.88 386.41L485.24 428.93A118 118 0 0 1 512.64 428.68Z" data-label="19 Mula, lord Ketu" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 19 Mula, lord Ketu</title></path>
+<text x="498.74" y="406.58" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">19</text>
+<path class="seg t-venus" d="M479.88 386.41A160.86 160.86 0 0 0 443.61 395.35L458.64 435.49A118 118 0 0 1 485.24 428.93Z" data-label="20 Purva Ashadha, lord Venus" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 20 Purva Ashadha, lord Venus</title></path>
+<text x="466.62" y="410.63" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">20</text>
+<path class="seg t-sun" d="M443.61 395.35A160.86 160.86 0 0 0 410.39 412.41L434.27 448A118 118 0 0 1 458.64 435.49Z" data-label="21 Uttara Ashadha, lord Sun" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 21 Uttara Ashadha, lord Sun</title></path>
+<text x="436.3" y="421.97" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">21</text>
+<path class="seg t-moon" d="M410.39 412.41A160.86 160.86 0 0 0 382 436.68L413.44 465.81A118 118 0 0 1 434.27 448Z" data-label="22 Shravana, lord Moon" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 22 Shravana, lord Moon</title></path>
+<text x="409.41" y="440.01" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">22</text>
+<path class="seg t-mars" d="M382 436.68A160.86 160.86 0 0 0 359.97 466.84L397.28 487.93A118 118 0 0 1 413.44 465.81Z" data-label="23 Dhanishta, lord Mars" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 23 Dhanishta, lord Mars</title></path>
+<text x="387.41" y="463.76" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">23</text>
+<path class="seg t-rahu" d="M359.97 466.84A160.86 160.86 0 0 0 345.49 501.27L386.65 513.18A118 118 0 0 1 397.28 487.93Z" data-label="24 Shatabhisha, lord Rahu" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 24 Shatabhisha, lord Rahu</title></path>
+<text x="371.48" y="491.94" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">24</text>
+<path class="seg t-jupiter" d="M345.49 501.27A160.86 160.86 0 0 0 339.34 538.1L382.14 540.21A118 118 0 0 1 386.65 513.18Z" data-label="25 Purva Bhadrapada, lord Jupiter" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 25 Purva Bhadrapada, lord Jupiter</title></path>
+<text x="362.48" y="523.03" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">25</text>
+<path class="seg t-saturn" d="M339.34 538.1A160.86 160.86 0 0 0 341.85 575.37L383.98 567.54A118 118 0 0 1 382.14 540.21Z" data-label="26 Uttara Bhadrapada, lord Saturn" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 26 Uttara Bhadrapada, lord Saturn</title></path>
+<text x="360.89" y="555.37" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">26</text>
+<path class="seg t-mercury" d="M341.85 575.37A160.86 160.86 0 0 0 352.88 611.05L392.08 593.72A118 118 0 0 1 383.98 567.54Z" data-label="27 Revati, lord Mercury" data-ring-title="Twenty-seven nakshatras"><title>Twenty-seven nakshatras: 27 Revati, lord Mercury</title></path>
+<text x="366.8" y="587.2" font-size="13.95" text-anchor="middle" dominant-baseline="central" pointer-events="none">27</text>
+</g>
+<line class="rule" x1="382" y1="546" x2="76" y2="546" stroke-dasharray="2 5"/>
+<line class="rule" x1="500" y1="664" x2="500" y2="970" stroke-dasharray="2 5"/>
+<line class="rule" x1="618" y1="546" x2="924" y2="546" stroke-dasharray="2 5"/>
+<line class="rule" x1="500" y1="428" x2="500" y2="122" stroke-dasharray="2 5"/>
+<circle class="rule" cx="500" cy="546" r="118"/>
+<g data-marker="asc"><line class="accent" x1="500" y1="546" x2="110.73" y2="721.5" stroke-width="1.6" stroke-opacity="0.9"><title>Ascendant at 24°16′ Aries</title></line><text class="halo accent-text" x="100.71" y="726.02" font-size="13" text-anchor="middle" dominant-baseline="central"><title>Ascendant at 24°16′ Aries</title>ASC</text></g>
+<g data-marker="jupiter"><line class="mark" x1="393.28" y1="596.34" x2="91.2" y2="738.84" stroke-width="1" stroke-opacity="0.6"><title>Jupiter at 25°15′ Aries</title></line><text class="halo" x="81.25" y="743.53" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Jupiter at 25°15′ Aries</title>♃</text></g>
+<g data-marker="saturn"><line class="mark" x1="410.13" y1="622.47" x2="174.8" y2="822.73" stroke-width="1" stroke-opacity="0.6"><title>Saturn at 10°23′ Taurus, retrograde</title></line><text class="halo" x="166.43" y="829.85" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Saturn at 10°23′ Taurus, retrograde</title>♄</text></g>
+<g data-marker="node"><line class="mark" x1="567.76" y1="642.61" x2="745.19" y2="895.59" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4 3"><title>North Node (mean) at 5°02′ Leo</title></line><text class="halo" x="751.51" y="904.59" font-size="19" text-anchor="middle" dominant-baseline="central"><title>North Node (mean) at 5°02′ Leo</title>☊</text></g>
+<g data-marker="moon"><line class="mark" x1="585.84" y1="465.04" x2="810.64" y2="253.03" stroke-width="1" stroke-opacity="0.6"><title>Moon at 13°19′ Scorpio</title></line><text class="halo" x="818.64" y="245.48" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Moon at 13°19′ Scorpio</title>☽</text></g>
+<g data-marker="venus"><line class="mark" x1="556.19" y1="442.24" x2="703.32" y2="170.51" stroke-width="1" stroke-opacity="0.6"><title>Venus at 1°33′ Sagittarius</title></line><text class="halo" x="708.56" y="160.84" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Venus at 1°33′ Sagittarius</title>♀</text></g>
+<g data-marker="mercury"><line class="mark" x1="496.11" y1="428.06" x2="485.93" y2="119.23" stroke-width="1" stroke-opacity="0.6"><title>Mercury at 1°53′ Capricorn</title></line><text class="halo" x="485.56" y="108.24" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Mercury at 1°53′ Capricorn</title>☿</text></g>
+<g data-marker="mc"><line class="accent" x1="500" y1="546" x2="424.54" y2="100.34" stroke-width="1.6" stroke-opacity="0.9"><title>Midheaven at 9°36′ Capricorn</title></line><text class="halo accent-text" x="422.7" y="89.5" font-size="13" text-anchor="middle" dominant-baseline="central"><title>Midheaven at 9°36′ Capricorn</title>MC</text></g>
+<g data-marker="sun"><line class="mark" x1="478.76" y1="429.93" x2="414.15" y2="76.79" stroke-width="1" stroke-opacity="0.6"><title>Sun at 10°22′ Capricorn</title></line><text class="halo" x="412.17" y="65.97" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Sun at 10°22′ Capricorn</title>☉</text></g>
+<g data-marker="mars"><line class="mark" x1="399.97" y1="483.41" x2="138.03" y2="319.5" stroke-width="1" stroke-opacity="0.6"><title>Mars at 27°57′ Aquarius</title></line><text class="halo" x="128.7" y="313.66" font-size="19" text-anchor="middle" dominant-baseline="central"><title>Mars at 27°57′ Aquarius</title>♂</text></g>
+<text class="halo" x="500" y="520" font-size="25" text-anchor="middle" dominant-baseline="central">己卯 丙子 戊午 戊午</text>
+<text class="halo muted" x="500" y="546" font-size="13" text-anchor="middle" dominant-baseline="central">2000-01-01 12:00 civil</text>
+<text class="halo muted" x="500" y="572" font-size="13" text-anchor="middle" dominant-baseline="central">2000-01-01 12:00 UTC</text>
+<text class="muted" x="40" y="1052" font-size="13">Rings, from the outside in</text>
+<text x="40" y="1080" font-size="15">1. Tropical zodiac</text><text class="muted" x="330" y="1080" font-size="13">exact</text><text class="muted" x="440" y="1080" font-size="12">Twelve signs of thirty degrees from the March equinox.</text>
+<text x="40" y="1106" font-size="15">2. Twenty-four solar terms</text><text class="muted" x="330" y="1106" font-size="13">exact</text><text class="muted" x="440" y="1106" font-size="12">Each term opens when the Sun reaches a multiple of fifteen degrees. Exact by definition si…</text>
+<text x="40" y="1132" font-size="15">3. Branch months</text><text class="muted" x="330" y="1132" font-size="13">derived</text><text class="muted" x="440" y="1132" font-size="12">The twelve BaZi months, each opening at a jie. They are thirty-degree arcs like the signs,…</text>
+<text x="40" y="1158" font-size="15">4. Twelve sovereign hexagrams</text><text class="muted" x="330" y="1158" font-size="13">derived</text><text class="muted" x="440" y="1158" font-size="12">One hexagram per branch month, the yang lines waxing from the solstice month and waning fr…</text>
+<text x="40" y="1184" font-size="15">5. Gua qi: sixty hexagrams</text><text class="muted" x="330" y="1184" font-size="13">approximate</text><text class="muted" x="440" y="1184" font-size="12">The Han &quot;six days seven parts&quot; calendar from Zhong Fu at the winter solstice. Originally a…</text>
+<text x="40" y="1210" font-size="15">6. Sixty-four-gate wheel</text><text class="muted" x="330" y="1210" font-size="13">conventional</text><text class="muted" x="440" y="1210" font-size="12">The modern ecliptic wheel, hexagram 41 from two degrees of Aquarius. It is the Fu Xi circl…</text>
+<text x="40" y="1236" font-size="15">7. Twenty-seven nakshatras</text><text class="muted" x="330" y="1236" font-size="13">conventional</text><text class="muted" x="440" y="1236" font-size="12">Lunar mansions of thirteen degrees twenty minutes on the sidereal ecliptic.</text>
+<metadata>overlay © 2026 Knstntnmmi · github.com/Knstntnmmi/Projects-Public · AGPL-3.0-or-later</metadata><text class="muted" x="986" y="1264" font-size="10.5" text-anchor="end">overlay © 2026 Knstntnmmi · github.com/Knstntnmmi/Projects-Public · AGPL-3.0-or-later</text>
+</svg>

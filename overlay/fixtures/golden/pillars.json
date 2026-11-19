@@ -1,0 +1,655 @@
+{
+  "about": "Four Pillars of synthetic moments under each combination of clock basis and day boundary. Year and month pillars turn at the true-Sun Lichun and jie. Use these to check another calculator, convention by convention. None of these moments is anyone's birth data.",
+  "vectors": [
+    {
+      "id": "j2000",
+      "why": "The J2000.0 astronomical epoch.",
+      "civil": {
+        "year": 2000,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "second": 0
+      },
+      "zone": "UTC",
+      "latitude": 51.4779,
+      "longitude": 0,
+      "utc": "2000-01-01T12:00:00.000Z",
+      "pillars": {
+        "civil/zi23": "己卯 丙子 戊午 戊午",
+        "civil/midnight": "己卯 丙子 戊午 戊午",
+        "standard/zi23": "己卯 丙子 戊午 戊午",
+        "standard/midnight": "己卯 丙子 戊午 戊午",
+        "lmt/zi23": "己卯 丙子 戊午 戊午",
+        "lmt/midnight": "己卯 丙子 戊午 戊午",
+        "apparent/zi23": "己卯 丙子 戊午 戊午",
+        "apparent/midnight": "己卯 丙子 戊午 戊午"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 8,
+            "months": 3,
+            "days": 20,
+            "hours": 23,
+            "minutes": 56
+          },
+          "first": "乙亥"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 1,
+            "months": 6,
+            "days": 5,
+            "hours": 1,
+            "minutes": 50
+          },
+          "first": "丁丑"
+        }
+      }
+    },
+    {
+      "id": "unix-epoch",
+      "why": "The Unix epoch.",
+      "civil": {
+        "year": 1970,
+        "month": 1,
+        "day": 1,
+        "hour": 0,
+        "minute": 0,
+        "second": 0
+      },
+      "zone": "UTC",
+      "latitude": 51.4779,
+      "longitude": 0,
+      "utc": "1970-01-01T00:00:00.000Z",
+      "pillars": {
+        "civil/zi23": "己酉 丙子 辛巳 戊子",
+        "civil/midnight": "己酉 丙子 辛巳 戊子",
+        "standard/zi23": "己酉 丙子 辛巳 戊子",
+        "standard/midnight": "己酉 丙子 辛巳 戊子",
+        "lmt/zi23": "己酉 丙子 辛巳 戊子",
+        "lmt/midnight": "己酉 丙子 辛巳 戊子",
+        "apparent/zi23": "己酉 丙子 辛巳 戊子",
+        "apparent/midnight": "己酉 丙子 庚辰 戊子"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 8,
+            "months": 2,
+            "days": 25,
+            "hours": 17,
+            "minutes": 12
+          },
+          "first": "乙亥"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 1,
+            "months": 7,
+            "days": 0,
+            "hours": 3,
+            "minutes": 32
+          },
+          "first": "丁丑"
+        }
+      }
+    },
+    {
+      "id": "jiazi-1984",
+      "why": "Noon on the day after Lichun 1984, inside the first year of the current sixty-year cycle.",
+      "civil": {
+        "year": 1984,
+        "month": 2,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "second": 0
+      },
+      "zone": "+08:00",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "utc": "1984-02-05T04:00:00.000Z",
+      "pillars": {
+        "civil/zi23": "甲子 丙寅 己巳 庚午",
+        "civil/midnight": "甲子 丙寅 己巳 庚午",
+        "standard/zi23": "甲子 丙寅 己巳 庚午",
+        "standard/midnight": "甲子 丙寅 己巳 庚午",
+        "lmt/zi23": "甲子 丙寅 己巳 庚午",
+        "lmt/midnight": "甲子 丙寅 己巳 庚午",
+        "apparent/zi23": "甲子 丙寅 己巳 庚午",
+        "apparent/midnight": "甲子 丙寅 己巳 庚午"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "forward",
+          "startAge": {
+            "years": 9,
+            "months": 8,
+            "days": 27,
+            "hours": 0,
+            "minutes": 40
+          },
+          "first": "丁卯"
+        },
+        "female": {
+          "direction": "backward",
+          "startAge": {
+            "years": 0,
+            "months": 2,
+            "days": 3,
+            "hours": 10,
+            "minutes": 34
+          },
+          "first": "乙丑"
+        }
+      }
+    },
+    {
+      "id": "late-zi",
+      "why": "A reading at 23:30, where the two day-boundary conventions give different day pillars.",
+      "civil": {
+        "year": 2001,
+        "month": 9,
+        "day": 9,
+        "hour": 23,
+        "minute": 30,
+        "second": 0
+      },
+      "zone": "+08:00",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "utc": "2001-09-09T15:30:00.000Z",
+      "pillars": {
+        "civil/zi23": "辛巳 丁酉 丙子 戊子",
+        "civil/midnight": "辛巳 丁酉 乙亥 戊子",
+        "standard/zi23": "辛巳 丁酉 丙子 戊子",
+        "standard/midnight": "辛巳 丁酉 乙亥 戊子",
+        "lmt/zi23": "辛巳 丁酉 丙子 戊子",
+        "lmt/midnight": "辛巳 丁酉 乙亥 戊子",
+        "apparent/zi23": "辛巳 丁酉 丙子 戊子",
+        "apparent/midnight": "辛巳 丁酉 乙亥 戊子"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 0,
+            "months": 8,
+            "days": 8,
+            "hours": 15,
+            "minutes": 44
+          },
+          "first": "丙申"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 9,
+            "months": 6,
+            "days": 9,
+            "hours": 13,
+            "minutes": 58
+          },
+          "first": "戊戌"
+        }
+      }
+    },
+    {
+      "id": "lichun-eve-2024",
+      "why": "Two minutes before Lichun 2024, where the year and month pillars are about to change.",
+      "civil": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 16,
+        "minute": 25,
+        "second": 0
+      },
+      "zone": "+08:00",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "utc": "2024-02-04T08:25:00.000Z",
+      "pillars": {
+        "civil/zi23": "癸卯 乙丑 戊戌 庚申",
+        "civil/midnight": "癸卯 乙丑 戊戌 庚申",
+        "standard/zi23": "癸卯 乙丑 戊戌 庚申",
+        "standard/midnight": "癸卯 乙丑 戊戌 庚申",
+        "lmt/zi23": "癸卯 乙丑 戊戌 庚申",
+        "lmt/midnight": "癸卯 乙丑 戊戌 庚申",
+        "apparent/zi23": "癸卯 乙丑 戊戌 庚申",
+        "apparent/midnight": "癸卯 乙丑 戊戌 庚申"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 9,
+            "months": 9,
+            "days": 27,
+            "hours": 23,
+            "minutes": 20
+          },
+          "first": "甲子"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 0,
+            "months": 0,
+            "days": 0,
+            "hours": 3,
+            "minutes": 38
+          },
+          "first": "丙寅"
+        }
+      }
+    },
+    {
+      "id": "lichun-after-2024",
+      "why": "Two minutes after Lichun 2024.",
+      "civil": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 16,
+        "minute": 29,
+        "second": 0
+      },
+      "zone": "+08:00",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "utc": "2024-02-04T08:29:00.000Z",
+      "pillars": {
+        "civil/zi23": "甲辰 丙寅 戊戌 庚申",
+        "civil/midnight": "甲辰 丙寅 戊戌 庚申",
+        "standard/zi23": "甲辰 丙寅 戊戌 庚申",
+        "standard/midnight": "甲辰 丙寅 戊戌 庚申",
+        "lmt/zi23": "甲辰 丙寅 戊戌 庚申",
+        "lmt/midnight": "甲辰 丙寅 戊戌 庚申",
+        "apparent/zi23": "甲辰 丙寅 戊戌 庚申",
+        "apparent/midnight": "甲辰 丙寅 戊戌 庚申"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "forward",
+          "startAge": {
+            "years": 9,
+            "months": 10,
+            "days": 29,
+            "hours": 10,
+            "minutes": 56
+          },
+          "first": "丁卯"
+        },
+        "female": {
+          "direction": "backward",
+          "startAge": {
+            "years": 0,
+            "months": 0,
+            "days": 0,
+            "hours": 4,
+            "minutes": 20
+          },
+          "first": "乙丑"
+        }
+      }
+    },
+    {
+      "id": "china-dst-1988",
+      "why": "A summer afternoon during China's 1986 to 1991 daylight saving, where civil and standard time differ by an hour.",
+      "civil": {
+        "year": 1988,
+        "month": 7,
+        "day": 1,
+        "hour": 13,
+        "minute": 30,
+        "second": 0
+      },
+      "zone": "Asia/Shanghai",
+      "latitude": 39.9042,
+      "longitude": 116.4074,
+      "utc": "1988-07-01T04:30:00.000Z",
+      "pillars": {
+        "civil/zi23": "戊辰 戊午 丁巳 丁未",
+        "civil/midnight": "戊辰 戊午 丁巳 丁未",
+        "standard/zi23": "戊辰 戊午 丁巳 丙午",
+        "standard/midnight": "戊辰 戊午 丁巳 丙午",
+        "lmt/zi23": "戊辰 戊午 丁巳 丙午",
+        "lmt/midnight": "戊辰 戊午 丁巳 丙午",
+        "apparent/zi23": "戊辰 戊午 丁巳 丙午",
+        "apparent/midnight": "戊辰 戊午 丁巳 丙午"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "forward",
+          "startAge": {
+            "years": 1,
+            "months": 10,
+            "days": 25,
+            "hours": 5,
+            "minutes": 46
+          },
+          "first": "己未"
+        },
+        "female": {
+          "direction": "backward",
+          "startAge": {
+            "years": 8,
+            "months": 6,
+            "days": 26,
+            "hours": 5,
+            "minutes": 54
+          },
+          "first": "丁巳"
+        }
+      }
+    },
+    {
+      "id": "far-west-zone",
+      "why": "Urumqi on Beijing time: the civil clock runs about two hours ahead of the Sun.",
+      "civil": {
+        "year": 2010,
+        "month": 3,
+        "day": 3,
+        "hour": 10,
+        "minute": 30,
+        "second": 0
+      },
+      "zone": "+08:00",
+      "latitude": 43.8256,
+      "longitude": 87.6168,
+      "utc": "2010-03-03T02:30:00.000Z",
+      "pillars": {
+        "civil/zi23": "庚寅 戊寅 壬子 乙巳",
+        "civil/midnight": "庚寅 戊寅 壬子 乙巳",
+        "standard/zi23": "庚寅 戊寅 壬子 乙巳",
+        "standard/midnight": "庚寅 戊寅 壬子 乙巳",
+        "lmt/zi23": "庚寅 戊寅 壬子 甲辰",
+        "lmt/midnight": "庚寅 戊寅 壬子 甲辰",
+        "apparent/zi23": "庚寅 戊寅 壬子 甲辰",
+        "apparent/midnight": "庚寅 戊寅 壬子 甲辰"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "forward",
+          "startAge": {
+            "years": 0,
+            "months": 10,
+            "days": 11,
+            "hours": 8,
+            "minutes": 18
+          },
+          "first": "己卯"
+        },
+        "female": {
+          "direction": "backward",
+          "startAge": {
+            "years": 9,
+            "months": 0,
+            "days": 18,
+            "hours": 12,
+            "minutes": 42
+          },
+          "first": "丁丑"
+        }
+      }
+    },
+    {
+      "id": "equator",
+      "why": "An equatorial place, for the ascendant and house arithmetic.",
+      "civil": {
+        "year": 2012,
+        "month": 12,
+        "day": 21,
+        "hour": 6,
+        "minute": 0,
+        "second": 0
+      },
+      "zone": "-05:00",
+      "latitude": -0.1807,
+      "longitude": -78.4678,
+      "utc": "2012-12-21T11:00:00.000Z",
+      "pillars": {
+        "civil/zi23": "壬辰 壬子 丙辰 辛卯",
+        "civil/midnight": "壬辰 壬子 丙辰 辛卯",
+        "standard/zi23": "壬辰 壬子 丙辰 辛卯",
+        "standard/midnight": "壬辰 壬子 丙辰 辛卯",
+        "lmt/zi23": "壬辰 壬子 丙辰 辛卯",
+        "lmt/midnight": "壬辰 壬子 丙辰 辛卯",
+        "apparent/zi23": "壬辰 壬子 丙辰 辛卯",
+        "apparent/midnight": "壬辰 壬子 丙辰 辛卯"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "forward",
+          "startAge": {
+            "years": 4,
+            "months": 10,
+            "days": 27,
+            "hours": 19,
+            "minutes": 20
+          },
+          "first": "癸丑"
+        },
+        "female": {
+          "direction": "backward",
+          "startAge": {
+            "years": 4,
+            "months": 10,
+            "days": 28,
+            "hours": 10,
+            "minutes": 24
+          },
+          "first": "辛亥"
+        }
+      }
+    },
+    {
+      "id": "southern",
+      "why": "A southern-hemisphere place in local summer.",
+      "civil": {
+        "year": 2020,
+        "month": 1,
+        "day": 15,
+        "hour": 18,
+        "minute": 45,
+        "second": 0
+      },
+      "zone": "Australia/Sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "utc": "2020-01-15T07:45:00.000Z",
+      "pillars": {
+        "civil/zi23": "己亥 丁丑 丁巳 己酉",
+        "civil/midnight": "己亥 丁丑 丁巳 己酉",
+        "standard/zi23": "己亥 丁丑 丁巳 己酉",
+        "standard/midnight": "己亥 丁丑 丁巳 己酉",
+        "lmt/zi23": "己亥 丁丑 丁巳 己酉",
+        "lmt/midnight": "己亥 丁丑 丁巳 己酉",
+        "apparent/zi23": "己亥 丁丑 丁巳 己酉",
+        "apparent/midnight": "己亥 丁丑 丁巳 己酉"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 3,
+            "months": 1,
+            "days": 21,
+            "hours": 5,
+            "minutes": 20
+          },
+          "first": "丙子"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 6,
+            "months": 8,
+            "days": 6,
+            "hours": 13,
+            "minutes": 16
+          },
+          "first": "戊寅"
+        }
+      }
+    },
+    {
+      "id": "skipped-hour",
+      "why": "A wall-clock time that never existed: clocks in New York jumped from 02:00 to 03:00.",
+      "civil": {
+        "year": 2021,
+        "month": 3,
+        "day": 14,
+        "hour": 2,
+        "minute": 30,
+        "second": 0
+      },
+      "zone": "America/New_York",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "utc": "2021-03-14T07:30:00.000Z",
+      "pillars": {
+        "civil/zi23": "辛丑 辛卯 辛酉 庚寅",
+        "civil/midnight": "辛丑 辛卯 辛酉 庚寅",
+        "standard/zi23": "辛丑 辛卯 辛酉 己丑",
+        "standard/midnight": "辛丑 辛卯 辛酉 己丑",
+        "lmt/zi23": "辛丑 辛卯 辛酉 己丑",
+        "lmt/midnight": "辛丑 辛卯 辛酉 己丑",
+        "apparent/zi23": "辛丑 辛卯 辛酉 己丑",
+        "apparent/midnight": "辛丑 辛卯 辛酉 己丑"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 2,
+            "months": 11,
+            "days": 23,
+            "hours": 0,
+            "minutes": 36
+          },
+          "first": "庚寅"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 7,
+            "months": 1,
+            "days": 0,
+            "hours": 9,
+            "minutes": 46
+          },
+          "first": "壬辰"
+        }
+      }
+    },
+    {
+      "id": "repeated-hour",
+      "why": "A wall-clock time that occurred twice: clocks in New York fell back from 02:00 to 01:00.",
+      "civil": {
+        "year": 2021,
+        "month": 11,
+        "day": 7,
+        "hour": 1,
+        "minute": 30,
+        "second": 0
+      },
+      "zone": "America/New_York",
+      "latitude": 40.7128,
+      "longitude": -74.006,
+      "utc": "2021-11-07T05:30:00.000Z",
+      "pillars": {
+        "civil/zi23": "辛丑 己亥 己未 乙丑",
+        "civil/midnight": "辛丑 己亥 己未 乙丑",
+        "standard/zi23": "辛丑 己亥 己未 甲子",
+        "standard/midnight": "辛丑 己亥 己未 甲子",
+        "lmt/zi23": "辛丑 己亥 己未 甲子",
+        "lmt/midnight": "辛丑 己亥 己未 甲子",
+        "apparent/zi23": "辛丑 己亥 己未 甲子",
+        "apparent/midnight": "辛丑 己亥 己未 甲子"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 0,
+            "months": 0,
+            "days": 2,
+            "hours": 14,
+            "minutes": 12
+          },
+          "first": "戊戌"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 9,
+            "months": 10,
+            "days": 22,
+            "hours": 6,
+            "minutes": 24
+          },
+          "first": "庚子"
+        }
+      }
+    },
+    {
+      "id": "eot-extreme",
+      "why": "Early November, when the equation of time is near its maximum of about sixteen minutes.",
+      "civil": {
+        "year": 2015,
+        "month": 11,
+        "day": 3,
+        "hour": 12,
+        "minute": 53,
+        "second": 0
+      },
+      "zone": "UTC",
+      "latitude": 51.4779,
+      "longitude": 0,
+      "utc": "2015-11-03T12:53:00.000Z",
+      "pillars": {
+        "civil/zi23": "乙未 丙戌 癸未 戊午",
+        "civil/midnight": "乙未 丙戌 癸未 戊午",
+        "standard/zi23": "乙未 丙戌 癸未 戊午",
+        "standard/midnight": "乙未 丙戌 癸未 戊午",
+        "lmt/zi23": "乙未 丙戌 癸未 戊午",
+        "lmt/midnight": "乙未 丙戌 癸未 戊午",
+        "apparent/zi23": "乙未 丙戌 癸未 己未",
+        "apparent/midnight": "乙未 丙戌 癸未 己未"
+      },
+      "luckUnderDefaults": {
+        "male": {
+          "direction": "backward",
+          "startAge": {
+            "years": 8,
+            "months": 7,
+            "days": 20,
+            "hours": 19,
+            "minutes": 50
+          },
+          "first": "乙酉"
+        },
+        "female": {
+          "direction": "forward",
+          "startAge": {
+            "years": 1,
+            "months": 4,
+            "days": 25,
+            "hours": 12,
+            "minutes": 14
+          },
+          "first": "丁亥"
+        }
+      }
+    }
+  ]
+}

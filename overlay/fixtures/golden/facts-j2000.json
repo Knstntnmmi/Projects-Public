@@ -1,0 +1,894 @@
+{
+  "engine": {
+    "name": "overlay",
+    "version": "0.1.0",
+    "author": "Knstntnmmi",
+    "source": "https://github.com/Knstntnmmi/Projects-Public",
+    "license": "AGPL-3.0-or-later",
+    "ephemeris": "astronomy-engine 2.1.19 (MIT): truncated VSOP87 and the NOVAS reductions, good to about one arcminute"
+  },
+  "input": {
+    "utc": "2000-01-01T12:00:00Z",
+    "zone": "UTC",
+    "zoneOffset": "+00:00",
+    "latitude": 51.48,
+    "longitude": 0,
+    "notes": []
+  },
+  "conventions": {
+    "timeBasis": "civil",
+    "dayBoundary": "zi23",
+    "yearBoundary": "lichun",
+    "luckStart": "three-days-per-year",
+    "guaQi": "equal-longitude",
+    "firdariaNodes": "end",
+    "ayanamsa": "lahiri",
+    "mayaCorrelation": 584283
+  },
+  "substrate": {
+    "julianDate": 2451545,
+    "deltaTSeconds": 63.85,
+    "equationOfTimeMinutes": -3.28,
+    "clocks": {
+      "civil": {
+        "reading": "2000-01-01 12:00:00",
+        "offsetFromUtc": "+00:00"
+      },
+      "standard": {
+        "reading": "2000-01-01 12:00:00",
+        "offsetFromUtc": "+00:00"
+      },
+      "lmt": {
+        "reading": "2000-01-01 12:00:00",
+        "offsetFromUtc": "+00:00"
+      },
+      "apparent": {
+        "reading": "2000-01-01 11:56:42",
+        "offsetFromUtc": "-00:03:17"
+      }
+    },
+    "sunLongitude": 280.37,
+    "solarTerm": {
+      "current": "冬至 Dongzhi",
+      "since": "1999-12-22T07:44:10.775Z",
+      "next": "小寒 Xiaohan",
+      "at": "2000-01-06T01:00:55.938Z"
+    },
+    "basis": "Positions are apparent, geocentric, of date. Zone offsets come from the tz database of the runtime."
+  },
+  "bazi": {
+    "pillars": "己卯 丙子 戊午 戊午",
+    "year": {
+      "hanzi": "己卯",
+      "pinyin": "Ji Mao",
+      "stem": {
+        "hanzi": "己",
+        "element": "Earth",
+        "polarity": "Yin",
+        "tenGod": "劫財 Rob Wealth"
+      },
+      "branch": {
+        "hanzi": "卯",
+        "animal": "Rabbit",
+        "element": "Wood"
+      },
+      "hiddenStems": [
+        {
+          "hanzi": "乙",
+          "element": "Wood",
+          "tenGod": "正官 Direct Officer"
+        }
+      ],
+      "nayin": "城頭土 Earth of the City Wall"
+    },
+    "month": {
+      "hanzi": "丙子",
+      "pinyin": "Bing Zi",
+      "stem": {
+        "hanzi": "丙",
+        "element": "Fire",
+        "polarity": "Yang",
+        "tenGod": "偏印 Indirect Resource"
+      },
+      "branch": {
+        "hanzi": "子",
+        "animal": "Rat",
+        "element": "Water"
+      },
+      "hiddenStems": [
+        {
+          "hanzi": "癸",
+          "element": "Water",
+          "tenGod": "正財 Direct Wealth"
+        }
+      ],
+      "nayin": "澗下水 Water of the Ravine"
+    },
+    "day": {
+      "hanzi": "戊午",
+      "pinyin": "Wu Wu",
+      "stem": {
+        "hanzi": "戊",
+        "element": "Earth",
+        "polarity": "Yang",
+        "tenGod": "day master"
+      },
+      "branch": {
+        "hanzi": "午",
+        "animal": "Horse",
+        "element": "Fire"
+      },
+      "hiddenStems": [
+        {
+          "hanzi": "丁",
+          "element": "Fire",
+          "tenGod": "正印 Direct Resource"
+        },
+        {
+          "hanzi": "己",
+          "element": "Earth",
+          "tenGod": "劫財 Rob Wealth"
+        }
+      ],
+      "nayin": "天上火 Fire in the Sky"
+    },
+    "hour": {
+      "hanzi": "戊午",
+      "pinyin": "Wu Wu",
+      "stem": {
+        "hanzi": "戊",
+        "element": "Earth",
+        "polarity": "Yang",
+        "tenGod": "比肩 Friend"
+      },
+      "branch": {
+        "hanzi": "午",
+        "animal": "Horse",
+        "element": "Fire"
+      },
+      "hiddenStems": [
+        {
+          "hanzi": "丁",
+          "element": "Fire",
+          "tenGod": "正印 Direct Resource"
+        },
+        {
+          "hanzi": "己",
+          "element": "Earth",
+          "tenGod": "劫財 Rob Wealth"
+        }
+      ],
+      "nayin": "天上火 Fire in the Sky"
+    },
+    "dayMaster": "戊 Yang Earth",
+    "clockUsed": "civil: 2000-01-01 12:00:00",
+    "luck": {
+      "direction": "forward",
+      "countedTo": "小寒 at 2000-01-06T01:00:55.938Z",
+      "startAge": {
+        "years": 1,
+        "months": 6,
+        "days": 5,
+        "hours": 1,
+        "minutes": 50
+      },
+      "begins": "2001-07-06T13:50:00Z",
+      "pillars": [
+        {
+          "pillar": "丁丑",
+          "from": "2001-07-06T13:50:00Z",
+          "to": "2011-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "戊寅",
+          "from": "2011-07-06T13:50:00Z",
+          "to": "2021-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "己卯",
+          "from": "2021-07-06T13:50:00Z",
+          "to": "2031-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "庚辰",
+          "from": "2031-07-06T13:50:00Z",
+          "to": "2041-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "辛巳",
+          "from": "2041-07-06T13:50:00Z",
+          "to": "2051-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "壬午",
+          "from": "2051-07-06T13:50:00Z",
+          "to": "2061-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "癸未",
+          "from": "2061-07-06T13:50:00Z",
+          "to": "2071-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "甲申",
+          "from": "2071-07-06T13:50:00Z",
+          "to": "2081-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "乙酉",
+          "from": "2081-07-06T13:50:00Z",
+          "to": "2091-07-06T13:50:00Z"
+        },
+        {
+          "pillar": "丙戌",
+          "from": "2091-07-06T13:50:00Z",
+          "to": "2101-07-06T13:50:00Z"
+        }
+      ]
+    },
+    "basis": "Year from Lichun and month from the jie (both by the Sun's longitude, independent of any clock). Day and hour from the civil clock with the day turning at 23:00. Cross-checked against tyme4ts in the test suite."
+  },
+  "iching": {
+    "guaQi": {
+      "hexagram": "24 復 Fu (Return)",
+      "rank": "Sovereign",
+      "mode": "equal-longitude"
+    },
+    "sovereign": "24 復 Fu (Return)",
+    "cardinal": "29 坎 Kan (The Pit)",
+    "fuxiCircle": "27 頤 Yi (Nourishment)",
+    "gateWheel": {
+      "hexagram": "38 睽 Kui (Divergence)",
+      "line": 1
+    },
+    "basis": "All five are readings of the Sun's longitude against a hexagram arrangement; they are different arrangements and are not expected to agree. No hexagram is cast: casting is a chance procedure, not a calculation."
+  },
+  "western": {
+    "ascendant": "24°16′ Aries",
+    "midheaven": "9°36′ Capricorn",
+    "sect": "day chart",
+    "positions": [
+      {
+        "planet": "Sun",
+        "position": "10°22′ Capricorn",
+        "longitude": 280.37,
+        "house": 10,
+        "retrograde": false,
+        "dignities": []
+      },
+      {
+        "planet": "Moon",
+        "position": "13°19′ Scorpio",
+        "longitude": 223.32,
+        "house": 8,
+        "retrograde": false,
+        "dignities": [
+          "triplicity (participating)",
+          "fall"
+        ]
+      },
+      {
+        "planet": "Mercury",
+        "position": "1°53′ Capricorn",
+        "longitude": 271.89,
+        "house": 10,
+        "retrograde": false,
+        "dignities": [
+          "bound"
+        ]
+      },
+      {
+        "planet": "Venus",
+        "position": "1°33′ Sagittarius",
+        "longitude": 241.57,
+        "house": 9,
+        "retrograde": false,
+        "dignities": []
+      },
+      {
+        "planet": "Mars",
+        "position": "27°57′ Aquarius",
+        "longitude": 327.96,
+        "house": 11,
+        "retrograde": false,
+        "dignities": []
+      },
+      {
+        "planet": "Jupiter",
+        "position": "25°15′ Aries",
+        "longitude": 25.25,
+        "house": 1,
+        "retrograde": false,
+        "dignities": []
+      },
+      {
+        "planet": "Saturn",
+        "position": "10°23′ Taurus",
+        "longitude": 40.4,
+        "house": 2,
+        "retrograde": true,
+        "dignities": []
+      }
+    ],
+    "northNode": "5°02′ Leo",
+    "lotOfFortune": "27°13′ Aquarius",
+    "profectionAtBirth": {
+      "label": "Aries",
+      "lord": "Mars",
+      "startUtcMs": 946728000000,
+      "endUtcMs": 978284781938,
+      "detail": "age 0, house 1"
+    },
+    "firdariaAtBirth": {
+      "lord": "Sun",
+      "until": "2009-12-31T22:07:31.900Z"
+    },
+    "planetaryHour": {
+      "dayRuler": "Saturn",
+      "hourRuler": "Mercury",
+      "hourNumber": 6,
+      "from": "2000-01-01T11:23:44.622Z",
+      "to": "2000-01-01T12:03:22.519Z"
+    },
+    "basis": "Tropical zodiac, whole-sign houses, mean lunar node, Dorothean triplicities, Egyptian bounds, Chaldean faces."
+  },
+  "vedic": {
+    "ayanamsa": 23.85,
+    "moon": {
+      "nakshatra": "Swati",
+      "pada": 4,
+      "lord": "Rahu",
+      "siderealLongitude": 199.47
+    },
+    "dashaAtBirth": {
+      "lord": "Rahu",
+      "began": "1982-09-18T22:11:25.268Z",
+      "until": "2000-09-18T10:11:25.268Z"
+    },
+    "basis": "Lahiri ayanamsa without nutation; vimshottari years of 365.25 days."
+  },
+  "calendars": {
+    "julianDayNumber": 2451545,
+    "weekday": "Saturday",
+    "maya": "12.19.6.15.2  11 Ik  10 Kankin",
+    "dayOfficer": "破 Break",
+    "mansionOfDay": "胃",
+    "nineStarOfYear": "一白 One White",
+    "basis": "Counted on the civil date, except the day officer, which follows the day pillar."
+  },
+  "acrossTheRings": {
+    "sun": [
+      {
+        "ring": "zodiac",
+        "title": "Tropical zodiac",
+        "grade": "exact",
+        "label": "Capricorn, domicile of Saturn"
+      },
+      {
+        "ring": "bounds",
+        "title": "Egyptian bounds",
+        "grade": "conventional",
+        "label": "Bound of Jupiter, 7 to 14 degrees of Capricorn"
+      },
+      {
+        "ring": "faces",
+        "title": "Faces (decans)",
+        "grade": "conventional",
+        "label": "Face of Mars, 10 to 20 degrees of Capricorn"
+      },
+      {
+        "ring": "terms",
+        "title": "Twenty-four solar terms",
+        "grade": "exact",
+        "label": "冬至 Dongzhi (Winter Solstice), from 270 degrees; a sign ingress"
+      },
+      {
+        "ring": "branch-months",
+        "title": "Branch months",
+        "grade": "derived",
+        "label": "子 Zi month (Rat), Water"
+      },
+      {
+        "ring": "sovereign",
+        "title": "Twelve sovereign hexagrams",
+        "grade": "derived",
+        "label": "復 Fu (Return), sovereign of the 子 month"
+      },
+      {
+        "ring": "gua-qi",
+        "title": "Gua qi: sixty hexagrams",
+        "grade": "approximate",
+        "label": "復 Fu (Return), 辟 Sovereign"
+      },
+      {
+        "ring": "cardinal",
+        "title": "Four cardinal hexagrams, line by line",
+        "grade": "derived",
+        "label": "坎初六: Kan line 1, ruling 冬至 Dongzhi"
+      },
+      {
+        "ring": "fuxi",
+        "title": "Fu Xi circle (Shao Yong)",
+        "grade": "conventional",
+        "label": "27 頤 Yi (Nourishment)"
+      },
+      {
+        "ring": "gates",
+        "title": "Sixty-four-gate wheel",
+        "grade": "conventional",
+        "label": "38 睽 Kui (Divergence)"
+      },
+      {
+        "ring": "sidereal",
+        "title": "Sidereal zodiac (Lahiri)",
+        "grade": "conventional",
+        "label": "Sidereal Sagittarius"
+      },
+      {
+        "ring": "nakshatras",
+        "title": "Twenty-seven nakshatras",
+        "grade": "conventional",
+        "label": "20 Purva Ashadha, lord Venus"
+      }
+    ],
+    "moon": [
+      {
+        "ring": "zodiac",
+        "title": "Tropical zodiac",
+        "grade": "exact",
+        "label": "Scorpio, domicile of Mars"
+      },
+      {
+        "ring": "bounds",
+        "title": "Egyptian bounds",
+        "grade": "conventional",
+        "label": "Bound of Mercury, 11 to 19 degrees of Scorpio"
+      },
+      {
+        "ring": "faces",
+        "title": "Faces (decans)",
+        "grade": "conventional",
+        "label": "Face of Sun, 10 to 20 degrees of Scorpio"
+      },
+      {
+        "ring": "terms",
+        "title": "Twenty-four solar terms",
+        "grade": "exact",
+        "label": "霜降 Shuangjiang (Frost Descent), from 210 degrees; a sign ingress"
+      },
+      {
+        "ring": "branch-months",
+        "title": "Branch months",
+        "grade": "derived",
+        "label": "戌 Xu month (Dog), Earth"
+      },
+      {
+        "ring": "sovereign",
+        "title": "Twelve sovereign hexagrams",
+        "grade": "derived",
+        "label": "剝 Bo (Stripping), sovereign of the 戌 month"
+      },
+      {
+        "ring": "gua-qi",
+        "title": "Gua qi: sixty hexagrams",
+        "grade": "approximate",
+        "label": "艮 Gen (Stillness), 侯 Marquis"
+      },
+      {
+        "ring": "cardinal",
+        "title": "Four cardinal hexagrams, line by line",
+        "grade": "derived",
+        "label": "兌六三: Dui line 3, ruling 霜降 Shuangjiang"
+      },
+      {
+        "ring": "fuxi",
+        "title": "Fu Xi circle (Shao Yong)",
+        "grade": "conventional",
+        "label": "15 謙 Qian (Modesty)"
+      },
+      {
+        "ring": "gates",
+        "title": "Sixty-four-gate wheel",
+        "grade": "conventional",
+        "label": "1 乾 Qian (Heaven)"
+      },
+      {
+        "ring": "sidereal",
+        "title": "Sidereal zodiac (Lahiri)",
+        "grade": "conventional",
+        "label": "Sidereal Libra"
+      },
+      {
+        "ring": "nakshatras",
+        "title": "Twenty-seven nakshatras",
+        "grade": "conventional",
+        "label": "15 Swati, lord Rahu"
+      }
+    ],
+    "ascendant": [
+      {
+        "ring": "zodiac",
+        "title": "Tropical zodiac",
+        "grade": "exact",
+        "label": "Aries, domicile of Mars"
+      },
+      {
+        "ring": "bounds",
+        "title": "Egyptian bounds",
+        "grade": "conventional",
+        "label": "Bound of Mars, 20 to 25 degrees of Aries"
+      },
+      {
+        "ring": "faces",
+        "title": "Faces (decans)",
+        "grade": "conventional",
+        "label": "Face of Venus, 20 to 30 degrees of Aries"
+      },
+      {
+        "ring": "terms",
+        "title": "Twenty-four solar terms",
+        "grade": "exact",
+        "label": "清明 Qingming (Clear and Bright), from 15 degrees; opens a BaZi month"
+      },
+      {
+        "ring": "branch-months",
+        "title": "Branch months",
+        "grade": "derived",
+        "label": "辰 Chen month (Dragon), Earth"
+      },
+      {
+        "ring": "sovereign",
+        "title": "Twelve sovereign hexagrams",
+        "grade": "derived",
+        "label": "夬 Guai (Resolution), sovereign of the 辰 month"
+      },
+      {
+        "ring": "gua-qi",
+        "title": "Gua qi: sixty hexagrams",
+        "grade": "approximate",
+        "label": "蠱 Gu (Decay), 卿 Minister"
+      },
+      {
+        "ring": "cardinal",
+        "title": "Four cardinal hexagrams, line by line",
+        "grade": "derived",
+        "label": "震六二: Zhen line 2, ruling 清明 Qingming"
+      },
+      {
+        "ring": "fuxi",
+        "title": "Fu Xi circle (Shao Yong)",
+        "grade": "conventional",
+        "label": "54 歸妹 Gui Mei (Marrying Maiden)"
+      },
+      {
+        "ring": "gates",
+        "title": "Sixty-four-gate wheel",
+        "grade": "conventional",
+        "label": "42 益 Yi (Increase)"
+      },
+      {
+        "ring": "sidereal",
+        "title": "Sidereal zodiac (Lahiri)",
+        "grade": "conventional",
+        "label": "Sidereal Aries"
+      },
+      {
+        "ring": "nakshatras",
+        "title": "Twenty-seven nakshatras",
+        "grade": "conventional",
+        "label": "1 Ashwini, lord Ketu"
+      }
+    ]
+  },
+  "sensitivity": [
+    {
+      "id": "bazi.hour",
+      "system": "chinese",
+      "fact": "Hour pillar",
+      "value": "戊午",
+      "earlier": {
+        "minutes": 60,
+        "value": "丁巳"
+      },
+      "later": {
+        "minutes": 60,
+        "value": "己未"
+      },
+      "nearestMinutes": 60,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "bazi.day",
+      "system": "chinese",
+      "fact": "Day pillar",
+      "value": "戊午",
+      "earlier": {
+        "minutes": 780,
+        "value": "丁巳"
+      },
+      "later": {
+        "minutes": 660,
+        "value": "己未"
+      },
+      "nearestMinutes": 660,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "bazi.month",
+      "system": "chinese",
+      "fact": "Month pillar",
+      "value": "丙子",
+      "earlier": {
+        "minutes": 35891.97,
+        "value": "乙亥"
+      },
+      "later": {
+        "minutes": 6540.94,
+        "value": "丁丑"
+      },
+      "nearestMinutes": 6540.94,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "bazi.year",
+      "system": "chinese",
+      "fact": "Year pillar",
+      "value": "己卯",
+      "earlier": null,
+      "later": {
+        "minutes": 49000.31,
+        "value": "庚辰"
+      },
+      "nearestMinutes": 49000.31,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "western.ascendant",
+      "system": "western",
+      "fact": "Rising sign",
+      "value": "Aries",
+      "earlier": {
+        "minutes": 41.7,
+        "value": "Pisces"
+      },
+      "later": {
+        "minutes": 10.72,
+        "value": "Taurus"
+      },
+      "nearestMinutes": 10.72,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "western.midheaven",
+      "system": "western",
+      "fact": "Midheaven sign",
+      "value": "Capricorn",
+      "earlier": {
+        "minutes": 41.7,
+        "value": "Sagittarius"
+      },
+      "later": {
+        "minutes": 86.67,
+        "value": "Aquarius"
+      },
+      "nearestMinutes": 41.7,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "western.sect",
+      "system": "western",
+      "fact": "Sect",
+      "value": "day chart",
+      "earlier": {
+        "minutes": 227.57,
+        "value": "night chart"
+      },
+      "later": {
+        "minutes": 234.33,
+        "value": "night chart"
+      },
+      "nearestMinutes": 227.57,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "western.moon",
+      "system": "western",
+      "fact": "Moon sign",
+      "value": "Scorpio",
+      "earlier": {
+        "minutes": 1583.61,
+        "value": "Libra"
+      },
+      "later": {
+        "minutes": 2011.71,
+        "value": "Sagittarius"
+      },
+      "nearestMinutes": 1583.61,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "western.sun",
+      "system": "western",
+      "fact": "Sun sign",
+      "value": "Capricorn",
+      "earlier": {
+        "minutes": 14655.82,
+        "value": "Sagittarius"
+      },
+      "later": {
+        "minutes": 27743.2,
+        "value": "Aquarius"
+      },
+      "nearestMinutes": 14655.82,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "western.planetary-hour",
+      "system": "western",
+      "fact": "Planetary hour",
+      "value": "Mercury (day of Saturn)",
+      "earlier": {
+        "minutes": 36.25,
+        "value": "Venus (day of Saturn)"
+      },
+      "later": {
+        "minutes": 3.39,
+        "value": "Moon (day of Saturn)"
+      },
+      "nearestMinutes": 3.39,
+      "withinUncertainty": true,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "vedic.nakshatra",
+      "system": "vedic",
+      "fact": "Moon nakshatra and first dasha lord",
+      "value": "Swati (Rahu)",
+      "earlier": {
+        "minutes": 1522.36,
+        "value": "Chitra (Mars)"
+      },
+      "later": {
+        "minutes": 63.41,
+        "value": "Vishakha (Jupiter)"
+      },
+      "nearestMinutes": 63.41,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "vedic.pada",
+      "system": "vedic",
+      "fact": "Moon nakshatra quarter",
+      "value": "Swati pada 4",
+      "earlier": {
+        "minutes": 335.4,
+        "value": "Swati pada 3"
+      },
+      "later": {
+        "minutes": 63.41,
+        "value": "Vishakha pada 1"
+      },
+      "nearestMinutes": 63.41,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "iching.gate",
+      "system": "iching",
+      "fact": "Sun on the gate wheel",
+      "value": "38.1 睽",
+      "earlier": {
+        "minutes": 1227.05,
+        "value": "58.6 兌"
+      },
+      "later": {
+        "minutes": 97.28,
+        "value": "38.2 睽"
+      },
+      "nearestMinutes": 97.28,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "iching.gua-qi",
+      "system": "iching",
+      "fact": "Gua qi hexagram",
+      "value": "復",
+      "earlier": {
+        "minutes": 6172.57,
+        "value": "中孚"
+      },
+      "later": {
+        "minutes": 2304.21,
+        "value": "屯"
+      },
+      "nearestMinutes": 2304.21,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "calendar.weekday",
+      "system": "calendar",
+      "fact": "Weekday and Maya day (civil date)",
+      "value": "Saturday, 11 Ik",
+      "earlier": {
+        "minutes": 720,
+        "value": "Friday, 10 Imix"
+      },
+      "later": {
+        "minutes": 720,
+        "value": "Sunday, 12 Akbal"
+      },
+      "nearestMinutes": 720,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    }
+  ],
+  "conventionEffects": [
+    {
+      "key": "timeBasis",
+      "title": "Clock the birth hour is read from",
+      "value": "standard",
+      "label": "Standard time",
+      "changes": []
+    },
+    {
+      "key": "timeBasis",
+      "title": "Clock the birth hour is read from",
+      "value": "lmt",
+      "label": "Local mean time",
+      "changes": []
+    },
+    {
+      "key": "timeBasis",
+      "title": "Clock the birth hour is read from",
+      "value": "apparent",
+      "label": "True solar time",
+      "changes": []
+    },
+    {
+      "key": "dayBoundary",
+      "title": "Where the day pillar changes",
+      "value": "midnight",
+      "label": "At midnight (late Zi hour)",
+      "changes": []
+    },
+    {
+      "key": "guaQi",
+      "title": "How the gua qi hexagrams divide the year",
+      "value": "mean-time",
+      "label": "One sixtieth of the solstice-to-solstice year each",
+      "changes": []
+    },
+    {
+      "key": "firdariaNodes",
+      "title": "Place of the lunar nodes in a night-chart firdaria",
+      "value": "after-mars",
+      "label": "Nodes after Mars",
+      "changes": []
+    },
+    {
+      "key": "mayaCorrelation",
+      "title": "Maya calendar correlation",
+      "value": 584285,
+      "label": "584285",
+      "changes": [
+        {
+          "output": "Maya date",
+          "from": "12.19.6.15.2  11 Ik  10 Kankin",
+          "to": "12.19.6.15.0  9 Ahau  8 Kankin"
+        }
+      ]
+    }
+  ]
+}

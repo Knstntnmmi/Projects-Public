@@ -1,0 +1,1086 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="ov ov-timeline" viewBox="0 0 1280 360" role="img" aria-label="Ninety years from the J2000 epoch, every track on one axis">
+<style>
+.ov{--ov-bg:#fbfaf6;--ov-panel:#f1efe8;--ov-ink:#22201b;--ov-muted:#6f6a5f;--ov-line:#cfcabb;--ov-accent:#a23b2a;--ov-fire:#e8a08a;--ov-earth:#d9c48f;--ov-air:#bcd3e6;--ov-water:#8fb4d9;--ov-wood:#a9cf9c;--ov-metal:#d5d7dc;--ov-sun:#f0c35a;--ov-moon:#cfd6e4;--ov-mercury:#b8dcc8;--ov-venus:#e9b9cf;--ov-mars:#e58f7c;--ov-jupiter:#b9b3e6;--ov-saturn:#a9a79d;--ov-node:#c9c2b0;--ov-rahu:#8f9bb3;--ov-ketu:#c7a98f;--ov-jie:#e7d9b8;--ov-qi:#f4eedd;font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Noto Serif","Songti SC","Noto Serif CJK SC",serif;color:var(--ov-ink)}
+@media (prefers-color-scheme:dark){.ov:not([data-theme="light"]){--ov-bg:#16161a;--ov-panel:#1f2026;--ov-ink:#ece8dd;--ov-muted:#9a968a;--ov-line:#3a3b44;--ov-accent:#f08a6c;--ov-fire:#8a3f31;--ov-earth:#6f5f2c;--ov-air:#33506b;--ov-water:#234a75;--ov-wood:#2f5f39;--ov-metal:#4a4d57;--ov-sun:#8a6a17;--ov-moon:#4a5266;--ov-mercury:#2f5f4b;--ov-venus:#7a3f5c;--ov-mars:#8c3a2b;--ov-jupiter:#4a4390;--ov-saturn:#55534b;--ov-node:#514c40;--ov-rahu:#3d4963;--ov-ketu:#6a4f38;--ov-jie:#4d4530;--ov-qi:#2c2a22}}
+.ov[data-theme="dark"]{--ov-bg:#16161a;--ov-panel:#1f2026;--ov-ink:#ece8dd;--ov-muted:#9a968a;--ov-line:#3a3b44;--ov-accent:#f08a6c;--ov-fire:#8a3f31;--ov-earth:#6f5f2c;--ov-air:#33506b;--ov-water:#234a75;--ov-wood:#2f5f39;--ov-metal:#4a4d57;--ov-sun:#8a6a17;--ov-moon:#4a5266;--ov-mercury:#2f5f4b;--ov-venus:#7a3f5c;--ov-mars:#8c3a2b;--ov-jupiter:#4a4390;--ov-saturn:#55534b;--ov-node:#514c40;--ov-rahu:#3d4963;--ov-ketu:#6a4f38;--ov-jie:#4d4530;--ov-qi:#2c2a22}
+.ov .bg{fill:var(--ov-bg)}
+.ov text{fill:var(--ov-ink)}
+.ov .muted{fill:var(--ov-muted)}
+.ov .seg{stroke:var(--ov-line);stroke-width:.6}
+.ov .seg:hover{stroke:var(--ov-ink);stroke-width:1.4}
+.ov .rule{stroke:var(--ov-line);fill:none}
+.ov .mark{stroke:var(--ov-ink);fill:none}
+.ov .accent{stroke:var(--ov-accent);fill:none}
+.ov .accent-text{fill:var(--ov-accent)}
+.ov .halo{paint-order:stroke;stroke:var(--ov-bg);stroke-width:3px;stroke-linejoin:round}
+.ov .t-fire{fill:var(--ov-fire)}
+.ov .t-earth{fill:var(--ov-earth)}
+.ov .t-air{fill:var(--ov-air)}
+.ov .t-water{fill:var(--ov-water)}
+.ov .t-wood{fill:var(--ov-wood)}
+.ov .t-metal{fill:var(--ov-metal)}
+.ov .t-sun{fill:var(--ov-sun)}
+.ov .t-moon{fill:var(--ov-moon)}
+.ov .t-mercury{fill:var(--ov-mercury)}
+.ov .t-venus{fill:var(--ov-venus)}
+.ov .t-mars{fill:var(--ov-mars)}
+.ov .t-jupiter{fill:var(--ov-jupiter)}
+.ov .t-saturn{fill:var(--ov-saturn)}
+.ov .t-node{fill:var(--ov-node)}
+.ov .t-rahu{fill:var(--ov-rahu)}
+.ov .t-ketu{fill:var(--ov-ketu)}
+.ov .t-jie{fill:var(--ov-jie)}
+.ov .t-qi{fill:var(--ov-qi)}
+.ov .t-yang{fill:var(--ov-ink)}
+.ov .t-none{fill:var(--ov-panel)}
+</style>
+<rect class="bg" width="1280" height="360"/>
+<defs><clipPath id="ov-plot"><rect x="232" y="0" width="1024" height="360"/></clipPath></defs>
+<text x="24" y="30" font-size="19">Ninety years from the J2000 epoch, every track on one axis</text>
+<line class="rule" x1="243.39" y1="73" x2="243.39" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="254.76" y1="73" x2="254.76" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="266.13" y1="73" x2="266.13" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="277.5" y1="73" x2="277.5" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="288.9" y1="73" x2="288.9" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="300.27" y1="73" x2="300.27" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="311.64" y1="73" x2="311.64" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="323.01" y1="73" x2="323.01" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="334.41" y1="73" x2="334.41" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="345.78" y1="66" x2="345.78" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="348.78" y="62" font-size="12">2010</text>
+<line class="rule" x1="357.15" y1="73" x2="357.15" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="368.52" y1="73" x2="368.52" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="379.92" y1="73" x2="379.92" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="391.29" y1="73" x2="391.29" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="402.66" y1="73" x2="402.66" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="414.03" y1="73" x2="414.03" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="425.43" y1="73" x2="425.43" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="436.8" y1="73" x2="436.8" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="448.17" y1="73" x2="448.17" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="459.54" y1="66" x2="459.54" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="462.54" y="62" font-size="12">2020</text>
+<line class="rule" x1="470.95" y1="73" x2="470.95" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="482.32" y1="73" x2="482.32" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="493.69" y1="73" x2="493.69" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="505.06" y1="73" x2="505.06" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="516.46" y1="73" x2="516.46" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="527.83" y1="73" x2="527.83" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="539.2" y1="73" x2="539.2" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="550.57" y1="73" x2="550.57" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="561.97" y1="73" x2="561.97" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="573.34" y1="66" x2="573.34" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="576.34" y="62" font-size="12">2030</text>
+<line class="rule" x1="584.71" y1="73" x2="584.71" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="596.08" y1="73" x2="596.08" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="607.48" y1="73" x2="607.48" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="618.85" y1="73" x2="618.85" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="630.22" y1="73" x2="630.22" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="641.59" y1="73" x2="641.59" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="652.99" y1="73" x2="652.99" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="664.36" y1="73" x2="664.36" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="675.73" y1="73" x2="675.73" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="687.1" y1="66" x2="687.1" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="690.1" y="62" font-size="12">2040</text>
+<line class="rule" x1="698.51" y1="73" x2="698.51" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="709.88" y1="73" x2="709.88" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="721.25" y1="73" x2="721.25" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="732.62" y1="73" x2="732.62" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="744.02" y1="73" x2="744.02" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="755.39" y1="73" x2="755.39" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="766.76" y1="73" x2="766.76" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="778.13" y1="73" x2="778.13" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="789.53" y1="73" x2="789.53" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="800.9" y1="66" x2="800.9" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="803.9" y="62" font-size="12">2050</text>
+<line class="rule" x1="812.27" y1="73" x2="812.27" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="823.64" y1="73" x2="823.64" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="835.04" y1="73" x2="835.04" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="846.41" y1="73" x2="846.41" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="857.78" y1="73" x2="857.78" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="869.15" y1="73" x2="869.15" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="880.55" y1="73" x2="880.55" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="891.92" y1="73" x2="891.92" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="903.29" y1="73" x2="903.29" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="914.67" y1="66" x2="914.67" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="917.67" y="62" font-size="12">2060</text>
+<line class="rule" x1="926.07" y1="73" x2="926.07" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="937.44" y1="73" x2="937.44" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="948.81" y1="73" x2="948.81" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="960.18" y1="73" x2="960.18" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="971.58" y1="73" x2="971.58" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="982.95" y1="73" x2="982.95" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="994.32" y1="73" x2="994.32" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1005.69" y1="73" x2="1005.69" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1017.09" y1="73" x2="1017.09" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1028.46" y1="66" x2="1028.46" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="1031.46" y="62" font-size="12">2070</text>
+<line class="rule" x1="1039.83" y1="73" x2="1039.83" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1051.2" y1="73" x2="1051.2" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1062.6" y1="73" x2="1062.6" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1073.97" y1="73" x2="1073.97" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1085.34" y1="73" x2="1085.34" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1096.71" y1="73" x2="1096.71" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1108.11" y1="73" x2="1108.11" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1119.48" y1="73" x2="1119.48" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1130.86" y1="73" x2="1130.86" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1142.23" y1="66" x2="1142.23" y2="316" stroke-opacity="0.9"/>
+<text class="muted" x="1145.23" y="62" font-size="12">2080</text>
+<line class="rule" x1="1153.63" y1="73" x2="1153.63" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1165" y1="73" x2="1165" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1176.37" y1="73" x2="1176.37" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1187.74" y1="73" x2="1187.74" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1199.14" y1="73" x2="1199.14" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1210.51" y1="73" x2="1210.51" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1221.88" y1="73" x2="1221.88" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1233.25" y1="73" x2="1233.25" y2="316" stroke-opacity="0.35"/>
+<line class="rule" x1="1244.65" y1="73" x2="1244.65" y2="316" stroke-opacity="0.35"/>
+<g data-track="bazi-luck">
+<text x="220" y="90" font-size="13" text-anchor="end" dominant-baseline="central">BaZi luck pillars<title>Ten calendar years each, from an age set by the distance to the next jie (three days to the year)</title></text>
+<text class="muted" x="220" y="104" font-size="10" text-anchor="end" dominant-baseline="central">Chinese · life</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-fire" x="249.2" y="82" width="113.76" height="26" rx="2" data-label="丁丑" data-detail="Ding Chou, luck pillar 1" data-start="994427400000" data-end="1309960200000"><title>BaZi luck pillars: 丁丑 (Ding Chou, luck pillar 1)
+2001-07-06 13:50 to 2011-07-06 13:50 UTC</title></rect>
+<text x="306.08" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">丁丑</text>
+<rect class="seg t-earth" x="362.96" y="82" width="113.8" height="26" rx="2" data-label="戊寅" data-detail="Wu Yin, luck pillar 2" data-start="1309960200000" data-end="1625579400000"><title>BaZi luck pillars: 戊寅 (Wu Yin, luck pillar 2)
+2011-07-06 13:50 to 2021-07-06 13:50 UTC</title></rect>
+<text x="419.86" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">戊寅</text>
+<rect class="seg t-earth" x="476.76" y="82" width="113.76" height="26" rx="2" data-label="己卯" data-detail="Ji Mao, luck pillar 3" data-start="1625579400000" data-end="1941112200000"><title>BaZi luck pillars: 己卯 (Ji Mao, luck pillar 3)
+2021-07-06 13:50 to 2031-07-06 13:50 UTC</title></rect>
+<text x="533.64" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">己卯</text>
+<rect class="seg t-metal" x="590.52" y="82" width="113.8" height="26" rx="2" data-label="庚辰" data-detail="Geng Chen, luck pillar 4" data-start="1941112200000" data-end="2256731400000"><title>BaZi luck pillars: 庚辰 (Geng Chen, luck pillar 4)
+2031-07-06 13:50 to 2041-07-06 13:50 UTC</title></rect>
+<text x="647.42" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">庚辰</text>
+<rect class="seg t-metal" x="704.32" y="82" width="113.76" height="26" rx="2" data-label="辛巳" data-detail="Xin Si, luck pillar 5" data-start="2256731400000" data-end="2572264200000"><title>BaZi luck pillars: 辛巳 (Xin Si, luck pillar 5)
+2041-07-06 13:50 to 2051-07-06 13:50 UTC</title></rect>
+<text x="761.2" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">辛巳</text>
+<rect class="seg t-water" x="818.08" y="82" width="113.8" height="26" rx="2" data-label="壬午" data-detail="Ren Wu, luck pillar 6" data-start="2572264200000" data-end="2887883400000"><title>BaZi luck pillars: 壬午 (Ren Wu, luck pillar 6)
+2051-07-06 13:50 to 2061-07-06 13:50 UTC</title></rect>
+<text x="874.98" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">壬午</text>
+<rect class="seg t-water" x="931.88" y="82" width="113.76" height="26" rx="2" data-label="癸未" data-detail="Gui Wei, luck pillar 7" data-start="2887883400000" data-end="3203416200000"><title>BaZi luck pillars: 癸未 (Gui Wei, luck pillar 7)
+2061-07-06 13:50 to 2071-07-06 13:50 UTC</title></rect>
+<text x="988.76" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">癸未</text>
+<rect class="seg t-wood" x="1045.64" y="82" width="113.8" height="26" rx="2" data-label="甲申" data-detail="Jia Shen, luck pillar 8" data-start="3203416200000" data-end="3519035400000"><title>BaZi luck pillars: 甲申 (Jia Shen, luck pillar 8)
+2071-07-06 13:50 to 2081-07-06 13:50 UTC</title></rect>
+<text x="1102.54" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">甲申</text>
+<rect class="seg t-wood" x="1159.44" y="82" width="98.56" height="26" rx="2" data-label="乙酉" data-detail="Yi You, luck pillar 9" data-start="3519035400000" data-end="3834568200000"><title>BaZi luck pillars: 乙酉 (Yi You, luck pillar 9)
+2081-07-06 13:50 to 2091-07-06 13:50 UTC</title></rect>
+<text x="1208.72" y="95" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">乙酉</text>
+</g></g>
+<g data-track="firdaria">
+<text x="220" y="124" font-size="13" text-anchor="end" dominant-baseline="central">Firdaria<title>Fixed spans of tropical years counted from birth</title></text>
+<text class="muted" x="220" y="138" font-size="10" text-anchor="end" dominant-baseline="central">Western · life</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-sun" x="232" y="116" width="113.78" height="26" rx="2" data-label="Sun" data-detail="" data-start="946728000000" data-end="1262297251900.8"><title>Firdaria: Sun
+2000-01-01 12:00 to 2009-12-31 22:07 UTC</title></rect>
+<text x="288.89" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Sun</text>
+<rect class="seg t-venus" x="345.78" y="116" width="91.02" height="26" rx="2" data-label="Venus" data-detail="" data-start="1262297251900.8" data-end="1514752653421.44"><title>Firdaria: Venus
+2009-12-31 22:07 to 2017-12-31 20:37 UTC</title></rect>
+<text x="391.29" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Venus</text>
+<rect class="seg t-mercury" x="436.8" y="116" width="147.91" height="26" rx="2" data-label="Mercury" data-detail="" data-start="1514752653421.44" data-end="1924992680892.48"><title>Firdaria: Mercury
+2017-12-31 20:37 to 2031-01-01 00:11 UTC</title></rect>
+<text x="510.76" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Mercury</text>
+<rect class="seg t-moon" x="584.71" y="116" width="102.4" height="26" rx="2" data-label="Moon" data-detail="" data-start="1924992680892.48" data-end="2209005007603.2"><title>Firdaria: Moon
+2031-01-01 00:11 to 2040-01-01 04:30 UTC</title></rect>
+<text x="635.91" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Moon</text>
+<rect class="seg t-saturn" x="687.11" y="116" width="125.16" height="26" rx="2" data-label="Saturn" data-detail="" data-start="2209005007603.2" data-end="2556131184694.08"><title>Firdaria: Saturn
+2040-01-01 04:30 to 2050-12-31 20:26 UTC</title></rect>
+<text x="749.69" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Saturn</text>
+<rect class="seg t-jupiter" x="812.27" y="116" width="136.53" height="26" rx="2" data-label="Jupiter" data-detail="" data-start="2556131184694.08" data-end="2934814286975.04"><title>Firdaria: Jupiter
+2050-12-31 20:26 to 2062-12-31 18:11 UTC</title></rect>
+<text x="880.53" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Jupiter</text>
+<rect class="seg t-mars" x="948.8" y="116" width="79.64" height="26" rx="2" data-label="Mars" data-detail="" data-start="2934814286975.04" data-end="3155712763305.6"><title>Firdaria: Mars
+2062-12-31 18:11 to 2069-12-31 10:52 UTC</title></rect>
+<text x="988.62" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Mars</text>
+<rect class="seg t-node" x="1028.44" y="116" width="34.13" height="26" rx="2" data-label="North Node" data-detail="" data-start="3155712763305.6" data-end="3250383538875.84"><title>Firdaria: North Node
+2069-12-31 10:52 to 2072-12-31 04:18 UTC</title></rect>
+<rect class="seg t-node" x="1062.58" y="116" width="22.76" height="26" rx="2" data-label="South Node" data-detail="" data-start="3250383538875.84" data-end="3313497389256"><title>Firdaria: South Node
+2072-12-31 04:18 to 2074-12-31 15:56 UTC</title></rect>
+<rect class="seg t-sun" x="1085.33" y="116" width="113.78" height="26" rx="2" data-label="Sun" data-detail="" data-start="3313497389256" data-end="3629066641156.8"><title>Firdaria: Sun
+2074-12-31 15:56 to 2084-12-31 02:04 UTC</title></rect>
+<text x="1142.22" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Sun</text>
+<rect class="seg t-venus" x="1199.11" y="116" width="58.89" height="26" rx="2" data-label="Venus" data-detail="" data-start="3629066641156.8" data-end="3881522042677.44"><title>Firdaria: Venus
+2084-12-31 02:04 to 2092-12-31 00:34 UTC</title></rect>
+<text x="1228.56" y="129" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Venus</text>
+</g></g>
+<g data-track="vimshottari">
+<text x="220" y="158" font-size="13" text-anchor="end" dominant-baseline="central">Vimshottari mahadasha<title>Fixed spans of 365.25-day years, phased by the Moon's place in its nakshatra at birth</title></text>
+<text class="muted" x="220" y="172" font-size="10" text-anchor="end" dominant-baseline="central">Vedic · life</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-rahu" x="230" y="150" width="10.13" height="26" rx="2" data-label="Rahu" data-detail="" data-start="401235085268.677" data-end="969271885268.677"><title>Vimshottari mahadasha: Rahu
+1982-09-18 22:11 to 2000-09-18 10:11 UTC</title></rect>
+<rect class="seg t-jupiter" x="240.13" y="150" width="182.05" height="26" rx="2" data-label="Jupiter" data-detail="" data-start="969271885268.677" data-end="1474193485268.677"><title>Vimshottari mahadasha: Jupiter
+2000-09-18 10:11 to 2016-09-18 10:11 UTC</title></rect>
+<text x="331.15" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Jupiter</text>
+<rect class="seg t-saturn" x="422.18" y="150" width="216.18" height="26" rx="2" data-label="Saturn" data-detail="" data-start="1474193485268.677" data-end="2073787885268.677"><title>Vimshottari mahadasha: Saturn
+2016-09-18 10:11 to 2035-09-19 04:11 UTC</title></rect>
+<text x="530.27" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Saturn</text>
+<rect class="seg t-mercury" x="638.36" y="150" width="193.43" height="26" rx="2" data-label="Mercury" data-detail="" data-start="2073787885268.677" data-end="2610267085268.677"><title>Vimshottari mahadasha: Mercury
+2035-09-19 04:11 to 2052-09-18 10:11 UTC</title></rect>
+<text x="735.07" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Mercury</text>
+<rect class="seg t-ketu" x="831.78" y="150" width="79.65" height="26" rx="2" data-label="Ketu" data-detail="" data-start="2610267085268.677" data-end="2831170285268.677"><title>Vimshottari mahadasha: Ketu
+2052-09-18 10:11 to 2059-09-19 04:11 UTC</title></rect>
+<text x="871.61" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Ketu</text>
+<rect class="seg t-venus" x="911.43" y="150" width="227.56" height="26" rx="2" data-label="Venus" data-detail="" data-start="2831170285268.677" data-end="3462322285268.677"><title>Vimshottari mahadasha: Venus
+2059-09-19 04:11 to 2079-09-19 04:11 UTC</title></rect>
+<text x="1025.21" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Venus</text>
+<rect class="seg t-sun" x="1138.99" y="150" width="68.27" height="26" rx="2" data-label="Sun" data-detail="" data-start="3462322285268.677" data-end="3651667885268.677"><title>Vimshottari mahadasha: Sun
+2079-09-19 04:11 to 2085-09-18 16:11 UTC</title></rect>
+<text x="1173.13" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Sun</text>
+<rect class="seg t-moon" x="1207.26" y="150" width="50.74" height="26" rx="2" data-label="Moon" data-detail="" data-start="3651667885268.677" data-end="3967243885268.677"><title>Vimshottari mahadasha: Moon
+2085-09-18 16:11 to 2095-09-19 04:11 UTC</title></rect>
+<text x="1232.63" y="163" font-size="12" text-anchor="middle" dominant-baseline="central" pointer-events="none">Moon</text>
+</g></g>
+<g data-track="saturn-sign">
+<text x="220" y="192" font-size="13" text-anchor="end" dominant-baseline="central">Saturn by sign<title>Saturn's geocentric sign changes, retrograde re-entries included</title></text>
+<text class="muted" x="220" y="206" font-size="10" text-anchor="end" dominant-baseline="central">Western · life</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-earth" x="230" y="184" width="8.9" height="26" rx="2" data-label="Taurus" data-detail="" data-start="920252059385" data-end="965871275206"><title>Saturn by sign: Taurus
+1999-03-01 01:34 to 2000-08-10 01:34 UTC</title></rect>
+<rect class="seg t-air" x="238.9" y="184" width="2.09" height="26" rx="2" data-label="Gemini" data-detail="" data-start="965871275206" data-end="971661235692"><title>Saturn by sign: Gemini
+2000-08-10 01:34 to 2000-10-16 01:53 UTC</title></rect>
+<rect class="seg t-earth" x="240.99" y="184" width="5.82" height="26" rx="2" data-label="Taurus" data-detail="" data-start="971661235692" data-end="987801809655"><title>Saturn by sign: Taurus
+2000-10-16 01:53 to 2001-04-20 21:23 UTC</title></rect>
+<rect class="seg t-air" x="246.81" y="184" width="24.12" height="26" rx="2" data-label="Gemini" data-detail="" data-start="987801809655" data-end="1054689736925"><title>Saturn by sign: Gemini
+2001-04-20 21:23 to 2003-06-04 01:22 UTC</title></rect>
+<rect class="seg t-water" x="270.93" y="184" width="24.09" height="26" rx="2" data-label="Cancer" data-detail="" data-start="1054689736925" data-end="1121516778734"><title>Saturn by sign: Cancer
+2003-06-04 01:22 to 2005-07-16 12:26 UTC</title></rect>
+<rect class="seg t-fire" x="295.02" y="184" width="24.24" height="26" rx="2" data-label="Leo" data-detail="" data-start="1121516778734" data-end="1188740444677"><title>Saturn by sign: Leo
+2005-07-16 12:26 to 2007-09-02 13:40 UTC</title></rect>
+<rect class="seg t-earth" x="319.26" y="184" width="24.55" height="26" rx="2" data-label="Virgo" data-detail="" data-start="1188740444677" data-end="1256837116991"><title>Saturn by sign: Virgo
+2007-09-02 13:40 to 2009-10-29 17:25 UTC</title></rect>
+<rect class="seg t-air" x="343.81" y="184" width="4.99" height="26" rx="2" data-label="Libra" data-detail="" data-start="1256837116991" data-end="1270664333128"><title>Saturn by sign: Libra
+2009-10-29 17:25 to 2010-04-07 18:18 UTC</title></rect>
+<rect class="seg t-earth" x="348.79" y="184" width="3.27" height="26" rx="2" data-label="Virgo" data-detail="" data-start="1270664333128" data-end="1279726596716"><title>Saturn by sign: Virgo
+2010-04-07 18:18 to 2010-07-21 15:36 UTC</title></rect>
+<rect class="seg t-air" x="352.06" y="184" width="25.15" height="26" rx="2" data-label="Libra" data-detail="" data-start="1279726596716" data-end="1349469288499"><title>Saturn by sign: Libra
+2010-07-21 15:36 to 2012-10-05 20:34 UTC</title></rect>
+<rect class="seg t-water" x="377.21" y="184" width="25.2" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="1349469288499" data-end="1419352415221"><title>Saturn by sign: Scorpio
+2012-10-05 20:34 to 2014-12-23 16:33 UTC</title></rect>
+<rect class="seg t-fire" x="402.4" y="184" width="5.4" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="1419352415221" data-end="1434328603307"><title>Saturn by sign: Sagittarius
+2014-12-23 16:33 to 2015-06-15 00:36 UTC</title></rect>
+<rect class="seg t-water" x="407.8" y="184" width="2.96" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="1434328603307" data-end="1442544319994"><title>Saturn by sign: Scorpio
+2015-06-15 00:36 to 2015-09-18 02:45 UTC</title></rect>
+<rect class="seg t-fire" x="410.77" y="184" width="25.67" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="1442544319994" data-end="1513745157128"><title>Saturn by sign: Sagittarius
+2015-09-18 02:45 to 2017-12-20 04:45 UTC</title></rect>
+<rect class="seg t-earth" x="436.44" y="184" width="25.64" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="1513745157128" data-end="1584850323888"><title>Saturn by sign: Capricorn
+2017-12-20 04:45 to 2020-03-22 04:12 UTC</title></rect>
+<rect class="seg t-air" x="462.07" y="184" width="3.17" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1584850323888" data-end="1593646051793"><title>Saturn by sign: Aquarius
+2020-03-22 04:12 to 2020-07-01 23:27 UTC</title></rect>
+<rect class="seg t-earth" x="465.24" y="184" width="5.24" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="1593646051793" data-end="1608181317882"><title>Saturn by sign: Capricorn
+2020-07-01 23:27 to 2020-12-17 05:01 UTC</title></rect>
+<rect class="seg t-air" x="470.49" y="184" width="25.24" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1608181317882" data-end="1678196471044"><title>Saturn by sign: Aquarius
+2020-12-17 05:01 to 2023-03-07 13:41 UTC</title></rect>
+<rect class="seg t-water" x="495.73" y="184" width="25.22" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1678196471044" data-end="1748146597777"><title>Saturn by sign: Pisces
+2023-03-07 13:41 to 2025-05-25 04:16 UTC</title></rect>
+<rect class="seg t-fire" x="520.95" y="184" width="3.09" height="26" rx="2" data-label="Aries" data-detail="" data-start="1748146597777" data-end="1756710852758"><title>Saturn by sign: Aries
+2025-05-25 04:16 to 2025-09-01 07:14 UTC</title></rect>
+<rect class="seg t-water" x="524.04" y="184" width="5.16" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1756710852758" data-end="1771029572387"><title>Saturn by sign: Pisces
+2025-09-01 07:14 to 2026-02-14 00:39 UTC</title></rect>
+<rect class="seg t-fire" x="529.2" y="184" width="24.58" height="26" rx="2" data-label="Aries" data-detail="" data-start="1771029572387" data-end="1839211496409"><title>Saturn by sign: Aries
+2026-02-14 00:39 to 2028-04-13 04:04 UTC</title></rect>
+<rect class="seg t-earth" x="553.78" y="184" width="24.26" height="26" rx="2" data-label="Taurus" data-detail="" data-start="1839211496409" data-end="1906511555675"><title>Saturn by sign: Taurus
+2028-04-13 04:04 to 2030-06-01 02:32 UTC</title></rect>
+<rect class="seg t-air" x="578.05" y="184" width="24.11" height="26" rx="2" data-label="Gemini" data-detail="" data-start="1906511555675" data-end="1973384122411"><title>Saturn by sign: Gemini
+2030-06-01 02:32 to 2032-07-14 02:15 UTC</title></rect>
+<rect class="seg t-water" x="602.16" y="184" width="24.11" height="26" rx="2" data-label="Cancer" data-detail="" data-start="1973384122411" data-end="2040260637304"><title>Saturn by sign: Cancer
+2032-07-14 02:15 to 2034-08-27 03:03 UTC</title></rect>
+<rect class="seg t-fire" x="626.27" y="184" width="5.38" height="26" rx="2" data-label="Leo" data-detail="" data-start="2040260637304" data-end="2055179077294"><title>Saturn by sign: Leo
+2034-08-27 03:03 to 2035-02-15 19:04 UTC</title></rect>
+<rect class="seg t-water" x="631.65" y="184" width="2.65" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2055179077294" data-end="2062530407702"><title>Saturn by sign: Cancer
+2035-02-15 19:04 to 2035-05-11 21:06 UTC</title></rect>
+<rect class="seg t-fire" x="634.3" y="184" width="16.31" height="26" rx="2" data-label="Leo" data-detail="" data-start="2062530407702" data-end="2107753984203"><title>Saturn by sign: Leo
+2035-05-11 21:06 to 2036-10-16 07:13 UTC</title></rect>
+<rect class="seg t-earth" x="650.6" y="184" width="3.68" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2107753984203" data-end="2117949719786"><title>Saturn by sign: Virgo
+2036-10-16 07:13 to 2037-02-11 07:21 UTC</title></rect>
+<rect class="seg t-fire" x="654.28" y="184" width="4.54" height="26" rx="2" data-label="Leo" data-detail="" data-start="2117949719786" data-end="2130545074437"><title>Saturn by sign: Leo
+2037-02-11 07:21 to 2037-07-07 02:04 UTC</title></rect>
+<rect class="seg t-earth" x="658.82" y="184" width="24.63" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2130545074437" data-end="2198848236436"><title>Saturn by sign: Virgo
+2037-07-07 02:04 to 2039-09-05 15:10 UTC</title></rect>
+<rect class="seg t-air" x="683.45" y="184" width="24.85" height="26" rx="2" data-label="Libra" data-detail="" data-start="2198848236436" data-end="2267779475719"><title>Saturn by sign: Libra
+2039-09-05 15:10 to 2041-11-11 10:44 UTC</title></rect>
+<rect class="seg t-water" x="708.3" y="184" width="6.92" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2267779475719" data-end="2286964554124"><title>Saturn by sign: Scorpio
+2041-11-11 10:44 to 2042-06-21 11:55 UTC</title></rect>
+<rect class="seg t-air" x="715.22" y="184" width="0.72" height="26" rx="2" data-label="Libra" data-detail="" data-start="2286964554124" data-end="2288954058287"><title>Saturn by sign: Libra
+2042-06-21 11:55 to 2042-07-14 12:34 UTC</title></rect>
+<rect class="seg t-water" x="715.94" y="184" width="18.29" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2288954058287" data-end="2339675882555"><title>Saturn by sign: Scorpio
+2042-07-14 12:34 to 2044-02-21 13:58 UTC</title></rect>
+<rect class="seg t-fire" x="734.22" y="184" width="1.02" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2339675882555" data-end="2342514550889"><title>Saturn by sign: Sagittarius
+2044-02-21 13:58 to 2044-03-25 10:29 UTC</title></rect>
+<rect class="seg t-water" x="735.25" y="184" width="6.86" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2342514550889" data-end="2361530619908"><title>Saturn by sign: Scorpio
+2044-03-25 10:29 to 2044-10-31 12:43 UTC</title></rect>
+<rect class="seg t-fire" x="742.1" y="184" width="25.39" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2361530619908" data-end="2431957172387"><title>Saturn by sign: Sagittarius
+2044-10-31 12:43 to 2047-01-24 15:39 UTC</title></rect>
+<rect class="seg t-earth" x="767.5" y="184" width="5.22" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2431957172387" data-end="2446426581481"><title>Saturn by sign: Capricorn
+2047-01-24 15:39 to 2047-07-11 02:56 UTC</title></rect>
+<rect class="seg t-fire" x="772.71" y="184" width="3.22" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2446426581481" data-end="2455355707249"><title>Saturn by sign: Sagittarius
+2047-07-11 02:56 to 2047-10-22 11:15 UTC</title></rect>
+<rect class="seg t-earth" x="775.93" y="184" width="25.61" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2455355707249" data-end="2526384428283"><title>Saturn by sign: Capricorn
+2047-10-22 11:15 to 2050-01-21 13:27 UTC</title></rect>
+<rect class="seg t-air" x="801.54" y="184" width="25.42" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="2526384428283" data-end="2596889190453"><title>Saturn by sign: Aquarius
+2050-01-21 13:27 to 2052-04-16 14:06 UTC</title></rect>
+<rect class="seg t-water" x="826.96" y="184" width="3.57" height="26" rx="2" data-label="Pisces" data-detail="" data-start="2596889190453" data-end="2606786266222"><title>Saturn by sign: Pisces
+2052-04-16 14:06 to 2052-08-09 03:17 UTC</title></rect>
+<rect class="seg t-air" x="830.53" y="184" width="4.83" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="2606786266222" data-end="2620177333153"><title>Saturn by sign: Aquarius
+2052-08-09 03:17 to 2053-01-11 03:02 UTC</title></rect>
+<rect class="seg t-water" x="835.36" y="184" width="24.94" height="26" rx="2" data-label="Pisces" data-detail="" data-start="2620177333153" data-end="2689353704222"><title>Saturn by sign: Pisces
+2053-01-11 03:02 to 2055-03-22 18:41 UTC</title></rect>
+<rect class="seg t-fire" x="860.3" y="184" width="24.59" height="26" rx="2" data-label="Aries" data-detail="" data-start="2689353704222" data-end="2757564390563"><title>Saturn by sign: Aries
+2055-03-22 18:41 to 2057-05-20 06:06 UTC</title></rect>
+<rect class="seg t-earth" x="884.89" y="184" width="6.03" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2757564390563" data-end="2774284033446"><title>Saturn by sign: Taurus
+2057-05-20 06:06 to 2057-11-29 18:27 UTC</title></rect>
+<rect class="seg t-fire" x="890.92" y="184" width="1.95" height="26" rx="2" data-label="Aries" data-detail="" data-start="2774284033446" data-end="2779695566124"><title>Saturn by sign: Aries
+2057-11-29 18:27 to 2058-01-31 09:39 UTC</title></rect>
+<rect class="seg t-earth" x="892.87" y="184" width="16.43" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2779695566124" data-end="2825266323339"><title>Saturn by sign: Taurus
+2058-01-31 09:39 to 2059-07-12 20:12 UTC</title></rect>
+<rect class="seg t-air" x="909.3" y="184" width="4.1" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2825266323339" data-end="2836635099498"><title>Saturn by sign: Gemini
+2059-07-12 20:12 to 2059-11-21 10:11 UTC</title></rect>
+<rect class="seg t-earth" x="913.4" y="184" width="4.08" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2836635099498" data-end="2847959001342"><title>Saturn by sign: Taurus
+2059-11-21 10:11 to 2060-03-31 11:43 UTC</title></rect>
+<rect class="seg t-air" x="917.48" y="184" width="16.16" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2847959001342" data-end="2892784890783"><title>Saturn by sign: Gemini
+2060-03-31 11:43 to 2061-09-01 07:21 UTC</title></rect>
+<rect class="seg t-water" x="933.65" y="184" width="2.63" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2892784890783" data-end="2900085495336"><title>Saturn by sign: Cancer
+2061-09-01 07:21 to 2061-11-24 19:18 UTC</title></rect>
+<rect class="seg t-air" x="936.28" y="184" width="5.38" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2900085495336" data-end="2915002342418"><title>Saturn by sign: Gemini
+2061-11-24 19:18 to 2062-05-16 10:52 UTC</title></rect>
+<rect class="seg t-water" x="941.66" y="184" width="24.12" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2915002342418" data-end="2981907631493"><title>Saturn by sign: Cancer
+2062-05-16 10:52 to 2064-06-28 19:40 UTC</title></rect>
+<rect class="seg t-fire" x="965.78" y="184" width="24.25" height="26" rx="2" data-label="Leo" data-detail="" data-start="2981907631493" data-end="3049168220067"><title>Saturn by sign: Leo
+2064-06-28 19:40 to 2066-08-16 07:10 UTC</title></rect>
+<rect class="seg t-earth" x="990.03" y="184" width="24.51" height="26" rx="2" data-label="Virgo" data-detail="" data-start="3049168220067" data-end="3117149590978"><title>Saturn by sign: Virgo
+2066-08-16 07:10 to 2068-10-11 02:53 UTC</title></rect>
+<rect class="seg t-air" x="1014.54" y="184" width="25.1" height="26" rx="2" data-label="Libra" data-detail="" data-start="3117149590978" data-end="3186765122057"><title>Saturn by sign: Libra
+2068-10-11 02:53 to 2070-12-25 20:32 UTC</title></rect>
+<rect class="seg t-water" x="1039.64" y="184" width="2.86" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="3186765122057" data-end="3194706937718"><title>Saturn by sign: Scorpio
+2070-12-25 20:32 to 2071-03-27 18:35 UTC</title></rect>
+<rect class="seg t-air" x="1042.5" y="184" width="5.45" height="26" rx="2" data-label="Libra" data-detail="" data-start="3194706937718" data-end="3209821883788"><title>Saturn by sign: Libra
+2071-03-27 18:35 to 2071-09-18 17:11 UTC</title></rect>
+<rect class="seg t-water" x="1047.95" y="184" width="25.21" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="3209821883788" data-end="3279753560082"><title>Saturn by sign: Scorpio
+2071-09-18 17:11 to 2073-12-06 02:39 UTC</title></rect>
+<rect class="seg t-fire" x="1073.17" y="184" width="34.07" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="3279753560082" data-end="3374236050622"><title>Saturn by sign: Sagittarius
+2073-12-06 02:39 to 2076-12-03 15:47 UTC</title></rect>
+<rect class="seg t-earth" x="1107.23" y="184" width="25.45" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="3374236050622" data-end="3444830612841"><title>Saturn by sign: Capricorn
+2076-12-03 15:47 to 2079-02-28 17:23 UTC</title></rect>
+<rect class="seg t-air" x="1132.68" y="184" width="4.82" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="3444830612841" data-end="3458204899365"><title>Saturn by sign: Aquarius
+2079-02-28 17:23 to 2079-08-02 12:28 UTC</title></rect>
+<rect class="seg t-earth" x="1137.51" y="184" width="3.65" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="3458204899365" data-end="3468319945420"><title>Saturn by sign: Capricorn
+2079-08-02 12:28 to 2079-11-27 14:12 UTC</title></rect>
+<rect class="seg t-air" x="1141.15" y="184" width="25.37" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="3468319945420" data-end="3538692893737"><title>Saturn by sign: Aquarius
+2079-11-27 14:12 to 2082-02-19 02:14 UTC</title></rect>
+<rect class="seg t-water" x="1166.53" y="184" width="25.01" height="26" rx="2" data-label="Pisces" data-detail="" data-start="3538692893737" data-end="3608056218383"><title>Saturn by sign: Pisces
+2082-02-19 02:14 to 2084-05-01 21:50 UTC</title></rect>
+<rect class="seg t-fire" x="1191.54" y="184" width="4.78" height="26" rx="2" data-label="Aries" data-detail="" data-start="3608056218383" data-end="3621309025671"><title>Saturn by sign: Aries
+2084-05-01 21:50 to 2084-10-02 07:10 UTC</title></rect>
+<rect class="seg t-water" x="1196.31" y="184" width="3.55" height="26" rx="2" data-label="Pisces" data-detail="" data-start="3621309025671" data-end="3631152371703"><title>Saturn by sign: Pisces
+2084-10-02 07:10 to 2085-01-24 05:26 UTC</title></rect>
+<rect class="seg t-fire" x="1199.86" y="184" width="17.13" height="26" rx="2" data-label="Aries" data-detail="" data-start="3631152371703" data-end="3678658855883"><title>Saturn by sign: Aries
+2085-01-24 05:26 to 2086-07-28 01:40 UTC</title></rect>
+<rect class="seg t-earth" x="1216.99" y="184" width="0.9" height="26" rx="2" data-label="Taurus" data-detail="" data-start="3678658855883" data-end="3681141781749"><title>Saturn by sign: Taurus
+2086-07-28 01:40 to 2086-08-25 19:23 UTC</title></rect>
+<rect class="seg t-fire" x="1217.89" y="184" width="6.68" height="26" rx="2" data-label="Aries" data-detail="" data-start="3681141781749" data-end="3699670362669"><title>Saturn by sign: Aries
+2086-08-25 19:23 to 2087-03-28 06:12 UTC</title></rect>
+<rect class="seg t-earth" x="1224.57" y="184" width="24.27" height="26" rx="2" data-label="Taurus" data-detail="" data-start="3699670362669" data-end="3766990998229"><title>Saturn by sign: Taurus
+2087-03-28 06:12 to 2089-05-15 10:23 UTC</title></rect>
+<rect class="seg t-air" x="1248.84" y="184" width="9.16" height="26" rx="2" data-label="Gemini" data-detail="" data-start="3766990998229" data-end="3833826098509"><title>Saturn by sign: Gemini
+2089-05-15 10:23 to 2091-06-27 23:41 UTC</title></rect>
+</g></g>
+<g data-track="bazi-year">
+<text x="220" y="226" font-size="13" text-anchor="end" dominant-baseline="central">Annual pillar<title>Lichun: the Sun at 315 degrees</title></text>
+<text class="muted" x="220" y="240" font-size="10" text-anchor="end" dominant-baseline="central">Chinese · year</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-earth" x="230" y="218" width="3.06" height="26" rx="2" data-label="己卯" data-detail="Ji Mao (Rabbit); year star 一白" data-start="918111432273" data-end="949668018090"><title>Annual pillar: 己卯 (Ji Mao (Rabbit); year star 一白)
+1999-02-04 06:57 to 2000-02-04 12:40 UTC</title></rect>
+<rect class="seg t-metal" x="233.06" y="218" width="11.38" height="26" rx="2" data-label="庚辰" data-detail="Geng Chen (Dragon); year star 九紫" data-start="949668018090" data-end="981224959823"><title>Annual pillar: 庚辰 (Geng Chen (Dragon); year star 九紫)
+2000-02-04 12:40 to 2001-02-03 18:29 UTC</title></rect>
+<rect class="seg t-metal" x="244.44" y="218" width="11.38" height="26" rx="2" data-label="辛巳" data-detail="Xin Si (Snake); year star 八白" data-start="981224959823" data-end="1012782244235"><title>Annual pillar: 辛巳 (Xin Si (Snake); year star 八白)
+2001-02-03 18:29 to 2002-02-04 00:24 UTC</title></rect>
+<rect class="seg t-water" x="255.82" y="218" width="11.38" height="26" rx="2" data-label="壬午" data-detail="Ren Wu (Horse); year star 七赤" data-start="1012782244235" data-end="1044338771829"><title>Annual pillar: 壬午 (Ren Wu (Horse); year star 七赤)
+2002-02-04 00:24 to 2003-02-04 06:06 UTC</title></rect>
+<rect class="seg t-water" x="267.19" y="218" width="11.38" height="26" rx="2" data-label="癸未" data-detail="Gui Wei (Goat); year star 六白" data-start="1044338771829" data-end="1075895767564"><title>Annual pillar: 癸未 (Gui Wei (Goat); year star 六白)
+2003-02-04 06:06 to 2004-02-04 11:56 UTC</title></rect>
+<rect class="seg t-wood" x="278.57" y="218" width="11.38" height="26" rx="2" data-label="甲申" data-detail="Jia Shen (Monkey); year star 五黃" data-start="1075895767564" data-end="1107452589577"><title>Annual pillar: 甲申 (Jia Shen (Monkey); year star 五黃)
+2004-02-04 11:56 to 2005-02-03 17:43 UTC</title></rect>
+<rect class="seg t-wood" x="289.95" y="218" width="11.38" height="26" rx="2" data-label="乙酉" data-detail="Yi You (Rooster); year star 四綠" data-start="1107452589577" data-end="1139009234091"><title>Annual pillar: 乙酉 (Yi You (Rooster); year star 四綠)
+2005-02-03 17:43 to 2006-02-03 23:27 UTC</title></rect>
+<rect class="seg t-fire" x="301.33" y="218" width="11.38" height="26" rx="2" data-label="丙戌" data-detail="Bing Xu (Dog); year star 三碧" data-start="1139009234091" data-end="1170566299781"><title>Annual pillar: 丙戌 (Bing Xu (Dog); year star 三碧)
+2006-02-03 23:27 to 2007-02-04 05:18 UTC</title></rect>
+<rect class="seg t-fire" x="312.7" y="218" width="11.38" height="26" rx="2" data-label="丁亥" data-detail="Ding Hai (Pig); year star 二黑" data-start="1170566299781" data-end="1202122812759"><title>Annual pillar: 丁亥 (Ding Hai (Pig); year star 二黑)
+2007-02-04 05:18 to 2008-02-04 11:00 UTC</title></rect>
+<rect class="seg t-earth" x="324.08" y="218" width="11.38" height="26" rx="2" data-label="戊子" data-detail="Wu Zi (Rat); year star 一白" data-start="1202122812759" data-end="1233679813621"><title>Annual pillar: 戊子 (Wu Zi (Rat); year star 一白)
+2008-02-04 11:00 to 2009-02-03 16:50 UTC</title></rect>
+<rect class="seg t-earth" x="335.46" y="218" width="11.38" height="26" rx="2" data-label="己丑" data-detail="Ji Chou (Ox); year star 九紫" data-start="1233679813621" data-end="1265237258705"><title>Annual pillar: 己丑 (Ji Chou (Ox); year star 九紫)
+2009-02-03 16:50 to 2010-02-03 22:47 UTC</title></rect>
+<rect class="seg t-metal" x="346.84" y="218" width="11.38" height="26" rx="2" data-label="庚寅" data-detail="Geng Yin (Tiger); year star 八白" data-start="1265237258705" data-end="1296793979349"><title>Annual pillar: 庚寅 (Geng Yin (Tiger); year star 八白)
+2010-02-03 22:47 to 2011-02-04 04:32 UTC</title></rect>
+<rect class="seg t-metal" x="358.22" y="218" width="11.38" height="26" rx="2" data-label="辛卯" data-detail="Xin Mao (Rabbit); year star 七赤" data-start="1296793979349" data-end="1328350944876"><title>Annual pillar: 辛卯 (Xin Mao (Rabbit); year star 七赤)
+2011-02-04 04:32 to 2012-02-04 10:22 UTC</title></rect>
+<rect class="seg t-water" x="369.59" y="218" width="11.38" height="26" rx="2" data-label="壬辰" data-detail="Ren Chen (Dragon); year star 六白" data-start="1328350944876" data-end="1359908002144"><title>Annual pillar: 壬辰 (Ren Chen (Dragon); year star 六白)
+2012-02-04 10:22 to 2013-02-03 16:13 UTC</title></rect>
+<rect class="seg t-water" x="380.97" y="218" width="11.38" height="26" rx="2" data-label="癸巳" data-detail="Gui Si (Snake); year star 五黃" data-start="1359908002144" data-end="1391464984781"><title>Annual pillar: 癸巳 (Gui Si (Snake); year star 五黃)
+2013-02-03 16:13 to 2014-02-03 22:03 UTC</title></rect>
+<rect class="seg t-wood" x="392.35" y="218" width="11.38" height="26" rx="2" data-label="甲午" data-detail="Jia Wu (Horse); year star 四綠" data-start="1391464984781" data-end="1423022309674"><title>Annual pillar: 甲午 (Jia Wu (Horse); year star 四綠)
+2014-02-03 22:03 to 2015-02-04 03:58 UTC</title></rect>
+<rect class="seg t-wood" x="403.73" y="218" width="11.38" height="26" rx="2" data-label="乙未" data-detail="Yi Wei (Goat); year star 三碧" data-start="1423022309674" data-end="1454579156907"><title>Annual pillar: 乙未 (Yi Wei (Goat); year star 三碧)
+2015-02-04 03:58 to 2016-02-04 09:45 UTC</title></rect>
+<rect class="seg t-fire" x="415.1" y="218" width="11.38" height="26" rx="2" data-label="丙申" data-detail="Bing Shen (Monkey); year star 二黑" data-start="1454579156907" data-end="1486136067815"><title>Annual pillar: 丙申 (Bing Shen (Monkey); year star 二黑)
+2016-02-04 09:45 to 2017-02-03 15:34 UTC</title></rect>
+<rect class="seg t-fire" x="426.48" y="218" width="11.38" height="26" rx="2" data-label="丁酉" data-detail="Ding You (Rooster); year star 一白" data-start="1486136067815" data-end="1517693326575"><title>Annual pillar: 丁酉 (Ding You (Rooster); year star 一白)
+2017-02-03 15:34 to 2018-02-03 21:28 UTC</title></rect>
+<rect class="seg t-earth" x="437.86" y="218" width="11.38" height="26" rx="2" data-label="戊戌" data-detail="Wu Xu (Dog); year star 九紫" data-start="1517693326575" data-end="1549250051409"><title>Annual pillar: 戊戌 (Wu Xu (Dog); year star 九紫)
+2018-02-03 21:28 to 2019-02-04 03:14 UTC</title></rect>
+<rect class="seg t-earth" x="449.24" y="218" width="11.38" height="26" rx="2" data-label="己亥" data-detail="Ji Hai (Pig); year star 八白" data-start="1549250051409" data-end="1580807018336"><title>Annual pillar: 己亥 (Ji Hai (Pig); year star 八白)
+2019-02-04 03:14 to 2020-02-04 09:03 UTC</title></rect>
+<rect class="seg t-metal" x="460.62" y="218" width="11.38" height="26" rx="2" data-label="庚子" data-detail="Geng Zi (Rat); year star 七赤" data-start="1580807018336" data-end="1612364344538"><title>Annual pillar: 庚子 (Geng Zi (Rat); year star 七赤)
+2020-02-04 09:03 to 2021-02-03 14:59 UTC</title></rect>
+<rect class="seg t-metal" x="471.99" y="218" width="11.38" height="26" rx="2" data-label="辛丑" data-detail="Xin Chou (Ox); year star 六白" data-start="1612364344538" data-end="1643921435283"><title>Annual pillar: 辛丑 (Xin Chou (Ox); year star 六白)
+2021-02-03 14:59 to 2022-02-03 20:50 UTC</title></rect>
+<rect class="seg t-water" x="483.37" y="218" width="11.38" height="26" rx="2" data-label="壬寅" data-detail="Ren Yin (Tiger); year star 五黃" data-start="1643921435283" data-end="1675478548326"><title>Annual pillar: 壬寅 (Ren Yin (Tiger); year star 五黃)
+2022-02-03 20:50 to 2023-02-04 02:42 UTC</title></rect>
+<rect class="seg t-water" x="494.75" y="218" width="11.38" height="26" rx="2" data-label="癸卯" data-detail="Gui Mao (Rabbit); year star 四綠" data-start="1675478548326" data-end="1707035209630"><title>Annual pillar: 癸卯 (Gui Mao (Rabbit); year star 四綠)
+2023-02-04 02:42 to 2024-02-04 08:26 UTC</title></rect>
+<rect class="seg t-wood" x="506.13" y="218" width="11.38" height="26" rx="2" data-label="甲辰" data-detail="Jia Chen (Dragon); year star 三碧" data-start="1707035209630" data-end="1738591829634"><title>Annual pillar: 甲辰 (Jia Chen (Dragon); year star 三碧)
+2024-02-04 08:26 to 2025-02-03 14:10 UTC</title></rect>
+<rect class="seg t-wood" x="517.5" y="218" width="11.38" height="26" rx="2" data-label="乙巳" data-detail="Yi Si (Snake); year star 二黑" data-start="1738591829634" data-end="1770148914541"><title>Annual pillar: 乙巳 (Yi Si (Snake); year star 二黑)
+2025-02-03 14:10 to 2026-02-03 20:01 UTC</title></rect>
+<rect class="seg t-fire" x="528.88" y="218" width="11.38" height="26" rx="2" data-label="丙午" data-detail="Bing Wu (Horse); year star 一白" data-start="1770148914541" data-end="1801705584431"><title>Annual pillar: 丙午 (Bing Wu (Horse); year star 一白)
+2026-02-03 20:01 to 2027-02-04 01:46 UTC</title></rect>
+<rect class="seg t-fire" x="540.26" y="218" width="11.38" height="26" rx="2" data-label="丁未" data-detail="Ding Wei (Goat); year star 九紫" data-start="1801705584431" data-end="1833262267292"><title>Annual pillar: 丁未 (Ding Wei (Goat); year star 九紫)
+2027-02-04 01:46 to 2028-02-04 07:31 UTC</title></rect>
+<rect class="seg t-earth" x="551.64" y="218" width="11.38" height="26" rx="2" data-label="戊申" data-detail="Wu Shen (Monkey); year star 八白" data-start="1833262267292" data-end="1864819256715"><title>Annual pillar: 戊申 (Wu Shen (Monkey); year star 八白)
+2028-02-04 07:31 to 2029-02-03 13:20 UTC</title></rect>
+<rect class="seg t-earth" x="563.02" y="218" width="11.38" height="26" rx="2" data-label="己酉" data-detail="Ji You (Rooster); year star 七赤" data-start="1864819256715" data-end="1896376091578"><title>Annual pillar: 己酉 (Ji You (Rooster); year star 七赤)
+2029-02-03 13:20 to 2030-02-03 19:08 UTC</title></rect>
+<rect class="seg t-metal" x="574.39" y="218" width="11.38" height="26" rx="2" data-label="庚戌" data-detail="Geng Xu (Dog); year star 六白" data-start="1896376091578" data-end="1927933112144"><title>Annual pillar: 庚戌 (Geng Xu (Dog); year star 六白)
+2030-02-03 19:08 to 2031-02-04 00:58 UTC</title></rect>
+<rect class="seg t-metal" x="585.77" y="218" width="11.38" height="26" rx="2" data-label="辛亥" data-detail="Xin Hai (Pig); year star 五黃" data-start="1927933112144" data-end="1959490140734"><title>Annual pillar: 辛亥 (Xin Hai (Pig); year star 五黃)
+2031-02-04 00:58 to 2032-02-04 06:49 UTC</title></rect>
+<rect class="seg t-water" x="597.15" y="218" width="11.38" height="26" rx="2" data-label="壬子" data-detail="Ren Zi (Rat); year star 四綠" data-start="1959490140734" data-end="1991047333707"><title>Annual pillar: 壬子 (Ren Zi (Rat); year star 四綠)
+2032-02-04 06:49 to 2033-02-03 12:42 UTC</title></rect>
+<rect class="seg t-water" x="608.53" y="218" width="11.38" height="26" rx="2" data-label="癸丑" data-detail="Gui Chou (Ox); year star 三碧" data-start="1991047333707" data-end="2022604854427"><title>Annual pillar: 癸丑 (Gui Chou (Ox); year star 三碧)
+2033-02-03 12:42 to 2034-02-03 18:40 UTC</title></rect>
+<rect class="seg t-wood" x="619.9" y="218" width="11.38" height="26" rx="2" data-label="甲寅" data-detail="Jia Yin (Tiger); year star 二黑" data-start="2022604854427" data-end="2054161922418"><title>Annual pillar: 甲寅 (Jia Yin (Tiger); year star 二黑)
+2034-02-03 18:40 to 2035-02-04 00:32 UTC</title></rect>
+<rect class="seg t-wood" x="631.28" y="218" width="11.38" height="26" rx="2" data-label="乙卯" data-detail="Yi Mao (Rabbit); year star 一白" data-start="2054161922418" data-end="2085718778251"><title>Annual pillar: 乙卯 (Yi Mao (Rabbit); year star 一白)
+2035-02-04 00:32 to 2036-02-04 06:19 UTC</title></rect>
+<rect class="seg t-fire" x="642.66" y="218" width="11.38" height="26" rx="2" data-label="丙辰" data-detail="Bing Chen (Dragon); year star 九紫" data-start="2085718778251" data-end="2117275895144"><title>Annual pillar: 丙辰 (Bing Chen (Dragon); year star 九紫)
+2036-02-04 06:19 to 2037-02-03 12:11 UTC</title></rect>
+<rect class="seg t-fire" x="654.04" y="218" width="11.38" height="26" rx="2" data-label="丁巳" data-detail="Ding Si (Snake); year star 八白" data-start="2117275895144" data-end="2148833000895"><title>Annual pillar: 丁巳 (Ding Si (Snake); year star 八白)
+2037-02-03 12:11 to 2038-02-03 18:03 UTC</title></rect>
+<rect class="seg t-earth" x="665.42" y="218" width="11.38" height="26" rx="2" data-label="戊午" data-detail="Wu Wu (Horse); year star 七赤" data-start="2148833000895" data-end="2180389968968"><title>Annual pillar: 戊午 (Wu Wu (Horse); year star 七赤)
+2038-02-03 18:03 to 2039-02-03 23:52 UTC</title></rect>
+<rect class="seg t-earth" x="676.79" y="218" width="11.38" height="26" rx="2" data-label="己未" data-detail="Ji Wei (Goat); year star 六白" data-start="2180389968968" data-end="2211946772452"><title>Annual pillar: 己未 (Ji Wei (Goat); year star 六白)
+2039-02-03 23:52 to 2040-02-04 05:39 UTC</title></rect>
+<rect class="seg t-metal" x="688.17" y="218" width="11.38" height="26" rx="2" data-label="庚申" data-detail="Geng Shen (Monkey); year star 五黃" data-start="2211946772452" data-end="2243503524062"><title>Annual pillar: 庚申 (Geng Shen (Monkey); year star 五黃)
+2040-02-04 05:39 to 2041-02-03 11:25 UTC</title></rect>
+<rect class="seg t-metal" x="699.55" y="218" width="11.38" height="26" rx="2" data-label="辛酉" data-detail="Xin You (Rooster); year star 四綠" data-start="2243503524062" data-end="2275060361932"><title>Annual pillar: 辛酉 (Xin You (Rooster); year star 四綠)
+2041-02-03 11:25 to 2042-02-03 17:12 UTC</title></rect>
+<rect class="seg t-water" x="710.93" y="218" width="11.38" height="26" rx="2" data-label="壬戌" data-detail="Ren Xu (Dog); year star 三碧" data-start="2275060361932" data-end="2306617134617"><title>Annual pillar: 壬戌 (Ren Xu (Dog); year star 三碧)
+2042-02-03 17:12 to 2043-02-03 22:58 UTC</title></rect>
+<rect class="seg t-water" x="722.3" y="218" width="11.38" height="26" rx="2" data-label="癸亥" data-detail="Gui Hai (Pig); year star 二黑" data-start="2306617134617" data-end="2338173863284"><title>Annual pillar: 癸亥 (Gui Hai (Pig); year star 二黑)
+2043-02-03 22:58 to 2044-02-04 04:44 UTC</title></rect>
+<rect class="seg t-wood" x="733.68" y="218" width="11.38" height="26" rx="2" data-label="甲子" data-detail="Jia Zi (Rat); year star 一白" data-start="2338173863284" data-end="2369730989394"><title>Annual pillar: 甲子 (Jia Zi (Rat); year star 一白)
+2044-02-04 04:44 to 2045-02-03 10:36 UTC</title></rect>
+<rect class="seg t-wood" x="745.06" y="218" width="11.38" height="26" rx="2" data-label="乙丑" data-detail="Yi Chou (Ox); year star 九紫" data-start="2369730989394" data-end="2401288249911"><title>Annual pillar: 乙丑 (Yi Chou (Ox); year star 九紫)
+2045-02-03 10:36 to 2046-02-03 16:30 UTC</title></rect>
+<rect class="seg t-fire" x="756.44" y="218" width="11.38" height="26" rx="2" data-label="丙寅" data-detail="Bing Yin (Tiger); year star 八白" data-start="2401288249911" data-end="2432845074053"><title>Annual pillar: 丙寅 (Bing Yin (Tiger); year star 八白)
+2046-02-03 16:30 to 2047-02-03 22:17 UTC</title></rect>
+<rect class="seg t-fire" x="767.82" y="218" width="11.38" height="26" rx="2" data-label="丁卯" data-detail="Ding Mao (Rabbit); year star 七赤" data-start="2432845074053" data-end="2464401870091"><title>Annual pillar: 丁卯 (Ding Mao (Rabbit); year star 七赤)
+2047-02-03 22:17 to 2048-02-04 04:04 UTC</title></rect>
+<rect class="seg t-earth" x="779.19" y="218" width="11.38" height="26" rx="2" data-label="戊辰" data-detail="Wu Chen (Dragon); year star 六白" data-start="2464401870091" data-end="2495958809721"><title>Annual pillar: 戊辰 (Wu Chen (Dragon); year star 六白)
+2048-02-04 04:04 to 2049-02-03 09:53 UTC</title></rect>
+<rect class="seg t-earth" x="790.57" y="218" width="11.38" height="26" rx="2" data-label="己巳" data-detail="Ji Si (Snake); year star 五黃" data-start="2495958809721" data-end="2527515833401"><title>Annual pillar: 己巳 (Ji Si (Snake); year star 五黃)
+2049-02-03 09:53 to 2050-02-03 15:43 UTC</title></rect>
+<rect class="seg t-metal" x="801.95" y="218" width="11.38" height="26" rx="2" data-label="庚午" data-detail="Geng Wu (Horse); year star 四綠" data-start="2527515833401" data-end="2559072938268"><title>Annual pillar: 庚午 (Geng Wu (Horse); year star 四綠)
+2050-02-03 15:43 to 2051-02-03 21:35 UTC</title></rect>
+<rect class="seg t-metal" x="813.33" y="218" width="11.38" height="26" rx="2" data-label="辛未" data-detail="Xin Wei (Goat); year star 三碧" data-start="2559072938268" data-end="2590629758428"><title>Annual pillar: 辛未 (Xin Wei (Goat); year star 三碧)
+2051-02-03 21:35 to 2052-02-04 03:22 UTC</title></rect>
+<rect class="seg t-water" x="824.7" y="218" width="11.38" height="26" rx="2" data-label="壬申" data-detail="Ren Shen (Monkey); year star 二黑" data-start="2590629758428" data-end="2622186776504"><title>Annual pillar: 壬申 (Ren Shen (Monkey); year star 二黑)
+2052-02-04 03:22 to 2053-02-03 09:12 UTC</title></rect>
+<rect class="seg t-water" x="836.08" y="218" width="11.38" height="26" rx="2" data-label="癸酉" data-detail="Gui You (Rooster); year star 一白" data-start="2622186776504" data-end="2653744042819"><title>Annual pillar: 癸酉 (Gui You (Rooster); year star 一白)
+2053-02-03 09:12 to 2054-02-03 15:07 UTC</title></rect>
+<rect class="seg t-wood" x="847.46" y="218" width="11.38" height="26" rx="2" data-label="甲戌" data-detail="Jia Xu (Dog); year star 九紫" data-start="2653744042819" data-end="2685300933549"><title>Annual pillar: 甲戌 (Jia Xu (Dog); year star 九紫)
+2054-02-03 15:07 to 2055-02-03 20:55 UTC</title></rect>
+<rect class="seg t-wood" x="858.84" y="218" width="11.38" height="26" rx="2" data-label="乙亥" data-detail="Yi Hai (Pig); year star 八白" data-start="2685300933549" data-end="2716858023791"><title>Annual pillar: 乙亥 (Yi Hai (Pig); year star 八白)
+2055-02-03 20:55 to 2056-02-04 02:47 UTC</title></rect>
+<rect class="seg t-fire" x="870.22" y="218" width="11.38" height="26" rx="2" data-label="丙子" data-detail="Bing Zi (Rat); year star 七赤" data-start="2716858023791" data-end="2748415356174"><title>Annual pillar: 丙子 (Bing Zi (Rat); year star 七赤)
+2056-02-04 02:47 to 2057-02-03 08:42 UTC</title></rect>
+<rect class="seg t-fire" x="881.59" y="218" width="11.38" height="26" rx="2" data-label="丁丑" data-detail="Ding Chou (Ox); year star 六白" data-start="2748415356174" data-end="2779972451918"><title>Annual pillar: 丁丑 (Ding Chou (Ox); year star 六白)
+2057-02-03 08:42 to 2058-02-03 14:34 UTC</title></rect>
+<rect class="seg t-earth" x="892.97" y="218" width="11.38" height="26" rx="2" data-label="戊寅" data-detail="Wu Yin (Tiger); year star 五黃" data-start="2779972451918" data-end="2811529434993"><title>Annual pillar: 戊寅 (Wu Yin (Tiger); year star 五黃)
+2058-02-03 14:34 to 2059-02-03 20:23 UTC</title></rect>
+<rect class="seg t-earth" x="904.35" y="218" width="11.38" height="26" rx="2" data-label="己卯" data-detail="Ji Mao (Rabbit); year star 四綠" data-start="2811529434993" data-end="2843086073428"><title>Annual pillar: 己卯 (Ji Mao (Rabbit); year star 四綠)
+2059-02-03 20:23 to 2060-02-04 02:07 UTC</title></rect>
+<rect class="seg t-metal" x="915.73" y="218" width="11.38" height="26" rx="2" data-label="庚辰" data-detail="Geng Chen (Dragon); year star 三碧" data-start="2843086073428" data-end="2874642829529"><title>Annual pillar: 庚辰 (Geng Chen (Dragon); year star 三碧)
+2060-02-04 02:07 to 2061-02-03 07:53 UTC</title></rect>
+<rect class="seg t-metal" x="927.1" y="218" width="11.38" height="26" rx="2" data-label="辛巳" data-detail="Xin Si (Snake); year star 二黑" data-start="2874642829529" data-end="2906199993589"><title>Annual pillar: 辛巳 (Xin Si (Snake); year star 二黑)
+2061-02-03 07:53 to 2062-02-03 13:46 UTC</title></rect>
+<rect class="seg t-water" x="938.48" y="218" width="11.38" height="26" rx="2" data-label="壬午" data-detail="Ren Wu (Horse); year star 一白" data-start="2906199993589" data-end="2937756663375"><title>Annual pillar: 壬午 (Ren Wu (Horse); year star 一白)
+2062-02-03 13:46 to 2063-02-03 19:31 UTC</title></rect>
+<rect class="seg t-water" x="949.86" y="218" width="11.38" height="26" rx="2" data-label="癸未" data-detail="Gui Wei (Goat); year star 九紫" data-start="2937756663375" data-end="2969313282141"><title>Annual pillar: 癸未 (Gui Wei (Goat); year star 九紫)
+2063-02-03 19:31 to 2064-02-04 01:14 UTC</title></rect>
+<rect class="seg t-wood" x="961.24" y="218" width="11.38" height="26" rx="2" data-label="甲申" data-detail="Jia Shen (Monkey); year star 八白" data-start="2969313282141" data-end="3000870238479"><title>Annual pillar: 甲申 (Jia Shen (Monkey); year star 八白)
+2064-02-04 01:14 to 2065-02-03 07:03 UTC</title></rect>
+<rect class="seg t-wood" x="972.62" y="218" width="11.38" height="26" rx="2" data-label="乙酉" data-detail="Yi You (Rooster); year star 七赤" data-start="3000870238479" data-end="3032426924264"><title>Annual pillar: 乙酉 (Yi You (Rooster); year star 七赤)
+2065-02-03 07:03 to 2066-02-03 12:48 UTC</title></rect>
+<rect class="seg t-fire" x="983.99" y="218" width="11.38" height="26" rx="2" data-label="丙戌" data-detail="Bing Xu (Dog); year star 六白" data-start="3032426924264" data-end="3063983859753"><title>Annual pillar: 丙戌 (Bing Xu (Dog); year star 六白)
+2066-02-03 12:48 to 2067-02-03 18:37 UTC</title></rect>
+<rect class="seg t-fire" x="995.37" y="218" width="11.38" height="26" rx="2" data-label="丁亥" data-detail="Ding Hai (Pig); year star 五黃" data-start="3063983859753" data-end="3095540930507"><title>Annual pillar: 丁亥 (Ding Hai (Pig); year star 五黃)
+2067-02-03 18:37 to 2068-02-04 00:28 UTC</title></rect>
+<rect class="seg t-earth" x="1006.75" y="218" width="11.38" height="26" rx="2" data-label="戊子" data-detail="Wu Zi (Rat); year star 四綠" data-start="3095540930507" data-end="3127098057758"><title>Annual pillar: 戊子 (Wu Zi (Rat); year star 四綠)
+2068-02-04 00:28 to 2069-02-03 06:20 UTC</title></rect>
+<rect class="seg t-earth" x="1018.13" y="218" width="11.38" height="26" rx="2" data-label="己丑" data-detail="Ji Chou (Ox); year star 三碧" data-start="3127098057758" data-end="3158655679811"><title>Annual pillar: 己丑 (Ji Chou (Ox); year star 三碧)
+2069-02-03 06:20 to 2070-02-03 12:21 UTC</title></rect>
+<rect class="seg t-metal" x="1029.5" y="218" width="11.38" height="26" rx="2" data-label="庚寅" data-detail="Geng Yin (Tiger); year star 二黑" data-start="3158655679811" data-end="3190212635192"><title>Annual pillar: 庚寅 (Geng Yin (Tiger); year star 二黑)
+2070-02-03 12:21 to 2071-02-03 18:10 UTC</title></rect>
+<rect class="seg t-metal" x="1040.88" y="218" width="11.38" height="26" rx="2" data-label="辛卯" data-detail="Xin Mao (Rabbit); year star 一白" data-start="3190212635192" data-end="3221769404167"><title>Annual pillar: 辛卯 (Xin Mao (Rabbit); year star 一白)
+2071-02-03 18:10 to 2072-02-03 23:56 UTC</title></rect>
+<rect class="seg t-water" x="1052.26" y="218" width="11.38" height="26" rx="2" data-label="壬辰" data-detail="Ren Chen (Dragon); year star 九紫" data-start="3221769404167" data-end="3253326772631"><title>Annual pillar: 壬辰 (Ren Chen (Dragon); year star 九紫)
+2072-02-03 23:56 to 2073-02-03 05:52 UTC</title></rect>
+<rect class="seg t-water" x="1063.64" y="218" width="11.38" height="26" rx="2" data-label="癸巳" data-detail="Gui Si (Snake); year star 八白" data-start="3253326772631" data-end="3284883660310"><title>Annual pillar: 癸巳 (Gui Si (Snake); year star 八白)
+2073-02-03 05:52 to 2074-02-03 11:41 UTC</title></rect>
+<rect class="seg t-wood" x="1075.02" y="218" width="11.38" height="26" rx="2" data-label="甲午" data-detail="Jia Wu (Horse); year star 七赤" data-start="3284883660310" data-end="3316440643464"><title>Annual pillar: 甲午 (Jia Wu (Horse); year star 七赤)
+2074-02-03 11:41 to 2075-02-03 17:30 UTC</title></rect>
+<rect class="seg t-wood" x="1086.39" y="218" width="11.38" height="26" rx="2" data-label="乙未" data-detail="Yi Wei (Goat); year star 六白" data-start="3316440643464" data-end="3347997584012"><title>Annual pillar: 乙未 (Yi Wei (Goat); year star 六白)
+2075-02-03 17:30 to 2076-02-03 23:19 UTC</title></rect>
+<rect class="seg t-fire" x="1097.77" y="218" width="11.38" height="26" rx="2" data-label="丙申" data-detail="Bing Shen (Monkey); year star 五黃" data-start="3347997584012" data-end="3379554185717"><title>Annual pillar: 丙申 (Bing Shen (Monkey); year star 五黃)
+2076-02-03 23:19 to 2077-02-03 05:03 UTC</title></rect>
+<rect class="seg t-fire" x="1109.15" y="218" width="11.38" height="26" rx="2" data-label="丁酉" data-detail="Ding You (Rooster); year star 四綠" data-start="3379554185717" data-end="3411111424818"><title>Annual pillar: 丁酉 (Ding You (Rooster); year star 四綠)
+2077-02-03 05:03 to 2078-02-03 10:57 UTC</title></rect>
+<rect class="seg t-earth" x="1120.53" y="218" width="11.38" height="26" rx="2" data-label="戊戌" data-detail="Wu Xu (Dog); year star 三碧" data-start="3411111424818" data-end="3442668188524"><title>Annual pillar: 戊戌 (Wu Xu (Dog); year star 三碧)
+2078-02-03 10:57 to 2079-02-03 16:43 UTC</title></rect>
+<rect class="seg t-earth" x="1131.9" y="218" width="11.38" height="26" rx="2" data-label="己亥" data-detail="Ji Hai (Pig); year star 二黑" data-start="3442668188524" data-end="3474224891587"><title>Annual pillar: 己亥 (Ji Hai (Pig); year star 二黑)
+2079-02-03 16:43 to 2080-02-03 22:28 UTC</title></rect>
+<rect class="seg t-metal" x="1143.28" y="218" width="11.38" height="26" rx="2" data-label="庚子" data-detail="Geng Zi (Rat); year star 一白" data-start="3474224891587" data-end="3505782363944"><title>Annual pillar: 庚子 (Geng Zi (Rat); year star 一白)
+2080-02-03 22:28 to 2081-02-03 04:26 UTC</title></rect>
+<rect class="seg t-metal" x="1154.66" y="218" width="11.38" height="26" rx="2" data-label="辛丑" data-detail="Xin Chou (Ox); year star 九紫" data-start="3505782363944" data-end="3537339130604"><title>Annual pillar: 辛丑 (Xin Chou (Ox); year star 九紫)
+2081-02-03 04:26 to 2082-02-03 10:12 UTC</title></rect>
+<rect class="seg t-water" x="1166.04" y="218" width="11.38" height="26" rx="2" data-label="壬寅" data-detail="Ren Yin (Tiger); year star 八白" data-start="3537339130604" data-end="3568895876324"><title>Annual pillar: 壬寅 (Ren Yin (Tiger); year star 八白)
+2082-02-03 10:12 to 2083-02-03 15:57 UTC</title></rect>
+<rect class="seg t-water" x="1177.42" y="218" width="11.38" height="26" rx="2" data-label="癸卯" data-detail="Gui Mao (Rabbit); year star 七赤" data-start="3568895876324" data-end="3600452768845"><title>Annual pillar: 癸卯 (Gui Mao (Rabbit); year star 七赤)
+2083-02-03 15:57 to 2084-02-03 21:46 UTC</title></rect>
+<rect class="seg t-wood" x="1188.79" y="218" width="11.38" height="26" rx="2" data-label="甲辰" data-detail="Jia Chen (Dragon); year star 六白" data-start="3600452768845" data-end="3632009382169"><title>Annual pillar: 甲辰 (Jia Chen (Dragon); year star 六白)
+2084-02-03 21:46 to 2085-02-03 03:29 UTC</title></rect>
+<rect class="seg t-wood" x="1200.17" y="218" width="11.38" height="26" rx="2" data-label="乙巳" data-detail="Yi Si (Snake); year star 五黃" data-start="3632009382169" data-end="3663566755615"><title>Annual pillar: 乙巳 (Yi Si (Snake); year star 五黃)
+2085-02-03 03:29 to 2086-02-03 09:25 UTC</title></rect>
+<rect class="seg t-fire" x="1211.55" y="218" width="11.38" height="26" rx="2" data-label="丙午" data-detail="Bing Wu (Horse); year star 四綠" data-start="3663566755615" data-end="3695123691598"><title>Annual pillar: 丙午 (Bing Wu (Horse); year star 四綠)
+2086-02-03 09:25 to 2087-02-03 15:14 UTC</title></rect>
+<rect class="seg t-fire" x="1222.93" y="218" width="11.38" height="26" rx="2" data-label="丁未" data-detail="Ding Wei (Goat); year star 三碧" data-start="3695123691598" data-end="3726680289525"><title>Annual pillar: 丁未 (Ding Wei (Goat); year star 三碧)
+2087-02-03 15:14 to 2088-02-03 20:58 UTC</title></rect>
+<rect class="seg t-earth" x="1234.3" y="218" width="11.38" height="26" rx="2" data-label="戊申" data-detail="Wu Shen (Monkey); year star 二黑" data-start="3726680289525" data-end="3758237685100"><title>Annual pillar: 戊申 (Wu Shen (Monkey); year star 二黑)
+2088-02-03 20:58 to 2089-02-03 02:54 UTC</title></rect>
+<rect class="seg t-earth" x="1245.68" y="218" width="11.38" height="26" rx="2" data-label="己酉" data-detail="Ji You (Rooster); year star 一白" data-start="3758237685100" data-end="3789794521748"><title>Annual pillar: 己酉 (Ji You (Rooster); year star 一白)
+2089-02-03 02:54 to 2090-02-03 08:42 UTC</title></rect>
+</g></g>
+<g data-track="profection">
+<text x="220" y="260" font-size="13" text-anchor="end" dominant-baseline="central">Annual profection<title>Solar return: the Sun back at its natal longitude</title></text>
+<text class="muted" x="220" y="274" font-size="10" text-anchor="end" dominant-baseline="central">Western · year</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-mars" x="232" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 0, house 1" data-start="946728000000" data-end="978284781938"><title>Annual profection: Aries (lord of the year Mars; age 0, house 1)
+2000-01-01 12:00 to 2000-12-31 17:46 UTC</title></rect>
+<rect class="seg t-venus" x="243.38" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 1, house 2" data-start="978284781938" data-end="1009841921832"><title>Annual profection: Taurus (lord of the year Venus; age 1, house 2)
+2000-12-31 17:46 to 2001-12-31 23:38 UTC</title></rect>
+<rect class="seg t-mercury" x="254.76" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 2, house 3" data-start="1009841921832" data-end="1041398873509"><title>Annual profection: Gemini (lord of the year Mercury; age 2, house 3)
+2001-12-31 23:38 to 2003-01-01 05:27 UTC</title></rect>
+<rect class="seg t-moon" x="266.13" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 3, house 4" data-start="1041398873509" data-end="1072955641440"><title>Annual profection: Cancer (lord of the year Moon; age 3, house 4)
+2003-01-01 05:27 to 2004-01-01 11:14 UTC</title></rect>
+<rect class="seg t-sun" x="277.51" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 4, house 5" data-start="1072955641440" data-end="1104512387296"><title>Annual profection: Leo (lord of the year Sun; age 4, house 5)
+2004-01-01 11:14 to 2004-12-31 16:59 UTC</title></rect>
+<rect class="seg t-mercury" x="288.89" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 5, house 6" data-start="1104512387296" data-end="1136069154439"><title>Annual profection: Virgo (lord of the year Mercury; age 5, house 6)
+2004-12-31 16:59 to 2005-12-31 22:45 UTC</title></rect>
+<rect class="seg t-venus" x="300.27" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 6, house 7" data-start="1136069154439" data-end="1167626095975"><title>Annual profection: Libra (lord of the year Venus; age 6, house 7)
+2005-12-31 22:45 to 2007-01-01 04:34 UTC</title></rect>
+<rect class="seg t-mars" x="311.64" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 7, house 8" data-start="1167626095975" data-end="1199183022635"><title>Annual profection: Scorpio (lord of the year Mars; age 7, house 8)
+2007-01-01 04:34 to 2008-01-01 10:23 UTC</title></rect>
+<rect class="seg t-jupiter" x="323.02" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 8, house 9" data-start="1199183022635" data-end="1230739922640"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 8, house 9)
+2008-01-01 10:23 to 2008-12-31 16:12 UTC</title></rect>
+<rect class="seg t-saturn" x="334.4" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 9, house 10" data-start="1230739922640" data-end="1262297000132"><title>Annual profection: Capricorn (lord of the year Saturn; age 9, house 10)
+2008-12-31 16:12 to 2009-12-31 22:03 UTC</title></rect>
+<rect class="seg t-saturn" x="345.78" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 10, house 11" data-start="1262297000132" data-end="1293854031688"><title>Annual profection: Aquarius (lord of the year Saturn; age 10, house 11)
+2009-12-31 22:03 to 2011-01-01 03:53 UTC</title></rect>
+<rect class="seg t-jupiter" x="357.16" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 11, house 12" data-start="1293854031688" data-end="1325410800404"><title>Annual profection: Pisces (lord of the year Jupiter; age 11, house 12)
+2011-01-01 03:53 to 2012-01-01 09:40 UTC</title></rect>
+<rect class="seg t-mars" x="368.53" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 12, house 1" data-start="1325410800404" data-end="1356967770791"><title>Annual profection: Aries (lord of the year Mars; age 12, house 1)
+2012-01-01 09:40 to 2012-12-31 15:29 UTC</title></rect>
+<rect class="seg t-venus" x="379.91" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 13, house 2" data-start="1356967770791" data-end="1388525005883"><title>Annual profection: Taurus (lord of the year Venus; age 13, house 2)
+2012-12-31 15:29 to 2013-12-31 21:23 UTC</title></rect>
+<rect class="seg t-mercury" x="391.29" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 14, house 3" data-start="1388525005883" data-end="1420082116557"><title>Annual profection: Gemini (lord of the year Mercury; age 14, house 3)
+2013-12-31 21:23 to 2015-01-01 03:15 UTC</title></rect>
+<rect class="seg t-moon" x="402.67" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 15, house 4" data-start="1420082116557" data-end="1451639172355"><title>Annual profection: Cancer (lord of the year Moon; age 15, house 4)
+2015-01-01 03:15 to 2016-01-01 09:06 UTC</title></rect>
+<rect class="seg t-sun" x="414.04" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 16, house 5" data-start="1451639172355" data-end="1483196040509"><title>Annual profection: Leo (lord of the year Sun; age 16, house 5)
+2016-01-01 09:06 to 2016-12-31 14:54 UTC</title></rect>
+<rect class="seg t-mercury" x="425.42" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 17, house 6" data-start="1483196040509" data-end="1514753013608"><title>Annual profection: Virgo (lord of the year Mercury; age 17, house 6)
+2016-12-31 14:54 to 2017-12-31 20:43 UTC</title></rect>
+<rect class="seg t-venus" x="436.8" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 18, house 7" data-start="1514753013608" data-end="1546310276171"><title>Annual profection: Libra (lord of the year Venus; age 18, house 7)
+2017-12-31 20:43 to 2019-01-01 02:37 UTC</title></rect>
+<rect class="seg t-mars" x="448.18" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 19, house 8" data-start="1546310276171" data-end="1577867247894"><title>Annual profection: Scorpio (lord of the year Mars; age 19, house 8)
+2019-01-01 02:37 to 2020-01-01 08:27 UTC</title></rect>
+<rect class="seg t-jupiter" x="459.56" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 20, house 9" data-start="1577867247894" data-end="1609424361691"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 20, house 9)
+2020-01-01 08:27 to 2020-12-31 14:19 UTC</title></rect>
+<rect class="seg t-saturn" x="470.93" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 21, house 10" data-start="1609424361691" data-end="1640981602048"><title>Annual profection: Capricorn (lord of the year Saturn; age 21, house 10)
+2020-12-31 14:19 to 2021-12-31 20:13 UTC</title></rect>
+<rect class="seg t-saturn" x="482.31" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 22, house 11" data-start="1640981602048" data-end="1672538374433"><title>Annual profection: Aquarius (lord of the year Saturn; age 22, house 11)
+2021-12-31 20:13 to 2023-01-01 01:59 UTC</title></rect>
+<rect class="seg t-jupiter" x="493.69" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 23, house 12" data-start="1672538374433" data-end="1704095156209"><title>Annual profection: Pisces (lord of the year Jupiter; age 23, house 12)
+2023-01-01 01:59 to 2024-01-01 07:45 UTC</title></rect>
+<rect class="seg t-mars" x="505.07" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 24, house 1" data-start="1704095156209" data-end="1735651879978"><title>Annual profection: Aries (lord of the year Mars; age 24, house 1)
+2024-01-01 07:45 to 2024-12-31 13:31 UTC</title></rect>
+<rect class="seg t-venus" x="516.44" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 25, house 2" data-start="1735651879978" data-end="1767208645226"><title>Annual profection: Taurus (lord of the year Venus; age 25, house 2)
+2024-12-31 13:31 to 2025-12-31 19:17 UTC</title></rect>
+<rect class="seg t-mercury" x="527.82" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 26, house 3" data-start="1767208645226" data-end="1798765699496"><title>Annual profection: Gemini (lord of the year Mercury; age 26, house 3)
+2025-12-31 19:17 to 2027-01-01 01:08 UTC</title></rect>
+<rect class="seg t-moon" x="539.2" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 27, house 4" data-start="1798765699496" data-end="1830322317929"><title>Annual profection: Cancer (lord of the year Moon; age 27, house 4)
+2027-01-01 01:08 to 2028-01-01 06:51 UTC</title></rect>
+<rect class="seg t-sun" x="550.58" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 28, house 5" data-start="1830322317929" data-end="1861879013312"><title>Annual profection: Leo (lord of the year Sun; age 28, house 5)
+2028-01-01 06:51 to 2028-12-31 12:36 UTC</title></rect>
+<rect class="seg t-mercury" x="561.96" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 29, house 6" data-start="1861879013312" data-end="1893436189742"><title>Annual profection: Virgo (lord of the year Mercury; age 29, house 6)
+2028-12-31 12:36 to 2029-12-31 18:29 UTC</title></rect>
+<rect class="seg t-venus" x="573.33" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 30, house 7" data-start="1893436189742" data-end="1924993155533"><title>Annual profection: Libra (lord of the year Venus; age 30, house 7)
+2029-12-31 18:29 to 2031-01-01 00:19 UTC</title></rect>
+<rect class="seg t-mars" x="584.71" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 31, house 8" data-start="1924993155533" data-end="1956550361099"><title>Annual profection: Scorpio (lord of the year Mars; age 31, house 8)
+2031-01-01 00:19 to 2032-01-01 06:12 UTC</title></rect>
+<rect class="seg t-jupiter" x="596.09" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 32, house 9" data-start="1956550361099" data-end="1988107680768"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 32, house 9)
+2032-01-01 06:12 to 2032-12-31 12:08 UTC</title></rect>
+<rect class="seg t-saturn" x="607.47" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 33, house 10" data-start="1988107680768" data-end="2019664718885"><title>Annual profection: Capricorn (lord of the year Saturn; age 33, house 10)
+2032-12-31 12:08 to 2033-12-31 17:58 UTC</title></rect>
+<rect class="seg t-saturn" x="618.84" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 34, house 11" data-start="2019664718885" data-end="2051221991344"><title>Annual profection: Aquarius (lord of the year Saturn; age 34, house 11)
+2033-12-31 17:58 to 2034-12-31 23:53 UTC</title></rect>
+<rect class="seg t-jupiter" x="630.22" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 35, house 12" data-start="2051221991344" data-end="2082778882646"><title>Annual profection: Pisces (lord of the year Jupiter; age 35, house 12)
+2034-12-31 23:53 to 2036-01-01 05:41 UTC</title></rect>
+<rect class="seg t-mars" x="641.6" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 36, house 1" data-start="2082778882646" data-end="2114335707121"><title>Annual profection: Aries (lord of the year Mars; age 36, house 1)
+2036-01-01 05:41 to 2036-12-31 11:28 UTC</title></rect>
+<rect class="seg t-venus" x="652.98" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 37, house 2" data-start="2114335707121" data-end="2145893117619"><title>Annual profection: Taurus (lord of the year Venus; age 37, house 2)
+2036-12-31 11:28 to 2037-12-31 17:25 UTC</title></rect>
+<rect class="seg t-mercury" x="664.36" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 38, house 3" data-start="2145893117619" data-end="2177449965043"><title>Annual profection: Gemini (lord of the year Mercury; age 38, house 3)
+2037-12-31 17:25 to 2038-12-31 23:12 UTC</title></rect>
+<rect class="seg t-moon" x="675.73" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 39, house 4" data-start="2177449965043" data-end="2209006716927"><title>Annual profection: Cancer (lord of the year Moon; age 39, house 4)
+2038-12-31 23:12 to 2040-01-01 04:58 UTC</title></rect>
+<rect class="seg t-sun" x="687.11" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 40, house 5" data-start="2209006716927" data-end="2240563652317"><title>Annual profection: Leo (lord of the year Sun; age 40, house 5)
+2040-01-01 04:58 to 2040-12-31 10:47 UTC</title></rect>
+<rect class="seg t-mercury" x="698.49" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 41, house 6" data-start="2240563652317" data-end="2272120205343"><title>Annual profection: Virgo (lord of the year Mercury; age 41, house 6)
+2040-12-31 10:47 to 2041-12-31 16:30 UTC</title></rect>
+<rect class="seg t-venus" x="709.87" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 42, house 7" data-start="2272120205343" data-end="2303677338893"><title>Annual profection: Libra (lord of the year Venus; age 42, house 7)
+2041-12-31 16:30 to 2042-12-31 22:22 UTC</title></rect>
+<rect class="seg t-mars" x="721.24" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 43, house 8" data-start="2303677338893" data-end="2335234318568"><title>Annual profection: Scorpio (lord of the year Mars; age 43, house 8)
+2042-12-31 22:22 to 2044-01-01 04:11 UTC</title></rect>
+<rect class="seg t-jupiter" x="732.62" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 44, house 9" data-start="2335234318568" data-end="2366791045566"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 44, house 9)
+2044-01-01 04:11 to 2044-12-31 09:57 UTC</title></rect>
+<rect class="seg t-saturn" x="744" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 45, house 10" data-start="2366791045566" data-end="2398348429680"><title>Annual profection: Capricorn (lord of the year Saturn; age 45, house 10)
+2044-12-31 09:57 to 2045-12-31 15:53 UTC</title></rect>
+<rect class="seg t-saturn" x="755.38" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 46, house 11" data-start="2398348429680" data-end="2429905144049"><title>Annual profection: Aquarius (lord of the year Saturn; age 46, house 11)
+2045-12-31 15:53 to 2046-12-31 21:39 UTC</title></rect>
+<rect class="seg t-jupiter" x="766.76" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 47, house 12" data-start="2429905144049" data-end="2461461854724"><title>Annual profection: Pisces (lord of the year Jupiter; age 47, house 12)
+2046-12-31 21:39 to 2048-01-01 03:24 UTC</title></rect>
+<rect class="seg t-mars" x="778.13" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 48, house 1" data-start="2461461854724" data-end="2493019068379"><title>Annual profection: Aries (lord of the year Mars; age 48, house 1)
+2048-01-01 03:24 to 2048-12-31 09:17 UTC</title></rect>
+<rect class="seg t-venus" x="789.51" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 49, house 2" data-start="2493019068379" data-end="2524575804095"><title>Annual profection: Taurus (lord of the year Venus; age 49, house 2)
+2048-12-31 09:17 to 2049-12-31 15:03 UTC</title></rect>
+<rect class="seg t-mercury" x="800.89" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 50, house 3" data-start="2524575804095" data-end="2556133039772"><title>Annual profection: Gemini (lord of the year Mercury; age 50, house 3)
+2049-12-31 15:03 to 2050-12-31 20:57 UTC</title></rect>
+<rect class="seg t-moon" x="812.27" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 51, house 4" data-start="2556133039772" data-end="2587690039334"><title>Annual profection: Cancer (lord of the year Moon; age 51, house 4)
+2050-12-31 20:57 to 2052-01-01 02:47 UTC</title></rect>
+<rect class="seg t-sun" x="823.64" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 52, house 5" data-start="2587690039334" data-end="2619246641137"><title>Annual profection: Leo (lord of the year Sun; age 52, house 5)
+2052-01-01 02:47 to 2052-12-31 08:30 UTC</title></rect>
+<rect class="seg t-mercury" x="835.02" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 53, house 6" data-start="2619246641137" data-end="2650804144526"><title>Annual profection: Virgo (lord of the year Mercury; age 53, house 6)
+2052-12-31 08:30 to 2053-12-31 14:29 UTC</title></rect>
+<rect class="seg t-venus" x="846.4" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 54, house 7" data-start="2650804144526" data-end="2682361217600"><title>Annual profection: Libra (lord of the year Venus; age 54, house 7)
+2053-12-31 14:29 to 2054-12-31 20:20 UTC</title></rect>
+<rect class="seg t-mars" x="857.78" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 55, house 8" data-start="2682361217600" data-end="2713918239303"><title>Annual profection: Scorpio (lord of the year Mars; age 55, house 8)
+2054-12-31 20:20 to 2056-01-01 02:10 UTC</title></rect>
+<rect class="seg t-jupiter" x="869.16" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 56, house 9" data-start="2713918239303" data-end="2745475729379"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 56, house 9)
+2056-01-01 02:10 to 2056-12-31 08:08 UTC</title></rect>
+<rect class="seg t-saturn" x="880.53" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 57, house 10" data-start="2745475729379" data-end="2777032452178"><title>Annual profection: Capricorn (lord of the year Saturn; age 57, house 10)
+2056-12-31 08:08 to 2057-12-31 13:54 UTC</title></rect>
+<rect class="seg t-saturn" x="891.91" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 58, house 11" data-start="2777032452178" data-end="2808589445686"><title>Annual profection: Aquarius (lord of the year Saturn; age 58, house 11)
+2057-12-31 13:54 to 2058-12-31 19:44 UTC</title></rect>
+<rect class="seg t-jupiter" x="903.29" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 59, house 12" data-start="2808589445686" data-end="2840146377794"><title>Annual profection: Pisces (lord of the year Jupiter; age 59, house 12)
+2058-12-31 19:44 to 2060-01-01 01:32 UTC</title></rect>
+<rect class="seg t-mars" x="914.67" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 60, house 1" data-start="2840146377794" data-end="2871702812103"><title>Annual profection: Aries (lord of the year Mars; age 60, house 1)
+2060-01-01 01:32 to 2060-12-31 07:13 UTC</title></rect>
+<rect class="seg t-venus" x="926.04" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 61, house 2" data-start="2871702812103" data-end="2903260110568"><title>Annual profection: Taurus (lord of the year Venus; age 61, house 2)
+2060-12-31 07:13 to 2061-12-31 13:08 UTC</title></rect>
+<rect class="seg t-mercury" x="937.42" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 62, house 3" data-start="2903260110568" data-end="2934816928389"><title>Annual profection: Gemini (lord of the year Mercury; age 62, house 3)
+2061-12-31 13:08 to 2062-12-31 18:55 UTC</title></rect>
+<rect class="seg t-moon" x="948.8" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 63, house 4" data-start="2934816928389" data-end="2966373342534"><title>Annual profection: Cancer (lord of the year Moon; age 63, house 4)
+2062-12-31 18:55 to 2064-01-01 00:35 UTC</title></rect>
+<rect class="seg t-sun" x="960.18" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 64, house 5" data-start="2966373342534" data-end="2997930457887"><title>Annual profection: Leo (lord of the year Sun; age 64, house 5)
+2064-01-01 00:35 to 2064-12-31 06:27 UTC</title></rect>
+<rect class="seg t-mercury" x="971.56" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 65, house 6" data-start="2997930457887" data-end="3029487062703"><title>Annual profection: Virgo (lord of the year Mercury; age 65, house 6)
+2064-12-31 06:27 to 2065-12-31 12:11 UTC</title></rect>
+<rect class="seg t-venus" x="982.93" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 66, house 7" data-start="3029487062703" data-end="3061044133313"><title>Annual profection: Libra (lord of the year Venus; age 66, house 7)
+2065-12-31 12:11 to 2066-12-31 18:02 UTC</title></rect>
+<rect class="seg t-mars" x="994.31" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 67, house 8" data-start="3061044133313" data-end="3092601543196"><title>Annual profection: Scorpio (lord of the year Mars; age 67, house 8)
+2066-12-31 18:02 to 2067-12-31 23:59 UTC</title></rect>
+<rect class="seg t-jupiter" x="1005.69" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 68, house 9" data-start="3092601543196" data-end="3124158242675"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 68, house 9)
+2067-12-31 23:59 to 2068-12-31 05:44 UTC</title></rect>
+<rect class="seg t-saturn" x="1017.07" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 69, house 10" data-start="3124158242675" data-end="3155715738184"><title>Annual profection: Capricorn (lord of the year Saturn; age 69, house 10)
+2068-12-31 05:44 to 2069-12-31 11:42 UTC</title></rect>
+<rect class="seg t-saturn" x="1028.44" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 70, house 11" data-start="3155715738184" data-end="3187272857661"><title>Annual profection: Aquarius (lord of the year Saturn; age 70, house 11)
+2069-12-31 11:42 to 2070-12-31 17:34 UTC</title></rect>
+<rect class="seg t-jupiter" x="1039.82" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 71, house 12" data-start="3187272857661" data-end="3218829443987"><title>Annual profection: Pisces (lord of the year Jupiter; age 71, house 12)
+2070-12-31 17:34 to 2071-12-31 23:17 UTC</title></rect>
+<rect class="seg t-mars" x="1051.2" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 72, house 1" data-start="3218829443987" data-end="3250386948323"><title>Annual profection: Aries (lord of the year Mars; age 72, house 1)
+2071-12-31 23:17 to 2072-12-31 05:15 UTC</title></rect>
+<rect class="seg t-venus" x="1062.58" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 73, house 2" data-start="3250386948323" data-end="3281943798655"><title>Annual profection: Taurus (lord of the year Venus; age 73, house 2)
+2072-12-31 05:15 to 2073-12-31 11:03 UTC</title></rect>
+<rect class="seg t-mercury" x="1073.96" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 74, house 3" data-start="3281943798655" data-end="3313500733755"><title>Annual profection: Gemini (lord of the year Mercury; age 74, house 3)
+2073-12-31 11:03 to 2074-12-31 16:52 UTC</title></rect>
+<rect class="seg t-moon" x="1085.33" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 75, house 4" data-start="3313500733755" data-end="3345057936542"><title>Annual profection: Cancer (lord of the year Moon; age 75, house 4)
+2074-12-31 16:52 to 2075-12-31 22:45 UTC</title></rect>
+<rect class="seg t-sun" x="1096.71" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 76, house 5" data-start="3345057936542" data-end="3376614275735"><title>Annual profection: Leo (lord of the year Sun; age 76, house 5)
+2075-12-31 22:45 to 2076-12-31 04:24 UTC</title></rect>
+<rect class="seg t-mercury" x="1108.09" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 77, house 6" data-start="3376614275735" data-end="3408171567844"><title>Annual profection: Virgo (lord of the year Mercury; age 77, house 6)
+2076-12-31 04:24 to 2077-12-31 10:19 UTC</title></rect>
+<rect class="seg t-venus" x="1119.47" y="252" width="11.38" height="26" rx="2" data-label="Libra" data-detail="lord of the year Venus; age 78, house 7" data-start="3408171567844" data-end="3439728767689"><title>Annual profection: Libra (lord of the year Venus; age 78, house 7)
+2077-12-31 10:19 to 2078-12-31 16:12 UTC</title></rect>
+<rect class="seg t-mars" x="1130.85" y="252" width="11.38" height="26" rx="2" data-label="Scorpio" data-detail="lord of the year Mars; age 79, house 8" data-start="3439728767689" data-end="3471285324299"><title>Annual profection: Scorpio (lord of the year Mars; age 79, house 8)
+2078-12-31 16:12 to 2079-12-31 21:55 UTC</title></rect>
+<rect class="seg t-jupiter" x="1142.22" y="252" width="11.38" height="26" rx="2" data-label="Sagittarius" data-detail="lord of the year Jupiter; age 80, house 9" data-start="3471285324299" data-end="3502842724126"><title>Annual profection: Sagittarius (lord of the year Jupiter; age 80, house 9)
+2079-12-31 21:55 to 2080-12-31 03:52 UTC</title></rect>
+<rect class="seg t-saturn" x="1153.6" y="252" width="11.38" height="26" rx="2" data-label="Capricorn" data-detail="lord of the year Saturn; age 81, house 10" data-start="3502842724126" data-end="3534399389247"><title>Annual profection: Capricorn (lord of the year Saturn; age 81, house 10)
+2080-12-31 03:52 to 2081-12-31 09:36 UTC</title></rect>
+<rect class="seg t-saturn" x="1164.98" y="252" width="11.38" height="26" rx="2" data-label="Aquarius" data-detail="lord of the year Saturn; age 82, house 11" data-start="3534399389247" data-end="3565956008243"><title>Annual profection: Aquarius (lord of the year Saturn; age 82, house 11)
+2081-12-31 09:36 to 2082-12-31 15:20 UTC</title></rect>
+<rect class="seg t-jupiter" x="1176.36" y="252" width="11.38" height="26" rx="2" data-label="Pisces" data-detail="lord of the year Jupiter; age 83, house 12" data-start="3565956008243" data-end="3597513152732"><title>Annual profection: Pisces (lord of the year Jupiter; age 83, house 12)
+2082-12-31 15:20 to 2083-12-31 21:12 UTC</title></rect>
+<rect class="seg t-mars" x="1187.73" y="252" width="11.38" height="26" rx="2" data-label="Aries" data-detail="lord of the year Mars; age 84, house 1" data-start="3597513152732" data-end="3629069584853"><title>Annual profection: Aries (lord of the year Mars; age 84, house 1)
+2083-12-31 21:12 to 2084-12-31 02:53 UTC</title></rect>
+<rect class="seg t-venus" x="1199.11" y="252" width="11.38" height="26" rx="2" data-label="Taurus" data-detail="lord of the year Venus; age 85, house 2" data-start="3629069584853" data-end="3660626846510"><title>Annual profection: Taurus (lord of the year Venus; age 85, house 2)
+2084-12-31 02:53 to 2085-12-31 08:47 UTC</title></rect>
+<rect class="seg t-mercury" x="1210.49" y="252" width="11.38" height="26" rx="2" data-label="Gemini" data-detail="lord of the year Mercury; age 86, house 3" data-start="3660626846510" data-end="3692184056652"><title>Annual profection: Gemini (lord of the year Mercury; age 86, house 3)
+2085-12-31 08:47 to 2086-12-31 14:40 UTC</title></rect>
+<rect class="seg t-moon" x="1221.87" y="252" width="11.38" height="26" rx="2" data-label="Cancer" data-detail="lord of the year Moon; age 87, house 4" data-start="3692184056652" data-end="3723740450571"><title>Annual profection: Cancer (lord of the year Moon; age 87, house 4)
+2086-12-31 14:40 to 2087-12-31 20:20 UTC</title></rect>
+<rect class="seg t-sun" x="1233.24" y="252" width="11.38" height="26" rx="2" data-label="Leo" data-detail="lord of the year Sun; age 88, house 5" data-start="3723740450571" data-end="3755297786437"><title>Annual profection: Leo (lord of the year Sun; age 88, house 5)
+2087-12-31 20:20 to 2088-12-31 02:16 UTC</title></rect>
+<rect class="seg t-mercury" x="1244.62" y="252" width="11.38" height="26" rx="2" data-label="Virgo" data-detail="lord of the year Mercury; age 89, house 6" data-start="3755297786437" data-end="3786854828433"><title>Annual profection: Virgo (lord of the year Mercury; age 89, house 6)
+2088-12-31 02:16 to 2089-12-31 08:07 UTC</title></rect>
+</g></g>
+<g data-track="jupiter-sign">
+<text x="220" y="294" font-size="13" text-anchor="end" dominant-baseline="central">Jupiter by sign<title>Jupiter's geocentric sign changes</title></text>
+<text class="muted" x="220" y="308" font-size="10" text-anchor="end" dominant-baseline="central">Western · year</text>
+<g clip-path="url(#ov-plot)">
+<rect class="seg t-fire" x="230" y="286" width="3.38" height="26" rx="2" data-label="Aries" data-detail="" data-start="940658543700" data-end="950563974901"><title>Jupiter by sign: Aries
+1999-10-23 06:02 to 2000-02-14 21:32 UTC</title></rect>
+<rect class="seg t-earth" x="233.38" y="286" width="4.25" height="26" rx="2" data-label="Taurus" data-detail="" data-start="950563974901" data-end="962350555956"><title>Jupiter by sign: Taurus
+2000-02-14 21:32 to 2000-06-30 07:35 UTC</title></rect>
+<rect class="seg t-air" x="237.63" y="286" width="11.77" height="26" rx="2" data-label="Gemini" data-detail="" data-start="962350555956" data-end="994982550951"><title>Jupiter by sign: Gemini
+2000-06-30 07:35 to 2001-07-13 00:02 UTC</title></rect>
+<rect class="seg t-water" x="249.4" y="286" width="11.98" height="26" rx="2" data-label="Cancer" data-detail="" data-start="994982550951" data-end="1028221868627"><title>Jupiter by sign: Cancer
+2001-07-13 00:02 to 2002-08-01 17:11 UTC</title></rect>
+<rect class="seg t-fire" x="261.38" y="286" width="12.17" height="26" rx="2" data-label="Leo" data-detail="" data-start="1028221868627" data-end="1061975707031"><title>Jupiter by sign: Leo
+2002-08-01 17:11 to 2003-08-27 09:15 UTC</title></rect>
+<rect class="seg t-earth" x="273.55" y="286" width="12.3" height="26" rx="2" data-label="Virgo" data-detail="" data-start="1061975707031" data-end="1096082574388"><title>Jupiter by sign: Virgo
+2003-08-27 09:15 to 2004-09-25 03:22 UTC</title></rect>
+<rect class="seg t-air" x="285.85" y="286" width="12.34" height="26" rx="2" data-label="Libra" data-detail="" data-start="1096082574388" data-end="1130295683715"><title>Jupiter by sign: Libra
+2004-09-25 03:22 to 2005-10-26 03:01 UTC</title></rect>
+<rect class="seg t-water" x="298.18" y="286" width="12.28" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="1130295683715" data-end="1164343715331"><title>Jupiter by sign: Scorpio
+2005-10-26 03:01 to 2006-11-24 04:48 UTC</title></rect>
+<rect class="seg t-fire" x="310.46" y="286" width="12.14" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="1164343715331" data-end="1198009097093"><title>Jupiter by sign: Sagittarius
+2006-11-24 04:48 to 2007-12-18 20:18 UTC</title></rect>
+<rect class="seg t-earth" x="322.6" y="286" width="11.96" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="1198009097093" data-end="1231170853050"><title>Jupiter by sign: Capricorn
+2007-12-18 20:18 to 2009-01-05 15:54 UTC</title></rect>
+<rect class="seg t-air" x="334.56" y="286" width="11.76" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1231170853050" data-end="1263781021947"><title>Jupiter by sign: Aquarius
+2009-01-05 15:54 to 2010-01-18 02:17 UTC</title></rect>
+<rect class="seg t-water" x="346.31" y="286" width="4.34" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1263781021947" data-end="1275805416576"><title>Jupiter by sign: Pisces
+2010-01-18 02:17 to 2010-06-06 06:23 UTC</title></rect>
+<rect class="seg t-fire" x="350.65" y="286" width="2.96" height="26" rx="2" data-label="Aries" data-detail="" data-start="1275805416576" data-end="1284008037670"><title>Jupiter by sign: Aries
+2010-06-06 06:23 to 2010-09-09 04:53 UTC</title></rect>
+<rect class="seg t-water" x="353.61" y="286" width="4.22" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1284008037670" data-end="1295716318066"><title>Jupiter by sign: Pisces
+2010-09-09 04:53 to 2011-01-22 17:11 UTC</title></rect>
+<rect class="seg t-fire" x="357.83" y="286" width="4.14" height="26" rx="2" data-label="Aries" data-detail="" data-start="1295716318066" data-end="1307195515062"><title>Jupiter by sign: Aries
+2011-01-22 17:11 to 2011-06-04 13:51 UTC</title></rect>
+<rect class="seg t-earth" x="361.97" y="286" width="11.62" height="26" rx="2" data-label="Taurus" data-detail="" data-start="1307195515062" data-end="1339435125438"><title>Jupiter by sign: Taurus
+2011-06-04 13:51 to 2012-06-11 17:18 UTC</title></rect>
+<rect class="seg t-air" x="373.59" y="286" width="11.82" height="26" rx="2" data-label="Gemini" data-detail="" data-start="1339435125438" data-end="1372210594188"><title>Jupiter by sign: Gemini
+2012-06-11 17:18 to 2013-06-26 01:36 UTC</title></rect>
+<rect class="seg t-water" x="385.41" y="286" width="12" height="26" rx="2" data-label="Cancer" data-detail="" data-start="1372210594188" data-end="1405506673828"><title>Jupiter by sign: Cancer
+2013-06-26 01:36 to 2014-07-16 10:31 UTC</title></rect>
+<rect class="seg t-fire" x="397.41" y="286" width="12.18" height="26" rx="2" data-label="Leo" data-detail="" data-start="1405506673828" data-end="1439291209569"><title>Jupiter by sign: Leo
+2014-07-16 10:31 to 2015-08-11 11:06 UTC</title></rect>
+<rect class="seg t-earth" x="409.59" y="286" width="12.3" height="26" rx="2" data-label="Virgo" data-detail="" data-start="1439291209569" data-end="1473419284716"><title>Jupiter by sign: Virgo
+2015-08-11 11:06 to 2016-09-09 11:08 UTC</title></rect>
+<rect class="seg t-air" x="421.9" y="286" width="12.34" height="26" rx="2" data-label="Libra" data-detail="" data-start="1473419284716" data-end="1507641325927"><title>Jupiter by sign: Libra
+2016-09-09 11:08 to 2017-10-10 13:15 UTC</title></rect>
+<rect class="seg t-water" x="434.24" y="286" width="12.27" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="1507641325927" data-end="1541680294481"><title>Jupiter by sign: Scorpio
+2017-10-10 13:15 to 2018-11-08 12:31 UTC</title></rect>
+<rect class="seg t-fire" x="446.51" y="286" width="12.13" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="1541680294481" data-end="1575310346850"><title>Jupiter by sign: Sagittarius
+2018-11-08 12:31 to 2019-12-02 18:12 UTC</title></rect>
+<rect class="seg t-earth" x="458.63" y="286" width="11.92" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="1575310346850" data-end="1608383347557"><title>Jupiter by sign: Capricorn
+2019-12-02 18:12 to 2020-12-19 13:09 UTC</title></rect>
+<rect class="seg t-air" x="470.56" y="286" width="4.53" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1608383347557" data-end="1620946160815"><title>Jupiter by sign: Aquarius
+2020-12-19 13:09 to 2021-05-13 22:49 UTC</title></rect>
+<rect class="seg t-water" x="475.09" y="286" width="2.35" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1620946160815" data-end="1627475090404"><title>Jupiter by sign: Pisces
+2021-05-13 22:49 to 2021-07-28 12:24 UTC</title></rect>
+<rect class="seg t-air" x="477.44" y="286" width="4.79" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1627475090404" data-end="1640751416234"><title>Jupiter by sign: Aquarius
+2021-07-28 12:24 to 2021-12-29 04:16 UTC</title></rect>
+<rect class="seg t-water" x="482.23" y="286" width="4.14" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1640751416234" data-end="1652225385937"><title>Jupiter by sign: Pisces
+2021-12-29 04:16 to 2022-05-10 23:29 UTC</title></rect>
+<rect class="seg t-fire" x="486.37" y="286" width="5.3" height="26" rx="2" data-label="Aries" data-detail="" data-start="1652225385937" data-end="1666932276708"><title>Jupiter by sign: Aries
+2022-05-10 23:29 to 2022-10-28 04:44 UTC</title></rect>
+<rect class="seg t-water" x="491.67" y="286" width="1.66" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1666932276708" data-end="1671548084911"><title>Jupiter by sign: Pisces
+2022-10-28 04:44 to 2022-12-20 14:54 UTC</title></rect>
+<rect class="seg t-fire" x="493.33" y="286" width="4.58" height="26" rx="2" data-label="Aries" data-detail="" data-start="1671548084911" data-end="1684258081127"><title>Jupiter by sign: Aries
+2022-12-20 14:54 to 2023-05-16 17:28 UTC</title></rect>
+<rect class="seg t-earth" x="497.91" y="286" width="11.69" height="26" rx="2" data-label="Taurus" data-detail="" data-start="1684258081127" data-end="1716679195971"><title>Jupiter by sign: Taurus
+2023-05-16 17:28 to 2024-05-25 23:19 UTC</title></rect>
+<rect class="seg t-air" x="509.6" y="286" width="11.83" height="26" rx="2" data-label="Gemini" data-detail="" data-start="1716679195971" data-end="1749503092015"><title>Jupiter by sign: Gemini
+2024-05-25 23:19 to 2025-06-09 21:04 UTC</title></rect>
+<rect class="seg t-water" x="521.44" y="286" width="12" height="26" rx="2" data-label="Cancer" data-detail="" data-start="1749503092015" data-end="1782798975218"><title>Jupiter by sign: Cancer
+2025-06-09 21:04 to 2026-06-30 05:56 UTC</title></rect>
+<rect class="seg t-fire" x="533.44" y="286" width="12.18" height="26" rx="2" data-label="Leo" data-detail="" data-start="1782798975218" data-end="1816577120873"><title>Jupiter by sign: Leo
+2026-06-30 05:56 to 2027-07-26 04:45 UTC</title></rect>
+<rect class="seg t-earth" x="545.62" y="286" width="12.31" height="26" rx="2" data-label="Virgo" data-detail="" data-start="1816577120873" data-end="1850706252684"><title>Jupiter by sign: Virgo
+2027-07-26 04:45 to 2028-08-24 05:04 UTC</title></rect>
+<rect class="seg t-air" x="557.93" y="286" width="12.34" height="26" rx="2" data-label="Libra" data-detail="" data-start="1850706252684" data-end="1884925630150"><title>Jupiter by sign: Libra
+2028-08-24 05:04 to 2029-09-24 06:27 UTC</title></rect>
+<rect class="seg t-water" x="570.26" y="286" width="12.26" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="1884925630150" data-end="1918941231444"><title>Jupiter by sign: Scorpio
+2029-09-24 06:27 to 2030-10-22 23:13 UTC</title></rect>
+<rect class="seg t-fire" x="582.53" y="286" width="12.1" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="1918941231444" data-end="1952504845091"><title>Jupiter by sign: Sagittarius
+2030-10-22 23:13 to 2031-11-15 10:27 UTC</title></rect>
+<rect class="seg t-earth" x="594.63" y="286" width="4.63" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="1952504845091" data-end="1965344235644"><title>Jupiter by sign: Capricorn
+2031-11-15 10:27 to 2032-04-12 00:57 UTC</title></rect>
+<rect class="seg t-air" x="599.26" y="286" width="2.35" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1965344235644" data-end="1971867400047"><title>Jupiter by sign: Aquarius
+2032-04-12 00:57 to 2032-06-26 12:56 UTC</title></rect>
+<rect class="seg t-earth" x="601.61" y="286" width="4.88" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="1971867400047" data-end="1985398376219"><title>Jupiter by sign: Capricorn
+2032-06-26 12:56 to 2032-11-30 03:32 UTC</title></rect>
+<rect class="seg t-air" x="606.49" y="286" width="4.23" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="1985398376219" data-end="1997131367943"><title>Jupiter by sign: Aquarius
+2032-11-30 03:32 to 2033-04-14 22:42 UTC</title></rect>
+<rect class="seg t-water" x="610.72" y="286" width="4.7" height="26" rx="2" data-label="Pisces" data-detail="" data-start="1997131367943" data-end="2010177117333"><title>Jupiter by sign: Pisces
+2033-04-14 22:42 to 2033-09-12 22:31 UTC</title></rect>
+<rect class="seg t-air" x="615.42" y="286" width="2.49" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="2010177117333" data-end="2017088972972"><title>Jupiter by sign: Aquarius
+2033-09-12 22:31 to 2033-12-01 22:29 UTC</title></rect>
+<rect class="seg t-water" x="617.92" y="286" width="4.38" height="26" rx="2" data-label="Pisces" data-detail="" data-start="2017088972972" data-end="2029224870482"><title>Jupiter by sign: Pisces
+2033-12-01 22:29 to 2034-04-21 09:34 UTC</title></rect>
+<rect class="seg t-fire" x="622.29" y="286" width="11.63" height="26" rx="2" data-label="Aries" data-detail="" data-start="2029224870482" data-end="2061485602953"><title>Jupiter by sign: Aries
+2034-04-21 09:34 to 2035-04-29 18:53 UTC</title></rect>
+<rect class="seg t-earth" x="633.92" y="286" width="11.71" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2061485602953" data-end="2093957273583"><title>Jupiter by sign: Taurus
+2035-04-29 18:53 to 2036-05-09 14:47 UTC</title></rect>
+<rect class="seg t-air" x="645.63" y="286" width="11.82" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2093957273583" data-end="2126743897631"><title>Jupiter by sign: Gemini
+2036-05-09 14:47 to 2037-05-24 02:11 UTC</title></rect>
+<rect class="seg t-water" x="657.45" y="286" width="11.98" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2126743897631" data-end="2159969512279"><title>Jupiter by sign: Cancer
+2037-05-24 02:11 to 2038-06-12 15:31 UTC</title></rect>
+<rect class="seg t-fire" x="669.43" y="286" width="4.9" height="26" rx="2" data-label="Leo" data-detail="" data-start="2159969512279" data-end="2173555390868"><title>Jupiter by sign: Leo
+2038-06-12 15:31 to 2038-11-16 21:23 UTC</title></rect>
+<rect class="seg t-earth" x="674.33" y="286" width="1.89" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2173555390868" data-end="2178802287157"><title>Jupiter by sign: Virgo
+2038-11-16 21:23 to 2039-01-16 14:51 UTC</title></rect>
+<rect class="seg t-fire" x="676.22" y="286" width="5.37" height="26" rx="2" data-label="Leo" data-detail="" data-start="2178802287157" data-end="2193697515453"><title>Jupiter by sign: Leo
+2039-01-16 14:51 to 2039-07-08 00:25 UTC</title></rect>
+<rect class="seg t-earth" x="681.59" y="286" width="4.92" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2193697515453" data-end="2207339395312"><title>Jupiter by sign: Virgo
+2039-07-08 00:25 to 2039-12-12 21:49 UTC</title></rect>
+<rect class="seg t-air" x="686.51" y="286" width="2.16" height="26" rx="2" data-label="Libra" data-detail="" data-start="2207339395312" data-end="2213329736864"><title>Jupiter by sign: Libra
+2039-12-12 21:49 to 2040-02-20 05:48 UTC</title></rect>
+<rect class="seg t-earth" x="688.67" y="286" width="5.22" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2213329736864" data-end="2227816985668"><title>Jupiter by sign: Virgo
+2040-02-20 05:48 to 2040-08-05 22:03 UTC</title></rect>
+<rect class="seg t-air" x="693.89" y="286" width="4.95" height="26" rx="2" data-label="Libra" data-detail="" data-start="2227816985668" data-end="2241545596434"><title>Jupiter by sign: Libra
+2040-08-05 22:03 to 2041-01-11 19:33 UTC</title></rect>
+<rect class="seg t-water" x="698.84" y="286" width="2.12" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2241545596434" data-end="2247436556102"><title>Jupiter by sign: Scorpio
+2041-01-11 19:33 to 2041-03-20 23:55 UTC</title></rect>
+<rect class="seg t-air" x="700.97" y="286" width="5.27" height="26" rx="2" data-label="Libra" data-detail="" data-start="2247436556102" data-end="2262039490282"><title>Jupiter by sign: Libra
+2041-03-20 23:55 to 2041-09-06 00:18 UTC</title></rect>
+<rect class="seg t-water" x="706.23" y="286" width="4.86" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2262039490282" data-end="2275516512597"><title>Jupiter by sign: Scorpio
+2041-09-06 00:18 to 2042-02-08 23:55 UTC</title></rect>
+<rect class="seg t-fire" x="711.09" y="286" width="2.32" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2275516512597" data-end="2281956001390"><title>Jupiter by sign: Sagittarius
+2042-02-08 23:55 to 2042-04-24 12:40 UTC</title></rect>
+<rect class="seg t-water" x="713.41" y="286" width="5.07" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2281956001390" data-end="2296029437621"><title>Jupiter by sign: Scorpio
+2042-04-24 12:40 to 2042-10-04 09:57 UTC</title></rect>
+<rect class="seg t-fire" x="718.49" y="286" width="4.62" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2296029437621" data-end="2308842056250"><title>Jupiter by sign: Sagittarius
+2042-10-04 09:57 to 2043-03-01 17:00 UTC</title></rect>
+<rect class="seg t-earth" x="723.11" y="286" width="3.12" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2308842056250" data-end="2317499149437"><title>Jupiter by sign: Capricorn
+2043-03-01 17:00 to 2043-06-09 21:45 UTC</title></rect>
+<rect class="seg t-fire" x="726.23" y="286" width="4.32" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2317499149437" data-end="2329471927659"><title>Jupiter by sign: Sagittarius
+2043-06-09 21:45 to 2043-10-26 11:32 UTC</title></rect>
+<rect class="seg t-earth" x="730.54" y="286" width="4.38" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2329471927659" data-end="2341629276195"><title>Jupiter by sign: Capricorn
+2043-10-26 11:32 to 2044-03-15 04:34 UTC</title></rect>
+<rect class="seg t-air" x="734.93" y="286" width="4.59" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="2341629276195" data-end="2354358054418"><title>Jupiter by sign: Aquarius
+2044-03-15 04:34 to 2044-08-09 12:20 UTC</title></rect>
+<rect class="seg t-earth" x="739.52" y="286" width="2.72" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2354358054418" data-end="2361894484789"><title>Jupiter by sign: Capricorn
+2044-08-09 12:20 to 2044-11-04 17:48 UTC</title></rect>
+<rect class="seg t-air" x="742.23" y="286" width="4.41" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="2361894484789" data-end="2374118137572"><title>Jupiter by sign: Aquarius
+2044-11-04 17:48 to 2045-03-26 05:15 UTC</title></rect>
+<rect class="seg t-water" x="746.64" y="286" width="11.66" height="26" rx="2" data-label="Pisces" data-detail="" data-start="2374118137572" data-end="2406471050390"><title>Jupiter by sign: Pisces
+2045-03-26 05:15 to 2046-04-04 16:10 UTC</title></rect>
+<rect class="seg t-fire" x="758.31" y="286" width="11.66" height="26" rx="2" data-label="Aries" data-detail="" data-start="2406471050390" data-end="2438802385619"><title>Jupiter by sign: Aries
+2046-04-04 16:10 to 2047-04-13 21:06 UTC</title></rect>
+<rect class="seg t-earth" x="769.96" y="286" width="11.69" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2438802385619" data-end="2471219271825"><title>Jupiter by sign: Taurus
+2047-04-13 21:06 to 2048-04-23 01:47 UTC</title></rect>
+<rect class="seg t-air" x="781.65" y="286" width="4.78" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2471219271825" data-end="2484479541356"><title>Jupiter by sign: Gemini
+2048-04-23 01:47 to 2048-09-23 13:12 UTC</title></rect>
+<rect class="seg t-water" x="786.43" y="286" width="1.56" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2484479541356" data-end="2488801853759"><title>Jupiter by sign: Cancer
+2048-09-23 13:12 to 2048-11-12 13:50 UTC</title></rect>
+<rect class="seg t-air" x="787.99" y="286" width="5.43" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2488801853759" data-end="2503851286596"><title>Jupiter by sign: Gemini
+2048-11-12 13:50 to 2049-05-05 18:14 UTC</title></rect>
+<rect class="seg t-water" x="793.42" y="286" width="4.51" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2503851286596" data-end="2516351461303"><title>Jupiter by sign: Cancer
+2049-05-05 18:14 to 2049-09-27 10:31 UTC</title></rect>
+<rect class="seg t-fire" x="797.92" y="286" width="3.39" height="26" rx="2" data-label="Leo" data-detail="" data-start="2516351461303" data-end="2525757849316"><title>Jupiter by sign: Leo
+2049-09-27 10:31 to 2050-01-14 07:24 UTC</title></rect>
+<rect class="seg t-water" x="801.32" y="286" width="4.01" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2525757849316" data-end="2536868748778"><title>Jupiter by sign: Cancer
+2050-01-14 07:24 to 2050-05-22 21:45 UTC</title></rect>
+<rect class="seg t-fire" x="805.32" y="286" width="4.63" height="26" rx="2" data-label="Leo" data-detail="" data-start="2536868748778" data-end="2549709723998"><title>Jupiter by sign: Leo
+2050-05-22 21:45 to 2050-10-18 12:42 UTC</title></rect>
+<rect class="seg t-earth" x="809.95" y="286" width="4.08" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2549709723998" data-end="2561022597435"><title>Jupiter by sign: Virgo
+2050-10-18 12:42 to 2051-02-26 11:09 UTC</title></rect>
+<rect class="seg t-fire" x="814.03" y="286" width="3.4" height="26" rx="2" data-label="Leo" data-detail="" data-start="2561022597435" data-end="2570440772899"><title>Jupiter by sign: Leo
+2051-02-26 11:09 to 2051-06-15 11:19 UTC</title></rect>
+<rect class="seg t-earth" x="817.43" y="286" width="4.77" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2570440772899" data-end="2583672090600"><title>Jupiter by sign: Virgo
+2051-06-15 11:19 to 2051-11-15 14:41 UTC</title></rect>
+<rect class="seg t-air" x="822.2" y="286" width="4.24" height="26" rx="2" data-label="Libra" data-detail="" data-start="2583672090600" data-end="2595443190819"><title>Jupiter by sign: Libra
+2051-11-15 14:41 to 2052-03-30 20:26 UTC</title></rect>
+<rect class="seg t-earth" x="826.44" y="286" width="3.28" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2595443190819" data-end="2604529773193"><title>Jupiter by sign: Virgo
+2052-03-30 20:26 to 2052-07-14 00:29 UTC</title></rect>
+<rect class="seg t-air" x="829.72" y="286" width="4.81" height="26" rx="2" data-label="Libra" data-detail="" data-start="2604529773193" data-end="2617858836034"><title>Jupiter by sign: Libra
+2052-07-14 00:29 to 2052-12-15 07:00 UTC</title></rect>
+<rect class="seg t-water" x="834.52" y="286" width="4.23" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2617858836034" data-end="2629599463695"><title>Jupiter by sign: Scorpio
+2052-12-15 07:00 to 2053-04-30 04:17 UTC</title></rect>
+<rect class="seg t-air" x="838.75" y="286" width="3.31" height="26" rx="2" data-label="Libra" data-detail="" data-start="2629599463695" data-end="2638769786937"><title>Jupiter by sign: Libra
+2053-04-30 04:17 to 2053-08-14 07:36 UTC</title></rect>
+<rect class="seg t-water" x="842.06" y="286" width="4.74" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2638769786937" data-end="2651903706884"><title>Jupiter by sign: Scorpio
+2053-08-14 07:36 to 2054-01-13 07:55 UTC</title></rect>
+<rect class="seg t-fire" x="846.8" y="286" width="4.42" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2651903706884" data-end="2664168323070"><title>Jupiter by sign: Sagittarius
+2054-01-13 07:55 to 2054-06-04 06:45 UTC</title></rect>
+<rect class="seg t-water" x="851.22" y="286" width="3.07" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2664168323070" data-end="2672676695433"><title>Jupiter by sign: Scorpio
+2054-06-04 06:45 to 2054-09-10 18:11 UTC</title></rect>
+<rect class="seg t-fire" x="854.29" y="286" width="4.63" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2672676695433" data-end="2685514875731"><title>Jupiter by sign: Sagittarius
+2054-09-10 18:11 to 2055-02-06 08:21 UTC</title></rect>
+<rect class="seg t-earth" x="858.92" y="286" width="5.2" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2685514875731" data-end="2699932034618"><title>Jupiter by sign: Capricorn
+2055-02-06 08:21 to 2055-07-23 05:07 UTC</title></rect>
+<rect class="seg t-fire" x="864.11" y="286" width="2.06" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="2699932034618" data-end="2705636638256"><title>Jupiter by sign: Sagittarius
+2055-07-23 05:07 to 2055-09-27 05:43 UTC</title></rect>
+<rect class="seg t-earth" x="866.17" y="286" width="4.68" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="2705636638256" data-end="2718615408398"><title>Jupiter by sign: Capricorn
+2055-09-27 05:43 to 2056-02-24 10:56 UTC</title></rect>
+<rect class="seg t-air" x="870.85" y="286" width="11.79" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="2718615408398" data-end="2751310308909"><title>Jupiter by sign: Aquarius
+2056-02-24 10:56 to 2057-03-08 20:51 UTC</title></rect>
+<rect class="seg t-water" x="882.64" y="286" width="11.69" height="26" rx="2" data-label="Pisces" data-detail="" data-start="2751310308909" data-end="2783743767553"><title>Jupiter by sign: Pisces
+2057-03-08 20:51 to 2058-03-19 06:09 UTC</title></rect>
+<rect class="seg t-fire" x="894.33" y="286" width="11.64" height="26" rx="2" data-label="Aries" data-detail="" data-start="2783743767553" data-end="2816033884276"><title>Jupiter by sign: Aries
+2058-03-19 06:09 to 2059-03-27 23:38 UTC</title></rect>
+<rect class="seg t-earth" x="905.97" y="286" width="4.76" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2816033884276" data-end="2829236252782"><title>Jupiter by sign: Taurus
+2059-03-27 23:38 to 2059-08-27 18:57 UTC</title></rect>
+<rect class="seg t-air" x="910.73" y="286" width="1.41" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2829236252782" data-end="2833155285644"><title>Jupiter by sign: Gemini
+2059-08-27 18:57 to 2059-10-12 03:34 UTC</title></rect>
+<rect class="seg t-earth" x="912.15" y="286" width="5.45" height="26" rx="2" data-label="Taurus" data-detail="" data-start="2833155285644" data-end="2848269258104"><title>Jupiter by sign: Taurus
+2059-10-12 03:34 to 2060-04-04 01:54 UTC</title></rect>
+<rect class="seg t-air" x="917.6" y="286" width="4.32" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2848269258104" data-end="2860251662328"><title>Jupiter by sign: Gemini
+2060-04-04 01:54 to 2060-08-20 18:21 UTC</title></rect>
+<rect class="seg t-water" x="921.92" y="286" width="4.04" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2860251662328" data-end="2871450177318"><title>Jupiter by sign: Cancer
+2060-08-20 18:21 to 2060-12-28 09:02 UTC</title></rect>
+<rect class="seg t-air" x="925.95" y="286" width="3.27" height="26" rx="2" data-label="Gemini" data-detail="" data-start="2871450177318" data-end="2880508057031"><title>Jupiter by sign: Gemini
+2060-12-28 09:02 to 2061-04-12 05:07 UTC</title></rect>
+<rect class="seg t-water" x="929.22" y="286" width="4.54" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2880508057031" data-end="2893095644238"><title>Jupiter by sign: Cancer
+2061-04-12 05:07 to 2061-09-04 21:40 UTC</title></rect>
+<rect class="seg t-fire" x="933.76" y="286" width="5.45" height="26" rx="2" data-label="Leo" data-detail="" data-start="2893095644238" data-end="2908223483862"><title>Jupiter by sign: Leo
+2061-09-04 21:40 to 2062-02-26 23:51 UTC</title></rect>
+<rect class="seg t-water" x="939.21" y="286" width="1.63" height="26" rx="2" data-label="Cancer" data-detail="" data-start="2908223483862" data-end="2912747798583"><title>Jupiter by sign: Cancer
+2062-02-26 23:51 to 2062-04-20 08:36 UTC</title></rect>
+<rect class="seg t-fire" x="940.84" y="286" width="5.03" height="26" rx="2" data-label="Leo" data-detail="" data-start="2912747798583" data-end="2926685230224"><title>Jupiter by sign: Leo
+2062-04-20 08:36 to 2062-09-28 16:07 UTC</title></rect>
+<rect class="seg t-earth" x="945.87" y="286" width="12.27" height="26" rx="2" data-label="Virgo" data-detail="" data-start="2926685230224" data-end="2960724423558"><title>Jupiter by sign: Virgo
+2062-09-28 16:07 to 2063-10-27 15:27 UTC</title></rect>
+<rect class="seg t-air" x="958.14" y="286" width="12.33" height="26" rx="2" data-label="Libra" data-detail="" data-start="2960724423558" data-end="2994926740795"><title>Jupiter by sign: Libra
+2063-10-27 15:27 to 2064-11-26 12:05 UTC</title></rect>
+<rect class="seg t-water" x="970.47" y="286" width="12.28" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="2994926740795" data-end="3028985830809"><title>Jupiter by sign: Scorpio
+2064-11-26 12:05 to 2065-12-25 16:57 UTC</title></rect>
+<rect class="seg t-fire" x="982.75" y="286" width="12.14" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="3028985830809" data-end="3062654925731"><title>Jupiter by sign: Sagittarius
+2065-12-25 16:57 to 2067-01-19 09:28 UTC</title></rect>
+<rect class="seg t-earth" x="994.89" y="286" width="11.96" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="3062654925731" data-end="3095836559911"><title>Jupiter by sign: Capricorn
+2067-01-19 09:28 to 2068-02-07 10:35 UTC</title></rect>
+<rect class="seg t-air" x="1006.86" y="286" width="11.8" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="3095836559911" data-end="3128577388769"><title>Jupiter by sign: Aquarius
+2068-02-07 10:35 to 2069-02-20 09:16 UTC</title></rect>
+<rect class="seg t-water" x="1018.66" y="286" width="11.68" height="26" rx="2" data-label="Pisces" data-detail="" data-start="3128577388769" data-end="3160976233227"><title>Jupiter by sign: Pisces
+2069-02-20 09:16 to 2070-03-02 08:57 UTC</title></rect>
+<rect class="seg t-fire" x="1030.34" y="286" width="11.58" height="26" rx="2" data-label="Aries" data-detail="" data-start="3160976233227" data-end="3193094817553"><title>Jupiter by sign: Aries
+2070-03-02 08:57 to 2071-03-09 02:46 UTC</title></rect>
+<rect class="seg t-earth" x="1041.92" y="286" width="4.21" height="26" rx="2" data-label="Taurus" data-detail="" data-start="3193094817553" data-end="3204778734667"><title>Jupiter by sign: Taurus
+2071-03-09 02:46 to 2071-07-22 08:18 UTC</title></rect>
+<rect class="seg t-air" x="1046.13" y="286" width="4.09" height="26" rx="2" data-label="Gemini" data-detail="" data-start="3204778734667" data-end="3216119854613"><title>Jupiter by sign: Gemini
+2071-07-22 08:18 to 2071-11-30 14:37 UTC</title></rect>
+<rect class="seg t-earth" x="1050.22" y="286" width="3.14" height="26" rx="2" data-label="Taurus" data-detail="" data-start="3216119854613" data-end="3224835730150"><title>Jupiter by sign: Taurus
+2071-11-30 14:37 to 2072-03-10 11:42 UTC</title></rect>
+<rect class="seg t-air" x="1053.37" y="286" width="4.41" height="26" rx="2" data-label="Gemini" data-detail="" data-start="3224835730150" data-end="3237074860472"><title>Jupiter by sign: Gemini
+2072-03-10 11:42 to 2072-07-30 03:27 UTC</title></rect>
+<rect class="seg t-water" x="1057.78" y="286" width="11.94" height="26" rx="2" data-label="Cancer" data-detail="" data-start="3237074860472" data-end="3270190824534"><title>Jupiter by sign: Cancer
+2072-07-30 03:27 to 2073-08-17 10:20 UTC</title></rect>
+<rect class="seg t-fire" x="1069.72" y="286" width="12.15" height="26" rx="2" data-label="Leo" data-detail="" data-start="3270190824534" data-end="3303886757958"><title>Jupiter by sign: Leo
+2073-08-17 10:20 to 2074-09-11 10:19 UTC</title></rect>
+<rect class="seg t-earth" x="1081.87" y="286" width="12.29" height="26" rx="2" data-label="Virgo" data-detail="" data-start="3303886757958" data-end="3337965239062"><title>Jupiter by sign: Virgo
+2074-09-11 10:19 to 2075-10-10 20:33 UTC</title></rect>
+<rect class="seg t-air" x="1094.15" y="286" width="12.33" height="26" rx="2" data-label="Libra" data-detail="" data-start="3337965239062" data-end="3372172763159"><title>Jupiter by sign: Libra
+2075-10-10 20:33 to 2076-11-09 18:39 UTC</title></rect>
+<rect class="seg t-water" x="1106.49" y="286" width="12.28" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="3372172763159" data-end="3406231344945"><title>Jupiter by sign: Scorpio
+2076-11-09 18:39 to 2077-12-08 23:22 UTC</title></rect>
+<rect class="seg t-fire" x="1118.77" y="286" width="12.14" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="3406231344945" data-end="3439914202221"><title>Jupiter by sign: Sagittarius
+2077-12-08 23:22 to 2079-01-02 19:43 UTC</title></rect>
+<rect class="seg t-earth" x="1130.91" y="286" width="11.97" height="26" rx="2" data-label="Capricorn" data-detail="" data-start="3439914202221" data-end="3473114029101"><title>Jupiter by sign: Capricorn
+2079-01-02 19:43 to 2080-01-22 01:53 UTC</title></rect>
+<rect class="seg t-air" x="1142.88" y="286" width="11.8" height="26" rx="2" data-label="Aquarius" data-detail="" data-start="3473114029101" data-end="3505836946068"><title>Jupiter by sign: Aquarius
+2080-01-22 01:53 to 2081-02-03 19:35 UTC</title></rect>
+<rect class="seg t-water" x="1154.68" y="286" width="11.64" height="26" rx="2" data-label="Pisces" data-detail="" data-start="3505836946068" data-end="3538113214745"><title>Jupiter by sign: Pisces
+2081-02-03 19:35 to 2082-02-12 09:13 UTC</title></rect>
+<rect class="seg t-fire" x="1166.32" y="286" width="4.22" height="26" rx="2" data-label="Aries" data-detail="" data-start="3538113214745" data-end="3549812281127"><title>Jupiter by sign: Aries
+2082-02-12 09:13 to 2082-06-27 18:58 UTC</title></rect>
+<rect class="seg t-earth" x="1170.54" y="286" width="3.61" height="26" rx="2" data-label="Taurus" data-detail="" data-start="3549812281127" data-end="3559837834643"><title>Jupiter by sign: Taurus
+2082-06-27 18:58 to 2082-10-21 19:50 UTC</title></rect>
+<rect class="seg t-fire" x="1174.15" y="286" width="3.6" height="26" rx="2" data-label="Aries" data-detail="" data-start="3559837834643" data-end="3569817620653"><title>Jupiter by sign: Aries
+2082-10-21 19:50 to 2083-02-14 08:00 UTC</title></rect>
+<rect class="seg t-earth" x="1177.75" y="286" width="4.25" height="26" rx="2" data-label="Taurus" data-detail="" data-start="3569817620653" data-end="3581594787304"><title>Jupiter by sign: Taurus
+2083-02-14 08:00 to 2083-06-30 15:26 UTC</title></rect>
+<rect class="seg t-air" x="1181.99" y="286" width="11.76" height="26" rx="2" data-label="Gemini" data-detail="" data-start="3581594787304" data-end="3614225253002"><title>Jupiter by sign: Gemini
+2083-06-30 15:26 to 2084-07-12 07:27 UTC</title></rect>
+<rect class="seg t-water" x="1193.76" y="286" width="11.98" height="26" rx="2" data-label="Cancer" data-detail="" data-start="3614225253002" data-end="3647460204272"><title>Jupiter by sign: Cancer
+2084-07-12 07:27 to 2085-07-31 23:23 UTC</title></rect>
+<rect class="seg t-fire" x="1205.74" y="286" width="12.17" height="26" rx="2" data-label="Leo" data-detail="" data-start="3647460204272" data-end="3681204133886"><title>Jupiter by sign: Leo
+2085-07-31 23:23 to 2086-08-26 12:42 UTC</title></rect>
+<rect class="seg t-earth" x="1217.91" y="286" width="12.29" height="26" rx="2" data-label="Virgo" data-detail="" data-start="3681204133886" data-end="3715299337718"><title>Jupiter by sign: Virgo
+2086-08-26 12:42 to 2087-09-25 03:35 UTC</title></rect>
+<rect class="seg t-air" x="1230.2" y="286" width="12.33" height="26" rx="2" data-label="Libra" data-detail="" data-start="3715299337718" data-end="3749504416918"><title>Jupiter by sign: Libra
+2087-09-25 03:35 to 2088-10-25 01:00 UTC</title></rect>
+<rect class="seg t-water" x="1242.53" y="286" width="12.28" height="26" rx="2" data-label="Scorpio" data-detail="" data-start="3749504416918" data-end="3783552556640"><title>Jupiter by sign: Scorpio
+2088-10-25 01:00 to 2089-11-23 02:49 UTC</title></rect>
+<rect class="seg t-fire" x="1254.81" y="286" width="3.19" height="26" rx="2" data-label="Sagittarius" data-detail="" data-start="3783552556640" data-end="3817226883471"><title>Jupiter by sign: Sagittarius
+2089-11-23 02:49 to 2090-12-17 20:48 UTC</title></rect>
+</g></g>
+<g data-seam="970466560480.3385"><line class="accent" x1="240.56" y1="74" x2="240.56" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M234.56 64h12l-6 10z"><title>2 independent clocks change within 28 days of 2000-10-02:
+Vimshottari mahadasha: Rahu to Jupiter
+Saturn by sign: Gemini to Taurus</title></path></g>
+<g data-seam="1263039011039.5"><line class="accent" x1="346.05" y1="74" x2="346.05" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M340.05 64h12l-6 10z"><title>2 independent clocks change within 17 days of 2010-01-09:
+Annual profection: Capricorn to Aquarius
+Firdaria: Sun to Venus
+Jupiter by sign: Aquarius to Pisces</title></path></g>
+<g data-seam="1419717265889"><line class="accent" x1="402.54" y1="74" x2="402.54" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M396.54 64h12l-6 10z"><title>2 independent clocks change within 8 days of 2014-12-27:
+Saturn by sign: Scorpio to Sagittarius
+Annual profection: Gemini to Cancer</title></path></g>
+<g data-seam="1473806384992.3384"><line class="accent" x1="422.04" y1="74" x2="422.04" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M416.04 64h12l-6 10z"><title>2 independent clocks change within 9 days of 2016-09-13:
+Jupiter by sign: Virgo to Libra
+Vimshottari mahadasha: Jupiter to Saturn</title></path></g>
+<g data-seam="1514249085368"><line class="accent" x1="436.62" y1="74" x2="436.62" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M430.62 64h12l-6 10z"><title>2 independent clocks change within 12 days of 2017-12-26:
+Saturn by sign: Sagittarius to Capricorn
+Firdaria: Venus to Mercury
+Annual profection: Virgo to Libra</title></path></g>
+<g data-seam="1608802839786.5"><line class="accent" x1="470.71" y1="74" x2="470.71" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M464.71 64h12l-6 10z"><title>3 independent clocks change within 14 days of 2020-12-24:
+Saturn by sign: Capricorn to Aquarius
+Jupiter by sign: Capricorn to Aquarius
+Annual profection: Sagittarius to Capricorn</title></path></g>
+<g data-seam="1626527245202"><line class="accent" x1="477.1" y1="74" x2="477.1" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M471.1 64h12l-6 10z"><title>2 independent clocks change within 22 days of 2021-07-17:
+BaZi luck pillars: 戊寅 to 己卯
+Jupiter by sign: Pisces to Aquarius</title></path></g>
+<g data-seam="1748824844896"><line class="accent" x1="521.19" y1="74" x2="521.19" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M515.19 64h12l-6 10z"><title>2 independent clocks change within 16 days of 2025-06-02:
+Saturn by sign: Pisces to Aries
+Jupiter by sign: Gemini to Cancer</title></path></g>
+<g data-seam="1770589243464"><line class="accent" x1="529.04" y1="74" x2="529.04" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M523.04 64h12l-6 10z"><title>2 independent clocks change within 10 days of 2026-02-08:
+Annual pillar: 乙巳 to 丙午
+Saturn by sign: Pisces to Aries</title></path></g>
+<g data-seam="2525480116189"><line class="accent" x1="801.22" y1="74" x2="801.22" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M795.22 64h12l-6 10z"><title>3 independent clocks change within 21 days of 2050-01-11:
+Annual profection: Taurus to Gemini
+Jupiter by sign: Leo to Cancer
+Saturn by sign: Capricorn to Aquarius</title></path></g>
+<g data-seam="2619018084593.5"><line class="accent" x1="834.94" y1="74" x2="834.94" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M828.94 64h12l-6 10z"><title>3 independent clocks change within 27 days of 2052-12-28:
+Jupiter by sign: Libra to Scorpio
+Annual profection: Leo to Virgo
+Saturn by sign: Aquarius to Pisces</title></path></g>
+<g data-seam="3538016012170.5"><line class="accent" x1="1166.28" y1="74" x2="1166.28" y2="316" stroke-dasharray="3 4" stroke-opacity=".75"/><path class="accent-text" d="M1160.28 64h12l-6 10z"><title>3 independent clocks change within 16 days of 2082-02-11:
+Annual pillar: 辛丑 to 壬寅
+Jupiter by sign: Pisces to Aries
+Saturn by sign: Aquarius to Pisces</title></path></g>
+<line class="mark" x1="232" y1="52" x2="232" y2="322" stroke-width="1.4"/><text class="halo" x="232" y="336" font-size="12" text-anchor="middle">moment</text>
+<text class="muted" x="232" y="352" font-size="11">Dates are UTC. Triangles mark dates where tracks on two or more independent clocks change together.</text>
+<metadata>overlay © 2026 Knstntnmmi · github.com/Knstntnmmi/Projects-Public · AGPL-3.0-or-later</metadata><text class="muted" x="1256" y="352" font-size="10.5" text-anchor="end">overlay © 2026 Knstntnmmi · github.com/Knstntnmmi/Projects-Public · AGPL-3.0-or-later</text>
+</svg>

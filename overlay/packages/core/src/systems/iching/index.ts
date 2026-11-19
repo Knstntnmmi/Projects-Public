@@ -1,0 +1,57 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
+import type { Conventions } from '../../conventions.ts';
+import { nextSunLongitude, norm360 } from '../../substrate/sky.ts';
+import { MS } from '../../substrate/time.ts';
+import type { Hexagram } from './hexagrams.ts';
+import { GUA_QI_SEQUENCE, GUA_QI_START } from './wheels.ts';
+
+export * from './hexagrams.ts';
+export * from './wheels.ts';
+
+export interface HexagramSpan {
+  hexagram: Hexagram;
+  position: number;
+  startUtcMs: number;
+  endUtcMs: number;
+}
+
+/** The winter solstice at or before the instant. */
+function solsticeBefore(utcMs: number): number {
+  // Step back a little over a year and take the last solstice that is not in the future.
+  let t = nextSunLongitude(270, utcMs - 367 * MS.DAY);
+  for (;;) {
+    const n = nextSunLongitude(270, t + MS.DAY);
+    if (n > utcMs) return t;
+    t = n;
+  }
+}
+
+/**
+ * Gua qi periods overlapping [startMs, endMs). Under `equal-longitude` hexagram k opens
+ * when the Sun reaches 270 + 6k degrees; under `mean-time` it opens k sixtieths of the
+ * way from one winter solstice to the next.
+ */
+export function guaQiSpans(startMs: number, endMs: number, mode: Conventions['guaQi']): HexagramSpan[] {
+  const out: HexagramSpan[] = [];
+  let solstice = solsticeBefore(startMs);
+  while (solstice < endMs) {
+    const nextSolstice = nextSunLongitude(270, solstice + 300 * MS.DAY);
+    const edges: number[] = [solstice];
+    for (let k = 1; k < 60; k++) {
+      edges.push(
+        mode === 'mean-time'
+          ? solstice + ((nextSolstice - solstice) * k) / 60
+          : nextSunLongitude(norm360(GUA_QI_START + 6 * k), edges[k - 1]! + MS.DAY),
+      );
+    }
+    edges.push(nextSolstice);
+    for (let k = 0; k < 60; k++) {
+      if (edges[k + 1]! > startMs && edges[k]! < endMs) {
+        out.push({ hexagram: GUA_QI_SEQUENCE[k]!, position: k, startUtcMs: edges[k]!, endUtcMs: edges[k + 1]! });
+      }
+    }
+    solstice = nextSolstice;
+  }
+  return out;
+}

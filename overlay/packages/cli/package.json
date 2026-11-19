@@ -1,0 +1,17 @@
+{
+  "name": "@overlay/cli",
+  "version": "0.1.0",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "bin": {
+    "overlay": "./dist/overlay.mjs"
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist/overlay.mjs --banner:js='#!/usr/bin/env node'"
+  },
+  "dependencies": {
+    "@overlay/core": "*",
+    "@overlay/render": "*"
+  },
+  "author": "Knstntnmmi (https://github.com/Knstntnmmi)"
+}

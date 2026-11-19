@@ -1,0 +1,37 @@
+{
+  "name": "overlay-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "description": "One moment, every system, one shared axis: BaZi, I Ching calendars, traditional Western astrology and more, overlaid on a common ecliptic and a common timeline.",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "build": "npm run build -w @overlay/cli && npm run build -w @overlay/web",
+    "dev": "npm run dev -w @overlay/web",
+    "overlay": "node packages/cli/src/index.ts",
+    "generate": "node scripts/generate.ts",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "tyme4ts": "1.5.4",
+    "typescript": "6.0.3",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "@types/node": "22.15.3"
+  },
+  "author": "Knstntnmmi (https://github.com/Knstntnmmi)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Knstntnmmi/Projects-Public.git",
+    "directory": "overlay"
+  }
+}

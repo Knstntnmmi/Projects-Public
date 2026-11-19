@@ -1,0 +1,57 @@
+overlay
+Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi>
+Source: https://github.com/Knstntnmmi/Projects-Public (directory "overlay")
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version. It is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE for the full terms.
+
+What that means in plain words
+------------------------------
+
+You may read, run, study, change and share this work. If you share it, or a
+work built on it, or let people use it over a network (for example as a
+website or an API), you must:
+
+  1. keep the copyright and credit lines above, unaltered, wherever they
+     appear;
+  2. give those people the complete corresponding source of your version; and
+  3. license your version under these same terms.
+
+You may not fold this work into something whose source you keep closed.
+
+Additional terms under section 7(b) of the GNU AGPL, version 3
+--------------------------------------------------------------
+
+The author attributions below are "reasonable legal notices or author
+attributions" within the meaning of section 7(b). They must be preserved, with
+the author's name and the source address unchanged, in the work and in every
+work based on it:
+
+  a. the "SPDX-License-Identifier" and "Copyright (C) 2026 Knstntnmmi" lines
+     at the head of each source file;
+  b. the credit line that the interactive web page displays (its footer),
+     which forms part of that interface's Appropriate Legal Notices;
+  c. the code that writes the credit line into each drawing the program
+     produces (visibly and as metadata), and the "author", "source" and
+     "license" fields of the facts document the program produces.
+
+You may add your own credit beside these for your own changes. You may not
+remove these, replace the author's name, or present the work as originally
+yours.
+
+The author is identified by the handle above and by nothing else. Please do
+not attach any other name to this work.
+
+Third-party components
+----------------------
+
+astronomy-engine, by Don Cross, MIT License. Used for the positions of the
+Sun, Moon and planets, sidereal time and rise and set times.
+
+tyme4ts, by 6tail, MIT License. Used only by the test suite, as an
+independent implementation to check the Chinese calendar results against. It
+is not part of the distributed program.

@@ -84,7 +84,7 @@ describe('main qi and the void pairs', () => {
   it('takes the main qi from the engine and agrees with the rule file, including the five checked branches', () => {
     const stated = T.hiddenStems.mainQi as Record<string, string>;
     for (const b of BRANCHES) expect(STEMS[mainQi(b.index)]!.hanzi, b.hanzi).toBe(stated[b.hanzi]);
-    // the checker's five: 丑 己, 辰 戊, 巳 丙, 未 己, 戌 戊
+    // the five hidden-stem pairs: 丑 己, 辰 戊, 巳 丙, 未 己, 戌 戊
     expect(['丑', '辰', '巳', '未', '戌'].map((c) => STEMS[mainQi(branchIdx(c))]!.hanzi)).toEqual(['己', '戊', '丙', '己', '戊']);
   });
 

@@ -262,7 +262,7 @@ describe('levels declared by the bindings', () => {
 describe('the year headline', () => {
   const t = (supports: number, cautions: number, mixed = 0) => ({ supports, cautions, mixed, active: 0 });
 
-  it('groups the level labels by word, in the director\'s order and form', () => {
+  it('groups the level labels by word, in the documented order and form', () => {
     const cells = [
       { label: 'Vedic antardasha', word: 'supports' as const, tally: t(1, 0) },
       { label: 'Western solar return', word: 'supports' as const, tally: t(1, 0) },

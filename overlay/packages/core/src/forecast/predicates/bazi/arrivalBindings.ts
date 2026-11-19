@@ -189,7 +189,7 @@ const peerStar = bind('bazi.peer-in-luck', (ctx) => {
     }
     if (supportive || wealthLoss) {
       const direction: Direction = supportive && wealthLoss ? 'mixed' : supportive ? 'favourable' : 'unfavourable';
-      const note = robs && !rivalry ? '劫財 over the natal 正財 is a wealth loss' : rivalry ? 'rivalry for wealth: a loss or competition, since the day master is strong and wealth is in the chart' : 'supportive for a weak day master';
+      const note = robs && !rivalry ? '劫財 over the natal 正財 is a wealth loss' : rivalry ? `rivalry for wealth: a loss or competition, since the day master is strong and wealth is in the chart${robs ? '; 劫財 over the natal 正財 is also a wealth loss' : ''}` : 'supportive for a weak day master';
       const badges = supportive && wealthLoss ? ['both clauses hold: supportive as a favourable element, and a wealth loss from 劫財 over 正財'] : [];
       out.push(periodFiring(p, arrivalFacts(a, p, arr, [fact('peerNote', 'Note', supportive && wealthLoss ? `supportive for a weak day master, and ${note}` : note)]), { direction, topics: ['wealth'], badges, conventionsUsed: ['baziStrengthThresholds'] }));
     }

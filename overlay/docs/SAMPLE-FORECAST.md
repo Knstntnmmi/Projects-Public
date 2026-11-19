@@ -112,7 +112,7 @@ Each statement is said in full the first time it appears and named after that. P
     BaZi luck pillar: nothing said
       needs the sex the chart is read as, which fixes the direction of the luck pillars
     BaZi year pillar: cautions; 1 rule cautions
-      cautions: The year pillar 丁未 brings 劫財 (main qi of the branch) (比劫) in a disliked element: rivalry for wealth: a loss or competition, since the day master is strong and wealth is in the chart.
+      cautions: The year pillar 丁未 brings 劫財 (main qi of the branch) (比劫) in a disliked element: rivalry for wealth: a loss or competition, since the day master is strong and wealth is in the chart; 劫財 over the natal 正財 is also a wealth loss.
         2027-02-04 to 2028-02-04; rule bazi.peer-in-luck (Peers (比劫) arrive in a luck pillar or year); source: 淵海子平 論大運, 論劫財, 論大運: 甲乙得寅卯運，名曰劫財敗財，主剋父母及剋妻、破財爭鬥之事
         no promise rule applied, annual pillar
     Vedic mahadasha: mixed (a rule here states a mixed result); 1 rule is stated as mixed
@@ -162,7 +162,7 @@ Each statement is said in full the first time it appears and named after that. P
     BaZi luck pillar: nothing said
       needs the sex the chart is read as, which fixes the direction of the luck pillars
     BaZi year pillar: mixed (rules conflict); 1 rule supports, 2 caution
-      cautions: The year pillar 丁未 brings 劫財 (main qi of the branch) (比劫) in a disliked element: rivalry for wealth: a loss or competition, since the day master is strong and wealth is in the chart. (rule bazi.peer-in-luck; said in full under 2027)
+      cautions: The year pillar 丁未 brings 劫財 (main qi of the branch) (比劫) in a disliked element: rivalry for wealth: a loss or competition, since the day master is strong and wealth is in the chart; 劫財 over the natal 正財 is also a wealth loss. (rule bazi.peer-in-luck; said in full under 2027)
       supports: The year pillar 戊申 brings 食神 (main qi of the branch) (食傷) in a favoured element: productive for a strong day master.
         2028-02-04 to 2029-02-03; rule bazi.output-in-luck (Output (食傷) arrives in a luck pillar or year); source: 淵海子平 論大運, 論傷官, 論婦人總訣, 論大運: 行丙丁巳午運，名傷官，主剋子女、訟事、囚繫; 論婦人總訣 (傷官見官，為禍百端)
         no promise rule applied, annual pillar

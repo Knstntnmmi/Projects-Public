@@ -85,7 +85,7 @@ describe('controls', () => {
     expect(typeof windowFrom('', '30')).toBe('string');
   });
 
-  it('the sentence is the one the director wrote, and has no banned word', () => {
+  it('the sentence is the documented sentence, and has no banned word', () => {
     expect(FORECAST_SENTENCE).toBe('Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.');
     expect(forecast.bannedIn(FORECAST_SENTENCE)).toBeNull();
   });

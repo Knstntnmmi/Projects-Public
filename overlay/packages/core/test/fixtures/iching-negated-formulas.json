@@ -1,9 +1,9 @@
 {
  "about": "Every negated verdict formula of the 450 statements of the Zhouyi text (64 judgments, 384 line statements, and the extra statements of hexagrams 1 and 2), with its class under the project's reading of the grammar (data/iching-negations.json). Derived by a scan separate from the grader.",
  "statements": 450,
- "statementsWithAFormula": 148,
+ "statementsWithAFormula": 150,
  "counts": {
-  "a": 126,
+  "a": 128,
   "c": 13,
   "d": 2,
   "b": 18
@@ -92,6 +92,11 @@
   {
    "id": "8.1",
    "formula": "无咎",
+   "class": "a"
+  },
+  {
+   "id": "9.1",
+   "formula": "何其咎",
    "class": "a"
   },
   {
@@ -272,6 +277,11 @@
   {
    "id": "24.0",
    "formula": "无咎",
+   "class": "a"
+  },
+  {
+   "id": "24.1",
+   "formula": "无祇悔",
    "class": "a"
   },
   {

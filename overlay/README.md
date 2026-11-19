@@ -8,7 +8,9 @@ Overlay takes a single moment (a date, a clock time, a place) and computes BaZi,
 
 ![Timeline](docs/img/timeline-j2000.svg)
 
-It is a calculator, a drawing instrument and, for a span of years, a reader of what each tradition's published rules say about a topic. The forecast states those rules and their sources and adds no judgement of its own; it casts nothing. It is described under [The forecast](#the-forecast) below.
+It is a calculator, a drawing instrument and, for a span of years, a reader of what each tradition's published rules say about a topic. The forecast states those rules and their sources and adds no verdict of its own, and it marks every project-made reading as the project's own (the strength classes of a day master, the I Ching grades, the year edge); it casts nothing. It is described under [The forecast](#the-forecast) below.
+
+Unfamiliar words, such as luck pillar, profection, firdaria, dasha and nakshatra, are explained in [docs/GLOSSARY.md](docs/GLOSSARY.md).
 
 Lackner (2011, p. 4) writes that bazi suanming, the art behind BaZi, is commonly called Chinese astrology but is more accurately called chronomancy, divination from the attributes of time, and this project keeps the name BaZi. What the published scholarship says on this and on related points, and what the project takes from it, is in [docs/SCHOLARSHIP.md](docs/SCHOLARSHIP.md). The terms of art that the forecast prints are defined in [docs/GLOSSARY.md](docs/GLOSSARY.md).
 
@@ -36,7 +38,7 @@ A survey of the open-source and commercial landscape in November 2026 found many
 
 For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet, and each place that shows a forecast says so once.
 
-Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
+Each line is what a named rule of one tradition says about this period, with its source.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035.](docs/img/forecast-grid.svg)
 
@@ -58,9 +60,9 @@ npm run overlay -- window --moment j2000 --date 2031-03-01 --days 45
 
 **Topics.** Wealth, career, relationships, health, learning, home and travel, and life in general. Health sentences state tendencies and say nothing about diagnosis.
 
-**The four traditions.** The rule files are in `packages/core/src/forecast/data/`. The number of rules is read from them, and "bound" means the engine has code that decides when the rule's condition holds. Some rules need the sex convention, which is why two numbers are given. A further 29 rules, tables and single clauses were held back because the check against the source could not confirm them; they are not evaluated. The works, with how far each was read, are in [docs/SOURCES.md](docs/SOURCES.md).
+**The four traditions.** The rule files are in `packages/core/src/forecast/data/`. The number of rules is read from them, and "rules with code" are those for which the engine has code that decides when the rule's condition holds. Some rules need the sex convention, which is why two numbers are given. A further 29 rules, tables and single clauses were held back because the check against the source could not confirm them; they are not evaluated. The works, with how far each was read, are in [docs/SOURCES.md](docs/SOURCES.md).
 
-| Tradition | Rules in the file | Bound | Bound with a sex convention named | Works the rules come from |
+| Tradition | Rules in the file | Rules with code | With code, sex convention named | Works the rules come from |
 | --- | --- | --- | --- | --- |
 | BaZi | 39 | 30 | 37 | *Yuanhai ziping* (淵海子平), *Sanming tonghui* (三命通會), *Ditian sui* (滴天髓) in the Chuanwei and Jiyao editions |
 | Vedic | 36 | 36 | 36 | *Brihat Parashara Hora Shastra*, *Phaladeepika* and B. V. Raman's *Hindu Predictive Astrology*, all in English translation |
@@ -131,7 +133,7 @@ Zone offsets and daylight-saving history come from the tz database built into th
 
 ## What it does not do
 
-It adds no interpretation of its own: the forecast states only what a named rule of a tradition says, and gives no score, no composite and no verdict for a year. It does not rank a day as lucky, or say that a seam means anything. It does not cast hexagrams, which is done by drawing lots and not by calculation. It does not yet include the Chinese lunisolar calendar (and so not Plum Blossom numerology or Zi Wei Dou Shu), Qi Men Dun Jia, Da Liu Ren, the true unequal twenty-eight mansions on the sky, Ptolemy's own bounds (the forecast rules use the table Lilly printed), zodiacal releasing or primary directions.
+It adds no verdict of its own: the forecast states what a named rule of a tradition says, and marks each reading made by the project as the project's own (strength classes, I Ching grades, the year edge). It gives no score, no composite and no verdict for a year. It does not rank a day as lucky, or say that a seam means anything. It does not cast hexagrams, which is done by drawing lots and not by calculation. It does not yet include the Chinese lunisolar calendar (and so not Plum Blossom numerology or Zi Wei Dou Shu), Qi Men Dun Jia, Da Liu Ren, the true unequal twenty-eight mansions on the sky, Ptolemy's own bounds (the forecast rules use the table Lilly printed), zodiacal releasing or primary directions.
 
 ## Next
 

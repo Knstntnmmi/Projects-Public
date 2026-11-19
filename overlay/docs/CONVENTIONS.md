@@ -138,7 +138,7 @@ A statement that begins a few hours before the end of a year, or ends a few hour
 
 Setting `baziStrengthThresholds`. Affects: bazi.strength-score and everything that reads the favourable elements.
 
-The score bands are the first reading's operationalisation of the source; a score of exactly 45 or 55 is balanced.
+The bands are the project's own arithmetic and no source gives them. They are a setting of the calculation: no number appears in any statement, only the class (strong, weak or balanced). A score of exactly 45 or 55 is balanced.
 
 | Value | Meaning | Default |
 | --- | --- | --- |
@@ -148,7 +148,7 @@ The score bands are the first reading's operationalisation of the source; a scor
 
 Setting `baziLuckWeights`. Affects: Period rules that combine the luck pillar with the annual pillar.
 
-The sources do not give the relative weight of a ten-year luck pillar and a single year; the rule file states 0.6 and 0.4.
+The sources do not give the relative weight of a ten-year luck pillar and a single year; 0.6 and 0.4 are the project's own arithmetic. They are a setting of the calculation and appear in no statement.
 
 | Value | Meaning | Default |
 | --- | --- | --- |

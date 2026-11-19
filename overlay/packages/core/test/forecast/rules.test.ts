@@ -146,14 +146,15 @@ describe('the ruleset version', () => {
     expect(RULESET_VERSION).toMatch(/^[0-9a-f]{16}$/);
     expect(rulesetVersion(ALL_RULES)).toBe(RULESET_VERSION);
     // Pinned so that an accidental edit of a rule file is noticed; change it when a rule is changed on purpose.
-    // Changed once on purpose when the verified Western rule file replaced the extractor's (56 rules).
+    // Changed once on purpose when the verified Western rule file replaced the earlier file's (56 rules).
     // Changed again on purpose when the page was re-read for three Western rules: the direction of
     // lilly.revolution.lord2-fortune-house became a pointer, valens.critical-year-node lost its same-sign branch, and
     // the aspects of lilly.transit.daily-cusps were restricted by cluster.
-    // Changed a third time on purpose when the review was answered: six Valens quotations and a builder's path left the data,
+    // Changed a third time on purpose in a later revision: six Valens quotations and a file path left the data,
     // the goods, wealth-houses, jupiter-year-sign, return and day-transit templates were reworded.
     // Changed a fourth time on purpose: the peer rule got its own dedupeKey, the blade rule became a note, the two honour rules took their directions branch by branch from the printed page, and the Vedic wording was changed.
-    expect(RULESET_VERSION).toBe('21b8ff1444c21fef');
+    // Changed a fifth time on purpose: the strength-score and peer templates no longer print a number, and two condition texts say the project's own reading.
+    expect(RULESET_VERSION).toBe('5cb180f545e119b3');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

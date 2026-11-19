@@ -94,14 +94,14 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
     key: 'baziStrengthThresholds',
     title: 'BaZi day-master strength bands',
     affects: 'bazi.strength-score and everything that reads the favourable elements',
-    why: 'The score bands are the first reading\'s operationalisation of the source; a score of exactly 45 or 55 is balanced.',
+    why: 'The bands are the project\'s own arithmetic and no source gives them. They are a setting of the calculation: no number appears in any statement, only the class (strong, weak or balanced). A score of exactly 45 or 55 is balanced.',
     options: [{ value: '45/55', label: 'Weak below 45, strong above 55', description: 'Balanced from 45 to 55 inclusive.' }],
   },
   {
     key: 'baziLuckWeights',
     title: 'Weights of luck pillar and year pillar',
     affects: 'Period rules that combine the luck pillar with the annual pillar',
-    why: 'The sources do not give the relative weight of a ten-year luck pillar and a single year; the rule file states 0.6 and 0.4.',
+    why: 'The sources do not give the relative weight of a ten-year luck pillar and a single year; 0.6 and 0.4 are the project\'s own arithmetic. They are a setting of the calculation and appear in no statement.',
     options: [{ value: '0.6/0.4', label: 'Luck 0.6, year 0.4', description: 'As the rule file states.' }],
   },
   {

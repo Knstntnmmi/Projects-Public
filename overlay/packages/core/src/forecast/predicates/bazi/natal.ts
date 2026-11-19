@@ -118,7 +118,6 @@ const strengthScore = bind('bazi.strength-score', (ctx) => {
   return [
     natalFiring(
       [
-        fact('S', 'Strength score', round1(a.score)),
         fact('class', 'Class', a.strengthClass),
         fact('deLing', 'In season (得令)', a.monthState.deLing ? 'yes' : 'no'),
         fact('roots', 'Roots (得地)', a.roots.length === 0 ? 'none' : a.roots.map((c) => `${hanzi(c.stem)} in the ${c.pillar} branch`).join(', ')),
@@ -348,11 +347,11 @@ const peersRivals = bind('bazi.peers-rivals', (ctx) => {
   const b8 = weightOf(B);
   const out: Firing[] = [];
   const fire = (helpOrStrong: string): void => {
-    out.push(topicFiring('relationships', 'activates', [fact('helpOrStrong', 'Peers', helpOrStrong), fact('weight', '比劫 weight', round1(units(b8)))], { conventionsUsed: ['baziStrengthThresholds'], dedupeInstance: `natal-peers-${out.length}` }));
+    out.push(topicFiring('relationships', 'activates', [fact('helpOrStrong', 'Peers', helpOrStrong)], { conventionsUsed: ['baziStrengthThresholds'], dedupeInstance: `natal-peers-${out.length}` }));
   };
   if (a.strengthClass === 'weak' && B.some((c) => isRooted(a, c))) fire('helping the weak day master');
   // 40 in 100 of the chart weight, the day stem counted
-  if (5 * b8 >= 2 * a.elementTotal8) fire('strong, with 0.4 or more of the chart weight');
+  if (5 * b8 >= 2 * a.elementTotal8) fire('strong, holding two fifths or more of the chart');
   return out;
 });
 

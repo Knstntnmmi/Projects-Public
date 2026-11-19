@@ -56,6 +56,8 @@
     { "formula": "无悔", "class": "a", "gloss": "no regret" },
     { "formula": "悔亡", "class": "a", "gloss": "regret is gone", "note": "亡 stands after the word and is read as the negation" },
     { "formula": "何咎", "class": "a", "gloss": "what blame?", "note": "何 is a question that denies; it is read as the negation" },
+    { "formula": "何其咎", "class": "a", "gloss": "how could there be blame?", "note": "the same rhetorical denial as 何咎" },
+    { "formula": "无祇悔", "class": "a", "gloss": "no great regret" },
     { "formula": "无眚", "class": "a", "gloss": "no calamity" },
     { "formula": "匪咎", "class": "a", "gloss": "not blame" },
     { "formula": "不利", "class": "b", "gloss": "not advantageous" },

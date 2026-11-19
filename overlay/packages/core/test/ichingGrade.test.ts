@@ -93,7 +93,7 @@ describe('the grader, on the cases the specification lists', () => {
   });
 });
 
-describe('the corrections the checker recorded', () => {
+describe('the recorded corrections', () => {
   it('lets a final-outcome word override an earlier favourable one', () => {
     expect(gradeStatement('初吉終亂').grade).toBe(-2);
     expect(gradeStatement('吉終凶').grade).toBe(-3);
@@ -190,7 +190,7 @@ describe('the grader over the whole corpus', () => {
     expect(allStatements().map((s) => gradeStatement(s.text))).toEqual(all.map((x) => x.g));
   });
 
-  // The extractor's figure ("76 of 450 have no verdict word") was made before the missing tokens were added; recomputed here.
+  // The earlier figure ("76 of 450 have no verdict word") was made before the missing tokens were added; recomputed here.
   // A negated word of misfortune (无咎 and the like) is a note without a direction, so the statements that hold only such notes now join them.
   it('leaves 130 of the 450 statements without a graded verdict word, and shows every one of them that holds a note', () => {
     const none = all.filter((x) => x.g.flags.includes('none'));
@@ -254,10 +254,10 @@ describe('the whole list of negated formulas of the Zhouyi text', () => {
   it('has the counts the fixture states, over 450 statements', () => {
     expect(fixture.statements).toBe(450);
     expect(all).toHaveLength(450);
-    expect(fixture.entries).toHaveLength(159);
-    expect(fixture.counts).toEqual({ a: 126, b: 18, c: 13, d: 2 });
-    expect(fixture.statementsWithAFormula).toBe(148);
-    expect(new Set(fixture.entries.map((e) => e.id)).size).toBe(148);
+    expect(fixture.entries).toHaveLength(161);
+    expect(fixture.counts).toEqual({ a: 128, b: 18, c: 13, d: 2 });
+    expect(fixture.statementsWithAFormula).toBe(150);
+    expect(new Set(fixture.entries.map((e) => e.id)).size).toBe(150);
   });
 
   it('is read by the grader exactly as the fixture lists it: same formulas, same classes, in the same statements', () => {

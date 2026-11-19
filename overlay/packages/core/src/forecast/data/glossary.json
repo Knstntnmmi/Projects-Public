@@ -141,13 +141,6 @@
   },
   {
     "group": "The words of the forecast",
-    "term": "rule weight capped at 1",
-    "original": "",
-    "definition": "The badge for a statement whose recorded emphasis was set to 1 by a setting. The emphasis is the project's own and no source gives it.",
-    "source": "the project's own wording"
-  },
-  {
-    "group": "The words of the forecast",
     "term": "labelled variant",
     "original": "",
     "definition": "The badge for a statement computed under a choice that departs from the source, for example whole-sign houses where Lilly used Regiomontanus cusps.",
@@ -297,7 +290,7 @@
     "group": "Words about the arts",
     "term": "yingyan",
     "original": "应验",
-    "definition": "Verification, the coming true of a prognostication, which a fellow's project treats as the other side of prognostication.",
+    "definition": "Verification, the coming true of a prognostication, which a fellow's project page on verification (yingyan) calls contrary but complementary to prognostication.",
     "source": "IKGF project page of Zhou Zhenhe"
   },
   {
@@ -1082,6 +1075,83 @@
     "term": "negated formula",
     "original": "无咎, 无大咎, 无悔, 悔亡, 何咎, 无眚, 匪咎, 无譽, 无攸利, 无不利, 不利",
     "definition": "A verdict word under a negator in a line statement. The engine reads it from a table of the project: some give a note without a direction, 不利 and 无攸利 read unfavourable, 无不利 reads favourable.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "Rahu",
+    "original": "",
+    "definition": "The ascending lunar node, the point where the Moon's path crosses the Sun's path. Vedic astrology treats it as a planet.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "Ketu",
+    "original": "",
+    "definition": "The descending lunar node, opposite Rahu. Vedic astrology treats it as a planet.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "dasha lord",
+    "original": "",
+    "definition": "The planet that rules a dasha, the mahadasha lord for the major period and the antardasha lord for the sub-period.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "extension (antardasha)",
+    "original": "",
+    "definition": "The badge for a statement that applies a rule, which the source states for the major period, to the sub-period lord as well. The source does not state it for the sub-period, so it is the project's own step.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "nativity",
+    "original": "",
+    "definition": "The birth chart.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "afflicted",
+    "original": "",
+    "definition": "Troubled in the source's sense: joined to or aspected by a planet that the source treats as harmful.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "barren signs",
+    "original": "",
+    "definition": "Gemini, Leo and Virgo, the signs a rule of Lilly's names as barren.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "natal promise",
+    "original": "",
+    "definition": "What the birth chart alone says about a topic, read before any period is read. The statement says what the chart holds, not that an event follows.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "favoured element",
+    "original": "喜用",
+    "definition": "An element that the balance method names as helpful for this chart. The opposite is a disliked element.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "disliked element",
+    "original": "忌",
+    "definition": "An element that the balance method names as harmful for this chart. The opposite is a favoured element.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "obstructed",
+    "original": "",
+    "definition": "Cancelled in part by another planet, as in a transit blocked by vedha; the line names the planet and the days.",
     "source": "the project's own wording"
   }
 ]

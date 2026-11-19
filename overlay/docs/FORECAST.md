@@ -20,18 +20,19 @@ The direction of a rule is the rule's own. The code sets a direction only where 
 
 A technique is shown for each year with one of four words.
 
-- **Supports.** The rules of that technique that name a direction for this topic and this year all say favourable.
-- **Cautions.** They all say unfavourable.
-- **Mixed.** Two things give this word. Some rules support and others caution, which is shown as "rules conflict" when two rules about the same kind of thing point opposite ways, or a rule itself states a mixed result. A rule that itself states a mixed result makes its technique read mixed for that year, even beside a rule that supports, and the tally then says "1 rule supports, 1 is stated as mixed". A cell can therefore read mixed because one rule says so, even where no other rule disagrees. The plain counts are printed beside the word, for example "3 rules support, 1 cautions".
+- **Supports.** At least one rule of that technique names this topic favourably in this year, and none names it unfavourably or as mixed.
+- **Cautions.** At least one rule names it unfavourably, and none names it favourably or as mixed.
+- **Mixed, when rules conflict.** Some rules support and others caution. This is shown as "rules conflict" when two rules about the same kind of thing point opposite ways. The plain counts are printed beside the word, for example "3 rules support, 1 cautions".
+- **Mixed, when a rule says so.** A rule itself states a mixed result. That makes its technique read mixed for the year, even beside a rule that supports, and the tally then says "1 rule supports, 1 is stated as mixed". A cell can therefore read mixed with no other rule disagreeing.
 - **Nothing said.** No rule of that technique names a direction for this topic in this year. This is silence, and it is not a good year or a bad one. Where a rule marks the topic as active without a direction, that is shown as a pointer, counted apart, and never changes the word. A technique can also be silent for a stated reason, for example because it needs the sex the chart is read as, or because the first luck pillar has not yet begun.
 
-The words come from the rules and from nothing else. There is no weight in them.
+The words come from the rules and from nothing else. There is no weight in them. The conventions listed under "The conventions used" include two settings of the calculation, the strength bands and the luck-pillar split, which are the project's own arithmetic that no source gives. They never appear in a statement; a statement names only the class, such as strong or weak.
 
 ## Tendencies and named uncertainty
 
 The forecast states each result as what a named rule says about a period. It does not state that an event follows. Health statements carry the badge "a tendency only" and say nothing about diagnosis, and each list of statements opens with the words "Not tested yet."
 
-The choice to speak in tendencies is the project's own. It is consistent with how some scholars characterise the arts. Lackner writes, in a report on a conference at the Leopoldina, that predictions indicate tendencies and so give the questioner room to negotiate with the future, and he reports that the closing discussion held that only a communication that addresses the uncertainties of any prediction can start a rational reception of it (the newsletter "fate" no. 15, 06|19, pp. 3-4). Kalinowski writes that for Wang Chong destiny is a general tendency, named by the categories of the auspicious and the inauspicious, whose realisation depends on circumstances and encounters (IKGF Occasional Paper, 2009, pp. 6, 8-9 and 22). These are the scholars' characterisations. The project infers its wording from them, and no tradition's rule asks for it. See [SCHOLARSHIP.md](SCHOLARSHIP.md).
+The choice to speak in tendencies is the project's own. It is consistent with how some scholars characterise the arts. In his report on a conference at the Leopoldina, Lackner sets down that predictions indicate tendencies and give the questioner room to negotiate with the future. The text does not say whose view that is, because it follows his summary of other contributors. He also reports that the closing discussion held that only a communication that addresses the uncertainties of any prediction can start a rational reception of it (the newsletter "fate" no. 15, 06|19, pp. 3-4). Kalinowski writes that for Wang Chong destiny is a general tendency, named by the categories of the auspicious and the inauspicious, whose realisation depends on circumstances and encounters (IKGF Occasional Paper, 2009, pp. 6, 8-9 and 22). These are the scholars' characterisations. The project infers its wording from them, and no tradition's rule asks for it. See [SCHOLARSHIP.md](SCHOLARSHIP.md).
 
 ## The techniques, one row each
 
@@ -49,7 +50,7 @@ The grid shows techniques that a practitioner would name. A row appears for ever
 
 ## Why a year has no single verdict
 
-The sources do not say how to add one tradition's reading to another's, or one technique's to another's. They give rules, each for its own period. Any total would need weights, and the weights in the rule files are the project's own reading of emphasis, not the sources'. So the forecast gives no score, no total and no figure for a year. It gives the words by technique and a headline that lists the techniques by word, such as "Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions). Silent: Western solar return." If two techniques disagree, the page shows both.
+The sources do not say how to add one tradition's reading to another's, or one technique's to another's. They give rules, each for its own period. Any total would need weights, and no source gives them. So the forecast gives no score, no total and no figure for a year. It gives the words by technique and a headline that lists the techniques by word, such as "Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions). Silent: Western solar return." If two techniques disagree, the page shows both.
 
 A statement that extends beyond a year counts for that year only if it overlaps it by enough days; see the conventions below. The statement list always shows the true dates. The BaZi year pillar changes at Lichun, 3 to 5 February, so about a month of each calendar year still belongs to the previous pillar. That month passes the 15-day edge and counts like the rest, so a year's word can rest on the previous year's pillar alone.
 

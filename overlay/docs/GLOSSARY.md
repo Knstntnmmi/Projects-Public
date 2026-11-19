@@ -28,7 +28,6 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | convention-dependent | | The badge on every statement for the topic relationships, because the result there can change with a named setting, such as the sex convention. | the project's own wording |
 | a tendency only | | The badge for health statements, which state tendencies and say nothing about diagnosis. | the project's own wording |
 | source not opened | | The badge for a rule whose source was not opened by the project. | the project's own wording |
-| rule weight capped at 1 | | The badge for a statement whose recorded emphasis was set to 1 by a setting. The emphasis is the project's own and no source gives it. | the project's own wording |
 | labelled variant | | The badge for a statement computed under a choice that departs from the source, for example whole-sign houses where Lilly used Regiomontanus cusps. | the project's own wording |
 | sex convention | | The sex the chart is read as, which fixes the direction of the BaZi luck pillars and which rules apply. The engine never guesses it. | the project's own wording |
 | scorecard | | A record of events a person enters, to be compared with forecasts frozen beforehand. It is the project's own addition and is not yet scored. | the project's own wording |
@@ -36,6 +35,7 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | retrodiction | | Comparing a forecast with events that were known before it was made. | the project's own wording |
 | hit rate | | The share of statements that matched events, as a scorecard would count them. The forecast does not give one. | the project's own wording |
 | window | | A view of at most 62 days that shows the character of a period, used for the I Ching and for Lilly's day statements. | the project's own wording |
+| natal promise | | What the birth chart alone says about a topic, read before any period is read. The statement says what the chart holds, not that an event follows. | the project's own wording |
 
 ## Words about the arts
 
@@ -55,7 +55,7 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | zhiming, liming | 知命, 立命 | Knowing fate and establishing fate. Smith glosses the *Changes* as letting humans know fate and also do something about it. | Smith 2011, pp. 1-2, 22 |
 | bazi suanming | 八字算命 | The art that Lackner renders as calculation of fate from the Eight Characters and classes as chronomancy. | Lackner 2011, p. 4 |
 | Four Pillars of Destiny | 四柱 sizhu | A name that a newsletter report gives for bazi suanming. | fate no. 6, p. 24 |
-| yingyan | 应验 | Verification, the coming true of a prognostication, which a fellow's project treats as the other side of prognostication. | IKGF project page of Zhou Zhenhe |
+| yingyan | 应验 | Verification, the coming true of a prognostication, which a fellow's project page on verification (yingyan) calls contrary but complementary to prognostication. | IKGF project page of Zhou Zhenhe |
 | cases of proof | 案証 an zheng | Anecdotes that a compiler of a Qing morality book offered as proof that a practice had worked. | Burton-Rose 2019, p. 50 |
 
 ## BaZi
@@ -109,6 +109,8 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | Tai Sui | 太歲 | The year branch of the twelve-year count, which the project's registry of correspondences relates to the circuit of Jupiter. | the project's own wording |
 | Tai Sui as year ghost | 太歲 | In a lecture abstract, the dangerous year ghost of the Chinese calendar, among the "superstitions" that the Jesuit Magalhaes attacked. | fate no. 6, p. 10 |
 | mixed officer and Seven Killings, mixing | 官殺混雜 | A year pillar that brings both 正官 and 七殺 into the chart. The source says the mixing harms the self; it does not say whether it outweighs a favoured element, so a firing where both clauses hold reads mixed. | the project's own wording |
+| favoured element | 喜用 | An element that the balance method names as helpful for this chart. The opposite is a disliked element. | the project's own wording |
+| disliked element | 忌 | An element that the balance method names as harmful for this chart. The opposite is a favoured element. | the project's own wording |
 
 ## Vedic astrology
 
@@ -135,6 +137,11 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | conjunct | | In the same sign. The engine uses no orb for this. | the project's own wording |
 | Saturn from the Moon, Jupiter from the Moon | | The sign Saturn or Jupiter is passing, counted from the sign of the natal Moon. | the project's own wording |
 | vedha | | An obstruction: a planet's good transit is cancelled when another planet stands at the same time in the paired house. | the project's own wording |
+| Rahu | | The ascending lunar node, the point where the Moon's path crosses the Sun's path. Vedic astrology treats it as a planet. | the project's own wording |
+| Ketu | | The descending lunar node, opposite Rahu. Vedic astrology treats it as a planet. | the project's own wording |
+| dasha lord | | The planet that rules a dasha, the mahadasha lord for the major period and the antardasha lord for the sub-period. | the project's own wording |
+| extension (antardasha) | | The badge for a statement that applies a rule, which the source states for the major period, to the sub-period lord as well. The source does not state it for the sub-period, so it is the project's own step. | the project's own wording |
+| obstructed | | Cancelled in part by another planet, as in a transit blocked by vedha; the line names the planet and the days. | the project's own wording |
 
 ## Western astrology
 
@@ -168,6 +175,9 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | transmission, chronocrator | | Valens's count from a starting point by the year's number. The planets standing in the sign the count reaches receive the year; if the sign is empty, its domicile lord does. | the project's own wording |
 | critical year | | A year that Valens marks as troublesome, when the year's sign is the sign of the new or full Moon before birth, or its square or opposite. | the project's own wording |
 | mutual reception | | Two planets each standing in a dignity of the other. A rule counts it as a dignity for honour. | the project's own wording |
+| nativity | | The birth chart. | the project's own wording |
+| afflicted | | Troubled in the source's sense: joined to or aspected by a planet that the source treats as harmful. | the project's own wording |
+| barren signs | | Gemini, Leo and Virgo, the signs a rule of Lilly's names as barren. | the project's own wording |
 
 ## I Ching
 

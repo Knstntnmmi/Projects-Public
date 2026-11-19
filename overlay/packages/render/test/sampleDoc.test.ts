@@ -25,7 +25,7 @@ describe('the generated sample forecast', () => {
     expect(source).not.toMatch(/Date\.now|new Date\(\)|performance\.now/);
   });
 
-  it('has the parts the director asked for, in order', () => {
+  it('has the required parts, in order', () => {
     const heads = doc.split('\n').filter((l) => l.startsWith('#'));
     expect(heads[0]).toBe('# A sample forecast: wealth, 2026 to 2035');
     const order = ['The natal promise', 'The grid', 'The year headlines', 'The statements of 2026, 2027, 2028', 'The rules not evaluated', 'The conventions used', 'How to reproduce it'];

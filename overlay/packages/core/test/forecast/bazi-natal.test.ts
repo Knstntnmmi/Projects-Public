@@ -257,7 +257,7 @@ describe('the topic promises: each grade is reachable and the grades exclude eac
     const p = fire('bazi.peers-rivals', chart('戊辰', '癸亥', '壬戌', '乙未'));
     expect(p.map((f) => factOf(f, 'helpOrStrong'))).toContain('helping the weak day master');
     const strong = fire('bazi.peers-rivals', chart('丙寅', '乙卯', '乙酉', '丁卯'));
-    expect(strong.map((f) => factOf(f, 'helpOrStrong'))).toContain('strong, with 0.4 or more of the chart weight');
+    expect(strong.map((f) => factOf(f, 'helpOrStrong'))).toContain('strong, holding two fifths or more of the chart');
   });
 
   it('any chart gets at most one grade per promise rule, and a grade it can state in the rule\'s own words', () => {

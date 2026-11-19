@@ -128,7 +128,7 @@ describe('the strength bands are exactly the rule file\'s', () => {
 
 describe('a balanced chart: the levels that judge by the favourite carry a note that says why they are silent', () => {
   const sentence = 'The chart is balanced, so the favourable-element method names no favourite.';
-  it('the phrasebook word is in the banned-word walk and says both things the director asked for', () => {
+  it('the phrasebook word is in the banned-word walk and says both required things', () => {
     expect(NOTE.balancedChart).toContain('balanced');
     expect(NOTE.balancedChart).toContain('names no favourite');
     expect(NOTE.balancedChart).toContain('favourable-element method');
@@ -264,7 +264,7 @@ describe('what is not evaluated is listed with a reason a reader can understand'
   const listed = reportJson(full, 'wealth').notEvaluated as Array<{ ruleId: string; reason: string }>;
   const reasonOf = (ruleId: string, contains = ''): string => listed.find((n) => n.ruleId === ruleId && n.reason.includes(contains))?.reason ?? '';
 
-  it('lists the two BaZi rules and the branch of the third, each with a reason of real length and no builder\'s vocabulary', () => {
+  it('lists the two BaZi rules and the branch of the third, each with a reason of real length and no internal vocabulary', () => {
     for (const [id, part] of [['bazi.topic-spouse-woman', 'husband star'], ['bazi.pillar-palaces', 'lookup table'], ['bazi.year-vs-day-clash', '歲君犯日']] as const) {
       const r = reasonOf(id);
       expect(r, id).toContain(part);
@@ -277,7 +277,7 @@ describe('what is not evaluated is listed with a reason a reader can understand'
     expect(reasonOf('bazi.year-vs-day-clash')).toContain('only part of this rule is evaluated');
   });
 
-  it('lists every branch the Vedic builders left out, as a branch of a bound rule', () => {
+  it('lists every branch the Vedic bindings left out, as a branch of a bound rule', () => {
     expect(vedic.NOT_EVALUATED_BRANCHES.length).toBeGreaterThanOrEqual(10);
     for (const b of vedic.NOT_EVALUATED_BRANCHES) {
       expect(DEFAULT_REGISTRY.bindings.has(b.ruleId), b.ruleId).toBe(true);

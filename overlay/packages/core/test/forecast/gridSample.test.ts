@@ -92,7 +92,7 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
       }
       expect(yearView(res, TOPIC).years.map((y) => y.headline)).toEqual(g.headlines);
     }
-    // the form of the director's example, from real cells
+    // the form of the documented example, from real cells
     expect(decadeGrid(resultOf('j2000'), TOPIC).headlines[2031 - FROM]).toMatch(/^Supports: Vedic antardasha\. Cautions: Saturn from the Moon\. Mixed: BaZi year pillar \(3 rules support, 1 cautions\), Vedic mahadasha, Jupiter from the Moon \(2 rules support, 2 caution\), Western annual profection \([^)]+\)\. Silent: BaZi luck pillar, Western solar return\.$/);
   });
 
@@ -114,7 +114,7 @@ describe('on the sample moments, wealth, 2026 to 2035', () => {
       }
       for (const r of g.rows) for (const c of r.cells) expect(c.tallyText).not.toMatch(/active|mark the topic/);
     }
-    // the review's three nativities had 40 to 53 percent of the Western entries as pointers; the list now holds none
+    // three earlier nativities had 40 to 53 of every 100 Western entries as pointers; the list now holds none
     const list = statementList(resultOf('j2000'), TOPIC);
     expect(list.pointers.every((e) => e.tradition === 'western')).toBe(true);
     expect(list.dated.filter((e) => e.tradition === 'western').length).toBeGreaterThan(10);

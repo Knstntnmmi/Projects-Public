@@ -20,11 +20,12 @@ interface Firing {
   clock: ClockId;                 // 'luck' | 'birthday' | 'dasha' | 'solar-longitude' | 'calendar-year'
                                   // | 'jupiter-tropical' | 'jupiter-sidereal' | 'saturn-tropical' | 'saturn-sidereal'
                                   // | 'moon' | 'mars' | 'venus' | 'mercury' | 'node'
+  level?: LevelId;                // only where one clock carries two nested periods; see "Levels" below
   startUtcMs: number | null;      // null on both = natal and undated: context, never part of a slice
   endUtcMs: number | null;
   facts: Fact[];                  // every value that fired it: { key, label, value, unit? }
   topics?: Topic[];               // a subset of rule.topics; default all of them
-  direction?: Direction;          // only for rules whose direction depends on the case (directionByHouse)
+  direction?: Direction;          // whenever the rule's own text assigns the direction case by case; see below
   dedupeInstance?: string;        // replaces start-end in the dedupe key, for facts not tied to a window
   conventionsUsed?: string[];     // names from ForecastConventions or the engine's Conventions
   badges?: string[];              // extra labels, e.g. 'extension (antardasha)', 'school conflict'
@@ -35,7 +36,20 @@ The framework turns each firing into one signal per topic. The signal's sentence
 
 `fire` must be pure and deterministic: no clock, no randomness, no input or output. Return firings for the whole span of `ctx.input.span`; the framework drops those outside it. Clocks: a clock is the set of instants that set its boundaries. Pick the clock whose boundaries your firing actually follows; luck, birthday and dasha clocks are one independence group, each sky clock is its own, and the tropical and sidereal Jupiter clocks are different clocks. Do not choose a clock to change how agreement counts.
 
-Direction and stage come from the rule; you never alter them, except through `Firing.direction` where the rule has `directionByHouse`. A rule whose direction is `activates`, or whose stage is `modifier`, never gives a reading its sign.
+Direction and stage come from the rule; you never alter them, except through `Firing.direction`. A binding sets the direction of a firing whenever the rule's own text assigns the direction case by case: by house (`directionByHouse`), by the reading a sentence names (favourable, difficult, raises, lowers), by the grade of a statement, and so on. The case table is the rule's, not yours, and the binding's test shows it: one row for each case the text names, the facts that select it and the direction it gives. A binding never chooses a direction because the case "looks" good or bad, and never sets one where the text gives a single direction for the whole rule. A rule whose direction is `activates`, or whose stage is `modifier`, never gives a reading its sign.
+
+## Levels
+
+A reader is shown techniques, not clocks: the BaZi luck pillar, the BaZi year pillar, the Vedic mahadasha, the Vedic antardasha, Saturn through the signs counted from the natal Moon, Jupiter likewise, the Western annual profection, the firdaria, the solar return, the Western transits (`LEVEL_IDS` in `types.ts`; plain labels in `LEVEL_LABEL` in the phrasebook, which never uses the words clock, stage, gate, dedupe or strength). The level of a signal follows from its tradition and clock (`levels.ts`), so most bindings say nothing. Where one clock carries two or more nested periods the binding must say which one it judged, with `Firing.level`:
+
+- the dasha clock carries the mahadasha (`vedic-maha`) and the antardasha (`vedic-antar`); the Vedic dasha bindings set it from the span they were judging;
+- the birthday clock carries the Western annual profection (`western-profection`), the firdaria (`western-firdaria`) and the solar return (`western-solar-return`); the Western bindings, when they are written, must set it.
+
+`levelNeedsField(tradition, clock)` says which clocks need it, `levelFits` says which levels may be set on which clock (a mismatch is a `BadFiringError`), and the registry audit reports a dated firing that omits the field where it is needed. Undated firings are the chart itself and have the level `natal`; set nothing. Do not choose a level to change how a reading reads: the word of a level reading is the same word rule as for a tradition, with the plain counts printed beside it.
+
+## Traditions read by period
+
+A tradition may be flagged `PERIOD_READ = true` in its module (the I Ching is). Such a tradition is the character of a period, not a statement about a year: its rules are not run when a span is evaluated (so a long span costs nothing for them), its statements never enter a yearly reading, the statement list, the year view or a year summary, and it stays out of agreement. It is read through `periodCharacter(input, window)` in `period.ts`, for a window of at most 62 days. Its bindings are still audited, and still run when `includePeriodRead` is passed to `evaluate` (the tests do). A new period-read tradition needs a function of its own that reads a window; the flag alone only keeps it out of the yearly forms.
 
 ## What the context gives you
 

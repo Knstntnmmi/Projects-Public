@@ -70,14 +70,14 @@ function statementOf(h: Hexagram, line: number, startUtcMs: number, endUtcMs: nu
  * The hexagram period or periods that overlap a window of at most 62 days, the sovereign
  * hexagram, the cardinal markers and the line of each day. A longer window is refused.
  */
-export function periodCharacter(input: ForecastInput, window: Span): PeriodCharacter {
-  const days = (window.endUtcMs - window.startUtcMs) / MS.DAY;
+export function periodCharacter(input: ForecastInput, range: Span): PeriodCharacter {
+  const days = (range.endUtcMs - range.startUtcMs) / MS.DAY;
   if (!Number.isFinite(days) || days <= 0) throw new RangeError('The window must end after it starts.');
   if (days > MAX_WINDOW_DAYS) throw new RangeError(windowTooLongMessage(days, MAX_WINDOW_DAYS));
-  const ctx = createContext({ ...input, span: window });
+  const ctx = createContext({ ...input, span: range });
   const ich = buildIchingContext(ctx);
   return {
-    window,
+    window: range,
     periods: ich.periods.map((p) => statementOf(p.hexagram, 0, p.startUtcMs, p.endUtcMs)),
     sovereign: ctx.sovereign().map((s) => ({ ...statementOf(s.hexagram, 0, s.startUtcMs, s.endUtcMs), growing: SOVEREIGN_SEQUENCE.findIndex((h) => h.number === s.hexagram.number) < 6 })),
     cardinal: ich.periods.filter((p) => p.position >= GUA_QI_CARDINAL_POSITION && FOUR_CARDINAL.includes(p.hexagram.number)).map((p) => statementOf(p.hexagram, 0, p.startUtcMs, p.endUtcMs)),

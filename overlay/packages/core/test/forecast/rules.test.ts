@@ -67,7 +67,7 @@ describe('the rule files', () => {
 
   it('keep every held-back id out of the rule files', () => {
     const ids = new Set(ALL_RULES.map((r) => r.id));
-    expect(HELD_BACK.length).toBe(28);
+    expect(HELD_BACK.length).toBe(29);
     for (const h of HELD_BACK) {
       expect(ids.has(h.id), h.id).toBe(false);
       expect(TRADITIONS).toContain(h.tradition);
@@ -147,7 +147,10 @@ describe('the ruleset version', () => {
     expect(rulesetVersion(ALL_RULES)).toBe(RULESET_VERSION);
     // Pinned so that an accidental edit of a rule file is noticed; change it when a rule is changed on purpose.
     // Changed once on purpose when the verified Western rule file replaced the extractor's (56 rules).
-    expect(RULESET_VERSION).toBe('b81032a0cf57726c');
+    // Changed again on purpose when the page was re-read for three Western rules: the direction of
+    // lilly.revolution.lord2-fortune-house became a pointer, valens.critical-year-node lost its same-sign branch, and
+    // the aspects of lilly.transit.daily-cusps were restricted by cluster.
+    expect(RULESET_VERSION).toBe('3d0df6d34c94ced6');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

@@ -116,20 +116,53 @@ describe('the return Ascendant sign', () => {
 });
 
 describe('lilly.revolution.lord2-fortune-house', () => {
-  it('names the whole-sign house of the return in which the lord of the 2nd stands', () => {
-    // Return Ascendant Cancer: Leo is the 2nd, so the Sun is its lord; the Sun is at 130, in the 2nd house.
+  it('places the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart in the houses of the return, one statement each', () => {
+    // The radix is the chart below: Cancer rising, Leo the 2nd (the Sun at 130), the Part of Fortune at 130 (night: Asc + Sun - Moon), Jupiter at 250.
+    // The return has the same Ascendant, so the Sun and the Part of Fortune stand in its 2nd house and Jupiter in its 6th.
     const f = R.lord2FortuneHouse(input([1]), [ret(1, chart())]);
-    expect(f).toHaveLength(1);
-    expect(says('lilly.revolution.lord2-fortune-house', f)).toEqual(['In the return the lord of the 2nd stands in the 2nd house: augmentation of estate through the things signified by the 2nd house.']);
-    expect(signals('lilly.revolution.lord2-fortune-house', f).map((s) => [s.topic, s.direction])).toEqual([['wealth', 'favourable']]);
+    expect(f.map((x) => [x.facts.find((y) => y.key === 'significator')!.value, x.facts.find((y) => y.key === 'h')!.value])).toEqual([
+      ['Sun', 2],
+      ['the Part of Fortune', 2],
+      ['Jupiter', 6],
+    ]);
+    expect(says('lilly.revolution.lord2-fortune-house', f)).toEqual([
+      'In the return Sun, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the 2nd house: Lilly reads augmentation of estate through the things signified by that house.',
+      'In the return the Part of Fortune, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the 2nd house: Lilly reads augmentation of estate through the things signified by that house.',
+      'In the return Jupiter, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the 6th house: Lilly reads augmentation of estate through the things signified by that house.',
+    ]);
     expect(f[0]!.badges).toContain(WHOLE);
-    expect(f[0]!.badges!.some((b) => b.includes('Part of Fortune and Jupiter'))).toBe(true);
   });
-  it('follows the lord to another house, and to the next year', () => {
-    // The Sun at 250 degrees (Sagittarius) is in the 6th house of a Cancer return.
-    const f = R.lord2FortuneHouse(input([1, 2]), [ret(1, chart({ Sun: 250 })), ret(2, chart())]);
-    expect(f.map((x) => x.facts.find((y) => y.key === 'h')!.value)).toEqual([6, 2]);
-    expect(says('lilly.revolution.lord2-fortune-house', [f[0]!])[0]).toBe('In the return the lord of the 2nd stands in the 6th house: augmentation of estate through the things signified by the 6th house.');
+  it('is a pointer: it names the house a gain comes through and gives no direction', () => {
+    const f = R.lord2FortuneHouse(input([1]), [ret(1, chart())]);
+    expect(new Set(signals('lilly.revolution.lord2-fortune-house', f).map((s) => [s.topic, s.direction].join()))).toEqual(new Set(['wealth,activates']));
+    expect(ruleById('lilly.revolution.lord2-fortune-house')!.direction).toBe('activates');
+    expect(ruleById('lilly.revolution.lord2-fortune-house')!.verificationNote).toMatch(/re-read/);
+  });
+  it('reads the lord of the 2nd of the radix, not the lord of the 2nd of the return', () => {
+    // Radix with Leo rising: Virgo is the 2nd, its lord Mercury (at 150, in Virgo: the 2nd house of the radix).
+    // The return has Cancer rising, whose 2nd is Leo and whose own lord of the 2nd is the Sun: that planet is not named.
+    const radix = chart({}, 130);
+    const f = R.lord2FortuneHouse(input([1], radix), [ret(1, chart({ Mercury: 250 }))]);
+    const names = f.map((x) => x.facts.find((y) => y.key === 'significator')!.value);
+    expect(names).toContain('Mercury');
+    expect(names).not.toContain('Sun');
+    // The significator is placed by its longitude in the radix (150, Virgo), the 3rd house of a Cancer return; where Mercury stands in the return itself (250) does not matter.
+    expect(f.find((x) => x.facts.some((y) => y.value === 'Mercury'))!.facts.find((y) => y.key === 'h')!.value).toBe(3);
+  });
+  it('says one statement where the lord of the 2nd is Jupiter, and follows the significators to the next year', () => {
+    // Aquarius rising: Pisces is the 2nd, so the lord of the 2nd is Jupiter; the Part of Fortune is at 340, in Pisces.
+    const radix = chart({}, 310);
+    expect(radix.lordOfHouse(2)).toBe('Jupiter');
+    const f = R.lord2FortuneHouse(input([1, 2], radix), [ret(1, chart()), ret(2, chart())]);
+    // In a Cancer return Jupiter at 250 is in the 6th house and the Part of Fortune (Pisces) in the 9th.
+    expect(f.map((x) => [x.facts.find((y) => y.key === 'significator')!.value, x.facts.find((y) => y.key === 'h')!.value])).toEqual([
+      ['Jupiter', 6],
+      ['the Part of Fortune', 9],
+      ['Jupiter', 6],
+      ['the Part of Fortune', 9],
+    ]);
+    expect(f[0]!.startUtcMs).toBe(T0 + YEAR);
+    expect(f[2]!.startUtcMs).toBe(T0 + 2 * YEAR);
   });
 });
 
@@ -264,10 +297,11 @@ describe('the return rules on a sample moment, 2031 to 2060', () => {
     const i = makeInput(makeMoment(f.civil, f.zone, f.place), { fromYear: 2031, toYear: 2060, birthTimeUncertaintyMinutes: 0 });
     const r = evaluate(i, { traditions: ['western'], runs: 20 });
     const own = r.signals.filter((s) => s.ruleId === 'lilly.revolution.lord2-fortune-house');
-    expect(own.length).toBeGreaterThanOrEqual(29);
+    expect(own.length).toBeGreaterThanOrEqual(58);
     for (const s of own) {
       expect(s.topic).toBe('wealth');
-      expect(s.sentence).toMatch(/^In the return the lord of the 2nd stands in the \d+th house|^In the return the lord of the 2nd stands in the (1st|2nd|3rd) house/);
+      expect(s.direction).toBe('activates');
+      expect(s.sentence).toMatch(/^In the return (\w+|the Part of Fortune), the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the \d+(st|nd|rd|th) house: Lilly reads augmentation of estate/);
       expect(s.badges).toContain(WHOLE);
       expect(s.endUtcMs! - s.startUtcMs!).toBeGreaterThan(364 * DAY);
       expect(s.endUtcMs! - s.startUtcMs!).toBeLessThan(367 * DAY);

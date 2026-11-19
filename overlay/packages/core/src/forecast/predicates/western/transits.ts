@@ -210,15 +210,16 @@ const DAY_STEP = MS.DAY;
  */
 const PAD = 550 * MS.DAY;
 
-/** Which point and how closely Saturn holds the node or its square at an instant, or null. Derived: the sign is the weak form, one degree the strong. */
+/** The closeness that reads Valens's "is at": a derived threshold, because the text gives no orb. */
+export const NODE_AT_DEGREES = 1;
+
+/** Which of the four points Saturn is at, within the derived closeness, at an instant, or null. */
 function nodeClass(sky: SkyAccess, ms: number): string | null {
   const sat = sky.lon('Saturn', ms);
   const node = sky.node(ms);
   for (const [i, p] of NODE_POINTS.entries()) {
-    const at = node + p.offset;
-    if (Math.abs(circ(sat - at)) <= 1) return `${i}:within 1 degree`;
+    if (Math.abs(circ(sat - (node + p.offset))) <= NODE_AT_DEGREES) return `${i}:within ${NODE_AT_DEGREES} degree`;
   }
-  for (const [i, p] of NODE_POINTS.entries()) if (signIndexOf(sat) === signIndexOf(node + p.offset)) return `${i}:in the same sign`;
   return null;
 }
 
@@ -244,24 +245,26 @@ export function classWindows(span: { startUtcMs: number; endUtcMs: number }, ste
 }
 
 /**
- * Saturn at the ascending or descending node of the date, or at their squares: in the same
- * sign (the weak form) or within one degree (the strong form), both derived as the rule says.
- * It reads no point of the nativity, so it does not need the birth time.
+ * Saturn at the ascending or descending node of the date, or at the points square to them
+ * (Valens V.2: "is at"). The text gives no orb, so "at" is read as within one degree, which is
+ * a derived threshold and carries that badge. The same-sign form is not read: Valens states it
+ * for the Moon only, in the chapter on initiatives (held back as an extension). It reads no
+ * point of the nativity, so it does not need the birth time.
  */
 export const criticalYearNode: TransitRule = (_w, sky) =>
   classWindows({ startUtcMs: sky.span.startUtcMs - PAD, endUtcMs: sky.span.endUtcMs + PAD }, DAY_STEP, (ms) => nodeClass(sky, ms))
     .filter((win) => win.endUtcMs > sky.span.startUtcMs && win.startUtcMs < sky.span.endUtcMs)
     .map((win) => {
-    const [i, how] = win.cls.split(':') as [string, string];
-    return {
-      clock: SKY_CLOCK.Saturn,
-      startUtcMs: win.startUtcMs,
-      endUtcMs: win.endUtcMs,
-      facts: [fact('node', 'Node', NODE_POINTS[Number(i)]!.node), fact('degreeMatch', 'Closeness', how)],
-      conventionsUsed: [],
-      badges: ['derived threshold: the mean node of the date; the same sign is the weak form, within 1 degree the strong form', 'the source does not say whether the natal node or the node of the date is meant'],
-    };
-  });
+      const [i, how] = win.cls.split(':') as [string, string];
+      return {
+        clock: SKY_CLOCK.Saturn,
+        startUtcMs: win.startUtcMs,
+        endUtcMs: win.endUtcMs,
+        facts: [fact('node', 'Node', NODE_POINTS[Number(i)]!.node), fact('degreeMatch', 'Closeness', how)],
+        conventionsUsed: [],
+        badges: [`derived threshold: "at" is read as within ${NODE_AT_DEGREES} degree of the mean node of the date or of its squares (Valens gives no orb)`, 'the source does not say whether the natal node or the node of the date is meant'],
+      };
+    });
 
 // ---------------------------------------------------------------------------
 // Lilly: the day transits over the angles and radical places (p.741)
@@ -276,6 +279,8 @@ interface Pass {
   /** The points read: the angles and the radical places of the planets named. */
   points: (self: Planet) => ReadonlyArray<{ name: string; lon: (w: PeriodInput) => number }>;
   meaning: string;
+  /** Lilly's own length of the day-reading, counted from the day of the pass; the passes of the other readings last while the planet is within its orb. */
+  days?: number;
 }
 
 const ASC = { name: 'Ascendant', lon: (w: PeriodInput) => w.model.ascendant };
@@ -283,12 +288,19 @@ const MC = { name: 'Midheaven', lon: (w: PeriodInput) => w.mc };
 const place = (p: Planet) => ({ name: p, lon: (w: PeriodInput) => w.model.lon(p) });
 const LIGHTS_AND_FORTUNES: readonly Planet[] = ['Jupiter', 'Venus', 'Sun', 'Moon'];
 
+/**
+ * The readings of p.741, each with the aspects Lilly gives it and no others: the healthful,
+ * choler and gravity readings are for the passage over the ascending degree only; the
+ * fortunate days are by sextile and trine only; the unsuccessful days are by passage, square
+ * or opposition only. The words are Lilly's. The list of radical places for the unsuccessful
+ * days ends in a fifth glyph that could not be read with certainty, which is left out.
+ */
 const PASSES: readonly Pass[] = [
   { planets: ['Jupiter', 'Venus'], angles: [0], points: () => [ASC], meaning: 'a healthful, cheerful, successful day' },
-  { planets: ['Mars'], angles: [0], points: () => [ASC], meaning: 'choler or passion for two or three days' },
-  { planets: ['Saturn'], angles: [0], points: () => [ASC], meaning: 'gravity, sobriety, melancholy' },
+  { planets: ['Mars'], angles: [0], points: () => [ASC], meaning: 'choler or passion for two or three days', days: 3 },
+  { planets: ['Saturn'], angles: [0], points: () => [ASC], meaning: 'gravity, soberness, melancholy' },
   { planets: LIGHTS_AND_FORTUNES, angles: [60, 120], points: (self) => [ASC, MC, place(self)], meaning: 'a fortunate day' },
-  { planets: ['Saturn', 'Mars'], angles: [0, 60, 90, 120, 180], points: () => [ASC, MC, ...LIGHTS_AND_FORTUNES.map(place)], meaning: 'an unsuccessful day' },
+  { planets: ['Saturn', 'Mars'], angles: [0, 90, 180], points: () => [ASC, MC, ...LIGHTS_AND_FORTUNES.map(place)], meaning: 'an unsuccessful day' },
 ];
 
 /** The longitudes at which a planet makes an aspect to a point: the point itself, or either side of it. */
@@ -377,16 +389,24 @@ export const dailyCusps: TransitRule = (w, sky) => {
         for (const angle of pass.angles) {
           for (const x of aspectPoints(point.lon(w), angle)) {
             for (const win of gridPasses(grid(planet), from, stepOf(planet), x, orb)) {
-              if (win.endUtcMs <= sky.span.startUtcMs || win.startUtcMs >= sky.span.endUtcMs) continue;
+              // Mars over the Ascendant is Lilly's "two or three days": three days from the day of the pass, a derived reading of his range.
+              const startUtcMs = pass.days === undefined ? win.startUtcMs : win.closestUtcMs;
+              const endUtcMs = pass.days === undefined ? win.endUtcMs : win.closestUtcMs + pass.days * DAY_STEP;
+              if (endUtcMs <= sky.span.startUtcMs || startUtcMs >= sky.span.endUtcMs) continue;
               const facts: Fact[] = [fact('date', 'Day of the closest pass', isoDate(win.closestUtcMs)), fact('planet', 'Transiting planet', planet), fact('aspect', 'Aspect', ASPECT_VERB[angle]!), fact('point', 'Natal point', point.name), fact('meaning', 'Lilly reads', pass.meaning)];
               out.push({
                 clock: SKY_CLOCK[planet],
-                startUtcMs: win.startUtcMs,
-                endUtcMs: win.endUtcMs,
+                startUtcMs,
+                endUtcMs,
                 facts,
                 dedupeInstance: `${planet}|${point.name}|${angle}|${Math.round(x)}|${pass.meaning}|${Math.round(win.startUtcMs)}`,
                 conventionsUsed: ['westernOrbs'],
-                badges: ['derived threshold: the point orb is the moiety of the transiting planet (Table C, first column)', 'the cusps of the 2nd and 3rd houses are not read: they need Regiomontanus cusps', 'the edges of the pass are interpolated between samples of half a day for the Moon and a day for the others'],
+                badges: [
+                  'derived threshold: the point orb is the moiety of the transiting planet (Table C, first column)',
+                  'the cusps of the 2nd and 3rd houses are not read: they need Regiomontanus cusps',
+                  'the edges of the pass are interpolated between samples of half a day for the Moon and a day for the others',
+                  ...(pass.days === undefined ? [] : [`derived threshold: the ${pass.days} days of Lilly's "two or three days" are counted from the day of the pass`]),
+                ],
               });
             }
           }

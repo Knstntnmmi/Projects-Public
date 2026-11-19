@@ -21,7 +21,7 @@ import { SIGNS } from '../../../systems/western/dignities.ts';
 import type { Direction, Fact, Firing, Topic } from '../../types.ts';
 import type { PeriodInput, ProfectedYear } from './context.ts';
 import { type NatalModel } from './model.ts';
-import { BADGE, CONVENTIONS, fact, ordinal } from './natal.ts';
+import { BADGE, CONVENTIONS, fact } from './natal.ts';
 import { houseOfSign, lordsOfYear, signInstance } from './profection.ts';
 
 /** The solar-return chart of one profected year, as a model of plain longitudes. */
@@ -134,23 +134,33 @@ export const seventhAsc: ReturnRule = (w, returns) =>
 // ---------------------------------------------------------------------------
 
 /**
- * The lord of the 2nd in the whole-sign house of the return that it holds. The condition names
- * three significators (the lord of the 2nd, the Part of Fortune, Jupiter) but the rule's
- * sentence says "the lord of the 2nd stands", which would be false for the other two, so only
- * the lord of the 2nd is read and the badge says so. The sentence is the rule's and is not
- * rewritten here.
+ * The significators of money in the houses of the return. Lilly's subject is the significators
+ * of the radix: the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart, each
+ * placed by its own longitude among the houses of the return (whole signs counted from the
+ * return Ascendant). Reading the return chart's own lord of the 2nd, as an earlier version did,
+ * names a different planet. One statement for each significator; where the lord of the 2nd is
+ * Jupiter the two are one fact and are said once. The passage names where a gain comes from
+ * and not whether the year is good, so the rule is a pointer.
  */
 export const lord2FortuneHouse: ReturnRule = (w, returns) =>
-  withReturns(w, returns).map(({ y, r }) => {
-    const m = r.model;
-    const sign = m.signOf(m.lordOfHouse(2));
-    const h = norm12(sign - m.ascSign) + 1;
-    return returnFiring(
-      y,
-      [fact('h', 'House of the return', h), fact('matters', 'Matters', `the things signified by the ${ordinal(h)} house`), fact('lord', 'Lord of the 2nd', m.lordOfHouse(2))],
-      [BADGE.wholeSign, RETURN_BADGES.place, 'only the lord of the 2nd is read: the Part of Fortune and Jupiter, also named in the condition, are not evaluated because the rule\'s sentence names the lord of the 2nd'],
-      signInstance(y, sign),
-    );
+  withReturns(w, returns).flatMap(({ y, r }) => {
+    const radical: { label: string; lon: number }[] = [];
+    for (const s of [
+      { label: String(w.model.lordOfHouse(2)), lon: w.model.lon(w.model.lordOfHouse(2)) },
+      { label: 'the Part of Fortune', lon: w.model.fortune() },
+      { label: 'Jupiter', lon: w.model.lon('Jupiter') },
+    ]) {
+      if (!radical.some((x) => x.label === s.label)) radical.push(s);
+    }
+    return radical.map((s) => {
+      const h = norm12(signIndexOf(s.lon) - r.model.ascSign) + 1;
+      return returnFiring(
+        y,
+        [fact('significator', 'Significator of the birth chart', s.label), fact('h', 'House of the return', h)],
+        [BADGE.wholeSign, RETURN_BADGES.place, 'the significator is the one of the birth chart, placed by its longitude in the houses of the return'],
+        `${y.startUtcMs}-${y.endUtcMs}@${s.label}`,
+      );
+    });
   });
 
 // ---------------------------------------------------------------------------

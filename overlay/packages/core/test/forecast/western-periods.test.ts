@@ -7,7 +7,7 @@
  * from Cancer (Leo is the 2nd, Virgo the 3rd, and so on round to Gemini, the 12th).
  */
 import { describe, expect, it } from 'vitest';
-import { auditRegistry, DEFAULT_FORECAST_CONVENTIONS, DEFAULT_REGISTRY, dedupe, evaluate, makeInput, report, ruleById, signalsFromFirings, unaccounted, type Firing } from '../../src/forecast/index.ts';
+import { auditRegistry, DEFAULT_FORECAST_CONVENTIONS, DEFAULT_REGISTRY, dedupe, HELD_BACK, evaluate, makeInput, report, ruleById, signalsFromFirings, unaccounted, type Firing } from '../../src/forecast/index.ts';
 import { bannedIn, MORTALITY_WORDS } from '../../src/forecast/phrasebook.ts';
 import { BINDINGS, NOT_EVALUATED } from '../../src/forecast/predicates/western.ts';
 import type { PeriodInput, ProfectedYear } from '../../src/forecast/predicates/western/context.ts';
@@ -491,23 +491,35 @@ describe('valens.critical-year-syzygy', () => {
 });
 
 describe('valens.critical-year-node', () => {
-  it('fires in the sign of the node or its squares (weak form) and within a degree (strong form)', () => {
+  it('fires only where Saturn is within a degree of the node or of a square to it, and not in the same sign', () => {
     // Saturn stands at 100 degrees; the node moves from 0 by 0.1 degree a day, so its square (node + 90) crosses Saturn on day 100.
     const s = sky({ span: { startUtcMs: T0, endUtcMs: T0 + 400 * DAY }, lon: () => 100, node: (ms) => ((ms - T0) / DAY) * 0.1 });
     const f = T.criticalYearNode(input(), s);
-    const how = f.map((x) => x.facts.find((y) => y.key === 'degreeMatch')!.value);
-    expect(how).toEqual(['in the same sign', 'within 1 degree', 'in the same sign']);
-    expect((f[1]!.startUtcMs! - T0) / DAY).toBeCloseTo(90, 1);
-    expect((f[1]!.endUtcMs! - T0) / DAY).toBeCloseTo(110, 1);
-    expect((f[2]!.endUtcMs! - T0) / DAY).toBeCloseTo(300, 1);
-    expect(says('valens.critical-year-node', [f[1]!])).toEqual(['Saturn stands at the ascending node or its square (within 1 degree): a critical period, a health caution.']);
-    expect(f.every((x) => x.clock === 'saturn-tropical')).toBe(true);
+    // The sign form is gone: one pass, from day 90 to day 110 (a degree either side at 0.1 degree a day).
+    expect(f).toHaveLength(1);
+    expect(f[0]!.facts.find((y) => y.key === 'degreeMatch')!.value).toBe('within 1 degree');
+    expect((f[0]!.startUtcMs! - T0) / DAY).toBeCloseTo(90, 1);
+    expect((f[0]!.endUtcMs! - T0) / DAY).toBeCloseTo(110, 1);
+    expect(says('valens.critical-year-node', f)).toEqual(['Saturn stands at the ascending node or its square (within 1 degree): a critical period.']);
+    expect(f[0]!.clock).toBe('saturn-tropical');
     expect(dirs('valens.critical-year-node', f)).toEqual(['unfavourable']);
   });
-  it('names the descending node for the opposition, and is silent when Saturn is in none of the four signs', () => {
+  it('carries the badge of a derived threshold for the closeness that counts as "at"', () => {
     const s = sky({ span: { startUtcMs: T0, endUtcMs: T0 + 100 * DAY }, lon: () => 190, node: () => 10 });
-    expect(says('valens.critical-year-node', T.criticalYearNode(input(), s))).toEqual(['Saturn stands at the descending node or its square (within 1 degree): a critical period, a health caution.']);
+    const [f] = T.criticalYearNode(input(), s);
+    expect(f!.badges!.some((b) => b.startsWith('derived threshold:') && b.includes('1 degree'))).toBe(true);
+  });
+  it('names the descending node for the opposition, and is silent when Saturn is in the same sign but not within a degree', () => {
+    const s = sky({ span: { startUtcMs: T0, endUtcMs: T0 + 100 * DAY }, lon: () => 190, node: () => 10 });
+    expect(says('valens.critical-year-node', T.criticalYearNode(input(), s))).toEqual(['Saturn stands at the descending node or its square (within 1 degree): a critical period.']);
     expect(T.criticalYearNode(input(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 100 * DAY }, lon: () => 45, node: () => 10 }))).toEqual([]);
+    // 5 degrees from the node, in its sign: the extension of the weak form is not read.
+    expect(T.criticalYearNode(input(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 100 * DAY }, lon: () => 15, node: () => 10 }))).toEqual([]);
+  });
+  it('lists the same-sign branch as held back, with the reason', () => {
+    const h = HELD_BACK.find((x) => x.id === 'valens.critical-year-node.same-sign')!;
+    expect(h.tradition).toBe('western');
+    expect(h.reason).toMatch(/Moon/);
   });
 });
 
@@ -536,6 +548,36 @@ describe('lilly.transit.daily-cusps', () => {
     const mars = T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 200 * DAY }, lon: (p, ms) => (p === 'Mars' ? 128 + ((ms - T0) / DAY) * 0.05 : 1000) })).filter((f) => f.clock === 'mars' && f.facts.some((x) => x.key === 'aspect' && x.value === 'conjoins') && f.facts.some((x) => x.key === 'point' && x.value === 'Ascendant'));
     expect(says('lilly.transit.daily-cusps', mars).map((x) => x.replace(/^On [\d-]+, /, '')).sort()).toEqual(['transiting Mars conjoins the natal Ascendant: an unsuccessful day.', 'transiting Mars conjoins the natal Ascendant: choler or passion for two or three days.']);
     expect(new Set(mars.map((x) => x.dedupeInstance)).size).toBe(2);
+  });
+  it('gives the healthful, choler and gravity readings to the passage over the Ascendant only, in Lilly\'s words', () => {
+    const wide = (lon: (p: Planet, ms: number) => number): Firing[] => T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 400 * DAY }, lon }));
+    const sat = wide((p, ms) => (p === 'Saturn' ? 120 + ((ms - T0) / DAY) * 0.05 : 1000));
+    const meanings = (fs: Firing[]) => [...new Set(fs.map((f) => `${f.facts.find((x) => x.key === 'aspect')!.value} ${f.facts.find((x) => x.key === 'point')!.value}: ${f.facts.find((x) => x.key === 'meaning')!.value}`))].sort();
+    const own = meanings(sat.filter((f) => f.clock === 'saturn-tropical'));
+    expect(own).toContain('conjoins Ascendant: gravity, soberness, melancholy');
+    // gravity is read for the passage over the Ascendant and for no other point or aspect
+    expect(own.filter((m) => m.includes('gravity'))).toEqual(['conjoins Ascendant: gravity, soberness, melancholy']);
+  });
+  it('restricts the fortunate days to sextile and trine and the unsuccessful days to passage, square and opposition', () => {
+    // Every pass of every body over a sweep of the whole zodiac, so that every aspect occurs somewhere.
+    const sweep = (p: Planet): Firing[] => T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 720 * DAY }, lon: (q, ms) => (q === p ? 130 + ((ms - T0) / DAY) * 0.5 : 1000) })).filter((f) => f.clock === (p === 'Sun' ? 'solar-longitude' : p.toLowerCase()) || f.clock === `${p.toLowerCase()}-tropical`);
+    const aspects = (fs: Firing[], meaning: string) => [...new Set(fs.filter((f) => f.facts.some((x) => x.key === 'meaning' && x.value === meaning)).map((f) => f.facts.find((x) => x.key === 'aspect')!.value))].sort();
+    for (const p of ['Jupiter', 'Venus', 'Sun', 'Moon'] as Planet[]) expect(aspects(sweep(p), 'a fortunate day'), p).toEqual(['sextiles', 'trines']);
+    for (const p of ['Saturn', 'Mars'] as Planet[]) expect(aspects(sweep(p), 'an unsuccessful day'), p).toEqual(['conjoins', 'opposes', 'squares']);
+  });
+  it('gives the two or three days to Mars alone, counted from the day of the pass', () => {
+    const run = (planet: Planet): Firing[] => T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 200 * DAY }, lon: (p, ms) => (p === planet ? 128 + ((ms - T0) / DAY) * 0.05 : 1000) })).filter((f) => f.facts.some((x) => x.key === 'point' && x.value === 'Ascendant') && f.facts.some((x) => x.key === 'aspect' && x.value === 'conjoins'));
+    const mars = run('Mars').filter((f) => f.facts.some((x) => x.key === 'meaning' && x.value === 'choler or passion for two or three days'));
+    expect(mars).toHaveLength(1);
+    expect((mars[0]!.endUtcMs! - mars[0]!.startUtcMs!) / DAY).toBe(3);
+    const closest = Date.parse(String(mars[0]!.facts.find((x) => x.key === 'date')!.value));
+    expect(Math.abs(mars[0]!.startUtcMs! - closest)).toBeLessThan(DAY);
+    expect(mars[0]!.badges!.some((b) => b.startsWith('derived threshold') && b.includes('3 days'))).toBe(true);
+    // no other body's reading mentions the days
+    for (const p of ['Saturn', 'Jupiter', 'Venus'] as Planet[]) for (const f of run(p)) expect(String(f.facts.find((x) => x.key === 'meaning')!.value), p).not.toMatch(/days/);
+    // the unsuccessful day of the same Mars pass keeps the orb window
+    const bad = run('Mars').find((f) => f.facts.some((x) => x.key === 'meaning' && x.value === 'an unsuccessful day'))!;
+    expect((bad.endUtcMs! - bad.startUtcMs!) / DAY).toBeGreaterThan(10);
   });
   it('is silent when no planet comes within its orb of a point in the span', () => {
     const quiet = Array.from({ length: 360 }, (_v, x) => x).filter((x) => T.dailyCusps(rising(), sky({ span: { startUtcMs: T0, endUtcMs: T0 + 5 * DAY }, lon: () => x })).length === 0);

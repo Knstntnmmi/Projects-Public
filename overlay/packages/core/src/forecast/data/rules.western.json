@@ -510,7 +510,7 @@
    "id": "lilly.transit.daily-cusps",
    "name": "Transit by day over the radical Ascendant, Midheaven and radical planets (Lilly)",
    "stage": "activation",
-   "condition": "Restricted to points the engine has: the natal Ascendant and Midheaven degrees and radical planet longitudes (cusps of the 2nd and 3rd house need Regiomontanus cusps and are not used). Transits found from an ephemeris: the day a planet passes the point or beholds it by sextile, square, trine, opposition or conjunction. Jupiter or Venus over the ascending degree: a healthful, cheerful, successful day; Mars over it: choler or passion for two or three days; Saturn: gravity, sobriety, melancholy. Fortunate days: Jupiter, Venus, Sun or Moon in sextile or trine to the ascending or culminating degree or to their own radical places. Unsuccessful days: Saturn or Mars transiting the ascending or culminating degrees or the radical places of Jupiter, Venus, Sun or Moon, or Saturn or Mars beholding them. Point orb is the transiting planet's half-orb (Table C): a derived choice, Lilly gives none.",
+   "condition": "Restricted to points the engine has: the natal Ascendant and Midheaven degrees and the radical longitudes of Jupiter, Venus, the Sun and the Moon (cusps of the 2nd and 3rd house need Regiomontanus cusps and are not used). Transits found from an ephemeris, on the day a planet passes the point or beholds it, the aspects restricted by what Lilly says of each: Jupiter or Venus over the ascending degree: a healthful, cheerful, successful day (the passage only); Mars over it: choler or passion for two or three days (the passage only; the two or three days belong to Mars alone); Saturn over it: gravity, soberness, melancholy (the passage only). Fortunate days: Jupiter, Venus, Sun or Moon in sextile or trine only (not conjunction, not square) to the ascending or culminating degree or to their own radical places. Unsuccessful days: Saturn or Mars passing over (conjunct) the ascending or culminating degree or the radical places of Jupiter, Venus, Sun or Moon, or beholding them by square or opposition only (not sextile, not trine). Lilly's list of radical places for the unsuccessful days ends with a fifth glyph, read from the page as the Dragon's Tail but not with certainty, so it is left out. He calls the days 'reputed' fortunate and 'said to be' unsuccessful. Point orb is the transiting planet's half-orb (Table C): a derived choice, Lilly gives none. The rule is read by period: its day statements never enter a yearly form.",
    "inputs": [
     "transit longitudes by day",
     "natal ascendant and midheaven",
@@ -527,9 +527,9 @@
    "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXIIII 'Of the Transit of the Planets'",
    "sourceLocator": "Book III p.741",
    "sourceQuote": "The Transit of the Planets is best found out by an Ephemeris",
-   "variants": "Lilly treats transits as day-scale only; he gives no year-scale rules for Jupiter and Saturn. He adds that Jupiter or Venus over the cusp of the second house make an apt day to procure money (needs Regiomontanus cusps, not used).",
+   "variants": "Lilly treats transits as day-scale only; he gives no year-scale rules for Jupiter and Saturn. He adds that Jupiter or Venus over the cusp of the second house make an apt day to procure money (needs Regiomontanus cusps, not used). His radical points in the opening sentence also include the Head, the Tail and the Part of Fortune, which the engine does not read here.",
    "verification": "confirmed",
-   "verificationNote": "All three clusters (healthful day, choler for two or three days, fortunate and unsuccessful days) read on p.741 (text layer; glyph list read as Jupiter, Venus, Sun, Moon for fortunate and Saturn, Mars for unsuccessful).",
+   "verificationNote": "Page re-read for this correction (Christian Astrology Book III p.741, Wellcome scan, page image and a 300 dpi crop of the last six lines). All clusters read: the healthful, choler and gravity readings are for the passage over the ascending degree only; fortunate days by sextile and trine only; unsuccessful days by passage, square or opposition only. The fifth glyph after the Moon in the unsuccessful list was not read with certainty and is left out.",
    "sourceOpened": true,
    "secondCheck": "passed",
    "secondCheckNote": "Sentences read on p.741 (OCR text): healthful day for Jupiter or Venus over the ascendant; choler for two or three days for Mars; gravity for Saturn; fortunate and unsuccessful days."
@@ -596,7 +596,7 @@
    "id": "valens.critical-year-node",
    "name": "Critical period: Saturn at a lunar node or its squares",
    "stage": "activation",
-   "condition": "Transiting Saturn conjunct or opposite the node (Valens: 'the ascending or the descending node') or at the points square to them. The text does not say whether the node is the natal node or the node of the date, and sets no orb; the engine uses the mean node of the date, same-sign as the weak form and 1 degree as the strong form (all derived).",
+   "condition": "Transiting Saturn at the ascending or descending node of the date, or at the points square to them (Valens V.2, tr. Riley: 'is at'). The text gives no orb: the engine reads 'at' as a close approach of one degree, a derived threshold. The node is the mean node of the date, because the chapter speaks of the current position of the ascending node for the year in question; the sentence does not exclude the natal node. The same-sign form is not part of this rule: Valens states it only for the Moon, in the chapter on initiatives (V.3), so it is held back as an extension (see held-back.json). The page was re-read for this correction.",
    "inputs": [
     "saturn transit longitude",
     "mean node longitude"
@@ -607,14 +607,14 @@
    ],
    "direction": "unfavourable",
    "strength": 1,
-   "template": "Saturn stands at the {node} or its square ({degreeMatch}): a critical period, a health caution.",
+   "template": "Saturn stands at the {node} or its square ({degreeMatch}): a critical period.",
    "sourceCitation": "Vettius Valens, Anthologies V.2, tr. Mark T. Riley",
    "sourceLocator": "Book V ch. 2, Riley p.125-126 (the sentence begins on p.125 with \"Likewise, the critical year\" and ends on p.126)",
    "sourceQuote": "Saturn is at the ascending or the descending node, or at the points square with these",
    "variants": "Valens' 'ecliptic places' are the nodes.",
    "dedupeKey": "critical-year",
-   "verification": "confirmed",
-   "verificationNote": "Sentence seen; ambiguity of natal versus current node and the missing orb are stated in the condition.",
+   "verification": "corrected",
+   "verificationNote": "Page re-read for this correction (Riley pp.125-127, page image read): the sentence is the point form, 'is at', with no orb; the same-sign wording in the chapter is about the Moon in the initiatives, not Saturn. The same-sign branch was removed; the closeness that counts as 'at' is a derived threshold.",
    "sourceOpened": true,
    "secondCheck": "corrected",
    "secondCheckNote": "Sentence read; locator corrected to Riley p.125-126 (it is split by the page foot of p.125). Natal-versus-current node and the missing orb remain the implementer's choices, as the condition already says."
@@ -1523,27 +1523,27 @@
    "id": "lilly.revolution.lord2-fortune-house",
    "name": "Revolution: house of the lord of the second, the Part of Fortune or Jupiter",
    "stage": "activation",
-   "condition": "NEEDS THE RETURN CHART. In the house of the revolution in which the lord of the 2nd, the Part of Fortune or Jupiter stands: the native has augmentation of patrimony or estate by the things that house signifies. (Glyph read as the Part of Fortune and Jupiter on the scan.)",
+   "condition": "NEEDS THE RETURN CHART. Lilly's subject is the significators of the radix: the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart, each taken at its place by longitude in the houses of the solar return. In whatever house of the revolution he finds them, he says the native shall have augmentation of patrimony or estate by the things that house signifies (Christian Astrology p.737, 'so observe in the rest'). The passage says through which house a gain comes and not whether the year is good: it attaches no strength, dignity or aspect requirement, so none was lost from the rule. The rule is therefore a pointer (direction activates) and gives one statement for each of the three significators. The page was re-read for this correction.",
    "inputs": [
     "return chart houses",
-    "lord of 2",
-    "lot of fortune",
-    "jupiter"
+    "radical lord of 2",
+    "radical lot of fortune",
+    "radical jupiter"
    ],
    "computable": "needs-return-chart",
    "topics": [
     "wealth"
    ],
-   "direction": "favourable",
+   "direction": "activates",
    "strength": 2,
-   "template": "In the return the lord of the 2nd stands in the {h}th house: augmentation of estate through {matters}.",
+   "template": "In the return {significator}, the lord of the 2nd, the Part of Fortune or Jupiter of the birth chart, stands in the {h}th house: Lilly reads augmentation of estate through the things signified by that house.",
    "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXII",
    "sourceLocator": "Book III p.737",
    "sourceQuote": "augmentation of Patrimony or Estate by things signified by that house",
    "variants": "Regiomontanus versus whole-sign houses differ.",
    "dedupeKey": "return-wealth-house",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Sentence read on p.737.",
+   "verificationNote": "Page re-read for this correction (Christian Astrology Book III p.736-737, Wellcome scan, page image read). The sentence is a reason and a consequence and attaches no condition of strength; the subject is the radical significators placed in the return houses, not the return chart's own lord of the 2nd. The direction is therefore activates, not favourable.",
    "sourceOpened": true,
    "secondCheck": "passed",
    "secondCheckNote": "Sentence read p.737."

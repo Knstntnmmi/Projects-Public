@@ -256,19 +256,30 @@ describe('kendra-trikona links', () => {
     expect(sunSaturn.via).toContain('conjunction in a kendra or trikona');
     expect(sunSaturn.cancelled).toBe(false);
   });
+  it('forms no link through a malefic kendra lord that owns no trikona (Ch.34)', () => {
+    // Aries rising: Venus owns the 2nd and 7th and the Aries list calls it malefic; Jupiter owns the 9th and 12th.
+    // Venus in Aries (house 1) and Jupiter in Aries would otherwise stand in a kendra of each other.
+    const aries: Placement[] = [
+      { planet: 'Sun', signIndex: 4, degree: 5 }, { planet: 'Moon', signIndex: 6, degree: 12 }, { planet: 'Mars', signIndex: 0, degree: 1 }, { planet: 'Mercury', signIndex: 5, degree: 17 },
+      { planet: 'Jupiter', signIndex: 0, degree: 3 }, { planet: 'Venus', signIndex: 7, degree: 20 }, { planet: 'Saturn', signIndex: 9, degree: 28 }, { planet: 'Rahu', signIndex: 1, degree: 5 }, { planet: 'Ketu', signIndex: 7, degree: 5 },
+    ];
+    expect(functionalNature(0, 'Venus')).toBe('malefic');
+    expect(yogaLinks(0, aries).some((x) => x.kendraLord === 'Venus')).toBe(false);
+  });
   it('detects exchange and the full seventh aspect, and never pairs a planet with itself', () => {
-    // Capricorn rising: Mars owns 4 and 11, Moon 7, Venus 5 and 10, Mercury 6 and 9.
-    const chart = (moon: number, mercury: number): Placement[] => [
-      { planet: 'Saturn', signIndex: 1, degree: 1 }, { planet: 'Venus', signIndex: 10, degree: 1 }, { planet: 'Sun', signIndex: 0, degree: 1 }, { planet: 'Moon', signIndex: moon, degree: 1 },
+    // Capricorn rising: Venus owns 5 and 10 and the list calls it auspicious, Mercury owns 6 and 9; Mars (4, 11) and the Moon (7) are malefic there.
+    const chart = (venus: number, mercury: number): Placement[] => [
+      { planet: 'Saturn', signIndex: 1, degree: 1 }, { planet: 'Venus', signIndex: venus, degree: 1 }, { planet: 'Sun', signIndex: 0, degree: 1 }, { planet: 'Moon', signIndex: 0, degree: 1 },
       { planet: 'Mars', signIndex: 3, degree: 1 }, { planet: 'Mercury', signIndex: mercury, degree: 1 }, { planet: 'Jupiter', signIndex: 8, degree: 1 },
     ];
-    const pair = (ps: Placement[]) => yogaLinks(9, ps).find((x) => x.kendraLord === 'Moon' && x.trikonaLord === 'Mercury');
-    expect(yogaLinks(9, chart(5, 3)).every((x) => x.kendraLord !== x.trikonaLord)).toBe(true);
-    const swap = pair(chart(5, 3)); // Moon in Virgo, Mercury in Cancer
+    const pair = (ps: Placement[]) => yogaLinks(9, ps).find((x) => x.kendraLord === 'Venus' && x.trikonaLord === 'Mercury');
+    expect(yogaLinks(9, chart(5, 6)).every((x) => x.kendraLord !== x.trikonaLord)).toBe(true);
+    const swap = pair(chart(5, 6)); // Venus in Virgo, Mercury in Libra
     expect(swap?.via).toContain('exchange of signs');
     expect(swap?.cancelled).toBe(false); // Mercury owns the 6th but the Capricorn list calls it auspicious
     expect(pair(chart(11, 5))?.via).toContain('full seventh aspect'); // Pisces and Virgo are opposite
     expect(pair(chart(2, 5))?.via ?? []).not.toContain('exchange of signs');
+    expect(yogaLinks(9, chart(5, 6)).some((x) => x.kendraLord === 'Moon' || x.kendraLord === 'Mars')).toBe(false); // malefic kendra lords without a trikona
   });
 });
 

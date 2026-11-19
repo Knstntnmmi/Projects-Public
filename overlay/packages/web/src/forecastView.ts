@@ -301,14 +301,13 @@ export function agreementHtml(m: Model, year: number | null): string {
 /** King Wen number to the Unicode hexagram sign. */
 export const hexagramSign = (n: number): string => String.fromCodePoint(0x4dc0 + n - 1);
 
-function ichingLine(s: forecast.IchingStatement, extra = ''): string {
+function ichingLine(s: forecast.IchingStatement, extra = '', sign = ''): string {
   return (
     `<li><span class="when">${esc(isoDay(s.startUtcMs))} to ${esc(isoDay(s.endUtcMs))}</span> ` +
     `<span class="hex" aria-hidden="true">${esc(hexagramSign(s.hexagram.number))}</span> ` +
     `<b>${s.hexagram.number} ${esc(s.hexagram.hanzi)}</b> ${esc(s.hexagram.pinyin)}${extra}` +
     `<span class="zh" lang="zh">${esc(s.text)}</span> ` +
-    `<span class="muted">grade ${esc(s.gradeText)}</span> ${s.badges.map((b) => `<span class="badge">${esc(b)}</span>`).join('')}` +
-    `${s.negated ? ` <span class="muted">${esc(s.negated)}</span>` : ''}</li>`
+    `${sign ? `<span class="muted">${esc(sign)}</span> ` : ''}<span class="muted">${esc(forecast.ichingNotes(s).join('; '))}</span> ${s.badges.map((b) => `<span class="badge">${esc(b)}</span>`).join('')}</li>`
   );
 }
 
@@ -318,7 +317,7 @@ export function characterHtml(c: forecast.PeriodCharacter): string {
   const ich =
     `<h4>The I Ching</h4><p class="note">${esc(iching.note)}</p>` +
     `<p class="muted">Hexagram periods</p><ul class="plain">${iching.periods.map((p) => ichingLine(p, ' ')).join('')}</ul>` +
-    `<p class="muted">Sovereign hexagram of the month</p><ul class="plain">${iching.sovereign.map((p) => ichingLine(p, `${p.growing ? ' growing ' : ' waning '}`)).join('')}</ul>` +
+    `<p class="muted">Sovereign hexagram of the month</p><ul class="plain">${iching.sovereign.map((p) => ichingLine(p, `${p.growing ? ' growing ' : ' waning '}`, p.growing ? 'career supports' : 'career cautions')).join('')}</ul>` +
     (iching.cardinal.length === 0 ? '' : `<p class="muted">Cardinal hexagrams</p><ul class="plain">${iching.cardinal.map((p) => ichingLine(p, ' ')).join('')}</ul>`) +
     days;
   const st = western.statements

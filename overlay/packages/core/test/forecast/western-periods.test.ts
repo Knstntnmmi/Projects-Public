@@ -265,10 +265,10 @@ describe('the named convention westernTenthYear: the profected tenth house', () 
 });
 
 describe('valens.profection.transmission-lord', () => {
-  it('reproduces Valens\'s check: year 35, remainder 11, counts from Virgo to Cancer where Saturn stands', () => {
-    const m = chart({ Saturn: 100, Mars: 300, Moon: 250 }, 160); // Virgo rises; Saturn alone in Cancer
-    const f = P.transmissionLord(only(34, { model: m }));
-    expect(says('valens.profection.transmission-lord', f)).toContain('Year 35: Ascendant transmits to Saturn (in Cancer).');
+  it('counts year 23 (remainder 11) from an Aries Ascendant to Aquarius where Saturn stands', () => {
+    const m = chart({ Saturn: 310, Mars: 100, Moon: 200 }, 10); // Aries rises; Saturn alone in Aquarius
+    const f = P.transmissionLord(only(22, { model: m }));
+    expect(says('valens.profection.transmission-lord', f)).toContain('Year 23: Ascendant transmits to Saturn (in Aquarius).');
   });
   it('counts a year of remainder 0 as 12 and a year 13 as the sign itself', () => {
     expect(says('valens.profection.transmission-lord', P.transmissionLord(only(11)))[0]).toMatch(/^Year 12: Ascendant transmits to .* \(in Gemini\)\.$/);

@@ -6,7 +6,7 @@
  * kendra-trikona links, and houses counted from the natal Moon.
  *
  * Every table here is typed from data/rules.vedic.json (tables.DIGNITY, tables.LAGNA_NATURE,
- * tables.HOUSE_TOPICS), which a checker compared with the English translation of the Brihat
+ * tables.HOUSE_TOPICS), which a second reader compared with the English translation of the Brihat
  * Parashara Hora Shastra; the tests compare each entry back to that file. Nothing here is
  * the author's own doctrine: where the source does not speak the answer is 'unstated'.
  *
@@ -281,7 +281,8 @@ export interface YogaLink {
  * one of a trikona (5, 9), that (a) exchange signs, (b) are conjunct in a kendra or
  * trikona, (c) one sits in a house of the other kind, or (d) aspect by the full seventh.
  * The Lagna counts as both kinds. A link is cancelled when either lord also owns an evil
- * house, unless the per-Lagna list calls that lord auspicious. One entry per pair of
+ * house, unless the per-Lagna list calls that lord auspicious. A kendra lord that the
+ * per-Lagna list calls malefic forms no link unless it also owns a trikona. One entry per pair of
  * houses; the clause for Rahu and Ketu is not evaluated.
  */
 export function yogaLinks(lagnaSign: number, placements: readonly Placement[]): YogaLink[] {
@@ -296,6 +297,9 @@ export function yogaLinks(lagnaSign: number, placements: readonly Placement[]): 
       const k = lordOfHouse(lagnaSign, hk);
       const t = lordOfHouse(lagnaSign, ht);
       if (k === t) continue;
+      // Ch.34: a malefic that owns a kendra is auspicious only if it also owns a trikona. The lord of a
+      // kendra (4, 7, 10) owns a trikona only if it also holds the 1st, 5th or 9th.
+      if (functionalNature(lagnaSign, k) === 'malefic' && !housesOwned(lagnaSign, k).some((h) => TRIKONA.includes(h))) continue;
       const via: LinkVia[] = [];
       if (OWN_SIGNS[t].includes(sign(k)) && OWN_SIGNS[k].includes(sign(t))) via.push('exchange of signs');
       if (sign(k) === sign(t) && [...KENDRA, ...TRIKONA].includes(houseFrom(sign(k), lagnaSign))) via.push('conjunction in a kendra or trikona');

@@ -99,7 +99,7 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
     affects: 'The rule weight shown beside a signal',
     why: 'No accepted rule carries a sourced gate, so every signal is ungated. The cap is a display choice, off by default, and never changes a direction.',
     options: [
-      { value: 'false', label: 'Off', description: 'Each signal shows the rule weight the extractor rated.' },
+      { value: 'false', label: 'Off', description: 'Each signal shows the rule weight the rule file records.' },
       { value: 'true', label: 'On', description: 'Ungated signals show rule weight 1.' },
     ],
   },
@@ -107,7 +107,7 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
     key: 'baziStrengthThresholds',
     title: 'BaZi day-master strength bands',
     affects: 'bazi.strength-score and everything that reads the favourable elements',
-    why: 'The score bands are the extractor\'s operationalisation of the source; a score of exactly 45 or 55 is balanced.',
+    why: 'The score bands are the first reading\'s operationalisation of the source; a score of exactly 45 or 55 is balanced.',
     options: [{ value: '45/55', label: 'Weak below 45, strong above 55', description: 'Balanced from 45 to 55 inclusive.' }],
   },
   {

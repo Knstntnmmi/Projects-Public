@@ -123,7 +123,7 @@ export const TEXT = {
   notTestedYet: 'Not tested yet.',
   noQuotation: 'no quotation shown (translation)',
   sourceNotOpened: 'source not opened',
-  ruleWeight: 'rule weight 1 to 3 as rated by the extractor',
+  ruleWeight: 'rule weight 1 to 3 as recorded in the rule file',
   agreementA: 'Agreement means rule sets keyed to different clocks gave the same sign for the same topic and period.',
   agreementB:
     'It does not yet say the outcome follows: that waits until the scorecard shows agreeing periods doing better than the baseline, and all traditions read one birth moment, so a wrong birth time moves them together.',
@@ -132,7 +132,7 @@ export const TEXT = {
   withheldWestern: 'withheld pending verification',
   needsThreeGroups: 'Agreement needs at least three independent groups to say anything; showing the signals only.',
   natalPromiseHeading: 'The natal promise: what the chart itself says, without dates',
-  ichingByPeriod: 'The I Ching is read by period, not by year: ask for a window of at most 62 days to see its character.',
+  ichingByPeriod: 'The I Ching is read by period, not by year: ask for a window of at most 62 days to see its character, which includes the lines that name goods or an audience with a superior.',
   silentHeading: 'Silent',
   nothingAtAnyLevel: 'No level says anything.',
   experimentalWindow: 'The I Ching is experimental: its grades are a modern construction on the text.',

@@ -160,7 +160,31 @@ const judgment: RuleBinding = {
   ruleId: 'zhouyi.period-hexagram-judgment',
   tradition: 'iching',
   fire(ctx) {
-    return ext(ctx).periods.flatMap((p): Firing[] => {
+    const periods = ext(ctx).periods;
+    // The rule asks for the judgment of the sovereign hexagram too. Where it is also a gua qi hexagram of
+    // the same month there is one reading, and it is the one below; otherwise the month is reported on its own.
+    const monthly = ctx.sovereign().flatMap((m): Firing[] => {
+      if (periods.some((p) => p.hexagram.number === m.hexagram.number && p.startUtcMs < m.endUtcMs && p.endUtcMs > m.startUtcMs)) return [];
+      const id = `${m.hexagram.number}.0`;
+      const text = statementText(m.hexagram.number, 0)!;
+      const g = gradeOf(id, text);
+      if (!attachedToGeneral(g)) return [];
+      return [{
+        clock: CLOCK,
+        startUtcMs: m.startUtcMs,
+        endUtcMs: m.endUtcMs,
+        facts: [
+          { key: 'start', label: 'Period starts', value: isoDate(m.startUtcMs) },
+          { key: 'end', label: 'Period ends', value: isoDate(m.endUtcMs) },
+          { key: 'hexName', label: 'Hexagram', value: hexName(m.hexagram) },
+          ...statementFacts(id, text, g),
+        ],
+        direction: directionOfGrade(g),
+        conventionsUsed: ['sovereignBoundary'],
+        badges: ['the sovereign hexagram of the month'],
+      }];
+    });
+    return [...monthly, ...periods.flatMap((p): Firing[] => {
       const id = `${p.hexagram.number}.0`;
       const text = statementText(p.hexagram.number, 0)!;
       const g = gradeOf(id, text);
@@ -181,7 +205,7 @@ const judgment: RuleBinding = {
         conventionsUsed: ['guaQi'],
         badges: sov && sov.number === p.hexagram.number ? ['also the sovereign hexagram of the month'] : [],
       }];
-    });
+    })];
   },
 };
 
@@ -285,6 +309,8 @@ interface CueRuleOptions {
   cues: readonly Cue[];
   /** Extra facts and badges for one cue. */
   extra?: (cue: Cue) => { facts?: Fact[]; badges?: string[] };
+  /** Where the rule itself names the sign of a cue, the grade fact says so instead of printing a clause grade that is 0 beside a signed word. */
+  gradeSaysStated?: boolean;
 }
 
 /** A cue rule fires when a statement it names is in play; the sign is that of its clause, never of the whole statement. */
@@ -310,7 +336,7 @@ function cueBinding(o: CueRuleOptions): RuleBinding {
             { key: 'id', label: 'Statement', value: occ.id },
             { key: 'text', label: 'Statement text', value: text },
             { key: 'clause', label: 'Clause the rule grades', value: cue.clause },
-            { key: 'grade', label: 'Grade of the clause (-3 to +3)', value: gradeText(g) },
+            { key: 'grade', label: o.gradeSaysStated && cue.stated && cue.stated !== 'neutral' ? 'How the sign is given' : 'Grade of the clause (-3 to +3)', value: o.gradeSaysStated && cue.stated && cue.stated !== 'neutral' ? `the rule itself names it a ${cue.stated === 'favourable' ? 'gain' : 'loss'}` : o.gradeSaysStated ? `graded ${gradeText(g)}` : gradeText(g) },
             { key: 'via', label: 'In play as', value: occ.how },
             ...(negatedDetail(g) === null ? [] : [{ key: 'negated', label: 'Words not graded', value: negatedDetail(g)! }]),
             ...(more?.facts ?? []),
@@ -336,7 +362,7 @@ const travel = cueBinding({
 const audience = cueBinding({ ruleId: 'zhouyi.cue-audience', cues: AUDIENCE_CUES });
 const marriage = cueBinding({ ruleId: 'zhouyi.cue-marriage', cues: MARRIAGE_CUES });
 const illness = cueBinding({ ruleId: 'zhouyi.cue-illness', cues: ILLNESS_CUES });
-const goods = cueBinding({ ruleId: 'zhouyi.cue-goods', cues: GOODS_CUES });
+const goods = cueBinding({ ruleId: 'zhouyi.cue-goods', cues: GOODS_CUES, gradeSaysStated: true });
 
 /** One binding per rule the engine can evaluate. */
 /** The levels each rule speaks at: the I Ching has one, read by period. */

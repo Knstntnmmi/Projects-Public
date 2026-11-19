@@ -258,9 +258,23 @@ describe('the character of a period', () => {
     const p = c.iching.periods[0]!;
     expect(html).toContain(p.hexagram.hanzi);
     expect(html).toContain(esc(p.text));
-    expect(html).toContain(`grade ${esc(p.gradeText)}`);
+    expect(html).toContain(esc(`as a whole it reads: ${p.reading}`));
+    expect(html).not.toMatch(/grade [+-]?\d/);
     expect(html).toContain('class="badge">experimental<');
     expect(html).toContain(hexagramSign(p.hexagram.number));
+  });
+
+  it('shows the topic a line is named for, with the sign of that clause, and the sovereign month for career', () => {
+    const w = forecast.periodCharacter(forecast.makeInput(moment, { fromYear: 2026, toYear: 2026 }), { startUtcMs: Date.UTC(2026, 4, 1), endUtcMs: Date.UTC(2026, 4, 9) });
+    const h = characterHtml(w);
+    expect(textOf(h)).toContain('named for wealth by the words 得其資斧: supports (named in the rule as a gain)');
+    expect(textOf(h)).toContain('named for wealth by the words 喪牛于易: cautions');
+    expect(textOf(h)).toContain('career supports');
+  });
+
+  it('shows the note for a negated verdict word on a line the grader leaves ungraded', () => {
+    const w = forecast.periodCharacter(forecast.makeInput(moment, { fromYear: 2026, toYear: 2026 }), { startUtcMs: Date.UTC(2026, 3, 8), endUtcMs: Date.UTC(2026, 3, 9) });
+    expect(textOf(characterHtml(w))).toContain('negated, not graded');
   });
 
   it('shows Lilly\'s day transits in their own part, without the badge experimental', () => {

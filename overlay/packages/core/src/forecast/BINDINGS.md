@@ -1,6 +1,6 @@
 # Writing the bindings of one tradition
 
-For the three colleagues who fill in `predicates/bazi.ts`, `predicates/vedic.ts` and `predicates/iching.ts` (Western is carried but withheld; `predicates/western.ts` is the same stub for later). Each of you edits your one file and any new files beside it (`predicates/bazi/…`, helpers, tables). Nobody edits `types.ts`, `registry.ts`, `evaluate.ts`, `signals.ts`, the data files or another tradition's file. If you think a shared file is wrong, say so; do not change it.
+For the authors who fill in `predicates/bazi.ts`, `predicates/vedic.ts` and `predicates/iching.ts` (Western is carried but withheld; `predicates/western.ts` is the same stub for later). Each of you edits your one file and any new files beside it (`predicates/bazi/…`, helpers, tables). Nobody edits `types.ts`, `registry.ts`, `evaluate.ts`, `signals.ts`, the data files or another tradition's file. If you think a shared file is wrong, say so; do not change it.
 
 ## What you are binding
 

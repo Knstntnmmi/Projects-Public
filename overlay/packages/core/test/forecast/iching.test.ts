@@ -48,6 +48,19 @@ const gradeOfId = (id: string): number => {
 const fact = (f: Firing, key: string): string | number => f.facts.find((x) => x.key === key)!.value;
 const run = (id = 'j2000', extra: Partial<Parameters<typeof makeInput>[1]> = {}) => evaluate(inputFor(id, extra), { traditions: ['iching'], runs: 20, seed: 1, includePeriodRead: true });
 
+describe('the judgment of the sovereign hexagram', () => {
+  it('is reported once for every month: under the default convention each sovereign hexagram is also a gua qi hexagram inside its month', () => {
+    const f = fire('zhouyi.period-hexagram-judgment', 'j2000', { fromYear: 2026, toYear: 2026 });
+    // 大壯 (34) is the sovereign hexagram from 2026-03-05 to 2026-04-04 and the gua qi hexagram from 2026-03-26, inside that month.
+    const dazhuang = f.find((x) => fact(x, 'hexName') === '大壯 (34)');
+    expect(dazhuang).toBeDefined();
+    expect(new Date(dazhuang!.startUtcMs!).toISOString().slice(0, 10)).toBe('2026-03-26');
+    expect(dazhuang!.badges).toContain('also the sovereign hexagram of the month');
+    // So no month needs a reading of its own, and none is reported twice.
+    expect(f.some((x) => (x.badges ?? []).includes('the sovereign hexagram of the month'))).toBe(false);
+  });
+});
+
 describe('the I Ching bindings: what is bound and what is not', () => {
   it('binds ten rules and lists the grading method as not evaluated, with a reason', () => {
     expect(iching.BINDINGS.map((b) => b.ruleId).sort()).toEqual(

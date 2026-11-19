@@ -43,7 +43,7 @@ A reader is shown techniques that a practitioner would name, which the engine ca
 
 ## Why a year has no single verdict
 
-The sources do not say how to add one tradition's reading to another's, or one technique's to another's. They give rules, each for its own period. Any total would need weights, and the weights in the rule files are the extractor's reading of emphasis, not the sources'. So the forecast gives no score, no total and no figure for a year. It gives the words by technique and a headline that lists the techniques by word, such as "Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions). Silent: Western solar return." If two techniques disagree, the page shows both.
+The sources do not say how to add one tradition's reading to another's, or one technique's to another's. They give rules, each for its own period. Any total would need weights, and the weights in the rule files are the first reading's reading of emphasis, not the sources'. So the forecast gives no score, no total and no figure for a year. It gives the words by technique and a headline that lists the techniques by word, such as "Supports: Vedic antardasha. Cautions: Saturn from the Moon. Mixed: BaZi year pillar (3 rules support, 1 cautions). Silent: Western solar return." If two techniques disagree, the page shows both.
 
 A statement that extends beyond a year counts for that year only if it overlaps it by enough days; see the conventions below. The statement list always shows the true dates.
 

@@ -325,7 +325,7 @@ const yearNumber = (y: ProfectedYear): number => y.k + 1;
 /**
  * Year N counts r = N mod 12 signs inclusively from the Ascendant, the Sun and the Moon; the
  * count ends (r - 1) signs after the start, which is the same sign as the whole-sign profection
- * of age N - 1 (the Valens check: year 35, remainder 11, from Virgo reaches Cancer).
+ * of age N - 1 (an invented check: year 23, remainder 11, from Aries reaches Aquarius).
  */
 export const transmissionLord: PeriodRule = (w) => {
   const starts: Array<[string, number]> = [['Ascendant', w.model.ascSign], ['Sun', w.model.signOf('Sun')], ['Moon', w.model.signOf('Moon')]];
@@ -369,11 +369,13 @@ const START_POINTS: readonly Start[] = [
   { start: 'the Imum Coeli', matter: 'estates, possessions, secret matters, legacies', topics: ['wealth'], sign: (w) => norm12(signIndexOf(w.mc) + 6) },
   { start: 'Venus', matter: 'women, love affairs, associations', topics: ['relationships'], sign: (w) => signOfPlanet(w.model, 'Venus') },
   { start: 'Mars', matter: 'military or public matters', topics: ['general'], sign: (w) => signOfPlanet(w.model, 'Mars') },
-  { start: 'Saturn', matter: 'bankruptcy, money or property, secret diseases, family inheritance', topics: ['wealth'], sign: (w) => signOfPlanet(w.model, 'Saturn') },
+  { start: 'Saturn', matter: 'bankruptcy, money or property, family inheritance', topics: ['wealth'], sign: (w) => signOfPlanet(w.model, 'Saturn') },
   { start: 'Jupiter', matter: 'rank, friendship, alliances, possessions', topics: ['career'], sign: (w) => signOfPlanet(w.model, 'Jupiter') },
   { start: 'Mercury', matter: 'associations, servile matters, giving and receiving, written matters', topics: ['general'], sign: (w) => signOfPlanet(w.model, 'Mercury') },
 ];
 
+// The matters are named as the topic needs them: the one Saturn matter that concerns the body is
+// left out of this wealth line, so that no sickness word stands in a page about money.
 export const topicStart: PeriodRule = (w) => {
   const out: Firing[] = [];
   for (const y of w.years) {

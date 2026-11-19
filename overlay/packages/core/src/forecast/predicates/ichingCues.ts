@@ -153,6 +153,28 @@ export function cueTopicsOf(id: string): Topic[] {
   return topics;
 }
 
+/** What a cue rule says of one statement for one topic, with the sign the rule or the grader gives its clause. */
+export interface CueRead {
+  topic: Topic;
+  clause: string;
+  direction: Direction;
+  note: string | null;
+}
+
+/** The cues that name a statement, one per topic, each with its own sign: the sign of the clause, not of the whole statement. */
+export function cuesOfStatement(id: string): CueRead[] {
+  const out: CueRead[] = [];
+  const add = (t: Topic, cues: readonly Cue[]): void => {
+    for (const c of cues) if (c.id === id) out.push({ topic: t, clause: c.clause, direction: cueDirection(c, gradeClause(c.clause)), note: c.note ?? null });
+  };
+  add('home-travel', TRAVEL_CUES);
+  add('career', AUDIENCE_CUES);
+  add('relationships', MARRIAGE_CUES);
+  add('health', ILLNESS_CUES);
+  add('wealth', GOODS_CUES);
+  return out;
+}
+
 /**
  * The topics a statement is attached to: 'general' where its verdict words give it a grade,
  * and every topic a cue rule names it for. A statement with grade 0 and no topic cue is

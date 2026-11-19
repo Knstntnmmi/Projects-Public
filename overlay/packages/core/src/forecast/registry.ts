@@ -3,7 +3,7 @@
 /**
  * The registry joins the rule data to the code that evaluates it, and accounts for every
  * rule: bound (it runs), withheld (and why), unbound (no code yet) or held back (the
- * checkers could not confirm it, so it is not in the rule files at all).
+ * second readers could not confirm it, so it is not in the rule files at all).
  */
 import type { ContextBuilder, ForecastContext } from './context.ts';
 import { levelTradition } from './levels.ts';

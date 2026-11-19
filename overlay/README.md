@@ -24,7 +24,7 @@ A survey of the open-source and commercial landscape in November 2026 found many
 
 **A graded registry of correspondences.** Each claimed link between systems is marked exact, structural, historical, loose or coincidence, with sources, and the ones that can be computed are computed by the tests. One result of doing so: the sixty-four-gate ecliptic wheel of twentieth-century hexagram astrology is exactly the Fu Xi circle attributed to Shao Yong run backwards and rotated, with the seam that this project puts at the winter solstice falling at 13°15′ of Taurus.
 
-**Seams with a chance baseline.** The timeline marks dates on which tracks running on two or more independent clocks change together, and says how many such dates would be expected if the boundaries fell at random. Tracks that share a clock are counted once: the firdaria and the profections both turn on the birthday, so their coinciding is arithmetic and not a finding.
+**Seams, compared with dates drawn at random.** The timeline marks dates on which tracks running on two or more independent clocks change together, and says how many such dates would be expected if the boundaries fell at random. Tracks that share a clock are counted once: the firdaria and the profections both turn on the birthday, so their coinciding is arithmetic and not a finding.
 
 **Published test vectors.** `fixtures/golden` holds Four Pillars for a set of boundary cases under every combination of clock basis and day boundary, and solar-term instants to the second, so that another calculator can be checked convention by convention.
 
@@ -129,7 +129,7 @@ Zone offsets and daylight-saving history come from the tz database built into th
 
 ## What it does not do
 
-It adds no interpretation of its own: the forecast states only what a named rule of a tradition says, and gives no score, no composite and no verdict for a year. It does not rank a day as lucky, or say that a seam means anything. It does not cast hexagrams, which is a chance procedure and not a calculation. It does not yet include the Chinese lunisolar calendar (and so not Plum Blossom numerology or Zi Wei Dou Shu), Qi Men Dun Jia, Da Liu Ren, the true unequal twenty-eight mansions on the sky, Ptolemy's own bounds (the forecast rules use the table Lilly printed), zodiacal releasing or primary directions.
+It adds no interpretation of its own: the forecast states only what a named rule of a tradition says, and gives no score, no composite and no verdict for a year. It does not rank a day as lucky, or say that a seam means anything. It does not cast hexagrams, which is done by drawing lots and not by calculation. It does not yet include the Chinese lunisolar calendar (and so not Plum Blossom numerology or Zi Wei Dou Shu), Qi Men Dun Jia, Da Liu Ren, the true unequal twenty-eight mansions on the sky, Ptolemy's own bounds (the forecast rules use the table Lilly printed), zodiacal releasing or primary directions.
 
 ## Next
 

@@ -190,15 +190,16 @@ export function windowTextLines(c: forecast.PeriodCharacter): string[] {
   const hex = (h: forecast.IchingStatement['hexagram']): string => `${h.number} ${h.hanzi} ${h.pinyin}`;
   const span = (s: { startUtcMs: number; endUtcMs: number }): string => `${isoDay(s.startUtcMs)} to ${isoDay(s.endUtcMs - 1)}`;
   out.push('  Hexagram periods');
-  for (const p of c.iching.periods) out.push(`    ${span(p)}  ${hex(p.hexagram)}`);
+  const notes = (s: forecast.IchingStatement): string => forecast.ichingNotes(s).join('; ');
+  for (const p of c.iching.periods) out.push(`    ${span(p)}  ${hex(p.hexagram)}: its judgment, ${notes(p)}`);
   out.push('  Sovereign hexagram of the month');
-  for (const p of c.iching.sovereign) out.push(`    ${span(p)}  ${hex(p.hexagram)}${p.growing ? ', growing' : ', waning'}`);
+  for (const p of c.iching.sovereign) out.push(`    ${span(p)}  ${hex(p.hexagram)}${p.growing ? ', growing: career supports' : ', waning: career cautions'}; its judgment, ${notes(p)}`);
   if (c.iching.cardinal.length > 0) {
     out.push('  Cardinal hexagram periods');
-    for (const p of c.iching.cardinal) out.push(`    ${span(p)}  ${hex(p.hexagram)}`);
+    for (const p of c.iching.cardinal) out.push(`    ${span(p)}  ${hex(p.hexagram)}: its judgment, ${notes(p)}`);
   }
   out.push('  Day by day: the line of the period hexagram the day falls in');
-  for (const d of c.iching.days) out.push(`    ${isoDay(d.startUtcMs)}  ${hex(d.hexagram)}, line ${d.line}: ${d.text} (grade ${d.gradeText})`);
+  for (const d of c.iching.days) out.push(`    ${isoDay(d.startUtcMs)}  ${hex(d.hexagram)}, line ${d.line}: ${d.text} (${notes(d)})`);
   out.push('', 'Western astrology, the days a planet passes a point of the birth chart');
   out.push(`  ${c.western.note}`);
   if (c.western.unavailable) out.push(`  not available: ${c.western.unavailable}`);

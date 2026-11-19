@@ -4,7 +4,7 @@
   "id": "bazi.tiaohou-table",
   "kind": "rule+table",
   "verdict": "unverifiable",
-  "reason": "Checker did not open 窮通寶鑑. Table internally circular (壬 in 巳 lists 壬 itself), 丁 in 寅 order doubtful, about 15 cells blank, first-named-stem extraction lossy. Load the full text before use. 調候 convention therefore unavailable."
+  "reason": "Not opened: 窮通寶鑑. Table internally circular (壬 in 巳 lists 壬 itself), 丁 in 寅 order doubtful, about 15 cells blank, first-named-stem extraction lossy. Load the full text before use. 調候 convention therefore unavailable."
  },
  {
   "tradition": "bazi",
@@ -60,18 +60,18 @@
   "id": "table: 六合 合化 elements and 合解沖 rule",
   "kind": "table",
   "verdict": "unverifiable",
-  "reason": "Elements garbled in the researcher's text, 午未 contested, 合解沖 text not seen; the researcher's quote 子寅辰午申戌六者為陽… was not found by the checker."
+  "reason": "Elements garbled in the first reading of the text, 午未 contested, 合解沖 text not seen; the quote first given 子寅辰午申戌六者為陽… was not found in the edition read."
  },
  {
   "tradition": "bazi",
   "id": "table: 辰戌丑未 clashes delighted in; clashes cancelled in a great structure",
   "kind": "table",
   "verdict": "unverifiable",
-  "reason": "Not found by the checker in 論衝擊."
+  "reason": "Not found in the edition read in 論衝擊."
  },
  {
   "tradition": "bazi",
-  "id": "table: coverCut earth 截腳 entry printed 乙卯 (probably 己卯)",
+  "id": "table: coverCut earth 截腳 entry printed 乙卯 (possibly 己卯)",
   "kind": "table-cell",
   "verdict": "unverifiable",
   "reason": "Printing of 滴天髓闡微 corrupt; not silently emended."
@@ -81,14 +81,14 @@
   "id": "claims: father 偏財, mother 正印, 傷官 as grandchild, 倒食 = 偏印 (from ten-gods-by-topic)",
   "kind": "claims",
   "verdict": "unverifiable",
-  "reason": "Not seen by the checker; removed from the confirmed rule."
+  "reason": "Not seen in the edition read; removed from the confirmed rule."
  },
  {
   "tradition": "bazi",
   "id": "bazi.topic-wealth-promise quote 財多身弱，妻反勝夫",
   "kind": "quote",
   "verdict": "unverifiable",
-  "reason": "Line not found by the checker; no quote shown."
+  "reason": "Line not found in the edition read; no quote shown."
  },
  {
   "tradition": "western",
@@ -144,35 +144,35 @@
   "id": "parashari.dasha-transit-concordance",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Raman p.415-416 supports only blending of birth chart, dasa-bhukti and gochara; the same/opposite test is the extractor's design. The concordance is computed by the overlay layer as an engine convention, not as a sourced rule."
+  "reason": "Raman p.415-416 supports only blending of birth chart, dasa-bhukti and gochara; the same/opposite test is the engine's design. The concordance is computed by the overlay layer as an engine convention, not as a sourced rule."
  },
  {
   "tradition": "vedic",
   "id": "table: Venus vedha list",
   "kind": "table",
   "verdict": "unverifiable",
-  "reason": "Sl.8 wording unclear; checker advises not scoring Venus vedha until checked."
+  "reason": "Sl.8 wording unclear; a second reading advises not scoring Venus vedha until checked."
  },
  {
   "tradition": "vedic",
   "id": "table: DIGNITY ratio of effects Ch.3 sl.59-60",
   "kind": "table-cell",
   "verdict": "unverifiable",
-  "reason": "Reported by the checker as missed; not seen by the extractor."
+  "reason": "Reported as missed in checking; not seen in the first reading."
  },
  {
   "tradition": "iching",
   "id": "zhouyi.position-prior",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Xici xia not opened by the checker; recount of plain 吉 and 凶 by line differs by one in two cells (regex differences). Open the chapter and cite its number first."
+  "reason": "Xici xia not opened; recount of plain 吉 and 凶 by line differs by one in two cells (regex differences). Open the chapter and cite its number first."
  },
  {
   "tradition": "iching",
   "id": "zhouyi.zhen-conditional",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Xici line 吉凶者，貞勝者也 not seen by the checker; the rule would double count 貞吉 already scored as one token; the 'to divine' reading is a school difference."
+  "reason": "Xici line 吉凶者，貞勝者也 not seen in the edition read; the rule would double count 貞吉 already scored as one token; the 'to divine' reading is a school difference."
  },
  {
   "tradition": "iching",
@@ -186,7 +186,7 @@
   "id": "claim: plain 凶-family total 58 equals Shaughnessy",
   "kind": "claim",
   "verdict": "unverifiable",
-  "reason": "Brill chapter not opened; checker's regex finds 57."
+  "reason": "Brill chapter not opened; a second count finds 57."
  },
  {
   "tradition": "western",

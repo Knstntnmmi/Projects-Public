@@ -78,7 +78,7 @@ export interface Rule {
   computable: 'now' | 'small-addition' | 'needs-return-chart';
   topics: Topic[];
   direction: Direction;
-  /** The extractor's rating, 1 to 3. Display only; never combined. */
+  /** The rule file's rating, 1 to 3. Display only; never combined. */
   strength: 1 | 2 | 3;
   template: string;
   sourceCitation: string;

@@ -142,14 +142,14 @@ No accepted rule carries a sourced gate, so every signal is ungated. The cap is 
 
 | Value | Meaning | Default |
 | --- | --- | --- |
-| `false` | Off. Each signal shows the rule weight the extractor rated. | yes |
+| `false` | Off. Each signal shows the rule weight the rule file records. | yes |
 | `true` | On. Ungated signals show rule weight 1. |  |
 
 ## BaZi day-master strength bands
 
 Setting `baziStrengthThresholds`. Affects: bazi.strength-score and everything that reads the favourable elements.
 
-The score bands are the extractor's operationalisation of the source; a score of exactly 45 or 55 is balanced.
+The score bands are the first reading's operationalisation of the source; a score of exactly 45 or 55 is balanced.
 
 | Value | Meaning | Default |
 | --- | --- | --- |

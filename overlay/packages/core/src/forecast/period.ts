@@ -16,9 +16,9 @@ import { dedupe } from './readings.ts';
 import { DEFAULT_REGISTRY, statusOf, type Registry } from './registry.ts';
 import { runConfig } from './evaluate.ts';
 import { signalsFromFirings } from './signals.ts';
-import { BADGE, directionWord, LEVEL_LABEL, TEXT, windowTooLongMessage, type DisplayWord } from './phrasebook.ts';
+import { BADGE, directionWord, TOPIC_LABEL, LEVEL_LABEL, TEXT, windowTooLongMessage, type DisplayWord } from './phrasebook.ts';
 import { buildContext as buildIchingContext } from './predicates/iching.ts';
-import { topicsOfStatement } from './predicates/ichingCues.ts';
+import { cuesOfStatement, directionOfGrade, topicsOfStatement, type CueRead } from './predicates/ichingCues.ts';
 import type { LevelId, Signal, Span, Topic } from './types.ts';
 
 export const MAX_WINDOW_DAYS = 62;
@@ -36,6 +36,10 @@ export interface IchingStatement {
   gradeText: string;
   /** The topics the statement is attached to: 'general' where it has a grade, and the topics a cue rule names it for. Empty for a grade 0 that no cue names. */
   topics: Topic[];
+  /** The word the verdict words of the whole statement give: supports, cautions, mixed, or 'no verdict word'. A modern construction on the text. */
+  reading: string;
+  /** What the cue rules say of this statement, topic by topic, each with the sign of its own clause (a statement can be named for wealth and yet read as a whole in the other direction). */
+  cues: CueRead[];
   /** Verdict words a negation stood before and that were not graded, with the detail "negated, not graded"; null when none. */
   negated: string | null;
   badges: string[];
@@ -97,6 +101,22 @@ export interface PeriodCharacter {
 
 const FOUR_CARDINAL = ['坎', '震', '離', '兌'].map((n) => hexagramByName(n).number);
 
+/**
+ * What to print beside a statement, in plain words and without a number: how its verdict words read
+ * as a whole, then each topic the text names it for with the sign of that clause, then any negated word.
+ */
+export function ichingNotes(s: IchingStatement): string[] {
+  const out = [`as a whole it reads: ${s.reading}`];
+  for (const c of s.cues) out.push(`named for ${TOPIC_LABEL[c.topic]} by the words ${c.clause}: ${directionWord(c.direction) === 'active' ? 'no direction given' : directionWord(c.direction)}${c.note ? ` (${c.note})` : ''}`);
+  if (s.negated) out.push(s.negated);
+  return out;
+}
+
+function readingOf(g: Grade): string {
+  const d = directionOfGrade(g);
+  return d === 'activates' ? 'no verdict word' : directionWord(d);
+}
+
 function statementOf(h: Hexagram, line: number, startUtcMs: number, endUtcMs: number): IchingStatement {
   const text = statementText(h.number, line)!;
   const g: Grade = gradeStatement(text);
@@ -108,6 +128,8 @@ function statementOf(h: Hexagram, line: number, startUtcMs: number, endUtcMs: nu
     grade: g.grade,
     gradeText: gradeText(g),
     topics: topicsOfStatement(`${h.number}.${line}`, g),
+    reading: readingOf(g),
+    cues: cuesOfStatement(`${h.number}.${line}`),
     negated: negatedDetail(g),
     badges: [BADGE.experimental],
     startUtcMs,

@@ -58,44 +58,56 @@ export function weekday(jdn: number): (typeof WEEKDAYS)[number] {
 
 // --- Chinese almanac day cycles ----------------------------------------------
 
-/** The twelve day officers (建除十二神). */
+/**
+ * The twelve day officers of the jianchu cycle (建除十二神); scholars call them day labels.
+ * "Level" and "Shut" are the renderings on which Harkness (2019, table 1) and Ho (2003,
+ * p. 30) agree; the other ten are kept as they were.
+ */
 export const DAY_OFFICERS = [
-  ['建', 'Establish'], ['除', 'Remove'], ['滿', 'Full'], ['平', 'Balance'], ['定', 'Settle'], ['執', 'Hold'],
-  ['破', 'Break'], ['危', 'Danger'], ['成', 'Complete'], ['收', 'Receive'], ['開', 'Open'], ['閉', 'Close'],
+  ['建', 'Jian', 'Establish'], ['除', 'Chu', 'Remove'], ['滿', 'Man', 'Full'], ['平', 'Ping', 'Level'], ['定', 'Ding', 'Settle'], ['執', 'Zhi', 'Hold'],
+  ['破', 'Po', 'Break'], ['危', 'Wei', 'Danger'], ['成', 'Cheng', 'Complete'], ['收', 'Shou', 'Receive'], ['開', 'Kai', 'Open'], ['閉', 'Bi', 'Shut'],
 ] as const;
 
 /** The officer of a day: "Establish" falls where the day's branch equals the month's. */
-export function dayOfficer(dayBranch: number, monthBranch: number): { hanzi: string; english: string } {
-  const [hanzi, english] = DAY_OFFICERS[(((dayBranch - monthBranch) % 12) + 12) % 12]!;
-  return { hanzi, english };
+export function dayOfficer(dayBranch: number, monthBranch: number): { hanzi: string; pinyin: string; english: string } {
+  const [hanzi, pinyin, english] = DAY_OFFICERS[(((dayBranch - monthBranch) % 12) + 12) % 12]!;
+  return { hanzi, pinyin, english };
 }
 
-/** The twenty-eight lunar mansions in their day-cycle order, beginning with Jiao. */
+/** The twenty-eight lodges (xiu) in their day-cycle order, beginning with Jiao. */
 export const MANSIONS = [
   '角', '亢', '氐', '房', '心', '尾', '箕', '斗', '牛', '女', '虛', '危', '室', '壁',
   '奎', '婁', '胃', '昴', '畢', '觜', '參', '井', '鬼', '柳', '星', '張', '翼', '軫',
 ] as const;
 
+const LODGE_PINYIN = [
+  'Jiao', 'Kang', 'Di', 'Fang', 'Xin', 'Wei', 'Ji', 'Dou', 'Niu', 'Nu', 'Xu', 'Wei', 'Shi', 'Bi',
+  'Kui', 'Lou', 'Wei', 'Mao', 'Bi', 'Zui', 'Shen', 'Jing', 'Gui', 'Liu', 'Xing', 'Zhang', 'Yi', 'Zhen',
+] as const;
+
 /**
- * The mansion that labels a day in the almanac's continuous twenty-eight-day cycle.
+ * The lodge (xiu) that labels a day in the almanac's continuous twenty-eight-day cycle.
  * This is a day count locked to the week (Jiao always falls on a Thursday); it says
  * nothing about where the Moon actually is.
  */
-export function mansionOfDay(jdn: number): { index: number; hanzi: string } {
+export function mansionOfDay(jdn: number): { index: number; hanzi: string; pinyin: string } {
   const index = (((jdn + 11) % 28) + 28) % 28;
-  return { index, hanzi: MANSIONS[index]! };
+  return { index, hanzi: MANSIONS[index]!, pinyin: LODGE_PINYIN[index]! };
 }
 
-/** The nine stars of the flying-star and Nine Star Ki year count. */
+/**
+ * The nine stars (zibai) of the flying-star and Nine Star Ki year count, which run through
+ * the nine palaces (jiugong). Ho (2003) prints the third as "3 blue-green".
+ */
 export const NINE_STARS = [
-  ['一白', 'One White', 'Water'], ['二黑', 'Two Black', 'Earth'], ['三碧', 'Three Jade', 'Wood'],
-  ['四綠', 'Four Green', 'Wood'], ['五黃', 'Five Yellow', 'Earth'], ['六白', 'Six White', 'Metal'],
-  ['七赤', 'Seven Red', 'Metal'], ['八白', 'Eight White', 'Earth'], ['九紫', 'Nine Purple', 'Fire'],
+  ['一白', 'Yi Bai', 'One White', 'Water'], ['二黑', 'Er Hei', 'Two Black', 'Earth'], ['三碧', 'San Bi', 'Three Blue-Green', 'Wood'],
+  ['四綠', 'Si Lu', 'Four Green', 'Wood'], ['五黃', 'Wu Huang', 'Five Yellow', 'Earth'], ['六白', 'Liu Bai', 'Six White', 'Metal'],
+  ['七赤', 'Qi Chi', 'Seven Red', 'Metal'], ['八白', 'Ba Bai', 'Eight White', 'Earth'], ['九紫', 'Jiu Zi', 'Nine Purple', 'Fire'],
 ] as const;
 
 /** The star ruling a Lichun-to-Lichun year; the stars run backwards through the years. */
-export function nineStarOfYear(cycleYear: number): { number: number; hanzi: string; english: string; element: string } {
+export function nineStarOfYear(cycleYear: number): { number: number; hanzi: string; pinyin: string; english: string; element: string } {
   const number = ((((11 - cycleYear) % 9) + 9 - 1) % 9) + 1;
-  const [hanzi, english, element] = NINE_STARS[number - 1]!;
-  return { number, hanzi, english, element };
+  const [hanzi, pinyin, english, element] = NINE_STARS[number - 1]!;
+  return { number, hanzi, pinyin, english, element };
 }

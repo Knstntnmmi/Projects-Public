@@ -50,14 +50,26 @@ The interval from birth to the neighbouring jie is scaled so that three days sta
 
 ## How the gua qi hexagrams divide the year
 
-Setting `guaQi`. Affects: Gua qi ring and track.
+Setting `guaQi`. Affects: Gua qi ring and track, and the gua qi hexagram of a moment.
 
-The Han scheme gave each of sixty hexagrams six and seven-eightieths days of a mean year counted from the winter solstice. Laid on the true Sun instead, each hexagram spans six degrees of longitude. The two differ by up to about two days.
+The scheme implemented is Meng Xi's as Yi Xing adopted it in the Dayan calendar: sixty hexagrams of six and seven-eightieths days each from the winter solstice (Xin Tang shu 27A, Gua yi; table in 28A). Yi Xing also reports a different allotment of Jing Fang's, offered as a third option. Laid on the true Sun instead of a mean year, each of the sixty spans six degrees of longitude, and the two readings differ by up to about two days.
 
 | Value | Meaning | Default |
 | --- | --- | --- |
-| `equal-longitude` | Six degrees of solar longitude each. Consistent with the modern true-Sun solar terms. | yes |
-| `mean-time` | One sixtieth of the solstice-to-solstice year each. Closer to the original mean-time scheme. |  |
+| `equal-longitude` | Six degrees of solar longitude each. Meng Xi's sixty hexagrams, consistent with the modern true-Sun solar terms. | yes |
+| `mean-time` | One sixtieth of the solstice-to-solstice year each. Meng Xi's sixty hexagrams, closer to the original mean-time scheme. |  |
+| `jing-fang` | Jing Fang's allotment, in mean time. As Yi Xing reports it: Kan, Li, Zhen and Dui take the first 73/80 of a day at the head of each solstice and equinox; Yi, Jin, Jing and Da Xu take 5 days 14 parts; the rest 6 days 7 parts. Scaled to fill the solstice-to-solstice year, so the four cardinal hexagrams appear as short periods of their own. |  |
+
+## Where each sovereign hexagram begins
+
+Setting `sovereignBoundary`. Affects: Sovereign-hexagram ring, track label and fact.
+
+The twelve sovereign hexagrams are set one to a month, but the BaZi month runs from jie to jie while the Dayan table (Xin Tang shu 28A) begins each month's group of five hexagrams at the zhongqi. The two arcs are the same thirty degrees offset by fifteen.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `jie` | At the jie, with the branch month. Fu from the Sun at 255 degrees (Daxue). The project's default. | yes |
+| `zhongqi` | At the zhongqi, as in the Dayan table. Fu from the Sun at 270 degrees (the winter solstice), fifteen degrees later. |  |
 
 ## Place of the lunar nodes in a night-chart firdaria
 
@@ -78,18 +90,19 @@ Sidereal systems measure from a star-fixed point; which point is a matter of sch
 
 | Value | Meaning | Default |
 | --- | --- | --- |
-| `lahiri` | Lahiri (Chitrapaksha). The Indian national-calendar standard, here from a polynomial accurate to a few arcseconds near the present. | yes |
+| `lahiri` | Lahiri (Chitrapaksha). The Indian national-calendar standard. The true ayanamsa (nutation included), fixed at 23 degrees 15 minutes 00.658 seconds on 21 March 1956 and carried by the IAU precession; within about 0.3 arcsecond of the Indian Astronomical Ephemeris values it was compared with, if the value at that epoch is indeed a true one. | yes |
 
 ## Maya calendar correlation
 
 Setting `mayaCorrelation`. Affects: Long Count, Tzolkin, Haab.
 
-The correlation constant ties the Long Count to the Julian day count.
+The correlation constant ties the Long Count to the Julian day count. It is chosen by argument, not measured, and the literature does not settle on one value: Martin and Skidmore (2012) call 584283 and 584285 the two most widely accepted and argue for 584286 from Venus records.
 
 | Value | Meaning | Default |
 | --- | --- | --- |
-| `584283` | GMT 584283. The Goodman-Martinez-Thompson correlation, matching the living highland day count. | yes |
-| `584285` | 584285. The "astronomical" variant two days later. |  |
+| `584283` | 584283 (Goodman-Martinez-Thompson). The common default, and not a settled value. Favoured by those who hold that the highland day count has continued unbroken (Martin and Skidmore 2012). | yes |
+| `584285` | 584285 (Thompson's own value). Thompson's value from 1927 onwards, two days later than 584283 (Martin and Skidmore 2012). |  |
+| `584286` | 584286 (Martin and Skidmore). Proposed by Martin and Skidmore (2012) from Maya records of the movements of Venus; one day later than 584285. |  |
 
 ## Choices that are not yet settings
 

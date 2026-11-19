@@ -10,7 +10,7 @@ import { angles, bisectChange, longitudeOf, norm360 } from '../substrate/sky.ts'
 import { julianDayNumber, MS, zoneOffsetMinutes, fieldsFromUtcMs, type Moment } from '../substrate/time.ts';
 import { fourPillars, luck, type Sex } from '../systems/bazi/index.ts';
 import { mayaDate, weekday } from '../systems/calendars/index.ts';
-import { GATE_SEQUENCE, GATE_START, GUA_QI_SEQUENCE, GUA_QI_START, guaQiSpans, wheelPosition } from '../systems/iching/index.ts';
+import { GATE_SEQUENCE, GATE_START, GUA_QI_SEQUENCE, GUA_QI_START, guaQiSpans, SOVEREIGN_SEQUENCE, sovereignStart, wheelPosition } from '../systems/iching/index.ts';
 import { nakshatraOf } from '../systems/vedic/index.ts';
 import { chart, firdariaOrder, planetaryHour, signOf } from '../systems/western/index.ts';
 import type { SystemId } from './rings.ts';
@@ -88,6 +88,16 @@ function neighbour(def: FactDef, utcMs: number, direction: 1 | -1, here: string)
   return null;
 }
 
+function guaQiHanzi(ms: number, conventions: Conventions): string {
+  return conventions.guaQi === 'equal-longitude'
+    ? wheelPosition(GUA_QI_SEQUENCE, GUA_QI_START, longitudeOf('Sun', ms)).hexagram.hanzi
+    : guaQiSpans(ms, ms + 1, conventions.guaQi)[0]!.hexagram.hanzi;
+}
+
+function sovereignHanzi(ms: number, conventions: Conventions): string {
+  return wheelPosition(SOVEREIGN_SEQUENCE, sovereignStart(conventions.sovereignBoundary), longitudeOf('Sun', ms)).hexagram.hanzi;
+}
+
 function factDefs(moment: Moment, conventions: Conventions): FactDef[] {
   const at = (utcMs: number): Moment => ({ ...moment, utcMs });
   const pillar = (which: 'year' | 'month' | 'day' | 'hour') => (ms: number): string => fourPillars(at(ms), conventions)[which].hanzi;
@@ -153,10 +163,14 @@ function factDefs(moment: Moment, conventions: Conventions): FactDef[] {
       kind: 'sky',
       system: 'iching',
       fact: 'Gua qi hexagram',
-      at: (ms) =>
-        conventions.guaQi === 'mean-time'
-          ? guaQiSpans(ms, ms + 1, 'mean-time')[0]!.hexagram.hanzi
-          : wheelPosition(GUA_QI_SEQUENCE, GUA_QI_START, longitudeOf('Sun', ms)).hexagram.hanzi,
+      at: (ms) => guaQiHanzi(ms, conventions),
+    },
+    {
+      id: 'iching.sovereign',
+      kind: 'sky',
+      system: 'iching',
+      fact: 'Sovereign hexagram',
+      at: (ms) => sovereignHanzi(ms, conventions),
     },
     {
       id: 'calendar.weekday',
@@ -207,10 +221,8 @@ export function digest(moment: Moment, conventions: Conventions, sex?: Sex): Rec
     'Month pillar': p.month.hanzi,
     'Day pillar': p.day.hanzi,
     'Hour pillar': p.hour.hanzi,
-    'Gua qi hexagram':
-      conventions.guaQi === 'mean-time'
-        ? guaQiSpans(moment.utcMs, moment.utcMs + 1, 'mean-time')[0]!.hexagram.hanzi
-        : wheelPosition(GUA_QI_SEQUENCE, GUA_QI_START, longitudeOf('Sun', moment.utcMs)).hexagram.hanzi,
+    'Gua qi hexagram': guaQiHanzi(moment.utcMs, conventions),
+    'Sovereign hexagram': sovereignHanzi(moment.utcMs, conventions),
     'Firdaria order': firdariaOrder(chart(moment).isDayChart, conventions.firdariaNodes).join(', '),
     'Maya date': mayaDate(julianDayNumber(c.year, c.month, c.day), conventions.mayaCorrelation).text,
   };

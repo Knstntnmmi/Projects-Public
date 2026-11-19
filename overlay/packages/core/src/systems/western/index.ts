@@ -121,7 +121,9 @@ export function solarReturns(moment: Moment, count: number): number[] {
 
 /**
  * Annual profections: the ascendant advances one whole sign at each solar return, and
- * the domicile lord of the sign it reaches is lord of that year.
+ * the domicile lord of the sign it reaches is lord of that year. Turning the year at a
+ * tropical solar return is a modern convention; Valens, Anthology IV, was not opened, so
+ * what he does is not established here.
  */
 export function profections(moment: Moment, years: number): LordSpan[] {
   const asc = signOf(angles(moment.utcMs, moment.place).ascendant).index;
@@ -154,6 +156,8 @@ export function firdariaOrder(isDayChart: boolean, nodes: Conventions['firdariaN
  * Firdaria: nine periods totalling seventy-five years, opening with the sect light.
  * Each planetary period is shared in seven equal parts among the planets in Chaldean
  * order, beginning with the period's own lord; the nodal periods are not subdivided.
+ * The scheme and the two node orderings follow a secondary summary of medieval sources
+ * (Abu Ma'shar, Shahmardan); none of those texts has been read for this project.
  */
 export function firdaria(moment: Moment, conventions: Conventions, untilAge = 150): { major: LordSpan[]; minor: LordSpan[] } {
   const order = firdariaOrder(chart(moment).isDayChart, conventions.firdariaNodes);

@@ -5,11 +5,12 @@
  * intervals on one time axis. This is the shared axis of the timeline.
  */
 import type { Conventions } from '../conventions.ts';
+import { nextSunLongitude, norm360 } from '../substrate/sky.ts';
 import { lichunYear, termsBetween } from '../substrate/terms.ts';
 import { MS, type Moment } from '../substrate/time.ts';
 import { annualPillars, luck, monthlyPillars, yearIndex, type Sex } from '../systems/bazi/index.ts';
 import { nineStarOfYear } from '../systems/calendars/index.ts';
-import { guaQiSpans, GUA_QI_RANK_ENGLISH, SOVEREIGN_SEQUENCE } from '../systems/iching/index.ts';
+import { guaQiRank, guaQiSpans, SOVEREIGN_SEQUENCE } from '../systems/iching/index.ts';
 import { vimshottari } from '../systems/vedic/index.ts';
 import { firdaria, profections, signIngresses, SIGN_ELEMENT, SIGNS } from '../systems/western/index.ts';
 import type { SystemId } from './rings.ts';
@@ -133,7 +134,7 @@ export function buildTracks(moment: Moment, conventions: Conventions, options: T
           startUtcMs: p.startUtcMs,
           endUtcMs: p.endUtcMs,
           label: p.cycle.hanzi,
-          detail: `${p.cycle.pinyin} (${p.cycle.branch.animal}); year star ${star.hanzi}`,
+          detail: `${p.cycle.pinyin} (${p.cycle.branch.animal}); 太歲 Taisui (Great Year) ${p.cycle.branch.hanzi} ${p.cycle.branch.pinyin}; nine-star year (zibai) ${star.hanzi} ${star.pinyin} (${star.english})`,
           tone: p.cycle.stem.element.toLowerCase(),
         };
       }),
@@ -195,23 +196,34 @@ export function buildTracks(moment: Moment, conventions: Conventions, options: T
 
   // --- month level -----------------------------------------------------------
   if (spanYears <= 12) {
+    // Under `zhongqi` the hexagram turns half-way through each branch month, so a month is
+    // drawn as two intervals: the previous month's hexagram until the zhongqi, then its own.
+    const zhongqi = conventions.sovereignBoundary === 'zhongqi';
     tracks.push({
       id: 'bazi-month',
       title: 'Monthly pillar and sovereign hexagram',
       system: 'chinese',
       level: 'month',
       clock: 'solar-longitude',
-      boundary: 'The twelve jie: the Sun at 315, 345, 15 ... degrees',
+      boundary: zhongqi
+        ? 'Month pillar at the twelve jie (the Sun at 315, 345, 15 ... degrees); sovereign hexagram at the twelve zhongqi (the Sun at 270, 300, 330 ... degrees)'
+        : 'The twelve jie: the Sun at 315, 345, 15 ... degrees',
       intervals: clip(
-        monthlyPillars(start, end).map((p) => {
-          const h = SOVEREIGN_SEQUENCE[p.cycle.branch.index]!;
-          return {
-            startUtcMs: p.startUtcMs,
-            endUtcMs: p.endUtcMs,
+        monthlyPillars(start, end).flatMap((p) => {
+          const b = p.cycle.branch.index;
+          const tone = p.cycle.branch.element.toLowerCase();
+          const interval = (from: number, to: number, h: (typeof SOVEREIGN_SEQUENCE)[number]) => ({
+            startUtcMs: from,
+            endUtcMs: to,
             label: `${p.cycle.hanzi} ${h.symbol}`,
             detail: `${p.cycle.pinyin} month; sovereign hexagram ${h.hanzi} ${h.pinyin}`,
-            tone: p.cycle.branch.element.toLowerCase(),
-          };
+            tone,
+          });
+          if (!zhongqi) return [interval(p.startUtcMs, p.endUtcMs, SOVEREIGN_SEQUENCE[b]!)];
+          // The month's own jie sits at 315 + 30m degrees for m counted from the Yin month, and its zhongqi fifteen degrees on.
+          const jie = norm360(315 + 30 * ((b + 10) % 12));
+          const mid = nextSunLongitude(norm360(jie + 15), p.startUtcMs);
+          return [interval(p.startUtcMs, mid, SOVEREIGN_SEQUENCE[(b + 11) % 12]!), interval(mid, p.endUtcMs, SOVEREIGN_SEQUENCE[b]!)];
         }),
         start,
         end,
@@ -233,7 +245,7 @@ export function buildTracks(moment: Moment, conventions: Conventions, options: T
     const terms = termsBetween(start - 20 * MS.DAY, end + 20 * MS.DAY);
     tracks.push({
       id: 'solar-terms',
-      title: 'Solar terms',
+      title: 'Solar terms (jieqi)',
       system: 'chinese',
       level: 'week',
       clock: 'solar-longitude',
@@ -256,13 +268,18 @@ export function buildTracks(moment: Moment, conventions: Conventions, options: T
       system: 'iching',
       level: 'week',
       clock: 'solar-longitude',
-      boundary: conventions.guaQi === 'mean-time' ? 'Sixtieths of the solstice-to-solstice year' : 'The Sun at each multiple of six degrees from 270',
+      boundary:
+        conventions.guaQi === 'mean-time'
+          ? 'Sixtieths of the solstice-to-solstice year'
+          : conventions.guaQi === 'jing-fang'
+            ? 'Jing Fang\'s allotments in parts of eighty to the day, filling the solstice-to-solstice year; the four cardinal hexagrams open each solstice and equinox'
+            : 'The Sun at each multiple of six degrees from 270',
       intervals: clip(
         guaQiSpans(start, end, conventions.guaQi).map((s) => ({
           startUtcMs: s.startUtcMs,
           endUtcMs: s.endUtcMs,
           label: `${s.hexagram.symbol} ${s.hexagram.hanzi}`,
-          detail: `${s.hexagram.pinyin} (${s.hexagram.gloss}), ${GUA_QI_RANK_ENGLISH[s.position % 5]}`,
+          detail: `${s.hexagram.pinyin} (${s.hexagram.gloss}), ${guaQiRank(s.position).english}`,
           tone: `yang${s.hexagram.lines.reduce((a, b) => a + b, 0)}`,
         })),
         start,

@@ -7,7 +7,7 @@ import { angles, eclipticPointAltitude, longitudeOf, meanObliquity, norm360 } fr
 import { equationOfTimeMinutes, julianDayNumber, makeMoment, momentFromUtc, MS, utcMsFromFields, zoneOffsetMinutes, deltaTSeconds } from '../src/substrate/time.ts';
 import { dayOfficer, mansionOfDay, mayaDate, nineStarOfYear, weekday } from '../src/systems/calendars/index.ts';
 import { dayIndexFromJdn, fourPillars } from '../src/systems/bazi/index.ts';
-import { lahiriAyanamsa, nakshatraOf, vimshottari, DASHA_YEARS } from '../src/systems/vedic/index.ts';
+import { lahiriAyanamsa, lahiriMeanAyanamsa, nakshatraOf, nutationInLongitude, vimshottari, DASHA_YEARS } from '../src/systems/vedic/index.ts';
 import { boundLord, chart, EGYPTIAN_BOUNDS, faceLord, firdaria, planetaryHour, profections, signIngresses, signOf } from '../src/systems/western/index.ts';
 import { fixture, MOMENTS } from '../../../fixtures/moments.ts';
 
@@ -138,10 +138,58 @@ describe('western', () => {
 });
 
 describe('vedic', () => {
-  it('Lahiri ayanamsa matches the published value at J2000 and in 2025', () => {
-    expect(lahiriAyanamsa(utcMsFromFields(2000, 1, 1, 12))).toBeCloseTo(23.853, 2);
-    // About 24 degrees 12.5 minutes at the start of 2025.
-    expect(lahiriAyanamsa(utcMsFromFields(2025, 1, 1))).toBeCloseTo(24.2, 1);
+  // Instants below are given in TT (the published tables are in Ephemeris Time or TT), so the
+  // UTC instant that has the stated TT is found by taking Delta T off.
+  const atTT = (y: number, mo: number, d: number, h: number) => {
+    const u = utcMsFromFields(y, mo, d, h);
+    return u - deltaTSeconds(u) * 1000;
+  };
+  const arc = (deg: number, min: number, sec: number) => deg + min / 60 + sec / 3600;
+
+  it('the nutation series reproduces the worked example in Meeus, Astronomical Algorithms, ch. 22', () => {
+    // 10 April 1987, 0h TD (JDE 2446895.5): nutation in longitude -3.788 arcseconds.
+    expect(nutationInLongitude((2446895.5 - 2451545) / 36525) * 3600).toBeCloseTo(-3.788, 1);
+  });
+
+  it('Lahiri ayanamsa sits on its definition: 23 deg 15 min 00.658 sec, true, at 21 March 1956 0h TT', () => {
+    // The value is the anchor, so this checks the code, not the definition. The Committee's
+    // original 23 deg 15 min 00 sec is 0.658 arcsecond lower. Source: Swiss Ephemeris
+    // documentation, section 2.8.5, quoting the Indian Astronomical Ephemeris 1989 p. 556.
+    expect(lahiriAyanamsa(atTT(1956, 3, 21, 0))).toBeCloseTo(arc(23, 15, 0.658), 9);
+  });
+
+  it('mean Lahiri ayanamsa agrees with the mean values printed in the Indian Astronomical Ephemeris', () => {
+    // MEAN values. Read from Swiss Ephemeris documentation, appendix E, which quotes them
+    // from the Ephemeris and compares them with its own results. Tolerance 0.3 arcsecond:
+    // the Ephemeris uses the IAU 1976 precession rate, this project the IAU 2006 one.
+    // 1 January 2000, 12h TT, Ephemeris 2019 p. 429: 23 deg 51 min 25.53 sec.
+    expect(Math.abs(lahiriMeanAyanamsa(atTT(2000, 1, 1, 12)) - arc(23, 51, 25.53)) * 3600).toBeLessThan(0.3);
+    // 1 January 1989, 0h TT, Ephemeris 1989 p. 512: 23 deg 42 min 12.34 sec.
+    expect(Math.abs(lahiriMeanAyanamsa(atTT(1989, 1, 1, 0)) - arc(23, 42, 12.34)) * 3600).toBeLessThan(0.3);
+    // 1 January 1990, 0h TT, Ephemeris 1989 p. 512: 23 deg 43 min 02.62 sec.
+    expect(Math.abs(lahiriMeanAyanamsa(atTT(1990, 1, 1, 0)) - arc(23, 43, 2.62)) * 3600).toBeLessThan(0.3);
+  });
+
+  it('true Lahiri ayanamsa agrees with the true values that the Swiss Ephemeris reproduces from the Ephemeris', () => {
+    // TRUE values (nutation included). Swiss Ephemeris documentation, appendix E, lists
+    // these as its own output for 0h UT, and reports that they match the Indian
+    // Astronomical Ephemeris 2019 table of true ayanamsa (p. 427) to 0.1 arcsecond.
+    // The Ephemeris table itself was not seen. Tolerance 0.3 arcsecond.
+    const cases: [number, number, number, number, number, number][] = [
+      [2019, 1, 1, 24, 7, 5.9864],
+      [2019, 1, 31, 24, 7, 10.9122],
+      [2020, 1, 1, 24, 7, 54.8411],
+    ];
+    for (const [y, m, d, dg, mn, sc] of cases) {
+      expect(Math.abs(lahiriAyanamsa(utcMsFromFields(y, m, d, 0)) - arc(dg, mn, sc)) * 3600).toBeLessThan(0.3);
+    }
+  });
+
+  it('true and mean ayanamsa differ by the nutation, which reaches about 17 arcseconds', () => {
+    const t = utcMsFromFields(1956, 3, 21, 0);
+    const diff = (lahiriAyanamsa(t) - lahiriMeanAyanamsa(t)) * 3600;
+    expect(diff).toBeGreaterThan(15);
+    expect(diff).toBeLessThan(17.5);
   });
 
   it('vimshottari periods total one hundred and twenty years and begin with the nakshatra lord', () => {

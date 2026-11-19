@@ -49,7 +49,14 @@ export function speedOf(planet: Planet, utcMs: number): number {
   return angleDiff(longitudeOf(planet, utcMs + h), longitudeOf(planet, utcMs - h)) * 12;
 }
 
-/** Longitude of the Moon's mean ascending node (Meeus, Astronomical Algorithms, ch. 47). */
+/**
+ * Longitude of the Moon's mean ascending node. The series is the familiar one from Meeus,
+ * Astronomical Algorithms, 2nd ed. (1998), ch. 47; the chapter number is the second
+ * edition's (the first edition numbers it differently) and the book itself has not been
+ * checked. One open implementation prints 476441 for the cubic divisor where this has
+ * 467441; the effect is about 3e-8 degree, so it does not matter numerically, but the
+ * divisor should be read from the book.
+ */
 export function meanNodeLongitude(utcMs: number): number {
   const T = (astroTime(utcMs).tt) / 36525;
   return norm360(125.0445479 - 1934.1362891 * T + 0.0020754 * T * T + (T * T * T) / 467441 - (T * T * T * T) / 60616000);

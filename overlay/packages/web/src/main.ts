@@ -124,10 +124,10 @@ function renderSummary(moment: Moment, f: Facts): void {
     ['Four pillars', `<span class="pillars">${esc(f.bazi.pillars)}</span>`, `day master ${esc(f.bazi.dayMaster)}; read from the ${esc(f.bazi.clockUsed)} clock`],
     ['Instant', esc(f.input.utc.replace('T', ' ').replace('Z', ' UTC')), `zone offset ${esc(formatOffset(zoneOffsetMinutes(moment.utcMs, moment.zone)))}; true solar time ${esc(f.substrate.clocks.apparent!.reading.slice(11, 19))}; equation of time ${f.substrate.equationOfTimeMinutes} min`],
     ['Sun, Moon, rising', `${esc(sun.position)}`, `Moon ${esc(moon.position)}; rising ${esc(f.western.ascendant)}; ${esc(f.western.sect)}`],
-    ['Solar term', esc(f.substrate.solarTerm.current), `until ${esc(f.substrate.solarTerm.next)} at ${esc(f.substrate.solarTerm.at.replace('T', ' ').replace('Z', ' UTC'))}`],
+    ['Solar term (jieqi)', esc(f.substrate.solarTerm.current), `until ${esc(f.substrate.solarTerm.next)} at ${esc(f.substrate.solarTerm.at.replace('T', ' ').replace('Z', ' UTC'))}`],
     ['Hexagrams of the Sun', esc(f.iching.guaQi.hexagram), `gua qi (${esc(f.iching.guaQi.rank ?? '')}); sovereign ${esc(f.iching.sovereign)}; gate wheel ${esc(f.iching.gateWheel.hexagram)} line ${f.iching.gateWheel.line}`],
     ['Moon nakshatra', `${esc(f.vedic.moon.nakshatra)} pada ${f.vedic.moon.pada}`, `first dasha lord ${esc(f.vedic.moon.lord)}; Lahiri ayanamsa ${f.vedic.ayanamsa}°`],
-    ['Day counts', esc(f.calendars.weekday), `${esc(f.calendars.maya)}; day officer ${esc(f.calendars.dayOfficer)}; mansion ${esc(f.calendars.mansionOfDay)}; year star ${esc(f.calendars.nineStarOfYear)}`],
+    ['Day counts', esc(f.calendars.weekday), `${esc(f.calendars.maya)}; day officer (jianchu) ${esc(f.calendars.dayOfficer)}; lodge (xiu) ${esc(f.calendars.lodgeOfDay)}; nine-star year ${esc(f.calendars.nineStarOfYear)}`],
   ]
     .map(([k, v, s]) => `<div><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`)
     .join('');

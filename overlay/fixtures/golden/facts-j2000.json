@@ -21,6 +21,7 @@
     "yearBoundary": "lichun",
     "luckStart": "three-days-per-year",
     "guaQi": "equal-longitude",
+    "sovereignBoundary": "jie",
     "firdariaNodes": "end",
     "ayanamsa": "lahiri",
     "mayaCorrelation": 584283
@@ -63,20 +64,20 @@
       "pinyin": "Ji Mao",
       "stem": {
         "hanzi": "己",
-        "element": "Earth",
+        "phase": "土 Tu (Earth)",
         "polarity": "Yin",
-        "tenGod": "劫財 Rob Wealth"
+        "tenGod": "劫財 Jie Cai Rob Wealth"
       },
       "branch": {
         "hanzi": "卯",
         "animal": "Rabbit",
-        "element": "Wood"
+        "phase": "木 Mu (Wood)"
       },
       "hiddenStems": [
         {
           "hanzi": "乙",
-          "element": "Wood",
-          "tenGod": "正官 Direct Officer"
+          "phase": "木 Mu (Wood)",
+          "tenGod": "正官 Zheng Guan Direct Officer"
         }
       ],
       "nayin": "城頭土 Earth of the City Wall"
@@ -86,20 +87,20 @@
       "pinyin": "Bing Zi",
       "stem": {
         "hanzi": "丙",
-        "element": "Fire",
+        "phase": "火 Huo (Fire)",
         "polarity": "Yang",
-        "tenGod": "偏印 Indirect Resource"
+        "tenGod": "偏印 Pian Yin Indirect Resource"
       },
       "branch": {
         "hanzi": "子",
         "animal": "Rat",
-        "element": "Water"
+        "phase": "水 Shui (Water)"
       },
       "hiddenStems": [
         {
           "hanzi": "癸",
-          "element": "Water",
-          "tenGod": "正財 Direct Wealth"
+          "phase": "水 Shui (Water)",
+          "tenGod": "正財 Zheng Cai Direct Wealth"
         }
       ],
       "nayin": "澗下水 Water of the Ravine"
@@ -109,25 +110,25 @@
       "pinyin": "Wu Wu",
       "stem": {
         "hanzi": "戊",
-        "element": "Earth",
+        "phase": "土 Tu (Earth)",
         "polarity": "Yang",
         "tenGod": "day master"
       },
       "branch": {
         "hanzi": "午",
         "animal": "Horse",
-        "element": "Fire"
+        "phase": "火 Huo (Fire)"
       },
       "hiddenStems": [
         {
           "hanzi": "丁",
-          "element": "Fire",
-          "tenGod": "正印 Direct Resource"
+          "phase": "火 Huo (Fire)",
+          "tenGod": "正印 Zheng Yin Direct Resource"
         },
         {
           "hanzi": "己",
-          "element": "Earth",
-          "tenGod": "劫財 Rob Wealth"
+          "phase": "土 Tu (Earth)",
+          "tenGod": "劫財 Jie Cai Rob Wealth"
         }
       ],
       "nayin": "天上火 Fire in the Sky"
@@ -137,30 +138,30 @@
       "pinyin": "Wu Wu",
       "stem": {
         "hanzi": "戊",
-        "element": "Earth",
+        "phase": "土 Tu (Earth)",
         "polarity": "Yang",
-        "tenGod": "比肩 Friend"
+        "tenGod": "比肩 Bi Jian Friend"
       },
       "branch": {
         "hanzi": "午",
         "animal": "Horse",
-        "element": "Fire"
+        "phase": "火 Huo (Fire)"
       },
       "hiddenStems": [
         {
           "hanzi": "丁",
-          "element": "Fire",
-          "tenGod": "正印 Direct Resource"
+          "phase": "火 Huo (Fire)",
+          "tenGod": "正印 Zheng Yin Direct Resource"
         },
         {
           "hanzi": "己",
-          "element": "Earth",
-          "tenGod": "劫財 Rob Wealth"
+          "phase": "土 Tu (Earth)",
+          "tenGod": "劫財 Jie Cai Rob Wealth"
         }
       ],
       "nayin": "天上火 Fire in the Sky"
     },
-    "dayMaster": "戊 Yang Earth",
+    "dayMaster": "戊 Yang 土 Tu (Earth)",
     "clockUsed": "civil: 2000-01-01 12:00:00",
     "luck": {
       "direction": "forward",
@@ -226,7 +227,7 @@
         }
       ]
     },
-    "basis": "Year from Lichun and month from the jie (both by the Sun's longitude, independent of any clock). Day and hour from the civil clock with the day turning at 23:00. Cross-checked against tyme4ts in the test suite."
+    "basis": "Ten gods (shishen), hidden stems (canggan) and the Five Phases (wuxing) are printed in hanzi, pinyin and English; the ten gods' English names are trade usage. Year from Lichun and month from the jie (both by the Sun's longitude, independent of any clock). Day and hour from the civil clock with the day turning at 23:00. Cross-checked against tyme4ts in the test suite."
   },
   "iching": {
     "guaQi": {
@@ -241,7 +242,7 @@
       "hexagram": "38 睽 Kui (Divergence)",
       "line": 1
     },
-    "basis": "All five are readings of the Sun's longitude against a hexagram arrangement; they are different arrangements and are not expected to agree. No hexagram is cast: casting is a chance procedure, not a calculation."
+    "basis": "The gua qi hexagram follows the guaQi convention and the sovereign hexagram the sovereignBoundary convention. All five are readings of the Sun's longitude against a hexagram arrangement; they are different arrangements and are not expected to agree. No hexagram is cast: casting is a chance procedure, not a calculation."
   },
   "western": {
     "ascendant": "24°16′ Aries",
@@ -342,19 +343,19 @@
     },
     "dashaAtBirth": {
       "lord": "Rahu",
-      "began": "1982-09-18T22:11:25.268Z",
-      "until": "2000-09-18T10:11:25.268Z"
+      "began": "1982-09-18T23:45:25.424Z",
+      "until": "2000-09-18T11:45:25.424Z"
     },
-    "basis": "Lahiri ayanamsa without nutation; vimshottari years of 365.25 days."
+    "basis": "Lahiri ayanamsa, true (nutation included), fixed at 23 degrees 15 minutes 00.658 seconds on 21 March 1956 and carried by the IAU precession; vimshottari years of 365.25 days."
   },
   "calendars": {
     "julianDayNumber": 2451545,
     "weekday": "Saturday",
     "maya": "12.19.6.15.2  11 Ik  10 Kankin",
-    "dayOfficer": "破 Break",
-    "mansionOfDay": "胃",
-    "nineStarOfYear": "一白 One White",
-    "basis": "Counted on the civil date, except the day officer, which follows the day pillar."
+    "dayOfficer": "破 Po Break",
+    "lodgeOfDay": "胃 Wei",
+    "nineStarOfYear": "一白 Yi Bai One White",
+    "basis": "Day officer (jianchu), lodge (xiu) of the almanac day cycle and nine stars (zibai) in hanzi, pinyin and English. Counted on the civil date, except the day officer, which follows the day pillar."
   },
   "acrossTheRings": {
     "sun": [
@@ -378,7 +379,7 @@
       },
       {
         "ring": "terms",
-        "title": "Twenty-four solar terms",
+        "title": "Twenty-four solar terms (jieqi)",
         "grade": "exact",
         "label": "冬至 Dongzhi (Winter Solstice), from 270 degrees; a sign ingress"
       },
@@ -386,7 +387,7 @@
         "ring": "branch-months",
         "title": "Branch months",
         "grade": "derived",
-        "label": "子 Zi month (Rat), Water"
+        "label": "子 Zi month (Rat), 水 Shui (Water)"
       },
       {
         "ring": "sovereign",
@@ -408,7 +409,7 @@
       },
       {
         "ring": "fuxi",
-        "title": "Fu Xi circle (Shao Yong)",
+        "title": "Fu Xi circle (attributed to Shao Yong)",
         "grade": "conventional",
         "label": "27 頤 Yi (Nourishment)"
       },
@@ -452,15 +453,15 @@
       },
       {
         "ring": "terms",
-        "title": "Twenty-four solar terms",
+        "title": "Twenty-four solar terms (jieqi)",
         "grade": "exact",
-        "label": "霜降 Shuangjiang (Frost Descent), from 210 degrees; a sign ingress"
+        "label": "霜降 Shuangjiang (Descent of Frost), from 210 degrees; a sign ingress"
       },
       {
         "ring": "branch-months",
         "title": "Branch months",
         "grade": "derived",
-        "label": "戌 Xu month (Dog), Earth"
+        "label": "戌 Xu month (Dog), 土 Tu (Earth)"
       },
       {
         "ring": "sovereign",
@@ -482,7 +483,7 @@
       },
       {
         "ring": "fuxi",
-        "title": "Fu Xi circle (Shao Yong)",
+        "title": "Fu Xi circle (attributed to Shao Yong)",
         "grade": "conventional",
         "label": "15 謙 Qian (Modesty)"
       },
@@ -526,7 +527,7 @@
       },
       {
         "ring": "terms",
-        "title": "Twenty-four solar terms",
+        "title": "Twenty-four solar terms (jieqi)",
         "grade": "exact",
         "label": "清明 Qingming (Clear and Bright), from 15 degrees; opens a BaZi month"
       },
@@ -534,7 +535,7 @@
         "ring": "branch-months",
         "title": "Branch months",
         "grade": "derived",
-        "label": "辰 Chen month (Dragon), Earth"
+        "label": "辰 Chen month (Dragon), 土 Tu (Earth)"
       },
       {
         "ring": "sovereign",
@@ -556,7 +557,7 @@
       },
       {
         "ring": "fuxi",
-        "title": "Fu Xi circle (Shao Yong)",
+        "title": "Fu Xi circle (attributed to Shao Yong)",
         "grade": "conventional",
         "label": "54 歸妹 Gui Mei (Marrying Maiden)"
       },
@@ -754,14 +755,14 @@
       "fact": "Moon nakshatra and first dasha lord",
       "value": "Swati (Rahu)",
       "earlier": {
-        "minutes": 1522.36,
+        "minutes": 1522.35,
         "value": "Chitra (Mars)"
       },
       "later": {
-        "minutes": 63.41,
+        "minutes": 63.42,
         "value": "Vishakha (Jupiter)"
       },
-      "nearestMinutes": 63.41,
+      "nearestMinutes": 63.42,
       "withinUncertainty": false,
       "withinEngineMargin": false
     },
@@ -771,14 +772,14 @@
       "fact": "Moon nakshatra quarter",
       "value": "Swati pada 4",
       "earlier": {
-        "minutes": 335.4,
+        "minutes": 335.38,
         "value": "Swati pada 3"
       },
       "later": {
-        "minutes": 63.41,
+        "minutes": 63.42,
         "value": "Vishakha pada 1"
       },
-      "nearestMinutes": 63.41,
+      "nearestMinutes": 63.42,
       "withinUncertainty": false,
       "withinEngineMargin": false
     },
@@ -813,6 +814,23 @@
         "value": "屯"
       },
       "nearestMinutes": 2304.21,
+      "withinUncertainty": false,
+      "withinEngineMargin": false
+    },
+    {
+      "id": "iching.sovereign",
+      "system": "iching",
+      "fact": "Sovereign hexagram",
+      "value": "復",
+      "earlier": {
+        "minutes": 35891.97,
+        "value": "坤"
+      },
+      "later": {
+        "minutes": 6540.94,
+        "value": "臨"
+      },
+      "nearestMinutes": 6540.94,
       "withinUncertainty": false,
       "withinEngineMargin": false
     },
@@ -871,6 +889,20 @@
       "changes": []
     },
     {
+      "key": "guaQi",
+      "title": "How the gua qi hexagrams divide the year",
+      "value": "jing-fang",
+      "label": "Jing Fang's allotment, in mean time",
+      "changes": []
+    },
+    {
+      "key": "sovereignBoundary",
+      "title": "Where each sovereign hexagram begins",
+      "value": "zhongqi",
+      "label": "At the zhongqi, as in the Dayan table",
+      "changes": []
+    },
+    {
       "key": "firdariaNodes",
       "title": "Place of the lunar nodes in a night-chart firdaria",
       "value": "after-mars",
@@ -881,12 +913,25 @@
       "key": "mayaCorrelation",
       "title": "Maya calendar correlation",
       "value": 584285,
-      "label": "584285",
+      "label": "584285 (Thompson's own value)",
       "changes": [
         {
           "output": "Maya date",
           "from": "12.19.6.15.2  11 Ik  10 Kankin",
           "to": "12.19.6.15.0  9 Ahau  8 Kankin"
+        }
+      ]
+    },
+    {
+      "key": "mayaCorrelation",
+      "title": "Maya calendar correlation",
+      "value": 584286,
+      "label": "584286 (Martin and Skidmore)",
+      "changes": [
+        {
+          "output": "Maya date",
+          "from": "12.19.6.15.2  11 Ik  10 Kankin",
+          "to": "12.19.6.14.19  8 Cauac  7 Kankin"
         }
       ]
     }

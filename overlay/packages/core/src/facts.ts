@@ -26,6 +26,7 @@ import {
   type TimeBasis,
 } from './substrate/time.ts';
 import { fourPillars, luck, type Pillar, type Sex } from './systems/bazi/index.ts';
+import { phaseText } from './systems/bazi/tables.ts';
 import { dayOfficer, mansionOfDay, mayaDate, nineStarOfYear, weekday } from './systems/calendars/index.ts';
 import {
   CARDINAL_HEXAGRAMS,
@@ -33,12 +34,12 @@ import {
   FUXI_START,
   GATE_SEQUENCE,
   GATE_START,
-  GUA_QI_RANK_ENGLISH,
   GUA_QI_SEQUENCE,
   GUA_QI_START,
+  guaQiRank,
   guaQiSpans,
   SOVEREIGN_SEQUENCE,
-  SOVEREIGN_START,
+  sovereignStart,
   wheelPosition,
 } from './systems/iching/index.ts';
 import { lahiriAyanamsa, nakshatraOf, vimshottari } from './systems/vedic/index.ts';
@@ -77,9 +78,9 @@ function pillarFacts(p: Pillar) {
   return {
     hanzi: p.hanzi,
     pinyin: p.pinyin,
-    stem: { hanzi: p.stem.hanzi, element: p.stem.element, polarity: p.stem.polarity, tenGod: p.stemGod ? `${p.stemGod.hanzi} ${p.stemGod.english}` : 'day master' },
-    branch: { hanzi: p.branch.hanzi, animal: p.branch.animal, element: p.branch.element },
-    hiddenStems: p.hidden.map((h) => ({ hanzi: h.stem.hanzi, element: h.stem.element, tenGod: `${h.god.hanzi} ${h.god.english}` })),
+    stem: { hanzi: p.stem.hanzi, phase: phaseText(p.stem.element), polarity: p.stem.polarity, tenGod: p.stemGod ? `${p.stemGod.hanzi} ${p.stemGod.pinyin} ${p.stemGod.english}` : 'day master' },
+    branch: { hanzi: p.branch.hanzi, animal: p.branch.animal, phase: phaseText(p.branch.element) },
+    hiddenStems: p.hidden.map((h) => ({ hanzi: h.stem.hanzi, phase: phaseText(h.stem.element), tenGod: `${h.god.hanzi} ${h.god.pinyin} ${h.god.english}` })),
     nayin: `${p.nayin.hanzi} ${p.nayin.english}`,
   };
 }
@@ -109,10 +110,10 @@ export function facts(moment: Moment, options: FactsOptions = {}) {
   const hour = planetaryHour(moment);
   const gate = wheelPosition(GATE_SEQUENCE, GATE_START, sun);
   const guaQiEqual = wheelPosition(GUA_QI_SEQUENCE, GUA_QI_START, sun);
-  const guaQi = conventions.guaQi === 'mean-time' ? guaQiSpans(utcMs, utcMs + 1, 'mean-time')[0]! : null;
+  const guaQi = conventions.guaQi === 'equal-longitude' ? null : guaQiSpans(utcMs, utcMs + 1, conventions.guaQi)[0]!;
   const guaQiHex = guaQi ? guaQi.hexagram : guaQiEqual.hexagram;
   const guaQiPos = guaQi ? guaQi.position : guaQiEqual.position;
-  const sovereign = wheelPosition(SOVEREIGN_SEQUENCE, SOVEREIGN_START, sun).hexagram;
+  const sovereign = wheelPosition(SOVEREIGN_SEQUENCE, sovereignStart(conventions.sovereignBoundary), sun).hexagram;
   const fuxi = wheelPosition(FUXI_SEQUENCE, FUXI_START, sun).hexagram;
   const cardinal = CARDINAL_HEXAGRAMS[Math.floor((((sun - 270) % 360) + 360) % 360 / 90)]!;
   const name = (h: { number: number; hanzi: string; pinyin: string; gloss: string }): string => `${h.number} ${h.hanzi} ${h.pinyin} (${h.gloss})`;
@@ -150,7 +151,7 @@ export function facts(moment: Moment, options: FactsOptions = {}) {
       month: pillarFacts(pillars.month),
       day: pillarFacts(pillars.day),
       hour: pillarFacts(pillars.hour),
-      dayMaster: `${pillars.day.stem.hanzi} ${pillars.day.stem.polarity} ${pillars.day.stem.element}`,
+      dayMaster: `${pillars.day.stem.hanzi} ${pillars.day.stem.polarity} ${phaseText(pillars.day.stem.element)}`,
       clockUsed: `${conventions.timeBasis}: ${formatCivil(pillars.clock)}`,
       luck: l
         ? {
@@ -161,15 +162,15 @@ export function facts(moment: Moment, options: FactsOptions = {}) {
             pillars: l.pillars.map((p) => ({ pillar: p.cycle.hanzi, from: iso(p.startUtcMs), to: iso(p.endUtcMs) })),
           }
         : 'not computed: the direction of the luck pillars depends on sex, which was not given',
-      basis: `Year from Lichun and month from the jie (both by the Sun's longitude, independent of any clock). Day and hour from the ${conventions.timeBasis} clock with the day turning at ${conventions.dayBoundary === 'zi23' ? '23:00' : 'midnight'}. Cross-checked against tyme4ts in the test suite.`,
+      basis: `Ten gods (shishen), hidden stems (canggan) and the Five Phases (wuxing) are printed in hanzi, pinyin and English; the ten gods' English names are trade usage. Year from Lichun and month from the jie (both by the Sun's longitude, independent of any clock). Day and hour from the ${conventions.timeBasis} clock with the day turning at ${conventions.dayBoundary === 'zi23' ? '23:00' : 'midnight'}. Cross-checked against tyme4ts in the test suite.`,
     },
     iching: {
-      guaQi: { hexagram: name(guaQiHex), rank: GUA_QI_RANK_ENGLISH[guaQiPos % 5], mode: conventions.guaQi },
+      guaQi: { hexagram: name(guaQiHex), rank: guaQiRank(guaQiPos).english, mode: conventions.guaQi },
       sovereign: name(sovereign),
       cardinal: name(cardinal.hexagram),
       fuxiCircle: name(fuxi),
       gateWheel: { hexagram: name(gate.hexagram), line: gate.line },
-      basis: 'All five are readings of the Sun\'s longitude against a hexagram arrangement; they are different arrangements and are not expected to agree. No hexagram is cast: casting is a chance procedure, not a calculation.',
+      basis: 'The gua qi hexagram follows the guaQi convention and the sovereign hexagram the sovereignBoundary convention. All five are readings of the Sun\'s longitude against a hexagram arrangement; they are different arrangements and are not expected to agree. No hexagram is cast: casting is a chance procedure, not a calculation.',
     },
     western: {
       ascendant: formatLongitude(c.ascendant),
@@ -196,7 +197,7 @@ export function facts(moment: Moment, options: FactsOptions = {}) {
       ayanamsa: Number(lahiriAyanamsa(utcMs).toFixed(4)),
       moon: { nakshatra: moonNak.name, pada: moonNak.pada, lord: moonNak.lord, siderealLongitude: Number(moonNak.siderealLongitude.toFixed(4)) },
       dashaAtBirth: dashas.maha[0] ? { lord: dashas.maha[0].lord, began: iso(dashas.maha[0].startUtcMs), until: iso(dashas.maha[0].endUtcMs) } : null,
-      basis: 'Lahiri ayanamsa without nutation; vimshottari years of 365.25 days.',
+      basis: 'Lahiri ayanamsa, true (nutation included), fixed at 23 degrees 15 minutes 00.658 seconds on 21 March 1956 and carried by the IAU precession; vimshottari years of 365.25 days.',
     },
     calendars: {
       julianDayNumber: jdn,
@@ -204,14 +205,17 @@ export function facts(moment: Moment, options: FactsOptions = {}) {
       maya: mayaDate(jdn, conventions.mayaCorrelation).text,
       dayOfficer: (() => {
         const o = dayOfficer(pillars.day.branch.index, pillars.month.branch.index);
-        return `${o.hanzi} ${o.english}`;
+        return `${o.hanzi} ${o.pinyin} ${o.english}`;
       })(),
-      mansionOfDay: mansionOfDay(jdn).hanzi,
+      lodgeOfDay: (() => {
+        const l = mansionOfDay(jdn);
+        return `${l.hanzi} ${l.pinyin}`;
+      })(),
       nineStarOfYear: (() => {
         const s = nineStarOfYear(pillars.cycleYear);
-        return `${s.hanzi} ${s.english}`;
+        return `${s.hanzi} ${s.pinyin} ${s.english}`;
       })(),
-      basis: 'Counted on the civil date, except the day officer, which follows the day pillar.',
+      basis: 'Day officer (jianchu), lodge (xiu) of the almanac day cycle and nine stars (zibai) in hanzi, pinyin and English. Counted on the civil date, except the day officer, which follows the day pillar.',
     },
     acrossTheRings: {
       sun: readAcross(rings, sun),

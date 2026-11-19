@@ -17,13 +17,15 @@ export interface Conventions {
   /** How the distance to the neighbouring jie becomes the age at which luck pillars begin. */
   luckStart: 'three-days-per-year';
   /** How the sixty hexagrams of the gua qi calendar are laid on the year. */
-  guaQi: 'equal-longitude' | 'mean-time';
+  guaQi: 'equal-longitude' | 'mean-time' | 'jing-fang';
+  /** Where each of the twelve sovereign hexagrams begins. */
+  sovereignBoundary: 'jie' | 'zhongqi';
   /** Where the lunar nodes fall in the firdaria sequence of a night chart. */
   firdariaNodes: 'end' | 'after-mars';
   /** Sidereal zero point for the nakshatras and the sidereal zodiac. */
   ayanamsa: 'lahiri';
   /** Julian Day Number of the Maya Long Count zero date. */
-  mayaCorrelation: 584283 | 584285;
+  mayaCorrelation: 584283 | 584285 | 584286;
 }
 
 export const DEFAULT_CONVENTIONS: Conventions = {
@@ -32,6 +34,7 @@ export const DEFAULT_CONVENTIONS: Conventions = {
   yearBoundary: 'lichun',
   luckStart: 'three-days-per-year',
   guaQi: 'equal-longitude',
+  sovereignBoundary: 'jie',
   firdariaNodes: 'end',
   ayanamsa: 'lahiri',
   mayaCorrelation: 584283,
@@ -93,11 +96,27 @@ export const CONVENTION_SPECS: readonly ConventionSpec[] = [
   {
     key: 'guaQi',
     title: 'How the gua qi hexagrams divide the year',
-    affects: 'Gua qi ring and track',
-    why: 'The Han scheme gave each of sixty hexagrams six and seven-eightieths days of a mean year counted from the winter solstice. Laid on the true Sun instead, each hexagram spans six degrees of longitude. The two differ by up to about two days.',
+    affects: 'Gua qi ring and track, and the gua qi hexagram of a moment',
+    why: 'The scheme implemented is Meng Xi\'s as Yi Xing adopted it in the Dayan calendar: sixty hexagrams of six and seven-eightieths days each from the winter solstice (Xin Tang shu 27A, Gua yi; table in 28A). Yi Xing also reports a different allotment of Jing Fang\'s, offered as a third option. Laid on the true Sun instead of a mean year, each of the sixty spans six degrees of longitude, and the two readings differ by up to about two days.',
     options: [
-      { value: 'equal-longitude', label: 'Six degrees of solar longitude each', description: 'Consistent with the modern true-Sun solar terms.' },
-      { value: 'mean-time', label: 'One sixtieth of the solstice-to-solstice year each', description: 'Closer to the original mean-time scheme.' },
+      { value: 'equal-longitude', label: 'Six degrees of solar longitude each', description: 'Meng Xi\'s sixty hexagrams, consistent with the modern true-Sun solar terms.' },
+      { value: 'mean-time', label: 'One sixtieth of the solstice-to-solstice year each', description: 'Meng Xi\'s sixty hexagrams, closer to the original mean-time scheme.' },
+      {
+        value: 'jing-fang',
+        label: 'Jing Fang\'s allotment, in mean time',
+        description:
+          'As Yi Xing reports it: Kan, Li, Zhen and Dui take the first 73/80 of a day at the head of each solstice and equinox; Yi, Jin, Jing and Da Xu take 5 days 14 parts; the rest 6 days 7 parts. Scaled to fill the solstice-to-solstice year, so the four cardinal hexagrams appear as short periods of their own.',
+      },
+    ],
+  },
+  {
+    key: 'sovereignBoundary',
+    title: 'Where each sovereign hexagram begins',
+    affects: 'Sovereign-hexagram ring, track label and fact',
+    why: 'The twelve sovereign hexagrams are set one to a month, but the BaZi month runs from jie to jie while the Dayan table (Xin Tang shu 28A) begins each month\'s group of five hexagrams at the zhongqi. The two arcs are the same thirty degrees offset by fifteen.',
+    options: [
+      { value: 'jie', label: 'At the jie, with the branch month', description: 'Fu from the Sun at 255 degrees (Daxue). The project\'s default.' },
+      { value: 'zhongqi', label: 'At the zhongqi, as in the Dayan table', description: 'Fu from the Sun at 270 degrees (the winter solstice), fifteen degrees later.' },
     ],
   },
   {
@@ -115,16 +134,17 @@ export const CONVENTION_SPECS: readonly ConventionSpec[] = [
     title: 'Sidereal zero point',
     affects: 'Nakshatras, sidereal signs, vimshottari dasha',
     why: 'Sidereal systems measure from a star-fixed point; which point is a matter of school.',
-    options: [{ value: 'lahiri', label: 'Lahiri (Chitrapaksha)', description: 'The Indian national-calendar standard, here from a polynomial accurate to a few arcseconds near the present.' }],
+    options: [{ value: 'lahiri', label: 'Lahiri (Chitrapaksha)', description: 'The Indian national-calendar standard. The true ayanamsa (nutation included), fixed at 23 degrees 15 minutes 00.658 seconds on 21 March 1956 and carried by the IAU precession; within about 0.3 arcsecond of the Indian Astronomical Ephemeris values it was compared with, if the value at that epoch is indeed a true one.' }],
   },
   {
     key: 'mayaCorrelation',
     title: 'Maya calendar correlation',
     affects: 'Long Count, Tzolkin, Haab',
-    why: 'The correlation constant ties the Long Count to the Julian day count.',
+    why: 'The correlation constant ties the Long Count to the Julian day count. It is chosen by argument, not measured, and the literature does not settle on one value: Martin and Skidmore (2012) call 584283 and 584285 the two most widely accepted and argue for 584286 from Venus records.',
     options: [
-      { value: 584283, label: 'GMT 584283', description: 'The Goodman-Martinez-Thompson correlation, matching the living highland day count.' },
-      { value: 584285, label: '584285', description: 'The "astronomical" variant two days later.' },
+      { value: 584283, label: '584283 (Goodman-Martinez-Thompson)', description: 'The common default, and not a settled value. Favoured by those who hold that the highland day count has continued unbroken (Martin and Skidmore 2012).' },
+      { value: 584285, label: '584285 (Thompson\'s own value)', description: 'Thompson\'s value from 1927 onwards, two days later than 584283 (Martin and Skidmore 2012).' },
+      { value: 584286, label: '584286 (Martin and Skidmore)', description: 'Proposed by Martin and Skidmore (2012) from Maya records of the movements of Venus; one day later than 584285.' },
     ],
   },
 ];

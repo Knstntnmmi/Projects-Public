@@ -39,7 +39,11 @@ export const EXALTATION: Partial<Record<Planet, { sign: number; degree: number }
   Saturn: { sign: 6, degree: 21 },
 };
 
-/** Dorothean triplicity lords by element: day lord, night lord, participating lord. */
+/**
+ * Dorothean triplicity lords by element: day lord, night lord, participating lord.
+ * Only the Fire and Earth rows were corroborated, in secondary snippets; the Dorotheus
+ * edition (Pingree, 1976) was not opened.
+ */
 export const TRIPLICITY: Record<'Fire' | 'Earth' | 'Air' | 'Water', readonly [Planet, Planet, Planet]> = {
   Fire: ['Sun', 'Jupiter', 'Saturn'],
   Earth: ['Venus', 'Moon', 'Mars'],
@@ -52,7 +56,11 @@ export const SIGN_ELEMENT = ['Fire', 'Earth', 'Air', 'Water'] as const;
 /**
  * Egyptian bounds: for each sign, the lord and the degree at which its bound ends.
  * The planets' totals over the zodiac are the "greater years": Saturn 57, Jupiter 79,
- * Mars 66, Venus 82, Mercury 76 (a test checks this).
+ * Mars 66, Venus 82, Mercury 76 (a test checks this arithmetic). Ptolemy, Tetrabiblos I.20
+ * in the Robbins (Loeb, 1940) numbering and I.21 in the Boll-Boer and Hubner numbering,
+ * lists the Egyptian bounds and then prefers a system of his own; that Dorotheus and
+ * Valens use the Egyptian bounds, and that this table agrees with the one in any of them,
+ * has not been checked against the texts.
  */
 export const EGYPTIAN_BOUNDS: readonly (readonly [Planet, number])[][] = [
   [['Jupiter', 6], ['Venus', 12], ['Mercury', 20], ['Mars', 25], ['Saturn', 30]],

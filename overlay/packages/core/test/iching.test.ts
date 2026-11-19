@@ -11,9 +11,14 @@ import {
   guaQiSpans,
   HEXAGRAMS,
   hexagramByName,
+  JING_FANG_ALLOTMENTS,
+  PARTS_PER_DAY,
   SOVEREIGN_SEQUENCE,
   wheelPosition,
+  YEAR_PARTS,
 } from '../src/systems/iching/index.ts';
+import { DEFAULT_CONVENTIONS } from '../src/conventions.ts';
+import { nextSunLongitude } from '../src/substrate/sky.ts';
 import { MS, utcMsFromFields } from '../src/substrate/time.ts';
 
 const numbers = (xs: readonly { number: number }[]): number[] => xs.map((x) => x.number);
@@ -73,7 +78,7 @@ describe('year arrangements', () => {
     const at = FUXI_SEQUENCE.indexOf(GATE_SEQUENCE[0]!);
     const walked = GATE_SEQUENCE.map((_, k) => FUXI_SEQUENCE[(((at - k) % 64) + 64) % 64]!);
     expect(numbers(walked)).toEqual(numbers(GATE_SEQUENCE));
-    // The seam between Fu and Kun, which Shao Yong sets at the winter solstice (270),
+    // The seam between Fu and Kun, which the project places at the winter solstice (270),
     // falls on the gate wheel at 43 degrees 15 minutes: 13 degrees 15 minutes of Taurus.
     const fu = GATE_SEQUENCE.findIndex((h) => h.hanzi === '復');
     expect(GATE_SEQUENCE[fu + 1]!.hanzi).toBe('坤');
@@ -118,5 +123,64 @@ describe('gua qi periods', () => {
     }
     expect(worst).toBeGreaterThan(1);
     expect(worst).toBeLessThan(3);
+  });
+});
+
+describe('Jing Fang allotment of the gua qi (Xin Tang shu 27A)', () => {
+  const start = utcMsFromFields(2024, 1, 1);
+  const end = utcMsFromFields(2026, 1, 1);
+
+  it('keeps the default convention unchanged', () => {
+    expect(DEFAULT_CONVENTIONS.guaQi).toBe('equal-longitude');
+    expect(guaQiSpans(start, end, 'equal-longitude').every((s) => s.position < 60)).toBe(true);
+  });
+
+  it('allots 365 1/4 days in parts of 80: four cardinal slivers, four short and fifty-six full periods', () => {
+    const parts = JING_FANG_ALLOTMENTS.map((a) => a.parts);
+    expect(parts.reduce((a, b) => a + b, 0)).toBe(365.25 * PARTS_PER_DAY);
+    expect(YEAR_PARTS).toBe(29220);
+    expect(parts.filter((p) => p === 73)).toHaveLength(4);
+    expect(parts.filter((p) => p === 5 * 80 + 14)).toHaveLength(4);
+    expect(parts.filter((p) => p === 6 * 80 + 7)).toHaveLength(56);
+    expect(new Set(numbers(JING_FANG_ALLOTMENTS.map((a) => a.hexagram))).size).toBe(64);
+  });
+
+  it('gives the short allotment to Yi, Jin, Jing and Da Xu, each just before a cardinal hexagram', () => {
+    const short = JING_FANG_ALLOTMENTS.filter((a) => a.parts === 414).map((a) => a.hexagram.hanzi);
+    expect(short).toEqual(['晉', '井', '大畜', '頤']);
+    JING_FANG_ALLOTMENTS.forEach((a, i) => {
+      if (a.parts === 414) {
+        const next = JING_FANG_ALLOTMENTS[(i + 1) % 64]!;
+        expect(next.parts).toBe(73);
+        expect(CARDINAL_HEXAGRAMS.map((c) => c.hexagram.hanzi)).toContain(next.hexagram.hanzi);
+      }
+    });
+  });
+
+  it('tiles two years without gaps and includes the cardinal slivers as periods of their own', () => {
+    const spans = guaQiSpans(start, end, 'jing-fang');
+    expect(spans[0]!.startUtcMs).toBeLessThanOrEqual(start);
+    expect(spans.at(-1)!.endUtcMs).toBeGreaterThanOrEqual(end);
+    for (let i = 1; i < spans.length; i++) expect(spans[i]!.startUtcMs).toBe(spans[i - 1]!.endUtcMs);
+    const slivers = spans.filter((s) => s.position >= 60);
+    expect(slivers.length).toBeGreaterThanOrEqual(8);
+    for (const s of slivers) expect((s.endUtcMs - s.startUtcMs) / MS.DAY).toBeCloseTo((73 / 80) * (365.2422 / 365.25), 1);
+  });
+
+  it('starts each cardinal sliver within minutes of its scaled solstice or equinox position', () => {
+    const spans = guaQiSpans(start, end, 'jing-fang');
+    const kan = spans.filter((s) => s.position === 60);
+    for (const [i, s] of kan.entries()) {
+      // The winter solstice itself, from the Sun's longitude.
+      const solstice = nextSunLongitude(270, s.startUtcMs - 2 * MS.DAY);
+      expect(Math.abs(s.startUtcMs - solstice) / MS.MIN).toBeLessThan(1);
+      const next = kan[i + 1];
+      if (!next) continue;
+      for (let q = 1; q < 4; q++) {
+        const sliver = spans.find((x) => x.position === 60 + q && x.startUtcMs > s.startUtcMs)!;
+        const scaled = s.startUtcMs + ((next.startUtcMs - s.startUtcMs) * q) / 4;
+        expect(Math.abs(sliver.startUtcMs - scaled) / MS.MIN, `cardinal ${q}`).toBeLessThan(5);
+      }
+    }
   });
 });

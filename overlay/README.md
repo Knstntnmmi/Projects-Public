@@ -20,9 +20,9 @@ A survey of the open-source and commercial landscape in November 2026 found many
 
 **Distance to the boundary.** For each discrete fact (each pillar, the rising sign, the sect, the Moon's sign and nakshatra, the hexagram of the day) Overlay reports the nearest earlier and later clock time at which it would come out differently, and flags those inside the uncertainty you state for the clock time or inside the engine's own two-minute margin. Nothing comparable was found.
 
-**The gua qi calendar.** The Han "six days seven parts" calendar of sixty hexagrams, which no library was found to implement, is implemented here in both its mean-time and equal-longitude readings, and its sequence is checked against the table of the Dayan calendar in the *New Tang History*.
+**The gua qi calendar.** The Han "six days seven parts" calendar of sixty hexagrams, which no library was found to implement, is implemented here in Meng Xi's scheme as Yi Xing adopted it in the Dayan calendar, in both its mean-time and equal-longitude readings, with Jing Fang's different allotment as a third option; the sequence is checked against the table of the Dayan calendar in the *New Tang History*.
 
-**A graded registry of correspondences.** Each claimed link between systems is marked exact, structural, historical, loose or coincidence, with sources, and the ones that can be computed are computed by the tests. One result of doing so: the sixty-four-gate ecliptic wheel of twentieth-century hexagram astrology is exactly Shao Yong's Fu Xi circle run backwards and rotated, with the seam that Shao Yong puts at the winter solstice falling at 13°15′ of Taurus.
+**A graded registry of correspondences.** Each claimed link between systems is marked exact, structural, historical, loose or coincidence, with sources, and the ones that can be computed are computed by the tests. One result of doing so: the sixty-four-gate ecliptic wheel of twentieth-century hexagram astrology is exactly the Fu Xi circle attributed to Shao Yong run backwards and rotated, with the seam that this project puts at the winter solstice falling at 13°15′ of Taurus.
 
 **Seams with a chance baseline.** The timeline marks dates on which tracks running on two or more independent clocks change together, and says how many such dates would be expected if the boundaries fell at random. Tracks that share a clock are counted once: the firdaria and the profections both turn on the birthday, so their coinciding is arithmetic and not a finding.
 
@@ -36,10 +36,10 @@ A survey of the open-source and commercial landscape in November 2026 found many
 | --- | --- | --- |
 | Substrate | Instant from a wall clock and zone; civil, standard, local mean and true solar clocks; equation of time; apparent geocentric longitudes; Ascendant and Midheaven; the twenty-four solar terms | Equation of time and positions against published values; solar terms against 寿星天文历 for every term from 1900 to 2100 |
 | BaZi | Four pillars, hidden stems, ten gods, nayin, luck pillars with start age, annual, monthly and daily pillars over any span | Eight thousand generated charts and every hour boundary of three hundred days against `tyme4ts`, under both day-boundary conventions |
-| I Ching | The sixty-four hexagrams; twelve sovereign hexagrams; gua qi; the four cardinal hexagrams line by line; Shao Yong's Fu Xi circle; the sixty-four-gate wheel | King Wen pairing rule; the Dayan calendar table; published gate positions |
+| I Ching | The sixty-four hexagrams; twelve sovereign hexagrams; gua qi; the four cardinal hexagrams line by line; the Fu Xi circle attributed to Shao Yong; the sixty-four-gate wheel | King Wen pairing rule; the Dayan calendar table; published gate positions |
 | Western | Seven planets and mean node in signs and whole-sign houses, sect, Lot of Fortune, domicile, exaltation, Dorothean triplicity, Egyptian bounds, Chaldean faces, annual profections, firdaria, planetary day and hour, Jupiter and Saturn by sign | Ephemeris positions at J2000; the bounds sum to the planets' greater years; a dated Jupiter ingress |
-| Vedic | Lahiri ayanamsa, sidereal signs, nakshatra and pada, vimshottari mahadasha and antardasha | Published ayanamsa values; the periods total 120 years |
-| Calendars | Julian day, weekday, Maya Long Count with Tzolkin and Haab, twelve day officers, twenty-eight mansion days, nine-star year | 13.0.0.0.0 on 21 December 2012; four hundred days against `tyme4ts` |
+| Vedic | Lahiri ayanamsa, sidereal signs, nakshatra and pada, vimshottari mahadasha and antardasha | Ayanamsa values printed in the Indian Astronomical Ephemeris, as quoted in the Swiss Ephemeris documentation (the Ephemeris itself not seen); the periods total 120 years |
+| Calendars | Julian day, weekday, Maya Long Count with Tzolkin and Haab, twelve day officers, twenty-eight lodge days, nine-star year | 13.0.0.0.0 on 21 December 2012; four hundred days against `tyme4ts` |
 
 ## Use
 
@@ -84,7 +84,7 @@ A system joins the overlay by expressing itself in two shapes: arcs of ecliptic 
 
 Positions come from `astronomy-engine`, which documents itself as good to about one arcminute; for the Sun it does much better than that. Solar-term instants from this engine differ from 寿星天文历 by thirteen seconds on average and about a minute at worst over 1600 to 2100; that compares two models with each other, and only one instant (Lichun 2024, three seconds off the time reported that day) has been checked against a published figure. A boundary closer than two minutes is therefore reported as undecided rather than decided.
 
-Zone offsets and daylight-saving history come from the tz database built into the runtime, which is known to be weak before 1970 and for regions whose zones were later merged (China before 1949 among them). Solar terms are always the true-Sun terms, although the Chinese calendar used mean-time terms before 1645. The ayanamsa omits nutation. All of this is set out in [docs/SOURCES.md](docs/SOURCES.md).
+Zone offsets and daylight-saving history come from the tz database built into the runtime, which is known to be weak before 1970 and for regions whose zones were later merged (China before 1949 among them). Solar terms are always the true-Sun terms, although the Chinese calendar used mean-time terms before 1645. The Lahiri ayanamsa is the true one, with nutation, anchored on its 1956 definition; whether the defining value is a true or a mean one is not settled by the sources read, and a mean reading would shift every sidereal longitude by about sixteen arcseconds. All of this is set out in [docs/SOURCES.md](docs/SOURCES.md).
 
 ## What it does not do
 

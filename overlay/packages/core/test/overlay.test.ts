@@ -8,7 +8,7 @@ import { buildRings, readAcross, segmentAt } from '../src/overlay/rings.ts';
 import { findSeams } from '../src/overlay/seams.ts';
 import { conventionEffects, sensitivity } from '../src/overlay/sensitivity.ts';
 import { buildTracks } from '../src/overlay/tracks.ts';
-import { longitudeOf, norm360 } from '../src/substrate/sky.ts';
+import { longitudeOf, nextSunLongitude, norm360 } from '../src/substrate/sky.ts';
 import { solarTermInstant, SOLAR_TERMS } from '../src/substrate/terms.ts';
 import { julianDayNumber, makeMoment, MS, utcMsFromFields } from '../src/substrate/time.ts';
 import { mansionOfDay, weekday } from '../src/systems/calendars/index.ts';
@@ -27,7 +27,8 @@ describe('primary-source vectors', () => {
   // Transcribed from the table of the Dayan calendar in Xin Tang shu, juan 28A (zh.wikisource.org,
   // 新唐書/卷028上), reading the 始卦, 中卦 and 終卦 columns from 冬至 to 大雪 and merging each
   // marquis hexagram's inner and outer halves. The Wikisource transcription has 史 at position 22,
-  // a slip for 夬, the sovereign hexagram of the third month.
+  // a slip for 夬, the sovereign hexagram of the third month. The Bailu row has a second, harmless slip,
+  // 候 for 侯 (marquis) beside 巽; it changes no hexagram, so nothing here depends on it.
   const DAYAN =
     '中孚 復 屯 謙 睽 升 臨 小過 蒙 益 漸 泰 需 隨 晉 解 大壯 豫 訟 蠱 革 夬 旅 師 比 小畜 乾 大有 家人 井 咸 姤 鼎 豐 渙 履 遯 恆 節 同人 損 否 巽 萃 大畜 賁 觀 歸妹 無妄 明夷 困 剝 艮 既濟 噬嗑 大過 坤 未濟 蹇 頤';
   const DAYAN_CARDINAL =
@@ -230,5 +231,108 @@ describe('facts document', () => {
     expect(doc.bazi.pillars).toBe(`${p.year.hanzi} ${p.month.hanzi} ${p.day.hanzi} ${p.hour.hanzi}`);
     expect(doc.calendars.julianDayNumber).toBe(julianDayNumber(2000, 1, 1));
     expect(doc.bazi.luck).toMatch(/not computed/);
+  });
+});
+
+describe('gua qi under Jing Fang\'s allotment', () => {
+  const jingFang = { ...DEFAULT_CONVENTIONS, guaQi: 'jing-fang' } as const;
+
+  it('draws a ring of sixty-four arcs that tiles the circle, the cardinal ones under a degree wide', () => {
+    const ring = buildRings(utcMsFromFields(2024, 6, 1), jingFang).find((r) => r.id === 'gua-qi')!;
+    expect(ring.segments).toHaveLength(64);
+    let total = 0;
+    for (const [i, s] of ring.segments.entries()) {
+      total += norm360(s.end - s.start) || 360;
+      expect(norm360(ring.segments[(i + 1) % 64]!.start - s.end)).toBeLessThan(1e-9);
+    }
+    expect(total).toBeCloseTo(360, 6);
+    expect(segmentAt(ring, 270.5).label).toContain('坎');
+    expect(segmentAt(ring, 271.5).label).toContain('中孚');
+    const short = ring.segments.filter((s) => norm360(s.end - s.start) < 1);
+    expect(short).toHaveLength(4);
+  });
+
+  it('puts the cardinal periods in the timeline track', () => {
+    const m = moment('j2000');
+    const tracks = buildTracks(m, jingFang, { startUtcMs: m.utcMs, endUtcMs: m.utcMs + 2 * YEAR });
+    const track = tracks.find((t) => t.id === 'gua-qi')!;
+    expect(track.boundary).toContain('Jing Fang');
+    expect(track.intervals.filter((i) => i.detail!.endsWith('Cardinal')).length).toBeGreaterThanOrEqual(8);
+  });
+
+  it('names a cardinal hexagram in the facts and the sensitivity report, and reports the change of convention', () => {
+    // An hour into the sliver that opens the first winter solstice after the J2000 moment.
+    const m = moment('j2000');
+    const solstice = nextSunLongitude(270, m.utcMs);
+    const inside = { ...m, utcMs: solstice + MS.HOUR };
+    const f = facts(inside, { conventions: jingFang });
+    expect(f.iching.guaQi.hexagram).toContain('坎');
+    expect(f.iching.guaQi.rank).toBe('Cardinal');
+    const row = sensitivity(inside, jingFang).find((r) => r.id === 'iching.gua-qi')!;
+    expect(row.value).toBe('坎');
+    expect(row.earlier!.minutes).toBeCloseTo(60, 0);
+    expect(row.later!.value).toBe('中孚');
+    expect(row.later!.minutes / 60).toBeCloseTo(0.9125 * 24 - 1, 0);
+    const base = conventionEffects(inside, DEFAULT_CONVENTIONS).find((e) => e.key === 'guaQi' && e.value === 'jing-fang')!;
+    expect(base.changes.map((c) => c.output)).toContain('Gua qi hexagram');
+  });
+
+  it('leaves everything printed by default as it was', () => {
+    expect(DEFAULT_CONVENTIONS.guaQi).toBe('equal-longitude');
+    expect(DEFAULT_CONVENTIONS.sovereignBoundary).toBe('jie');
+    const ring = buildRings(utcMsFromFields(2024, 6, 1), DEFAULT_CONVENTIONS).find((r) => r.id === 'gua-qi')!;
+    expect(ring.segments).toHaveLength(60);
+  });
+});
+
+describe('sovereign hexagram boundary', () => {
+  const jie = DEFAULT_CONVENTIONS;
+  const zhongqi = { ...DEFAULT_CONVENTIONS, sovereignBoundary: 'zhongqi' } as const;
+  const ringOf = (c: typeof jie | typeof zhongqi) => buildRings(utcMsFromFields(2024, 6, 1), c).find((r) => r.id === 'sovereign')!;
+
+  it('differs between jie and zhongqi by exactly fifteen degrees', () => {
+    const a = ringOf(jie).segments;
+    const b = ringOf(zhongqi).segments;
+    expect(a).toHaveLength(12);
+    for (const [i, s] of a.entries()) {
+      expect(norm360(b[i]!.start - s.start)).toBe(15);
+      expect(norm360(b[i]!.end - s.end)).toBe(15);
+      expect(s.short).toBe(b[i]!.short);
+    }
+    expect(a[0]!.start).toBe(255);
+    expect(segmentAt(ringOf(jie), 260).label).toContain('復');
+    expect(segmentAt(ringOf(zhongqi), 260).label).toContain('坤');
+    expect(segmentAt(ringOf(zhongqi), 271).label).toContain('復');
+    expect(ringOf(jie).note).toContain('zhongqi');
+  });
+
+  it('turns the track\'s hexagram at the jie by default and at the zhongqi under the convention', () => {
+    const m = moment('j2000');
+    const span = { startUtcMs: m.utcMs, endUtcMs: m.utcMs + 3 * YEAR };
+    const turns = (c: typeof jie | typeof zhongqi): number[] => {
+      const iv = buildTracks(m, c, span).find((t) => t.id === 'bazi-month')!.intervals;
+      const hexagram = (d: string | undefined): string => d!.split('sovereign hexagram ')[1]!;
+      const out: number[] = [];
+      for (let i = 1; i < iv.length; i++) if (hexagram(iv[i]!.detail) !== hexagram(iv[i - 1]!.detail)) out.push(longitudeOf('Sun', iv[i]!.startUtcMs) % 30);
+      return out;
+    };
+    for (const l of turns(jie)) expect(Math.abs(l - 15)).toBeLessThan(0.01);
+    const z = turns(zhongqi);
+    expect(z.length).toBeGreaterThan(30);
+    for (const l of z) expect(Math.min(l, 30 - l)).toBeLessThan(0.01);
+  });
+
+  it('is reported as a convention effect and followed by the facts', () => {
+    // Sun at about 260 degrees: the Zi month has begun but the winter solstice has not come.
+    const m = moment('j2000');
+    const early = { ...m, utcMs: nextSunLongitude(260, m.utcMs - 2 * YEAR + 0) };
+    expect(facts(early, { conventions: jie }).iching.sovereign).toContain('復');
+    expect(facts(early, { conventions: zhongqi }).iching.sovereign).toContain('坤');
+    const effect = conventionEffects(early, jie).find((e) => e.key === 'sovereignBoundary')!;
+    expect(effect.changes.map((c) => c.output)).toContain('Sovereign hexagram');
+  });
+
+  it('is no longer graded exact in the registry', () => {
+    expect(CORRESPONDENCES.find((c) => c.id === 'sovereign-months')!.grade).not.toBe('exact');
   });
 });

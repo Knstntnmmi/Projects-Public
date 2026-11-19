@@ -4,3 +4,5 @@ export * from './svg.ts';
 export * from './wheel.ts';
 export * from './timeline.ts';
 export * from './compose.ts';
+export * from './forecastGrid.ts';
+export * from './forecastText.ts';

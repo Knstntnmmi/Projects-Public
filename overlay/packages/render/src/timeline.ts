@@ -5,7 +5,7 @@
  * different systems can be compared by eye.
  */
 import { CREDIT, type Seam, type Track } from '@overlay/core';
-import { creditBlock, esc, n, styleBlock, textWidth, toneAttrs } from './svg.ts';
+import { creditBlock, esc, n, styleBlock, textWidth, toneAttrs, wrapText } from './svg.ts';
 
 export interface TimelineOptions {
   startUtcMs: number;
@@ -16,6 +16,8 @@ export interface TimelineOptions {
   title?: string;
   width?: number;
   theme?: 'light' | 'dark';
+  /** A sentence drawn under the tracks, wrapped to the width of the drawing (the one sentence of a forecast, where forecast tracks are drawn). */
+  footnote?: string;
 }
 
 const GUTTER = 232;
@@ -68,7 +70,8 @@ export function renderTimeline(tracks: readonly Track[], options: TimelineOption
   const plot = width - GUTTER - 24;
   const x = (ms: number): number => GUTTER + ((ms - start) / (end - start)) * plot;
   const TOP = options.title ? 78 : 48;
-  const height = TOP + tracks.length * ROW + 44;
+  const noteLines = options.footnote ? wrapText(options.footnote, width - 48, 11) : [];
+  const height = TOP + tracks.length * ROW + 44 + noteLines.length * 15;
   const iso = (ms: number): string => new Date(ms).toISOString().slice(0, 16).replace('T', ' ');
 
   const out: string[] = [];
@@ -135,6 +138,7 @@ export function renderTimeline(tracks: readonly Track[], options: TimelineOption
     );
   }
 
+  noteLines.forEach((line, k) => out.push(`<text x="24" y="${n(bottom + 36 + k * 15)}" font-size="11" data-footnote="${k}">${esc(line)}</text>`));
   out.push(`<text class="muted" x="${GUTTER}" y="${height - 8}" font-size="11">Dates are UTC. Triangles mark dates where tracks on two or more independent clocks change together.</text>`);
   out.push(creditBlock(CREDIT, width - 24, height - 8));
   out.push('</svg>');

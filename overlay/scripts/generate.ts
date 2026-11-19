@@ -15,7 +15,24 @@ import { facts } from '../packages/core/src/facts.ts';
 import { solarTermInstant, SOLAR_TERMS } from '../packages/core/src/substrate/terms.ts';
 import { makeMoment } from '../packages/core/src/substrate/time.ts';
 import { fourPillars, luck } from '../packages/core/src/systems/bazi/index.ts';
-import { timelineFor, wheelFor } from '../packages/render/src/index.ts';
+import { evaluate, makeInput, type ForecastResult } from '../packages/core/src/forecast/evaluate.ts';
+import { decadeGrid, gridText } from '../packages/core/src/forecast/grid.ts';
+import { yearView } from '../packages/core/src/forecast/yearView.ts';
+import { statementList } from '../packages/core/src/forecast/statements.ts';
+import { TOPIC_LABEL } from '../packages/core/src/forecast/phrasebook.ts';
+import {
+  FORECAST_SENTENCE,
+  GRID_LEGEND,
+  conventionPairs,
+  headlineLines,
+  natalLines,
+  notEvaluatedLines,
+  renderDecadeGrid,
+  ruleCounts,
+  timelineFor,
+  wheelFor,
+  yearStatementLines,
+} from '../packages/render/src/index.ts';
 import { MOMENTS } from '../fixtures/moments.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -145,6 +162,91 @@ function sample(): ReturnType<typeof makeMoment> {
   return makeMoment(f.civil, f.zone, f.place);
 }
 
+/** The fixed sample of the forecast figure and document: the constructed moment j2000, wealth, 2026 to 2035. */
+export const SAMPLE_FORECAST = { moment: 'j2000', topic: 'wealth', fromYear: 2026, toYear: 2035, command: 'npm run overlay -- forecast --moment j2000 --topic wealth --from 2026 --to 2035' } as const;
+
+let sampleResult: ForecastResult | undefined;
+/** One evaluation serves both generated files; no clock is read, and the baseline's seed is the default one. */
+function sampleForecast(): ForecastResult {
+  if (!sampleResult) {
+    const f = MOMENTS.find((m) => m.id === SAMPLE_FORECAST.moment)!;
+    const input = makeInput(makeMoment(f.civil, f.zone, f.place), { fromYear: SAMPLE_FORECAST.fromYear, toYear: SAMPLE_FORECAST.toYear });
+    sampleResult = evaluate(input, { topics: [SAMPLE_FORECAST.topic] });
+  }
+  return sampleResult;
+}
+
+const md = (s: string): string => s.replace(/([\\`*_<>\[\]])/g, '\\$1');
+
+export function sampleForecastDoc(): string {
+  const result = sampleForecast();
+  const topic = SAMPLE_FORECAST.topic;
+  const list = statementList(result, topic);
+  const grid = decadeGrid(result, topic);
+  const counts = ruleCounts(result);
+  const label = TOPIC_LABEL[topic];
+  const years = grid.years;
+  const out: string[] = [
+    `# A sample forecast: ${label}, ${years[0]} to ${years[years.length - 1]}`,
+    '',
+    'Generated from the code by `npm run generate`. Do not edit by hand.',
+    '',
+    FORECAST_SENTENCE,
+    '',
+    `The chart is the constructed moment \`${SAMPLE_FORECAST.moment}\` of \`fixtures/moments.ts\` (the J2000.0 epoch at Greenwich), which is no person's birth. No sex convention is named, so the rules that need one are listed below as not evaluated, and the BaZi luck pillars are silent.`,
+    '',
+    `## ${list.natalHeading}`,
+    '',
+    ...natalLines(list).slice(1).map((l) => `- ${md(l.trim())}`),
+    '',
+    '## The grid',
+    '',
+    `![The decade grid for ${label}, ${years[0]} to ${years[years.length - 1]}](img/forecast-grid.svg)`,
+    '',
+    `The same grid as text (${GRID_LEGEND}):`,
+    '',
+    '```text',
+    ...gridText(grid),
+    '```',
+    '',
+    '## The year headlines',
+    '',
+    ...headlineLines(yearView(result, topic)).map((l) => `- ${md(l)}`),
+    '',
+    `## The statements of ${years.slice(0, 3).join(', ')}`,
+    '',
+    'Each statement is said in full the first time it appears and named after that. Pointers, which mark the topic without a direction, are folded into one group per level and year.',
+    '',
+    '```text',
+    ...yearStatementLines(result, topic, years.slice(0, 3)).slice(1),
+    '```',
+    '',
+    `## The rules not evaluated (${counts.notEvaluated.length})`,
+    '',
+    'Each is listed with the reason, for every topic: a rule that needs a convention that was not named, a rule whose source leaves a point open, and the branches of a rule that are left out.',
+    '',
+    ...notEvaluatedLines(counts).map((l) => `- ${md(l)}`),
+    '',
+    '## The conventions used',
+    '',
+    'Settings are described in [CONVENTIONS.md](CONVENTIONS.md).',
+    '',
+    ...conventionPairs(result).map(([k, v]) => `- \`${k}\`: ${md(v)}`),
+    '',
+    '## How to reproduce it',
+    '',
+    'From the `overlay` folder, after `npm ci`:',
+    '',
+    '```sh',
+    SAMPLE_FORECAST.command,
+    `${SAMPLE_FORECAST.command} --full`,
+    `${SAMPLE_FORECAST.command} --svg > forecast-grid.svg`,
+    '```',
+    '',
+  ];
+  return out.join('\n');
+}
+
 export const GENERATED: Array<{ path: string; content: () => string }> = [
   { path: 'docs/img/wheel-j2000.svg', content: () => `${wheelFor(sample(), DEFAULT_CONVENTIONS, { legend: true, title: 'The J2000 epoch read across seven rings' })}\n` },
   {
@@ -154,6 +256,11 @@ export const GENERATED: Array<{ path: string; content: () => string }> = [
       return `${timelineFor(m, DEFAULT_CONVENTIONS, { startUtcMs: m.utcMs, endUtcMs: m.utcMs + 90 * 365.2425 * 86_400_000, sex: 'female', title: 'Ninety years from the J2000 epoch, every track on one axis' })}\n`;
     },
   },
+  {
+    path: 'docs/img/forecast-grid.svg',
+    content: () => `${renderDecadeGrid(decadeGrid(sampleForecast(), SAMPLE_FORECAST.topic))}\n`,
+  },
+  { path: 'docs/SAMPLE-FORECAST.md', content: sampleForecastDoc },
   { path: 'docs/CONVENTIONS.md', content: conventionsDoc },
   { path: 'docs/CORRESPONDENCES.md', content: correspondencesDoc },
   { path: 'fixtures/golden/pillars.json', content: () => `${JSON.stringify(pillarVectors(), null, 2)}\n` },

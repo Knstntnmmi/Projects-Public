@@ -11,23 +11,24 @@ import {
   facts,
   findSeams,
   buildTracks,
-  makeMoment,
   sensitivity,
   conventionEffects,
   utcMsFromFields,
-  type Conventions,
   type Moment,
-  type Sex,
 } from '@overlay/core';
-import { timelineFor, wheelFor } from '@overlay/render';
+import { FORECAST_SENTENCE, timelineFor, wheelFor } from '@overlay/render';
 import { MOMENTS } from '../../../fixtures/moments.ts';
+import { CliError, fail, parseArgs, readConventions, readMoment, readSex, type Flags } from './args.ts';
+import { runForecast, runForecastTimeline, runWindow } from './forecastCommand.ts';
 
-const HELP = `overlay: one moment, every system, one shared axis
+const HELP = `overlay: one moment, every system, one shared axis, and for a span of years what each tradition's published rules say about a topic, with their source
 
 Usage
   overlay <command> [options]
 
 Commands
+  forecast         what each tradition's rules say about a topic, year by year, money first (add --full for every statement)
+  window           the I Ching's character of a period and Lilly's day statements, for at most 62 days
   facts            everything the engine can say about the moment, as JSON
   wheel            the ring overlay as SVG
   timeline         the track overlay as SVG
@@ -55,86 +56,25 @@ Options
   --theme light|dark      fix the colours instead of following the viewer
   --legend                wheel: list the rings underneath
 
+Forecast options
+  --topic <name>          wealth (the default), career, relationships, health, learning, home-travel, general
+  --from <year> --to <year>   the years (default: the ten years starting with the current year)
+  --traditions a,b        bazi, vedic, iching, western (default: all four)
+  --json                  the JSON report            --svg   the grid as a drawing (--width <px>, 360 to 1200)
+  --full                  every statement, the rules not evaluated and the conventions used
+  --sex male|female       the sex the BaZi chart is read as. The luck pillars and some rules need it;
+                          it is never guessed, and the rules that need it are listed as not evaluated without it
+  --set key=value         also takes the forecast settings, for example sliceEdgeDays=0
+  timeline --forecast [topic]   draws the forecast tracks under the engine's own (ten years unless --years is given)
+Window options
+  --date <YYYY-MM-DD> --days <n>   the first day and the length, at most 62 days
+${FORECAST_SENTENCE}
+
 Privacy
   The moment you pass stays in this process. Nothing is sent anywhere or saved.
 `;
 
-interface Args {
-  command: string;
-  flags: Map<string, string[]>;
-}
-
-function parseArgs(argv: string[]): Args {
-  const flags = new Map<string, string[]>();
-  let command = '';
-  for (let i = 0; i < argv.length; i++) {
-    const a = argv[i]!;
-    if (a.startsWith('--')) {
-      const key = a.slice(2);
-      const next = argv[i + 1];
-      const value = next !== undefined && !/^--[a-z]/.test(next) ? (i++, next) : 'true';
-      flags.set(key, [...(flags.get(key) ?? []), value]);
-    } else if (!command) command = a;
-  }
-  return { command, flags };
-}
-
-function fail(message: string): never {
-  process.stderr.write(`overlay: ${message}\n`);
-  process.exit(2);
-}
-
-function readConventions(flags: Map<string, string[]>): Conventions {
-  const c: Record<string, unknown> = { ...DEFAULT_CONVENTIONS };
-  for (const pair of flags.get('set') ?? []) {
-    const [key, raw] = pair.split('=');
-    const spec = CONVENTION_SPECS.find((s) => s.key === key);
-    if (!spec || raw === undefined) fail(`unknown convention "${pair}". Run "overlay conventions" for the list.`);
-    const option = spec.options.find((o) => String(o.value) === raw);
-    if (!option) fail(`"${raw}" is not an option for ${key}. Choices: ${spec.options.map((o) => o.value).join(', ')}`);
-    c[key!] = option.value;
-  }
-  return c as unknown as Conventions;
-}
-
-function readMoment(flags: Map<string, string[]>): Moment {
-  const id = flags.get('moment')?.[0];
-  if (id) {
-    const f = MOMENTS.find((m) => m.id === id);
-    if (!f) fail(`no sample moment "${id}". Run "overlay moments" for the list.`);
-    return makeMoment(f.civil, f.zone, f.place);
-  }
-  const at = flags.get('at')?.[0];
-  if (!at) fail('give a moment with --moment <id> or --at "YYYY-MM-DD HH:MM". Run "overlay --help".');
-  const m = /^(-?\d{1,4})-(\d{1,2})-(\d{1,2})[ T](\d{1,2}):(\d{2})(?::(\d{2}))?$/.exec(at.trim());
-  if (!m) fail(`cannot read "${at}" as YYYY-MM-DD HH:MM[:SS]`);
-  const num = (key: string, fallback: number): number => {
-    const v = flags.get(key)?.[0];
-    if (v === undefined) return fallback;
-    const x = Number(v);
-    if (!Number.isFinite(x)) fail(`--${key} must be a number`);
-    return x;
-  };
-  const zone = flags.get('zone')?.[0] ?? 'UTC';
-  try {
-    return makeMoment(
-      { year: Number(m[1]), month: Number(m[2]), day: Number(m[3]), hour: Number(m[4]), minute: Number(m[5]), second: Number(m[6] ?? 0) },
-      zone,
-      { latitude: num('lat', 0), longitude: num('lon', 0) },
-    );
-  } catch {
-    fail(`unknown time zone "${zone}"`);
-  }
-}
-
-function readSex(flags: Map<string, string[]>): Sex | undefined {
-  const s = flags.get('sex')?.[0];
-  if (s === undefined) return undefined;
-  if (s !== 'male' && s !== 'female') fail('--sex must be male or female');
-  return s;
-}
-
-function span(flags: Map<string, string[]>, moment: Moment): { startUtcMs: number; endUtcMs: number } {
+function span(flags: Flags, moment: Moment): { startUtcMs: number; endUtcMs: number } {
   const from = flags.get('from')?.[0];
   let start = moment.utcMs;
   if (from) {
@@ -161,8 +101,8 @@ process.stdout.on('error', (e: NodeJS.ErrnoException) => {
   throw e;
 });
 
-function main(): void {
-  const { command, flags } = parseArgs(process.argv.slice(2));
+function main(argv: string[], currentYear: number): void {
+  const { command, flags } = parseArgs(argv);
   const out = (s: string): void => void process.stdout.write(s.endsWith('\n') ? s : `${s}\n`);
   if (!command || flags.has('help') || command === 'help') return out(HELP);
   const theme = flags.get('theme')?.[0] as 'light' | 'dark' | undefined;
@@ -185,6 +125,13 @@ function main(): void {
       return;
   }
 
+  switch (command) {
+    case 'forecast':
+      return out(runForecast(flags, currentYear));
+    case 'window':
+      return out(runWindow(flags));
+  }
+
   const moment = readMoment(flags);
   const conventions = readConventions(flags);
   const sex = readSex(flags);
@@ -202,6 +149,7 @@ function main(): void {
         }),
       );
     case 'timeline':
+      if (flags.has('forecast')) return out(runForecastTimeline(flags, moment, conventions, currentYear));
       return out(timelineFor(moment, conventions, { ...span(flags, moment), sex, theme }));
     case 'seams': {
       const s = span(flags, moment);
@@ -234,4 +182,11 @@ function main(): void {
   }
 }
 
-main();
+try {
+  // The clock is read here and nowhere else: the shell tells the commands which year it is.
+  main(process.argv.slice(2), new Date().getUTCFullYear());
+} catch (e) {
+  if (!(e instanceof CliError)) throw e;
+  process.stderr.write(`overlay: ${e.message}\n`);
+  process.exit(2);
+}

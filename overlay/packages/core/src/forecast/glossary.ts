@@ -3,7 +3,7 @@
 /**
  * The glossary of the terms of art that the forecast prints. The one source of truth is
  * data/glossary.json: docs/GLOSSARY.md is written from it by `npm run generate`, the page lists
- * the entries whose terms occur in the forecast it shows, and "overlay forecast --glossary"
+ * the entries whose terms occur in the forecast it shows (an entry marked fullGlossaryOnly is left out), and "overlay forecast --glossary"
  * prints the same list. An entry gives the term (several names for one thing are separated by
  * a comma and a space), the original word or characters where there are any, the meaning, and the
  * source: a work cited with its page, or the exact words {@link GLOSSARY_OWN_WORDING}.
@@ -17,6 +17,8 @@ export interface GlossaryEntry {
   original: string;
   definition: string;
   source: string;
+  /** Set for a common word (level, window, face and the like) that would occur in the output by chance: the entry stays in GLOSSARY.md and is left out of the lists of words used. */
+  fullGlossaryOnly?: boolean;
 }
 
 export const GLOSSARY_OWN_WORDING = "the project's own wording";
@@ -49,9 +51,9 @@ const pattern = (name: string): string => (/\p{Script=Han}/u.test(name) ? escape
 
 const MATCHERS: ReadonlyMap<GlossaryEntry, RegExp> = new Map(GLOSSARY.map((e) => [e, new RegExp(glossaryNames(e).map(pattern).join('|'), 'iu')]));
 
-/** The entries whose term occurs in a text, in the order of the file. Case does not matter; a term inside a longer word does not count. */
+/** The entries whose term occurs in a text, in the order of the file. Case does not matter; a term inside a longer word does not count. An entry marked fullGlossaryOnly is not listed. */
 export function glossaryTermsIn(text: string): GlossaryEntry[] {
-  return GLOSSARY.filter((e) => MATCHERS.get(e)!.test(text));
+  return GLOSSARY.filter((e) => e.fullGlossaryOnly !== true && MATCHERS.get(e)!.test(text));
 }
 
 /** The list of words used as plain lines, for the command line; nothing when no term occurs. */

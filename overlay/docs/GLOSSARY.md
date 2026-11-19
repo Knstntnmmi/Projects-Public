@@ -26,7 +26,7 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | no promise rule applied | | The badge on a dated statement. It says that no rule about the natal chart gates the statement; the engine has no gate semantics in this release. | the project's own wording |
 | experimental | | The badge for I Ching statements, whose grades are a construction of the project on the old texts. | the project's own wording |
 | convention-dependent | | The badge on every statement for the topic relationships, because the result there can change with a named setting, such as the sex convention. | the project's own wording |
-| a tendency only | | The badge for health statements, which state tendencies and say nothing about diagnosis. | the project's own wording |
+| a tendency only | | The badge for health statements. Such a line states a tendency and says nothing about illness in a particular person. | the project's own wording |
 | source not opened | | The badge for a rule whose source was not opened by the project. | the project's own wording |
 | labelled variant | | The badge for a statement computed under a choice that departs from the source, for example whole-sign houses where Lilly used Regiomontanus cusps. | the project's own wording |
 | sex convention | | The sex the chart is read as, which fixes the direction of the BaZi luck pillars and which rules apply. The engine never guesses it. | the project's own wording |

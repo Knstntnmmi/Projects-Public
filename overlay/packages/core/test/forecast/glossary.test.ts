@@ -98,7 +98,23 @@ describe('finding the terms in a text', () => {
   });
 
   it('keeps every name usable as written', () => {
-    for (const e of GLOSSARY) for (const n of glossaryNames(e)) expect(glossaryTermsIn(n), `${e.term}: ${n}`).toContain(e);
+    for (const e of GLOSSARY.filter((x) => x.fullGlossaryOnly !== true)) for (const n of glossaryNames(e)) expect(glossaryTermsIn(n), `${e.term}: ${n}`).toContain(e);
+  });
+
+  it('never lists an entry marked fullGlossaryOnly, and GLOSSARY.md still shows it', () => {
+    const marked = GLOSSARY.filter((e) => e.fullGlossaryOnly === true);
+    expect(marked.length).toBeGreaterThan(10);
+    for (const e of marked) {
+      for (const n of glossaryNames(e)) expect(glossaryTermsIn(`the ${n} here`), `${e.term}: ${n}`).not.toContain(e);
+      expect(glossaryMarkdown()).toContain(`| ${e.term} |`);
+    }
+    expect(glossaryLines(glossaryTermsIn('a level and a window')).join('\n')).not.toContain('- level');
+  });
+
+  it('keeps the word diagnosis out of the definition of "a tendency only"', () => {
+    const e = GLOSSARY.find((x) => x.term === 'a tendency only')!;
+    expect(e.definition).not.toMatch(/diagnos/i);
+    expect(e.definition).toContain('states a tendency and says nothing about illness in a particular person');
   });
 
   it('prints the list as lines under one heading, with the source, and nothing for no terms', () => {

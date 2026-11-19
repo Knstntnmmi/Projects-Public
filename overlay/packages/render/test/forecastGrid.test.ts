@@ -119,7 +119,8 @@ describe('the decade grid drawing', () => {
     expect(luck.note).toBe(forecast.NOTE.needsLuckDirection);
     // The drawing says it short, and keeps the full words in the row's tooltip; the README caption gives them in full.
     const row = svg.slice(svg.indexOf('data-level="bazi-luck"'));
-    expect(row.slice(0, 1500)).toContain('needs the sex');
+    expect(row.slice(0, 4000)).toContain('>sex not given<');
+    expect(row.slice(0, 4000)).not.toContain('>needs the sex<');
     expect(svg).toContain('needs the sex the chart is read as');
   });
 

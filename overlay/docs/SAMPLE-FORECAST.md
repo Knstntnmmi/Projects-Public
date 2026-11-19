@@ -66,24 +66,24 @@ Each statement is said in full the first time it appears and named after that. P
       needs the sex the chart is read as, which fixes the direction of the luck pillars
     Vedic mahadasha: mixed (a rule here states a mixed result); 1 rule is stated as mixed
       mixed: Saturn is debilitated in the 1st house; its period is read as mixed.
-        2016-09-18 to 2035-09-19; rule parashari.dasha-lord-placement-natal (Dasha lord's natal house and dignity); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.47 sl.7-32; Ch.48 sl.1
+        2016-09-18 to 2035-09-19; rule parashari.dasha-lord-placement-natal (Dasha lord's natal house and dignity); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.47 sl.7-32; Ch.48 sl.1
         no promise rule applied
     Vedic antardasha: mixed (a rule here states a mixed result); 3 rules support, 1 is stated as mixed
       mixed: Venus, in the sign of a friend in the 8th house, gives a mixed sub-period.
-        2023-07-11 to 2026-09-09; rule parashari.antardasha-lord-strength (Antardasha lord's own dignity and house); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.52 sl.1-12, 15-18, 40-42
+        2023-07-11 to 2026-09-09; rule parashari.antardasha-lord-strength (Antardasha lord's own dignity and house); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.52 sl.1-12, 15-18, 40-42
         no promise rule applied
       supports: Sun, being the lord of the 5th house, runs the period; Parashara's rule says such planets give wealth in their periods.
-        2026-09-09 to 2027-08-22; rule parashari.wealth-5-9-lord-dasha (Mahadasha of the 5th or 9th lord (and planets joined to them) gives wealth); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.41 sl.16-17; also Ch.34 sl.2-7 (the 5th and 9th houses named for wealth)
+        2026-09-09 to 2027-08-22; rule parashari.wealth-5-9-lord-dasha (Mahadasha of the 5th or 9th lord (and planets joined to them) gives wealth); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.41 sl.16-17; also Ch.34 sl.2-7 (the 5th and 9th houses named for wealth)
         no promise rule applied, extension (antardasha)
       supports: The Sun sub-period lies in the 9th place from Saturn: a favourable sub-period.
-        2026-09-09 to 2027-08-22; rule parashari.antardasha-from-dasha-lord-kendra (Antardasha lord in a kendra, trikona or 11th from the dasha lord); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.52 sl.11-12
+        2026-09-09 to 2027-08-22; rule parashari.antardasha-from-dasha-lord-kendra (Antardasha lord in a kendra, trikona or 11th from the dasha lord); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.52 sl.11-12
         no promise rule applied
       supports: Sun, in a neutral sign in the 9th house, gives a favourable sub-period.
-        2026-09-09 to 2027-08-22; rule parashari.antardasha-lord-strength (Antardasha lord's own dignity and house); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.52 sl.1-12, 15-18, 40-42
+        2026-09-09 to 2027-08-22; rule parashari.antardasha-lord-strength (Antardasha lord's own dignity and house); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.52 sl.1-12, 15-18, 40-42
         no promise rule applied
     Jupiter from the Moon: mixed (rules conflict); 1 rule supports, 1 cautions
       supports: Jupiter transits the 9th sign from your natal Moon from 2025-12-05 to 2026-06-01; the 9th is a favourable house.
-        2025-12-05 to 2026-06-01; rule parashari.jupiter-transit-good (Jupiter over the 2nd, 5th, 7th, 9th, 11th from the natal Moon); source: Mantreswara, Phaladeepika, tr. V. Subrahmanya Sastri (1937; 2nd ed. 1950), archive.org item in.ernet.dli.2015.92117; B. V. Raman, Hindu Predictive Astrology, archive.org item hindupredictiveastrologyofbvraman, Phaladeepika Adh.XXVI sl.2, 7, 18-20; Raman Ch.XXXIV (table of good houses; p.419-420 for the wealth wording)
+        2025-12-05 to 2026-06-01; rule parashari.jupiter-transit-good (Jupiter over the 2nd, 5th, 7th, 9th, 11th from the natal Moon); source: Mantreswara, Phaladeepika, tr. V. Subrahmanya Sastri (1937; 2nd ed. 1950), archive.org item in.ernet.dli.2015.92117; B. V. Raman, Hindu Predictive Astrology (Bangalore: Raman Publications, 8th ed., 1963), Phaladeepika Adh.XXVI sl.2, 7, 18-20; Raman Ch.XXXIV (table of good houses; p.419-420 for the wealth wording)
         no promise rule applied, obstructed in part (vedha), the obstructing planet in the vedha house: Moon, for 13 days in all
       cautions: Jupiter transits the 10th sign from your natal Moon from 2026-06-01 to 2026-10-31; the 10th is an unfavourable house.
         2026-06-01 to 2026-10-31; rule parashari.jupiter-transit-other (Jupiter over the other houses from the Moon); source: Mantreswara, Phaladeepika, tr. V. Subrahmanya Sastri (1937; 2nd ed. 1950), archive.org item in.ernet.dli.2015.92117, Adh.XXVI sl.18-20
@@ -123,10 +123,10 @@ Each statement is said in full the first time it appears and named after that. P
       supports: The Sun sub-period lies in the 9th place from Saturn: a favourable sub-period. (rule parashari.antardasha-from-dasha-lord-kendra; said in full under 2026)
       supports: Sun, in a neutral sign in the 9th house, gives a favourable sub-period. (rule parashari.antardasha-lord-strength; said in full under 2026)
       supports: The Moon sub-period lies in the 7th place from Saturn: a favourable sub-period.
-        2027-08-22 to 2029-03-23; rule parashari.antardasha-from-dasha-lord-kendra (Antardasha lord in a kendra, trikona or 11th from the dasha lord); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.52 sl.11-12
+        2027-08-22 to 2029-03-23; rule parashari.antardasha-from-dasha-lord-kendra (Antardasha lord in a kendra, trikona or 11th from the dasha lord); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.52 sl.11-12
         no promise rule applied
       supports: Moon, in the sign of a friend in the 7th house, gives a favourable sub-period.
-        2027-08-22 to 2029-03-23; rule parashari.antardasha-lord-strength (Antardasha lord's own dignity and house); source: Brihat Parashara Hora Shastra, archive.org item ParasharaHoraSastra (see parashari.house-topic-map for edition note), Ch.52 sl.1-12, 15-18, 40-42
+        2027-08-22 to 2029-03-23; rule parashari.antardasha-lord-strength (Antardasha lord's own dignity and house); source: Brihat Parashara Hora Shastra, English translation with additions from Santhanam (see parashari.house-topic-map for edition note), Ch.52 sl.1-12, 15-18, 40-42
         no promise rule applied
     Jupiter from the Moon: cautions; 2 rules caution
       cautions: Jupiter transits the 10th sign from your natal Moon from 2027-01-24 to 2027-06-25; the 10th is an unfavourable house.

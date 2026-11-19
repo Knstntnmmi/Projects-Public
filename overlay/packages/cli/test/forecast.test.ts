@@ -181,6 +181,55 @@ describe('overlay forecast', () => {
   });
 });
 
+describe('overlay forecast --glossary', () => {
+  const plain = forecastOf();
+  const withWords = forecastOf('--glossary');
+
+  it('prints the forecast unchanged, then the words used in it under one heading', () => {
+    expect(withWords.startsWith(`${plain}\n\n${forecast.GLOSSARY_HEADING}\n`)).toBe(true);
+    const words = withWords.slice(plain.length + 2).split('\n');
+    expect(words).toEqual(forecast.glossaryLines(forecast.glossaryTermsIn(plain)));
+  });
+
+  it('lists each term once with its meaning and its source, and only terms that occur in the text', () => {
+    const words = withWords.slice(plain.length + 2).split('\n').slice(1);
+    const used = forecast.glossaryTermsIn(plain);
+    expect(words).toHaveLength(used.length);
+    expect(used.map((e) => e.term)).toEqual(expect.arrayContaining(['supports', 'cautions', 'mixed', 'nothing said']));
+    used.forEach((e, i) => {
+      expect(words[i]).toContain(e.term);
+      expect(words[i]).toContain(e.definition);
+      expect(words[i]).toMatch(/Source: .+\.$/);
+    });
+    expect(used.length).toBeLessThan(forecast.GLOSSARY.length / 2);
+    for (const e of forecast.GLOSSARY.filter((x) => !used.includes(x))) expect(forecast.glossaryTermsIn(plain)).not.toContain(e);
+  });
+
+  it('prints no list without the flag, and says nothing banned in the list', () => {
+    expect(plain).not.toContain(forecast.GLOSSARY_HEADING);
+    assertWording(withWords.slice(plain.length), 'glossary');
+  });
+
+  it('follows the topic and the traditions that were asked for', () => {
+    const one = forecastOf('--topic', 'career', '--traditions', 'vedic', '--glossary');
+    const words = one.slice(one.indexOf(forecast.GLOSSARY_HEADING));
+    expect(words).toContain('mahadasha');
+    expect(words).not.toContain('sixty-four-gate wheel');
+  });
+
+  it('does not mix into the JSON report or the drawing', () => {
+    expect(() => forecastOf('--json', '--glossary')).toThrow(CliError);
+    expect(() => forecastOf('--svg', '--glossary')).toThrow(CliError);
+  });
+
+  it('works from the shell too', () => {
+    const cli = join(dirname(fileURLToPath(import.meta.url)), '../src/index.ts');
+    const r = spawnSync(process.execPath, [cli, 'forecast', '--moment', 'j2000', '--from', '2026', '--to', '2035', '--glossary'], { encoding: 'utf8' });
+    expect(r.status).toBe(0);
+    expect(r.stdout).toContain(`\n${forecast.GLOSSARY_HEADING}\n- supports: `);
+  });
+});
+
 describe('overlay window', () => {
   const run = (...argv: string[]): string => runWindow(flagsOf('--moment', 'j2000', ...argv));
 

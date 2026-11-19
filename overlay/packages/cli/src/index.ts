@@ -62,6 +62,7 @@ Forecast options
   --traditions a,b        bazi, vedic, iching, western (default: all four)
   --json                  the JSON report            --svg   the grid as a drawing (--width <px>, 360 to 1200)
   --full                  every statement, the rules not evaluated and the conventions used
+  --glossary              after the text, the words used in it, each with its meaning and source
   --sex male|female       the sex the BaZi chart is read as. The luck pillars and some rules need it;
                           it is never guessed, and the rules that need it are listed as not evaluated without it
   --set key=value         also takes the forecast settings, for example sliceEdgeDays=0

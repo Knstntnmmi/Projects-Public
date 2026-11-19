@@ -86,6 +86,7 @@ export function prepare(flags: Flags, years: { fromYear: number; toYear: number 
 /** "overlay forecast": the text, the JSON report (--json) or the grid drawing (--svg). */
 export function runForecast(flags: Flags, currentYear: number): string {
   if (flags.has('json') && flags.has('svg')) fail('give --json or --svg, not both');
+  if (flags.has('glossary') && (flags.has('json') || flags.has('svg'))) fail('--glossary goes with the text output; leave out --json and --svg');
   const topic = readTopic(flags);
   const traditions = readTraditions(flags);
   const { input } = prepare(flags, readYears(flags, currentYear));
@@ -98,7 +99,11 @@ export function runForecast(flags: Flags, currentYear: number): string {
   }
   const opts = { topics: [topic], ...(traditions ? { traditions } : {}), runs: 20 };
   const sensitivity = forecast.sensitivityLines(input, result, forecast.birthTimeSensitivity(input, result, opts), topic);
-  return forecastTextLines(result, topic, { full: flags.has('full'), sensitivity }).join('\n');
+  const text = forecastTextLines(result, topic, { full: flags.has('full'), sensitivity }).join('\n');
+  if (!flags.has('glossary')) return text;
+  // The words used: the glossary terms that occur in the text above, with their meaning and source.
+  const words = forecast.glossaryLines(forecast.glossaryTermsIn(text));
+  return words.length === 0 ? text : `${text}\n\n${words.join('\n')}`;
 }
 
 /** "overlay window": the character of at most 62 days, the I Ching and Lilly's day statements, each in its own part. */

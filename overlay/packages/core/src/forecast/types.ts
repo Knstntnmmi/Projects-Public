@@ -25,7 +25,39 @@ export type Direction = (typeof DIRECTIONS)[number];
 /** What a reading says. Words only; no number is ever attached. */
 export type ReadingWord = 'supports' | 'cautions' | 'mixed' | 'nothing-said';
 
+/**
+ * The plain counts behind a reading's word, after de-duplication: how many deciding
+ * statements support, caution, are stated as mixed by their own rule, or only mark the topic
+ * as active. Display only; nothing is decided from it.
+ */
+export interface Tally {
+  supports: number;
+  cautions: number;
+  mixed: number;
+  active: number;
+}
+
 export type ClockGroupId = 'birth-arithmetic' | ClockId;
+
+/**
+ * The technique a practitioner would name, which is what a reader sees instead of a clock.
+ * 'natal' is every undated statement of the chart. The I Ching has one level, read by period.
+ */
+export const LEVEL_IDS = [
+  'natal',
+  'bazi-luck',
+  'bazi-year',
+  'vedic-maha',
+  'vedic-antar',
+  'saturn-moon',
+  'jupiter-moon',
+  'western-profection',
+  'western-firdaria',
+  'western-solar-return',
+  'western-transits',
+  'iching-period',
+] as const;
+export type LevelId = (typeof LEVEL_IDS)[number];
 
 export interface Fact {
   key: string;
@@ -92,6 +124,8 @@ export interface Signal {
   tradition: Tradition;
   clock: ClockId;
   clockGroup: ClockGroupId;
+  /** The technique this statement belongs to; derived from tradition and clock, or set by the binding where one clock carries two periods. */
+  level: LevelId;
   topic: Topic;
   stage: Stage;
   direction: Direction;
@@ -116,13 +150,19 @@ export interface Signal {
 /** What a binding returns: one moment in which a rule's condition held. */
 export interface Firing {
   clock: ClockId;
+  /**
+   * Only where one clock carries two nested periods (the dasha clock carries the mahadasha and
+   * the antardasha; the birthday clock carries profection, firdaria and solar return). A binding
+   * that knows which period it judged says so; elsewhere the level follows from tradition and clock.
+   */
+  level?: LevelId;
   startUtcMs: number | null;
   endUtcMs: number | null;
   /** Every value that fired the rule; the sentence is built from these and nothing else. */
   facts: Fact[];
   /** A subset of the rule's topics; default all of them. */
   topics?: Topic[];
-  /** For rules whose direction depends on the case (directionByHouse). */
+  /** For rules whose own text assigns the direction case by case; the binding's test shows the case table. */
   direction?: Direction;
   /** Replaces the start-end instance in the dedupe key, for facts that are not tied to a window. */
   dedupeInstance?: string;
@@ -141,6 +181,27 @@ export interface RuleBinding {
 export interface NotEvaluated {
   ruleId: string;
   reason: string;
+}
+
+/**
+ * Part of a bound rule that is deliberately not evaluated: the rest of the rule runs, and this
+ * branch of its condition says nothing, with the reason. A rule that is not evaluated at all is a NotEvaluated.
+ */
+export interface NotEvaluatedBranch {
+  ruleId: string;
+  /** The branch of the condition that is left out, in the condition's own words. */
+  branch: string;
+  reason: string;
+}
+
+/**
+ * A note a tradition adds to the readings of some levels because of the chart itself (a
+ * balanced BaZi chart names no favourite, so the levels that judge by the favourite are silent).
+ */
+export interface ChartNote {
+  tradition: Tradition;
+  levels: LevelId[];
+  text: string;
 }
 
 export interface Span {

@@ -416,6 +416,6 @@ export const NATAL_NOT_EVALUATED = [
   {
     ruleId: 'bazi.topic-spouse-woman',
     reason:
-      'the condition lists four grades without a precedence and they overlap: three or more 官殺 with one kind present, and 傷官見官 beside one rooted 正官, both hold at once. Needs the extractor to state which wins.',
+      "the source gives four grades for a woman's husband star and does not say which one counts when two of them hold at once (three or more 官殺 stars, and a 傷官 beside a rooted 正官, can both be true of one chart); the engine does not choose between them, so it says nothing about the husband star of a woman's chart",
   },
 ] as const;

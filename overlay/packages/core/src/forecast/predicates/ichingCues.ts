@@ -9,7 +9,7 @@
  */
 import { statementText } from '../../systems/iching/zhouyiText.ts';
 import { gradeStatement, type Grade } from '../../systems/iching/grade.ts';
-import type { Direction } from '../types.ts';
+import type { Direction, Topic } from '../types.ts';
 
 export interface Cue {
   /** King Wen number and line, 0 being the judgment: '56.4'. */
@@ -137,4 +137,27 @@ export function directionOfGrade(g: Grade): Direction {
 /** The grade of a clause. */
 export function gradeClause(clause: string): Grade {
   return gradeStatement(clause);
+}
+
+/** The topics a statement is named for by the cue rules; empty when the text names none. */
+export function cueTopicsOf(id: string): Topic[] {
+  const topics: Topic[] = [];
+  const add = (t: Topic, cues: readonly Cue[]): void => {
+    if (cues.some((c) => c.id === id)) topics.push(t);
+  };
+  add('home-travel', TRAVEL_CUES);
+  add('career', AUDIENCE_CUES);
+  add('relationships', MARRIAGE_CUES);
+  add('health', ILLNESS_CUES);
+  add('wealth', GOODS_CUES);
+  return topics;
+}
+
+/**
+ * The topics a statement is attached to: 'general' where its verdict words give it a grade,
+ * and every topic a cue rule names it for. A statement with grade 0 and no topic cue is
+ * attached to no topic at all; it says nothing about anything.
+ */
+export function topicsOfStatement(id: string, g: Grade): Topic[] {
+  return g.grade === 0 ? cueTopicsOf(id) : ['general', ...cueTopicsOf(id)];
 }

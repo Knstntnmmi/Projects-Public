@@ -11,6 +11,11 @@
  * final-outcome token (終吉 終凶 終亂 終吝 有終) overrides what came before it. A 厲 or 貞厲
  * straight before 无咎 counts -0.5 and the 无咎 counts 0. Otherwise the grade is P + (sum - P) / 2,
  * P being the value of largest absolute size, clipped to [-3, +3].
+ *
+ * Negation: a phrase the table lists (无咎, 无悔, 无攸利, 无不利, 无大咎, 不利, 勿用) is graded as the
+ * table says. In any other phrase in which a negation (无, 匪, 不, 弗, 勿, 未) stands directly before
+ * a verdict word, the word is not graded: 无眚 does not count as 眚, 匪咎 not as 咎, 无譽 not as 譽.
+ * Such a phrase is reported in `Grade.negated` with the detail "negated, not graded".
  */
 
 export const VERDICT_TOKENS: Readonly<Record<string, number>> = {
@@ -65,12 +70,29 @@ export const FINAL_OUTCOME_TOKENS: readonly string[] = ['終吉', '終凶', '終
 /** 貞 beside a verdict makes it conditional on steadfastness; a flag, not a change of value. */
 export const CONDITIONAL_TOKENS: readonly string[] = ['貞吉', '貞凶', '貞厲', '貞吝', '利貞'];
 
+/** The negations that, standing directly before a verdict word the table does not list with them, cancel the grading of that word. */
+export const NEGATIONS: readonly string[] = ['无', '匪', '不', '弗', '勿', '未'];
+
+/** The detail printed for a negated phrase. */
+export const NEGATED_DETAIL = 'negated, not graded';
+
 // Longest first so that a longer word always wins over the shorter word inside it.
 const MATCH_ORDER: readonly string[] = [...Object.keys(VERDICT_TOKENS), ...ADVICE_TOKENS].sort((a, b) => b.length - a.length);
+const VERDICT_ORDER: readonly string[] = Object.keys(VERDICT_TOKENS).sort((a, b) => b.length - a.length);
 
 export interface GradedToken {
   token: string;
   value: number;
+  /** Index in the stripped text. */
+  at: number;
+}
+
+/** A verdict word that a negation stands directly before, in a phrase the table does not list. It is not graded. */
+export interface NegatedPhrase {
+  /** The negation and the verdict word, for example 无眚. */
+  phrase: string;
+  /** The verdict word the negation stands before. */
+  word: string;
   /** Index in the stripped text. */
   at: number;
 }
@@ -86,6 +108,8 @@ export interface Grade {
   flags: GradeFlag[];
   /** True when a final-outcome token set the grade. */
   finalOutcome: boolean;
+  /** Phrases whose verdict word was negated and so not graded; the detail of each is NEGATED_DETAIL. */
+  negated: NegatedPhrase[];
 }
 
 const PUNCTUATION = /[\s　。，、；：！？．·「」『』（）()]/g;
@@ -95,10 +119,17 @@ export function stripStatement(text: string): string {
   return text.replace(PUNCTUATION, '').replace(/無/g, '无');
 }
 
-/** The tokens of a statement, left to right, longest first, no overlaps; advice words are consumed and dropped. */
-export function scanTokens(text: string): GradedToken[] {
+/** What one scan of a statement finds: the graded tokens and the negated phrases left ungraded. */
+export interface Scan {
+  tokens: GradedToken[];
+  negated: NegatedPhrase[];
+}
+
+/** One scan, left to right, longest first, no overlaps; advice words are consumed and dropped. */
+export function scanStatement(text: string): Scan {
   const s = stripStatement(text);
-  const out: GradedToken[] = [];
+  const tokens: GradedToken[] = [];
+  const negated: NegatedPhrase[] = [];
   let i = 0;
   while (i < s.length) {
     let hit: string | undefined;
@@ -111,22 +142,37 @@ export function scanTokens(text: string): GradedToken[] {
       break;
     }
     if (hit === undefined) {
+      // No listed phrase starts here. A negation straight before a verdict word takes that word out of the grading.
+      if (NEGATIONS.includes(s[i]!)) {
+        const word = VERDICT_ORDER.find((t) => s.startsWith(t, i + 1));
+        if (word !== undefined) {
+          negated.push({ phrase: s[i]! + word, word, at: i });
+          i += 1 + word.length;
+          continue;
+        }
+      }
       i += 1;
       continue;
     }
-    if (!ADVICE_TOKENS.includes(hit)) out.push({ token: hit, value: VERDICT_TOKENS[hit]!, at: i });
+    if (!ADVICE_TOKENS.includes(hit)) tokens.push({ token: hit, value: VERDICT_TOKENS[hit]!, at: i });
     i += hit.length;
   }
-  return out;
+  return { tokens, negated };
 }
+
+/** The tokens of a statement that count towards its grade. */
+export const scanTokens = (text: string): GradedToken[] => scanStatement(text).tokens;
+
+/** The detail line of a grade's negated phrases, or null when there are none. */
+export const negatedDetail = (g: Grade): string | null => (g.negated.length === 0 ? null : g.negated.map((n) => `${n.phrase}: ${NEGATED_DETAIL}`).join('; '));
 
 const clip = (x: number): number => Math.max(-3, Math.min(3, x));
 const sign = (x: number): number => (x > 0 ? 1 : x < 0 ? -1 : 0);
 
 export function gradeStatement(text: string): Grade {
   const s = stripStatement(text);
-  const found = scanTokens(text);
-  if (found.length === 0) return { grade: 0, tokens: [], flags: ['none'], finalOutcome: false };
+  const { tokens: found, negated } = scanStatement(text);
+  if (found.length === 0) return { grade: 0, tokens: [], flags: ['none'], finalOutcome: false, negated };
   const flags: GradeFlag[] = [];
   if (found.some((t) => CONDITIONAL_TOKENS.includes(t.token)) || /利貞/.test(s)) flags.push('conditional');
 
@@ -140,7 +186,7 @@ export function gradeStatement(text: string): Grade {
     const before = found.slice(0, last);
     const opposite = before.some((t) => sign(t.value) !== 0 && sign(t.value) === -sign(outcome.value));
     const grade = clip(outcome.value);
-    return { grade, tokens: found, flags: [grade > 0 ? 'positive' : grade < 0 ? 'negative' : 'neutral', ...(opposite ? (['mixed'] as const) : []), ...flags], finalOutcome: true };
+    return { grade, tokens: found, flags: [grade > 0 ? 'positive' : grade < 0 ? 'negative' : 'neutral', ...(opposite ? (['mixed'] as const) : []), ...flags], finalOutcome: true, negated };
   }
 
   // 厲 or 貞厲 straight before 无咎: the pair is -0.5 in all.
@@ -159,7 +205,7 @@ export function gradeStatement(text: string): Grade {
   const sum = counted.reduce((a, t) => a + t.value, 0);
   const grade = clip(p + 0.5 * (sum - p));
   const mixed = counted.some((t) => t.value >= 1) && counted.some((t) => t.value <= -1);
-  return { grade, tokens: counted, flags: [grade > 0 ? 'positive' : grade < 0 ? 'negative' : 'neutral', ...(mixed ? (['mixed'] as const) : []), ...flags], finalOutcome: false };
+  return { grade, tokens: counted, flags: [grade > 0 ? 'positive' : grade < 0 ? 'negative' : 'neutral', ...(mixed ? (['mixed'] as const) : []), ...flags], finalOutcome: false, negated };
 }
 
 /** The grade as it is printed: a sign for anything not zero. */

@@ -107,7 +107,7 @@ export const VEDHA: Readonly<Record<Slow, Readonly<Record<number, number>>>> = {
 };
 
 /** Planets whose standing in the vedha house obstructs; the nodes are not named, the Sun does not obstruct Saturn. */
-const OBSTRUCTORS: Readonly<Record<Slow, readonly Planet[]>> = {
+export const OBSTRUCTORS: Readonly<Record<Slow, readonly Planet[]>> = {
   Jupiter: ['Sun', 'Moon', 'Mars', 'Mercury', 'Venus', 'Saturn'],
   Saturn: ['Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus'],
 };

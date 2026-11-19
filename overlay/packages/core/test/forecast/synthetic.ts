@@ -94,7 +94,7 @@ export const BINDINGS: Record<Tradition, RuleBinding[]> = {
     binding(R.modifier, 'luck', [2033]),
     binding(R.health, 'luck', [2036]),
   ],
-  vedic: [binding(R.jupiter, 'jupiter-sidereal', [2033, 2037, 2038]), binding(R.dasha, 'dasha', [2036]), binding(R.active, 'jupiter-sidereal', [2040]), { ...binding(R.night, 'dasha', []), requires: { birthTime: true } }],
+  vedic: [binding(R.jupiter, 'jupiter-sidereal', [2033, 2037, 2038]), binding(R.dasha, 'dasha', [2036], {}, { level: 'vedic-maha' }), binding(R.active, 'jupiter-sidereal', [2040]), { ...binding(R.night, 'dasha', []), requires: { birthTime: true } }],
   iching: [binding(R.iching, 'calendar-year', [2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040])],
   western: [binding(R.western, 'jupiter-tropical', [2037, 2038])],
 };

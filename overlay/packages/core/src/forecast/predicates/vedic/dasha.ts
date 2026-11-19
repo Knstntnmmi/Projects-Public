@@ -51,8 +51,11 @@ const readingOf = (facts: readonly Fact[]): Direction | undefined => {
   return f ? READING[String(f.value)] : undefined;
 };
 
-const dated = (s: DashaSpan, it: Item, extra: string[] = []): Firing => {
-  const f: Firing = { clock: 'dasha', startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs, facts: it.facts, conventionsUsed: CONVENTIONS };
+/** The dasha clock carries two nested periods; the binding says which one the span it judged is. */
+type DashaLevel = 'vedic-maha' | 'vedic-antar';
+
+const dated = (s: DashaSpan, it: Item, level: DashaLevel, extra: string[] = []): Firing => {
+  const f: Firing = { clock: 'dasha', level, startUtcMs: s.startUtcMs, endUtcMs: s.endUtcMs, facts: it.facts, conventionsUsed: CONVENTIONS };
   if (it.topics) f.topics = it.topics;
   // The rule's own direction is mixed where its sentence names the reading; the reading, not the default, signs the signal.
   const direction = it.direction ?? readingOf(it.facts);
@@ -72,8 +75,8 @@ function lordRule(ruleId: string, judge: (m: VedicChartModel, planet: string, s:
       const m = model(ctx);
       const { maha, antar } = ctx.dashas();
       const out: Firing[] = [];
-      for (const s of overlapping(ctx, maha)) for (const it of judge(m, s.lord, s)) out.push(dated(s, it));
-      if (extend) for (const s of overlapping(ctx, antar)) for (const it of judge(m, s.lord, s)) out.push(dated(s, it, [BADGES.extension]));
+      for (const s of overlapping(ctx, maha)) for (const it of judge(m, s.lord, s)) out.push(dated(s, it, 'vedic-maha'));
+      if (extend) for (const s of overlapping(ctx, antar)) for (const it of judge(m, s.lord, s)) out.push(dated(s, it, 'vedic-antar', [BADGES.extension]));
       return out;
     },
   };
@@ -131,7 +134,10 @@ const travel: RuleBinding = {
       [3, 7, 9, 10]
         .filter((h) => m.houseOf(p) === h || (isGraha(p) && m.housesOwnedBy(p).includes(h)))
         .map((h) => ({ facts: [fact('planet', 'Planet', p), fact('h', 'House', h)] }));
-    return [...overlapping(ctx, maha), ...overlapping(ctx, antar)].flatMap((s) => items(s.lord).map((it) => dated(s, it)));
+    return [
+      ...overlapping(ctx, maha).flatMap((s) => items(s.lord).map((it) => dated(s, it, 'vedic-maha'))),
+      ...overlapping(ctx, antar).flatMap((s) => items(s.lord).map((it) => dated(s, it, 'vedic-antar'))),
+    ];
   },
 };
 
@@ -264,7 +270,7 @@ const placementAtStart: RuleBinding = {
       const fav = [1, 5, 9].includes(h) || d.kind === 'exalted' || own || d.kind === 'friend' || d.kind === 'great friend';
       const unfav = DUSTHANA.includes(h) || d.kind === 'debilitated' || d.kind === 'enemy' || d.kind === 'great enemy';
       if (!fav && !unfav) continue;
-      out.push(dated(s, { facts: [fact('planet', 'Planet', s.lord), fact('h', 'House from the Lagna', h), fact('dignity', 'Dignity', dignityIn(d.kind))], direction: fav && unfav ? 'mixed' : fav ? 'favourable' : 'unfavourable' }));
+      out.push(dated(s, { facts: [fact('planet', 'Planet', s.lord), fact('h', 'House from the Lagna', h), fact('dignity', 'Dignity', dignityIn(d.kind))], direction: fav && unfav ? 'mixed' : fav ? 'favourable' : 'unfavourable' }, 'vedic-maha'));
     }
     return out;
   },
@@ -331,7 +337,7 @@ const exchange: RuleBinding = {
       if (lh === l1 || m.houseOf(lh) !== 1 || m.houseOf(l1) !== h) continue;
       for (const s of overlapping(ctx, ctx.dashas().maha)) {
         if (s.lord !== l1 && s.lord !== lh) continue;
-        out.push(dated(s, { facts: [fact('planet', 'Planet', s.lord), fact('h', 'House', h)], topics: (h === 9 ? ['general'] : ['career', 'general']) as Topic[] }));
+        out.push(dated(s, { facts: [fact('planet', 'Planet', s.lord), fact('h', 'House', h)], topics: (h === 9 ? ['general'] : ['career', 'general']) as Topic[] }, 'vedic-maha'));
       }
     }
     return out;
@@ -371,6 +377,7 @@ const timing: RuleBinding = {
       const len = (s.endUtcMs - s.startUtcMs) / 3;
       out.push({
         clock: 'dasha',
+        level: 'vedic-maha',
         startUtcMs: s.startUtcMs + third * len,
         endUtcMs: s.startUtcMs + (third + 1) * len,
         facts: [fact('planet', 'Planet', s.lord), fact('third', 'Part of the period', ['first third', 'middle third', 'last third'][third]! + ' of the period')],
@@ -398,7 +405,7 @@ function antarRule(ruleId: string, judge: (m: VedicChartModel, maha: string, ant
       const m = model(ctx);
       return overlapping(ctx, ctx.dashas().antar).flatMap((s) => {
         const { maha, antar } = antarLordOf(s);
-        return judge(m, maha, antar).map((it) => dated(s, it));
+        return judge(m, maha, antar).map((it) => dated(s, it, 'vedic-antar'));
       });
     },
   };

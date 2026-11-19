@@ -11,8 +11,9 @@
  * against the natal chart. The files sit under bazi/.
  */
 import type { ForecastContext } from '../context.ts';
-import type { NotEvaluated, RuleBinding } from '../types.ts';
-import { buildNatalContext, NATAL_BINDINGS, NATAL_NOT_EVALUATED } from './bazi/natal.ts';
+import { NOTE } from '../phrasebook.ts';
+import type { ChartNote, NotEvaluated, NotEvaluatedBranch, RuleBinding } from '../types.ts';
+import { buildNatalContext, natalOf, NATAL_BINDINGS, NATAL_NOT_EVALUATED } from './bazi/natal.ts';
 import { ARRIVAL_BINDINGS } from './bazi/arrivalBindings.ts';
 import { PERIOD_BINDINGS } from './bazi/periodBindings.ts';
 import { RELATION_BINDINGS } from './bazi/relationBindings.ts';
@@ -27,9 +28,33 @@ export const NOT_EVALUATED: readonly NotEvaluated[] = [
   {
     ruleId: 'bazi.pillar-palaces',
     reason:
-      'a routing table and not a statement: its topics are applied inside branch-chong and branch-liuhe, whose sentences name the struck palace; the rule has no firing of its own',
+      'this rule is a lookup table and not a statement: it only says which topic a clash or a combination with each natal pillar belongs to (the year pillar to the ancestors, the month pillar to the parents, the day branch to the spouse, the hour pillar to the children); that routing is already applied inside the clash and combination rules, whose sentences name the pillar struck, so the table has no sentence of its own',
   },
 ];
+
+/** Parts of bound rules that are deliberately left out, each with the reason; the registry lists them beside the rules not evaluated. */
+export const NOT_EVALUATED_BRANCHES: readonly NotEvaluatedBranch[] = [
+  {
+    ruleId: 'bazi.year-vs-day-clash',
+    branch: 'the year stem overcomes the day stem (歲君犯日)',
+    reason:
+      'the rule file gives one sentence, which says the day stem overcomes the year stem (日犯歲君), and has no wording for the reverse case; a sentence may not say more than the rule, so only the first case is evaluated',
+  },
+];
+
+/**
+ * A balanced chart has no favourite element: the favourable-element method names none, so the
+ * levels that judge a luck pillar or a year by the favourite say nothing for it. The note is
+ * put on those levels so that the silence is seen with its reason. The luck pillar level is
+ * named only where luck pillars are computed at all (a sex convention is given).
+ */
+export function chartNotes(ctx: ForecastContext): ChartNote[] {
+  // The rules that need the birth time are withheld when it is unknown or too uncertain; a note on their silence would be about a chart no rule read.
+  const u = ctx.input.birthTimeUncertaintyMinutes;
+  if (u === null || u > ctx.input.forecastConventions.birthTimeLimitMinutes) return [];
+  if (natalOf(ctx).strengthClass !== 'balanced') return [];
+  return [{ tradition: 'bazi', levels: ctx.luck() === null ? ['bazi-year'] : ['bazi-luck', 'bazi-year'], text: NOTE.balancedChart }];
+}
 
 /**
  * Extends the base context with what this tradition's rules share: the natal assessment

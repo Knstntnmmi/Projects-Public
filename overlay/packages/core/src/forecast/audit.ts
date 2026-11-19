@@ -6,6 +6,7 @@
  * tradition's author runs it on their own bindings before anything else (BINDINGS.md).
  * It returns problems as text and throws nothing, so a test can print all of them at once.
  */
+import { levelNeedsField } from './levels.ts';
 import { createContext, type ForecastInput } from './context.ts';
 import { runConfig } from './evaluate.ts';
 import { bannedIn, KNOWN_TEMPLATE_EXCEPTIONS, MORTALITY_WORDS } from './phrasebook.ts';
@@ -50,6 +51,9 @@ export function auditRegistry(registry: Registry, input: ForecastInput, options:
     } catch (e) {
       problems.push(`${id}: ${e instanceof Error ? e.message : String(e)}`);
       continue;
+    }
+    for (const f of first) {
+      if (f.startUtcMs !== null && f.level === undefined && levelNeedsField(rule.tradition, f.clock)) problems.push(`${id}: a firing on the ${f.clock} clock must set its level, because that clock carries more than one period`);
     }
     for (const s of signals) {
       const banned = bannedIn(s.sentence);

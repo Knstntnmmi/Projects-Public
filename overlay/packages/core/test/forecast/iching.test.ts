@@ -21,6 +21,7 @@ import { longitudeOf } from '../../src/substrate/sky.ts';
 import { makeMoment } from '../../src/substrate/time.ts';
 import { hexagramByName } from '../../src/systems/iching/hexagrams.ts';
 import { CARDINAL_PARTS, HEXAGRAM_PARTS, PARTS_PER_DAY, SHORT_HEXAGRAM_PARTS, SOVEREIGN_SEQUENCE, YEAR_PARTS } from '../../src/systems/iching/wheels.ts';
+import { gradeStatement } from '../../src/systems/iching/grade.ts';
 import { statementText } from '../../src/systems/iching/zhouyiText.ts';
 import { fixture } from '../../../../fixtures/moments.ts';
 
@@ -37,8 +38,15 @@ function fire(ruleId: string, id = 'j2000', extra: Partial<Parameters<typeof mak
   return b.fire(ctxFor(id, extra), rule);
 }
 
+/** The calendar the bindings share, whole: every period, line-day and term, before any statement is left unattached. */
+const calendar = (id = 'j2000') => iching.buildContext(ctxFor(id));
+const gradeOfId = (id: string): number => {
+  const [n, l] = id.split('.').map(Number);
+  return gradeStatement(statementText(n!, l!)!).grade;
+};
+
 const fact = (f: Firing, key: string): string | number => f.facts.find((x) => x.key === key)!.value;
-const run = (id = 'j2000', extra: Partial<Parameters<typeof makeInput>[1]> = {}) => evaluate(inputFor(id, extra), { traditions: ['iching'], runs: 20, seed: 1 });
+const run = (id = 'j2000', extra: Partial<Parameters<typeof makeInput>[1]> = {}) => evaluate(inputFor(id, extra), { traditions: ['iching'], runs: 20, seed: 1, includePeriodRead: true });
 
 describe('the I Ching bindings: what is bound and what is not', () => {
   it('binds ten rules and lists the grading method as not evaluated, with a reason', () => {
@@ -128,7 +136,11 @@ describe('the sovereign hexagrams, golden against the engine table', () => {
 describe('the gua qi hexagram of the period and the line of the day', () => {
   it('names the period hexagram, its grade and the reading of the text', () => {
     const f = fire('zhouyi.period-hexagram-judgment');
-    expect(f.length).toBeGreaterThanOrEqual(3 * 60);
+    // every period of the calendar, less the judgments of grade 0, which are attached to no topic
+    const periods = calendar().periods;
+    expect(periods.length).toBeGreaterThanOrEqual(3 * 60);
+    expect(f.length).toBe(periods.filter((p) => gradeOfId(`${p.hexagram.number}.0`) !== 0).length);
+    expect(f.length).toBeGreaterThanOrEqual(3 * 55);
     for (const x of f) {
       expect(x.direction).toBeDefined();
       expect(x.clock).toBe('solar-longitude');
@@ -163,7 +175,10 @@ describe('the gua qi hexagram of the period and the line of the day', () => {
 
   it('fires the line statement of the day and says it is a reconstruction', () => {
     const f = fire('zhouyi.line-of-day-reconstruction');
-    expect(f.length).toBeGreaterThan(3 * 360);
+    const slices = calendar().slices;
+    expect(slices.length).toBeGreaterThan(3 * 360);
+    expect(f.length).toBe(slices.filter((x) => gradeOfId(`${x.hexagram.number}.${x.line}`) !== 0).length);
+    expect(f.length).toBeGreaterThan(3 * 280);
     for (const x of f.slice(0, 50)) {
       expect(x.badges).toContain('reconstruction');
       const [n, l] = String(fact(x, 'id')).split('.').map(Number);
@@ -184,20 +199,22 @@ describe('the gua qi hexagram of the period and the line of the day', () => {
 
 describe('the Dayan cardinal line by solar term', () => {
   it('gives 坎 lines 1 to 6 from the winter solstice, then 震, 離, 兌, one term to a line', () => {
-    const f = fire('dayan.cardinal-line-by-term');
-    const first = f.findIndex((x) => Math.abs(longitudeOf('Sun', x.startUtcMs!) - 270) < 0.01);
+    // The calendar is whole: 24 terms a year with no gap. The rule's firings leave out the terms whose line statement grades 0.
+    const terms = calendar().terms;
+    const first = terms.findIndex((x) => Math.abs(longitudeOf('Sun', x.startUtcMs) - 270) < 0.01);
     expect(first).toBeGreaterThanOrEqual(0);
-    const year = f.slice(first, first + 24);
-    expect(year.map((x) => String(fact(x, 'hexName')).split(' ')[0])).toEqual([...'坎'.repeat(6), ...'震'.repeat(6), ...'離'.repeat(6), ...'兌'.repeat(6)]);
-    expect(year.map((x) => fact(x, 'line'))).toEqual(Array.from({ length: 24 }, (_, k) => (k % 6) + 1));
-    // The terms follow each other with no gap, and the year is 24 terms long.
+    const year = terms.slice(first, first + 24);
+    expect(year.map((x) => x.hexagram.hanzi)).toEqual([...'坎'.repeat(6), ...'震'.repeat(6), ...'離'.repeat(6), ...'兌'.repeat(6)]);
+    expect(year.map((x) => x.line)).toEqual(Array.from({ length: 24 }, (_, k) => (k % 6) + 1));
     for (let k = 1; k < 24; k++) expect(year[k]!.startUtcMs).toBe(year[k - 1]!.endUtcMs);
-    expect(String(fact(year[0]!, 'term'))).toContain('冬至');
-    expect(String(fact(year[5]!, 'term'))).toContain('驚蟄');
-    expect(String(fact(year[6]!, 'term'))).toContain('春分');
-    expect(String(fact(year[12]!, 'term'))).toContain('夏至');
-    expect(String(fact(year[18]!, 'term'))).toContain('秋分');
-    for (const x of year) {
+    expect(year[0]!.term).toContain('冬至');
+    expect(year[5]!.term).toContain('驚蟄');
+    expect(year[6]!.term).toContain('春分');
+    expect(year[12]!.term).toContain('夏至');
+    expect(year[18]!.term).toContain('秋分');
+    const f = fire('dayan.cardinal-line-by-term');
+    expect(f.length).toBe(terms.filter((t) => gradeOfId(`${t.hexagram.number}.${t.line}`) !== 0).length);
+    for (const x of f) {
       expect(x.badges).toContain('inference from one sentence');
       expect(x.direction).toBeUndefined();
     }
@@ -365,12 +382,18 @@ describe('the output is labelled experimental, kept out of agreement, and is san
     for (const id of ['j2000', 'jiazi-1984', 'southern', 'equator', 'late-zi']) {
       const res = run(id);
       const count = (rule: string, topic = 'general') => res.signals.filter((s) => s.ruleId === rule && s.topic === topic).length;
-      expect(count('zhouyi.period-hexagram-judgment'), id).toBeGreaterThanOrEqual(3 * 60);
-      expect(count('zhouyi.period-hexagram-judgment'), id).toBeLessThanOrEqual(3 * 61 + 2);
-      expect(count('zhouyi.line-of-day-reconstruction'), id).toBeGreaterThanOrEqual(3 * 360);
-      expect(count('zhouyi.line-of-day-reconstruction'), id).toBeLessThanOrEqual(3 * 370 + 12);
-      expect(count('dayan.cardinal-line-by-term'), id).toBeGreaterThanOrEqual(72);
-      expect(count('dayan.cardinal-line-by-term'), id).toBeLessThanOrEqual(74);
+      // One signal per statement window that has a grade; a grade 0 is attached to no topic and gives none.
+      const cal = calendar(id);
+      const graded = (xs: Array<{ hexagram: { number: number }; line?: number }>) => xs.filter((x) => gradeOfId(`${x.hexagram.number}.${x.line ?? 0}`) !== 0).length;
+      expect(cal.periods.length, id).toBeGreaterThanOrEqual(3 * 60);
+      expect(cal.periods.length, id).toBeLessThanOrEqual(3 * 61 + 2);
+      expect(count('zhouyi.period-hexagram-judgment'), id).toBe(graded(cal.periods));
+      expect(cal.slices.length, id).toBeGreaterThanOrEqual(3 * 360);
+      expect(cal.slices.length, id).toBeLessThanOrEqual(3 * 370 + 12);
+      expect(count('zhouyi.line-of-day-reconstruction'), id).toBe(graded(cal.slices));
+      expect(cal.terms.length, id).toBeGreaterThanOrEqual(72);
+      expect(cal.terms.length, id).toBeLessThanOrEqual(74);
+      expect(count('dayan.cardinal-line-by-term'), id).toBe(graded(cal.terms));
       expect(count('yiwei.growing-waning-sovereign'), id).toBeGreaterThanOrEqual(36);
       expect(count('yiwei.growing-waning-sovereign'), id).toBeLessThanOrEqual(38);
     }
@@ -396,7 +419,14 @@ describe('the output is labelled experimental, kept out of agreement, and is san
   });
 
   it('keeps the dates of the first period inside the span and in order', () => {
+    const { periods } = calendar();
+    for (let k = 1; k < periods.length; k++) expect(periods[k]!.startUtcMs).toBe(periods[k - 1]!.endUtcMs);
+    // the firings are those periods that carry a grade, in the same order
     const f = fire('zhouyi.period-hexagram-judgment');
-    for (let k = 1; k < f.length; k++) expect(f[k]!.startUtcMs).toBe(f[k - 1]!.endUtcMs);
+    const starts = new Set(periods.map((p) => p.startUtcMs));
+    for (let k = 0; k < f.length; k++) {
+      expect(starts.has(f[k]!.startUtcMs!)).toBe(true);
+      if (k > 0) expect(f[k]!.startUtcMs!).toBeGreaterThan(f[k - 1]!.startUtcMs!);
+    }
   });
 });

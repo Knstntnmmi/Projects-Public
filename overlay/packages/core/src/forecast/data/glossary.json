@@ -1,0 +1,1066 @@
+[
+  {
+    "group": "The words of the forecast",
+    "term": "supports",
+    "original": "",
+    "definition": "The word for a technique or tradition and a year when at least one of its rules names the topic favourably and none names it unfavourably or as mixed. Modifier rules do not count.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "cautions",
+    "original": "",
+    "definition": "The word for a technique or tradition and a year when at least one of its rules names the topic unfavourably and none names it favourably or as mixed. Modifier rules do not count.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "mixed",
+    "original": "",
+    "definition": "The word for a technique or tradition and a year when its rules name the topic both favourably and unfavourably, or when one rule itself states a mixed result.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "nothing said",
+    "original": "",
+    "definition": "The word for a technique or tradition and a year when none of its rules names a direction for the topic. It is silence and is not a good or a bad year.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "silent",
+    "original": "",
+    "definition": "A technique with nothing said in a year. It may carry a stated reason, such as that it needs the sex convention.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "pointer, note without a direction",
+    "original": "",
+    "definition": "A statement that marks the topic as active or says where a count reaches, without a direction. Pointers are counted apart and never change the word.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "active",
+    "original": "",
+    "definition": "The display word for a pointer.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "headline",
+    "original": "",
+    "definition": "The one-line summary of a year that lists the techniques under the four words.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "level",
+    "original": "",
+    "definition": "The technique a practitioner would name, such as the luck pillar or the mahadasha, which the forecast shows in place of a clock.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "natal chart, the chart itself",
+    "original": "",
+    "definition": "A rule about the chart alone, without dates. These statements are listed first and take no part in a year's word.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "period lord",
+    "original": "",
+    "definition": "A rule about the planet, pillar or sign that rules a stretch of time.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "trigger",
+    "original": "",
+    "definition": "A rule about an event inside a period, such as a transit or an arriving pillar.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "modifier",
+    "original": "",
+    "definition": "A rule that qualifies other rules, such as a table or an obstruction.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "agreement",
+    "original": "",
+    "definition": "The display of years in which techniques counted on different time scales gave the same word for the same topic. It does not say that the outcome follows.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "independent group",
+    "original": "",
+    "definition": "A set of techniques counted from one clock, which count as one voice in the agreement display.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "no promise rule applied",
+    "original": "",
+    "definition": "The badge on a dated statement. It says that no rule about the natal chart gates the statement; the engine has no gate semantics in this release.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "experimental",
+    "original": "",
+    "definition": "The badge for I Ching statements, whose grades are a construction of the project on the old texts.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "convention-dependent",
+    "original": "",
+    "definition": "The badge on every statement for the topic relationships, because the result there can change with a named setting, such as the sex convention.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "a tendency only",
+    "original": "",
+    "definition": "The badge for health statements, which state tendencies and say nothing about diagnosis.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "source not opened",
+    "original": "",
+    "definition": "The badge for a rule whose source was not opened by the project.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "rule weight capped at 1",
+    "original": "",
+    "definition": "The badge for a statement whose recorded emphasis was set to 1 by a setting. The emphasis is the project's own and no source gives it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "labelled variant",
+    "original": "",
+    "definition": "The badge for a statement computed under a choice that departs from the source, for example whole-sign houses where Lilly used Regiomontanus cusps.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "sex convention",
+    "original": "",
+    "definition": "The sex the chart is read as, which fixes the direction of the BaZi luck pillars and which rules apply. The engine never guesses it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "scorecard",
+    "original": "",
+    "definition": "A record of events a person enters, to be compared with forecasts frozen beforehand. It is the project's own addition and is not yet scored.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "frozen forecast",
+    "original": "",
+    "definition": "A forecast stored with a hash before the events are entered, so that only events entered after the freeze can be compared with it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "retrodiction",
+    "original": "",
+    "definition": "Comparing a forecast with events that were known before it was made.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "hit rate",
+    "original": "",
+    "definition": "The share of statements that matched events, as a scorecard would count them. The forecast does not give one.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "The words of the forecast",
+    "term": "window",
+    "original": "",
+    "definition": "A view of at most 62 days that shows the character of a period, used for the I Ching and for Lilly's day statements.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "chronomancy",
+    "original": "",
+    "definition": "Divination based on time attributes. A report defines it as all divination techniques that take temporal parameters as their primary variables.",
+    "source": "Lackner 2011, p. 4; Hanson in fate no. 10, p. 21"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "mantic",
+    "original": "μαντικός (Greek)",
+    "definition": "An adjective, from a Greek word, used in scholarship for the divinatory arts. A newsletter report says it is anachronistic for some early Chinese methods, that \"divination\" is not ideal either, and that there is no perfect word.",
+    "source": "fate no. 12, pp. 28-29"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "divination",
+    "original": "",
+    "definition": "A technique that reads signs, times or figures for what is to come.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "prognostication",
+    "original": "",
+    "definition": "Used in this project for stating what is to come, by any method.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "hemerology",
+    "original": "",
+    "definition": "The study of the relation between calendar time and daily fortune. The editors of the day-book volume define it as ideas, practices and texts in all cultures that relate time as expressed in the calendar to daily fortune.",
+    "source": "fate no. 14, p. 4"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "almanac",
+    "original": "",
+    "definition": "A calendar with a miscellany. Lackner describes a modern all-purpose almanac as a calendar core with yin-yang, the Eight Trigrams, calculation of fate from the Eight Cyclical Signs, feng shui and recipes around it.",
+    "source": "Lackner 2011, pp. 38-40"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "tu, diagram",
+    "original": "圖",
+    "definition": "An umbrella term for schemes, tables, plans, topographical maps and figures.",
+    "source": "Lackner, Lieux de savoir 2, 2011, p. 824"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "tushuo",
+    "original": "圖說",
+    "definition": "The explanation that normally accompanies a cosmological diagram.",
+    "source": "Lackner, Lieux de savoir 2, 2011, p. 836"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "ming",
+    "original": "命",
+    "definition": "Fate or destiny. For Wang Chong it is conferred by Heaven at birth, and it is a general tendency named by the categories ji and xiong.",
+    "source": "Kalinowski 2009, p. 6"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "ji, xiong",
+    "original": "吉, 凶",
+    "definition": "The auspicious and the inauspicious, the divinatory categories into which Wang Chong puts destiny. In the Changes they register success or failure.",
+    "source": "Kalinowski 2009, p. 6; Smith 2011, pp. 24-26"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "hui, lin, wujiu",
+    "original": "悔, 吝, 无咎",
+    "definition": "Words of the Changes that register small faults (hui and lin) and the repair of transgressions (wujiu).",
+    "source": "Smith 2011, pp. 24-26"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "zhiming, liming",
+    "original": "知命, 立命",
+    "definition": "Knowing fate and establishing fate. Smith glosses the *Changes* as letting humans know fate and also do something about it.",
+    "source": "Smith 2011, pp. 1-2, 22"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "bazi suanming",
+    "original": "八字算命",
+    "definition": "The art that Lackner renders as calculation of fate from the Eight Characters and classes as chronomancy.",
+    "source": "Lackner 2011, p. 4"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "Four Pillars of Destiny",
+    "original": "四柱 sizhu",
+    "definition": "A name that a newsletter report gives for bazi suanming.",
+    "source": "fate no. 6, p. 24"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "yingyan",
+    "original": "应验",
+    "definition": "Verification, the coming true of a prognostication, which a fellow's project treats as the other side of prognostication.",
+    "source": "IKGF project page of Zhou Zhenhe"
+  },
+  {
+    "group": "Words about the arts",
+    "term": "cases of proof",
+    "original": "案証 an zheng",
+    "definition": "Anecdotes that a compiler of a Qing morality book offered as proof that a practice had worked.",
+    "source": "Burton-Rose 2019, p. 50"
+  },
+  {
+    "group": "BaZi",
+    "term": "BaZi",
+    "original": "八字",
+    "definition": "The chart of eight characters, the stem and branch of the year, month, day and hour of a moment, which the engine computes. The project uses the name BaZi for the chart.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "pillar",
+    "original": "柱",
+    "definition": "A stem and a branch together, for the year, the month, the day or the hour.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "heavenly stem",
+    "original": "天干",
+    "definition": "One of ten signs (Jia 甲, Yi 乙, Bing 丙, Ding 丁, Wu 戊, Ji 己, Geng 庚, Xin 辛, Ren 壬, Gui 癸), each with an element and a polarity.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "earthly branch",
+    "original": "地支",
+    "definition": "One of twelve signs (Zi 子, Chou 丑, Yin 寅, Mao 卯, Chen 辰, Si 巳, Wu 午, Wei 未, Shen 申, You 酉, Xu 戌, Hai 亥), each with an element and an animal.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "sixty-cycle",
+    "original": "六十甲子",
+    "definition": "The sixty pairs that stems and branches make in order; the engine counts days, months and years by it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "element, Five Phases",
+    "original": "五行 wuxing",
+    "definition": "Wood, fire, earth, metal and water, which each stem and branch carries.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "yin, yang",
+    "original": "陰, 陽",
+    "definition": "The two polarities of the stems and branches. They decide which of two ten gods a stem is and the direction of the luck pillars.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "day master",
+    "original": "日主",
+    "definition": "The stem of the day pillar. Every other stem in the chart is judged by its relation to it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "strong, weak day master",
+    "original": "",
+    "definition": "A class the engine derives by comparing the support the day master gets from the chart with what drains it. The limits between the classes are the project's own.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "ten gods",
+    "original": "十神 shishen",
+    "definition": "Names for the relation of any other stem to the day master by element and polarity: 比肩, 劫財, 食神, 傷官, 偏財, 正財, 七殺, 正官, 偏印, 正印. The English names are trade usage.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "wealth star",
+    "original": "財 cai",
+    "definition": "The ten gods 正財 (direct wealth) and 偏財 (indirect wealth): the element that the day master overcomes, 偏財 for the same polarity and 正財 for the other.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "officer star, Seven Killings",
+    "original": "官殺, 正官, 七殺",
+    "definition": "The element that overcomes the day master: 七殺 for the same polarity and 正官 for the other.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "resource",
+    "original": "印 yin",
+    "definition": "The element that generates the day master: 偏印 for the same polarity and 正印 for the other.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "output",
+    "original": "食傷",
+    "definition": "The element the day master generates: 食神 for the same polarity and 傷官 for the other.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "peers",
+    "original": "比劫",
+    "definition": "The same element as the day master: 比肩 for the same polarity and 劫財 for the other.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "hidden stems",
+    "original": "藏干 canggan, 人元",
+    "definition": "The stems held inside an earthly branch. The engine uses them to find roots and ten gods.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "main qi",
+    "original": "本氣",
+    "definition": "The principal hidden stem of a branch, which the engine weighs above the middle and residual ones.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "root",
+    "original": "得地",
+    "definition": "A hidden stem in a branch that equals or generates the element of the day stem.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "month state",
+    "original": "旺相休囚死",
+    "definition": "The state of the day master in the month, by how the element of the month branch stands to the element of the day stem: the same (wang), generating it (xiang), generated by it (xiu), overcome by it (qiu), or overcoming it (si). The first two are in season (得令).",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "twelve stages",
+    "original": "長生 changsheng",
+    "definition": "The twelve stages of a stem round the twelve branches, counted forward for yang stems and backward for yin stems.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "favourable and unfavourable elements",
+    "original": "喜用, 忌",
+    "definition": "The elements that the balance method names as helpful or harmful for this chart.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "balance method",
+    "original": "扶抑 fuyi",
+    "definition": "The method that names favourable elements from whether the day master is strong or weak.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "mediating element",
+    "original": "通關 tongguan",
+    "definition": "The element that connects two opposed strong forces. The project offers it as a variant.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "luck pillar",
+    "original": "大運 dayun",
+    "definition": "A ten-year pillar counted from the month pillar, forward or backward by the sex the chart is read as and the polarity of the year stem. The first opens at an age found by scaling the interval to the next jie (forward) or the previous jie (backward) at three days to the year.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "year pillar, annual pillar",
+    "original": "流年 liunian",
+    "definition": "The stem and branch of a year, which turns at Lichun by default.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "Lichun",
+    "original": "立春",
+    "definition": "Beginning of Spring, the solar term at which the engine turns the BaZi year by default.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "solar term, jie, zhongqi",
+    "original": "節氣, 節, 中氣",
+    "definition": "One of twenty-four points of the Sun's course. The twelve jie open the BaZi months and the twelve zhongqi fall between them.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "Zi hour",
+    "original": "子時",
+    "definition": "The double-hour from 23:00 to 01:00. Under the project's default convention zi23 the day pillar advances when it begins.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "void",
+    "original": "空亡 kongwang",
+    "definition": "The two branches left unused by the day pillar's ten-day group. A branch in the chart equal to one of them is flagged as void, which is not read as bad by itself.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "palace",
+    "original": "宮",
+    "definition": "What a natal pillar stands for: the year pillar the ancestors, the month pillar the parents, the day branch the spouse, the hour pillar the children.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "cover the head, cut the feet",
+    "original": "蓋頭, 截腳",
+    "definition": "A luck pillar whose stem overcomes the element of its branch, or whose branch overcomes or fails to generate the element of its stem. The force of the wanted element on the capped or cut half of the pillar is halved.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "repeat, reversal",
+    "original": "伏吟, 反吟",
+    "definition": "A luck or year pillar identical to the day pillar (repeat), or whose branch is the six-clash of the day branch and whose stem stands four or six places from the day stem (reversal).",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "year and luck pillar the same",
+    "original": "歲運並臨",
+    "definition": "The year pillar equals the luck pillar in stem and branch.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "heaven overcomes, earth clashes",
+    "original": "天剋地沖",
+    "definition": "A luck pillar and a year pillar whose stems overcome one another and whose branches clash.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "six clashes",
+    "original": "六沖",
+    "definition": "The pairs Zi and Wu, Chou and Wei, Yin and Shen, Mao and You, Chen and Xu, Si and Hai.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "six combinations",
+    "original": "六合",
+    "definition": "The pairs Zi and Chou, Yin and Hai, Mao and Xu, Chen and You, Si and Shen, Wu and Wei.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "three-harmony group",
+    "original": "三合",
+    "definition": "A group of three branches: Shen, Zi, Chen for water; Hai, Mao, Wei for wood; Yin, Wu, Xu for fire; Si, You, Chou for metal.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "heavenly noble",
+    "original": "天乙貴人",
+    "definition": "The two branches that the tables give for the day stem. When a luck or year branch equals one of them, the rule flags a noble helper period.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "post-horse",
+    "original": "驛馬 yima",
+    "definition": "A branch given by the three-harmony group of the year or day branch. When a luck or year branch equals it, the rule flags a moving period: travel, relocation or a change of post.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "peach blossom, bathing",
+    "original": "桃花, 咸池",
+    "definition": "A branch given by the three-harmony group, the second of the twelve stages. When a luck or year branch equals it, the rule marks relationships as active.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "blade",
+    "original": "羊刃 yangren",
+    "definition": "The branch that follows the lu branch of a yang day stem. The rule reads a period of the blade as a time of excess or conflict.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "Lu-spirit",
+    "original": "祿神 lushen",
+    "definition": "The lu branch of a day stem. When a luck or year branch equals it, the rule reads a period of income and standing.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "nayin",
+    "original": "納音",
+    "definition": "A name and element given to each of the sixty pairs. The engine's thirty English names are the project's popular glosses.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "Day officers, lodges, nine stars",
+    "original": "建除, 宿, 九星",
+    "definition": "The twelve day officers (jianchu), the twenty-eight lodges (xiu) of the almanac day cycle, and the nine-star year count (zibai), all counted by the engine.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "Tai Sui",
+    "original": "太歲",
+    "definition": "The year branch of the twelve-year count, which the project's registry of correspondences relates to the circuit of Jupiter.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "BaZi",
+    "term": "Tai Sui as year ghost",
+    "original": "太歲",
+    "definition": "In a lecture abstract, the dangerous year ghost of the Chinese calendar, among the \"superstitions\" that the Jesuit Magalhaes attacked.",
+    "source": "fate no. 6, p. 10"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "Vedic astrology",
+    "original": "jyotisha",
+    "definition": "The project's name for the rules of the *Brihat Parashara Hora Shastra*, the *Phaladeepika* and Raman, read in English translation.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "sidereal",
+    "original": "",
+    "definition": "A zodiac measured from a fixed zero point among the stars and not from the equinox. The engine uses the Lahiri zero point.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "Lahiri ayanamsa",
+    "original": "",
+    "definition": "The offset between tropical and sidereal longitude. The engine uses the true value, anchored on 21 March 1956.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "Lagna",
+    "original": "",
+    "definition": "The rising sign at the moment. Houses are counted from it by whole signs.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "house",
+    "original": "bhava",
+    "definition": "One of twelve places counted by whole sign from the Lagna. A rule that names a house uses the engine's table of what each house concerns.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "lord of a house",
+    "original": "",
+    "definition": "The planet that owns the sign of the house.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "nakshatra",
+    "original": "",
+    "definition": "One of the equal divisions of the sidereal zodiac into lunar mansions, each with a lord.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "vimshottari dasha",
+    "original": "",
+    "definition": "The system of planetary periods that totals 120 years. The engine takes years as 365.25 days.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "mahadasha",
+    "original": "",
+    "definition": "The major period of the vimshottari system, ruled by one planet.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "antardasha",
+    "original": "",
+    "definition": "The sub-period within a mahadasha, ruled by one planet.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "kendra",
+    "original": "",
+    "definition": "The angular houses from the Lagna. The engine's list is 1, 4, 7 and 10.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "trikona",
+    "original": "",
+    "definition": "The trine houses from the Lagna. The engine's list is 1, 5 and 9.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "yoga",
+    "original": "",
+    "definition": "A named combination of planets.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "kendra-trikona link",
+    "original": "",
+    "definition": "A yoga of a kendra lord and a trikona lord that exchange signs, stand together in a kendra or trikona, stand in each other's kind of house or fully aspect each other.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "yogakaraka",
+    "original": "",
+    "definition": "A single planet that owns both a kendra and a trikona.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "functional benefic, malefic",
+    "original": "",
+    "definition": "A planet read as helpful or harmful for a given Lagna by the houses it owns.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "maraka",
+    "original": "",
+    "definition": "A planet that owns the 2nd or 7th house. The rule flags strain on health and says it is not a prediction.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "dignity",
+    "original": "",
+    "definition": "The state of a planet by sign: exalted, in its moolatrikona, in its own sign, in a friend's, neutral, in an enemy's or debilitated. Debilitation is the seventh sign from exaltation.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "conjunct",
+    "original": "",
+    "definition": "In the same sign. The engine uses no orb for this.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "Saturn from the Moon, Jupiter from the Moon",
+    "original": "",
+    "definition": "The sign Saturn or Jupiter is passing, counted from the sign of the natal Moon.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Vedic astrology",
+    "term": "vedha",
+    "original": "",
+    "definition": "An obstruction: a planet's good transit is cancelled when another planet stands at the same time in the paired house.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "Western astrology",
+    "original": "",
+    "definition": "The project's name for the rules of Lilly's *Christian Astrology* (1647), with Valens and Bonatti.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "radix, radical",
+    "original": "",
+    "definition": "The birth chart; a thing is radical when it belongs to the birth chart.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "Ascendant, Midheaven, Imum Coeli",
+    "original": "",
+    "definition": "The degree of the ecliptic rising on the eastern horizon, the degree culminating, and the degree opposite the Midheaven.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "whole-sign houses",
+    "original": "",
+    "definition": "Houses counted as whole signs from the Ascendant sign. Lilly used Regiomontanus cusps, which the engine does not compute, so statements that name a house say so.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "sect, day chart, night chart",
+    "original": "",
+    "definition": "Whether the Sun is above the horizon (day chart) or below it (night chart). The engine uses it for triplicity and for the order of firdaria.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "domicile",
+    "original": "",
+    "definition": "The sign a planet owns. The domicile lord of a sign is the planet that owns it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "exaltation, fall",
+    "original": "",
+    "definition": "The sign where a planet is strongest, and the opposite sign where it is weakest.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "detriment",
+    "original": "",
+    "definition": "The sign opposite a planet's domicile.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "triplicity",
+    "original": "",
+    "definition": "A group of three signs of one element, each with lords. The engine uses Dorotheus's lords.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "bounds, terms",
+    "original": "",
+    "definition": "The unequal divisions of a sign that each belong to a planet. The engine uses the Egyptian bounds.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "face",
+    "original": "",
+    "definition": "A division of ten degrees of a sign that belongs to a planet, in Chaldean order.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "peregrine",
+    "original": "",
+    "definition": "A planet that holds no essential dignity in the sign it stands in. A planet in its own face or term is not peregrine.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "essential dignity",
+    "original": "",
+    "definition": "The standing a planet has from the sign and degree it stands in.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "accidental fortitude",
+    "original": "",
+    "definition": "The standing a planet has from its house, its aspects and its relation to the Sun.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "angular, succedent, cadent",
+    "original": "",
+    "definition": "Houses 1, 4, 7 and 10; houses 2, 5, 8 and 11; houses 3, 6, 9 and 12.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "aspect, orb",
+    "original": "",
+    "definition": "A relation of two points by distance along the ecliptic: conjunction, sextile, square, trine, opposition. The orb is the allowed distance from the exact angle, as Lilly gives it.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "combust",
+    "original": "",
+    "definition": "A planet so near the Sun that the source reads it as weakened. The limit is in the engine's table.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "Fortunes, Infortunes",
+    "original": "",
+    "definition": "Jupiter and Venus; Saturn and Mars.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "significator",
+    "original": "",
+    "definition": "The planet, house or point that stands for the matter asked about. The significators of wealth are those the rule names.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "Part of Fortune, Lot of Fortune",
+    "original": "",
+    "definition": "A point found from the Ascendant, Sun and Moon: Ascendant plus Moon minus Sun by day, Ascendant plus Sun minus Moon by night.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "profection, annual profection",
+    "original": "",
+    "definition": "A point of the chart moved one sign for each year from birth; the sign it reaches names the year's sign and lord.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "lord of the year",
+    "original": "",
+    "definition": "The domicile lord of the sign the profected Ascendant has reached.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "firdaria",
+    "original": "",
+    "definition": "The medieval scheme of nine planetary periods that total seventy-five years, each divided into sub-periods in Chaldean order.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "solar return, revolution",
+    "original": "",
+    "definition": "The chart cast for the moment each year when the Sun returns to its birth longitude. Lilly calls it the revolution.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "transit",
+    "original": "",
+    "definition": "A planet passing over a point of the birth chart.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "transmission, chronocrator",
+    "original": "",
+    "definition": "Valens's count from a starting point by the year's number. The planets standing in the sign the count reaches receive the year; if the sign is empty, its domicile lord does.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "Western astrology",
+    "term": "critical year",
+    "original": "",
+    "definition": "A year that Valens marks as troublesome, when the year's sign is the sign of the new or full Moon before birth, or its square or opposite.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "I Ching, Yijing, Zhouyi",
+    "original": "易經, 周易",
+    "definition": "The Classic of Changes. The project reads the *Zhouyi* text and the *Xici zhuan*, and the Han calendar parts that are attested elsewhere.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "hexagram",
+    "original": "卦 gua",
+    "definition": "A figure of six lines, each broken or unbroken. There are sixty-four.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "trigram",
+    "original": "",
+    "definition": "A figure of three lines. There are eight.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "judgment, line statement",
+    "original": "卦辭 guaci, 爻辭 yaoci",
+    "definition": "The text attached to a hexagram, and the text attached to one of its lines.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "gua qi",
+    "original": "卦氣",
+    "definition": "The Han calendar that gives hexagrams to stretches of the year, in the scheme of six days and seven parts, beginning with Zhong Fu at the winter solstice.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "sovereign hexagram",
+    "original": "辟卦 bigua",
+    "definition": "One of twelve hexagrams, one for each month, growing (xi) or waning (xiao).",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "cardinal hexagrams",
+    "original": "四正卦",
+    "definition": "Kan, Zhen, Li and Dui, which take a short allotment at each solstice and equinox in the scheme the project offers as Jing Fang's.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "Dayan calendar",
+    "original": "大衍曆",
+    "definition": "The Tang calendar in which Yi Xing adopted Meng Xi's gua qi scheme.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "Yi wei Jilantu",
+    "original": "易緯稽覽圖",
+    "definition": "A text that the project cites only for beginning the gua qi count at Zhong Fu.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "Fu Xi circle, xiantian, Former Heaven",
+    "original": "先天",
+    "definition": "The arrangement of the sixty-four hexagrams, also called the Former Heaven sequence, that Smith describes as Shao Yong's: a square of the sixty-four enclosed by a circle in another order.",
+    "source": "Smith 2001, pp. 15-16"
+  },
+  {
+    "group": "I Ching",
+    "term": "sixty-four-gate wheel",
+    "original": "",
+    "definition": "The arrangement of the sixty-four hexagrams on the tropical zodiac that twentieth-century systems use.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "period hexagram",
+    "original": "",
+    "definition": "The gua qi hexagram that rules an instant. The forecast shows it by period only.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "cue clause",
+    "original": "",
+    "definition": "The part of a statement that names a journey, an audience, a marriage, an illness or goods, which the engine grades on its own.",
+    "source": "the project's own wording"
+  },
+  {
+    "group": "I Ching",
+    "term": "grade",
+    "original": "",
+    "definition": "A mechanical mark given to a statement by its verdict words. It is a construction of the project and is marked experimental.",
+    "source": "the project's own wording"
+  }
+]

@@ -11,6 +11,7 @@ export * from './rules.ts';
 export * from './conventions.ts';
 export * from './topics.ts';
 export * from './phrasebook.ts';
+export * from './glossary.ts';
 export * from './clocks.ts';
 export * from './context.ts';
 export * from './signals.ts';

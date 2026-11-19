@@ -19,6 +19,7 @@ import { evaluate, makeInput, type ForecastResult } from '../packages/core/src/f
 import { decadeGrid, gridText } from '../packages/core/src/forecast/grid.ts';
 import { yearView } from '../packages/core/src/forecast/yearView.ts';
 import { statementList } from '../packages/core/src/forecast/statements.ts';
+import { glossaryMarkdown } from '../packages/core/src/forecast/glossary.ts';
 import { TOPIC_LABEL } from '../packages/core/src/forecast/phrasebook.ts';
 import {
   FORECAST_SENTENCE,
@@ -261,6 +262,7 @@ export const GENERATED: Array<{ path: string; content: () => string }> = [
     content: () => `${renderDecadeGrid(decadeGrid(sampleForecast(), SAMPLE_FORECAST.topic))}\n`,
   },
   { path: 'docs/SAMPLE-FORECAST.md', content: sampleForecastDoc },
+  { path: 'docs/GLOSSARY.md', content: glossaryMarkdown },
   { path: 'docs/CONVENTIONS.md', content: conventionsDoc },
   { path: 'docs/CORRESPONDENCES.md', content: correspondencesDoc },
   { path: 'fixtures/golden/pillars.json', content: () => `${JSON.stringify(pillarVectors(), null, 2)}\n` },

@@ -12,6 +12,7 @@ import {
   listIntro,
   MORTALITY_WORDS,
   narrate,
+  TEXT,
   TOPICS,
   withheldTraditionNote,
 } from '../../src/forecast/index.ts';
@@ -51,5 +52,17 @@ describe('the phrasebook', () => {
     expect(withheldTraditionNote('western', 18)).toBe('Western astrology: 18 rules withheld pending verification.');
     expect(coverageNote('vedic', 'wealth', 1)).toBe('Vedic astrology: 1 bound rule for wealth.');
     expect(listIntro('wealth')).toBe('Each line is something a named rule says about money in this period, with its source. Not tested yet.');
+  });
+
+  it('words the scorecard notes as the project\'s own addition and as one scholar\'s general remark', () => {
+    expect(TEXT.scorecardNote5).toBe('The scorecard is an addition made by this project. It is not taken from any of the four traditions.');
+    expect(TEXT.scorecardNote6).toBe(
+      'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',
+    );
+    for (const k of ['scorecardNote1', 'scorecardNote2', 'scorecardNote3', 'scorecardNote4', 'scorecardNote5', 'scorecardNote6'] as const) {
+      expect(bannedIn(TEXT[k]), k).toBeNull();
+      expect(MORTALITY_WORDS.test(TEXT[k]), k).toBe(false);
+      expect(allPhrases(), k).toContain(TEXT[k]);
+    }
   });
 });

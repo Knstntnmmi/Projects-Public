@@ -4,7 +4,7 @@
   "id": "bazi.tiaohou-table",
   "kind": "rule+table",
   "verdict": "unverifiable",
-  "reason": "Not opened: 窮通寶鑑. Table internally circular (壬 in 巳 lists 壬 itself), 丁 in 寅 order doubtful, about 15 cells blank, first-named-stem extraction lossy. Load the full text before use. 調候 convention therefore unavailable."
+  "reason": "Not opened: 窮通寶鑑. Table internally circular (壬 in 巳 lists 壬 itself), 丁 in 寅 order doubtful, about 15 cells blank, taking only the first-named stem loses information. Load the full text before use. 調候 convention therefore unavailable."
  },
  {
   "tradition": "bazi",
@@ -60,7 +60,7 @@
   "id": "table: 六合 合化 elements and 合解沖 rule",
   "kind": "table",
   "verdict": "unverifiable",
-  "reason": "Elements garbled in the first reading of the text, 午未 contested, 合解沖 text not seen; the quote first given 子寅辰午申戌六者為陽… was not found in the edition read."
+  "reason": "Elements are garbled in the text read, 午未 contested, 合解沖 text not seen; the quote 子寅辰午申戌六者為陽… was not found in the edition read."
  },
  {
   "tradition": "bazi",
@@ -95,14 +95,14 @@
   "id": "lilly.general.plurality",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Lilly states the principle of judging by plurality of testimonies (Book III p.553, p.559-561) but gives no countable thresholds ('three or four', 'most'); it overlaps the wealth rules and is a method, not a rule. Left out on purpose by the verifiers."
+  "reason": "Lilly states the principle of judging by plurality of testimonies (Book III p.553, p.559-561) but gives no countable thresholds ('three or four', 'most'); it overlaps the wealth rules and is a method, not a rule. Left out on purpose."
  },
  {
   "tradition": "western",
   "id": "lilly.travel.success-danger",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Book III p.609-611: the page was located but not read in full by the verifiers, so no rule is stated."
+  "reason": "Book III p.609-611: the page was located but not read in full, so no rule is stated."
  },
  {
   "tradition": "western",
@@ -151,14 +151,14 @@
   "id": "table: Venus vedha list",
   "kind": "table",
   "verdict": "unverifiable",
-  "reason": "Sl.8 wording unclear; a second reading advises not scoring Venus vedha until checked."
+  "reason": "Sl.8 wording unclear; scoring Venus vedha is not advised until it is settled."
  },
  {
   "tradition": "vedic",
   "id": "table: DIGNITY ratio of effects Ch.3 sl.59-60",
   "kind": "table-cell",
   "verdict": "unverifiable",
-  "reason": "Reported as missed in checking; not seen in the first reading."
+  "reason": "Reported to be in the chapter; not seen in the text read here."
  },
  {
   "tradition": "iching",
@@ -193,7 +193,7 @@
   "id": "lilly.career.luminary-angularity.none-angular",
   "kind": "rule",
   "verdict": "unverifiable",
-  "reason": "Lilly p.617: 'neither of the Lights in an angle or in a masculine Signe, or have not the benevolent Planets with them'. The clauses are joined by 'or', and 'neither ... in an angle or in a masculine Signe' can be read three ways (not both, not either, or each alone). The first reader's AND-reading is a narrowing the text does not state, so the rule is left unbound until the reading is settled. The cadent rule from the same passage stays."
+  "reason": "Lilly p.617: 'neither of the Lights in an angle or in a masculine Signe, or have not the benevolent Planets with them'. The clauses are joined by 'or', and 'neither ... in an angle or in a masculine Signe' can be read three ways (not both, not either, or each alone). The AND-reading is a narrowing the text does not state, so the rule is left unbound until the reading is settled. The cadent rule from the same passage stays."
  },
  {
   "tradition": "western",

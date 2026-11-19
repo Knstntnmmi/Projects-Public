@@ -154,7 +154,8 @@ describe('the ruleset version', () => {
     // the goods, wealth-houses, jupiter-year-sign, return and day-transit templates were reworded.
     // Changed a fourth time on purpose: the peer rule got its own dedupeKey, the blade rule became a note, the two honour rules took their directions branch by branch from the printed page, and the Vedic wording was changed.
     // Changed a fifth time on purpose: the strength-score and peer templates no longer print a number, and two condition texts say the project's own reading.
-    expect(RULESET_VERSION).toBe('5cb180f545e119b3');
+    // Changed a sixth time: the wording of notes in the rule data changed and no rule changed.
+    expect(RULESET_VERSION).toBe('9bb09272e71cac73');
   });
 
   it('does not change when a quotation, citation, name or variant is corrected, and does when behaviour changes', () => {

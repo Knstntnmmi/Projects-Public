@@ -1,5 +1,5 @@
 {
- "note": "Each topic defined once, then per tradition. ruleIds are joined from the rule files at build time; an empty list means 'No rule from this tradition' (the tradition is silent, never counted as disagreement). Cells hold only what the first readings found; no hypothesis was added.",
+ "note": "Each topic defined once, then per tradition. ruleIds are joined from the rule files at build time; an empty list means 'No rule from this tradition' (the tradition is silent, never counted as disagreement). Cells hold only what the sources say; no hypothesis was added.",
  "topics": [
   {
    "id": "wealth",

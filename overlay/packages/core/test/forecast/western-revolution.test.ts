@@ -136,7 +136,7 @@ describe('lilly.revolution.lord2-fortune-house', () => {
     const f = R.lord2FortuneHouse(input([1]), [ret(1, chart())]);
     expect(new Set(signals('lilly.revolution.lord2-fortune-house', f).map((s) => [s.topic, s.direction].join()))).toEqual(new Set(['wealth,activates']));
     expect(ruleById('lilly.revolution.lord2-fortune-house')!.direction).toBe('activates');
-    expect(ruleById('lilly.revolution.lord2-fortune-house')!.verificationNote).toMatch(/re-read/);
+    expect(ruleById('lilly.revolution.lord2-fortune-house')!.verificationNote).toMatch(/Read against the page image/);
   });
   it('reads the lord of the 2nd of the radix, not the lord of the 2nd of the return', () => {
     // Radix with Leo rising: Virgo is the 2nd, its lord Mercury (at 150, in Virgo: the 2nd house of the radix).

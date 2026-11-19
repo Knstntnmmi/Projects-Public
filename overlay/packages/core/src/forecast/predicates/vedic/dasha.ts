@@ -4,7 +4,7 @@
  * The mahadasha and antardasha rules of rules.vedic.json. Each rule reads the natal chart
  * (and, for one rule, the sky at the instant a dasha begins) and speaks over the dasha span
  * it is about, on the dasha clock. Where the rule file states a rule for the mahadasha only,
- * the antardasha version is the first reading's extension and carries that badge. Every rule
+ * the antardasha version is this project's extension and carries that badge. Every rule
  * needs the birth time: the Lagna and the Moon's nakshatra both depend on it.
  */
 import type { ForecastContext } from '../../context.ts';

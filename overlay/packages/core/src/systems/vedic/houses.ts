@@ -6,7 +6,7 @@
  * kendra-trikona links, and houses counted from the natal Moon.
  *
  * Every table here is typed from data/rules.vedic.json (tables.DIGNITY, tables.LAGNA_NATURE,
- * tables.HOUSE_TOPICS), which a second reader compared with the English translation of the Brihat
+ * tables.HOUSE_TOPICS), which was compared with the English translation of the Brihat
  * Parashara Hora Shastra; the tests compare each entry back to that file. Nothing here is
  * the author's own doctrine: where the source does not speak the answer is 'unstated'.
  *

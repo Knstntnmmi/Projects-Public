@@ -1,6 +1,6 @@
 {
  "tradition": "western",
- "method": "ORDER OF JUDGEMENT (Lilly, Christian Astrology 1647, Book III), VERIFIED against page images of the Wellcome copy of the 1647 edition (archive.org b30338724; printed page = PDF leaf minus 34; running head 'An Introduction to Nativities' for Book III). (1) NATAL PROMISE first: significators of the topic scored by essential and accidental dignity, judged by plurality of testimonies (p.561 'determine according to the plurality of testimonies'; table p.115). (2) ANNUAL PROFECTION second (Chap. CLXVI-CLXXI, p.715-733); Lilly says profections of themselves without directions are of little value (p.719), so strength 2. Bonatti (Pars V p.817-818, 1550) reads profection and revolution together. (3) SOLAR RETURN third (p.734-741). (4) TRANSITS last (p.741, day scale). Firdaria (Bonatti Pars V p.813-814) is a parallel period-lord. Directions are out of scope. WHAT CHANGED IN VERIFICATION: all tables compared cell by cell (see tables and western-verification-report.md); rules marked 'confirmed' were seen on the page, 'corrected' were restated from the page. The 32 held-back rules were re-derived from the pages where the passage could be read; the first reading's original condition text was not available to the verifier, so each is stated in full here. Four items stay unverified and are NOT in this file: lilly.general.plurality (a method statement, not a rule), lilly.travel.success-danger (page not read), valens.profection.pair-verdict and table E (the pair table was not found in the Riley text read). COMPUTABLE VALUES: 'now', 'small-addition', and the new 'needs-return-chart' for rules that need the planetary positions at the solar return, which the engine does not compute in v1; those are verified but cannot be bound yet. DIFFERENCES FROM THE ENGINE: Lilly's terms are Ptolemy's, not the Egyptian bounds in dignities.ts; two triplicity rulers per element by day and night, water is Mars for both (p.102, p.105: 'according to Ptolomy and Naibod'); Lilly's profection moves the Ascendant 30 degrees a year with two lords in a year when it crosses a sign (days truncated, p.727); Lilly uses Regiomontanus houses while the engine has whole-sign only (labelled variant). SIGNS NOTE: Lilly's glyphs in the 1647 print are read from the page images; where the glyph set is ambiguous the condition says so. Quotations are at most 25 words in the original spelling with the long s written as s. SECOND CHECK (second reader): see secondCheck and the section at the end of western-verification-report.md. Riley page numbers are the folios printed at the FOOT of each page.",
+ "method": "ORDER OF JUDGEMENT (Lilly, Christian Astrology 1647, Book III), VERIFIED against page images of the Wellcome copy of the 1647 edition (archive.org b30338724; printed page = PDF leaf minus 34; running head 'An Introduction to Nativities' for Book III). (1) NATAL PROMISE first: significators of the topic scored by essential and accidental dignity, judged by plurality of testimonies (p.561 'determine according to the plurality of testimonies'; table p.115). (2) ANNUAL PROFECTION second (Chap. CLXVI-CLXXI, p.715-733); Lilly says profections of themselves without directions are of little value (p.719), so strength 2. Bonatti (Pars V p.817-818, 1550) reads profection and revolution together. (3) SOLAR RETURN third (p.734-741). (4) TRANSITS last (p.741, day scale). Firdaria (Bonatti Pars V p.813-814) is a parallel period-lord. Directions are out of scope. STATUS OF THE RULES: all tables compared cell by cell (see tables and western-verification-report.md); rules marked 'confirmed' were seen on the page, 'corrected' were restated from the page. The 32 held-back rules were re-derived from the pages where the passage could be read, so each condition is stated in full here. Four items stay unverified and are NOT in this file: lilly.general.plurality (a method statement, not a rule), lilly.travel.success-danger (page not read), valens.profection.pair-verdict and table E (the pair table was not found in the Riley text read). COMPUTABLE VALUES: 'now', 'small-addition', and the new 'needs-return-chart' for rules that need the planetary positions at the solar return, which the engine does not compute in v1; those are verified but cannot be bound yet. DIFFERENCES FROM THE ENGINE: Lilly's terms are Ptolemy's, not the Egyptian bounds in dignities.ts; two triplicity rulers per element by day and night, water is Mars for both (p.102, p.105: 'according to Ptolomy and Naibod'); Lilly's profection moves the Ascendant 30 degrees a year with two lords in a year when it crosses a sign (days truncated, p.727); Lilly uses Regiomontanus houses while the engine has whole-sign only (labelled variant). SIGNS NOTE: Lilly's glyphs in the 1647 print are read from the page images; where the glyph set is ambiguous the condition says so. Quotations are at most 25 words in the original spelling with the long s written as s. Page-image readings of the tables and sources are listed under pageReadSources and in the section at the end of western-verification-report.md. Riley page numbers are the folios printed at the FOOT of each page.",
  "topicDefinitions": [
   {
    "topic": "wealth",
@@ -38,8 +38,8 @@
    "definition": "Study, wisdom, science, scholarship. Lilly has no dedicated learning chapter in the pages read; the house table assigns Religion, Wisdom, Science, Learning and Scholarship to the ninth house and Mercury to scholars. Profection houses 9 and 5 carry the only extracted rule.",
    "significators": "Ninth house and its lord, planets in the 9th, Mercury. Lilly p.557-558, 606-614.",
    "source": "Lilly 1647, Book III, p.555-558, 606-614; no dedicated chapter found",
-   "verification": "not rechecked",
-   "note": "Not rechecked: the 9th house list (p.558: Religion, Wisdom, Science, Learning, Scholarship) is confirmed; no dedicated learning chapter was searched for."
+   "verification": "not confirmed on the page",
+   "note": "Only the 9th house list (p.558: Religion, Wisdom, Science, Learning, Scholarship) is confirmed on the page; no dedicated learning chapter was searched for."
   },
   {
    "topic": "home-travel",
@@ -54,8 +54,8 @@
    "definition": "The overall fortune of the Native and of the year, from the strength of the Ascendant, its lord, the luminaries and the plurality of planets in essential dignity or debility.",
    "significators": "All seven planets by essential and accidental fortitude; the Ascendant and its lord; Sun and Moon. Lilly p.551 (Chap. CXIII).",
    "source": "Lilly 1647, Book III, p.551-552",
-   "verification": "not rechecked",
-   "note": "Not rechecked (p.551 not read)."
+   "verification": "not confirmed on the page",
+   "note": "Not confirmed on the page (p.551 not read)."
   }
  ],
  "tables": {
@@ -88,14 +88,14 @@
     "Water triplicity Mars by day and night: confirmed twice in the text (p.102 'who night and day ruleth the watry Triplicity'; p.105)."
    ],
    "uncertainCells": [],
-   "secondCheck": "Second reader: all twelve rows read cell by cell on the p.104 page image (houses, exaltation, triplicity, five terms, three faces, detriment, fall, bottom row of scores 5,4,3,2,1,5,4). Layout confirmed as glyph then number, the bar falling after the number. Every cell agrees with the table as given; where the Venus and Mercury glyphs are too small to tell apart at 2x the cell was settled by the Ptolemaic term pattern and by the previous reader's higher-resolution reading. Water triplicity (Mars by day and by night) confirmed in the text of p.105 (OCR). Dragon's Head and Tail cells: exaltations legible; falls follow from 'opposite to the exaltation' (p.105)."
+   "pageRead": "Read against the page image of p.104: all twelve rows cell by cell (houses, exaltation, triplicity, five terms, three faces, detriment, fall, bottom row of scores 5,4,3,2,1,5,4). Layout confirmed as glyph then number, the bar falling after the number. Every cell agrees with the table as given; where the Venus and Mercury glyphs are too small to tell apart at 2x the cell was settled by the Ptolemaic term pattern and by a higher-resolution reading of the same page image. Water triplicity (Mars by day and by night) confirmed in the text of p.105 (OCR). Dragon's Head and Tail cells: exaltations legible; falls follow from 'opposite to the exaltation' (p.105)."
   },
-  "B_accidentalFortitudes": "Lilly Book I p.115 table, read from the scan. Fortitudes: in the Midheaven or Ascendant +5; 7th, 4th, 11th +4; 2nd, 5th +3; 9th +2; 3rd +1; direct +4 (void for Sun and Moon); swift +2; Saturn, Jupiter, Mars oriental +2; Venus and Mercury occidental +2; Moon increasing in light or occidental +2; free from combustion and beams +5; cazimi +5; partile conjunction with Jupiter or Venus +5; with the Dragon's Head +4; partile trine to Jupiter or Venus +4; partile sextile to Jupiter or Venus +3; (fixed-star rows Cor Leonis +6, Spica +5 need star data: not computable). Debilities: 12th house -5; 8th and 6th -2; retrograde -5; slow -2; Saturn, Jupiter, Mars occidental -2; Venus and Mercury oriental -2; Moon decreasing -2; combust -5; under the beams -4; partile conjunction with Saturn or Mars -5; with the Dragon's Tail -4; besieged by Saturn and Mars -5; partile opposition to Saturn or Mars -4; partile square -3; (Caput Algol -5 needs star data). Definitions p.112-114: combust within 8 deg 30' of the Sun in the same sign; under the beams to 17 degrees; cazimi within 17 minutes; partile = same degree. The Venus 48 and Mercury 28 maximum elongations were not confirmed (held back). VERIFIED against Lilly p.115 (every row and number matches); definitions p.113-114 checked: combust 8 deg 30' in the same sign, under the beams 17 degrees, cazimi 17 minutes (p.113); Venus 48 and Mercury 28 maximum elongations confirmed (p.114, 'though some allow a few more'); orientality defined by degrees of the Sun's sign (p.114). Caput Algol -5 applies in 20 Taurus or within five degrees (p.115). Differences found: none in numbers; the original wording 'Moon increasing in light or occidental +2' matches 'The Moon encreasing, or when she is Occidentall 2'. SECOND CHECK: every row of p.115 read on the page image, fortitudes (5,4,3,2,1; direct 4; swift 2; orientality 2; Moon 2; free of combustion 5; cazimi 5; partile conjunction 5 and 4; trine 4; sextile 3; Cor Leonis 6; Spica 5) and debilities (5,4,5; 5,2,5,2,2,2,2,5,4; 5,4,5,4,3; Algol 5): no difference. Definitions on pp.113-114 re-read in the OCR text: combust 8 deg 30 min in the same sign, beams 17 degrees, cazimi 17 minutes, Mercury 28 and Venus 48.",
-  "C_aspectsOrbs": "Lilly Book I p.105-107. Aspects: conjunction 0, sextile 60, square 90, trine 120, opposition 180 (p.105-106). Orbs of rays (first column, p.107): Saturn 10 deg, Jupiter 12, Mars 7 deg 30', Sun 17, Venus 8, Mercury 7, Moon 12 deg 30'. Second column ('according to others'; Lilly: 'I sometimes use the one, and sometimes the other'): Saturn 9, Jupiter 9, Mars 7, Sun 15, Venus 7, Mercury 7, Moon 12. Platick when the distance from the exact aspect is no more than the sum of half of each orb (his example: Venus in 10 Taurus and Saturn in 18 Virgo, moieties 4 and 5, distance 8, p.107). No differences from the original first column; the second column and the elongation limits are now confirmed (the held-back doubt about Mars 7 versus 8 is settled: p.107 prints 7 30' and 7). SECOND CHECK: both columns (10, 12, 7 30, 17, 8, 7, 12 30 and 9, 9, 7, 15, 7, 7, 12) read on the p.107 page image; platick example confirmed.",
-  "D_profectionHouseTable": "Lilly Book III Chap. CLXIX p.729-730 (Ascendant and Moon profected through the radical houses): 1 cheerful, provide what the body needs; 2 good to buy and sell, increase of estate; 3 prosper in journeys, converse with kin and religious men; 4 inheritance, new house, blessing from parents, mines, build or repair, but sorrowful and in danger of water, not good for long journeys; 5 pleasure, school or women, good to make covenants, send letters, perfect accounts; 6 sickness, hatred of the vulgar, ill servants, no journeys, ill time to deal in merchandise and contracts; 7 froward, women and wantonness, open enemies, quarrels and suits, good to marry the other significators concurring; 8 body or goods suffer by slander and treachery, no new contracts, not adventurous in trade; 9 long journeys, study and learning, church-men, chemistry; 10 ambition, preferment, eminent men, increase for the tradesman, safe journeys; 11 cheerful, friends increase, very prosperous in worldly affairs; 12 sickly, hidden causes, enmity of ill neighbours, danger of imprisonment or banishment, ill year for great cattle and horses. Table not checked line by line by the second reading. VERIFIED line by line against p.729-730: all twelve entries match. Two omissions noted: house 8 on the page adds 'sometimes death, if the Hyleg come to any mortall Direction' (not used in output); house 12 on the page adds 'unlesse the twelft house in the Radix was fortunate'. Page: Chap. CLXIX p.729-730 is correct; Lilly's title says the Ascendant AND the Moon. SECOND CHECK: all twelve lines re-read (OCR text of pp.729-730); no difference.",
-  "D2_profectionMcSunTable": "Lilly Book III Chap. CLXX p.731-732 (profection of the Midheaven and the Sun through the radical houses): 1 good fortune by public employment, profession or service to a great person; 2 the profits of former employment received; 3 an indifferent condition (loss of kindred, robbery in journeying); 4 fame in question, parents agree ill; 5 merry, wanton, spending more than he gets; 6 nothing succeeds in honourable matters; 7 esteem and repute increase, favour of women of account; 8 scandal and slander, melancholy; 9 long journeys for honour and renown; 10 a very successful and famous year; 11 kindness to friends, mutual respect; 12 detriment in reputation, honour and fame. SECOND CHECK: all twelve sentences re-read (OCR text of pp.731-732); no difference. The reading of the houses is confirmed by the page itself (house 3 'the sixth house from the tenth').",
-  "F_firdariaAndTiming": "Firdaria (Bonatti, De astronomia tractatus X, Basel 1550, Pars V Caput III, p.813-814, Latin, read on the page image): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2, all together seventy-five years; day order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, back to the Sun; night births begin with the Moon and 'fiet in omnibus & per omnia' as for the Sun; the night position of the nodes and any subdivision of the node periods are not stated, so they follow the engine's named firdariaNodes convention; sub-lords by sevenths in the cyclic order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars starting with the major lord. NO DIFFERENCES from the original table. Lilly's alternative (Book III p.733-734): 'Lords of the Septenniall yeers, vulgarly called Lords of the Alfridary': day birth Sun the first seven years, Venus the next seven, Mercury the next seven, 'and so in order'; night birth Moon the first seven years, Saturn the next seven, then (glyph on p.734, read as Jupiter) the next seven; this is a seven-year scheme and is not bound. Profection arithmetic (Lilly p.715-718, 727): 30 degrees a year from solar return to solar return; a degree of profection is 12 days 4 hours 12 minutes (p.718), equal to 365.2422/30 = 12.174 days; Lilly drops the hours (23 deg 23 min = 284 days 16 hours, read as 284, p.727), so days are truncated, not rounded. SECOND CHECK: Bonatti pp.813-814 read on the page image: Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2, total 75; order; sevenths; night 'in omnibus & per omnia'. Lilly p.727 example (284 days 16 hours, read as 284) re-read.",
-  "E_valensPairs": "NOT VERIFIED and not included: the pair table was not found in the Riley text (IV.5 states only a few pair effects, p.97 of Riley, which do not form a good/bad/mixed grid). SECOND CHECK: not attempted (table not in the file)."
+  "B_accidentalFortitudes": "Lilly Book I p.115 table, read from the scan. Fortitudes: in the Midheaven or Ascendant +5; 7th, 4th, 11th +4; 2nd, 5th +3; 9th +2; 3rd +1; direct +4 (void for Sun and Moon); swift +2; Saturn, Jupiter, Mars oriental +2; Venus and Mercury occidental +2; Moon increasing in light or occidental +2; free from combustion and beams +5; cazimi +5; partile conjunction with Jupiter or Venus +5; with the Dragon's Head +4; partile trine to Jupiter or Venus +4; partile sextile to Jupiter or Venus +3; (fixed-star rows Cor Leonis +6, Spica +5 need star data: not computable). Debilities: 12th house -5; 8th and 6th -2; retrograde -5; slow -2; Saturn, Jupiter, Mars occidental -2; Venus and Mercury oriental -2; Moon decreasing -2; combust -5; under the beams -4; partile conjunction with Saturn or Mars -5; with the Dragon's Tail -4; besieged by Saturn and Mars -5; partile opposition to Saturn or Mars -4; partile square -3; (Caput Algol -5 needs star data). Definitions p.112-114: combust within 8 deg 30' of the Sun in the same sign; under the beams to 17 degrees; cazimi within 17 minutes; partile = same degree. The Venus 48 and Mercury 28 maximum elongations were not confirmed (held back). VERIFIED against Lilly p.115 (every row and number matches); definitions p.113-114 checked: combust 8 deg 30' in the same sign, under the beams 17 degrees, cazimi 17 minutes (p.113); Venus 48 and Mercury 28 maximum elongations confirmed (p.114, 'though some allow a few more'); orientality defined by degrees of the Sun's sign (p.114). Caput Algol -5 applies in 20 Taurus or within five degrees (p.115). Differences found: none in numbers; the original wording 'Moon increasing in light or occidental +2' matches 'The Moon encreasing, or when she is Occidentall 2'. Read against the page image: every row of p.115, fortitudes (5,4,3,2,1; direct 4; swift 2; orientality 2; Moon 2; free of combustion 5; cazimi 5; partile conjunction 5 and 4; trine 4; sextile 3; Cor Leonis 6; Spica 5) and debilities (5,4,5; 5,2,5,2,2,2,2,5,4; 5,4,5,4,3; Algol 5): no difference. Definitions on pp.113-114 read in the OCR text: combust 8 deg 30 min in the same sign, beams 17 degrees, cazimi 17 minutes, Mercury 28 and Venus 48.",
+  "C_aspectsOrbs": "Lilly Book I p.105-107. Aspects: conjunction 0, sextile 60, square 90, trine 120, opposition 180 (p.105-106). Orbs of rays (first column, p.107): Saturn 10 deg, Jupiter 12, Mars 7 deg 30', Sun 17, Venus 8, Mercury 7, Moon 12 deg 30'. Second column ('according to others'; Lilly: 'I sometimes use the one, and sometimes the other'): Saturn 9, Jupiter 9, Mars 7, Sun 15, Venus 7, Mercury 7, Moon 12. Platick when the distance from the exact aspect is no more than the sum of half of each orb (his example: Venus in 10 Taurus and Saturn in 18 Virgo, moieties 4 and 5, distance 8, p.107). The first column matches the page; the second column and the elongation limits are now confirmed (the held-back doubt about Mars 7 versus 8 is settled: p.107 prints 7 30' and 7). Read on the page image: both columns (10, 12, 7 30, 17, 8, 7, 12 30 and 9, 9, 7, 15, 7, 7, 12) read on the p.107 page image; platick example confirmed.",
+  "D_profectionHouseTable": "Lilly Book III Chap. CLXIX p.729-730 (Ascendant and Moon profected through the radical houses): 1 cheerful, provide what the body needs; 2 good to buy and sell, increase of estate; 3 prosper in journeys, converse with kin and religious men; 4 inheritance, new house, blessing from parents, mines, build or repair, but sorrowful and in danger of water, not good for long journeys; 5 pleasure, school or women, good to make covenants, send letters, perfect accounts; 6 sickness, hatred of the vulgar, ill servants, no journeys, ill time to deal in merchandise and contracts; 7 froward, women and wantonness, open enemies, quarrels and suits, good to marry the other significators concurring; 8 body or goods suffer by slander and treachery, no new contracts, not adventurous in trade; 9 long journeys, study and learning, church-men, chemistry; 10 ambition, preferment, eminent men, increase for the tradesman, safe journeys; 11 cheerful, friends increase, very prosperous in worldly affairs; 12 sickly, hidden causes, enmity of ill neighbours, danger of imprisonment or banishment, ill year for great cattle and horses. VERIFIED line by line against p.729-730: all twelve entries match. Two omissions noted: house 8 on the page adds 'sometimes death, if the Hyleg come to any mortall Direction' (not used in output); house 12 on the page adds 'unlesse the twelft house in the Radix was fortunate'. Page: Chap. CLXIX p.729-730 is correct; Lilly's title says the Ascendant AND the Moon. Read in the OCR text of pp.729-730: all twelve lines match.",
+  "D2_profectionMcSunTable": "Lilly Book III Chap. CLXX p.731-732 (profection of the Midheaven and the Sun through the radical houses): 1 good fortune by public employment, profession or service to a great person; 2 the profits of former employment received; 3 an indifferent condition (loss of kindred, robbery in journeying); 4 fame in question, parents agree ill; 5 merry, wanton, spending more than he gets; 6 nothing succeeds in honourable matters; 7 esteem and repute increase, favour of women of account; 8 scandal and slander, melancholy; 9 long journeys for honour and renown; 10 a very successful and famous year; 11 kindness to friends, mutual respect; 12 detriment in reputation, honour and fame. Read in the OCR text of pp.731-732: all twelve sentences match. The reading of the houses is confirmed by the page itself (house 3 'the sixth house from the tenth').",
+  "F_firdariaAndTiming": "Firdaria (Bonatti, De astronomia tractatus X, Basel 1550, Pars V Caput III, p.813-814, Latin, read on the page image): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2, all together seventy-five years; day order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, back to the Sun; night births begin with the Moon and 'fiet in omnibus & per omnia' as for the Sun; the night position of the nodes and any subdivision of the node periods are not stated, so they follow the engine's named firdariaNodes convention; sub-lords by sevenths in the cyclic order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars starting with the major lord. The figures match the printed table. Lilly's alternative (Book III p.733-734): 'Lords of the Septenniall yeers, vulgarly called Lords of the Alfridary': day birth Sun the first seven years, Venus the next seven, Mercury the next seven, 'and so in order'; night birth Moon the first seven years, Saturn the next seven, then (glyph on p.734, read as Jupiter) the next seven; this is a seven-year scheme and is not bound. Profection arithmetic (Lilly p.715-718, 727): 30 degrees a year from solar return to solar return; a degree of profection is 12 days 4 hours 12 minutes (p.718), equal to 365.2422/30 = 12.174 days; Lilly drops the hours (23 deg 23 min = 284 days 16 hours, read as 284, p.727), so days are truncated, not rounded. Read on the page image of Bonatti pp.813-814: Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, Head 3, Tail 2, total 75; order; sevenths; night 'in omnibus & per omnia'. Lilly p.727 example (284 days 16 hours, read as 284) read again on the page.",
+  "E_valensPairs": "NOT VERIFIED and not included: the pair table was not found in the Riley text (IV.5 states only a few pair effects, p.97 of Riley, which do not form a good/bad/mixed grid). Not read on a page image (table not in the file)."
  },
  "rules": [
   {
@@ -123,8 +123,8 @@
    "verification": "confirmed",
    "verificationNote": "Scores (5, 4, 3, 2, 1; detriment -5, fall -4, peregrine -5; reception 5 and 4) seen on p.115 and in the text of p.101-103. Sect-aware triplicity seen on p.102 (the Sun by night does not rule the fiery triplicity, Jupiter does). The class thresholds are not in Lilly and stay labelled derived. E = 0 is left unclassed here because the original left it undefined.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Scores seen in the p.104 table (bottom row 5,4,3,2,1; 5,4) and p.115; the quotation found on p.101 (not p.101-104 as a block)."
+   "pageRead": "passed",
+   "pageReadNote": "Scores seen in the p.104 table (bottom row 5,4,3,2,1; 5,4) and p.115; the quotation found on p.101 (not p.101-104 as a block)."
   },
   {
    "id": "lilly.wealth.promise-strong",
@@ -154,8 +154,8 @@
    "verification": "corrected",
    "verificationNote": "Page says 'in angles, or the greater part of them' and 'essentially dignified': the original 'at least half' for angles is changed to more than half (greater part). The original branch (ii) 'comfortable estate' is not Lilly's wording; his sentence for moderate fortification is 'shall not exceed or want' and is now a separate rule. 'Intercepted sign' and plural lords of the Part of Fortune added as noted differences from the engine.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page image p.553 read through OCR text; \"angles, or the greater part of them\" and \"essentially dignified\" present. Significators list read p.552."
+   "pageRead": "passed",
+   "pageReadNote": "Page image p.553 read through OCR text; \"angles, or the greater part of them\" and \"essentially dignified\" present. Significators list read p.552."
   },
   {
    "id": "lilly.wealth.promise-moderate",
@@ -180,8 +180,8 @@
    "verification": "corrected",
    "verificationNote": "New rule that replaces branch (ii) of the original strong rule; the sentence is on the page.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence present on p.553."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence present on p.553."
   },
   {
    "id": "lilly.wealth.promise-weak.all",
@@ -206,8 +206,8 @@
    "verification": "confirmed",
    "verificationNote": "Sentence seen on p.553 (scan image). Page locator is p.553, not p.553-554.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence present on p.553."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence present on p.553."
   },
   {
    "id": "lilly.wealth.promise-weak.majority",
@@ -232,8 +232,8 @@
    "verification": "corrected",
    "verificationNote": "Page says Fortunes in SUCCEDANT, not cadent, and has no 'more than half weak' clause. Rewritten.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page image p.554 read: \"the Infortunes in angles, and Fortunes in succedant\" (succedant, not cadent)."
+   "pageRead": "passed",
+   "pageReadNote": "Page image p.554 read: \"the Infortunes in angles, and Fortunes in succedant\" (succedant, not cadent)."
   },
   {
    "id": "lilly.wealth.promise-weak.moon-combust",
@@ -260,10 +260,10 @@
    "variants": "The printed glyphs after 'the place of the' are a conjunction sign and an opposition sign (compare the square and opposition glyphs two lines above), so the place meant is the syzygy.",
    "dedupeKey": "wealth-promise",
    "verification": "corrected",
-   "verificationNote": "Original read the glyphs as Part of Fortune; the scan shows conjunction and opposition. Clause (b) restated; 'oppressed' operationalisation labelled derived. Strength lowered to 2 as in the sibling rule.",
+   "verificationNote": "The scan shows the glyphs are conjunction and opposition, not Part of Fortune. Clause (b) restated; 'oppressed' operationalisation labelled derived. Strength lowered to 2 as in the sibling rule.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page image p.554 read: the Moon combust and her Dispositor infortunate; the place of the conjunction or opposition oppressed by the Infortunes and they cadent, its lord an Infortune and strong, or Jupiter (glyph legible) cadent with a dispositor not potent."
+   "pageRead": "passed",
+   "pageReadNote": "Page image p.554 read: the Moon combust and her Dispositor infortunate; the place of the conjunction or opposition oppressed by the Infortunes and they cadent, its lord an Infortune and strong, or Jupiter (glyph legible) cadent with a dispositor not potent."
   },
   {
    "id": "lilly.profection.lord-of-year-by-degree",
@@ -291,8 +291,8 @@
    "verification": "corrected",
    "verificationNote": "Quote and method confirmed on p.727 and p.720. Correction: Lilly drops the hours (284 days 16 hours is read as 284, p.727), so days are truncated, not rounded as the original said. Locators corrected: the quoted sentence is on p.727, not p.715-716.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Worked example read on p.727 (23 degrees 23 minutes; 284 days 16 hours; he reads 284); two lords when a sign is crossed (p.727, p.720). Note that Lilly then looks 284 up as a day number in a table of the year; the date of the change is therefore the implementer's, and the day count itself (truncated) is what the page gives."
+   "pageRead": "passed",
+   "pageReadNote": "Worked example read on p.727 (23 degrees 23 minutes; 284 days 16 hours; he reads 284); two lords when a sign is crossed (p.727, p.720). Note that Lilly then looks 284 up as a day number in a table of the year; the date of the change is therefore the implementer's, and the day count itself (truncated) is what the page gives."
   },
   {
    "id": "lilly.profection.house-money",
@@ -325,8 +325,8 @@
    "verification": "confirmed",
    "verificationNote": "Each house sentence compared with p.729-730: houses 2, 4, 10, 11 and their directions match the page. Quote seen on p.719.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Entries for houses 2, 4, 10, 11 compared on p.729-730; quotation on p.719. Note the page itself says (p.720) that years in square or opposition to the Horoscope or Midheaven are unhappy, which conflicts with house 10 here; both rules stay and are shown together."
+   "pageRead": "passed",
+   "pageReadNote": "Entries for houses 2, 4, 10, 11 compared on p.729-730; quotation on p.719. Note the page itself says (p.720) that years in square or opposition to the Horoscope or Midheaven are unhappy, which conflicts with house 10 here; both rules stay and are shown together."
   },
   {
    "id": "lilly.profection.house-relationships",
@@ -352,8 +352,8 @@
    "verification": "corrected",
    "verificationNote": "House 7 confirmed. House 5 sentence in the original ('marriage, love') is not on the page; corrected to pleasure and women if capable.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "House 7 and house 5 sentences compared on p.729."
+   "pageRead": "passed",
+   "pageReadNote": "House 7 and house 5 sentences compared on p.729."
   },
   {
    "id": "lilly.profection.house-learning",
@@ -383,8 +383,8 @@
    "verification": "corrected",
    "verificationNote": "House 9 confirmed. House 5 is a description tied to age, not a favourable verdict; direction set to activates for that house.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "House 9 sentence compared on p.730; house 5 on p.729."
+   "pageRead": "passed",
+   "pageReadNote": "House 9 sentence compared on p.730; house 5 on p.729."
   },
   {
    "id": "lilly.profection.house-travel",
@@ -417,14 +417,14 @@
    "verification": "corrected",
    "verificationNote": "Houses 3, 4, 9 confirmed; houses 10 (safe journeys) and 6 (no journeys) are on the page and are added.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Houses 3, 4, 6, 9, 10 compared on p.729-730. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+   "pageRead": "corrected",
+   "pageReadNote": "Houses 3, 4, 6, 9, 10 compared on p.729-730. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
   },
   {
    "id": "valens.profection.transmission-lord",
    "name": "Valens: the year transmits from the Ascendant, Sun and Moon by counting signs by age",
    "stage": "period-lord",
-   "condition": "For the current year number N = age in completed years + 1, r = N mod 12 (12 when 0). From each of Ascendant, Sun, Moon count r signs inclusively: the receiving sign is (r - 1) signs after the starting sign (whole-sign). RECEIVERS: each planet standing in the receiving sign receives; ONLY IF THE SIGN IS EMPTY, the domicile lord of the receiving sign is the receiver (Valens: 'if the count ends at an empty place' the transmission goes to the rulers of the signs). Arithmetic check, an invented case: year 23 gives remainder 11, so an Ascendant in Aries counts to Aquarius. Valens' other starting points by topic are the separate rule valens.transmission.topic-start. The pair verdict and the benefic-count verdict stay held back, so this rule emits 'activates' with transmitter and receiver named. Starting points are only the Ascendant, Sun and Moon here (Valens says all stars may transmit; the other starting points are the separate rule valens.transmission.topic-start). The rule states no topic, so it is a general signal only; the earlier five-topic tagging is removed because it would have counted this rule as wealth, career, relationship and health coverage when Valens says nothing on those here.",
+   "condition": "For the current year number N = age in completed years + 1, r = N mod 12 (12 when 0). From each of Ascendant, Sun, Moon count r signs inclusively: the receiving sign is (r - 1) signs after the starting sign (whole-sign). RECEIVERS: each planet standing in the receiving sign receives; ONLY IF THE SIGN IS EMPTY, the domicile lord of the receiving sign is the receiver (Valens: 'if the count ends at an empty place' the transmission goes to the rulers of the signs). Arithmetic check, an invented case: year 23 gives remainder 11, so an Ascendant in Aries counts to Aquarius. Valens' other starting points by topic are the separate rule valens.transmission.topic-start. The pair verdict and the benefic-count verdict stay held back, so this rule emits 'activates' with transmitter and receiver named. Starting points are only the Ascendant, Sun and Moon here (Valens says all stars may transmit; the other starting points are the separate rule valens.transmission.topic-start). The rule states no topic, so it is a general signal only; Valens says nothing here on wealth, career, relationship or health, so none of them is tagged.",
    "inputs": [
     "age",
     "sign of Ascendant, Sun, Moon",
@@ -446,14 +446,14 @@
    "verification": "corrected",
    "verificationNote": "Method and worked example confirmed (Riley p.103). Receiver corrected: planets in the receiving sign receive; the sign's ruler receives only when the sign is empty. The original made the domicile lord always a receiver.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Method, the counting rule and the empty-place rule confirmed on Riley p.103 (used as a locator only) (page folios are printed at the foot of the page, checked on the page image). Corrections: locator p.103 (not p.102-103); topics reduced to general, because the passage names no topic."
+   "pageRead": "corrected",
+   "pageReadNote": "Method, the counting rule and the empty-place rule confirmed on Riley p.103 (used as a locator only) (page folios are printed at the foot of the page, checked on the page image). Corrections: locator p.103 (not p.102-103); topics reduced to general, because the passage names no topic."
   },
   {
    "id": "firdaria.lord-condition",
    "name": "Firdaria: the period lord and sub-lord are judged by their natal condition",
    "stage": "period-lord",
-   "condition": "Major periods (Table F): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, North Node 3, South Node 2 (sum 75). Day birth begins with the Sun in the order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, then the Sun. Night birth begins with the Moon, 'in all things as is said' for the Sun: the order of the nodes in the night cycle and the absence of node sub-periods follow the engine's named firdariaNodes convention and are printed with every result. Each planetary major period is divided in seven equal parts, the major lord first, then the others in the cyclic order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars. Judgement: the significators act according to their disposition: well disposed they increase fortunes and decrease misfortunes; badly disposed the reverse. Compute the class (lilly.score.strength-classes) of the major lord and the sub-lord; 'well disposed' is read as class STRONG or MODERATE and 'badly disposed' as WEAK (derived). Bonatti names no topic and no house routing for the firdaria, so the rule is general only (the earlier 'topics follow the houses the lord rules and occupies' is not in the source and is removed).",
+   "condition": "Major periods (Table F): Sun 10, Venus 8, Mercury 13, Moon 9, Saturn 11, Jupiter 12, Mars 7, North Node 3, South Node 2 (sum 75). Day birth begins with the Sun in the order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Head, Tail, then the Sun. Night birth begins with the Moon, 'in all things as is said' for the Sun: the order of the nodes in the night cycle and the absence of node sub-periods follow the engine's named firdariaNodes convention and are printed with every result. Each planetary major period is divided in seven equal parts, the major lord first, then the others in the cyclic order Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars. Judgement: the significators act according to their disposition: well disposed they increase fortunes and decrease misfortunes; badly disposed the reverse. Compute the class (lilly.score.strength-classes) of the major lord and the sub-lord; 'well disposed' is read as class STRONG or MODERATE and 'badly disposed' as WEAK (derived). Bonatti names no topic and no house routing for the firdaria, so the rule is general only.",
    "inputs": [
     "birth sect",
     "firdaria periods and subperiods",
@@ -474,8 +474,8 @@
    "verification": "confirmed",
    "verificationNote": "Years 10, 8, 13, 9, 11, 12, 7, 3, 2 and total 75 seen in the Latin; sevenths and their order seen; night: 'fiet in omnibus & per omnia' seen; no node subdivision stated. Judgement sentence (bene dispositi augendo fortunia, male dispositi the reverse) seen on p.814.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Years (10, 8, 13, 9, 11, 12, 7, 3, 2; sum 75), day order, sevenths and their order, and the night rule read on the page image of pp.813-814. Correction: the topic routing by houses and the five-topic tagging were not in Bonatti and are removed."
+   "pageRead": "corrected",
+   "pageReadNote": "Years (10, 8, 13, 9, 11, 12, 7, 3, 2; sum 75), day order, sevenths and their order, and the night rule read on the page image of pp.813-814. Correction: the topic routing by houses and the five-topic tagging were not in Bonatti and are removed."
   },
   {
    "id": "lilly.revolution.asc-hostile",
@@ -503,8 +503,8 @@
    "verification": "corrected",
    "verificationNote": "The page says the return Ascendant 'in square or opposition to the ascendant in the Radix' (both aspects), so the original exclusion of the opposition (7th) departs from the text. Sickness sentence names 6th, 12th and 7th.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentences read p.736-737 (square or opposition to the radical Ascendant, or the signs of ill houses; the sixth, twelfth or seventh named for sickness)."
+   "pageRead": "passed",
+   "pageReadNote": "Sentences read p.736-737 (square or opposition to the radical Ascendant, or the signs of ill houses; the sixth, twelfth or seventh named for sickness)."
   },
   {
    "id": "lilly.transit.daily-cusps",
@@ -529,10 +529,10 @@
    "sourceQuote": "The Transit of the Planets is best found out by an Ephemeris",
    "variants": "Lilly treats transits as day-scale only; he gives no year-scale rules for Jupiter and Saturn. He adds that Jupiter or Venus over the cusp of the second house make an apt day to procure money (needs Regiomontanus cusps, not used). His radical points in the opening sentence also include the Head, the Tail and the Part of Fortune, which the engine does not read here.",
    "verification": "confirmed",
-   "verificationNote": "Page re-read for this correction (Christian Astrology Book III p.741, Wellcome scan, page image and a 300 dpi crop of the last six lines). All clusters read: the healthful, choler and gravity readings are for the passage over the ascending degree only; fortunate days by sextile and trine only; unsuccessful days by passage, square or opposition only. The fifth glyph after the Moon in the unsuccessful list was not read with certainty and is left out.",
+   "verificationNote": "Read against the page image (Christian Astrology Book III p.741, Wellcome scan, page image and a 300 dpi crop of the last six lines). All clusters read: the healthful, choler and gravity readings are for the passage over the ascending degree only; fortunate days by sextile and trine only; unsuccessful days by passage, square or opposition only. The fifth glyph after the Moon in the unsuccessful list was not read with certainty and is left out.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentences read on p.741 (OCR text): healthful day for Jupiter or Venus over the ascendant; choler for two or three days for Mars; gravity for Saturn; fortunate and unsuccessful days."
+   "pageRead": "passed",
+   "pageReadNote": "Sentences read on p.741 (OCR text): healthful day for Jupiter or Venus over the ascendant; choler for two or three days for Mars; gravity for Saturn; fortunate and unsuccessful days."
   },
   {
    "id": "valens.transit.jupiter-year-sign",
@@ -555,13 +555,13 @@
    "sourceCitation": "Vettius Valens, Anthologies IV.14 'The phases and transits of the stars', tr. Mark T. Riley",
    "sourceLocator": "Book IV ch. 14, Riley p.108 (the Jupiter paragraph); operative places list in IV.11, Riley p.105",
    "sourceQuote": "",
-   "variants": "Valens' 'rising' means heliacal phases (dropped). Page numbers are the folios printed at the foot of each page of the Riley PDF (checked on the page image of p.105): the Jupiter paragraph is on p.108 and the operative-places list on p.105, not p.107 and p.104 as first given.",
+   "variants": "Valens' 'rising' means heliacal phases (dropped). Page numbers are the folios printed at the foot of each page of the Riley PDF (checked on the page image of p.105): the Jupiter paragraph is on p.108 and the operative-places list on p.105, not p.107 and p.104, which read the page numbers as headers.",
    "dedupeKey": "jupiter-transit-sign",
    "verification": "corrected",
    "verificationNote": "Passage confirmed. Correction: 'operative places' are not 'angles' only; Valens lists them (p.104). The profected-sign reading of 'the year' stays an implementer's narrowing, now stated.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Passage read on Riley p.108. Corrections: (1) locators (p.108 and p.105; the earlier p.107 and p.104 read the page numbers as headers, but Riley prints them at the foot); (2) the rule gave one favourable direction for a passage with two branches (chronocrator well or badly placed) and used undefined tests; now only the branch with a stated, computable test (operative places) is coded; (3) topic wealth removed (the passage speaks of public service and rank, not money)."
+   "pageRead": "corrected",
+   "pageReadNote": "Passage read on Riley p.108. Corrections: (1) locators (p.108 and p.105; p.107 and p.104 would read the page numbers as headers, but Riley prints them at the foot); (2) the rule gave one favourable direction for a passage with two branches (chronocrator well or badly placed) and used undefined tests; now only the branch with a stated, computable test (operative places) is coded; (3) topic wealth removed (the passage speaks of public service and rank, not money)."
   },
   {
    "id": "valens.critical-year-syzygy",
@@ -589,14 +589,14 @@
    "verification": "corrected",
    "verificationNote": "Saturn's four places are an intensifier ('especially if'), not a required second condition; the livelihood-and-rank clause is 'if the bodily state is helped by an aspect of benefics', the reverse of the original. Quote shortened to under 26 words.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Passage read (V.2): the Saturn clause is 'especially if' and the benefic clause is as stated. Locator corrected to Riley p.125 (page folio printed at the foot). Interpretation to keep visible: 'the sign of the new or full Moon' is read as the prenatal lunation (Valens calls it the ecliptic place in the chapter title); the translation does not say 'prenatal' in this sentence. Quotation replaced: the first one elided words (\"found passing\") and contained a word on the banned list for output; the new one is the exact text (the translation prints \"precedeed\")."
+   "pageRead": "corrected",
+   "pageReadNote": "Passage read (V.2): the Saturn clause is 'especially if' and the benefic clause is as stated. Locator corrected to Riley p.125 (page folio printed at the foot). Interpretation to keep visible: 'the sign of the new or full Moon' is read as the prenatal lunation (Valens calls it the ecliptic place in the chapter title); the translation does not say 'prenatal' in this sentence. Quotation replaced: the first one elided words (\"found passing\") and contained a word on the banned list for output; the new one is the exact text (the translation prints \"precedeed\")."
   },
   {
    "id": "valens.critical-year-node",
    "name": "Critical period: Saturn at a lunar node or its squares",
    "stage": "activation",
-   "condition": "Transiting Saturn at the ascending or descending node of the date, or at the points square to them (Valens V.2, tr. Riley: 'is at'). The text gives no orb: the engine reads 'at' as a close approach of one degree, a derived threshold. The node is the mean node of the date, because the chapter speaks of the current position of the ascending node for the year in question; the sentence does not exclude the natal node. The same-sign form is not part of this rule: Valens states it only for the Moon, in the chapter on initiatives (V.3), so it is held back as an extension (see held-back.json). The page was re-read for this correction.",
+   "condition": "Transiting Saturn at the ascending or descending node of the date, or at the points square to them (Valens V.2, tr. Riley: 'is at'). The text gives no orb: the engine reads 'at' as a close approach of one degree, a derived threshold. The node is the mean node of the date, because the chapter speaks of the current position of the ascending node for the year in question; the sentence does not exclude the natal node. The same-sign form is not part of this rule: Valens states it only for the Moon, in the chapter on initiatives (V.3), so it is held back as an extension (see held-back.json).",
    "inputs": [
     "saturn transit longitude",
     "mean node longitude"
@@ -614,10 +614,10 @@
    "variants": "Valens' 'ecliptic places' are the nodes.",
    "dedupeKey": "critical-year",
    "verification": "corrected",
-   "verificationNote": "Page re-read for this correction (Riley pp.125-127, page image read): the sentence is the point form, 'is at', with no orb; the same-sign wording in the chapter is about the Moon in the initiatives, not Saturn. The same-sign branch was removed; the closeness that counts as 'at' is a derived threshold.",
+   "verificationNote": "Read against the page image (Riley pp.125-127, page image read): the sentence is the point form, 'is at', with no orb; the same-sign wording in the chapter is about the Moon in the initiatives, not Saturn. The same-sign branch was removed; the closeness that counts as 'at' is a derived threshold.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Sentence read; locator corrected to Riley p.125-126 (it is split by the page foot of p.125). Natal-versus-current node and the missing orb remain the implementer's choices, as the condition already says."
+   "pageRead": "corrected",
+   "pageReadNote": "Sentence read; locator corrected to Riley p.125-126 (it is split by the page foot of p.125). Natal-versus-current node and the missing orb remain the implementer's choices, as the condition already says."
   },
   {
    "id": "lilly.aspects.orbs-table",
@@ -640,10 +640,10 @@
    "sourceQuote": "they stand thus as I have found by the best Authors and my owne Experience",
    "variants": "Lilly says he uses now the one column and now the other, as memory serves (p.107). For planet-to-point he gives no separate orb.",
    "verification": "confirmed",
-   "verificationNote": "Both orb columns, the 28 and 48 degree limits and the combustion figures all read on the page images. The earlier doubt about Mars (7 or 8) is settled: both columns print 7 30' and 7; the elongation limits 28 and 48 are Lilly's own.",
+   "verificationNote": "Both orb columns, the 28 and 48 degree limits and the combustion figures all read on the page images. The doubt about Mars (7 or 8) is settled: both columns print 7 30' and 7; the elongation limits 28 and 48 are Lilly's own.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Both orb columns, the platick example (Venus 10 Taurus, Saturn 18 Virgo, moieties 4 and 5, distance 8) read on the p.107 page image; combustion 8 deg 30 min same sign, beams 17 degrees, cazimi 17 minutes, Mercury 28 and Venus 48 read on pp.113-114."
+   "pageRead": "passed",
+   "pageReadNote": "Both orb columns, the platick example (Venus 10 Taurus, Saturn 18 Virgo, moieties 4 and 5, distance 8) read on the p.107 page image; combustion 8 deg 30 min same sign, beams 17 degrees, cazimi 17 minutes, Mercury 28 and Venus 48 read on pp.113-114."
   },
   {
    "id": "lilly.wealth.promise-mixed",
@@ -666,10 +666,10 @@
    "variants": "Lilly gives no rule for unequal numbers of moderate significators beyond p.559-560 (plurality decides).",
    "dedupeKey": "wealth-promise",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Page locator is p.560, not 'about p.560-561'.",
+   "verificationNote": "Condition restated in full from the page. Page locator is p.560, not 'about p.560-561'.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.560."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.560."
   },
   {
    "id": "lilly.wealth.inheritance-8th.a",
@@ -694,10 +694,10 @@
    "variants": "The original rule bundled three independent clauses, now three ids.",
    "dedupeKey": "wealth-inheritance",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
+   "verificationNote": "Condition restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page image p.554 read."
+   "pageRead": "passed",
+   "pageReadNote": "Page image p.554 read."
   },
   {
    "id": "lilly.wealth.inheritance-8th.b",
@@ -722,10 +722,10 @@
    "variants": "The original rule bundled three independent clauses, now three ids.",
    "dedupeKey": "wealth-inheritance",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
+   "verificationNote": "Condition restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page image p.554 read."
+   "pageRead": "passed",
+   "pageReadNote": "Page image p.554 read."
   },
   {
    "id": "lilly.wealth.inheritance-8th.c",
@@ -750,10 +750,10 @@
    "variants": "The original rule bundled three independent clauses, now three ids.",
    "dedupeKey": "wealth-inheritance",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
+   "verificationNote": "Condition restated in full from the page. Clause (c) was held back for damaged OCR; the scan shows the Part of Fortune glyph (circle with cross) and the sentence is legible. Split into three.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page image p.554 read (Part of Fortune glyph legible)."
+   "pageRead": "passed",
+   "pageReadNote": "Page image p.554 read (Part of Fortune glyph legible)."
   },
   {
    "id": "lilly.wealth.durability.benefic-strong",
@@ -777,10 +777,10 @@
    "variants": "Strong and weak classes are derived from E.",
    "dedupeKey": "wealth-durability",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "verificationNote": "Condition restated in full from the page. Four mutually exclusive branches read on p.562-563 (the sub-clauses are split among the four rules).",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page read (p.562-563). All four durability rules carry the same quotation because the four verdicts are the four sentences that follow it; \"benevolent\" per p.560 (a Fortune, or a planet in a Fortune's dignities)."
+   "pageRead": "passed",
+   "pageReadNote": "Page read (p.562-563). All four durability rules carry the same quotation because the four verdicts are the four sentences that follow it; \"benevolent\" per p.560 (a Fortune, or a planet in a Fortune's dignities)."
   },
   {
    "id": "lilly.wealth.durability.weak",
@@ -804,10 +804,10 @@
    "variants": "Strong and weak classes are derived from E.",
    "dedupeKey": "wealth-durability",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "verificationNote": "Condition restated in full from the page. Four mutually exclusive branches read on p.562-563 (the sub-clauses are split among the four rules).",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Branch overlapped lilly.wealth.durability.infortune-weak: a weak Saturn or Mars in the 2nd fired both (riches continue with hazard AND overthrown). Lilly treats the Infortunes in his separate second paragraph (p.562-563), so this branch is restricted to the other planets. Page text read: p.562 bottom, p.563 top."
+   "pageRead": "corrected",
+   "pageReadNote": "Branch overlapped lilly.wealth.durability.infortune-weak: a weak Saturn or Mars in the 2nd fired both (riches continue with hazard AND overthrown). Lilly treats the Infortunes in his separate second paragraph (p.562-563), so this branch is restricted to the other planets. Page text read: p.562 bottom, p.563 top."
   },
   {
    "id": "lilly.wealth.durability.infortune-strong",
@@ -831,10 +831,10 @@
    "variants": "Strong and weak classes are derived from E.",
    "dedupeKey": "wealth-durability",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "verificationNote": "Condition restated in full from the page. Four mutually exclusive branches read on p.562-563 (the sub-clauses are split among the four rules).",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.563 top: \"If he be potent, the estate shall continue, but with difficulty; yet he shall be subject rather to lose then lay up\"."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.563 top: \"If he be potent, the estate shall continue, but with difficulty; yet he shall be subject rather to lose then lay up\"."
   },
   {
    "id": "lilly.wealth.durability.infortune-weak",
@@ -858,10 +858,10 @@
    "variants": "Strong and weak classes are derived from E.",
    "dedupeKey": "wealth-durability",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Four mutually exclusive branches read on p.562-563 (the original bundled many sub-clauses).",
+   "verificationNote": "Condition restated in full from the page. Four mutually exclusive branches read on p.562-563 (the sub-clauses are split among the four rules).",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.563 top: \"if he be unfortunate, his Fortune shall not continue, but be overthrown and come to nothing\"."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.563 top: \"if he be unfortunate, his Fortune shall not continue, but be overthrown and come to nothing\"."
   },
   {
    "id": "lilly.wealth.life-phase",
@@ -886,10 +886,10 @@
    "variants": "Lilly prefers direction of the significators for timing and offers this only 'in a generall way'.",
    "dedupeKey": "wealth-phase",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Page head checked; houses as printed (ninth, eighth, seventh; sixth, fifth, fourth; third, second, first).",
+   "verificationNote": "Condition restated in full from the page. Page head checked; houses as printed (ninth, eighth, seventh; sixth, fifth, fourth; third, second, first).",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.563: houses between the Ascendant and the tenth; ninth, eighth, seventh; sixth, fifth, fourth; third, second, first; oriental, occidental, retrograde, direct and swift clauses present."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.563: houses between the Ascendant and the tenth; ninth, eighth, seventh; sixth, fifth, fourth; third, second, first; oriental, occidental, retrograde, direct and swift clauses present."
   },
   {
    "id": "lilly.career.honour-essential",
@@ -930,10 +930,10 @@
    "variants": "The fixed stars named are on p.616 (Oculus Taurus, Hercules, Cor Leonis, Spica, Lucida Lancis, Cor Scorpii).",
    "dedupeKey": "career-honour-essential",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. The original bundled about six sub-rules; the dignity grades are one rule, the angularity grades another.",
+   "verificationNote": "Condition restated in full from the page. The passage holds about six sub-rules; the dignity grades are one rule, the angularity grades another.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentences read p.615."
+   "pageRead": "passed",
+   "pageReadNote": "Sentences read p.615."
   },
   {
    "id": "lilly.career.honour-angularity",
@@ -973,10 +973,10 @@
    "variants": "Lilly says the judicious allow a certain weight to each testimony (p.616) without a number.",
    "dedupeKey": "career-honour-angular",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Fixed-star clause left out (no star data).",
+   "verificationNote": "Condition restated in full from the page. Fixed-star clause left out (no star data).",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentences read p.615-616."
+   "pageRead": "passed",
+   "pageReadNote": "Sentences read p.615-616."
   },
   {
    "id": "lilly.career.lord1-lord10",
@@ -1000,10 +1000,10 @@
    "variants": "Whole-sign houses are a variant; the original numeral 'p.616 only' is correct.",
    "dedupeKey": "career-lord1-lord10",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Quotation found on p.616 (the original had none).",
+   "verificationNote": "Condition restated in full from the page. Quotation found on p.616.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.616."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.616."
   },
   {
    "id": "lilly.career.luminary-angularity.cadent",
@@ -1026,10 +1026,10 @@
    "variants": "'And the Planets also' is read as all five others (derived).",
    "dedupeKey": "career-luminary",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Two of the four original clauses are computable as written; 'culminates with the degree of the mid-heaven' and 'surrounded' have no stated orb or definition, so they are not coded.",
+   "verificationNote": "Condition restated in full from the page. Two of the four clauses are computable as written; 'culminates with the degree of the mid-heaven' and 'surrounded' have no stated orb or definition, so they are not coded.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.617."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.617."
   },
   {
    "id": "lilly.relationships.single-life.barren",
@@ -1054,10 +1054,10 @@
    "variants": "Convention-dependent: needs a sex convention; woman's significators (Sun, Mars) are not read.",
    "dedupeKey": "marriage-single",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Barren signs and house numerals read on the scan image.",
+   "verificationNote": "Condition restated in full from the page. Barren signs and house numerals read on the scan image.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Page image p.587-588 read; barren signs Gemini, Leo, Virgo; cadent houses 6, 9, 12 and the 8th admitted. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+   "pageRead": "corrected",
+   "pageReadNote": "Page image p.587-588 read; barren signs Gemini, Leo, Virgo; cadent houses 6, 9, 12 and the 8th admitted. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
   },
   {
    "id": "lilly.relationships.single-life.saturn",
@@ -1083,10 +1083,10 @@
    "variants": "'More elevated' is read as nearer the culmination (derived).",
    "dedupeKey": "marriage-single",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Read on p.588.",
+   "verificationNote": "Condition restated in full from the page. Read on p.588.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Page image p.588 read: Saturn more elevated than Moon or Venus, no planet assisting, elevation equivalent to a conjunction; the strength proviso sentence precedes it. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+   "pageRead": "corrected",
+   "pageReadNote": "Page image p.588 read: Saturn more elevated than Moon or Venus, no planet assisting, elevation equivalent to a conjunction; the strength proviso sentence precedes it. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
   },
   {
    "id": "lilly.relationships.single-life.moon-saturn",
@@ -1112,10 +1112,10 @@
    "variants": "The original called the first clause 'Venus in Scorpio'; the scan shows the Moon glyph.",
    "dedupeKey": "marriage-single",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Glyphs read on the 105 dpi scan image: the Moon, not Venus, in Scorpio.",
+   "verificationNote": "Condition restated in full from the page. Glyphs read on the 105 dpi scan image: the Moon, not Venus, in Scorpio.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Glyphs confirmed on the page image (Moon in Scorpio; Saturn in Leo or Taurus; Moon in Capricorn, Aquarius or Libra). Correction: the verdict \"never marries\" is stated on p.588 only \"if the testimonies of these Significators agree with the affliction of Venus and the Moon\"; the earlier condition omitted that precondition and so claimed more than the passage. Direction value \"cautions\" replaced by \"unfavourable\"."
+   "pageRead": "corrected",
+   "pageReadNote": "Glyphs confirmed on the page image (Moon in Scorpio; Saturn in Leo or Taurus; Moon in Capricorn, Aquarius or Libra). Correction: the verdict \"never marries\" is stated on p.588 only \"if the testimonies of these Significators agree with the affliction of Venus and the Moon\"; a condition without that precondition would claim more than the passage. Direction value \"cautions\" replaced by \"unfavourable\"."
   },
   {
    "id": "lilly.relationships.marriage-promised",
@@ -1142,10 +1142,10 @@
    "variants": "Convention-dependent.",
    "dedupeKey": "marriage-promised",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Only the clause legible on p.589 is coded; the 'Venus and Moon in the 1st, 7th or 10th' reading of the original could not be confirmed.",
+   "verificationNote": "Condition restated in full from the page. Only the clause legible on p.589 is coded; the 'Venus and Moon in the 1st, 7th or 10th' reading could not be confirmed.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Page 588-589 read: Lord of the ascendant applying to the Lord of the seventh, there being also equal reception: the native desires marriage."
+   "pageRead": "passed",
+   "pageReadNote": "Page 588-589 read: Lord of the ascendant applying to the Lord of the seventh, there being also equal reception: the native desires marriage."
   },
   {
    "id": "lilly.relationships.ease",
@@ -1169,10 +1169,10 @@
    "variants": "Convention-dependent.",
    "dedupeKey": "marriage-ease",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Passage read on p.589.",
+   "verificationNote": "Condition restated in full from the page. Passage read on p.589.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Passage read p.589."
+   "pageRead": "passed",
+   "pageReadNote": "Passage read p.589."
   },
   {
    "id": "lilly.relationships.age",
@@ -1198,10 +1198,10 @@
    "variants": "Lilly prefers direction of the mid-heaven to the sextile or trine of Venus for the time.",
    "dedupeKey": "marriage-age",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Quarters listed as printed on p.590.",
+   "verificationNote": "Condition restated in full from the page. Quarters listed as printed on p.590.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Passage read (OCR text of Chap. CXXXI; page break between the two halves of the sentence). Locator widened to p.589-590."
+   "pageRead": "passed",
+   "pageReadNote": "Passage read (OCR text of Chap. CXXXI; page break between the two halves of the sentence). Locator widened to p.589-590."
   },
   {
    "id": "lilly.health.constitution",
@@ -1226,10 +1226,10 @@
    "variants": "The three things 'material to consider' (strong or weak, free from the Infortunes, temperament equal) are on p.576.",
    "dedupeKey": "health-constitution",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Locator p.576-577 checked; orb is the moiety of Table C (derived); no quotation was available in the original.",
+   "verificationNote": "Condition restated in full from the page. Locator p.576-577 checked; orb is the moiety of Table C (derived); no quotation is held.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Passage read p.576-577."
+   "pageRead": "passed",
+   "pageReadNote": "Passage read p.576-577."
   },
   {
    "id": "lilly.travel.promised",
@@ -1256,10 +1256,10 @@
    "variants": "Derived consequences by element and house (the original 'success and danger' rule) are not coded.",
    "dedupeKey": "travel-promised",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Read on p.607; 'many testimonies, many journeys' is stated by Lilly without numbers.",
+   "verificationNote": "Condition restated in full from the page. Read on p.607; 'many testimonies, many journeys' is stated by Lilly without numbers.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Passage read p.607 (mutual reception or conjunction of the Moon and Mercury, with the lord of the ninth or first, or posited in ninth, third or first; lord of ninth in first and the reverse; many planets occidental; movable and fixed signs)."
+   "pageRead": "passed",
+   "pageReadNote": "Passage read p.607 (mutual reception or conjunction of the Moon and Mercury, with the lord of the ninth or first, or posited in ninth, third or first; lord of ninth in first and the reverse; many planets occidental; movable and fixed signs)."
   },
   {
    "id": "lilly.profection.lord-condition",
@@ -1285,10 +1285,10 @@
    "variants": "Not bindable until the return chart is available.",
    "dedupeKey": "lord-of-year-condition",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Seven verdicts read on p.727-728; marked as needing the return chart.",
+   "verificationNote": "Condition restated in full from the page. Seven verdicts read on p.727-728; marked as needing the return chart.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Seven verdicts read p.727-728."
+   "pageRead": "passed",
+   "pageReadNote": "Seven verdicts read p.727-728."
   },
   {
    "id": "lilly.profection.house-loss",
@@ -1313,10 +1313,10 @@
    "variants": "Whole-sign counting is a labelled variant.",
    "dedupeKey": "profected-house:{h}",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Read on p.729-730; the exception clause is as printed.",
+   "verificationNote": "Condition restated in full from the page. Read on p.729-730; the exception clause is as printed.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Houses 6, 8, 12 read p.729-730."
+   "pageRead": "passed",
+   "pageReadNote": "Houses 6, 8, 12 read p.729-730."
   },
   {
    "id": "lilly.profection.house-health",
@@ -1346,10 +1346,10 @@
    "variants": "The terms table is now confirmed (Table A), so the five-point weighing could be coded later.",
    "dedupeKey": "profected-house:{h}",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Houses read on p.729-730.",
+   "verificationNote": "Condition restated in full from the page. Houses read on p.729-730.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Houses 1, 6, 8, 12 read p.729-730."
+   "pageRead": "passed",
+   "pageReadNote": "Houses 1, 6, 8, 12 read p.729-730."
   },
   {
    "id": "lilly.profection.angle-aspect-years",
@@ -1374,10 +1374,10 @@
    "variants": "Contradicts lilly.profection.house-money for house 10 (square) and house 11 (sextile is consistent); both are shown.",
    "dedupeKey": "profected-angle-aspect",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Profected MC is defined by keeping the degree and moving a sign a year (p.718 worked example).",
+   "verificationNote": "Condition restated in full from the page. Profected MC is defined by keeping the degree and moving a sign a year (p.718 worked example).",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.720."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.720."
   },
   {
    "id": "lilly.profection.mc-career",
@@ -1415,10 +1415,10 @@
    "variants": "Whole-sign counting differs from Lilly's by-degree houses.",
    "dedupeKey": "profected-house-mc:{h}",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. All twelve sentences read on p.731-732; the original had eleven.",
+   "verificationNote": "Condition restated in full from the page. All twelve sentences read on p.731-732.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "All twelve sentences read p.731-732. Reading of the table settled by the page itself: house 3 is explained as the sixth house from the tenth, so the profected Midheaven (or Sun) is counted through the radical houses, as the rule says. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
+   "pageRead": "corrected",
+   "pageReadNote": "All twelve sentences read p.731-732. Reading of the table settled by the page itself: house 3 is explained as the sixth house from the tenth, so the profected Midheaven (or Sun) is counted through the radical houses, as the rule says. Direction value \"cautions\" (a reading word, not a rule Direction in the specification) replaced by \"unfavourable\"."
   },
   {
    "id": "lilly.profection.fortune-sign-wealth",
@@ -1455,13 +1455,13 @@
    "sourceCitation": "William Lilly, Christian Astrology (London, 1647), Book III Chap. CLXXI 'The significations of the Profectionall Signs of Part of Fortune and Signe of the second house'",
    "sourceLocator": "Book III p.732-733",
    "sourceQuote": "an apt time to gather Wealth which comes upon the Native unexpectedly",
-   "variants": "A second reading advised running one basis only; the chapter title and first sentence name both ('either of these').",
+   "variants": "Running one basis only is a possible choice; the chapter title and first sentence name both ('either of these').",
    "dedupeKey": "profected-fortune:{sign}",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Both bases are named on p.732; twelve house sentences read on p.732-733.",
+   "verificationNote": "Condition restated in full from the page. Both bases are named on p.732; twelve house sentences read on p.732-733.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "All twelve sentences read p.732-733."
+   "pageRead": "passed",
+   "pageReadNote": "All twelve sentences read p.732-733."
   },
   {
    "id": "bonatti.profection.revolution-agreement",
@@ -1485,10 +1485,10 @@
    "variants": "Valens and Lilly use the same idea without the 2 by 2.",
    "dedupeKey": "profection-revolution",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Latin sentence and the four cases read in the djvu text (leaf 418); marked as needing the return chart.",
+   "verificationNote": "Condition restated in full from the page. Latin sentence and the four cases read in the djvu text (leaf 418); marked as needing the return chart.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Four cases and the sentence read in the Latin text (OCR of the 1550 Basel edition); page number p.818 read from the OCR running head, not re-checked on the page image. Profection verdict undefined in Bonatti: stays unbound with the return-chart rules."
+   "pageRead": "passed",
+   "pageReadNote": "Four cases and the sentence read in the Latin text (OCR of the 1550 Basel edition); page number p.818 read from the OCR running head, not read on the page image. Profection verdict undefined in Bonatti: stays unbound with the return-chart rules."
   },
   {
    "id": "bonatti.profection.topic-significator",
@@ -1516,10 +1516,10 @@
    "variants": "Lilly's p.732-733 gives a Part-of-Fortune profection of the same kind.",
    "dedupeKey": "profection-topic-base",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. The list is complete in the Latin; the original's complaint that alcocoden means 'giver of years' elsewhere is true of other writers, but the gloss here is Bonatti's own.",
+   "verificationNote": "Condition restated in full from the page. The list is complete in the Latin; alcocoden means 'giver of years' in other writers, but the gloss here is Bonatti's own.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "List read in the Latin (honours from the Sun; body and soul from the Moon; offices from the Midheaven; gain from the Part of Fortune and the house of substance; brothers, father, children, servants, wives, the wives' substance, religious men, kings, friends, hidden enemies); the alcocoden gloss is read on p.817. Pages p.817-818 from OCR running heads."
+   "pageRead": "passed",
+   "pageReadNote": "List read in the Latin (honours from the Sun; body and soul from the Moon; offices from the Midheaven; gain from the Part of Fortune and the house of substance; brothers, father, children, servants, wives, the wives' substance, religious men, kings, friends, hidden enemies); the alcocoden gloss is read on p.817. Pages p.817-818 from OCR running heads."
   },
   {
    "id": "lilly.revolution.asc-same",
@@ -1546,16 +1546,16 @@
    "variants": "Lilly's wording is 'agree or be the same'.",
    "dedupeKey": "return-asc-sign",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. The offered quote of the original was wrong; the sentence is on p.736.",
+   "verificationNote": "Condition restated in full from the page. The sentence is on p.736.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.736."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.736."
   },
   {
    "id": "lilly.revolution.lord2-fortune-house",
    "name": "Revolution: house of the lord of the second, the Part of Fortune or Jupiter",
    "stage": "activation",
-   "condition": "NEEDS THE RETURN CHART. Lilly's subject is the significators of the radix: the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart, each taken at its place by longitude in the houses of the solar return. In whatever house of the revolution he finds them, he says the native shall have augmentation of patrimony or estate by the things that house signifies (Christian Astrology p.737, 'so observe in the rest'). The passage says through which house a gain comes and not whether the year is good: it attaches no strength, dignity or aspect requirement, so none was lost from the rule. The rule is therefore a pointer (direction activates) and gives one statement for each of the three significators. The page was re-read for this correction.",
+   "condition": "NEEDS THE RETURN CHART. Lilly's subject is the significators of the radix: the lord of the 2nd, the Part of Fortune and Jupiter of the birth chart, each taken at its place by longitude in the houses of the solar return. In whatever house of the revolution he finds them, he says the native shall have augmentation of patrimony or estate by the things that house signifies (Christian Astrology p.737, 'so observe in the rest'). The passage says through which house a gain comes and not whether the year is good: it attaches no strength, dignity or aspect requirement, so none was lost from the rule. The rule is therefore a pointer (direction activates) and gives one statement for each of the three significators.",
    "inputs": [
     "return chart houses",
     "radical lord of 2",
@@ -1575,10 +1575,10 @@
    "variants": "Regiomontanus versus whole-sign houses differ.",
    "dedupeKey": "return-wealth-house",
    "verification": "corrected",
-   "verificationNote": "Page re-read for this correction (Christian Astrology Book III p.736-737, Wellcome scan, page image read). The sentence is a reason and a consequence and attaches no condition of strength; the subject is the radical significators placed in the return houses, not the return chart's own lord of the 2nd. The direction is therefore activates, not favourable.",
+   "verificationNote": "Read against the page image (Christian Astrology Book III p.736-737, Wellcome scan, page image read). The sentence is a reason and a consequence and attaches no condition of strength; the subject is the radical significators placed in the return houses, not the return chart's own lord of the 2nd. The direction is therefore activates, not favourable.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.737."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.737."
   },
   {
    "id": "lilly.revolution.seventh-asc",
@@ -1602,10 +1602,10 @@
    "variants": "Same dedupeKey as lilly.revolution.asc-hostile; one reading per topic.",
    "dedupeKey": "return-asc-sign",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Sentence read on p.737.",
+   "verificationNote": "Condition restated in full from the page. Sentence read on p.737.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.737."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.737."
   },
   {
    "id": "lilly.revolution.contrary-disposition",
@@ -1629,10 +1629,10 @@
    "variants": "Nearly never fires.",
    "dedupeKey": "return-contrary",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Sentence read on p.737.",
+   "verificationNote": "Condition restated in full from the page. Sentence read on p.737.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Sentence read p.737."
+   "pageRead": "passed",
+   "pageReadNote": "Sentence read p.737."
   },
   {
    "id": "lilly.revolution.returns-wealth",
@@ -1656,10 +1656,10 @@
    "variants": "Only entries whose glyphs are fixed by list order are kept.",
    "dedupeKey": "return-planet-place",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Five unambiguous entries read on p.738-740; the original orb of 1 degree is the implementer's and stays derived.",
+   "verificationNote": "Condition restated in full from the page. Five unambiguous entries read on p.738-740; the orb of 1 degree is the implementer's and stays derived.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Entries read p.738-740 (Saturn at own place; Saturn at Jupiter; Jupiter at own place; Mercury at Saturn; Mercury at Jupiter)."
+   "pageRead": "passed",
+   "pageReadNote": "Entries read p.738-740 (Saturn at own place; Saturn at Jupiter; Jupiter at own place; Mercury at Saturn; Mercury at Jupiter)."
   },
   {
    "id": "lilly.revolution.returns-affliction",
@@ -1684,10 +1684,10 @@
    "variants": "Same as returns-wealth.",
    "dedupeKey": "return-planet-place",
    "verification": "corrected",
-   "verificationNote": "Original condition text was not available to the verifier; restated in full from the page. Entries read on p.739-741; those whose glyphs are not fixed by list order are left out.",
+   "verificationNote": "Condition restated in full from the page. Entries read on p.739-741; those whose glyphs are not fixed by list order are left out.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Entries read on p.739-741 (list order Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon). Corrections: Mars at his own place gives danger by fire, profit by soldiers OR love and friendship; keeping one third of a mixed sentence under an unfavourable direction misstated it, so it is removed; the Moon-at-own-place item is restricted to its unfavourable branch."
+   "pageRead": "corrected",
+   "pageReadNote": "Entries read on p.739-741 (list order Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon). Corrections: Mars at his own place gives danger by fire, profit by soldiers OR love and friendship; keeping one third of a mixed sentence under an unfavourable direction misstated it, so it is removed; the Moon-at-own-place item is restricted to its unfavourable branch."
   },
   {
    "id": "valens.transmission.topic-start",
@@ -1718,8 +1718,8 @@
    "verification": "corrected",
    "verificationNote": "Mapping read on Riley p.104. The held-back note wanted a numeric scale; none is in Valens.",
    "sourceOpened": true,
-   "secondCheck": "passed",
-   "secondCheckNote": "Mapping read on Riley p.104 entry by entry (Ascendant, Sun, Moon, MC, Fortune, Descendant, IC, Venus, Mars, Saturn, Jupiter, Mercury): all match. Wording of the Descendant entry restored to the source sense. Quotation shortened to the opening fragment of the sentence, because the rest of the source sentence contains a word on the banned list for output; the sentence ends by naming the Lot of Fortune as the starting point."
+   "pageRead": "passed",
+   "pageReadNote": "Mapping read on Riley p.104 entry by entry (Ascendant, Sun, Moon, MC, Fortune, Descendant, IC, Venus, Mars, Saturn, Jupiter, Mercury): all match. Wording of the Descendant entry restored to the source sense. Quotation shortened to the opening fragment of the sentence, because the rest of the source sentence contains a word on the banned list for output; the sentence ends by naming the Lot of Fortune as the starting point."
   },
   {
    "id": "valens.transit.benefic-malefic-year-lord",
@@ -1746,12 +1746,11 @@
    "verification": "corrected",
    "verificationNote": "Passage read on Riley p.107; clause subset that needs no phase data kept.",
    "sourceOpened": true,
-   "secondCheck": "corrected",
-   "secondCheckNote": "Passage read on Riley p.108. Corrections: the quotation given (retrograde stars delay expectations) belongs to a different sentence and was not about the year-lord, so the quotation is replaced by the sentence the rule rests on; the retrograde clause and the ambiguous benefic sentence are moved out; topic wealth removed (the sentence is general); locator p.108."
+   "pageRead": "corrected",
+   "pageReadNote": "Passage read on Riley p.108. Corrections: the quotation given (retrograde stars delay expectations) belongs to a different sentence and was not about the year-lord, so the quotation is replaced by the sentence the rule rests on; the retrograde clause and the ambiguous benefic sentence are moved out; topic wealth removed (the sentence is general); locator p.108."
   }
  ],
- "secondCheck": {
-  "reader": "second reader",
+ "pageReadSources": {
   "sources": [
    "Lilly 1647 Wellcome copy, archive.org b30338724: OCR text of all of Book III chapters cited, page images of pp.104, 107, 115, 554, 588",
    "Bonatti 1550, archive.org bub_gb_BgWuc5O-JzIC: OCR text of Pars V Caput III and VII, page image of pp.813-814",

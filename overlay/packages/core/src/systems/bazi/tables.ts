@@ -26,8 +26,8 @@ export interface Branch {
 
 /**
  * The Five Phases (wuxing). `Element` is only the name of the type; printed text says
- * phase (Ho 2003, p. 14). English usage is not settled (Five Phases, Five Agents, Five
- * Elements all occur), so this is a choice of the project's.
+ * phase (Ho 2003, p. 14). English usage is not settled (Five Phases, Five
+ * Elements and other renderings all occur), so this is a choice of the project's.
  */
 const PHASE_NAMES: Record<Element, readonly [string, string]> = {
   Wood: ['木', 'Mu'], Fire: ['火', 'Huo'], Earth: ['土', 'Tu'], Metal: ['金', 'Jin'], Water: ['水', 'Shui'],

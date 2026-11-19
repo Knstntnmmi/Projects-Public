@@ -34,66 +34,88 @@ interface Layout {
   margin: number;
   gutter: number;
   cellW: number;
+  /** Row labels and group names. */
   fontLabel: number;
+  /** The smallest type in the drawing; never under 11 pixels at a phone's 390, so 11 times the scale at wider drawings. */
   fontSmall: number;
-  rotateYears: boolean;
+  /** One unit of scale: 1 up to 390 units wide, 720 / 390 at 720 and above. */
+  scale: number;
+  rowMin: number;
 }
 
 function layoutFor(width: number, years: number): Layout {
   const compact = width < 520;
-  const margin = compact ? 12 : 24;
-  const gutter = compact ? 118 : Math.min(230, Math.round(width * 0.27));
+  const scale = Math.min(width, 720) / 390 < 1 ? 1 : Math.min(width, 720) / 390;
+  const margin = compact ? 12 : 14;
+  const gutter = compact ? 124 : Math.min(260, Math.max(200, Math.round(width * 0.29)));
   const cellW = (width - margin * 2 - gutter) / Math.max(1, years);
-  return { width, margin, gutter, cellW, fontLabel: compact ? 11 : 13, fontSmall: compact ? 10 : 11, rotateYears: cellW < 34 };
+  return { width, margin, gutter, cellW, fontLabel: Math.round(11.5 * scale * 10) / 10, fontSmall: Math.round(11 * scale * 10 + 1) / 10, scale, rowMin: Math.round(24 * scale) };
 }
+
+/** Short row labels for the drawing, so that they fit beside large type; the group name above each block supplies the rest. The full label stays in each tooltip. */
+export const SHORT_LEVEL: Readonly<Record<string, string>> = {
+  natal: 'Natal chart',
+  'bazi-luck': 'Luck pillar',
+  'bazi-year': 'Year pillar',
+  'vedic-maha': 'Mahadasha',
+  'vedic-antar': 'Antardasha',
+  'saturn-moon': 'Saturn from Moon',
+  'jupiter-moon': 'Jupiter from Moon',
+  'western-profection': 'Profection',
+  'western-firdaria': 'Firdaria',
+  'western-solar-return': 'Solar return',
+  'western-transits': 'Transits',
+};
+
+const SHORT_TRADITION: Readonly<Record<string, string>> = { bazi: 'BaZi', vedic: 'Vedic', western: 'Western', iching: 'I Ching' };
+
+/** The short form of a row note, where the drawing knows one; the full words go to the caption of the figure in the README. */
+const SHORT_NOTE: Readonly<Record<string, string>> = { [forecast.NOTE.needsLuckDirection]: 'needs the sex' };
 
 export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridOptions = {}): string {
   const width = Math.max(320, Math.round(options.width ?? 720));
   const L = layoutFor(width, grid.years.length);
   const x0 = L.margin + L.gutter;
   const plotW = L.cellW * grid.years.length;
-  const title = options.title ?? `${forecast.TOPIC_LABEL[grid.topic].replace(/^./, (c) => c.toUpperCase())}, ${grid.years[0]} to ${grid.years[grid.years.length - 1]}: what each rule set says, year by year`;
+  const title = options.title ?? `${forecast.TOPIC_LABEL[grid.topic].replace(/^./, (c) => c.toUpperCase())}, ${grid.years[0]} to ${grid.years[grid.years.length - 1]}`;
   const caption = options.caption ?? FORECAST_SENTENCE;
   const body: string[] = [];
   let y = 14;
 
   // Title.
-  const titleSize = width < 520 ? 14 : 18;
+  const titleSize = Math.round(14 * L.scale * 10) / 10;
   for (const line of wrapText(title, width - L.margin * 2, titleSize)) {
-    y += titleSize + 3;
+    y += titleSize + 4;
     body.push(`<text x="${L.margin}" y="${n(y)}" font-size="${titleSize}">${esc(line)}</text>`);
   }
-  y += 12;
+  y += 14;
 
-  // Year header.
-  const headH = L.rotateYears ? 34 : 20;
+  // Year header: two digits, so that the labels stay large beside narrow cells.
+  const headH = Math.round(L.fontSmall + 12);
   grid.years.forEach((yr, i) => {
     const cx = x0 + (i + 0.5) * L.cellW;
-    body.push(
-      L.rotateYears
-        ? `<text class="muted" transform="translate(${n(cx + 3)} ${n(y + headH - 4)}) rotate(-90)" font-size="${L.fontSmall}">${yr}</text>`
-        : `<text class="muted" x="${n(cx)}" y="${n(y + headH - 6)}" font-size="${L.fontSmall + 1}" text-anchor="middle">${yr}</text>`,
-    );
+    body.push(`<text class="muted" x="${n(cx)}" y="${n(y + headH - 6)}" font-size="${L.fontSmall}" text-anchor="middle" data-year-label="${yr}">\u2019${String(yr % 100).padStart(2, '0')}</text>`);
   });
   y += headH;
   body.push(`<line class="rule" x1="${L.margin}" y1="${n(y)}" x2="${n(x0 + plotW)}" y2="${n(y)}"/>`);
 
   // Rows, grouped by tradition.
-  const LINE = L.fontLabel + 2;
+  const LINE = Math.round(L.fontLabel + 3);
   for (const g of grid.groups) {
-    y += 8 + L.fontLabel;
+    y += Math.round(8 * L.scale) + L.fontLabel;
     body.push(`<text x="${L.margin}" y="${n(y)}" font-size="${L.fontLabel}" font-weight="bold" data-tradition="${esc(g.tradition)}">${esc(g.name)}</text>`);
     y += 4;
     for (const row of g.rows) {
       const silentAll = row.cells.every((c) => c.word === 'nothing-said');
-      const labelLines = wrapText(row.label, L.gutter - 14, L.fontLabel);
+      const labelLines = wrapText(SHORT_LEVEL[row.level] ?? row.label, L.gutter - 12, L.fontLabel);
       // A note about the whole row goes inside it where every cell is silent, and under the label where some cell speaks.
-      const noteInside = silentAll && row.note ? wrapText(row.note, plotW - 12, L.fontSmall) : [];
-      const noteUnder = !silentAll && row.note ? wrapText(row.note, L.gutter - 14, L.fontSmall) : [];
+      const noteText = row.note ? (SHORT_NOTE[row.note] ?? row.note) : null;
+      const noteInside = silentAll && noteText ? wrapText(noteText, plotW - 12, L.fontSmall) : [];
+      const noteUnder = !silentAll && noteText ? wrapText(noteText, L.gutter - 12, L.fontSmall) : [];
       const labelH = labelLines.length * LINE + noteUnder.length * (L.fontSmall + 2);
-      const rowH = Math.max(26, labelH + 8, noteInside.length * (L.fontSmall + 3) + 8);
+      const rowH = Math.max(L.rowMin, labelH + 8, noteInside.length * (L.fontSmall + 3) + 8);
       const top = y;
-      body.push(`<g data-level="${esc(row.level)}">`);
+      body.push(`<g data-level="${esc(row.level)}">${row.note ? `<title>${esc(row.label)}: ${esc(row.note)}</title>` : ''}`);
       let ty = top + (rowH - labelH) / 2 + L.fontLabel - 1;
       for (const line of labelLines) {
         body.push(`<text x="${L.margin + 10}" y="${n(ty)}" font-size="${L.fontLabel}">${esc(line)}</text>`);
@@ -133,7 +155,7 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
         } else parts.push(`<rect class="${FILL_CLASS[cell.word]}" x="${n(rx)}" y="${n(ry)}" width="${n(rw)}" height="${n(rh)}"/>`);
         parts.push(`<rect class="rule" x="${n(rx)}" y="${n(ry)}" width="${n(rw)}" height="${n(rh)}"/>`);
         // A sign beside the colour, so that the word does not rest on colour alone.
-        if (rw >= 16) parts.push(`<text x="${n(rx + rw / 2)}" y="${n(ry + rh / 2)}" font-size="${L.fontSmall + 2}" text-anchor="middle" dominant-baseline="central" pointer-events="none" class="halo">${GLYPH[cell.word]}</text>`);
+        if (rw >= 16 * L.scale / 1.5) parts.push(`<text x="${n(rx + rw / 2)}" y="${n(ry + rh / 2)}" font-size="${L.fontLabel}" text-anchor="middle" dominant-baseline="central" pointer-events="none" class="halo">${GLYPH[cell.word]}</text>`);
         body.push(`<g ${attrs}>${parts.join('')}<title>${esc(tip)}</title></g>`);
       });
       if (noteInside.length > 0) {
@@ -149,23 +171,21 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
   y += 6;
   body.push(`<line class="rule" x1="${L.margin}" y1="${n(y)}" x2="${n(x0 + plotW)}" y2="${n(y)}"/>`);
 
-  // Traditions that are read by period have no cell: one fixed line each.
+  // Traditions that are read by period have no cell: one short line each; the full sentence is in the README caption.
   y += 6;
   for (const p of grid.periodRead) {
-    for (const line of wrapText(p.line, width - L.margin * 2, L.fontSmall + 1)) {
-      y += L.fontSmall + 4;
-      body.push(`<text class="muted" x="${L.margin}" y="${n(y)}" font-size="${L.fontSmall + 1}" data-period-read="${esc(p.tradition)}">${esc(line)}</text>`);
-    }
+    y += Math.round(L.fontSmall + 8);
+    body.push(`<text class="muted" x="${L.margin}" y="${n(y)}" font-size="${L.fontSmall}" data-period-read="${esc(p.tradition)}">${esc(`${SHORT_TRADITION[p.tradition] ?? p.tradition}: read by period, no cells`)}<title>${esc(p.line)}</title></text>`);
   }
 
   // Legend: the four words, in flow.
-  y += 14;
+  y += Math.round(10 * L.scale);
   const items: Array<{ word: forecast.ReadingWord; text: string }> = (['supports', 'cautions', 'mixed', 'nothing-said'] as const).map((w) => ({ word: w, text: forecast.WORD[w] }));
   let lx = L.margin;
   let rowTop = y;
-  const SW = 14;
+  const SW = Math.round(14 * L.scale);
   for (const it of items) {
-    const w = SW + 6 + textWidth(it.text, L.fontSmall + 1) + 16;
+    const w = SW + 6 + textWidth(it.text, L.fontSmall) + Math.round(12 * L.scale);
     if (lx + w > width - L.margin && lx > L.margin) {
       lx = L.margin;
       rowTop += SW + 8;
@@ -175,21 +195,17 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
       const third = SW / 3;
       body.push(`<rect class="t-supports" x="${n(lx)}" y="${n(rowTop)}" width="${n(third)}" height="${SW}"/><rect class="t-mixed" x="${n(lx + third)}" y="${n(rowTop)}" width="${n(third)}" height="${SW}"/><rect class="t-cautions" x="${n(lx + 2 * third)}" y="${n(rowTop)}" width="${n(third)}" height="${SW}"/><rect class="rule" x="${n(lx)}" y="${n(rowTop)}" width="${SW}" height="${SW}"/>`);
     } else body.push(`<rect class="${FILL_CLASS[it.word]}" x="${n(lx)}" y="${n(rowTop)}" width="${SW}" height="${SW}"/><rect class="rule" x="${n(lx)}" y="${n(rowTop)}" width="${SW}" height="${SW}"/>`);
-    body.push(`<text x="${n(lx + SW + 6)}" y="${n(rowTop + SW - 3)}" font-size="${L.fontSmall + 1}" data-legend="${it.word}">${esc(it.text)}</text>`);
+    body.push(`<text x="${n(lx + SW + 6)}" y="${n(rowTop + SW - 3)}" font-size="${L.fontSmall}" data-legend="${it.word}">${esc(it.text)}</text>`);
     lx += w;
   }
   y = rowTop + SW + 6;
-  for (const line of wrapText(SPLIT_NOTE, width - L.margin * 2, L.fontSmall)) {
-    y += L.fontSmall + 3;
-    body.push(`<text class="muted" x="${L.margin}" y="${n(y)}" font-size="${L.fontSmall}">${esc(line)}</text>`);
-  }
 
   // Caption: the one sentence, verbatim.
-  y += 10;
-  const captionLines = wrapText(caption, width - L.margin * 2, L.fontSmall + 2);
+  y += 12;
+  const captionLines = wrapText(caption, width - L.margin * 2, L.fontSmall);
   captionLines.forEach((line, k) => {
-    y += L.fontSmall + 5;
-    body.push(`<text x="${L.margin}" y="${n(y)}" font-size="${L.fontSmall + 2}" data-caption="${k}">${esc(line)}</text>`);
+    y += Math.round(L.fontSmall + 6);
+    body.push(`<text x="${L.margin}" y="${n(y)}" font-size="${L.fontSmall}" data-caption="${k}">${esc(line)}</text>`);
   });
 
   // Credit: the same line the other drawings carry, wrapped at its separators where the drawing is narrow.
@@ -199,15 +215,15 @@ export function renderDecadeGrid(grid: forecast.DecadeGrid, options: DecadeGridO
   let cur = '';
   for (const piece of CREDIT.split(' · ')) {
     const next = cur === '' ? piece : `${cur} · ${piece}`;
-    if (cur !== '' && textWidth(next, 10.5) > width - L.margin * 2) {
+    if (cur !== '' && textWidth(next, L.fontSmall) > width - L.margin * 2) {
       creditLines.push(cur);
       cur = piece;
     } else cur = next;
   }
   creditLines.push(cur);
   for (const line of creditLines) {
-    y += 14;
-    body.push(`<text class="muted" x="${L.margin}" y="${n(y)}" font-size="10.5">${esc(line)}</text>`);
+    y += Math.round(L.fontSmall + 6);
+    body.push(`<text class="muted" x="${L.margin}" y="${n(y)}" font-size="${L.fontSmall}">${esc(line)}</text>`);
   }
   const height = Math.ceil(y + 10);
 

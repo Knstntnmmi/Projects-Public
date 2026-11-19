@@ -77,6 +77,16 @@ describe('the decade grid drawing', () => {
       }
     });
 
+    it(`sets no type under 11 pixels as seen at 390 pixels wide, at ${width} pixels`, () => {
+      // A phone shows the README at about 390 pixels: a drawing of w units is scaled by 390 / w, so the smallest type
+      // must be 11 * w / 390 units for w up to 720, and 11 units below 390.
+      const least = 11 * Math.max(1, Math.min(width, 720) / 390) - 0.05;
+      const sizes = [...svg.matchAll(/font-size="([\d.]+)"/g)].map((m) => Number(m[1]));
+      expect(sizes.length).toBeGreaterThan(0);
+      for (const s of sizes) expect(s).toBeGreaterThanOrEqual(least);
+      if (width <= 720) for (const s of sizes) expect((s * 390) / width).toBeGreaterThanOrEqual(width < 390 ? 11 : 11 - 0.05);
+    });
+
     it(`matches its snapshot at ${width} pixels`, async () => {
       await expect(`${svg}\n`).toMatchFileSnapshot(`./__snapshots__/forecast-grid-j2000-${width}.svg`);
     });
@@ -107,6 +117,9 @@ describe('the decade grid drawing', () => {
     const svg = renderDecadeGrid(grid, { width: 720 });
     const luck = grid.rows.find((r) => r.level === 'bazi-luck')!;
     expect(luck.note).toBe(forecast.NOTE.needsLuckDirection);
+    // The drawing says it short, and keeps the full words in the row's tooltip; the README caption gives them in full.
+    const row = svg.slice(svg.indexOf('data-level="bazi-luck"'));
+    expect(row.slice(0, 1500)).toContain('needs the sex');
     expect(svg).toContain('needs the sex the chart is read as');
   });
 

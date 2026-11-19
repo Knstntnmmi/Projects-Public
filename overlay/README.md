@@ -38,7 +38,7 @@ Each line is what a named rule of one tradition says about this period, with its
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035.](docs/img/forecast-grid.svg)
 
-How to read it: each row is one technique, each column one year, and a cell shows the word the rules of that technique give for that year. A full sample is in [docs/SAMPLE-FORECAST.md](docs/SAMPLE-FORECAST.md), and [docs/FORECAST.md](docs/FORECAST.md) explains how a statement comes about and what the limits are.
+How to read it: each row is one technique, each column one year (the labels are the last two digits, 2026 to 2035), and a cell shows the word the rules of that technique give for that year. A blank cell says nothing. A cell split in colours shows how many of that technique's rules say each thing; mixed also appears where a rule itself states a mixed result. "Needs the sex" in the luck pillar row means that row is silent until the sex the chart is read as is given, because that fixes the direction of the luck pillars. "Saturn from Moon" and "Jupiter from Moon" count the transit of that planet through the signs from the natal Moon. The I Ching has no cells: it is read by period, not by year, and a window of at most 62 days shows its character, which includes the lines that name goods or an audience with a superior. A full sample is in [docs/SAMPLE-FORECAST.md](docs/SAMPLE-FORECAST.md), and [docs/FORECAST.md](docs/FORECAST.md) explains how a statement comes about and what the limits are.
 
 **The command.**
 

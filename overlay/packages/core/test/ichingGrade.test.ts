@@ -3,7 +3,7 @@
 import { describe, expect, it } from 'vitest';
 import ichingRules from '../src/forecast/data/rules.iching.json' with { type: 'json' };
 import fixture from './fixtures/iching-negated-formulas.json' with { type: 'json' };
-import negations from '../src/forecast/data/iching-negations.json' with { type: 'json' };
+import negations from '../src/systems/iching/negations.json' with { type: 'json' };
 import { ADVICE_TOKENS, formulaDetail, formulaNotes, gradeStatement, gradeText, scanTokens, VERDICT_TOKENS } from '../src/systems/iching/grade.ts';
 import { allStatements, statementText } from '../src/systems/iching/zhouyiText.ts';
 

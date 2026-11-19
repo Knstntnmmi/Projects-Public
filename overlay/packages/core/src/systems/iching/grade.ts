@@ -12,14 +12,14 @@
  * grade is P + (sum - P) / 2, P being the value of largest absolute size, clipped to [-3, +3].
  *
  * Negation: a negator (无, 匪, 不, 弗, 勿, 未) before a verdict word is read as a whole formula, by the table in
- * forecast/data/iching-negations.json, which is the project's own reading of the grammar (status derived, following no
+ * systems/iching/negations.json, which is the project's own reading of the grammar (status derived, following no
  * commentary). A negated word of misfortune (无咎, 无悔, 悔亡 and the like) states that something bad is absent: it carries
  * no direction and is shown as a note (class a). A negated word of advantage (不利, 无攸利) is unfavourable (class b); 无不利 is
  * favourable (class c); every other case carries no direction and is shown as a note (class d). No formula is dropped:
  * each is reported in `Grade.formulas`.
  */
 
-import negationsJson from '../../forecast/data/iching-negations.json' with { type: 'json' };
+import negationsJson from './negations.json' with { type: 'json' };
 
 export const VERDICT_TOKENS: Readonly<Record<string, number>> = {
   元吉: 3,

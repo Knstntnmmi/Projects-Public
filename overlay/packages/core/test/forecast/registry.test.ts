@@ -9,6 +9,7 @@ import {
   DEFAULT_REGISTRY,
   evaluate,
   HELD_BACK,
+  makeInput,
   needsSex,
   report,
   RegistryError,
@@ -22,6 +23,8 @@ import {
   type RuleBinding,
   type Tradition,
 } from '../../src/forecast/index.ts';
+import { makeMoment } from '../../src/substrate/time.ts';
+import { fixture } from '../../../../fixtures/moments.ts';
 import * as bazi from '../../src/forecast/predicates/bazi.ts';
 import * as iching from '../../src/forecast/predicates/iching.ts';
 import * as vedic from '../../src/forecast/predicates/vedic.ts';
@@ -79,7 +82,14 @@ describe('the registry over the real rule data (no binding is written yet)', () 
   });
 
   it('passes the audit that colleagues run on their bindings', () => {
-    expect(auditRegistry(DEFAULT_REGISTRY, input())).toEqual([]);
+    // Every sample moment, with and without a sex convention: the audit colleagues' bindings face.
+    for (const id of ['j2000', 'jiazi-1984', 'southern', 'equator', 'late-zi']) {
+      const f = fixture(id);
+      for (const sex of ['none', 'male-chart', 'female-chart'] as const) {
+        const i = makeInput(makeMoment(f.civil, f.zone, f.place), { fromYear: 2031, toYear: 2040, forecastConventions: { baziSexConvention: sex } });
+        expect(auditRegistry(DEFAULT_REGISTRY, i), `${id} ${sex}`).toEqual([]);
+      }
+    }
     expect(unaccounted(DEFAULT_REGISTRY, 'western')).toHaveLength(18);
   });
 });

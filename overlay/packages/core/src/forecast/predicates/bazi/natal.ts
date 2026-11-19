@@ -57,7 +57,7 @@ export function natalFiring(facts: Fact[], rest: Partial<Omit<Firing, 'facts' | 
 const round1 = (x: number): number => Math.round(x * 10) / 10;
 const hanzi = (stem: number): string => STEMS[stem]!.hanzi;
 
-const bind = (ruleId: string, fire: RuleBinding['fire'], requires: RuleBinding['requires'] = { birthTime: true }): RuleBinding => ({ ruleId, tradition: 'bazi', requires, fire });
+export const bind = (ruleId: string, fire: RuleBinding['fire'], requires: RuleBinding['requires'] = { birthTime: true }): RuleBinding => ({ ruleId, tradition: 'bazi', requires, fire });
 
 // ---------------------------------------------------------------------------
 // Assessment rules
@@ -170,30 +170,26 @@ const has = (a: NatalAssessment, ...kins: Kin[]): boolean => kinChars(a, ...kins
 
 const topicFiring = (topic: Topic, direction: Direction, facts: Fact[], extra: Partial<Firing> = {}): Firing => natalFiring(facts, { topics: [topic], direction, dedupeInstance: `natal-${topic}`, ...extra });
 
-const wealthPromise = bind('bazi.topic-wealth-promise', (ctx) => {
-  const a = natalOf(ctx);
+/** The natal wealth grade, or null where the condition's grades do not cover the chart. */
+export function wealthGradeOf(a: NatalAssessment): { grade: 'absent' | 'too heavy' | 'robbed' | 'present and carried'; direction: Direction; stars: NatalChar[] } | null {
   const W = kinChars(a, 'wealth');
   const robbers = weightOf(kinChars(a, 'peer'));
-  let grade: string;
-  let direction: Direction;
-  if (W.length === 0) {
-    grade = 'absent';
-    direction = 'activates';
-  } else if (2 * weightOf(W) > 3 * a.support8) {
-    // wealth heavier than one and a half times what supports the day master
-    grade = 'too heavy';
-    direction = 'unfavourable';
-  } else if (robbers > weightOf(W) && !has(a, 'officer', 'output')) {
-    grade = 'robbed';
-    direction = 'unfavourable';
-  } else if (W.some((c) => c.place === 'stem' || isRooted(a, c)) && (a.strengthClass === 'strong' || (a.strengthClass === 'weak' && has(a, 'resource', 'peer')))) {
-    grade = 'present and carried';
-    direction = 'favourable';
-  } else return []; // a balanced chart, or a case the condition does not cover: nothing is said
+  if (W.length === 0) return { grade: 'absent', direction: 'activates', stars: W };
+  // wealth heavier than one and a half times what supports the day master
+  if (2 * weightOf(W) > 3 * a.support8) return { grade: 'too heavy', direction: 'unfavourable', stars: W };
+  if (robbers > weightOf(W) && !has(a, 'officer', 'output')) return { grade: 'robbed', direction: 'unfavourable', stars: W };
+  if (W.some((c) => c.place === 'stem' || isRooted(a, c)) && (a.strengthClass === 'strong' || (a.strengthClass === 'weak' && has(a, 'resource', 'peer')))) return { grade: 'present and carried', direction: 'favourable', stars: W };
+  return null; // a balanced chart, or a case the condition does not cover: nothing is said
+}
+
+const wealthPromise = bind('bazi.topic-wealth-promise', (ctx) => {
+  const a = natalOf(ctx);
+  const g = wealthGradeOf(a);
+  if (!g) return [];
   return [
-    topicFiring('wealth', direction, [fact('grade', 'Grade', grade), fact('wealthList', 'Wealth stars', listChars(W)), fact('strengthClass', 'Strength class', a.strengthClass)], {
+    topicFiring('wealth', g.direction, [fact('grade', 'Grade', g.grade), fact('wealthList', 'Wealth stars', listChars(g.stars)), fact('strengthClass', 'Strength class', a.strengthClass)], {
       conventionsUsed: ['baziStrengthThresholds'],
-      badges: grade === 'present and carried' && has(a, 'output') ? ['strengthened by 食傷, the source of wealth'] : [],
+      badges: g.grade === 'present and carried' && has(a, 'output') ? ['strengthened by 食傷, the source of wealth'] : [],
     }),
   ];
 });
@@ -205,41 +201,40 @@ function combinedAway(a: NatalAssessment, c: NatalChar): boolean {
   return stems.some((s, i) => PILLAR_NAMES[i] !== mine && stemsCombine(c.stem, s));
 }
 
-const careerPromise = bind('bazi.topic-career-promise', (ctx) => {
-  const a = natalOf(ctx);
+/** The natal career grade, or null where the condition's grades do not cover the chart. */
+export function careerGradeOf(a: NatalAssessment): { grade: 'overpowering' | 'weak or absent' | 'mixed' | 'controlled' | 'clear officer'; direction: Direction; note: string; stars: NatalChar[] } | null {
   const O = kinChars(a, 'officer');
   const o8 = weightOf(O);
   const officerStems = O.filter((c) => c.place === 'stem');
   const direct = starsOf(a, '正官');
   const killing = starsOf(a, '七殺');
   const noteBoth = '官 and 殺 both appear';
-  let grade: string;
-  let direction: Direction;
-  let note = 'no mixing of 官 and 殺 is flagged';
-  if (o8 >= 2 * a.support8 && !has(a, 'resource', 'output')) {
-    grade = 'overpowering';
-    direction = 'unfavourable';
-  } else if (!O.some((c) => isRooted(a, c)) || !a.chars.some((c) => c.pillar === 'month' && c.place === 'hidden' && c.kin === 'officer')) {
-    // no 官殺 has a root, or the month branch holds none
-    grade = 'weak or absent';
-    direction = 'activates';
-  } else if (direct.length > 0 && killing.length > 0 && !has(a, 'output') && !officerStems.some((c) => combinedAway(a, c))) {
-    grade = 'mixed';
-    direction = 'activates'; // 官殺混雜 is a flag only; the sources give it no fixed sign
-    note = `${noteBoth}, with nothing to remove one: a flag only, no sign`;
-  } else if (killing.length > 0 && (starsOf(a, '食神').length > 0 || has(a, 'resource'))) {
-    grade = 'controlled';
-    direction = 'favourable';
-    if (direct.length > 0) note = `${noteBoth}, one is checked`;
-  } else if (new Set(officerStems.map((c) => c.god)).size === 1 && officerStems.some((c) => isRooted(a, c)) && (a.strengthClass === 'strong' || has(a, 'resource'))) {
-    grade = 'clear officer';
-    direction = 'favourable';
-  } else return [];
-  return [topicFiring('career', direction, [fact('grade', 'Grade', grade), fact('officerList', 'Officer stars', listChars(O)), fact('mixedNote', 'Mixing', note)], { conventionsUsed: ['baziStrengthThresholds'] })];
+  const none = 'no mixing of 官 and 殺 is flagged';
+  if (o8 >= 2 * a.support8 && !has(a, 'resource', 'output')) return { grade: 'overpowering', direction: 'unfavourable', note: none, stars: O };
+  // no 官殺 has a root, or the month branch holds none
+  if (!O.some((c) => isRooted(a, c)) || !a.chars.some((c) => c.pillar === 'month' && c.place === 'hidden' && c.kin === 'officer')) return { grade: 'weak or absent', direction: 'activates', note: none, stars: O };
+  if (direct.length > 0 && killing.length > 0 && !has(a, 'output') && !officerStems.some((c) => combinedAway(a, c))) {
+    // 官殺混雜 is a flag only; the sources give it no fixed sign
+    return { grade: 'mixed', direction: 'activates', note: `${noteBoth}, with nothing to remove one: a flag only, no sign`, stars: O };
+  }
+  if (killing.length > 0 && (starsOf(a, '食神').length > 0 || has(a, 'resource'))) {
+    return { grade: 'controlled', direction: 'favourable', note: direct.length > 0 ? `${noteBoth}, one is checked` : none, stars: O };
+  }
+  if (new Set(officerStems.map((c) => c.god)).size === 1 && officerStems.some((c) => isRooted(a, c)) && (a.strengthClass === 'strong' || has(a, 'resource'))) {
+    return { grade: 'clear officer', direction: 'favourable', note: none, stars: O };
+  }
+  return null;
+}
+
+const careerPromise = bind('bazi.topic-career-promise', (ctx) => {
+  const a = natalOf(ctx);
+  const g = careerGradeOf(a);
+  if (!g) return [];
+  return [topicFiring('career', g.direction, [fact('grade', 'Grade', g.grade), fact('officerList', 'Officer stars', listChars(g.stars)), fact('mixedNote', 'Mixing', g.note)], { conventionsUsed: ['baziStrengthThresholds'] })];
 });
 
 /** Whether the day branch sits in the void pair of the year pillar's cycle, the only void test a day branch can fail. */
-const dayBranchVoid = (a: NatalAssessment): boolean => a.yearVoidPair.includes(a.pillars.day.branch.index);
+export const dayBranchVoid = (a: NatalAssessment): boolean => a.yearVoidPair.includes(a.pillars.day.branch.index);
 
 const spouseMan = bind(
   'bazi.topic-spouse-man',

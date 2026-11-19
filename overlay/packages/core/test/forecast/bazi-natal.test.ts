@@ -408,13 +408,14 @@ describe('the stars over a span', () => {
 });
 
 describe('what is bound, withheld and covered', () => {
-  it('binds the natal rules and the stars, and leaves the period rules unbound for the next part', () => {
+  it('binds the natal rules and the stars, and every other rule is bound or listed with its reason', () => {
     const ids = new Set(baziModule.BINDINGS.map((b) => b.ruleId));
     for (const id of [...NATAL_BINDINGS, ...STAR_BINDINGS].map((b) => b.ruleId)) expect(ids.has(id)).toBe(true);
     const natal = baziJson.rules.filter((r) => r.stage === 'natal-promise').map((r) => r.id);
     for (const id of natal) expect(ids.has(id) || baziModule.NOT_EVALUATED.some((n) => n.ruleId === id), id).toBe(true);
-    for (const id of ['bazi.luck-pillar-judgement', 'bazi.year-judgement', 'bazi.branch-chong', 'bazi.wealth-star-in-luck']) expect(ids.has(id), id).toBe(false);
-    expect(baziModule.COMPLETE).toBe(false);
+    // the period rules are bound by the second part (bazi-periods.test.ts); every rule of the file is accounted for
+    for (const r of baziJson.rules) expect(ids.has(r.id) || baziModule.NOT_EVALUATED.some((n) => n.ruleId === r.id), r.id).toBe(true);
+    expect(baziModule.COMPLETE).toBe(true);
   });
 
   it('prints a coverage that counts the bound rules per topic', () => {

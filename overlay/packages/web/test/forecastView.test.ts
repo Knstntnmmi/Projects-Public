@@ -7,7 +7,7 @@
  * uses a word the phrasebook bans.
  */
 import { describe, expect, it } from 'vitest';
-import { forecast, makeMoment } from '@overlay/core';
+import { DEFAULT_CONVENTIONS, forecast, makeMoment } from '@overlay/core';
 import { fixture } from '../../../fixtures/moments.ts';
 import {
   agreementHtml,
@@ -236,6 +236,19 @@ describe('the natal promise and the agreement', () => {
     const last = model.list.natal.filter((e) => e.tradition === 'bazi').pop()!;
     expect(last.signalId).toBe(note!.afterSignalId);
     expect(natalHtml({ ...model, list: { ...model.list, sharedChartNote: null } })).not.toContain(esc(note!.text));
+  });
+
+  it('leaves the note on shared charts out under another day boundary and under another time basis', () => {
+    const text = model.list.sharedChartNote!.text;
+    const natalUnder = (conventions: Partial<typeof DEFAULT_CONVENTIONS>): string => {
+      const r = forecast.evaluate(forecast.makeInput(moment, { fromYear: 2026, toYear: 2035, birthTimeUncertaintyMinutes: 10, conventions: { ...DEFAULT_CONVENTIONS, ...conventions } }), { topics: ['wealth'] });
+      const m = buildModel(r, 'wealth');
+      expect(m.list.sharedChartNote).toBeNull();
+      expect(m.list.natal.some((e) => e.tradition === 'bazi')).toBe(true);
+      return natalHtml(m);
+    };
+    expect(natalUnder({ dayBoundary: 'midnight' })).not.toContain(esc(text));
+    for (const timeBasis of ['standard', 'lmt', 'apparent'] as const) expect(natalUnder({ timeBasis }), timeBasis).not.toContain(esc(text));
   });
 
   it('prints the agreement display as the core returns it, with the sentence naming the groups', () => {

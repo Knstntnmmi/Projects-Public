@@ -26,6 +26,8 @@ export interface ForecastConventions {
   baziSexConvention: SexConvention;
   westernHouses: 'whole-sign';
   westernTerms: 'lilly-ptolemy';
+  /** Which column of Lilly's orbs (Christian Astrology p.107) the aspects use. */
+  westernOrbs: 'first-column';
   vedicDashaYearDays: 365.25;
   vedicNode: 'mean';
   /** Minutes of birth-time uncertainty beyond which birth-time-dependent rules are not evaluated. */
@@ -46,6 +48,7 @@ export const DEFAULT_FORECAST_CONVENTIONS: ForecastConventions = {
   baziSexConvention: 'none',
   westernHouses: 'whole-sign',
   westernTerms: 'lilly-ptolemy',
+  westernOrbs: 'first-column',
   vedicDashaYearDays: 365.25,
   vedicNode: 'mean',
   birthTimeLimitMinutes: 60,
@@ -139,16 +142,23 @@ export const FORECAST_CONVENTION_SPECS: readonly ForecastConventionSpec[] = [
   {
     key: 'westernHouses',
     title: 'Western house system',
-    affects: 'Western rules that name a house (withheld in this phase)',
-    why: 'Whole-sign houses are what the engine computes; rules that cite cusps run whole-sign as a labelled variant.',
-    options: [{ value: 'whole-sign', label: 'Whole sign', description: 'Houses are the signs counted from the ascendant sign.' }],
+    affects: 'Every Western rule that names a house, angle or the 2nd, 7th or 10th place',
+    why: 'Lilly worked with Regiomontanus cusps, which the engine does not compute. Rules that cite a house run on whole-sign houses, and every statement from such a rule carries the badge "labelled variant: whole-sign houses". Regiomontanus is not offered yet.',
+    options: [{ value: 'whole-sign', label: 'Whole sign', description: 'Houses are the signs counted from the ascendant sign. The only value today.' }],
   },
   {
     key: 'westernTerms',
     title: 'Western term (bound) table',
-    affects: 'Western dignity scores (withheld in this phase)',
-    why: 'Lilly printed the Ptolemaic terms; the engine computes the Egyptian set, so the difference is named.',
-    options: [{ value: 'lilly-ptolemy', label: 'Lilly\'s terms', description: 'As printed in Christian Astrology.' }],
+    affects: 'Western dignity scores of the Lilly rules (essential strength classes)',
+    why: 'Lilly printed the Ptolemaic terms and his own triplicities and faces (Christian Astrology, Book I p.104). The Lilly rules run on that table and not on the Egyptian bounds, Dorothean triplicities and Chaldean faces of the engine\'s other Western code, so the difference is named.',
+    options: [{ value: 'lilly-ptolemy', label: 'Lilly\'s table', description: 'Terms, triplicities and faces as printed in Christian Astrology. The only value today.' }],
+  },
+  {
+    key: 'westernOrbs',
+    title: 'Western orbs of aspect',
+    affects: 'Whether two planets aspect, in every Western rule that reads an aspect',
+    why: 'Lilly prints two columns of orbs and says he uses now the one and now the other (p.107). Two planets aspect when they lie within the sum of their moieties, half the orb of each, of the exact aspect.',
+    options: [{ value: 'first-column', label: 'First column', description: 'Saturn 10, Jupiter 12, Mars 7 30\', Sun 17, Venus 8, Mercury 7, Moon 12 30\'. The only value today; the second column is in the module for a later choice.' }],
   },
   {
     key: 'vedicDashaYearDays',

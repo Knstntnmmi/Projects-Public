@@ -143,6 +143,8 @@ export const beneficMaleficYearLord: TransitRule = (w, sky) => {
             startUtcMs: piece.startUtcMs,
             endUtcMs: piece.endUtcMs,
             facts: [fact('planet', 'Transiting planet', planet), fact('sign', 'Year sign', SIGNS[s]!), fact('lord', 'Malefic that holds the year', lord), fact('effect', 'Valens reads', MALEFICS.includes(planet) ? 'it intensifies the evil' : 'it brings relief and help')],
+            // Two malefics may hold one year: each pairing with the transiting planet is its own fact.
+            dedupeInstance: `${piece.startUtcMs}-${piece.endUtcMs}@${lord}`,
             conventionsUsed: CONVENTIONS,
             badges: [IDENTIFICATION, 'only a malefic that holds the year is read; the benefic year-lord is ambiguous in the source and is not read'],
           });

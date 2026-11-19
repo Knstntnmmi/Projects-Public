@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 import { describe, expect, it } from 'vitest';
 import ichingRules from '../src/forecast/data/rules.iching.json' with { type: 'json' };
-import { ADVICE_TOKENS, gradeStatement, gradeText, scanTokens, VERDICT_TOKENS } from '../src/systems/iching/grade.ts';
+import { ADVICE_TOKENS, gradeStatement, gradeText, negatedDetail, scanTokens, VERDICT_TOKENS } from '../src/systems/iching/grade.ts';
 import { allStatements, statementText } from '../src/systems/iching/zhouyiText.ts';
 
 const grade = (id: string) => {
@@ -78,10 +78,12 @@ describe('the grader, on the cases the specification lists', () => {
     expect(g.flags).toContain('positive');
   });
 
-  // The specification expects 56.4 to grade other than zero once the added tokens are in. In the transcribed text
-  // 56.4 is 旅于處，得其資斧，我心不快, which has none of the added words (有喜 有慶 譽 福 有終) nor any
-  // other word of the table, so by the table as specified it grades 0 with the flag none. The grade is not made up;
-  // this test fixes what the text gives and the report to the director says the expectation cannot be met.
+  // The specification's test list expects 56.4 to grade other than zero once the added tokens are in; that expectation was
+  // wrong. The stored statement is 旅于處，得其資斧，我心不快, and it was compared again with the wikisource page
+  // 周易/旅 (line 九四: 旅于處，得其資斧，我心不快; the page marks 于 as a variant mark and nothing else). The statement
+  // has none of the added words (有喜 有慶 譽 福 有終) nor any other word of the token table, so by the table as the
+  // rule file states it the grade is 0 with the flag none. The cue rule for goods still attaches it to wealth, on its own
+  // stated sign (a gain), not on a grade. The grade is not made up; this test fixes what the text gives.
   it('56.4 has no verdict word in the transcribed text and grades 0 (none)', () => {
     const g = grade('56.4');
     expect(g.grade).toBe(0);
@@ -189,8 +191,9 @@ describe('the grader over the whole corpus', () => {
   });
 
   // The extractor's figure ("76 of 450 have no verdict word") was made before the missing tokens were added; recomputed here.
-  it('leaves 67 of the 450 statements without a verdict word', () => {
-    expect(all.filter((x) => x.g.flags.includes('none'))).toHaveLength(67);
+  // 67 before negation was honoured; 6.2 and 51.3 had only 无眚, which is now not graded, so they join the statements with none.
+  it('leaves 69 of the 450 statements without a graded verdict word', () => {
+    expect(all.filter((x) => x.g.flags.includes('none'))).toHaveLength(69);
   });
 
   it('has judgments and lines of every sign', () => {
@@ -199,10 +202,48 @@ describe('the grader over the whole corpus', () => {
     expect(all.filter((x) => x.g.flags.includes('mixed')).length).toBeGreaterThan(10);
   });
 
-  // Known defects of the table as the rule file states it, pinned so that a later fix is a decision and not a surprise.
-  // A negated word is still counted as the word: 无眚 ("no mishap") counts as 眚, 无譽 ("no praise") as 譽, 匪咎 as 咎.
-  it('pins the five statements in which a word is negated by 无 or 匪 and is still counted', () => {
-    const negated: Record<string, number> = { '2.4': 1.25, '28.5': 1.25, '6.2': -2, '51.3': -2, '14.1': -1.25 };
-    for (const [id, expected] of Object.entries(negated)) expect(all.find((x) => x.id === id)!.g.grade, id).toBe(expected);
+  // A negation straight before a verdict word that the table does not list with it takes the word out of the grading.
+  // The table's own phrases (无咎 among them) are graded as the table says.
+  it('does not grade a negated word: 无眚, 无譽 and 匪咎 are reported as negated, not graded', () => {
+    const expected: Record<string, { grade: number; negated: string[] }> = {
+      '2.4': { grade: 0.5, negated: ['无譽'] },
+      '28.5': { grade: 0.5, negated: ['无譽'] },
+      '6.2': { grade: 0, negated: ['无眚'] },
+      '51.3': { grade: 0, negated: ['无眚'] },
+      '14.1': { grade: 0.5, negated: ['匪咎'] },
+    };
+    for (const [id, e] of Object.entries(expected)) {
+      const g = all.find((x) => x.id === id)!.g;
+      expect(g.grade, id).toBe(e.grade);
+      expect(g.negated.map((n) => n.phrase), id).toEqual(e.negated);
+      expect(negatedDetail(g), id).toBe(e.negated.map((n) => `${n}: negated, not graded`).join('; '));
+    }
+    // these five are the only statements of the corpus that carry a negated word
+    expect(all.filter((x) => x.g.negated.length > 0).map((x) => x.id).sort()).toEqual(Object.keys(expected).sort());
+  });
+
+  it('grades the phrases the table lists as the table says, 无咎 first', () => {
+    expect(gradeStatement('无咎').grade).toBe(0.5);
+    expect(gradeStatement('无咎').negated).toEqual([]);
+    for (const phrase of ['无悔', '无大咎', '无不利', '无攸利', '何咎', '不利', '勿用', '不可涉大川']) {
+      const g = gradeStatement(phrase);
+      expect(g.grade, phrase).toBe(VERDICT_TOKENS[phrase]);
+      expect(g.negated, phrase).toEqual([]);
+    }
+    // the same negation before a word the table does not pair with it is not graded
+    for (const [text, word] of [['无眚', '眚'], ['无譽', '譽'], ['匪咎', '咎'], ['不吉', '吉'], ['弗凶', '凶'], ['未亨', '亨'], ['勿利', '利']] as const) {
+      const g = gradeStatement(text);
+      expect(g.grade, text).toBe(0);
+      expect(g.flags, text).toEqual(['none']);
+      expect(g.negated.map((n) => [n.phrase, n.word]), text).toEqual([[text, word]]);
+    }
+    // 無 is read as 无, so the traditional character negates as well
+    expect(gradeStatement('無眚').negated.map((n) => n.phrase)).toEqual(['无眚']);
+  });
+
+  it('keeps the grade of the rest of a statement when one word in it is negated', () => {
+    expect(gradeStatement('无咎无譽').grade).toBe(0.5);
+    expect(gradeStatement('吉无眚').grade).toBe(2);
+    expect(gradeStatement('无咎无譽').tokens.map((t) => t.token)).toEqual(['无咎']);
   });
 });

@@ -23,8 +23,12 @@
  * Checked against a second edition (the Zhu Xi Zhouyi benyi in the Siku quanshu, on the same
  * site, page images 722 to 774): see the test. The second edition differs from this
  * transcription in orthographic variants (驅 敺, 彙 彚, 群 羣 and the like) and in a few
- * readings the two editions are known to differ on (for example 艮 line 5, 言有孚 here and
- * 言有序 there; the received text has 序). The text below is the transcription as fetched.
+ * readings the two editions are known to differ on. The text below is the transcription as fetched.
+ *
+ * Variant, 艮 line 5 (六五, id 52.5): the wikisource page offers two readings, {{另|孚|序}}, and displays
+ * the first: 艮其輔，言有孚，悔亡. That reading is kept, by the rule above. A second online edition (the
+ * Chinese Wikipedia article on 艮卦, compared on 2026-11-19) and the Zhu Xi edition named above read 言有序.
+ * The variant does not touch a verdict word, so the grade of the line (悔亡, +0.5) is the same either way.
  */
 
 /** One hexagram: its name as the engine's table spells it, the judgment, the six lines bottom to top, and the extra line (用九 or 用六) of hexagrams 1 and 2. */

@@ -16,7 +16,7 @@
 import { nextSunLongitude, norm360 } from '../../substrate/sky.ts';
 import { SOLAR_TERMS } from '../../substrate/terms.ts';
 import { MS } from '../../substrate/time.ts';
-import { gradeStatement, gradeText, type Grade } from '../../systems/iching/grade.ts';
+import { gradeStatement, gradeText, negatedDetail, type Grade } from '../../systems/iching/grade.ts';
 import { hexagramByName, type Hexagram } from '../../systems/iching/hexagrams.ts';
 import type { HexagramSpan } from '../../systems/iching/index.ts';
 import { GUA_QI_CARDINAL_POSITION, SOVEREIGN_SEQUENCE } from '../../systems/iching/wheels.ts';
@@ -138,26 +138,35 @@ export function buildContext(base: ForecastContext): IchingContext {
 const ext = (ctx: ForecastContext): IchingContext => ctx.extension<IchingContext>('iching')!;
 
 function statementFacts(id: string, text: string, g: Grade): Fact[] {
+  const negated = negatedDetail(g);
   return [
     { key: 'id', label: 'Statement', value: id },
     { key: 'text', label: 'Statement text', value: text },
     { key: 'grade', label: 'Grade of the verdict words (-3 to +3)', value: gradeText(g) },
     { key: 'flag', label: 'Grade flags', value: flagText(g) },
     { key: 'tokens', label: 'Verdict words counted', value: tokensText(g) },
+    ...(negated === null ? [] : [{ key: 'negated', label: 'Words not graded', value: negated }]),
   ];
 }
+
+/**
+ * A statement of grade 0 has no verdict to report under 'general'. Where a cue rule names it for
+ * a topic that rule attaches it; where none does it is attached to no topic and these rules say nothing of it.
+ */
+const attachedToGeneral = (g: Grade): boolean => g.grade !== 0;
 
 const judgment: RuleBinding = {
   ruleId: 'zhouyi.period-hexagram-judgment',
   tradition: 'iching',
   fire(ctx) {
-    return ext(ctx).periods.map((p): Firing => {
+    return ext(ctx).periods.flatMap((p): Firing[] => {
       const id = `${p.hexagram.number}.0`;
       const text = statementText(p.hexagram.number, 0)!;
       const g = gradeOf(id, text);
+      if (!attachedToGeneral(g)) return [];
       // When the gua qi hexagram is also the month's sovereign one, there is one reading and it says so.
       const sov = sovereignAt(ctx, Math.round((p.startUtcMs + p.endUtcMs) / 2));
-      return {
+      return [{
         clock: CLOCK,
         startUtcMs: p.startUtcMs,
         endUtcMs: p.endUtcMs,
@@ -170,7 +179,7 @@ const judgment: RuleBinding = {
         direction: directionOfGrade(g),
         conventionsUsed: ['guaQi'],
         badges: sov && sov.number === p.hexagram.number ? ['also the sovereign hexagram of the month'] : [],
-      };
+      }];
     });
   },
 };
@@ -179,11 +188,12 @@ const lineOfDay: RuleBinding = {
   ruleId: 'zhouyi.line-of-day-reconstruction',
   tradition: 'iching',
   fire(ctx) {
-    return ext(ctx).slices.map((s): Firing => {
+    return ext(ctx).slices.flatMap((s): Firing[] => {
       const id = `${s.hexagram.number}.${s.line}`;
       const text = statementText(s.hexagram.number, s.line)!;
       const g = gradeOf(id, text);
-      return {
+      if (!attachedToGeneral(g)) return [];
+      return [{
         clock: CLOCK,
         startUtcMs: s.startUtcMs,
         endUtcMs: s.endUtcMs,
@@ -196,7 +206,7 @@ const lineOfDay: RuleBinding = {
         direction: directionOfGrade(g),
         conventionsUsed: ['guaQi'],
         badges: ['reconstruction'],
-      };
+      }];
     });
   },
 };
@@ -205,11 +215,12 @@ const dayan: RuleBinding = {
   ruleId: 'dayan.cardinal-line-by-term',
   tradition: 'iching',
   fire(ctx) {
-    return ext(ctx).terms.map((t): Firing => {
+    return ext(ctx).terms.flatMap((t): Firing[] => {
       const id = `${t.hexagram.number}.${t.line}`;
       const text = statementText(t.hexagram.number, t.line)!;
       const g = gradeOf(id, text);
-      return {
+      if (!attachedToGeneral(g)) return [];
+      return [{
         clock: CLOCK,
         startUtcMs: t.startUtcMs,
         endUtcMs: t.endUtcMs,
@@ -220,7 +231,7 @@ const dayan: RuleBinding = {
           ...statementFacts(id, text, g),
         ],
         badges: ['inference from one sentence'],
-      };
+      }];
     });
   },
 };
@@ -300,6 +311,7 @@ function cueBinding(o: CueRuleOptions): RuleBinding {
             { key: 'clause', label: 'Clause the rule grades', value: cue.clause },
             { key: 'grade', label: 'Grade of the clause (-3 to +3)', value: gradeText(g) },
             { key: 'via', label: 'In play as', value: occ.how },
+            ...(negatedDetail(g) === null ? [] : [{ key: 'negated', label: 'Words not graded', value: negatedDetail(g)! }]),
             ...(more?.facts ?? []),
           ],
           direction,

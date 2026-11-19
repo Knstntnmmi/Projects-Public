@@ -7,14 +7,15 @@
  * are one a day, and a longer window would only be the wall the yearly forms were built to avoid.
  */
 import { MS } from '../substrate/time.ts';
-import { gradeStatement, gradeText, type Grade } from '../systems/iching/grade.ts';
+import { gradeStatement, gradeText, negatedDetail, type Grade } from '../systems/iching/grade.ts';
 import { GUA_QI_CARDINAL_POSITION, SOVEREIGN_SEQUENCE } from '../systems/iching/wheels.ts';
 import { hexagramByName, type Hexagram } from '../systems/iching/hexagrams.ts';
 import { statementText } from '../systems/iching/zhouyiText.ts';
 import { createContext, type ForecastInput } from './context.ts';
 import { BADGE, TEXT, windowTooLongMessage } from './phrasebook.ts';
 import { buildContext as buildIchingContext } from './predicates/iching.ts';
-import type { Span } from './types.ts';
+import { topicsOfStatement } from './predicates/ichingCues.ts';
+import type { Span, Topic } from './types.ts';
 
 export const MAX_WINDOW_DAYS = 62;
 
@@ -29,6 +30,10 @@ export interface IchingStatement {
   /** -3 to +3 by the grading of the verdict words; a modern construction on the text. */
   grade: number;
   gradeText: string;
+  /** The topics the statement is attached to: 'general' where it has a grade, and the topics a cue rule names it for. Empty for a grade 0 that no cue names. */
+  topics: Topic[];
+  /** Verdict words a negation stood before and that were not graded, with the detail "negated, not graded"; null when none. */
+  negated: string | null;
   badges: string[];
   startUtcMs: number;
   endUtcMs: number;
@@ -60,6 +65,8 @@ function statementOf(h: Hexagram, line: number, startUtcMs: number, endUtcMs: nu
     text,
     grade: g.grade,
     gradeText: gradeText(g),
+    topics: topicsOfStatement(`${h.number}.${line}`, g),
+    negated: negatedDetail(g),
     badges: [BADGE.experimental],
     startUtcMs,
     endUtcMs,

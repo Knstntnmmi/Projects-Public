@@ -46,6 +46,11 @@ A rule whose text gives a verdict branch by branch can carry a table `directionB
 - `lilly.career.honour-angularity`: in angles, supports ("ample Preferment"); in succedent houses, a note ("moderate Esteem, or little Honour or Dignity": two readings joined by "or", no verdict chosen between them); in the eighth or cadent houses, cautions ("very little Honour or Reputation", "a meane and obscure condition of life").
 - The clauses on planets in the tenth house (fortunate, malevolent, mean planets) are on page 616 and are still not coded.
 
+Two readings in these rules are written down here on purpose, each with its printed page:
+
+1. Where Lilly's page says "mediocrity" (Book III p.615, "a mediocrity or indifferency", for a significator in triplicity, terms or face), the engine shows a note without a direction. The word names a middle state and not a verdict, so no direction is chosen.
+2. Where Lilly's page says that a significator that is peregrine, or in detriment or fall without reception, has "very small or no Dignities at all" (Book III p.615), that denial of dignity is read as unfavourable for honour, and the engine shows cautions.
+
 ## Levels
 
 A reader is shown techniques, not clocks: the BaZi luck pillar, the BaZi year pillar, the Vedic mahadasha, the Vedic antardasha, Saturn through the signs counted from the natal Moon, Jupiter likewise, the Western annual profection, the firdaria, the solar return, the Western transits (`LEVEL_IDS` in `types.ts`; plain labels in `LEVEL_LABEL` in the phrasebook, which never uses the words clock, stage, gate, dedupe or strength). The level of a signal follows from its tradition and clock (`levels.ts`), so most bindings say nothing. Where one clock carries two or more nested periods the binding must say which one it judged, with `Firing.level`:

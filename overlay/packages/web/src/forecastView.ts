@@ -408,17 +408,27 @@ export function shownText(m: Model, sel: Selection): string {
 /** The glossary terms that occur in the forecast as shown, in the order of the glossary. */
 export const wordsUsed = (m: Model, sel: Selection): forecast.GlossaryEntry[] => forecast.glossaryTermsIn(shownText(m, sel));
 
-/** The terms with their meanings and sources, as a list of terms and meanings; empty when no term occurs. */
+/**
+ * The terms as a compact list: under a short heading for each group that has a term, one closed disclosure for each
+ * term, which opens to its meaning and source. Empty when no term occurs.
+ */
 export function wordsUsedHtml(entries: readonly forecast.GlossaryEntry[]): string {
   if (entries.length === 0) return '';
-  const rows = entries
+  const groups = forecast.GLOSSARY_GROUPS.filter((g) => entries.some((e) => e.group === g));
+  return groups
     .map(
-      (e) =>
-        `<dt>${esc(e.term)}${e.original === '' ? '' : ` <span class="orig">${esc(e.original)}</span>`}</dt>` +
-        `<dd>${esc(e.definition)} <span class="src">Source: ${esc(e.source)}.</span></dd>`,
+      (g) =>
+        `<h4 class="words-group">${esc(g)}</h4>` +
+        entries
+          .filter((e) => e.group === g)
+          .map(
+            (e) =>
+              `<details class="word"><summary>${esc(e.term)}${e.original === '' ? '' : ` <span class="orig">${esc(e.original)}</span>`}</summary>` +
+              `<p>${esc(e.definition)} <span class="src">Source: ${esc(e.source)}.</span></p></details>`,
+          )
+          .join(''),
     )
     .join('');
-  return `<dl class="words">${rows}</dl>`;
 }
 
 // --- plain text, for tests and the sample ------------------------------------------

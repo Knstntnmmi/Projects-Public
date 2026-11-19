@@ -380,11 +380,28 @@ describe('the words used', () => {
 
   it('gives each term its meaning and its source, and nothing when there is none', () => {
     const html = wordsUsedHtml(wordsUsed(model, none));
-    expect(count(html, '<dt>')).toBe(wordsUsed(model, none).length);
-    expect(count(html, '<dd>')).toBe(count(html, '<dt>'));
+    expect(count(html, '<details class="word">')).toBe(wordsUsed(model, none).length);
+    expect(count(html, '<summary>')).toBe(count(html, '<details class="word">'));
+    expect(html).not.toMatch(/<details[^>]*\sopen/);
     expect(html).toContain('Source: the project&#39;s own wording.'.replace('&#39;', "'"));
     expect(textOf(html)).toContain(forecast.GLOSSARY.find((e) => e.term === 'supports')!.definition);
     expect(wordsUsedHtml([])).toBe('');
+  });
+
+  it('groups the terms under short headings by tradition, in the order of the glossary groups', () => {
+    const html = wordsUsedHtml(wordsUsed(model, none));
+    const heads = [...html.matchAll(/<h4 class="words-group">([^<]*)<\/h4>/g)].map((m) => m[1]!);
+    expect(heads.length).toBeGreaterThan(1);
+    expect(heads).toEqual(forecast.GLOSSARY_GROUPS.filter((g) => heads.includes(g)));
+    for (const h of heads) expect(h.length).toBeLessThan(30);
+  });
+
+  it('does not list a common word that is marked for the full glossary only, though it occurs', () => {
+    const marked = forecast.GLOSSARY.filter((e) => e.fullGlossaryOnly === true).map((e) => e.term);
+    for (const w of ['level', 'window', 'face', 'root', 'house', 'active']) expect(marked, w).toContain(w);
+    const withWords = { ...model, sensitivity: ['the level, the window, the face, the root, the house and the active year'] };
+    const t = terms(withWords);
+    for (const w of marked) expect(t, w).not.toContain(w);
   });
 
   it('uses none of the words the phrasebook bans', () => {

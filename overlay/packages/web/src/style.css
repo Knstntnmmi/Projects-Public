@@ -101,11 +101,12 @@ h2.part { font-size: 1.15rem; margin: 30px 0 4px; padding-top: 14px; border-top:
 #fc-from, #fc-years { width: 6.5em; }
 #fc-sex { max-width: 14em; }
 .subcard { border-top: 2px solid var(--line); margin-top: 22px; padding-top: 6px; }
-dl.words { margin: 6px 0 10px; }
-dl.words dt { font-weight: 600; margin-top: 10px; overflow-wrap: anywhere; }
-dl.words dd { margin: 2px 0 0; max-width: 70ch; overflow-wrap: anywhere; }
-dl.words .orig { font-weight: 400; color: var(--muted); }
-dl.words .src { color: var(--muted); font-size: 0.88rem; }
+h4.words-group { margin: 12px 0 2px; font-size: 0.95rem; }
+details.word { border-top: 1px solid var(--line); }
+details.word > summary { padding: 8px 0; min-height: 24px; cursor: pointer; overflow-wrap: anywhere; font-weight: 600; }
+details.word > p { margin: 0 0 10px; max-width: 70ch; overflow-wrap: anywhere; }
+details.word .orig { font-weight: 400; color: var(--muted); }
+details.word .src { color: var(--muted); font-size: 0.88rem; }
 details.subcard > summary { font-size: 1.05rem; font-weight: 600; cursor: pointer; padding: 6px 0; }
 .counts { margin: 6px 0; }
 ul.plain { list-style: none; padding: 0; margin: 4px 0 10px; }

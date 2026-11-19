@@ -46,28 +46,32 @@
     "term": "active",
     "original": "",
     "definition": "The display word for a pointer.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
     "term": "headline",
     "original": "",
     "definition": "The one-line summary of a year that lists the techniques under the four words.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
     "term": "level",
     "original": "",
     "definition": "The technique a practitioner would name, such as the luck pillar or the mahadasha, which the forecast shows in place of a clock.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
     "term": "natal chart, the chart itself",
     "original": "",
     "definition": "A rule about the chart alone, without dates. These statements are listed first and take no part in a year's word.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
@@ -81,21 +85,24 @@
     "term": "trigger",
     "original": "",
     "definition": "A rule about an event inside a period, such as a transit or an arriving pillar.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
     "term": "modifier",
     "original": "",
     "definition": "A rule that qualifies other rules, such as a table or an obstruction.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
     "term": "agreement",
     "original": "",
     "definition": "The display of years in which techniques counted on different time scales gave the same word for the same topic. It does not say that the outcome follows.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "The words of the forecast",
@@ -129,7 +136,7 @@
     "group": "The words of the forecast",
     "term": "a tendency only",
     "original": "",
-    "definition": "The badge for health statements, which state tendencies and say nothing about diagnosis.",
+    "definition": "The badge for health statements. Such a line states a tendency and says nothing about illness in a particular person.",
     "source": "the project's own wording"
   },
   {
@@ -186,7 +193,8 @@
     "term": "window",
     "original": "",
     "definition": "A view of at most 62 days that shows the character of a period, used for the I Ching and for Lilly's day statements.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Words about the arts",
@@ -389,21 +397,24 @@
     "term": "resource",
     "original": "印 yin",
     "definition": "The element that generates the day master: 偏印 for the same polarity and 正印 for the other.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
     "term": "output",
     "original": "食傷",
     "definition": "The element the day master generates: 食神 for the same polarity and 傷官 for the other.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
     "term": "peers",
     "original": "比劫",
     "definition": "The same element as the day master: 比肩 for the same polarity and 劫財 for the other.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
@@ -424,7 +435,8 @@
     "term": "root",
     "original": "得地",
     "definition": "A hidden stem in a branch that equals or generates the element of the day stem.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
@@ -501,14 +513,16 @@
     "term": "void",
     "original": "空亡 kongwang",
     "definition": "The two branches left unused by the day pillar's ten-day group. A branch in the chart equal to one of them is flagged as void, which is not read as bad by itself.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
     "term": "palace",
     "original": "宮",
     "definition": "What a natal pillar stands for: the year pillar the ancestors, the month pillar the parents, the day branch the spouse, the hour pillar the children.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
@@ -522,7 +536,8 @@
     "term": "repeat, reversal",
     "original": "伏吟, 反吟",
     "definition": "A luck or year pillar identical to the day pillar (repeat), or whose branch is the six-clash of the day branch and whose stem stands four or six places from the day stem (reversal).",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
@@ -585,7 +600,8 @@
     "term": "blade",
     "original": "羊刃 yangren",
     "definition": "The branch that follows the lu branch of a yang day stem. The rule names the blade and says whether a 官殺 star is revealed, hidden or absent in the chart; it gives no direction.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
@@ -662,7 +678,8 @@
     "term": "house",
     "original": "bhava",
     "definition": "One of twelve places counted by whole sign from the Lagna. A rule that names a house uses the engine's table of what each house concerns.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Vedic astrology",
@@ -753,14 +770,16 @@
     "term": "dignity",
     "original": "",
     "definition": "The state of a planet by sign: exalted, in its moolatrikona, in its own sign, in a friend's, neutral, in an enemy's or debilitated. Debilitation is the seventh sign from exaltation.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Vedic astrology",
     "term": "conjunct",
     "original": "",
     "definition": "In the same sign. The engine uses no orb for this.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Vedic astrology",
@@ -844,14 +863,16 @@
     "term": "bounds, terms",
     "original": "",
     "definition": "The unequal divisions of a sign that each belong to a planet. The engine uses the Egyptian bounds.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Western astrology",
     "term": "face",
     "original": "",
     "definition": "A division of ten degrees of a sign that belongs to a planet, in Chaldean order.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Western astrology",
@@ -949,7 +970,8 @@
     "term": "transit",
     "original": "",
     "definition": "A planet passing over a point of the birth chart.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Western astrology",
@@ -998,7 +1020,8 @@
     "term": "judgment, line statement",
     "original": "卦辭 guaci, 爻辭 yaoci",
     "definition": "The text attached to a hexagram, and the text attached to one of its lines.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "I Ching",
@@ -1068,7 +1091,8 @@
     "term": "grade",
     "original": "",
     "definition": "A mechanical mark given to a statement by its verdict words. It is a construction of the project and is marked experimental.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "I Ching",
@@ -1110,14 +1134,16 @@
     "term": "nativity",
     "original": "",
     "definition": "The birth chart.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Western astrology",
     "term": "afflicted",
     "original": "",
     "definition": "Troubled in the source's sense: joined to or aspected by a planet that the source treats as harmful.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Western astrology",
@@ -1138,20 +1164,23 @@
     "term": "favoured element",
     "original": "喜用",
     "definition": "An element that the balance method names as helpful for this chart. The opposite is a disliked element.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "BaZi",
     "term": "disliked element",
     "original": "忌",
     "definition": "An element that the balance method names as harmful for this chart. The opposite is a favoured element.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   },
   {
     "group": "Vedic astrology",
     "term": "obstructed",
     "original": "",
     "definition": "Cancelled in part by another planet, as in a transit blocked by vedha; the line names the planet and the days.",
-    "source": "the project's own wording"
+    "source": "the project's own wording",
+    "fullGlossaryOnly": true
   }
 ]

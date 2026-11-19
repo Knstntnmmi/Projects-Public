@@ -96,7 +96,7 @@ describe('the forecast section of the page', () => {
     page.schedule();
     vi.advanceTimersToNextTimer();
     expect(el('fc-words').hidden).toBe(false);
-    expect(el('fc-words-body').innerHTML).toContain('<dt>supports</dt>');
+    expect(el('fc-words-body').innerHTML).toContain('<summary>supports</summary>');
     expect(el('fc-words-body').innerHTML).toContain('Source:');
   });
 

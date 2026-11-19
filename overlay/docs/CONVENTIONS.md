@@ -107,3 +107,153 @@ The correlation constant ties the Long Count to the Julian day count. It is chos
 ## Choices that are not yet settings
 
 These are fixed in this version, and are listed so that nobody mistakes them for facts. The year pillar turns at Lichun only; the lunar-new-year and winter-solstice year boundaries are not offered. Solar terms are always the true-Sun terms, although the Chinese calendar used mean-time terms before 1645, so pillars for earlier dates follow the modern rule and not the rule in force at the time. Houses are whole-sign, the lunar node is the mean node, triplicity lords are the Dorothean set and bounds the Egyptian set; the Ptolemaic tables that William Lilly printed are not included yet. Hidden stems follow the common modern table. Vimshottari years are 365.25 days.
+
+# Forecast conventions
+
+The forecast layer adds the choices the published rules leave open. They sit beside the settings above and are recorded in every forecast. The sovereign-hexagram boundary and the firdaria node order are the engine settings above and are not repeated.
+
+## Length of a slice
+
+Setting `sliceLength`. Affects: Every reading, agreement cell and track of the forecast.
+
+Readings and agreement are stated per slice of time. This phase uses calendar years, cut at the first of January in UTC.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `year` | Calendar year. January to December, UTC. | yes |
+
+## Cap on signals no promise rule gated
+
+Setting `cap_ungated`. Affects: The rule weight shown beside a signal.
+
+No accepted rule carries a sourced gate, so every signal is ungated. The cap is a display choice, off by default, and never changes a direction.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `false` | Off. Each signal shows the rule weight the extractor rated. | yes |
+| `true` | On. Ungated signals show rule weight 1. |  |
+
+## BaZi day-master strength bands
+
+Setting `baziStrengthThresholds`. Affects: bazi.strength-score and everything that reads the favourable elements.
+
+The score bands are the extractor's operationalisation of the source; a score of exactly 45 or 55 is balanced.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `45/55` | Weak below 45, strong above 55. Balanced from 45 to 55 inclusive. | yes |
+
+## Weights of luck pillar and year pillar
+
+Setting `baziLuckWeights`. Affects: Period rules that combine the luck pillar with the annual pillar.
+
+The sources do not give the relative weight of a ten-year luck pillar and a single year; the rule file states 0.6 and 0.4.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `0.6/0.4` | Luck 0.6, year 0.4. As the rule file states. | yes |
+
+## Direction of the twelve stages for yin stems
+
+Setting `baziYinStageReverse`. Affects: bazi.twelve-stages.
+
+Schools differ on whether the twelve stages run backward for yin stems; the rule file lists the backward run as a convention not seen in the text.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `true` | Yin stems run backward. The common practice. | yes |
+| `false` | All stems run forward. The alternative school. |  |
+
+## Seasons of earth
+
+Setting `baziEarthSeasons`. Affects: bazi.month-state and the strength score.
+
+The source makes earth strong in the sixth month only; common practice makes it strong in all four season-end months (the 季月).
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `four-jiyue` | All four 季月. The month branches 辰 戌 丑 未. | yes |
+
+## Sign of a year that clashes with the luck pillar
+
+Setting `suiYunSign`. Affects: bazi.sui-yun-bing-lin.
+
+The source judges the clash by the ten god of the incoming year; later practice judges it by whether the element is favourable.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `source-tengod` | Ten-god sign. As the source gives it. The default. | yes |
+| `favourable-element` | Favourable element. The named alternative. |  |
+
+## Sex the BaZi chart is read as
+
+Setting `baziSexConvention`. Affects: Direction of the luck pillars, and the spouse and children rules.
+
+Luck direction and the spouse and children rules differ by sex in the sources. Without a named convention those rules are skipped and listed as not evaluated.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `none` | None given. Rules that need it are not evaluated. | yes |
+| `male-chart` | Read as a male chart. The man's rules and the forward or backward luck count for a male chart. |  |
+| `female-chart` | Read as a female chart. The woman's rules and the luck count for a female chart. |  |
+
+## Western house system
+
+Setting `westernHouses`. Affects: Western rules that name a house (withheld in this phase).
+
+Whole-sign houses are what the engine computes; rules that cite cusps run whole-sign as a labelled variant.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `whole-sign` | Whole sign. Houses are the signs counted from the ascendant sign. | yes |
+
+## Western term (bound) table
+
+Setting `westernTerms`. Affects: Western dignity scores (withheld in this phase).
+
+Lilly printed the Ptolemaic terms; the engine computes the Egyptian set, so the difference is named.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `lilly-ptolemy` | Lilly's terms. As printed in Christian Astrology. | yes |
+
+## Length of a dasha year
+
+Setting `vedicDashaYearDays`. Affects: Vimshottari period boundaries.
+
+The engine's value, recorded so the output says which one it used.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `365.25` | 365.25 days. The engine's value. | yes |
+
+## Lunar node
+
+Setting `vedicNode`. Affects: Rahu and Ketu in the Vedic rules.
+
+The engine computes the mean node.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `mean` | Mean node. The engine's node. | yes |
+
+## Birth-time uncertainty limit
+
+Setting `birthTimeLimitMinutes`. Affects: Rules that depend on the ascendant, houses, hour pillar or firdaria sect.
+
+Beyond this many minutes of uncertainty the rules that need the birth time are not evaluated and are listed with that reason.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `60` | 60 minutes. The default limit. | yes |
+
+## Show rules whose source was not opened
+
+Setting `showUnopened`. Affects: The signal list.
+
+Every rule in this release has an opened source; the switch exists so a later rule that has none is hidden unless asked for.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `false` | Hide. The default. | yes |
+| `true` | Show. With the badge "source not opened". |  |

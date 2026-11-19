@@ -9,6 +9,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CONVENTION_SPECS, DEFAULT_CONVENTIONS, type Conventions } from '../packages/core/src/conventions.ts';
+import { DEFAULT_FORECAST_CONVENTIONS, FORECAST_CONVENTION_SPECS } from '../packages/core/src/forecast/conventions.ts';
 import { CORRESPONDENCES } from '../packages/core/src/correspondences.ts';
 import { facts } from '../packages/core/src/facts.ts';
 import { solarTermInstant, SOLAR_TERMS } from '../packages/core/src/substrate/terms.ts';
@@ -39,6 +40,17 @@ export function conventionsDoc(): string {
     'These are fixed in this version, and are listed so that nobody mistakes them for facts. The year pillar turns at Lichun only; the lunar-new-year and winter-solstice year boundaries are not offered. Solar terms are always the true-Sun terms, although the Chinese calendar used mean-time terms before 1645, so pillars for earlier dates follow the modern rule and not the rule in force at the time. Houses are whole-sign, the lunar node is the mean node, triplicity lords are the Dorothean set and bounds the Egyptian set; the Ptolemaic tables that William Lilly printed are not included yet. Hidden stems follow the common modern table. Vimshottari years are 365.25 days.',
     '',
   );
+  out.push(
+    '# Forecast conventions',
+    '',
+    'The forecast layer adds the choices the published rules leave open. They sit beside the settings above and are recorded in every forecast. The sovereign-hexagram boundary and the firdaria node order are the engine settings above and are not repeated.',
+    '',
+  );
+  for (const spec of FORECAST_CONVENTION_SPECS) {
+    out.push(`## ${spec.title}`, '', `Setting \`${spec.key}\`. Affects: ${spec.affects}.`, '', spec.why, '', '| Value | Meaning | Default |', '| --- | --- | --- |');
+    for (const o of spec.options) out.push(`| \`${o.value}\` | ${o.label}. ${o.description} | ${String(o.value) === String(DEFAULT_FORECAST_CONVENTIONS[spec.key]) ? 'yes' : ''} |`);
+    out.push('');
+  }
   return out.join('\n');
 }
 

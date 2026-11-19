@@ -20,6 +20,11 @@ export interface Sentence {
   text: string;
   /** The signals this sentence rests on. A silence sentence has none, because none fired. */
   signalIds: string[];
+  /**
+   * For silence only: names the reading (tradition, topic, year) that came up empty, so the
+   * sentence is still traceable to something. A silence has no signal to cite.
+   */
+  readingKey?: string;
   /** For silence: how many bound rules were looked at, so the silence is not mistaken for no rules. */
   boundRules?: number;
   /** null = natal context, undated. */
@@ -28,8 +33,12 @@ export interface Sentence {
   children?: Sentence[];
 }
 
-/** True when the sentence, or every child it is made of, rests on at least one signal. */
+/**
+ * True when the sentence, or every child it is made of, rests on at least one signal; a
+ * silence sentence has no signal to cite and is traceable through its readingKey instead.
+ */
 export function restsOnSignals(s: Sentence): boolean {
+  if (s.kind === 'silence') return s.readingKey !== undefined;
   return s.signalIds.length > 0 || (s.children?.length ? s.children.every(restsOnSignals) : false);
 }
 
@@ -67,7 +76,7 @@ export function narrate(result: ForecastResult, topic: Topic): Sentence[] {
     for (const tradition of result.traditions) {
       const reading = result.readings.find((r) => r.group === null && r.tradition === tradition && r.topic === topic && r.slice === slice.index);
       if (reading && reading.signalIds.length === 0 && reading.modifierIds.length === 0) {
-        out.push({ kind: 'silence', text: silenceSentence(tradition, topic, slice.year), signalIds: [], boundRules: reading.boundRules, slice: slice.index, tradition });
+        out.push({ kind: 'silence', text: silenceSentence(tradition, topic, slice.year), signalIds: [], readingKey: `reading:${tradition}:${topic}:${slice.year}`, boundRules: reading.boundRules, slice: slice.index, tradition });
       }
     }
   }

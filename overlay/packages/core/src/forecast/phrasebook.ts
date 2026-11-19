@@ -12,6 +12,15 @@ export const BANNED_WORDS = /\b(likely|probably|chances?|percent(age)?|probabili
 /** Wording about death or diagnosis, which health sentences never carry. */
 export const MORTALITY_WORDS = /\b(death|dead|die[sd]?|dying|mortal\w*|fatal\w*|diagnos\w*|disease\w*|cancer|terminal)\b/i;
 
+/**
+ * Rule templates are data and are never rewritten here. These rules carry a word the
+ * health test would refuse, in a negated sentence; they are listed so that the exception
+ * is one visible line and any new one fails the test.
+ */
+export const KNOWN_TEMPLATE_EXCEPTIONS: Readonly<Record<string, string>> = {
+  'parashari.dasha-lord-2nd-7th-maraka': 'the template says the strain is "not a prediction of death"; the word occurs only in that negation',
+};
+
 export const bannedIn = (text: string): string | null => BANNED_WORDS.exec(text)?.[0] ?? null;
 
 export type DisplayWord = ReadingWord | 'active';

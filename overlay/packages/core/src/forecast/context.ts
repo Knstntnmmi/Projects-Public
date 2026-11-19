@@ -6,12 +6,10 @@
  * context builder (predicates/<tradition>.ts), which also runs once and may read the base.
  */
 import type { Conventions } from '../conventions.ts';
-import { monthlyPillars } from '../systems/bazi/index.ts';
-import { annualPillars, fourPillars, luck, type FourPillars, type Luck, type PillarSpan, type Sex } from '../systems/bazi/index.ts';
+import { annualPillars, fourPillars, luck, monthlyPillars, type FourPillars, type Luck, type PillarSpan, type Sex } from '../systems/bazi/index.ts';
 import { guaQiSpans, SOVEREIGN_SEQUENCE, type Hexagram, type HexagramSpan } from '../systems/iching/index.ts';
-import { bisectChange, longitudeOf, meanNodeLongitude, norm360, type Planet } from '../substrate/sky.ts';
+import { bisectChange, longitudeOf, meanNodeLongitude, nextSunLongitude, norm360, type Planet } from '../substrate/sky.ts';
 import { MS, type Moment } from '../substrate/time.ts';
-import { nextSunLongitude } from '../substrate/sky.ts';
 import { siderealLongitude, vimshottari, type DashaSpan } from '../systems/vedic/index.ts';
 import { chart, SIGNS, signOf, type Chart, type LordSpan } from '../systems/western/index.ts';
 import { sexOf, type ForecastConventions } from './conventions.ts';

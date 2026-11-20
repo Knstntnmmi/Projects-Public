@@ -38,7 +38,7 @@ describe('the scorecard views', () => {
     const text = textOf(countsHtml(card()));
     expect(text).toContain(forecast.SCORECARD_WORDS.noFrozen);
     expect(text).toContain('held 0, did not hold 0, not scored 0, said nothing 0');
-    expect(text).toContain('too few events to compare with shuffled dates');
+    expect(text).toContain('too few scored pairs to compare with shuffled dates');
   });
   it('use no banned word and no percent sign anywhere in the section', () => {
     const c = card();

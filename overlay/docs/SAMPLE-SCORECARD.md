@@ -120,13 +120,13 @@ By shared clock
 
 Compared with shuffled dates
   With the dates shuffled, the held count was at least as high in 474 of 1000 runs. Here the held count is 35 of 67 scored pairs.
-  Each run moves all the events together by one random number of whole days, round the span of the forecast, and counts the held pairs again against the same forecast. 1000 runs, seed 1.
+  Each run moves every event by a whole number of days to another place inside the span of its forecast, the same fraction of its free room for every event in the run, so events of different length move by different numbers of days. The new dates may fall on days before the forecast was frozen. The held pairs are counted again against the same forecast. 1000 runs, seed 1.
 
 Read this with care
   Events people record are not a random sample.
   The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why a forecast counts against an event only if it was frozen before the event's date.
   This is retrodiction unless the forecasts were frozen first.
-  A hit rate does not tell you how the next call turns out.
+  A count of held statements does not tell you how the next call turns out.
   Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design.
   Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.
 ```

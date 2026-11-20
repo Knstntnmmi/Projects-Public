@@ -141,7 +141,7 @@ export const TEXT = {
   scorecardNote2:
     "The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why a forecast counts against an event only if it was frozen before the event's date.",
   scorecardNote3: 'This is retrodiction unless the forecasts were frozen first.',
-  scorecardNote4: 'A hit rate does not tell you how the next call turns out.',
+  scorecardNote4: 'A count of held statements does not tell you how the next call turns out.',
   scorecardNote5: "Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design.",
   scorecardNote6:
     'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',

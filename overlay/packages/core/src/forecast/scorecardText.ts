@@ -19,7 +19,7 @@ export const SCORECARD_WORDS = {
   saidNothing: 'said nothing',
   wentWell: 'went well',
   wentBadly: 'went badly',
-  tooFew: 'too few events to compare with shuffled dates',
+  tooFew: 'too few scored pairs to compare with shuffled dates',
   noEvents: 'No events are recorded in this session.',
   noFrozen: 'No forecast is frozen in this session, so no event can be scored.',
 } as const;
@@ -29,7 +29,7 @@ export const EVENT_STATUS_TEXT: Readonly<Record<EventStatus, string>> = {
   'frozen-too-late': 'frozen too late: every forecast was frozen after this event, so it is not counted',
   'no-frozen-forecast': 'no forecast is frozen, so it is not counted',
   'outside-span': 'outside the span of every forecast frozen before it, so it is not counted',
-  'not-reproducible': 'the forecast frozen before it cannot be reproduced under the rules loaded now, so it is not counted',
+  'not-reproducible': 'the forecast frozen before it cannot be reproduced from the moment and settings in this file, so it is not counted',
 };
 
 export const NOT_SCORED_TEXT: Readonly<Record<NotScoredReason, string>> = {
@@ -56,7 +56,7 @@ export function comparisonLine(c: Scorecard['comparison']): string {
 }
 
 export const comparisonExplanation = (runs: number, seed: number): string =>
-  `Each run moves all the events together by one random number of whole days, round the span of the forecast, and counts the held pairs again against the same forecast. ${runs} runs, seed ${seed}.`;
+  `Each run moves every event by a whole number of days to another place inside the span of its forecast, the same fraction of its free room for every event in the run, so events of different length move by different numbers of days. The new dates may fall on days before the forecast was frozen. The held pairs are counted again against the same forecast. ${runs} runs, seed ${seed}.`;
 
 export const countsLine = (c: Counts): string => `${SCORECARD_WORDS.held} ${c.held}, ${SCORECARD_WORDS.didNotHold} ${c.didNotHold}, ${SCORECARD_WORDS.notScored} ${c.notScored}, ${SCORECARD_WORDS.saidNothing} ${c.saidNothing}`;
 

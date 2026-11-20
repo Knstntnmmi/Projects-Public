@@ -6,7 +6,7 @@ Run the command under Try it below. It reads the constructed moment j2000, the t
 Jupiter from the Moon         ~    -    -    -    ~    ~    -    .    .    .
 ```
 
-The first cell is 2026. The key above the grid reads "~ mixed". Add `--full` and look under 2026:
+The first cell is 2026. The key above the grid reads "~ mixed". Add `--full` and look under 2026 (the lines below are shortened):
 
 ```
 Jupiter from the Moon: mixed (rules conflict); 1 rule supports, 1 cautions
@@ -16,7 +16,7 @@ Jupiter from the Moon: mixed (rules conflict); 1 rule supports, 1 cautions
 
 These are two rules of one Vedic technique, and the output names both under their lines. The first is parashari.jupiter-transit-good. It cites the Phaladeepika, chapter 26, verses 2, 7 and 18 to 20, and B. V. Raman, Hindu Predictive Astrology, pages 419 to 420. The second is parashari.jupiter-transit-other. It cites the Phaladeepika, chapter 26, verses 18 to 20. They disagree because Jupiter passes from the 9th sign to the 10th, counted from the natal Moon, on 1 June 2026.
 
-The output stops there. It gives no total for 2026 and picks neither rule. Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
+The block above is shortened: the real output also prints the rule and the source under each of these two lines, and more techniques and years follow it. It gives no total for 2026 and picks neither rule. Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
 
 Calculators usually print the charts of several traditions side by side, and a reading arrives without the rule behind it. Here each line carries its rule and its source, so two lines that disagree can be read against their books.
 

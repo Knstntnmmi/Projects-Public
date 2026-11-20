@@ -15,8 +15,9 @@
  *     other way round. Mixed statements, notes without a direction and natal statements (which
  *     have no dates) are not scored, each with its reason.
  *  3. A technique that has bound rules for the topic but no statement over the event's dates said nothing.
- *  4. The comparison: the same events, moved together by one seeded circular shift of whole days
- *     inside the forecast span, scored against the same forecast; the held count of each run is
+ *  4. The comparison: the same events, each moved by a seeded circular shift of whole days
+ *     inside the forecast span (one random fraction per run, applied to each event's own room;
+ *     the new dates may precede the freeze date), scored against the same forecast; the held count of each run is
  *     compared with the real one. The shifted runs use the same pairing as the real one.
  */
 import type { ForecastEvent, FrozenForecast, Nativity } from './events.ts';
@@ -348,7 +349,7 @@ interface Scorable {
 }
 
 /**
- * The comparison with shuffled dates. Each run moves every event by the same whole number of days, round the span of
+ * The comparison with shuffled dates. Each run moves every event by the same fraction of its own room, in whole days, round the span of
  * its forecast, and counts the held pairs again with the same pairing as the real run.
  */
 function compare(used: ReadonlyArray<{ event: EventResult; forecast: { frozen: FrozenForecast; result: ForecastResult } }>, held: number, pairs: number, runs: number, seed: number): Comparison {

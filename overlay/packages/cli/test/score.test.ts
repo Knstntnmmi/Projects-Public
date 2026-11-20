@@ -61,7 +61,7 @@ describe('overlay freeze, event and score', () => {
     expect(lines[0]).toBe('2 events recorded. 1 frozen forecast.');
     expect(lines[1]).toBe(forecast.SCORECARD_SENTENCE);
     expect(text).toContain('Compared with shuffled dates');
-    expect(text).toContain('too few events to compare with shuffled dates');
+    expect(text).toContain('too few scored pairs to compare with shuffled dates');
     for (const line of lines) expect(forecast.bannedIn(line), line).toBeNull();
   });
 

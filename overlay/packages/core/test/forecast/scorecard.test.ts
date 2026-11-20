@@ -118,9 +118,9 @@ describe('the session of five events, worked out by hand', () => {
     expect(c.sharedClock.counts).toEqual({ held: 3, didNotHold: 1, notScored: 0, saidNothing: 2 });
   });
 
-  it('prints too few events to compare, because only 9 pairs were scored', () => {
+  it('prints too few scored pairs to compare, because only 9 pairs were scored', () => {
     expect(c.comparison).toMatchObject({ pairs: 9, held: 6, atLeast: null, tooFew: true, runs: 1000 });
-    expect(comparisonLine(c.comparison)).toContain('too few events to compare with shuffled dates');
+    expect(comparisonLine(c.comparison)).toContain('too few scored pairs to compare with shuffled dates');
   });
 });
 
@@ -249,8 +249,8 @@ describe('the comparison with shuffled dates', () => {
     const nine: Spec[] = [...ten.slice(0, 4), ['2034-05-10', 'wealth', 'well']];
     expect(card(nine).comparison).toMatchObject({ pairs: 9, tooFew: true, atLeast: null });
     expect(card(nine).comparison.runs).toBe(1000);
-    expect(scorecardLines(card(nine)).join('\n')).toContain('too few events to compare with shuffled dates');
-    expect(scorecardLines(card(ten)).join('\n')).not.toContain('too few events');
+    expect(scorecardLines(card(nine)).join('\n')).toContain('too few scored pairs to compare with shuffled dates');
+    expect(scorecardLines(card(ten)).join('\n')).not.toContain('too few scored pairs');
   });
 
   it('is seeded and reproducible: the same seed gives the same count, always', () => {

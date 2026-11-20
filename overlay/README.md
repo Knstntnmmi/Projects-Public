@@ -6,7 +6,7 @@ The forecast is the main output: read the [forecast guide](docs/FORECAST.md), th
 
 ## The forecast
 
-For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet. The tool only counts them against a reader's own recorded events, and nothing beyond that. Each place that shows a forecast says so once.
+For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet. The tool only counts them against a reader's own recorded events, and nothing beyond that. Each place that shows a forecast says that the statements are untested against outcomes, once.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035.](docs/img/forecast-grid.svg)
 

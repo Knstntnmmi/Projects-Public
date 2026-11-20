@@ -19,7 +19,9 @@ import {
 import { FORECAST_SENTENCE, timelineFor, wheelFor } from '@overlay/render';
 import { MOMENTS } from '../../../fixtures/moments.ts';
 import { CliError, fail, parseArgs, readConventions, readMoment, readSex, type Flags } from './args.ts';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { runForecast, runForecastTimeline, runWindow } from './forecastCommand.ts';
+import { runEvent, runFreeze, runScore, sessionPath, type CommandResult, type SessionIo } from './scoreCommand.ts';
 
 const HELP = `overlay: one moment, every system, one shared axis, and for a span of years what each tradition's published rules say about a topic, with their source
 
@@ -29,6 +31,9 @@ Usage
 Commands
   forecast         what each tradition's rules say about a topic, year by year, money first (add --full for every statement)
   window           the I Ching's character of a period and Lilly's day statements, for at most 62 days
+  freeze           freeze the forecast of a session's moment for a span of years, before events are recorded against it
+  event            record an event in a session: a date, a topic, and whether it went well or badly
+  score            print the counts of a session: held, did not hold, not scored, said nothing (add --json)
   facts            everything the engine can say about the moment, as JSON
   wheel            the ring overlay as SVG
   timeline         the track overlay as SVG
@@ -67,6 +72,11 @@ Forecast options
                           it is never guessed, and the rules that need it are listed as not evaluated without it
   --set key=value         also takes the forecast settings, for example sliceEdgeDays=0
   timeline --forecast [topic]   draws the forecast tracks under the engine's own (ten years unless --years is given)
+Scorecard options
+  --session <file>        the session file (a name ending in .session.json is ignored by git); it holds the birth moment in clear text
+  freeze: --moment or --at to start a session, --from <year> --to <year>, --sex, --set key=value
+  event:  --date YYYY-MM-DD (or YYYY-MM, or YYYY)  --topic <name>  --went well|badly  [--note "text"]
+  A forecast counts against an event only if it was frozen before the event's date.
 Window options
   --date <YYYY-MM-DD> --days <n>   the first day and the length, at most 62 days
 ${FORECAST_SENTENCE}
@@ -102,9 +112,24 @@ process.stdout.on('error', (e: NodeJS.ErrnoException) => {
   throw e;
 });
 
+/** The session file, read when it exists. The only place the command line reads a file. */
+function readSession(flags: Flags): SessionIo {
+  try {
+    return { text: readFileSync(sessionPath(flags), 'utf8') };
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === 'ENOENT') return { text: null };
+    throw e;
+  }
+}
+
 function main(argv: string[], currentYear: number): void {
   const { command, flags } = parseArgs(argv);
   const out = (s: string): void => void process.stdout.write(s.endsWith('\n') ? s : `${s}\n`);
+  /** Writes the session file, only for the two commands that change it, and prints what was done. */
+  const finish = (r: CommandResult, f: Flags): void => {
+    if (r.write !== undefined) writeFileSync(sessionPath(f), r.write, { mode: 0o600 });
+    out(r.output);
+  };
   if (!command || flags.has('help') || command === 'help') return out(HELP);
   const theme = flags.get('theme')?.[0] as 'light' | 'dark' | undefined;
 
@@ -131,6 +156,12 @@ function main(argv: string[], currentYear: number): void {
       return out(runForecast(flags, currentYear));
     case 'window':
       return out(runWindow(flags));
+    case 'score':
+      return out(runScore(flags, readSession(flags)));
+    case 'event':
+      return finish(runEvent(flags, readSession(flags), Date.now()), flags);
+    case 'freeze':
+      return finish(runFreeze(flags, readSession(flags), Date.now(), currentYear), flags);
   }
 
   const moment = readMoment(flags);

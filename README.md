@@ -14,6 +14,8 @@ Every statement names its rule and its source, and the settings that change an a
 
 Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
 
+A reader can count them against the reader's own events: freeze a forecast, record events afterwards, and read plain counts (held, did not hold, not scored, said nothing) with a comparison against shuffled dates. A forecast frozen after an event is never counted against it. See `overlay score` in [overlay/README.md](overlay/README.md) and the [sample scorecard](overlay/docs/SAMPLE-SCORECARD.md), made from invented events.
+
 ## Try it
 
 ```

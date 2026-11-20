@@ -164,14 +164,14 @@
     "group": "The words of the forecast",
     "term": "scorecard",
     "original": "",
-    "definition": "A record of events a person enters, to be compared with forecasts frozen beforehand. The project plans to score each technique against shuffled dates; that scoring is its own and is not built, so nothing is scored yet.",
+    "definition": "A record of events a person enters afterwards, counted against forecasts frozen before them. It gives plain counts (held, did not hold, not scored, said nothing) and compares the held count with the same events at shuffled dates. The design is the project's own.",
     "source": "the project's own wording"
   },
   {
     "group": "The words of the forecast",
     "term": "frozen forecast",
     "original": "",
-    "definition": "A forecast stored with a hash before the events are entered, so that only events entered after the freeze can be compared with it.",
+    "definition": "A forecast fixed with a hash at a stated time, so that only events dated after the freeze can be counted against it.",
     "source": "the project's own wording"
   },
   {

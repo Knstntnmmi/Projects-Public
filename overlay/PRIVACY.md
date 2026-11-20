@@ -14,7 +14,13 @@ The buttons that copy or download a result act on your own machine and only when
 
 The forecast section of the page takes the same moment and place as the rest of the page, plus a topic, a first year, a number of years, an optional sex convention for the BaZi chart and, for the character of a period, a start day and a number of days. All of it is computed in the browser tab, by the same pure functions as on the command line. None of it is sent anywhere: the content security policy that forbids network requests covers the forecast section as it covers the rest of the page. None of it is stored: the forecast writes nothing to cookies, local storage, session storage or IndexedDB, and puts nothing in the address bar, so a link to the page does not carry the forecast and reloading forgets it. After each change the page waits a moment and then works in short steps inside the tab; it uses no background thread.
 
-The forecast section has no button that copies, downloads or saves a forecast. The copy and download buttons of the page act on the facts document and the two drawings, and only when you press them. The command line prints the forecast to standard output and writes no file of its own; what you redirect it to is your choice. A file you save from a forecast or the facts document holds the birth moment you typed, so treat it as personal data.
+The forecast section itself has no button that copies, downloads or saves a forecast. The copy and download buttons of the page act on the facts document and the two drawings, and only when you press them. The command line prints the forecast to standard output and writes no file of its own; what you redirect it to is your choice. A file you save from a forecast or the facts document holds the birth moment you typed, so treat it as personal data.
+
+## What the scorecard does with what you type
+
+The Scorecard section holds the events you add (a day, a month or a year, a topic, how it went, and an optional private note) and the forecasts you freeze. They live in memory in the tab. Nothing is written to storage: no cookies, local storage, session storage or IndexedDB, and nothing is put in the address bar. There is no timer that saves and no request of any kind.
+
+The session leaves the tab only when you press "Save session file", which asks you to confirm and then hands a download to your browser. The file holds the birth moment in clear text, your events and any notes. It comes back only when you press "Open session file" and pick it; the page reads that one file and nothing else. The note is never read by the engine and never printed in the counts. On the command line, `freeze` and `event` write the session file you name with `--session`, and nothing else; file names ending in `.session.json` are ignored by git.
 
 ## What is in the repository
 
@@ -25,6 +31,7 @@ No personal data: no real name, no email address, and no real person's birth dat
 `packages/web/test/guards.test.ts` runs with every build and fails if:
 
 - any source file mentions `fetch`, `XMLHttpRequest`, `sendBeacon`, a socket or worker, browser storage, cookies, the history or location of the address bar, a remote script, style, font or image, or Node's networking modules;
+- a scorecard source file saves on a timer, or hands a file to the browser anywhere but the one save control, after the confirmation;
 - the content security policy loses its network or form restrictions;
 - a literal date-time appears anywhere outside `fixtures/moments.ts`.
 

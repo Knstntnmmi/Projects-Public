@@ -6,6 +6,7 @@
  * follows from the tradition and the clock a firing runs on; where one clock carries two
  * nested periods the binding that knows which one it judged sets `Firing.level`.
  */
+import { CLOCKS } from './clocks.ts';
 import type { ClockId, Firing, LevelId, RuleBinding, Tradition } from './types.ts';
 import { LEVEL_IDS } from './types.ts';
 
@@ -44,6 +45,9 @@ const FALLBACK: Readonly<Record<Tradition, Exclude<LevelId, 'natal'>>> = {
 export const DATED_LEVELS: readonly LevelId[] = LEVEL_IDS.filter((l) => l !== 'natal');
 
 export const levelTradition = (level: LevelId): Tradition | null => (level === 'natal' ? null : SPECS[level].tradition);
+
+/** True for a technique that runs only on clocks of fixed arithmetic from the birth moment (the luck pillar, the dashas, the profections, the firdaria): they share one clock. */
+export const levelOnSharedClock = (level: LevelId): boolean => level !== 'natal' && SPECS[level].clocks.every((c) => CLOCKS[c].kind === 'birth-arithmetic');
 
 export const levelRank = (level: LevelId): number => LEVEL_IDS.indexOf(level);
 

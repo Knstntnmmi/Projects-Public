@@ -151,7 +151,7 @@ describe('the session file', () => {
 
   it('rejects unknown keys at every level', () => {
     expect(code(mutate((s) => (s.note = 'hello')))).toBe('unknown-key');
-    expect(code(mutate((s) => (s.events[0].note = 'hello')))).toBe('unknown-key');
+    expect(code(mutate((s) => (s.events[0].comment = 'hello')))).toBe('unknown-key');
     expect(code(mutate((s) => (s.nativity.name = 'someone')))).toBe('unknown-key');
     expect(code(mutate((s) => (s.nativity.place.altitude = 1)))).toBe('unknown-key');
     expect(code(mutate((s) => (s.conventions.forecast.extra = true)))).toBe('unknown-key');

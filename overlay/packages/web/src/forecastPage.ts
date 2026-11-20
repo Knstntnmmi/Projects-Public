@@ -48,7 +48,7 @@ const PAUSE_MS = 400;
 
 const localDay = (d: Date): string => `${String(d.getFullYear()).padStart(4, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-export function initForecast(deps: ForecastDeps): { schedule: () => void } {
+export function initForecast(deps: ForecastDeps): { schedule: () => void; settings: () => { fromYear: number; toYear: number; sexConvention: forecast.SexConvention } } {
   const now = new Date();
   const sel: Selection = { year: null, level: null };
   let model: Model | null = null;
@@ -253,6 +253,11 @@ export function initForecast(deps: ForecastDeps): { schedule: () => void } {
   return {
     schedule: () => {
       schedule();
+    },
+    /** The years and the sex convention of the forecast on show, for the scorecard to freeze. */
+    settings: () => {
+      const { fromYear, toYear, sexConvention } = settings();
+      return { fromYear, toYear, sexConvention };
     },
   };
 }

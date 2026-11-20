@@ -53,7 +53,7 @@ export function readYears(flags: Flags, currentYear: number): { fromYear: number
  * baziSexConvention. It is set by --sex or by --set baziSexConvention=..., and is never guessed:
  * without it the rules that need it are listed as not evaluated.
  */
-function forecastConventionsOf(flags: Flags): Partial<forecast.ForecastConventions> {
+export function forecastConventionsOf(flags: Flags): Partial<forecast.ForecastConventions> {
   const set = readSettings(flags).forecast;
   const sex = readSex(flags);
   if (sex === undefined) return set;

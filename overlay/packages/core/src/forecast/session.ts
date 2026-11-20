@@ -18,6 +18,7 @@ export const SESSION_SCHEMA = 'overlay-session/1';
 export const MAX_SESSION_BYTES = 256 * 1024;
 export const MAX_EVENTS = 500;
 export const MAX_FROZEN = 50;
+export const MAX_NOTE_CHARS = 280;
 
 const MIN_MS = -62_135_596_800_000; // year 1
 const MAX_MS = 32_503_680_000_000; // year 3000
@@ -123,8 +124,17 @@ function nativityFrom(x: Json): Nativity {
   };
 }
 
+/** A private note: text of at most MAX_NOTE_CHARS characters, with no control characters other than a line break. */
+function noteFrom(x: Json, where: string): string {
+  if (typeof x !== 'string') throw new SessionError('schema', `${where} must be text`);
+  if ([...x].length > MAX_NOTE_CHARS) throw new SessionError('range', `${where} is longer than ${MAX_NOTE_CHARS} characters`);
+  if (/[\u0000-\u0009\u000b-\u001f\u007f]/.test(x)) throw new SessionError('schema', `${where} holds a control character`);
+  return x;
+}
+
 function eventFrom(x: Json, i: number): ForecastEvent {
-  const o = keysOf(x, `events[${i}]`, ['id', 'utcMs', 'precision', 'topic', 'valence', 'enteredAtUtcMs']);
+  const o = keysOf(x, `events[${i}]`, ['id', 'utcMs', 'precision', 'topic', 'valence', 'enteredAtUtcMs'], ['note']);
+  const note = o.note === undefined ? {} : { note: noteFrom(o.note, `events[${i}].note`) };
   return {
     id: str(o.id, `events[${i}].id`, ID),
     utcMs: num(o.utcMs, `events[${i}].utcMs`, MIN_MS, MAX_MS, true),
@@ -132,6 +142,7 @@ function eventFrom(x: Json, i: number): ForecastEvent {
     topic: oneOf<Topic>(o.topic, `events[${i}].topic`, TOPICS),
     valence: oneOf(o.valence, `events[${i}].valence`, ['good', 'bad'] as const),
     enteredAtUtcMs: num(o.enteredAtUtcMs, `events[${i}].enteredAtUtcMs`, MIN_MS, MAX_MS, true),
+    ...note,
   };
 }
 
@@ -196,7 +207,8 @@ export function importSession(text: string): Session {
 /** What the person is asked to confirm before an export. */
 export function exportConfirmation(session: Session): string {
   const n = session.events.length;
-  return `This file contains birth data in clear text; ${n} ${n === 1 ? 'event' : 'events'}${session.frozen.length ? `; ${session.frozen.length} frozen ${session.frozen.length === 1 ? 'forecast' : 'forecasts'}` : ''}.`;
+  const notes = session.events.filter((e) => e.note !== undefined && e.note !== '').length;
+  return `This file contains birth data in clear text; ${n} ${n === 1 ? 'event' : 'events'}${notes ? ` (${notes} with a private note)` : ''}${session.frozen.length ? `; ${session.frozen.length} frozen ${session.frozen.length === 1 ? 'forecast' : 'forecasts'}` : ''}.`;
 }
 
 /** Whether the file was made under the rules now loaded; a mismatch means its frozen forecasts no longer reproduce. */

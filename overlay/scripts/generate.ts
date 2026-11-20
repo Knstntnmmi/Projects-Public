@@ -20,6 +20,7 @@ import { decadeGrid, gridText } from '../packages/core/src/forecast/grid.ts';
 import { yearView } from '../packages/core/src/forecast/yearView.ts';
 import { statementList } from '../packages/core/src/forecast/statements.ts';
 import { glossaryMarkdown } from '../packages/core/src/forecast/glossary.ts';
+import { eventDateText, valenceWords } from '../packages/core/src/forecast/scorecardText.ts';
 import { TOPIC_LABEL } from '../packages/core/src/forecast/phrasebook.ts';
 import {
   FORECAST_SENTENCE,
@@ -34,7 +35,11 @@ import {
   wheelFor,
   yearStatementLines,
 } from '../packages/render/src/index.ts';
+import { freezeInSession, newSession } from '../packages/core/src/forecast/sessionEdit.ts';
+import { scoreSession } from '../packages/core/src/forecast/scorecard.ts';
+import { scorecardLines } from '../packages/core/src/forecast/scorecardText.ts';
 import { MOMENTS } from '../fixtures/moments.ts';
+import { eventsFrom, nativityOf, SCORECARD_FREEZE_DAYS, SCORECARD_SAMPLE_OFFSETS } from '../fixtures/events.ts';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -248,6 +253,52 @@ export function sampleForecastDoc(): string {
   return out.join('\n');
 }
 
+/** The sample session of the scorecard: the constructed moment j2000, two forecasts frozen at fixed times, fourteen invented events. */
+export function sampleSession() {
+  const base = makeMoment(MOMENTS.find((m) => m.id === 'j2000')!.civil, 'UTC', MOMENTS.find((m) => m.id === 'j2000')!.place).utcMs;
+  const n = nativityOf('j2000');
+  const empty = newSession(n);
+  const first = freezeInSession(empty, { nativity: n, conventions: empty.conventions }, { fromYear: 2026, toYear: 2035 }, base + SCORECARD_FREEZE_DAYS.first * 86_400_000);
+  const second = freezeInSession(first, { nativity: n, conventions: empty.conventions }, { fromYear: 2026, toYear: 2030 }, base + SCORECARD_FREEZE_DAYS.second * 86_400_000);
+  return { ...second, events: eventsFrom('j2000', SCORECARD_SAMPLE_OFFSETS) };
+}
+
+export function sampleScorecardDoc(): string {
+  const session = sampleSession();
+  const card = scoreSession(session);
+  const iso = (ms: number): string => new Date(ms).toISOString().slice(0, 10);
+  return [
+    '# A sample scorecard from invented events',
+    '',
+    'Generated from the code by `npm run generate`. Do not edit by hand.',
+    '',
+    'Every event below is invented for this example, and none is anyone\'s life. The chart is the constructed moment `j2000` of `fixtures/moments.ts` (the J2000.0 epoch at Greenwich), which is no person\'s birth. The events are fixed numbers of days from that moment, and two of them fall before the first freeze, so they are listed as frozen too late.',
+    '',
+    '## How it was made',
+    '',
+    `Two forecasts were frozen for the constructed moment, with the default settings and no sex convention: the years 2026 to 2035 at ${iso(session.frozen[0]!.frozenAtUtcMs)}, and the years 2026 to 2030 at ${iso(session.frozen[1]!.frozenAtUtcMs)}. The fourteen invented events were then counted against them. An event is counted against the earliest forecast that was frozen before it and covers its dates, so the second forecast is listed but no event needed it. The command line freezes at the time you run it, so a session of your own cannot be frozen in the past; here the freeze times are set in the generator.`,
+    '',
+    'The invented events:',
+    '',
+    '| Event | Dates it covers | Topic | How it went |',
+    '| --- | --- | --- | --- |',
+    ...card.events.map((e) => `| ${e.eventId} | ${eventDateText(e)} | ${TOPIC_LABEL[e.topic]} | ${valenceWords(e.valence)} |`),
+    '',
+    '## The scorecard',
+    '',
+    'This is what `overlay score --session <file>` prints for that session.',
+    '',
+    '```text',
+    ...scorecardLines(card),
+    '```',
+    '',
+    '## How to read it',
+    '',
+    'A statement is held when it points the way the event went (supports with "went well", cautions with "went badly") and did not hold when it points the other way. Mixed statements, notes without a direction and natal statements are not scored. A technique with rules for the topic and no statement over the event\'s dates said nothing. The counts describe these invented events and nothing else.',
+    '',
+  ].join('\n');
+}
+
 export const GENERATED: Array<{ path: string; content: () => string }> = [
   { path: 'docs/img/wheel-j2000.svg', content: () => `${wheelFor(sample(), DEFAULT_CONVENTIONS, { legend: true, title: 'The J2000 epoch read across seven rings' })}\n` },
   {
@@ -262,6 +313,7 @@ export const GENERATED: Array<{ path: string; content: () => string }> = [
     content: () => `${renderDecadeGrid(decadeGrid(sampleForecast(), SAMPLE_FORECAST.topic))}\n`,
   },
   { path: 'docs/SAMPLE-FORECAST.md', content: sampleForecastDoc },
+  { path: 'docs/SAMPLE-SCORECARD.md', content: sampleScorecardDoc },
   { path: 'docs/GLOSSARY.md', content: glossaryMarkdown },
   { path: 'docs/CONVENTIONS.md', content: conventionsDoc },
   { path: 'docs/CORRESPONDENCES.md', content: correspondencesDoc },

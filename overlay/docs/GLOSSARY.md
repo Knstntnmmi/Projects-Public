@@ -30,8 +30,8 @@ The words of the forecast are few. It speaks in four words only: supports, cauti
 | source not opened | | The badge for a rule whose source was not opened by the project. | the project's own wording |
 | labelled variant | | The badge for a statement computed under a choice that departs from the source, for example whole-sign houses where Lilly used Regiomontanus cusps. | the project's own wording |
 | sex convention | | The sex the chart is read as, which fixes the direction of the BaZi luck pillars and which rules apply. The engine never guesses it. | the project's own wording |
-| scorecard | | A record of events a person enters, to be compared with forecasts frozen beforehand. The project plans to score each technique against shuffled dates; that scoring is its own and is not built, so nothing is scored yet. | the project's own wording |
-| frozen forecast | | A forecast stored with a hash before the events are entered, so that only events entered after the freeze can be compared with it. | the project's own wording |
+| scorecard | | A record of events a person enters afterwards, counted against forecasts frozen before them. It gives plain counts (held, did not hold, not scored, said nothing) and compares the held count with the same events at shuffled dates. The design is the project's own. | the project's own wording |
+| frozen forecast | | A forecast fixed with a hash at a stated time, so that only events dated after the freeze can be counted against it. | the project's own wording |
 | retrodiction | | Comparing a forecast with events that were known before it was made. | the project's own wording |
 | hit rate | | The share of statements that matched events, as a scorecard would count them. The forecast does not give one. | the project's own wording |
 | window | | A view of at most 62 days that shows the character of a period, used for the I Ching and for Lilly's day statements. | the project's own wording |

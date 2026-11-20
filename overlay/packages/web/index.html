@@ -15,6 +15,7 @@
       <div>
         <h1>Overlay</h1>
         <p class="lede">For a birth moment and a span of years, this page states what the published rules of BaZi, Vedic astrology, traditional Western astrology and the I Ching say about money first, then other topics, each with its rule and source. Below the forecast, the same moment is drawn on one shared axis so that the boundaries of the systems can be compared.</p>
+        <p class="lede">Take the sample moment j2000, the topic wealth and 2026 as the first year. Jupiter counted from the natal Moon reads mixed for 2026: one rule supports and one cautions, each with its book and verses. The page adds no total and picks neither rule.</p>
       </div>
       <button id="theme" type="button" class="quiet" aria-label="Switch colour theme">Theme: auto</button>
     </header>
@@ -72,6 +73,35 @@
           <summary>Rules not evaluated</summary>
           <div id="fc-rules-body"></div>
         </details>
+      </section>
+
+      <section class="card" id="scorecard" aria-labelledby="h-scorecard">
+        <h2 id="h-scorecard">Scorecard</h2>
+        <p class="note" id="sc-session-note"></p>
+        <div id="sc-head"></div>
+        <p class="note" id="sc-status" role="status" aria-live="polite"></p>
+        <p class="note warn" id="sc-pinned" hidden></p>
+        <div class="subcard">
+          <h3>Freeze a forecast</h3>
+          <p class="note" id="sc-freeze-note"></p>
+          <div class="controls"><button id="sc-freeze" type="button"></button></div>
+        </div>
+        <form id="sc-add" class="controls sc-add" autocomplete="off">
+          <h3>Add an event</h3>
+          <label>Date <input id="sc-date" type="date" required /></label>
+          <label>It covers <select id="sc-precision"></select></label>
+          <label>Topic <select id="sc-topic"></select></label>
+          <label>How it went <select id="sc-went"></select></label>
+          <label class="sc-note-field">Private note (kept in the file, never used) <input id="sc-note" type="text" maxlength="280" /></label>
+          <button id="sc-add-button" type="submit"></button>
+        </form>
+        <div id="sc-events"></div>
+        <div class="controls">
+          <button id="sc-save" type="button">Save session file</button>
+          <button id="sc-open-button" type="button">Open session file</button>
+          <input id="sc-open" type="file" accept=".json,application/json" hidden />
+        </div>
+        <div id="sc-counts"></div>
       </section>
 
       <h2 class="part" id="h-calc">The calculation behind the forecast</h2>

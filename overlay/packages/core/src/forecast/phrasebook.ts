@@ -139,10 +139,10 @@ export const TEXT = {
   westernWindow: 'These are the days on which a planet passes over a point of the birth chart or beholds it, as Lilly describes it from an ephemeris; he calls them only reputed. Not tested yet.',
   scorecardNote1: 'Events people record are not a random sample.',
   scorecardNote2:
-    'The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why only events entered after the freeze count.',
+    "The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why a forecast counts against an event only if it was frozen before the event's date.",
   scorecardNote3: 'This is retrodiction unless the forecasts were frozen first.',
-  scorecardNote4: 'A hit rate does not tell you how the next call turns out.',
-  scorecardNote5: "Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design, and nothing is scored yet.",
+  scorecardNote4: 'A count of held statements does not tell you how the next call turns out.',
+  scorecardNote5: "Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design.",
   scorecardNote6:
     'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',
   baziSharedChartNote:

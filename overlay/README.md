@@ -6,7 +6,7 @@ The forecast is the main output: read the [forecast guide](docs/FORECAST.md), th
 
 ## The forecast
 
-For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet, and each place that shows a forecast says so once.
+For a birth moment, a place, a span of years and a topic, the forecast states what the published rules of four traditions say, technique by technique and year by year, and money first. Every statement carries the rule it comes from and the source of that rule. The rules are transcribed from the named works and checked against them. Nobody has tested the statements against outcomes yet. The tool only counts them against a reader's own recorded events, and nothing beyond that. Each place that shows a forecast says that the statements are untested against outcomes, once.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035.](docs/img/forecast-grid.svg)
 
@@ -77,6 +77,15 @@ A survey of the open-source and commercial landscape in November 2026 found many
 
 The I Ching rules describe the character of a period. They are not part of the yearly grid, the headline or the agreement display, and the whole tradition is marked experimental: the grading of the hexagram texts and the line-by-day reading are modern constructions on the old texts.
 
+**The scorecard.** A reader records events afterwards (a day, a month or a year, a topic, "went well" or "went badly") and freezes forecasts before them. The scorecard counts each statement of a frozen forecast against the events it overlaps: held, did not hold, not scored, said nothing, by rule, technique and tradition, and compares the held count with the same events at shuffled dates. It prints plain counts, no percentage and no verdict, and a forecast frozen after an event is never counted against it. The commands are below; the page has a Scorecard section under the forecast, whose session stays in the tab until you press "Save session file". A sample from invented events is in [docs/SAMPLE-SCORECARD.md](docs/SAMPLE-SCORECARD.md).
+
+```
+npm run overlay -- freeze --session work.session.json --moment j2000 --from 2026 --to 2035
+npm run overlay -- event --session work.session.json --date 2031-03-01 --topic wealth --went well
+npm run overlay -- score --session work.session.json
+npm run overlay -- score --session work.session.json --json
+```
+
 **The limits, briefly.** The statements are what the rules say; they are not validated against outcomes. Lilly's house rules run on whole-sign houses. A birth time that is off moves every tradition at once, because all of them read one birth moment. The list of what is not evaluated, and why, is printed by `forecast --full`.
 
 ## Systems
@@ -143,7 +152,7 @@ It adds no verdict of its own: the forecast states what a named rule of a tradit
 
 ## Next
 
-The lunisolar calendar and the systems that depend on it; a Zi Wei adapter; the true mansions; an MCP server over the facts document; a back-testing harness that takes dated events and scores every track against shuffled dates; a historical mode with mean-time solar terms before 1645.
+The lunisolar calendar and the systems that depend on it; a Zi Wei adapter; the true mansions; an MCP server over the facts document; a historical mode with mean-time solar terms before 1645.
 
 ## Privacy
 

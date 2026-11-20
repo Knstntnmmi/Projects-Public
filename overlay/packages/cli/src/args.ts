@@ -64,12 +64,13 @@ export function readConventions(flags: Flags): Conventions {
   return readSettings(flags).engine;
 }
 
-export function readMoment(flags: Flags): Moment {
+/** The birth moment as typed, before it is turned into an instant: what a session file holds. */
+export function readNativity(flags: Flags): forecast.Nativity {
   const id = flags.get('moment')?.[0];
   if (id) {
     const f = MOMENTS.find((m) => m.id === id);
     if (!f) fail(`no sample moment "${id}". Run "overlay moments" for the list.`);
-    return makeMoment(f.civil, f.zone, f.place);
+    return { civil: { ...f.civil }, zone: f.zone, place: { ...f.place } };
   }
   const at = flags.get('at')?.[0];
   if (!at) fail('give a moment with --moment <id> or --at "YYYY-MM-DD HH:MM". Run "overlay --help".');
@@ -83,15 +84,22 @@ export function readMoment(flags: Flags): Moment {
     return x;
   };
   const zone = flags.get('zone')?.[0] ?? 'UTC';
+  const nativity: forecast.Nativity = {
+    civil: { year: Number(m[1]), month: Number(m[2]), day: Number(m[3]), hour: Number(m[4]), minute: Number(m[5]), second: Number(m[6] ?? 0) },
+    zone,
+    place: { latitude: num('lat', 0), longitude: num('lon', 0) },
+  };
   try {
-    return makeMoment(
-      { year: Number(m[1]), month: Number(m[2]), day: Number(m[3]), hour: Number(m[4]), minute: Number(m[5]), second: Number(m[6] ?? 0) },
-      zone,
-      { latitude: num('lat', 0), longitude: num('lon', 0) },
-    );
+    makeMoment(nativity.civil, nativity.zone, nativity.place);
   } catch {
     fail(`unknown time zone "${zone}"`);
   }
+  return nativity;
+}
+
+export function readMoment(flags: Flags): Moment {
+  const n = readNativity(flags);
+  return makeMoment(n.civil, n.zone, n.place);
 }
 
 export function readSex(flags: Flags): Sex | undefined {

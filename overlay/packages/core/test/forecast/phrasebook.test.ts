@@ -56,7 +56,7 @@ describe('the phrasebook', () => {
 
   it('words scorecard note 5 as a precedent and the project\'s own design, and note 6 as one scholar\'s general remark', () => {
     expect(TEXT.scorecardNote5).toBe(
-      "Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design, and nothing is scored yet.",
+      "Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design.",
     );
     expect(TEXT.scorecardNote6).toBe(
       'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',

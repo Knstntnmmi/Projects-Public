@@ -1,37 +1,37 @@
 # overlay
 
-Overlay computes BaZi (the Chinese Four Pillars), I Ching year-calendars, Western and Vedic astrology and calendar day counts for one moment and place, for people who compare these traditions.
+For one moment and place, Overlay computes the BaZi chart (the Chinese Four Pillars), the I Ching calendars of the year, and Western and Vedic astrology, all from one astronomical calculation. For a span of years it also states what four traditions' own published rules say about a topic, with the rule and the source behind each statement.
 
-![The wheel for the sample moment at the year 2000: rings on one ecliptic, each dividing the same circle by one rule set, from the zodiac and solar terms to hexagram calendars and nakshatras.](overlay/docs/img/wheel-j2000.svg)
+Read more: [forecast guide](overlay/docs/FORECAST.md), [scholarship](overlay/docs/SCHOLARSHIP.md), [glossary](overlay/docs/GLOSSARY.md).
 
-Two calculators can print different charts because each has made choices that it does not announce.
+You give it a birth moment and place, a span of years and a topic, money first. It gives back, technique by technique and year by year, what the rules of BaZi, Vedic astrology (nakshatras and dashas), Western astrology after William Lilly (1647) and the I Ching, read by period, say about that topic. Each statement names its rule and its source.
 
-Overlay names every convention on which they differ, such as the clock that is read, and for each result it reports how far, in minutes, hours or days, the moment lies from the point where the result would change.
+![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035: one row per technique, one column per year, each cell marked supports, cautions, mixed or nothing said.](overlay/docs/img/forecast-grid.svg)
 
-BaZi names a year, month, day and hour each by a pair of characters called a pillar, and the year pillar changes when the Sun reaches 315 degrees of longitude. Take the afternoon of 4 February 2024 in Beijing, a constructed moment. The Sun reaches that point at about 16:27 on the Beijing clock. At 16:25 the year pillar is 癸卯, and at 16:29 it is 甲辰. The tool reports that the year pillar lies 1.8 minutes from the change and declines to decide, because that is inside its own margin of two minutes.
+Each row is one technique and each column one year. A cell shows the word that technique's rules give for that year: supports, cautions, mixed or nothing said. A cell split in colours (blue, purple, orange) means the rules of that technique disagree that year: how much of each colour shows how many of its rules support, caution or state a mixed result. A cell can also read mixed because a single rule itself states a mixed result. The full sample is in [overlay/docs/SAMPLE-FORECAST.md](overlay/docs/SAMPLE-FORECAST.md).
 
-![The timeline for the sample moment at the year 2000: tracks on one date axis, each showing the periods and yearly cycles of one tradition.](overlay/docs/img/timeline-j2000.svg)
+Every statement names its rule and its source, and the settings that change an answer, such as which time scale (civil or solar) is used for the birth hour, are shown with what each would change. All the systems read one astronomical base, so their boundaries can be compared, and nothing you type leaves the browser.
 
-Overlay calculates and draws today. Forecasting by each tradition's own published rules is being built and is not in the repository yet.
+Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
 
 ## Try it
 
 ```
 cd overlay
 npm ci
-node packages/cli/src/index.ts sensitivity --moment lichun-eve-2024 --uncertainty 10
-npm run dev
+node packages/cli/src/index.ts forecast --moment j2000 --topic wealth --from 2026 --to 2035
 ```
 
-This needs Node 22.18 or later. The third command prints the distances to every boundary for the example above. The fourth serves the web page locally and keeps running, so it comes last.
-
-Nothing leaves your machine. The web page is built to forbid network requests, and the tests check that no source file reaches the network or storage.
+This needs Node 22.18 or later. The page is started with `npm run dev`. For the drawings, the facts document and the other commands see [overlay/README.md](overlay/README.md).
 
 | Where | What it holds |
 | --- | --- |
 | [overlay/README.md](overlay/README.md) | The full technical readme |
+| [overlay/docs/FORECAST.md](overlay/docs/FORECAST.md) | How a statement comes about, and the limits |
 | [overlay/docs/SOURCES.md](overlay/docs/SOURCES.md) | The sources and how each was checked |
+| [overlay/docs/SCHOLARSHIP.md](overlay/docs/SCHOLARSHIP.md) | What the published scholarship says, and what the project takes from it |
+| [overlay/docs/GLOSSARY.md](overlay/docs/GLOSSARY.md) | The terms of art that the forecast prints |
 | [overlay/docs/CONVENTIONS.md](overlay/docs/CONVENTIONS.md) | The conventions on which calculators differ |
-| [overlay/docs/CORRESPONDENCES.md](overlay/docs/CORRESPONDENCES.md) | How the systems line up on the ecliptic |
+| [overlay/PRIVACY.md](overlay/PRIVACY.md) | What happens to what you type |
 
 Copyright © 2026 Knstntnmmi. Licensed under the GNU AGPL, version 3 or later; the credit must be kept. See [overlay/NOTICE](overlay/NOTICE).

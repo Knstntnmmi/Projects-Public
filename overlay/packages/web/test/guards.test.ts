@@ -48,6 +48,20 @@ describe('privacy', () => {
     }
   });
 
+  it('no source file builds a global name from pieces to get round the patterns above', () => {
+    for (const p of sources) {
+      const text = readFileSync(p, 'utf8');
+      expect(/\b(globalThis|window|self)\s*\[/.test(text), `${rel(p)} looks a global up by a computed name`).toBe(false);
+      expect(/\beval\s*\(|new\s+Function\s*\(/.test(text), `${rel(p)} runs code from a string`).toBe(false);
+    }
+  });
+
+  it('no test is skipped, narrowed to one case or left as a to-do', () => {
+    const tests = files.filter((p) => /packages\/[^/]+\/test\/.*\.test\.ts$/.test(rel(p)) && !rel(p).endsWith('guards.test.ts'));
+    expect(tests.length).toBeGreaterThan(20);
+    for (const p of tests) expect(/\b(it|test|describe)\.(skip|only|todo)\b/.test(readFileSync(p, 'utf8')), `${rel(p)} skips or narrows a test`).toBe(false);
+  });
+
   it('the built page forbids network requests through its content security policy', () => {
     const config = readFileSync(join(root, 'packages/web/vite.config.ts'), 'utf8');
     expect(config).toContain("connect-src 'none'");
@@ -99,5 +113,52 @@ describe('generated files', () => {
     for (const g of GENERATED) {
       expect(readFileSync(join(root, g.path), 'utf8'), g.path).toBe(g.content());
     }
+  });
+});
+
+describe('forecast privacy', () => {
+  const text = (p: string): string => readFileSync(p, 'utf8');
+  const forecastSources = sources.filter((p) => rel(p).startsWith('packages/core/src/forecast/'));
+
+  it('session files are ignored by git', () => {
+    expect(text(join(root, '.gitignore')).split('\n')).toContain('*.session.json');
+  });
+
+  it('the session marker appears in no data file, document or other source file', () => {
+    const allowed = new Set(['packages/core/src/forecast/session.ts', 'packages/core/src/forecast/BINDINGS.md']);
+    const offenders = files
+      .map(rel)
+      .filter((p) => /\.(ts|md|html|json)$/.test(p) && p !== 'package-lock.json' && !allowed.has(p) && !/\/test\//.test(p))
+      .filter((p) => text(join(root, p)).includes('overlay-session/'));
+    expect(offenders).toEqual([]);
+  });
+
+  it('no event is written as a date-time anywhere but the synthetic event file', () => {
+    // Events are built from day offsets of the sample moments; a literal instant would be somebody's day.
+    const literal = /\b(utcMs|enteredAtUtcMs|UtcMs):\s*-?\d{9,}/;
+    const offenders = files
+      .map(rel)
+      .filter((p) => /\.(ts|md|html|json)$/.test(p) && p !== 'fixtures/events.ts' && p !== 'package-lock.json' && !p.startsWith('fixtures/golden/'))
+      .filter((p) => literal.test(text(join(root, p))));
+    expect(offenders).toEqual([]);
+  });
+
+  it('the forecast code does no input or output of its own', () => {
+    expect(forecastSources.length).toBeGreaterThan(15);
+    const forbidden: Array<[RegExp, string]> = [
+      [/\bconsole\./, 'logging'],
+      [/\b(window|document|navigator|location)\.[a-zA-Z]/, 'the browser'],
+      [/\bprocess\./, 'the process'],
+      [/from\s+['"]node:/, 'a Node module'],
+      [/\brequire\s*\(/, 'require'],
+      [/\bBuffer\b/, 'Buffer'],
+      [/\b(readFile|writeFile)\w*\s*\(/, 'files'],
+      [/URLSearchParams|new\s+URL\(/, 'the address'],
+    ];
+    for (const p of forecastSources) for (const [pattern, what] of forbidden) expect(pattern.test(text(p)), `${rel(p)} uses ${what}`).toBe(false);
+  });
+
+  it('no test logs anything', () => {
+    for (const p of files.map(rel).filter((x) => /packages\/[^/]+\/test\/.*\.ts$/.test(x))) expect(/\bconsole\./.test(text(join(root, p))), p).toBe(false);
   });
 });

@@ -107,3 +107,186 @@ The correlation constant ties the Long Count to the Julian day count. It is chos
 ## Choices that are not yet settings
 
 These are fixed in this version, and are listed so that nobody mistakes them for facts. The year pillar turns at Lichun only; the lunar-new-year and winter-solstice year boundaries are not offered. Solar terms are always the true-Sun terms, although the Chinese calendar used mean-time terms before 1645, so pillars for earlier dates follow the modern rule and not the rule in force at the time. Houses are whole-sign, the lunar node is the mean node, triplicity lords are the Dorothean set and bounds the Egyptian set; the Ptolemaic tables that William Lilly printed are not included yet. Hidden stems follow the common modern table. Vimshottari years are 365.25 days.
+
+# Forecast conventions
+
+The forecast layer adds the choices the published rules leave open. They sit beside the settings above and are recorded in every forecast. The sovereign-hexagram boundary and the firdaria node order are the engine settings above and are not repeated.
+
+## Length of a slice
+
+Setting `sliceLength`. Affects: Every reading, agreement cell and track of the forecast.
+
+Readings and agreement are stated per slice of time. This phase uses calendar years, cut at the first of January in UTC.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `year` | Calendar year. January to December, UTC. | yes |
+
+## Edge of a year
+
+Setting `sliceEdgeDays`. Affects: The word, the counts and the headline of a level in a year, and the agreement cells that rest on them.
+
+A statement that begins a few hours before the end of a year, or ends a few hours after its start, touches that year without filling it: the birthday clock is the usual case, because a profection or a return runs from one birthday to the next. A statement that extends beyond a year and overlaps it by fewer days than this does not count toward the word, the counts or the headline of that year. The statement list always shows the true dates, and a statement that lies wholly inside a year counts however short it is.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `0` | No edge. Any overlap counts, however brief. |  |
+| `15` | 15 days. A statement that overlaps a year by fewer than 15 days, and extends beyond it, does not count for that year. The default. | yes |
+| `30` | 30 days. The same with a month. |  |
+
+## BaZi day-master strength bands
+
+Setting `baziStrengthThresholds`. Affects: bazi.strength-score and everything that reads the favourable elements.
+
+The bands are the project's own arithmetic and no source gives them. They are a setting of the calculation: no number appears in any statement, only the class (strong, weak or balanced). A score of exactly 45 or 55 is balanced.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `45/55` | Weak below 45, strong above 55. Balanced from 45 to 55 inclusive. | yes |
+
+## Weights of luck pillar and year pillar
+
+Setting `baziLuckWeights`. Affects: Period rules that combine the luck pillar with the annual pillar.
+
+The sources do not give the relative weight of a ten-year luck pillar and a single year; 0.6 and 0.4 are the project's own arithmetic. They are a setting of the calculation and appear in no statement.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `0.6/0.4` | Luck 0.6, year 0.4. As the rule file states. | yes |
+
+## Direction of the twelve stages for yin stems
+
+Setting `baziYinStageReverse`. Affects: bazi.twelve-stages.
+
+Schools differ on whether the twelve stages run backward for yin stems; the rule file lists the backward run as a convention not seen in the text.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `true` | Yin stems run backward. The common practice. | yes |
+| `false` | All stems run forward. The alternative school. |  |
+
+## Seasons of earth
+
+Setting `baziEarthSeasons`. Affects: bazi.month-state and the strength score.
+
+The source makes earth strong in the sixth month only; common practice makes it strong in all four season-end months (the 季月).
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `four-jiyue` | All four 季月. The month branches 辰 戌 丑 未. | yes |
+
+## Twelve stages of the earth stems
+
+Setting `baziEarthStages`. Affects: bazi.twelve-stages and the academy flag of bazi.topic-learning.
+
+The source gives two schools: earth follows fire (戊 長生 in 寅, 己 in 酉) or earth follows water (戊 in 申, 己 in 卯). The rule file does not choose between them.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `fire-earth` | Earth follows fire. 戊 寅, 己 酉. The default. | yes |
+| `water-earth` | Earth follows water. 戊 申, 己 卯. |  |
+
+## Sign of a year that clashes with the luck pillar
+
+Setting `suiYunSign`. Affects: bazi.sui-yun-bing-lin.
+
+The source judges the clash by the ten god of the incoming year; later practice judges it by whether the element is favourable.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `source-tengod` | Ten-god sign. As the source gives it. The default. | yes |
+| `favourable-element` | Favourable element. The named alternative. |  |
+
+## Sex the BaZi chart is read as
+
+Setting `baziSexConvention`. Affects: Direction of the luck pillars, and the spouse and children rules.
+
+Luck direction and the spouse and children rules differ by sex in the sources. Without a named convention those rules are skipped and listed as not evaluated.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `none` | None given. Rules that need it are not evaluated. | yes |
+| `male-chart` | Read as a male chart. The man's rules and the forward or backward luck count for a male chart. |  |
+| `female-chart` | Read as a female chart. The woman's rules and the luck count for a female chart. |  |
+
+## Western house system
+
+Setting `westernHouses`. Affects: Every Western rule that names a house, angle or the 2nd, 7th or 10th place.
+
+Lilly worked with Regiomontanus cusps, which the engine does not compute. Rules that cite a house run on whole-sign houses, and every statement from such a rule carries the badge "labelled variant: whole-sign houses". Regiomontanus is not offered yet.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `whole-sign` | Whole sign. Houses are the signs counted from the ascendant sign. The only value today. | yes |
+
+## Western term (bound) table
+
+Setting `westernTerms`. Affects: Western dignity scores of the Lilly rules (essential strength classes).
+
+Lilly printed the Ptolemaic terms and his own triplicities and faces (Christian Astrology, Book I p.104). The Lilly rules run on that table and not on the Egyptian bounds, Dorothean triplicities and Chaldean faces of the engine's other Western code, so the difference is named.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `lilly-ptolemy` | Lilly's table. Terms, triplicities and faces as printed in Christian Astrology. The only value today. | yes |
+
+## Western orbs of aspect
+
+Setting `westernOrbs`. Affects: Whether two planets aspect, in every Western rule that reads an aspect.
+
+Lilly prints two columns of orbs and says he uses now the one and now the other (p.107). Two planets aspect when they lie within the sum of their moieties, half the orb of each, of the exact aspect.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `first-column` | First column. Saturn 10, Jupiter 12, Mars 7 30', Sun 17, Venus 8, Mercury 7, Moon 12 30'. The only value today; the second column is in the module for a later choice. | yes |
+
+## Western year with the profected point in the tenth house
+
+Setting `westernTenthYear`. Affects: lilly.profection.house-money, house-travel and mc-career for the 10th house, and lilly.profection.angle-aspect-years for a square to the Ascendant.
+
+Lilly's house table calls the year in which the profected Ascendant, Midheaven or Sun reaches the tenth house very successful (Christian Astrology, p.730 and p.731), while his remark on p.720 calls the years in square or opposition to the Horoscope or Midheaven unhappy. The tenth house is in square to the Ascendant, so the two cannot both be read. The rule file lists the house table first, which is the default.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `house-table` | House table. The tenth house is read as the house table says; the square to the Ascendant is not read as unhappy for it. The default. | yes |
+| `angle-aspect` | Aspect to the angles. The tenth house is read as a square to the Ascendant, unhappy; the house table is not read for it. |  |
+
+## Length of a dasha year
+
+Setting `vedicDashaYearDays`. Affects: Vimshottari period boundaries.
+
+The engine's value, recorded so the output says which one it used.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `365.25` | 365.25 days. The engine's value. | yes |
+
+## Lunar node
+
+Setting `vedicNode`. Affects: Rahu and Ketu in the Vedic rules.
+
+The engine computes the mean node.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `mean` | Mean node. The engine's node. | yes |
+
+## Birth-time uncertainty limit
+
+Setting `birthTimeLimitMinutes`. Affects: Rules that depend on the ascendant, houses, hour pillar or firdaria sect.
+
+Beyond this many minutes of uncertainty the rules that need the birth time are not evaluated and are listed with that reason.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `60` | 60 minutes. The default limit. | yes |
+
+## Show rules whose source was not opened
+
+Setting `showUnopened`. Affects: The signal list.
+
+Every rule in this release has an opened source; the switch exists so a later rule that has none is hidden unless asked for.
+
+| Value | Meaning | Default |
+| --- | --- | --- |
+| `false` | Hide. The default. | yes |
+| `true` | Show. With the badge "source not opened". |  |

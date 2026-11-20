@@ -1,0 +1,205 @@
+[
+ {
+  "tradition": "bazi",
+  "id": "bazi.tiaohou-table",
+  "kind": "rule+table",
+  "verdict": "unverifiable",
+  "reason": "Not opened: 窮通寶鑑. Table internally circular (壬 in 巳 lists 壬 itself), 丁 in 寅 order doubtful, about 15 cells blank, taking only the first-named stem loses information. Load the full text before use. 調候 convention therefore unavailable."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.branch-xing",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Section 論三刑 exists but the quoted sentence and the heavier-when-羊刃 clause were not matched. Tables (寅巳申, 丑戌未, 子卯, self-punishment) are standard but unverified in an opened text."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.branch-hai",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Heading 論六害 seen; the exact quote and 貴自貴，害自害 not found. Six harm pairs standard but unverified; day-branch harm and punishment therefore do not fire."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.wenchang",
+  "kind": "rule+table",
+  "verdict": "unverifiable",
+  "reason": "三命通會 卷三 verses garbled; the 有文星貴 verse reads 甲 午, 乙 巳, differing from the conventional table, and the stated derivation (食神's 長生) is false for 甲. Table held back."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.month-clash-parents",
+  "kind": "rule",
+  "verdict": "refuted",
+  "reason": "Quote is a natal clash between pillars, not an incoming luck/year branch; the career/relocation mapping is a modern convention and the event duplicates bazi.branch-chong plus bazi.pillar-palaces. Folded into those, not a separate rule."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.topic-children (man half)",
+  "kind": "rule-part",
+  "verdict": "unverifiable",
+  "reason": "七殺 son and 正官 daughter for a man not seen in the text; only the woman's half is kept."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.topic-learning 倒食 clause",
+  "kind": "rule-part",
+  "verdict": "unverifiable",
+  "reason": "論倒食 text not confirmed; one list prints both 見壬 and 見癸 as 倒食, so whether it is 偏印 only is unsettled."
+ },
+ {
+  "tradition": "bazi",
+  "id": "table: 三會 directional groups 寅卯辰 巳午未 申酉戌 亥子丑",
+  "kind": "table",
+  "verdict": "unverifiable",
+  "reason": "Named only in passing in the opened 三命通會 section; common practice, not seen listed. Not used."
+ },
+ {
+  "tradition": "bazi",
+  "id": "table: 六合 合化 elements and 合解沖 rule",
+  "kind": "table",
+  "verdict": "unverifiable",
+  "reason": "Elements are garbled in the text read, 午未 contested, 合解沖 text not seen; the quote 子寅辰午申戌六者為陽… was not found in the edition read."
+ },
+ {
+  "tradition": "bazi",
+  "id": "table: 辰戌丑未 clashes delighted in; clashes cancelled in a great structure",
+  "kind": "table",
+  "verdict": "unverifiable",
+  "reason": "Not found in the edition read in 論衝擊."
+ },
+ {
+  "tradition": "bazi",
+  "id": "table: coverCut earth 截腳 entry printed 乙卯 (possibly 己卯)",
+  "kind": "table-cell",
+  "verdict": "unverifiable",
+  "reason": "Printing of 滴天髓闡微 corrupt; not silently emended."
+ },
+ {
+  "tradition": "bazi",
+  "id": "claims: father 偏財, mother 正印, 傷官 as grandchild, 倒食 = 偏印 (from ten-gods-by-topic)",
+  "kind": "claims",
+  "verdict": "unverifiable",
+  "reason": "Not seen in the edition read; removed from the confirmed rule."
+ },
+ {
+  "tradition": "bazi",
+  "id": "bazi.topic-wealth-promise quote 財多身弱，妻反勝夫",
+  "kind": "quote",
+  "verdict": "unverifiable",
+  "reason": "Line not found in the edition read; no quote shown."
+ },
+ {
+  "tradition": "western",
+  "id": "lilly.general.plurality",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Lilly states the principle of judging by plurality of testimonies (Book III p.553, p.559-561) but gives no countable thresholds ('three or four', 'most'); it overlaps the wealth rules and is a method, not a rule. Left out on purpose."
+ },
+ {
+  "tradition": "western",
+  "id": "lilly.travel.success-danger",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Book III p.609-611: the page was located but not read in full, so no rule is stated."
+ },
+ {
+  "tradition": "western",
+  "id": "valens.profection.pair-verdict",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "The pair table (table E) was not found in Riley's Valens IV.5 or IV.11: IV.5 gives a few pair effects, not a grid of good, bad and mixed. Left unverified."
+ },
+ {
+  "tradition": "western",
+  "id": "valens.profection.basis-precedence",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Scaling rule needs a numeric scale; the critique also requires gating to be a per-rule sourced property."
+ },
+ {
+  "tradition": "western",
+  "id": "table: E Valens pair table",
+  "kind": "table",
+  "verdict": "unverifiable",
+  "reason": "Not found in the Riley text of Valens IV.5 or IV.11, so no cell was checked; the pair verdict rule depends on it."
+ },
+ {
+  "tradition": "western",
+  "id": "Lilly septennial alfridary variant (p.733-734)",
+  "kind": "rule-part",
+  "verdict": "unverifiable",
+  "reason": "Read from OCR, not verified against the page."
+ },
+ {
+  "tradition": "vedic",
+  "id": "parashari.antardasha-lord-topic",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "No antardasha verse read assigns topics by house lordship; design choice, not source."
+ },
+ {
+  "tradition": "vedic",
+  "id": "parashari.dasha-transit-concordance",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Raman p.415-416 supports only blending of birth chart, dasa-bhukti and gochara; the same/opposite test is the engine's design. The concordance is computed by the overlay layer as an engine convention, not as a sourced rule."
+ },
+ {
+  "tradition": "vedic",
+  "id": "table: Venus vedha list",
+  "kind": "table",
+  "verdict": "unverifiable",
+  "reason": "Sl.8 wording unclear; scoring Venus vedha is not advised until it is settled."
+ },
+ {
+  "tradition": "vedic",
+  "id": "table: DIGNITY ratio of effects Ch.3 sl.59-60",
+  "kind": "table-cell",
+  "verdict": "unverifiable",
+  "reason": "Not seen in the text read here."
+ },
+ {
+  "tradition": "iching",
+  "id": "zhouyi.position-prior",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Xici xia not opened; recount of plain 吉 and 凶 by line differs by one in two cells (regex differences). Open the chapter and cite its number first."
+ },
+ {
+  "tradition": "iching",
+  "id": "zhouyi.zhen-conditional",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Xici line 吉凶者，貞勝者也 not seen in the edition read; the rule would double count 貞吉 already scored as one token; the 'to divine' reading is a school difference."
+ },
+ {
+  "tradition": "iching",
+  "id": "table: twelve sovereign hexagram names with months",
+  "kind": "table",
+  "verdict": "unverifiable",
+  "reason": "Standard list, not seen verbatim in an opened text."
+ },
+ {
+  "tradition": "iching",
+  "id": "claim: plain 凶-family total 58 equals Shaughnessy",
+  "kind": "claim",
+  "verdict": "unverifiable",
+  "reason": "Brill chapter not opened; a second count finds 57."
+ },
+ {
+  "tradition": "western",
+  "id": "lilly.career.luminary-angularity.none-angular",
+  "kind": "rule",
+  "verdict": "unverifiable",
+  "reason": "Lilly p.617: 'neither of the Lights in an angle or in a masculine Signe, or have not the benevolent Planets with them'. The clauses are joined by 'or', and 'neither ... in an angle or in a masculine Signe' can be read three ways (not both, not either, or each alone). The AND-reading is a narrowing the text does not state, so the rule is left unbound until the reading is settled. The cadent rule from the same passage stays."
+ },
+ {
+  "tradition": "western",
+  "id": "valens.critical-year-node.same-sign",
+  "kind": "branch",
+  "verdict": "unverifiable",
+  "reason": "Valens V.2 (Riley pp.125-126) states the point form only: Saturn 'is at' the node or the points square to it. The same-sign form, read as a weaker critical period, appears in V.3 on initiatives and there for the Moon (p.126-127: 'If it is only in the same sign...'); carrying it to Saturn is an extension that the text does not state, so the branch is removed from valens.critical-year-node and held back."
+ }
+]

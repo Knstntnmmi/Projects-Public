@@ -37,6 +37,11 @@ export const PALETTE_LIGHT: Record<string, string> = {
   ketu: '#c7a98f',
   jie: '#e7d9b8',
   qi: '#f4eedd',
+  // The three words use the colours of the page's grid, so that a reader who learns the figure reads the page.
+  supports: '#2f74b5',
+  cautions: '#c4551d',
+  mixed: '#8c80b4',
+  quiet: '#ece8dc',
 };
 
 export const PALETTE_DARK: Record<string, string> = {
@@ -64,6 +69,10 @@ export const PALETTE_DARK: Record<string, string> = {
   ketu: '#6a4f38',
   jie: '#4d4530',
   qi: '#2c2a22',
+  supports: '#4f98d8',
+  cautions: '#e0834f',
+  mixed: '#9a90c4',
+  quiet: '#34322a',
 };
 
 const vars = (p: Record<string, string>): string =>
@@ -114,4 +123,19 @@ export function textWidth(s: string, fontSize: number): number {
 /** Machine-readable and visible credit for a drawing; the licence requires it to be kept. */
 export function creditBlock(credit: string, x: number, y: number, anchor: 'start' | 'end' = 'end'): string {
   return `<metadata>${esc(credit)}</metadata><text class="muted" x="${n(x)}" y="${n(y)}" font-size="10.5" text-anchor="${anchor}">${esc(credit)}</text>`;
+}
+
+/** Breaks a text into lines no wider than a given width, at spaces; a single word wider than the width keeps its own line. */
+export function wrapText(s: string, maxWidth: number, fontSize: number): string[] {
+  const lines: string[] = [];
+  let line = '';
+  for (const word of s.split(/\s+/).filter((w) => w !== '')) {
+    const next = line === '' ? word : `${line} ${word}`;
+    if (line !== '' && textWidth(next, fontSize) > maxWidth) {
+      lines.push(line);
+      line = word;
+    } else line = next;
+  }
+  if (line !== '') lines.push(line);
+  return lines;
 }

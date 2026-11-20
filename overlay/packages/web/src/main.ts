@@ -29,6 +29,7 @@ import {
 } from '@overlay/core';
 import { markersFor, renderTimeline, renderWheel } from '@overlay/render';
 import { MOMENTS } from '../../../fixtures/moments.ts';
+import { initForecast } from './forecastPage.ts';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
 const esc = (s: string | number): string => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -214,7 +215,7 @@ function renderTimelineSection(moment: Moment, sex: Sex | undefined): void {
   $('timeline').innerHTML = state.timelineSvg;
   $('seam-note').textContent =
     `Windows of ${report.windowDays} days in which tracks on two or more independent clocks change: ${report.found} in this span, against about ${report.expectedByChance.toFixed(1)} expected if the boundaries fell at random. ` +
-    'Tracks that share a clock, such as the firdaria and the profections (both turn on the birthday), count once. A seam describes the calendar arithmetic; it is not a forecast.' +
+    'Tracks that share a clock, such as the firdaria and the profections (both turn on the birthday), count once. A seam describes the calendar arithmetic and says nothing about what happens.' +
     (sex ? '' : ' The BaZi luck pillars are left out because their direction depends on sex, which is not given.');
   $('seams').innerHTML = report.seams
     .map((s) => `<li><span class="when">${day(s.utcMs)}</span>, ${s.clocks} clocks${s.changes.map((c) => `<span class="ch">${esc(c.title)}: ${esc(c.from)} to ${esc(c.to)} on ${day(c.utcMs)}</span>`).join('')}</li>`)
@@ -261,10 +262,12 @@ function wire(): void {
     loadSample((e.target as HTMLSelectElement).value);
     state.probe = null;
     update();
+    forecastPage.schedule();
   });
   $('moment').addEventListener('input', (e) => {
     if ((e.target as HTMLElement).id !== 'sample' && ['when', 'zone', 'lat', 'lon'].includes((e.target as HTMLElement).id)) $<HTMLSelectElement>('sample').value = '';
     update();
+    forecastPage.schedule();
   });
   $('moment').addEventListener('submit', (e) => e.preventDefault());
   $('conventions').addEventListener('change', (e) => {
@@ -275,6 +278,7 @@ function wire(): void {
     const option = spec.options.find((o) => String(o.value) === el.value)!;
     state.conventions = { ...state.conventions, [key]: option.value } as Conventions;
     update();
+    forecastPage.schedule();
   });
   $('rings').addEventListener('change', (e) => {
     const el = e.target as HTMLInputElement;
@@ -308,6 +312,18 @@ function wire(): void {
     state.probe = ((((theta - 180) * dir) % 360) + 360) % 360;
     update();
   });
+  // The two sex controls are one choice: the moment's (luck-pillar direction for the drawings) and the forecast's (the chart BaZi is read as).
+  const toForecast: Record<string, string> = { male: 'male-chart', female: 'female-chart', '': 'none' };
+  const fromForecast: Record<string, string> = { 'male-chart': 'male', 'female-chart': 'female', none: '' };
+  $('sex').addEventListener('change', () => {
+    const el = $<HTMLSelectElement>('fc-sex');
+    el.value = toForecast[$<HTMLSelectElement>('sex').value] ?? 'none';
+    el.dispatchEvent(new Event('input'));
+  });
+  $('fc-sex').addEventListener('input', () => {
+    $<HTMLSelectElement>('sex').value = fromForecast[$<HTMLSelectElement>('fc-sex').value] ?? '';
+    update();
+  });
   $('theme').addEventListener('click', () => {
     state.theme = state.theme === 'auto' ? 'dark' : state.theme === 'dark' ? 'light' : 'auto';
     if (state.theme === 'auto') delete document.documentElement.dataset.theme;
@@ -325,5 +341,11 @@ function wire(): void {
 
 fillStatic();
 loadSample('j2000');
+const forecastPage = initForecast({
+  readMoment,
+  conventions: () => state.conventions,
+  uncertaintyMinutes: () => Number($<HTMLInputElement>('uncertainty').value) || 0,
+});
 wire();
 update();
+forecastPage.schedule();

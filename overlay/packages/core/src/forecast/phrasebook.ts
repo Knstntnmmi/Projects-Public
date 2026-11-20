@@ -1,0 +1,341 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
+/**
+ * The phrasebook: every word the forecast layer says on its own account lives in this
+ * file. (The rule sentences come from the rule files; they are not rewritten.) Keeping
+ * the words in one place is what lets one test forbid the words that claim more than a
+ * rule says: likely, probably, chance, percent, probability, confidence and will.
+ */
+import type { Direction, LevelId, ReadingWord, Stage, Tally, Topic, Tradition } from './types.ts';
+
+export const BANNED_WORDS = /\b(likely|probably|chances?|percent(age)?|probabilit(y|ies)|confiden(ce|t)|will)\b|%/i;
+/** Wording about death or diagnosis, which health sentences never carry. */
+export const MORTALITY_WORDS = /\b(death|dead|die[sd]?|dying|mortal\w*|fatal\w*|diagnos\w*|disease\w*|cancer|terminal)\b/i;
+
+/**
+ * Rule templates are data and are never rewritten here. These rules carry a word the
+ * health test would refuse, in a negated sentence; they are listed so that the exception
+ * is one visible line and any new one fails the test.
+ */
+export const KNOWN_TEMPLATE_EXCEPTIONS: Readonly<Record<string, string>> = {
+  'parashari.dasha-lord-2nd-7th-maraka': 'the template says the strain is "not a prediction of death"; the word occurs only in that negation',
+};
+
+export const bannedIn = (text: string): string | null => BANNED_WORDS.exec(text)?.[0] ?? null;
+
+export type DisplayWord = ReadingWord | 'active';
+
+export const WORD: Readonly<Record<DisplayWord, string>> = {
+  supports: 'supports',
+  cautions: 'cautions',
+  mixed: 'mixed',
+  active: 'active',
+  'nothing-said': 'nothing said',
+};
+
+/** The word a single rule's direction is shown with. */
+export function directionWord(d: Direction): Exclude<DisplayWord, 'nothing-said'> {
+  return d === 'favourable' ? 'supports' : d === 'unfavourable' ? 'cautions' : d === 'mixed' ? 'mixed' : 'active';
+}
+
+/** The verb of a summary sentence, for one speaking group and for several; "caution wealth" reads badly, so cautions get a phrase. */
+export const SUMMARY_VERB: Readonly<Record<'supports' | 'cautions', { one: string; many: string }>> = {
+  supports: { one: 'supports', many: 'support' },
+  cautions: { one: 'advises caution for', many: 'advise caution for' },
+};
+
+export const TRADITION_NAME: Readonly<Record<Tradition, string>> = {
+  bazi: 'BaZi',
+  vedic: 'Vedic astrology',
+  iching: 'the I Ching',
+  western: 'Western astrology',
+};
+
+export const TOPIC_LABEL: Readonly<Record<Topic, string>> = {
+  wealth: 'wealth',
+  career: 'career',
+  relationships: 'relationships',
+  health: 'health',
+  learning: 'learning',
+  'home-travel': 'home and travel',
+  general: 'life in general',
+};
+
+const TOPIC_PHRASE: Readonly<Record<Topic, string>> = {
+  wealth: 'money',
+  career: 'work and standing',
+  relationships: 'relationships',
+  health: 'health, as tendencies',
+  learning: 'learning',
+  'home-travel': 'home and travel',
+  general: 'life in general',
+};
+
+export const STAGE_PLAIN: Readonly<Record<Stage, string>> = {
+  'natal-promise': 'the natal chart',
+  'period-lord': 'the period lord',
+  activation: 'the trigger',
+  modifier: 'a modifier',
+};
+
+/** The plain name of each level. These are techniques a practitioner would name, not mechanisms. */
+export const LEVEL_LABEL: Readonly<Record<LevelId, string>> = {
+  natal: 'natal chart',
+  'bazi-luck': 'BaZi luck pillar',
+  'bazi-year': 'BaZi year pillar',
+  'vedic-maha': 'Vedic mahadasha',
+  'vedic-antar': 'Vedic antardasha',
+  'saturn-moon': 'Saturn from the Moon',
+  'jupiter-moon': 'Jupiter from the Moon',
+  'western-profection': 'Western annual profection',
+  'western-firdaria': 'Western firdaria',
+  'western-solar-return': 'Western solar return',
+  'western-transits': 'Western transits',
+  'iching-period': 'I Ching, read by period',
+};
+
+export const NOTE = {
+  rulesConflict: 'rules conflict',
+  topicActive: 'topic active',
+  ruleStatesMixed: 'a rule here states a mixed result',
+  oneGroupTwoVerdicts: 'the techniques inside this one group give different signs',
+  twoTraditionsOneGroup: 'two traditions run on the same time scale, so they count as one group',
+  onePlanetsMotion: "two traditions read the same planet's movement, so they count once",
+  sameFactAlso: 'same fact, also reported by',
+  balancedChart: 'the chart is balanced, so the favourable-element method names no favourite',
+  needsLuckDirection: 'needs the sex the chart is read as, which fixes the direction of the luck pillars',
+  noLuckPillarYet: (year: number): string => `the first luck pillar begins in ${year}; no pillar covers the years before`,
+  needsSexConvention: 'needs the sex the chart is read as',
+  needsBirthTime: 'needs a birth time that is known well enough',
+} as const;
+
+export const BADGE = {
+  ungated: 'no promise rule applied',
+  experimental: 'experimental',
+  conventionDependent: 'convention-dependent',
+  health: 'a tendency only',
+  unopened: 'source not opened',
+} as const;
+
+export const GATE_UNGATED = 'ungated: no promise rule applied';
+
+export const TEXT = {
+  notTestedYet: 'Not tested yet.',
+  noQuotation: 'no quotation shown (translation)',
+  sourceNotOpened: 'source not opened',
+  agreementA: 'Agreement means that techniques counted on different time scales gave the same sign for the same topic and year.',
+  agreementB:
+    'It does not say that the outcome follows: nobody has yet checked whether years where groups agree differ from other years, and all the traditions read one birth moment, so a wrong birth time moves them together.',
+  splitNote: "A cell split in colours shows how many of that technique's rules say each thing. Mixed also appears where a rule itself states a mixed result.",
+  agreementC: 'Full text: how agreement is read.',
+  agreementLink: '#how-agreement-is-read',
+  withheldWestern: 'withheld pending verification',
+  needsThreeGroups: 'Agreement needs at least three independent groups to say anything; showing the signals only.',
+  natalPromiseHeading: 'The natal promise: what the chart itself says, without dates',
+  ichingByPeriod: 'The I Ching is read by period, not by year: ask for a window of at most 62 days to see its character, which includes the lines that name goods or an audience with a superior.',
+  silentHeading: 'Silent',
+  nothingAtAnyLevel: 'No level says anything.',
+  experimentalWindow: 'The I Ching is experimental: its grades are a modern construction on the text.',
+  westernWindow: 'These are the days on which a planet passes over a point of the birth chart or beholds it, as Lilly describes it from an ephemeris; he calls them only reputed. Not tested yet.',
+  scorecardNote1: 'Events people record are not a random sample.',
+  scorecardNote2:
+    'The rules were not tuned to your events, but you may have chosen what to enter after seeing forecasts, which is why only events entered after the freeze count.',
+  scorecardNote3: 'This is retrodiction unless the forecasts were frozen first.',
+  scorecardNote4: 'A hit rate does not tell you how the next call turns out.',
+  scorecardNote5: "Lackner describes, in his lecture of 6 June 2017, at 1:01, a diary in which a space was left to check an oracle later. The scorecard is the project's own design, and nothing is scored yet.",
+  scorecardNote6:
+    'Lackner (2021) writes that a forecaster whose forecast fails usually faces no consequence, and that errors are admitted in form while the core claim is rarely questioned.',
+  baziSharedChartNote:
+    "Under the default settings, births in the same double-hour of the civil clock (the Zi double-hour, 23:00 to 01:00, counts as one, so 23:30 and 00:30 on the next date share it), on the same side of the month's turn, have the same four pillars. The project's own count of possible sets of four pillars is 518 400 (60 year pillars x 12 months x 60 days x 12 double-hours).",
+} as const;
+
+/**
+ * "3 rules support, 1 cautions": the verb agrees with the count, and only the first clause names
+ * the rules. A pointer (a statement that only marks the topic, without a direction) is not part
+ * of it: pointers are counted apart, with their own label.
+ */
+export function tallyText(t: Tally): string {
+  const clauses: Array<[number, string, string]> = [
+    [t.supports, 'support', 'supports'],
+    [t.cautions, 'caution', 'cautions'],
+    [t.mixed, 'are stated as mixed', 'is stated as mixed'],
+  ];
+  const parts: string[] = [];
+  for (const [n, many, one] of clauses) {
+    if (n === 0) continue;
+    const noun = parts.length === 0 ? (n === 1 ? ' rule' : ' rules') : '';
+    parts.push(`${n}${noun} ${n === 1 ? one : many}`);
+  }
+  return parts.length === 0 ? 'no rule speaks' : parts.join(', ');
+}
+
+/** The label of the group of pointers of one level in one year: how many, and what a pointer is. */
+export function pointerLabel(count: number): string {
+  return count === 1
+    ? '1 note without a direction: a statement that marks the topic or says where a count reaches'
+    : `${count} notes without a direction: statements that mark the topic or say where a count reaches`;
+}
+
+/** The words of the four groups of a year headline, in the order they are said. */
+export const HEADLINE_HEADING = { supports: 'Supports', cautions: 'Cautions', mixed: 'Mixed', silent: 'Silent' } as const;
+
+/**
+ * What a mixed level shows beside its name: the tally, except where it would only repeat the
+ * heading (one rule that is stated as mixed itself).
+ */
+export function mixedLevelPhrase(label: string, tally: Tally): string {
+  const text = tallyText(tally);
+  return tally.supports === 0 && tally.cautions === 0 && tally.mixed === 1 ? label : `${label} (${text})`;
+}
+
+/**
+ * The year headline: the level labels grouped by word, in this order and form: "Supports: A, B.
+ * Cautions: C. Mixed: D (3 rules support, 1 cautions), E. Silent: F." A group with no level is left
+ * out. Where no level says anything the headline says so, then names the silent ones.
+ */
+export function yearHeadline(groups: { supports: readonly string[]; cautions: readonly string[]; mixed: readonly string[]; silent: readonly string[] }): string {
+  const parts: string[] = [];
+  for (const k of ['supports', 'cautions', 'mixed'] as const) if (groups[k].length > 0) parts.push(`${HEADLINE_HEADING[k]}: ${groups[k].join(', ')}.`);
+  if (parts.length === 0) parts.push(TEXT.nothingAtAnyLevel);
+  if (groups.silent.length > 0) parts.push(`${HEADLINE_HEADING.silent}: ${groups.silent.join(', ')}.`);
+  return parts.join(' ');
+}
+
+/** A note as a sentence: capital first letter, full stop last. */
+export const sentenceOf = (note: string): string => `${note.charAt(0).toUpperCase()}${note.slice(1)}.`;
+
+/** The line that lists a branch of a bound rule that is left out, in the not-evaluated list. */
+export function notEvaluatedBranchLine(branch: string, reason: string): string {
+  return `only part of this rule is evaluated; not evaluated: ${branch}. ${reason}`;
+}
+
+/** The fixed line that stands in for a period-read tradition in the year view. */
+export function periodReadLine(tradition: Tradition): string {
+  return tradition === 'iching' ? TEXT.ichingByPeriod : `${TRADITION_NAME[tradition]} is read by period, not by year.`;
+}
+
+export function foldedModifiersLine(tradition: Tradition, count: number): string {
+  return `${TRADITION_NAME[tradition]}: ${count} ${count === 1 ? 'modifier does' : 'modifiers do'} not attach to any statement shown.`;
+}
+
+export function windowTooLongMessage(days: number, limit: number): string {
+  return `A window of ${Math.round(days * 10) / 10} days is too long: the I Ching is read by period, so ask for at most ${limit} days.`;
+}
+
+export function sensitivityText(minutes: number): string {
+  return `would change if the birth time were ${minutes} minutes off`;
+}
+
+/** What is said about the birth time under a forecast: which cells would turn, that none would, or that it was not checked. */
+export const SENSITIVITY_NOT_CHECKED = 'Birth-time sensitivity is not checked: give how many minutes the birth time may be off, and the cells that would change are listed.';
+export const sensitivityNone = (minutes: number): string => `No cell of this grid would change if the birth time were ${minutes} minutes off.`;
+export const sensitivityLine = (label: string, years: readonly number[], minutes: number): string => `${label}, ${joinYears(years)}: ${sensitivityText(minutes)}.`;
+const joinYears = (years: readonly number[]): string => (years.length <= 2 ? years.join(' and ') : `${years.slice(0, -1).join(', ')} and ${years[years.length - 1]}`);
+
+export function listIntro(topic: Topic): string {
+  return `Each line is something a named rule says about ${TOPIC_PHRASE[topic]} in this period, with its source. ${TEXT.notTestedYet}`;
+}
+
+export function rulesLine(available: number, withheld: number): string {
+  return `${available} rules available, ${withheld} withheld because their source could not be checked`;
+}
+
+export function coverageNote(tradition: Tradition, topic: Topic, bound: number): string {
+  return `${TRADITION_NAME[tradition]}: ${bound} bound ${bound === 1 ? 'rule' : 'rules'} for ${TOPIC_LABEL[topic]}.`;
+}
+
+export function withheldTraditionNote(tradition: Tradition, count: number): string {
+  return `${TRADITION_NAME[tradition]}: ${count} rules ${TEXT.withheldWestern}.`;
+}
+
+export function supportsFromCautionsFrom(fav: Stage[], unf: Stage[]): string {
+  const plain = (xs: Stage[]): string => [...new Set(xs)].map((s) => STAGE_PLAIN[s]).join(' and ');
+  return `supports from ${plain(fav)}, cautions from ${plain(unf)}`;
+}
+
+export const VERDICT_TEXT = {
+  'agree-supports': 'agree: supports',
+  'agree-cautions': 'agree: cautions',
+  contradiction: 'one group supports and another cautions',
+  single: 'one group speaks',
+  silent: 'nothing said',
+  'no-agreement': 'groups speak but no two give the same sign',
+} as const;
+
+/**
+ * Why agreement is rare, in plain words, naming the independent groups actually present for
+ * this nativity: everything counted from the birth moment is one group, and each planet whose
+ * real motion is read is one more.
+ */
+export function groupsSentence(names: readonly string[]): string {
+  const base = 'Everything counted from the birth moment is one group, and each planet whose real motion is read is one more, so agreement needs different groups to say the same thing';
+  if (names.length === 0) return `${base}; no group has anything to say for this nativity.`;
+  return `${base}. For this nativity the independent groups are: ${names.join('; ')}.`;
+}
+
+export function baselineLine(found: number, expected: number, cellsLooked: number, slices: number): string {
+  const base = `found ${found} agreeing ${found === 1 ? 'year' : 'years'}; about ${expected.toFixed(1)} would be expected if the groups were unrelated; ${cellsLooked} ${cellsLooked === 1 ? 'topic' : 'topics'} looked at on this page`;
+  return slices <= 12 ? `${base}. With only ${slices} years this shows nothing by itself.` : `${base}.`;
+}
+
+export function summarySentence(year: number, topic: Topic, word: 'supports' | 'cautions', agreeing: number, speaking: number, names: string[], silent: string[]): string {
+  const head = `In ${year}, ${agreeing} of ${speaking} speaking ${speaking === 1 ? 'group' : 'groups'} ${speaking === 1 ? SUMMARY_VERB[word].one : SUMMARY_VERB[word].many} ${TOPIC_LABEL[topic]} (${names.join(', ')})`;
+  return silent.length ? `${head}; nothing was said by ${silent.join(' and ')}.` : `${head}.`;
+}
+
+export function groupSplitSentence(year: number, topic: Topic, groups: Array<{ name: string; word: ReadingWord }>): string {
+  return `In ${year}, the groups differ on ${TOPIC_LABEL[topic]}: ${groups.map((g) => `${g.name} ${WORD[g.word]}`).join('; ')}.`;
+}
+
+export function silenceSentence(tradition: Tradition, topic: Topic, year: number): string {
+  return `No rule of ${TRADITION_NAME[tradition]} fired for ${TOPIC_LABEL[topic]} in ${year}.`;
+}
+
+export function signalLine(sentence: string, word: DisplayWord, topic: Topic): string {
+  return topic === 'health' ? `${sentence} (${WORD[word]}; ${BADGE.health})` : `${sentence} (${WORD[word]})`;
+}
+
+/** Every string this file can say, for the banned-word test. */
+export function allPhrases(): string[] {
+  const out: string[] = [];
+  const walk = (x: unknown): void => {
+    if (typeof x === 'string') out.push(x);
+    else if (x && typeof x === 'object') Object.values(x).forEach(walk);
+  };
+  [WORD, SUMMARY_VERB, TRADITION_NAME, TOPIC_LABEL, TOPIC_PHRASE, STAGE_PLAIN, NOTE, BADGE, TEXT, VERDICT_TEXT, GATE_UNGATED].forEach(walk);
+  for (const t of Object.keys(TOPIC_LABEL) as Topic[]) out.push(listIntro(t), coverageNote('bazi', t, 3));
+  out.push(
+    rulesLine(5, 2),
+    withheldTraditionNote('western', 18),
+    supportsFromCautionsFrom(['activation'], ['natal-promise']),
+    baselineLine(2, 1.2, 3, 10),
+    baselineLine(2, 1.2, 3, 30),
+    summarySentence(2033, 'wealth', 'supports', 2, 2, ['a', 'b'], ['c']),
+    summarySentence(2033, 'wealth', 'cautions', 1, 1, ['a'], []),
+    silenceSentence('western', 'wealth', 2034),
+    groupSplitSentence(2036, 'wealth', [{ name: 'a', word: 'supports' }, { name: 'b', word: 'mixed' }]),
+    signalLine('x', 'supports', 'health'),
+    signalLine('x', 'active', 'wealth'),
+    sensitivityText(30),
+    tallyText({ supports: 3, cautions: 1, mixed: 0, active: 0 }),
+    tallyText({ supports: 1, cautions: 1, mixed: 2, active: 1 }),
+    tallyText({ supports: 0, cautions: 2, mixed: 1, active: 3 }),
+    tallyText({ supports: 0, cautions: 0, mixed: 0, active: 0 }),
+    pointerLabel(1),
+    pointerLabel(12),
+    mixedLevelPhrase('x', { supports: 3, cautions: 1, mixed: 0, active: 0 }),
+    mixedLevelPhrase('x', { supports: 0, cautions: 0, mixed: 1, active: 0 }),
+    yearHeadline({ supports: ['x', 'y'], cautions: ['z'], mixed: ['w (1 rule supports)'], silent: ['v'] }),
+    yearHeadline({ supports: [], cautions: [], mixed: [], silent: ['v'] }),
+    groupsSentence([]),
+    groupsSentence(['clocks counted from the birth moment', 'Jupiter (sidereal signs)']),
+    notEvaluatedBranchLine('a branch', 'a reason'),
+    periodReadLine('iching'),
+    periodReadLine('bazi'),
+    foldedModifiersLine('vedic', 1),
+    foldedModifiersLine('vedic', 7),
+    windowTooLongMessage(90, 62),
+  );
+  Object.values(LEVEL_LABEL).forEach((l) => out.push(l));
+  return out;
+}

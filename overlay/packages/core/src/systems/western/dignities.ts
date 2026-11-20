@@ -124,7 +124,7 @@ export function holds(planet: Planet, longitude: number, isDayChart: boolean): s
   if (d.exaltation === planet) out.push('exaltation');
   if (d.triplicity[isDayChart ? 0 : 1] === planet) out.push('triplicity');
   else if (d.triplicity[2] === planet) out.push('triplicity (participating)');
-  if (d.bound === planet) out.push('bound');
+  if (d.bound === planet) out.push('bound (Egyptian)');
   if (d.face === planet) out.push('face');
   if (d.detriment === planet && d.domicile !== planet) out.push('detriment');
   if (d.fall === planet) out.push('fall');

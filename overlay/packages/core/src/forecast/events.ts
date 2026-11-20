@@ -2,10 +2,11 @@
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * The data model of the scorecard (specification, section 8): events a person records, and
- * forecasts frozen and hashed before the events are entered. Scoring is the next phase;
- * nothing here compares an event with a reading.
+ * forecasts frozen and hashed before the events are entered. Nothing here compares an event
+ * with a statement; scorecard.ts does that.
  *
- * An event has no free-text field, so a session file cannot carry a note about a person.
+ * An event has one free-text field, a private note. It is kept in the session file only if the
+ * person writes one, it is capped in length, and nothing in the engine ever reads it.
  */
 import type { Conventions } from '../conventions.ts';
 import type { CivilTime, Place } from '../substrate/time.ts';
@@ -25,6 +26,8 @@ export interface ForecastEvent {
   valence: 'good' | 'bad';
   /** When the person entered it. Only events entered after a freeze can be scored against it. */
   enteredAtUtcMs: number;
+  /** A private note, never interpreted and never printed by the scorecard. Absent unless the person wrote one. */
+  note?: string;
 }
 
 export interface Nativity {
@@ -90,7 +93,7 @@ export function freezeForecast(result: ForecastResult, nativity: Nativity, froze
   };
 }
 
-/** Events entered after the freeze can count; earlier ones are shown but marked not scored. */
+/** The record of when an event was entered against a freeze. Scoring itself goes by the event's date (see scorecard.ts). */
 export function splitByFreeze(events: readonly ForecastEvent[], frozen: FrozenForecast): { counted: ForecastEvent[]; enteredBefore: ForecastEvent[] } {
   return {
     counted: events.filter((e) => e.enteredAtUtcMs > frozen.frozenAtUtcMs),

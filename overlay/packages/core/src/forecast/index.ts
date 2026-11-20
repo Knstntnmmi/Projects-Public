@@ -31,3 +31,6 @@ export * from './narrate.ts';
 export * from './events.ts';
 export * from './session.ts';
 export * from './audit.ts';
+export * from './scorecard.ts';
+export * from './scorecardText.ts';
+export * from './sessionEdit.ts';

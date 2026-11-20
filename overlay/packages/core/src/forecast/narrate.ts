@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * The written forecast (specification, section 7), by calendar year. Every statement is said

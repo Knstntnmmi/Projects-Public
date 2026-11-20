@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * Scoring a whole session with the real rules: a frozen forecast is re-evaluated from the nativity and

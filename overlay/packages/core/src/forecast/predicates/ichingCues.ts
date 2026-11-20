@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * The cue rules of the I Ching tradition map a Zhouyi statement to a topic only where the

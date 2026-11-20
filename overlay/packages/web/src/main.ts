@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * The web shell. It holds the form state in memory, recomputes everything locally on
@@ -79,7 +79,7 @@ function fillStatic(): void {
     ).join('') +
     '</tbody>';
 
-  $('credit').innerHTML = `${esc(CREDIT)}. <a href="${esc(ATTRIBUTION.source)}" rel="noreferrer">Source</a>. You may reuse this under the licence only if this credit stays and your changes are published under the same terms.`;
+  $('credit').innerHTML = `${esc(CREDIT)}. <a href="${esc(ATTRIBUTION.source)}" rel="noreferrer">Source</a>. Free for noncommercial use under the PolyForm Noncommercial License 1.0.0 if this credit stays; commercial use needs the owner's permission.`;
 }
 
 function loadSample(id: string): void {

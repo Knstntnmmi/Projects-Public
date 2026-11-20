@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * BaZi (Four Pillars), computed from the substrate rather than from a calendar table.

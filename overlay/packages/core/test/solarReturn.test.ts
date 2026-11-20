@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /** The solar return on the sample moments: the instant, the chart for the birth place, and the agreement with the engine's profection years. */
 import { describe, expect, it } from 'vitest';

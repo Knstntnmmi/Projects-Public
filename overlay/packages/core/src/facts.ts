@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * The facts document: everything the engine can say about one moment, as plain data,
@@ -45,11 +45,11 @@ import {
 import { lahiriAyanamsa, nakshatraOf, vimshottari } from './systems/vedic/index.ts';
 import { chart, firdaria, formatLongitude, planetaryHour, profections } from './systems/western/index.ts';
 
-/** Who made this, and under what terms it may be reused. The licence requires that this credit be kept. */
+/** Who made this, and under what terms it may be reused. The licence notice asks that this credit be kept. */
 export const ATTRIBUTION = {
   author: 'Knstntnmmi',
   source: 'https://github.com/Knstntnmmi/Projects-Public',
-  license: 'AGPL-3.0-or-later',
+  license: 'PolyForm-Noncommercial-1.0.0',
   year: 2026,
 } as const;
 

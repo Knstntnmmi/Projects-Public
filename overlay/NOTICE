@@ -1,53 +1,58 @@
-overlay
-Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi>
+Required Notice: Copyright © 2026 Knstntnmmi (https://github.com/Knstntnmmi/Projects-Public)
 Source: https://github.com/Knstntnmmi/Projects-Public (directory "overlay")
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU Affero General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option) any
-later version. It is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE. See the file LICENSE for the full terms.
+This work is licensed under the PolyForm Noncommercial License 1.0.0. The full
+terms are in the file LICENSE and at
+https://polyformproject.org/licenses/noncommercial/1.0.0
+
+This is a source-available licence, free for noncommercial use. It is not an
+open-source licence.
 
 What that means in plain words
 ------------------------------
 
-You may read, run, study, change and share this work. If you share it, or a
-work built on it, or let people use it over a network (for example as a
-website or an API), you must:
+You may read, run, study, change and share this work for any noncommercial
+purpose, such as personal use, research, study, hobby projects, and use by
+charitable, educational and public-interest organizations, as the licence
+defines them. If you share it, or a work built on it, you must give everyone
+who receives it a copy of the licence (or its address above) and keep the
+"Required Notice:" line above, unaltered, with it.
 
-  1. keep the copyright and credit lines above, unaltered, wherever they
-     appear;
-  2. give those people the complete corresponding source of your version; and
-  3. license your version under these same terms.
+Commercial use is not covered by the licence. If you want to use this work
+commercially, ask the owner for permission by opening an issue on the
+repository.
 
-You may not fold this work into something whose source you keep closed.
+Credit that must be kept
+------------------------
 
-Additional terms under section 7(b) of the GNU AGPL, version 3
---------------------------------------------------------------
-
-The author attributions below are "reasonable legal notices or author
-attributions" within the meaning of section 7(b). They must be preserved, with
-the author's name and the source address unchanged, in the work and in every
-work based on it:
+The "Required Notice:" line above is the credit the licence asks you to pass
+on. Please also keep, and do not remove or replace, these attributions in the
+work and in every copy of it:
 
   a. the "SPDX-License-Identifier" and "Copyright (C) 2026 Knstntnmmi" lines
      at the head of each source file;
-  b. the credit line that the interactive web page displays (its footer),
-     which forms part of that interface's Appropriate Legal Notices;
+  b. the credit line that the interactive web page displays (its footer);
   c. the code that writes the credit line into each drawing the program
      produces (visibly and as metadata), and the "author", "source" and
      "license" fields of the facts document the program produces.
 
-You may add your own credit beside these for your own changes. You may not
-remove these, replace the author's name, or present the work as originally
-yours.
+You may add your own credit beside these for your own changes. Do not present
+the work as originally yours.
 
 The author is identified by the handle above and by nothing else. Please do
 not attach any other name to this work.
 
+Earlier versions
+----------------
+
+Versions published before this change were offered under the GNU Affero General
+Public License, version 3 or later (AGPL-3.0-or-later), and remain available
+under it to those who received them.
+
 Third-party components
 ----------------------
+
+Third-party material keeps its own terms, which this licence does not change.
 
 astronomy-engine, by Don Cross, MIT License. Used for the positions of the
 Sun, Moon and planets, sidereal time and rise and set times.
@@ -55,3 +60,8 @@ Sun, Moon and planets, sidereal time and rise and set times.
 tyme4ts, by 6tail, MIT License. Used only by the test suite, as an
 independent implementation to check the Chinese calendar results against. It
 is not part of the distributed program.
+
+The transcription of the characters of the Zhouyi in the code was taken from
+Chinese Wikisource and is credited to it (Creative Commons
+Attribution-ShareAlike 4.0, CC BY-SA 4.0, where any right subsists in the
+transcription); see docs/SOURCES.md.

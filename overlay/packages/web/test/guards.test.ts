@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /**
  * Guards for the promises made in PRIVACY.md and NOTICE. They read the repository
@@ -94,16 +94,16 @@ describe('attribution and licence', () => {
     const headed = files.filter((p) => /\.(ts|css)$/.test(p) || rel(p) === 'packages/web/index.html');
     for (const p of headed) {
       const head = readFileSync(p, 'utf8').slice(0, 400);
-      expect(head, rel(p)).toContain('SPDX-License-Identifier: AGPL-3.0-or-later');
+      expect(head, rel(p)).toContain('SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0');
       expect(head, rel(p)).toContain('Copyright (C) 2026 Knstntnmmi');
     }
   });
 
   it('the licence, notice and package metadata agree', () => {
-    expect(readFileSync(join(root, 'LICENSE'), 'utf8')).toContain('GNU AFFERO GENERAL PUBLIC LICENSE');
+    expect(readFileSync(join(root, 'LICENSE'), 'utf8')).toContain('PolyForm Noncommercial License 1.0.0');
     expect(readFileSync(join(root, 'NOTICE'), 'utf8')).toContain('Knstntnmmi');
     for (const p of files.filter((f) => f.endsWith('package.json'))) {
-      expect(JSON.parse(readFileSync(p, 'utf8')).license, rel(p)).toBe('AGPL-3.0-or-later');
+      expect(JSON.parse(readFileSync(p, 'utf8')).license, rel(p)).toBe('PolyForm-Noncommercial-1.0.0');
     }
   });
 });

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "One moment, every system, one shared axis: BaZi, I Ching calendars, traditional Western astrology and more, overlaid on a common ecliptic and a common timeline.",
-  "license": "AGPL-3.0-or-later",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "type": "module",
   "engines": {
     "node": ">=22.18"

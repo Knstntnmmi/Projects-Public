@@ -1,10 +1,24 @@
 # overlay
 
-For one moment and place, Overlay computes the BaZi chart (the Chinese Four Pillars), the I Ching calendars of the year, and Western and Vedic astrology, all from one astronomical calculation. For a span of years it also states what four traditions' own published rules say about a topic, with the rule and the source behind each statement.
+Run the command under Try it below. It reads the constructed moment j2000, the topic wealth and the years 2026 to 2035, and it prints a grid with one row for each technique and one column for each year. This is one row:
 
-Read more: [forecast guide](overlay/docs/FORECAST.md), [scholarship](overlay/docs/SCHOLARSHIP.md), [glossary](overlay/docs/GLOSSARY.md).
+```
+Jupiter from the Moon         ~    -    -    -    ~    ~    -    .    .    .
+```
 
-You give it a birth moment and place, a span of years and a topic, money first. It gives back, technique by technique and year by year, what the rules of BaZi, Vedic astrology (nakshatras and dashas), Western astrology after William Lilly (1647) and the I Ching, read by period, say about that topic. Each statement names its rule and its source.
+The first cell is 2026. The key above the grid reads "~ mixed". Add `--full` and look under 2026:
+
+```
+Jupiter from the Moon: mixed (rules conflict); 1 rule supports, 1 cautions
+  supports: Jupiter transits the 9th sign from your natal Moon from 2025-12-05 to 2026-06-01; the 9th is a favourable house.
+  cautions: Jupiter transits the 10th sign from your natal Moon from 2026-06-01 to 2026-10-31; the 10th is an unfavourable house.
+```
+
+These are two rules of one Vedic technique, and the output names both under their lines. The first is parashari.jupiter-transit-good. It cites the Phaladeepika, chapter 26, verses 2, 7 and 18 to 20, and B. V. Raman, Hindu Predictive Astrology, pages 419 to 420. The second is parashari.jupiter-transit-other. It cites the Phaladeepika, chapter 26, verses 18 to 20. They disagree because Jupiter passes from the 9th sign to the 10th, counted from the natal Moon, on 1 June 2026.
+
+The output stops there. It gives no total for 2026 and picks neither rule. Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
+
+Calculators usually print the charts of several traditions side by side, and a reading arrives without the rule behind it. Here each line carries its rule and its source, so two lines that disagree can be read against their books.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035: one row per technique, one column per year, each cell marked supports, cautions, mixed or nothing said.](overlay/docs/img/forecast-grid.svg)
 
@@ -12,9 +26,7 @@ Each row is one technique and each column one year. A cell shows the word that t
 
 Every statement names its rule and its source, and the settings that change an answer, such as which time scale (civil or solar) is used for the birth hour, are shown with what each would change. All the systems read one astronomical base, so their boundaries can be compared, and nothing you type leaves the browser.
 
-Each line is what a named rule of one tradition says about this period, with its source. Nobody has tested these statements against outcomes yet.
-
-A reader can count them against the reader's own events: freeze a forecast, record events afterwards, and read plain counts (held, did not hold, not scored, said nothing) with a comparison against shuffled dates. A forecast frozen after an event is never counted against it. See `overlay score` in [overlay/README.md](overlay/README.md) and the [sample scorecard](overlay/docs/SAMPLE-SCORECARD.md), made from invented events.
+A reader can count the statements against the reader's own events: freeze a forecast, record events afterwards, and read plain counts (held, did not hold, not scored, said nothing) with a comparison against shuffled dates. A forecast frozen after an event is never counted against it. See `overlay score` in [overlay/README.md](overlay/README.md) and the [sample scorecard](overlay/docs/SAMPLE-SCORECARD.md), made from invented events.
 
 ## Try it
 

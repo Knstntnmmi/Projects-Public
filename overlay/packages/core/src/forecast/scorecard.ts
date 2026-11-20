@@ -74,7 +74,7 @@ export interface EventResult {
   topic: Topic;
   valence: ForecastEvent['valence'];
   precision: ForecastEvent['precision'];
-  window: Span;
+  dates: Span;
   status: EventStatus;
   /** The hash of the forecast the event was scored against; null when it was not scored. */
   forecastHash: string | null;
@@ -162,18 +162,18 @@ function poolFor(result: ForecastResult, topic: Topic): Pool {
   return { dated: list.dated, pointers: list.pointers, natal: [...list.natal, ...list.natalPointers], covered };
 }
 
-function pairsFor(pool: Pool, window: Span, valence: ForecastEvent['valence']): { pairs: Pair[]; silent: SilentTechnique[] } {
+function pairsFor(pool: Pool, dates: Span, valence: ForecastEvent['valence']): { pairs: Pair[]; silent: SilentTechnique[] } {
   const pairs: Pair[] = [];
   const spoke = new Set<LevelId>();
   const make = (e: StatementEntry, outcome: Outcome, reason: NotScoredReason | null): Pair => ({ signalId: e.signalId, ruleId: e.ruleId, tradition: e.tradition, level: e.level, outcome, reason });
   for (const e of pool.dated) {
-    if (e.fullStartUtcMs === null || e.fullEndUtcMs === null || !overlaps(window, e.fullStartUtcMs, e.fullEndUtcMs)) continue;
+    if (e.fullStartUtcMs === null || e.fullEndUtcMs === null || !overlaps(dates, e.fullStartUtcMs, e.fullEndUtcMs)) continue;
     spoke.add(e.level);
     if (e.word === 'supports' || e.word === 'cautions') pairs.push(make(e, outcomeOf(e.word, valence), null));
     else pairs.push(make(e, 'not-scored', 'mixed'));
   }
   for (const e of pool.pointers) {
-    if (e.fullStartUtcMs === null || e.fullEndUtcMs === null || !overlaps(window, e.fullStartUtcMs, e.fullEndUtcMs)) continue;
+    if (e.fullStartUtcMs === null || e.fullEndUtcMs === null || !overlaps(dates, e.fullStartUtcMs, e.fullEndUtcMs)) continue;
     spoke.add(e.level);
     pairs.push(make(e, 'not-scored', 'no-direction'));
   }
@@ -245,9 +245,9 @@ export function scoreAgainst(events: readonly ForecastEvent[], forecasts: Readon
   const results: EventResult[] = [];
   const used: Array<{ event: EventResult; forecast: { frozen: FrozenForecast; result: ForecastResult } }> = [];
   for (const e of events) {
-    const window = eventWindow(e);
-    const base = { eventId: e.id, topic: e.topic, valence: e.valence, precision: e.precision, window, forecastHash: null, pairs: [], silent: [] };
-    const early = ordered.filter((f) => f.frozen.frozenAtUtcMs < window.startUtcMs);
+    const dates = eventWindow(e);
+    const base = { eventId: e.id, topic: e.topic, valence: e.valence, precision: e.precision, dates, forecastHash: null, pairs: [], silent: [] };
+    const early = ordered.filter((f) => f.frozen.frozenAtUtcMs < dates.startUtcMs);
     if (ordered.length === 0) {
       results.push({ ...base, status: 'no-frozen-forecast' });
       continue;
@@ -256,7 +256,7 @@ export function scoreAgainst(events: readonly ForecastEvent[], forecasts: Readon
       results.push({ ...base, status: 'frozen-too-late' });
       continue;
     }
-    const covering = early.filter((f) => f.frozen.span.startUtcMs <= window.startUtcMs && window.endUtcMs <= f.frozen.span.endUtcMs);
+    const covering = early.filter((f) => f.frozen.span.startUtcMs <= dates.startUtcMs && dates.endUtcMs <= f.frozen.span.endUtcMs);
     if (covering.length === 0) {
       results.push({ ...base, status: 'outside-span' });
       continue;
@@ -266,7 +266,7 @@ export function scoreAgainst(events: readonly ForecastEvent[], forecasts: Readon
       results.push({ ...base, status: 'not-reproducible' });
       continue;
     }
-    const { pairs, silent } = pairsFor(poolOf(usable, e.topic), window, e.valence);
+    const { pairs, silent } = pairsFor(poolOf(usable, e.topic), dates, e.valence);
     const r: EventResult = { ...base, status: 'scored', forecastHash: usable.frozen.hash, pairs, silent };
     results.push(r);
     used.push({ event: r, forecast: usable });
@@ -365,7 +365,7 @@ function compare(used: ReadonlyArray<{ event: EventResult; forecast: { frozen: F
     }
     return cache.get(key)!;
   };
-  const rows = used.map((u) => ({ pool: scorable(u), len: u.event.window.endUtcMs - u.event.window.startUtcMs, offset: u.event.window.startUtcMs - u.forecast.frozen.span.startUtcMs, room: u.forecast.frozen.span.endUtcMs - u.forecast.frozen.span.startUtcMs - (u.event.window.endUtcMs - u.event.window.startUtcMs), spanStart: u.forecast.frozen.span.startUtcMs, good: u.event.valence === 'good' }));
+  const rows = used.map((u) => ({ pool: scorable(u), len: u.event.dates.endUtcMs - u.event.dates.startUtcMs, offset: u.event.dates.startUtcMs - u.forecast.frozen.span.startUtcMs, room: u.forecast.frozen.span.endUtcMs - u.forecast.frozen.span.startUtcMs - (u.event.dates.endUtcMs - u.event.dates.startUtcMs), spanStart: u.forecast.frozen.span.startUtcMs, good: u.event.valence === 'good' }));
   const rand = seededRandom(seed);
   let atLeast = 0;
   for (let run = 0; run < runs; run++) {

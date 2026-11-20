@@ -162,3 +162,36 @@ describe('forecast privacy', () => {
     for (const p of files.map(rel).filter((x) => /packages\/[^/]+\/test\/.*\.ts$/.test(x))) expect(/\bconsole\./.test(text(join(root, p))), p).toBe(false);
   });
 });
+
+describe('scorecard page', () => {
+  const text = (p: string): string => readFileSync(join(root, p), 'utf8');
+  const page = text('packages/web/src/scorecardPage.ts');
+
+  it('keeps the session in memory and lets it leave the tab only through the one explicit save control', () => {
+    expect(page.match(/deps\.save\(/g)).toHaveLength(1);
+    expect(page).not.toMatch(/setInterval|requestIdleCallback|beforeunload|unload/);
+    const saveHandler = page.slice(page.indexOf("$('sc-save').addEventListener"));
+    expect(saveHandler.indexOf('deps.save(')).toBeGreaterThan(0);
+    expect(saveHandler.indexOf('confirm(')).toBeLessThan(saveHandler.indexOf('deps.save('));
+    // the file is read only from the control the reader presses
+    expect(page.match(/\.files\?\.\[0\]/g)).toHaveLength(1);
+    expect(page).not.toMatch(/\bnavigator\./);
+  });
+
+  it('has the Scorecard section, the two session buttons and a file input that takes only JSON', () => {
+    const html = text('packages/web/index.html');
+    expect(html).toContain('>Scorecard</h2>');
+    expect(html).toContain('>Save session file</button>');
+    expect(html).toContain('>Open session file</button>');
+    expect(html).toMatch(/id="sc-open" type="file" accept="\.json,application\/json"/);
+    expect(html.indexOf('id="scorecard"')).toBeGreaterThan(html.indexOf('id="forecast"'));
+  });
+
+  it('is described in PRIVACY.md under the names of its controls', () => {
+    const privacy = text('PRIVACY.md');
+    expect(privacy).toContain('Save session file');
+    expect(privacy).toContain('Open session file');
+    expect(privacy).toMatch(/nothing is written to (browser )?storage/i);
+  });
+});
+

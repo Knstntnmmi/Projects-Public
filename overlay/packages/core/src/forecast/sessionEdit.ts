@@ -72,7 +72,8 @@ export function nextEventId(events: readonly ForecastEvent[]): string {
   for (let i = events.length + 1; ; i++) if (!taken.has(`e${i}`)) return `e${i}`;
 }
 
-export function addEvent(session: Session, e: NewEvent, enteredAtUtcMs: number): { session: Session; event: ForecastEvent } {
+/** Adds an event. Only the session's events are read, so a caller that holds no moment yet may pass just those. */
+export function addEvent<S extends Pick<Session, 'events'>>(session: S, e: NewEvent, enteredAtUtcMs: number): { session: S; event: ForecastEvent } {
   if (session.events.length >= MAX_EVENTS) throw new SessionEditError(`a session holds at most ${MAX_EVENTS} events`);
   const { year, month, day } = e.date;
   if (!Number.isInteger(year) || year < 1 || year > 3000) throw new SessionEditError('the year must lie between 1 and 3000');

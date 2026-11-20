@@ -16,6 +16,7 @@ import {
   DEFAULT_CONVENTIONS,
   facts,
   findSeams,
+  forecast,
   formatOffset,
   makeMoment,
   readAcross,
@@ -30,6 +31,7 @@ import {
 import { markersFor, renderTimeline, renderWheel } from '@overlay/render';
 import { MOMENTS } from '../../../fixtures/moments.ts';
 import { initForecast } from './forecastPage.ts';
+import { initScorecard } from './scorecardPage.ts';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
 const esc = (s: string | number): string => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -91,22 +93,30 @@ function loadSample(id: string): void {
   $<HTMLInputElement>('lon').value = String(m.place.longitude);
 }
 
-function readMoment(): Moment | string {
+/** The birth moment of the form as typed (what a session file holds), or the message that says why there is none. */
+function readNativity(): forecast.Nativity | string {
   const when = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?/.exec($<HTMLInputElement>('when').value);
   if (!when) return 'Enter a date and time.';
   const lat = Number($<HTMLInputElement>('lat').value);
   const lon = Number($<HTMLInputElement>('lon').value);
   if (!(Math.abs(lat) <= 90) || !(Math.abs(lon) <= 180)) return 'Latitude must be within 90 degrees and longitude within 180.';
   const zone = $<HTMLInputElement>('zone').value.trim() || 'UTC';
+  const nativity: forecast.Nativity = {
+    civil: { year: +when[1]!, month: +when[2]!, day: +when[3]!, hour: +when[4]!, minute: +when[5]!, second: +(when[6] ?? 0) },
+    zone,
+    place: { latitude: lat, longitude: lon },
+  };
   try {
-    return makeMoment(
-      { year: +when[1]!, month: +when[2]!, day: +when[3]!, hour: +when[4]!, minute: +when[5]!, second: +(when[6] ?? 0) },
-      zone,
-      { latitude: lat, longitude: lon },
-    );
+    makeMoment(nativity.civil, nativity.zone, nativity.place);
   } catch {
     return `"${zone}" is not a time zone this browser knows. Use an IANA name such as Asia/Shanghai, or an offset such as +08:00.`;
   }
+  return nativity;
+}
+
+function readMoment(): Moment | string {
+  const n = readNativity();
+  return typeof n === 'string' ? n : makeMoment(n.civil, n.zone, n.place);
 }
 
 // --- rendering ---------------------------------------------------------------
@@ -346,6 +356,14 @@ const forecastPage = initForecast({
   conventions: () => state.conventions,
   uncertaintyMinutes: () => Number($<HTMLInputElement>('uncertainty').value) || 0,
 });
+const scorecardPage = initScorecard({
+  readNativity,
+  conventions: () => state.conventions,
+  forecastSettings: () => forecastPage.settings(),
+  save,
+});
 wire();
 update();
 forecastPage.schedule();
+// The form can change the moment the frozen forecasts were made for; the scorecard says so.
+for (const id of ['when', 'zone', 'lat', 'lon', 'sample', 'fc-sex', 'sex']) $(id).addEventListener('input', () => scorecardPage.refresh());

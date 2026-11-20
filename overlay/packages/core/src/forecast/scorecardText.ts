@@ -45,8 +45,8 @@ export const countsHeader = (events: number, frozen: number): string => `${plura
 export const valenceWords = (v: 'good' | 'bad'): string => (v === 'good' ? SCORECARD_WORDS.wentWell : SCORECARD_WORDS.wentBadly);
 
 /** The date an event covers, as typed: a day, a month or a year. */
-export function eventDateText(e: Pick<EventResult, 'window' | 'precision'>): string {
-  const iso = new Date(e.window.startUtcMs).toISOString();
+export function eventDateText(e: Pick<EventResult, 'dates' | 'precision'>): string {
+  const iso = new Date(e.dates.startUtcMs).toISOString();
   return e.precision === 'day' ? iso.slice(0, 10) : e.precision === 'month' ? iso.slice(0, 7) : iso.slice(0, 4);
 }
 

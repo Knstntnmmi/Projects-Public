@@ -2,6 +2,8 @@
 
 **One moment, every system, one shared axis.**
 
+Website: <https://knstntnmmi.github.io/Projects-Public/>
+
 The forecast is the main output: read the [forecast guide](docs/FORECAST.md), the [scholarship page](docs/SCHOLARSHIP.md) and the [glossary](docs/GLOSSARY.md).
 
 ## The forecast
@@ -167,5 +169,7 @@ Overlay is source-available and free for noncommercial use, under the [PolyForm 
 Versions published before this change were offered under AGPL-3.0-or-later and remain available under it to those who received them.
 
 Third-party material keeps its own terms: the transcription of the Zhouyi is credited to Chinese Wikisource (CC BY-SA 4.0 where any right subsists), and the dependencies keep their own licences.
+
+Support: [Sponsor on GitHub](https://github.com/sponsors/Knstntnmmi). Commercial use or investment enquiries go through an [issue on the repository](https://github.com/Knstntnmmi/Projects-Public/issues).
 
 It stands on `astronomy-engine` by Don Cross and is tested against `tyme4ts` by 6tail, both MIT licensed.

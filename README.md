@@ -1,6 +1,6 @@
 # overlay
 
-Shows what the published rules of BaZi, Vedic and Western astrology and the I Ching say about a period, each statement with its rule and its source.
+Shows what the published rules of BaZi, Vedic and Western astrology and the I Ching say about a period, each statement with its rule and its source. Website: <https://knstntnmmi.github.io/Projects-Public/>.
 
 ![The decade grid for the constructed sample moment j2000, topic wealth, 2026 to 2035: one row per technique, one column per year, each cell marked supports, cautions, mixed or nothing said.](overlay/docs/img/forecast-grid.svg)
 
@@ -59,3 +59,5 @@ This needs Node 22.18 or later. The page is started with `npm run dev`. For the 
 | [overlay/PRIVACY.md](overlay/PRIVACY.md) | What happens to what you type |
 
 Copyright © 2026 Knstntnmmi. Source-available, free for noncommercial use under the [PolyForm Noncommercial License 1.0.0](overlay/LICENSE); the credit must be kept. Noncommercial use is free under the PolyForm Noncommercial License 1.0.0 with the credit kept; commercial use needs the owner's permission, asked through an issue on the repository. Versions published before this change were offered under AGPL-3.0-or-later and remain available under it to those who received them. See [overlay/NOTICE](overlay/NOTICE).
+
+Support: [Sponsor on GitHub](https://github.com/sponsors/Knstntnmmi). Commercial use or investment enquiries go through an [issue on the repository](https://github.com/Knstntnmmi/Projects-Public/issues).

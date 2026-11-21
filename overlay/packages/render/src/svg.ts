@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /** Small helpers shared by the renderers. Everything returns strings; nothing touches a DOM. */
 
@@ -120,7 +120,7 @@ export function textWidth(s: string, fontSize: number): number {
   return w * fontSize;
 }
 
-/** Machine-readable and visible credit for a drawing; the licence requires it to be kept. */
+/** Machine-readable and visible credit for a drawing; the licence notice asks for it to be kept. */
 export function creditBlock(credit: string, x: number, y: number, anchor: 'start' | 'end' = 'end'): string {
   return `<metadata>${esc(credit)}</metadata><text class="muted" x="${n(x)}" y="${n(y)}" font-size="10.5" text-anchor="${anchor}">${esc(credit)}</text>`;
 }

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // Copyright (C) 2026 Knstntnmmi <https://github.com/Knstntnmmi/Projects-Public>
 /** The sample of the forecast tests: the constructed moment j2000, wealth, 2026 to 2035. One evaluation is shared by the tests of a file. */
 import { forecast, makeMoment } from '@overlay/core';

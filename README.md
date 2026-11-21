@@ -58,4 +58,4 @@ This needs Node 22.18 or later. The page is started with `npm run dev`. For the 
 | [overlay/docs/CONVENTIONS.md](overlay/docs/CONVENTIONS.md) | The conventions on which calculators differ |
 | [overlay/PRIVACY.md](overlay/PRIVACY.md) | What happens to what you type |
 
-Copyright © 2026 Knstntnmmi. Licensed under the GNU AGPL, version 3 or later; the credit must be kept. See [overlay/NOTICE](overlay/NOTICE).
+Copyright © 2026 Knstntnmmi. Source-available, free for noncommercial use under the [PolyForm Noncommercial License 1.0.0](overlay/LICENSE); the credit must be kept. Noncommercial use is free under the PolyForm Noncommercial License 1.0.0 with the credit kept; commercial use needs the owner's permission, asked through an issue on the repository. Versions published before this change were offered under AGPL-3.0-or-later and remain available under it to those who received them. See [overlay/NOTICE](overlay/NOTICE).

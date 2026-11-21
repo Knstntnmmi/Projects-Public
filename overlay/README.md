@@ -162,6 +162,10 @@ Everything is computed on your own machine. The web page makes no network reques
 
 Copyright © 2026 **Knstntnmmi** ([github.com/Knstntnmmi](https://github.com/Knstntnmmi)).
 
-Overlay is free software under the [GNU Affero General Public License, version 3 or later](LICENSE). You may use, study, change and share it. If you share it, build on it, or run it as a service that others use over a network, you must keep the credit above wherever it appears, publish the complete source of your version, and license it under the same terms. You may not take it closed. The credit lines in the source headers, in the page footer and in the generated drawings and documents are author attributions that the licence requires you to preserve; the details are in [NOTICE](NOTICE).
+Overlay is source-available and free for noncommercial use, under the [PolyForm Noncommercial License 1.0.0](LICENSE). Noncommercial use is free under the PolyForm Noncommercial License 1.0.0 with the credit kept; commercial use needs the owner's permission, asked through an issue on the repository. The credit lines in the source headers, in the page footer and in the generated drawings and documents are author attributions to keep; the details are in [NOTICE](NOTICE).
+
+Versions published before this change were offered under AGPL-3.0-or-later and remain available under it to those who received them.
+
+Third-party material keeps its own terms: the transcription of the Zhouyi is credited to Chinese Wikisource (CC BY-SA 4.0 where any right subsists), and the dependencies keep their own licences.
 
 It stands on `astronomy-engine` by Don Cross and is tested against `tyme4ts` by 6tail, both MIT licensed.

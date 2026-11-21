@@ -4,7 +4,7 @@
     "version": "0.1.0",
     "author": "Knstntnmmi",
     "source": "https://github.com/Knstntnmmi/Projects-Public",
-    "license": "AGPL-3.0-or-later",
+    "license": "PolyForm-Noncommercial-1.0.0",
     "ephemeris": "astronomy-engine 2.1.19 (MIT): truncated VSOP87 and the NOVAS reductions, good to about one arcminute"
   },
   "input": {

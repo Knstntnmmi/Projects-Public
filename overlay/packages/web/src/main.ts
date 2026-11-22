@@ -31,6 +31,7 @@ import {
 import { markersFor, renderTimeline, renderWheel } from '@overlay/render';
 import { MOMENTS } from '../../../fixtures/moments.ts';
 import { initForecast } from './forecastPage.ts';
+import { initPlacePicker } from './placePicker.ts';
 import { initScorecard } from './scorecardPage.ts';
 
 const $ = <T extends HTMLElement>(id: string): T => document.getElementById(id) as T;
@@ -270,6 +271,7 @@ function save(name: string, text: string, type: string): void {
 function wire(): void {
   $('sample').addEventListener('change', (e) => {
     loadSample((e.target as HTMLSelectElement).value);
+    placePicker.reset();
     state.probe = null;
     update();
     forecastPage.schedule();
@@ -351,6 +353,8 @@ function wire(): void {
 
 fillStatic();
 loadSample('j2000');
+const placePicker = initPlacePicker();
+placePicker.reset();
 const forecastPage = initForecast({
   readMoment,
   conventions: () => state.conventions,

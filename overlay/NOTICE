@@ -61,6 +61,15 @@ tyme4ts, by 6tail, MIT License. Used only by the test suite, as an
 independent implementation to check the Chinese calendar results against. It
 is not part of the distributed program.
 
+The list of cities used by the page's place search (names, countries, regions,
+coordinates and time zones; packages/web/src/places/cities.json) is derived
+from GeoNames, https://www.geonames.org/, licensed under the Creative Commons
+Attribution 4.0 International licence (CC BY 4.0,
+https://creativecommons.org/licenses/by/4.0/). It was reduced and converted by
+scripts/buildPlaces.ts: cities of about 15 000 inhabitants and more, alternate
+names kept for the larger ones, coordinates rounded to a hundredth of a degree.
+The page shows this credit in its footer.
+
 The transcription of the characters of the Zhouyi in the code was taken from
 Chinese Wikisource and is credited to it (Creative Commons
 Attribution-ShareAlike 4.0, CC BY-SA 4.0, where any right subsists in the

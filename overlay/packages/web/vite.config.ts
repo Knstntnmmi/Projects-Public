@@ -21,5 +21,5 @@ const lockdown: Plugin = {
 export default defineConfig({
   base: './',
   plugins: [lockdown],
-  build: { target: 'es2022', outDir: 'dist', emptyOutDir: true, chunkSizeWarningLimit: 900 },
+  build: { target: 'es2022', outDir: 'dist', emptyOutDir: true, chunkSizeWarningLimit: 1200 },
 });

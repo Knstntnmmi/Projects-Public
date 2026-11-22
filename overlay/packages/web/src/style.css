@@ -231,3 +231,27 @@ ul.sc-notes { padding-left: 1.1rem; max-width: 80ch; }
   .sc-table th[scope="row"], .sc-table thead th:first-child { min-width: 9rem; }
   #scorecard .controls button { flex: 1 1 100%; min-height: 44px; }
 }
+
+/* Place search */
+.place-field { flex: 1 1 100%; max-width: 34rem; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.place-field > label { font-size: 0.85rem; color: var(--muted); }
+.combo { position: relative; }
+.combo input { width: 100%; min-height: 44px; font-size: 1rem; }
+#place-list {
+  position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 2px); margin: 0; padding: 0; list-style: none;
+  max-height: min(22rem, 50vh); overflow-y: auto; background: var(--panel); border: 1px solid var(--ink); border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+#place-list[hidden] { display: none; }
+#place-list li { display: flex; align-items: center; min-height: 44px; padding: 6px 12px; cursor: pointer; overflow-wrap: anywhere; border-bottom: 1px solid var(--line); }
+#place-list li:last-child { border-bottom: 0; }
+#place-list li[aria-selected="true"], #place-list li:hover { background: var(--mark); }
+#place-list li.none { cursor: default; color: var(--muted); font-size: 0.9rem; }
+#place-list li.none:hover { background: transparent; }
+.place-line { margin: 2px 0 4px; min-height: 1.4em; overflow-wrap: anywhere; }
+#place-hand summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--muted); font-size: 0.9rem; }
+#places-credit { font-size: 0.85rem; color: var(--muted); }
+#place-hand summary { list-style: none; }
+#place-hand summary::-webkit-details-marker { display: none; }
+#place-hand summary::before { content: "\25B8"; margin-right: 8px; }
+#place-hand[open] summary::before { content: "\25BE"; }

@@ -6,7 +6,7 @@ A date, time and place of birth identify a person about as well as a name does, 
 
 The engine is a set of pure functions. The command line reads its arguments, writes to standard output and exits. The web page computes in the browser tab and keeps its state in memory. The forecast is part of the engine and follows the same rules.
 
-No part of it makes a network request. The built web page ships with a content security policy of `connect-src 'none'` and `form-action 'none'`, so the browser itself refuses any request a script might attempt; there are no analytics, no fonts or scripts from other hosts, and no geocoder (you type coordinates). Nothing is written to cookies, local storage, session storage or IndexedDB, and nothing is put in the address bar, so a link to the page never carries your data. Reloading the page forgets everything.
+No part of it makes a network request. The built web page ships with a content security policy of `connect-src 'none'` and `form-action 'none'`, so the browser itself refuses any request a script might attempt; there are no analytics, no fonts or scripts from other hosts, and no geocoder (you type coordinates). Nothing is written to cookies, local storage, session storage or IndexedDB, and nothing is put in the address bar, so a link to the page never carries your data. Reloading the page forgets everything. The page contains links to GitHub; following one leaves the page, and nothing is sent before you click.
 
 The buttons that copy or download a result act on your own machine and only when you press them. What you then do with the file is up to you; a facts document contains the moment and place it was computed for.
 

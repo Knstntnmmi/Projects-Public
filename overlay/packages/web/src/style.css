@@ -88,6 +88,9 @@ td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
 pre { overflow: auto; max-height: 520px; font: 12.5px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
 footer { color: var(--muted); font-size: 0.86rem; padding-bottom: 36px; }
 footer a { color: inherit; }
+footer #support { margin: 24px 0 16px; padding-top: 16px; border-top: 1px solid var(--line, currentColor); }
+footer #support h2 { font-size: 1rem; margin: 0 0 6px; }
+footer #support p { margin: 4px 0; }
 
 /* --- the forecast ------------------------------------------------------------ */
 h2.part { font-size: 1.15rem; margin: 30px 0 4px; padding-top: 14px; border-top: 2px solid var(--line); }
